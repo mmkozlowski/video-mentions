@@ -1,0 +1,17 @@
+# ── Robocze: wszystko, co skrypty potrafią wytworzyć od nowa ──────────────
+# Zasada repo: w gicie leży materiał NIEODTWARZALNY (kupiony za kredyty albo
+# dostarczony) i DELIVERABLE (final/). Reszta jest odtwarzalna jednym poleceniem
+# i nie ma powodu, żeby każdy klon ciągnął pół giga cache'u ffmpeg.
+projects/*/build/
+
+# Podglądy i cache narzędzi
+**/snapshots/
+**/renders/
+__pycache__/
+*.pyc
+.venv/
+node_modules/
+
+# System
+.DS_Store
+Thumbs.db

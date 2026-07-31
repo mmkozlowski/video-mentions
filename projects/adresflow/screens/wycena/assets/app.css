@@ -1,0 +1,293 @@
+/* AdresFlow — tokeny przeniesione 1:1 z apps/web/src/styles/legacy.css.
+   Skala x2 względem aplikacji, bo kadr 1080x1920 ogląda się na telefonie. */
+
+@font-face {
+  font-family: "Poppins";
+  src: url("fonts/Poppins-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-display: block;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("fonts/Poppins-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-display: block;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("fonts/Poppins-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: block;
+}
+
+:root {
+  --bg: #0a0b10;
+  --surface: #12151e;
+  --elevated: #1a1f2e;
+  --border: #3a4268;
+  --border-soft: rgba(255, 255, 255, 0.06);
+  --accent: #8b5cf6;
+  --accent-hover: #a78bfa;
+  --accent-deep: #7c3aed;
+  --magenta: #d946ef;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --text: #f1f5f9;
+  --text-2: #94a3b8;
+  /* Aplikacja ma tu #6b7a92 — w kadrze wideo to 3,77:1 i `check` odrzuca.
+     Rozjaśnione do 4,8:1 na --elevated; hierarchia zachowana. */
+  --text-3: #8593ab;
+  --border-strong: #6d78a8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 1080px;
+  height: 1920px;
+  overflow: hidden;
+  background: #000;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  position: relative;
+  width: 1080px;
+  height: 1920px;
+  overflow: hidden;
+}
+
+/* Wypełnienie kadru MUSI siedzieć na dziecku, nie na #root — inaczej klatka
+   wychodzi czarna przy składaniu (hyperframes-core: composition-patterns). */
+.stage {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(1200px 900px at 78% 8%, rgba(139, 92, 246, 0.16), transparent 62%),
+    radial-gradient(900px 800px at 12% 96%, rgba(217, 70, 239, 0.1), transparent 60%),
+    var(--bg);
+}
+
+.frame {
+  position: absolute;
+  inset: 0;
+  padding: 96px 60px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Pasek aplikacji ─────────────────────────────────────────────── */
+.appbar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 52px;
+}
+.logo-dot {
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, var(--accent), var(--magenta));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 34px;
+  color: #fff;
+}
+.appbar-name {
+  font-size: 34px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.appbar-tool {
+  margin-left: auto;
+  font-size: 26px;
+  color: var(--text-2);
+  border: 2px solid var(--border-strong);
+  border-radius: 999px;
+  padding: 10px 26px;
+}
+
+/* Obszar pod paskiem aplikacji — przewijanie treści zachodziłoby na appbar,
+   więc ruch musi być przycięty do własnego viewportu (check: text_occluded). */
+.viewport {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+.viewport-stack {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* ── Typografia sekcji ───────────────────────────────────────────── */
+.eyebrow {
+  font-size: 24px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  font-weight: 600;
+}
+.h1 {
+  font-size: 62px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+}
+.sub {
+  font-size: 30px;
+  color: var(--text-2);
+  line-height: 1.4;
+}
+
+/* ── Karty ───────────────────────────────────────────────────────── */
+.card {
+  border: 2px solid var(--border);
+  background: var(--elevated);
+  border-radius: 36px;
+  padding: 40px;
+}
+.card-accent {
+  border-color: rgba(139, 92, 246, 0.4);
+  background: rgba(139, 92, 246, 0.1);
+}
+
+/* ── Pola formularza ─────────────────────────────────────────────── */
+.field-label {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 14px;
+}
+.input {
+  position: relative;
+  height: 104px;
+  border: 2px solid var(--border);
+  background: var(--surface);
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  padding: 0 28px;
+  font-size: 40px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+.input .ph {
+  color: var(--text-3);
+  font-weight: 500;
+}
+.caret {
+  width: 4px;
+  height: 48px;
+  background: var(--accent-hover);
+  border-radius: 2px;
+  margin-left: 4px;
+}
+
+.btn {
+  height: 108px;
+  border-radius: 26px;
+  background: linear-gradient(135deg, var(--accent), var(--magenta));
+  color: #fff;
+  font-size: 36px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+.btn-ghost {
+  height: 96px;
+  border-radius: 24px;
+  border: 2px solid var(--border);
+  background: transparent;
+  color: var(--text-2);
+  font-size: 32px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Pigułki / badge ─────────────────────────────────────────────── */
+.pill {
+  border-radius: 999px;
+  padding: 10px 24px;
+  font-size: 24px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.pill-ok {
+  background: rgba(34, 197, 94, 0.15);
+  color: #4ade80;
+}
+.pill-accent {
+  background: rgba(139, 92, 246, 0.12);
+  color: var(--accent-hover);
+}
+.pill-warn {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+}
+
+/* ── Siatka faktów ───────────────────────────────────────────────── */
+.facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px 34px;
+}
+.fact-label {
+  font-size: 20px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.fact-value {
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Spinner (skończona liczba obrotów, wymóg determinizmu) ─────── */
+.spinner {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 5px solid rgba(255, 255, 255, 0.22);
+  border-top-color: #fff;
+}
+
+.muted {
+  color: var(--text-2);
+}
+.accent {
+  color: var(--accent-hover);
+}

@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="pl" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>AdresFlow — księga wieczysta</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="assets/app.css" />
+    <style>
+      .kw-inputs {
+        display: grid;
+        grid-template-columns: 260px 1fr 150px;
+        gap: 22px;
+        margin-top: 30px;
+      }
+      .ring {
+        position: absolute;
+        inset: -8px;
+        border-radius: 30px;
+        border: 4px solid var(--accent-hover);
+        opacity: 0;
+      }
+      .kw-head {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        margin-bottom: 34px;
+      }
+      .kw-icon {
+        width: 76px;
+        height: 76px;
+        border-radius: 22px;
+        background: rgba(139, 92, 246, 0.14);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 38px;
+      }
+      .owners {
+        margin-top: 34px;
+        border-top: 2px solid var(--border-soft);
+        padding-top: 28px;
+      }
+      .owner-row {
+        font-size: 30px;
+        font-weight: 500;
+        margin-top: 12px;
+      }
+      .dzialy {
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .dzial {
+        border: 2px solid var(--border);
+        background: rgba(10, 11, 16, 0.5);
+        border-radius: 22px;
+        padding: 22px 26px;
+        display: flex;
+        align-items: baseline;
+        gap: 20px;
+      }
+      .dzial-name {
+        font-size: 26px;
+        font-weight: 600;
+        color: var(--text);
+        white-space: nowrap;
+      }
+      .dzial-val {
+        font-size: 26px;
+        color: var(--text-2);
+        margin-left: auto;
+        text-align: right;
+      }
+      .loadbar {
+        margin-top: 26px;
+        height: 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+        overflow: hidden;
+      }
+      .loadbar-fill {
+        height: 100%;
+        width: 100%;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--accent), var(--magenta));
+        transform-origin: left center;
+        transform: scaleX(0);
+      }
+      #kw-loading {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-top: 26px;
+        font-size: 30px;
+        color: var(--text-2);
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="kw"
+      data-start="0"
+      data-duration="13"
+      data-width="1080"
+      data-height="1920"
+      data-fps="30"
+    >
+      <div class="stage"></div>
+
+      <section id="kw-scene" class="clip" data-start="0" data-duration="13" data-track-index="1">
+        <div class="frame">
+          <div class="viewport">
+          <div id="kw-stack" class="viewport-stack">
+            <div class="appbar" id="kw-appbar">
+              <div class="logo-dot">A</div>
+              <div class="appbar-name">AdresFlow</div>
+              <div class="appbar-tool">Kreator oferty · krok 1</div>
+            </div>
+            <!-- Formularz KW -->
+            <div class="card" id="kw-form">
+              <div class="eyebrow">Księga wieczysta</div>
+              <div class="h1" style="margin-top: 14px">Wklej numer księgi</div>
+              <div class="sub" style="margin-top: 16px">
+                Pobieram dane z portalu EKW — powierzchnia, właściciel, obciążenia.
+              </div>
+
+              <div class="kw-inputs">
+                <div>
+                  <div class="field-label">Kod wydziału</div>
+                  <div class="input" id="kw-in-1">
+                    <span class="ph" id="kw-ph-1" style="position: absolute; left: 46px">SL1S</span>
+                    <span id="kw-val-1" style="opacity: 0; position: absolute; left: 28px">SL1S</span>
+                    <span class="caret" id="kw-caret" style="position: absolute; left: 28px"></span>
+                    <span class="ring" id="kw-ring-1"></span>
+                  </div>
+                </div>
+                <div>
+                  <div class="field-label">Numer księgi</div>
+                  <div class="input" id="kw-in-2" style="font-variant-numeric: tabular-nums">
+                    <span class="ph" id="kw-ph-2">00099246</span>
+                    <span id="kw-val-2" style="opacity: 0; position: absolute; left: 28px">00099246</span>
+                    <span class="ring" id="kw-ring-2"></span>
+                  </div>
+                </div>
+                <div>
+                  <div class="field-label">Cyfra</div>
+                  <div class="input" id="kw-in-3" style="font-variant-numeric: tabular-nums">
+                    <span class="ph" id="kw-ph-3">5</span>
+                    <span id="kw-val-3" style="opacity: 0; position: absolute; left: 28px">5</span>
+                    <span class="ring" id="kw-ring-3"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="btn" id="kw-btn" style="margin-top: 34px">Pobierz dane z KW</div>
+
+              <div id="kw-loading">
+                <span class="spinner" id="kw-spinner"></span>
+                <span>Pobieram z portalu EKW…</span>
+              </div>
+              <div class="loadbar" id="kw-loadbar" style="opacity: 0">
+                <div class="loadbar-fill" id="kw-loadbar-fill"></div>
+              </div>
+            </div>
+
+            <!-- Wynik: karta KW -->
+            <div class="card" id="kw-result" style="opacity: 0">
+              <div class="kw-head">
+                <div class="kw-icon">🏠</div>
+                <div style="min-width: 0">
+                  <div style="font-size: 32px; font-weight: 600">Księga wieczysta</div>
+                  <div class="muted" style="font-size: 26px; margin-top: 4px">SL1S/00099246/5</div>
+                </div>
+                <span class="pill pill-ok" id="kw-badge" style="margin-left: auto; opacity: 0">Bez obciążeń</span>
+              </div>
+
+              <div class="facts">
+                <div class="kw-fact">
+                  <div class="fact-label">Powierzchnia</div>
+                  <div class="fact-value">58,40 m²</div>
+                </div>
+                <div class="kw-fact">
+                  <div class="fact-label">Sposób korzystania</div>
+                  <div class="fact-value">Lokal mieszkalny</div>
+                </div>
+                <div class="kw-fact">
+                  <div class="fact-label">Położenie</div>
+                  <div class="fact-value">Katowice, Śródmieście</div>
+                </div>
+                <div class="kw-fact">
+                  <div class="fact-label">Typ nieruchomości</div>
+                  <div class="fact-value">Lokal odrębny</div>
+                </div>
+                <div class="kw-fact">
+                  <div class="fact-label">Działki ewid.</div>
+                  <div class="fact-value">226/3</div>
+                </div>
+                <div class="kw-fact">
+                  <div class="fact-label">Sąd</div>
+                  <div class="fact-value">SR Katowice-Wschód</div>
+                </div>
+              </div>
+
+              <div class="owners" id="kw-owners">
+                <div class="fact-label">Właściciele</div>
+                <div class="owner-row">Jan Kowalski <span class="muted" style="font-size: 24px">(osoba fizyczna)</span></div>
+                <div class="owner-row">Anna Kowalska <span class="muted" style="font-size: 24px">(osoba fizyczna)</span></div>
+              </div>
+
+              <div class="dzialy">
+                <div class="dzial kw-dzial">
+                  <span class="dzial-name">Dział I-O — oznaczenie</span>
+                  <span class="dzial-val">Lokal 12, ul. Piękna 12</span>
+                </div>
+                <div class="dzial kw-dzial">
+                  <span class="dzial-name">Dział I-Sp — prawa</span>
+                  <span class="dzial-val">Udział 5840/184300</span>
+                </div>
+                <div class="dzial kw-dzial">
+                  <span class="dzial-name">Dział II — własność</span>
+                  <span class="dzial-val">Wspólność ustawowa</span>
+                </div>
+                <div class="dzial kw-dzial">
+                  <span class="dzial-name">Dział III — obciążenia</span>
+                  <span class="dzial-val">Brak wpisów</span>
+                </div>
+                <div class="dzial kw-dzial">
+                  <span class="dzial-name">Dział IV — hipoteka</span>
+                  <span class="dzial-val">Brak wpisów</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // Start niżej: dopóki na ekranie jest sam formularz, ma siedzieć w środku
+      // kadru, a nie zostawiać pustego dołu przez pierwsze pięć sekund.
+      // Pozycja wyjściowa idzie przez timeline, nie przez CSS — inaczej GSAP
+      // nadpisuje transform i lint zgłasza gsap_css_transform_conflict.
+      tl.set("#kw-stack", { y: 430 }, 0);
+
+      // Wejście ekranu
+      tl.from("#kw-appbar", { y: -40, autoAlpha: 0, duration: 0.5, ease: "power3.out" }, 0);
+      tl.from("#kw-form", { y: 60, autoAlpha: 0, duration: 0.7, ease: "power3.out" }, 0.25);
+
+      // Kursor mruga, dopóki pole jest puste (skończona liczba powtórzeń)
+      tl.to("#kw-caret", { opacity: 0, duration: 0.45, repeat: 3, yoyo: true, ease: "steps(1)" }, 0.9);
+
+      // Jedno wklejenie wypełnia wszystkie trzy pola naraz
+      tl.to(["#kw-ph-1", "#kw-ph-2", "#kw-ph-3", "#kw-caret"], { opacity: 0, duration: 0.12 }, 2.7);
+      tl.to(["#kw-val-1", "#kw-val-2", "#kw-val-3"], { opacity: 1, duration: 0.18, ease: "power2.out" }, 2.72);
+      tl.fromTo(
+        [".ring"],
+        { opacity: 0, scale: 1.06 },
+        { opacity: 1, scale: 1, duration: 0.22, ease: "power2.out" },
+        2.72,
+      );
+      tl.to(".ring", { opacity: 0, duration: 0.5, ease: "power2.in" }, 3.1);
+
+      // Kliknięcie przycisku
+      tl.to("#kw-btn", { scale: 0.97, duration: 0.1, ease: "power2.out" }, 3.5);
+      tl.to("#kw-btn", { scale: 1, duration: 0.22, ease: "power2.out" }, 3.6);
+
+      // Pobieranie z EKW
+      tl.to("#kw-loading", { opacity: 1, duration: 0.25 }, 3.75);
+      tl.to("#kw-loadbar", { opacity: 1, duration: 0.25 }, 3.75);
+      tl.to("#kw-spinner", { rotation: 1440, duration: 1.6, ease: "none" }, 3.8);
+      tl.to("#kw-loadbar-fill", { scaleX: 1, duration: 1.5, ease: "power1.inOut" }, 3.8);
+      tl.to(["#kw-loading", "#kw-loadbar"], { opacity: 0, duration: 0.25 }, 5.3);
+
+      // Wynik
+      tl.to("#kw-stack", { y: -60, duration: 0.8, ease: "power3.inOut" }, 5.35);
+      tl.to("#kw-result", { opacity: 1, duration: 0.5, ease: "power2.out" }, 5.5);
+      tl.from("#kw-result", { y: 70, duration: 0.8, ease: "power3.out" }, 5.5);
+      tl.to("#kw-badge", { opacity: 1, duration: 0.4, ease: "power2.out" }, 6.2);
+      tl.from(".kw-fact", { y: 26, autoAlpha: 0, duration: 0.5, stagger: 0.09, ease: "power3.out" }, 6.35);
+      tl.from("#kw-owners", { y: 26, autoAlpha: 0, duration: 0.55, ease: "power3.out" }, 7.3);
+      tl.from(".kw-dzial", { y: 30, autoAlpha: 0, duration: 0.5, stagger: 0.12, ease: "power3.out" }, 8.0);
+
+      // Dojazd kadru na kartę wyniku — ruch trzyma uwagę do końca ujęcia
+      tl.to("#kw-stack", { y: -300, duration: 3.0, ease: "power1.inOut" }, 9.4);
+
+      window.__timelines["kw"] = tl;
+    </script>
+  </body>
+</html>

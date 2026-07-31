@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="pl" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>AdresFlow — wycena z rejestru RCiWN</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="assets/app.css" />
+    <style>
+      /* Podpowiedzi to dropdown — muszą nakładać się na treść pod spodem,
+         inaczej rezerwują pustą dziurę w karcie przez cały klip. */
+      .suggest {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 118px;
+        z-index: 2;
+        border: 2px solid var(--border);
+        background: var(--surface);
+        border-radius: 22px;
+        overflow: hidden;
+        opacity: 0;
+      }
+      .suggest-row {
+        padding: 22px 28px;
+        font-size: 28px;
+        color: var(--text-2);
+        border-bottom: 2px solid var(--border-soft);
+      }
+      .suggest-row:last-child {
+        border-bottom: none;
+      }
+      .suggest-row.is-active {
+        background: rgba(139, 92, 246, 0.12);
+        color: var(--text);
+        font-weight: 600;
+      }
+      .meta {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+        font-size: 26px;
+        color: var(--text-2);
+      }
+      .meta strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 22px;
+      }
+      .stat-label {
+        font-size: 24px;
+        font-weight: 500;
+        color: var(--text-3);
+        line-height: 1.2;
+      }
+      .stat-value {
+        margin-top: 10px;
+        font-size: 54px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.05;
+        font-variant-numeric: tabular-nums;
+      }
+      .stat-value.is-accent {
+        color: var(--accent-hover);
+      }
+      .stat-sub {
+        margin-top: 8px;
+        font-size: 22px;
+        color: var(--text-3);
+      }
+      .bars {
+        display: flex;
+        align-items: flex-end;
+        gap: 12px;
+        height: 300px;
+        margin-top: 26px;
+      }
+      .bar-col {
+        flex: 1;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+      .bar {
+        width: 100%;
+        border-radius: 12px 12px 0 0;
+        background: rgba(139, 92, 246, 0.7);
+        transform-origin: bottom center;
+        transform: scaleY(0);
+      }
+      .bar.is-peak {
+        background: linear-gradient(180deg, var(--magenta), var(--accent));
+      }
+      .bars-axis {
+        margin-top: 16px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 22px;
+        color: var(--text-3);
+      }
+      #wy-loading {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-top: 26px;
+        font-size: 30px;
+        color: var(--text-2);
+        opacity: 0;
+      }
+      .source-note {
+        margin-top: 30px;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="wycena"
+      data-start="0"
+      data-duration="14"
+      data-width="1080"
+      data-height="1920"
+      data-fps="30"
+    >
+      <div class="stage"></div>
+
+      <section id="wy-scene" class="clip" data-start="0" data-duration="14" data-track-index="1">
+        <div class="frame">
+          <div class="viewport">
+            <div id="wy-stack" class="viewport-stack">
+              <div class="appbar" id="wy-appbar">
+                <div class="logo-dot">A</div>
+                <div class="appbar-name">AdresFlow</div>
+                <div class="appbar-tool">Wycena · 0 kredytów</div>
+              </div>
+
+              <!-- Wyszukiwarka adresu -->
+              <div class="card" id="wy-form">
+                <div class="eyebrow">Wycena nieruchomości</div>
+                <div class="h1" style="margin-top: 14px">Wpisz adres</div>
+                <div class="sub" style="margin-top: 16px">
+                  Realne ceny transakcyjne z rejestru RCiWN — nie ceny z ogłoszeń.
+                </div>
+
+                <div style="margin-top: 30px; position: relative">
+                  <div class="input" id="wy-input">
+                    <span class="ph" id="wy-ph">np. Piękna 12, Katowice</span>
+                    <span id="wy-val" style="opacity: 0; position: absolute; left: 28px">Piękna 12, Katowice</span>
+                  </div>
+                  <div class="suggest" id="wy-suggest">
+                    <div class="suggest-row is-active">ul. Piękna 12, 40-036 Katowice</div>
+                    <div class="suggest-row">ul. Piękna 12A, 40-036 Katowice</div>
+                    <div class="suggest-row">ul. Piękna 2, 41-500 Chorzów</div>
+                  </div>
+                </div>
+
+                <div class="btn" id="wy-btn" style="margin-top: 30px">Pobierz transakcje</div>
+
+                <div id="wy-loading">
+                  <span class="spinner" id="wy-spinner"></span>
+                  <span>Pobieram z rejestru RCiWN…</span>
+                </div>
+              </div>
+
+              <!-- Wynik -->
+              <div id="wy-result" style="opacity: 0">
+                <div class="meta" id="wy-meta">
+                  <span>📍 <strong>Katowice, Śródmieście</strong></span>
+                  <span>· promień 1 km</span>
+                  <span>· 38 transakcji</span>
+                  <span class="pill pill-accent" style="margin-left: auto">pobrane teraz</span>
+                </div>
+
+                <div class="stats" style="margin-top: 26px">
+                  <div class="card card-accent wy-stat">
+                    <div class="stat-label">Mediana ceny</div>
+                    <div class="stat-value is-accent"><span id="wy-n-median">0</span></div>
+                    <div class="stat-sub">zł/m²</div>
+                  </div>
+                  <div class="card wy-stat">
+                    <div class="stat-label">Zakres p25–p75</div>
+                    <div class="stat-value"><span id="wy-n-p25">0</span>–<span id="wy-n-p75">0</span></div>
+                    <div class="stat-sub">zł/m²</div>
+                  </div>
+                  <div class="card wy-stat">
+                    <div class="stat-label">Transakcji</div>
+                    <div class="stat-value"><span id="wy-n-count">0</span></div>
+                    <div class="stat-sub">wtórny: 31 · pierwotny: 7</div>
+                  </div>
+                  <div class="card wy-stat">
+                    <div class="stat-label">Mediana kwoty</div>
+                    <div class="stat-value"><span id="wy-n-amount">0</span></div>
+                    <div class="stat-sub">zł / nieruchomość</div>
+                  </div>
+                </div>
+
+                <div class="card" style="margin-top: 24px">
+                  <div style="font-size: 30px; font-weight: 600">Rozkład cen (zł/m²)</div>
+                  <div class="bars">
+                    <div class="bar-col"><div class="bar wy-bar" style="height: 12%"></div></div>
+                    <div class="bar-col"><div class="bar wy-bar" style="height: 26%"></div></div>
+                    <div class="bar-col"><div class="bar wy-bar" style="height: 48%"></div></div>
+                    <div class="bar-col"><div class="bar wy-bar" style="height: 74%"></div></div>
+                    <div class="bar-col"><div class="bar wy-bar is-peak" style="height: 100%"></div></div>
+                    <div class="bar-col"><div class="bar wy-bar" style="height: 81%"></div></div>
+                    <div class="bar-col"><div class="bar wy-bar" style="height: 55%"></div></div>
+                    <div class="bar-col"><div class="bar wy-bar" style="height: 33%"></div></div>
+                    <div class="bar-col"><div class="bar wy-bar" style="height: 18%"></div></div>
+                  </div>
+                  <div class="bars-axis">
+                    <span>8 900</span>
+                    <span>16 400 zł/m²</span>
+                  </div>
+                </div>
+
+                <div class="source-note" id="wy-source">
+                  <span class="pill pill-ok">Dane z aktów notarialnych</span>
+                  <span class="pill pill-accent">0 kredytów</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // Licznik — tween po obiekcie proxy, wartość liczona z czasu, więc seek-safe.
+      const plnum = (n) => Math.round(n).toLocaleString("pl-PL").replace(/ /g, " ");
+      function countTo(sel, end, at, dur) {
+        const el = document.querySelector(sel);
+        const proxy = { v: 0 };
+        tl.to(
+          proxy,
+          {
+            v: end,
+            duration: dur,
+            ease: "power2.out",
+            onUpdate: () => {
+              el.textContent = plnum(proxy.v);
+            },
+          },
+          at,
+        );
+      }
+
+      // Pozycja wyjściowa przez timeline, nie przez CSS (gsap_css_transform_conflict).
+      tl.set("#wy-stack", { y: 560 }, 0);
+
+      tl.from("#wy-appbar", { y: -40, autoAlpha: 0, duration: 0.5, ease: "power3.out" }, 0);
+      tl.from("#wy-form", { y: 60, autoAlpha: 0, duration: 0.7, ease: "power3.out" }, 0.25);
+
+      // Adres wpisany, podpowiedzi wchodzą
+      tl.to("#wy-ph", { opacity: 0, duration: 0.12 }, 1.6);
+      tl.to("#wy-val", { opacity: 1, duration: 0.18 }, 1.62);
+      tl.to("#wy-suggest", { opacity: 1, duration: 0.3, ease: "power2.out" }, 1.75);
+      tl.from(".suggest-row", { y: 16, autoAlpha: 0, duration: 0.3, stagger: 0.07, ease: "power2.out" }, 1.8);
+      tl.to("#wy-suggest", { opacity: 0, duration: 0.25 }, 3.1);
+
+      // Klik + pobieranie
+      tl.to("#wy-btn", { scale: 0.97, duration: 0.1 }, 3.2);
+      tl.to("#wy-btn", { scale: 1, duration: 0.22 }, 3.32);
+      tl.to("#wy-loading", { opacity: 1, duration: 0.25 }, 3.45);
+      tl.to("#wy-spinner", { rotation: 1080, duration: 1.3, ease: "none" }, 3.5);
+      tl.to("#wy-loading", { opacity: 0, duration: 0.25 }, 4.75);
+
+      // Wynik: meta + karty statystyk
+      tl.to("#wy-stack", { y: -120, duration: 0.85, ease: "power3.inOut" }, 4.8);
+      tl.to("#wy-result", { opacity: 1, duration: 0.4 }, 4.95);
+      tl.from("#wy-meta", { y: 24, autoAlpha: 0, duration: 0.45, ease: "power3.out" }, 5.0);
+      tl.from(".wy-stat", { y: 40, autoAlpha: 0, duration: 0.55, stagger: 0.12, ease: "power3.out" }, 5.25);
+
+      countTo("#wy-n-median", 12480, 5.4, 1.1);
+      countTo("#wy-n-p25", 10900, 5.55, 1.1);
+      countTo("#wy-n-p75", 14200, 5.55, 1.1);
+      countTo("#wy-n-count", 38, 5.7, 1.0);
+      countTo("#wy-n-amount", 689000, 5.85, 1.2);
+
+      // Histogram
+      tl.to("#wy-stack", { y: -470, duration: 1.0, ease: "power2.inOut" }, 7.6);
+      tl.to(".wy-bar", { scaleY: 1, duration: 0.6, stagger: 0.06, ease: "power3.out" }, 7.9);
+
+      // Dowód: skąd dane i ile kosztują
+      tl.to("#wy-source", { opacity: 1, duration: 0.4 }, 9.6);
+      tl.from("#wy-source", { y: 24, duration: 0.5, ease: "power3.out" }, 9.6);
+      tl.to("#wy-stack", { y: -620, duration: 3.2, ease: "power1.inOut" }, 10.2);
+
+      window.__timelines["wycena"] = tl;
+    </script>
+  </body>
+</html>

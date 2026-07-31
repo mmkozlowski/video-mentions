@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="pl" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>AdresFlow — kreator oferty</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="assets/app.css" />
+    <style>
+      /* Kroki kreatora jadą poziomym paskiem — przełączanie paneli przez
+         display byłoby niedozwolone (determinism-rules), a translateX jest
+         w pełni seek-safe. */
+      .wiz-track {
+        display: flex;
+        gap: 60px;
+        width: max-content;
+        height: 100%;
+      }
+      .wiz-panel {
+        width: 960px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .stepper {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 40px;
+      }
+      .step {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .step-bar {
+        height: 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.1);
+        overflow: hidden;
+      }
+      .step-bar-fill {
+        height: 100%;
+        width: 100%;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--accent), var(--magenta));
+        transform-origin: left center;
+        transform: scaleX(0);
+      }
+      .step-name {
+        font-size: 22px;
+        font-weight: 600;
+        color: var(--text-3);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .grid2 {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 26px;
+        margin-top: 30px;
+      }
+      .fld {
+        border: 2px solid var(--border);
+        background: var(--surface);
+        border-radius: 22px;
+        padding: 22px 26px;
+      }
+      .fld-label {
+        font-size: 20px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--text-3);
+        font-weight: 600;
+      }
+      .fld-value {
+        margin-top: 8px;
+        font-size: 34px;
+        font-weight: 600;
+      }
+      .tiles {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px;
+        margin-top: 30px;
+      }
+      .tile {
+        position: relative;
+        aspect-ratio: 3 / 4;
+        border-radius: 24px;
+        overflow: hidden;
+        border: 2px solid var(--border);
+      }
+      .tile img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .tile-veil {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(139, 92, 246, 0.65), rgba(217, 70, 239, 0.55));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 26px;
+        font-weight: 600;
+        color: #fff;
+      }
+      .desc-line {
+        height: 18px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.14);
+        margin-top: 20px;
+        transform-origin: left center;
+        transform: scaleX(0);
+      }
+      .exports {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        margin-top: 34px;
+      }
+      .exp {
+        border: 2px solid var(--border-strong);
+        border-radius: 20px;
+        padding: 20px 28px;
+        font-size: 26px;
+        font-weight: 500;
+        color: var(--text-2);
+      }
+      .exp.is-primary {
+        border-color: transparent;
+        background: linear-gradient(135deg, var(--accent), var(--magenta));
+        color: #fff;
+        font-weight: 600;
+      }
+      #of-doc {
+        margin-top: 34px;
+        border-radius: 28px;
+        border: 2px solid var(--border);
+        background: #ffffff;
+        color: #0f172a;
+        padding: 34px 36px;
+        opacity: 0;
+      }
+      .doc-title {
+        font-size: 36px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+      }
+      .doc-meta {
+        margin-top: 10px;
+        font-size: 24px;
+        color: #475569;
+      }
+      .doc-price {
+        margin-top: 20px;
+        font-size: 44px;
+        font-weight: 700;
+        color: #6d28d9;
+      }
+      .doc-body {
+        margin-top: 18px;
+        font-size: 23px;
+        line-height: 1.5;
+        color: #334155;
+      }
+      #of-timer {
+        margin-top: 34px;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="oferta"
+      data-start="0"
+      data-duration="15"
+      data-width="1080"
+      data-height="1920"
+      data-fps="30"
+    >
+      <div class="stage"></div>
+
+      <section id="of-scene" class="clip" data-start="0" data-duration="15" data-track-index="1">
+        <div class="frame">
+          <div class="appbar" id="of-appbar">
+            <div class="logo-dot">A</div>
+            <div class="appbar-name">AdresFlow</div>
+            <div class="appbar-tool">Kreator oferty</div>
+          </div>
+
+          <div class="stepper" id="of-stepper">
+            <div class="step">
+              <div class="step-bar"><div class="step-bar-fill" id="of-bar-1"></div></div>
+              <div class="step-name" id="of-name-1">1 · Adres i wycena</div>
+            </div>
+            <div class="step">
+              <div class="step-bar"><div class="step-bar-fill" id="of-bar-2"></div></div>
+              <div class="step-name" id="of-name-2">2 · Dane oferty</div>
+            </div>
+            <div class="step">
+              <div class="step-bar"><div class="step-bar-fill" id="of-bar-3"></div></div>
+              <div class="step-name" id="of-name-3">3 · Zdjęcia</div>
+            </div>
+            <div class="step">
+              <div class="step-bar"><div class="step-bar-fill" id="of-bar-4"></div></div>
+              <div class="step-name" id="of-name-4">4 · Opis i eksport</div>
+            </div>
+          </div>
+
+          <div class="viewport">
+            <div id="of-track" class="wiz-track">
+              <!-- Krok 1 -->
+              <div class="wiz-panel">
+                <div class="card">
+                  <div class="eyebrow">Krok 1</div>
+                  <div class="h1" style="margin-top: 12px">Co i gdzie sprzedajesz?</div>
+                  <div class="input" style="margin-top: 30px">ul. Piękna 12/12, Katowice</div>
+                  <div class="grid2" style="grid-template-columns: 1fr">
+                    <div class="card card-accent" style="padding: 30px">
+                      <div class="stat-label" style="font-size: 24px; color: var(--text-3)">Mediana z okolicy</div>
+                      <div style="margin-top: 10px; font-size: 54px; font-weight: 700; color: var(--accent-hover)">
+                        12 480 zł/m²
+                      </div>
+                      <div style="margin-top: 8px; font-size: 22px; color: var(--text-3)">
+                        38 transakcji · rejestr RCiWN · 0 kredytów
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Krok 2 -->
+              <div class="wiz-panel">
+                <div class="card">
+                  <div class="eyebrow">Krok 2</div>
+                  <div class="h1" style="margin-top: 12px">Parametry oferty</div>
+                  <div class="grid2">
+                    <div class="fld">
+                      <div class="fld-label">Powierzchnia</div>
+                      <div class="fld-value">58,40 m²</div>
+                    </div>
+                    <div class="fld">
+                      <div class="fld-label">Liczba pokoi</div>
+                      <div class="fld-value">3</div>
+                    </div>
+                    <div class="fld">
+                      <div class="fld-label">Piętro</div>
+                      <div class="fld-value">2 / 4</div>
+                    </div>
+                    <div class="fld">
+                      <div class="fld-label">Rok budowy</div>
+                      <div class="fld-value">2019</div>
+                    </div>
+                    <div class="fld">
+                      <div class="fld-label">Cena ofertowa</div>
+                      <div class="fld-value">729 000 zł</div>
+                    </div>
+                    <div class="fld">
+                      <div class="fld-label">Cena za m²</div>
+                      <div class="fld-value">12 483 zł</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Krok 3 -->
+              <div class="wiz-panel">
+                <div class="card">
+                  <div class="eyebrow">Krok 3</div>
+                  <div class="h1" style="margin-top: 12px">Materiał zdjęciowy</div>
+                  <div class="tiles">
+                    <div class="tile">
+                      <img id="of-img-1" src="assets/img/przed.jpeg" alt="" />
+                      <div class="tile-veil of-veil" id="of-veil-1">Generuję…</div>
+                    </div>
+                    <div class="tile">
+                      <img id="of-img-2" src="assets/img/po-1.webp" alt="" />
+                      <div class="tile-veil of-veil" id="of-veil-2">Generuję…</div>
+                    </div>
+                    <div class="tile">
+                      <img id="of-img-3" src="assets/img/po-2.webp" alt="" />
+                      <div class="tile-veil of-veil" id="of-veil-3">Generuję…</div>
+                    </div>
+                  </div>
+                  <div style="margin-top: 28px; font-size: 26px; color: var(--text-2)">
+                    Home staging AI — trzy pomieszczenia gotowe do ogłoszenia.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Krok 4 -->
+              <div class="wiz-panel">
+                <div class="card">
+                  <div class="eyebrow">Krok 4</div>
+                  <div class="h1" style="margin-top: 12px">Opis i eksport</div>
+
+                  <div style="margin-top: 26px">
+                    <div class="desc-line of-line" style="width: 96%"></div>
+                    <div class="desc-line of-line" style="width: 88%"></div>
+                    <div class="desc-line of-line" style="width: 93%"></div>
+                    <div class="desc-line of-line" style="width: 72%"></div>
+                    <div class="desc-line of-line" style="width: 90%"></div>
+                    <div class="desc-line of-line" style="width: 64%"></div>
+                  </div>
+
+                  <div class="exports">
+                    <div class="exp of-exp">Kopiuj</div>
+                    <div class="exp of-exp">Pobierz .txt</div>
+                    <div class="exp of-exp">Podgląd strony</div>
+                    <div class="exp of-exp is-primary" id="of-exp-main">Pobierz stronę HTML</div>
+                  </div>
+
+                  <div id="of-doc">
+                    <div class="doc-title">Mieszkanie 3-pokojowe, Katowice Śródmieście</div>
+                    <div class="doc-meta">58,40 m² · 3 pokoje · 2 piętro · 2019</div>
+                    <div class="doc-price">729 000 zł</div>
+                    <div class="doc-body">
+                      Przestronne mieszkanie w kamienicy po rewitalizacji, dwie minuty od Rynku. Salon z aneksem
+                      wychodzi na zieloną oficynę, dwie sypialnie od podwórza — cicho mimo ścisłego centrum.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      const PANEL = 960 + 60; // szerokość panelu + gap
+      const ACTIVE = "#f1f5f9";
+      const DONE = "#94a3b8";
+
+      tl.from("#of-appbar", { y: -40, autoAlpha: 0, duration: 0.5, ease: "power3.out" }, 0);
+      tl.from("#of-stepper", { y: 30, autoAlpha: 0, duration: 0.5, ease: "power3.out" }, 0.15);
+      tl.from("#of-track", { autoAlpha: 0, duration: 0.5, ease: "power2.out" }, 0.3);
+
+      // ── Krok 1 ───────────────────────────────────────────────────────
+      tl.to("#of-name-1", { color: ACTIVE, duration: 0.3 }, 0.5);
+      tl.to("#of-bar-1", { scaleX: 1, duration: 1.6, ease: "power1.inOut" }, 0.6);
+
+      // ── Krok 2 ───────────────────────────────────────────────────────
+      tl.to("#of-track", { x: -PANEL, duration: 0.7, ease: "power3.inOut" }, 2.6);
+      tl.to("#of-name-1", { color: DONE, duration: 0.3 }, 2.6);
+      tl.to("#of-name-2", { color: ACTIVE, duration: 0.3 }, 2.7);
+      tl.to("#of-bar-2", { scaleX: 1, duration: 1.5, ease: "power1.inOut" }, 2.8);
+
+      // ── Krok 3 ───────────────────────────────────────────────────────
+      tl.to("#of-track", { x: -PANEL * 2, duration: 0.7, ease: "power3.inOut" }, 5.0);
+      tl.to("#of-name-2", { color: DONE, duration: 0.3 }, 5.0);
+      tl.to("#of-name-3", { color: ACTIVE, duration: 0.3 }, 5.1);
+      tl.to("#of-bar-3", { scaleX: 1, duration: 1.5, ease: "power1.inOut" }, 5.2);
+      // Zasłona schodzi kafelek po kafelku — zdjęcia „wychodzą" z generowania
+      tl.to("#of-veil-1", { autoAlpha: 0, duration: 0.5, ease: "power2.out" }, 5.9);
+      tl.to("#of-veil-2", { autoAlpha: 0, duration: 0.5, ease: "power2.out" }, 6.2);
+      tl.to("#of-veil-3", { autoAlpha: 0, duration: 0.5, ease: "power2.out" }, 6.5);
+
+      // ── Krok 4 ───────────────────────────────────────────────────────
+      tl.to("#of-track", { x: -PANEL * 3, duration: 0.7, ease: "power3.inOut" }, 7.6);
+      tl.to("#of-name-3", { color: DONE, duration: 0.3 }, 7.6);
+      tl.to("#of-name-4", { color: ACTIVE, duration: 0.3 }, 7.7);
+      tl.to("#of-bar-4", { scaleX: 1, duration: 1.4, ease: "power1.inOut" }, 7.8);
+
+      // Opis AI wypisuje się linia po linii
+      tl.to(".of-line", { scaleX: 1, duration: 0.35, stagger: 0.13, ease: "power2.out" }, 8.3);
+      tl.from(".of-exp", { y: 24, autoAlpha: 0, duration: 0.4, stagger: 0.09, ease: "power3.out" }, 9.5);
+
+      // Jedno kliknięcie eksportu → gotowe ogłoszenie
+      tl.to("#of-exp-main", { scale: 0.96, duration: 0.12 }, 10.4);
+      tl.to("#of-exp-main", { scale: 1, duration: 0.24 }, 10.53);
+      tl.to("#of-doc", { opacity: 1, duration: 0.45, ease: "power2.out" }, 10.8);
+      tl.from("#of-doc", { y: 60, duration: 0.7, ease: "power3.out" }, 10.8);
+
+      // Powolny dojazd na gotowe ogłoszenie. Kadr nie może jechać w górę całym
+      // trackiem — stepper i pasek aplikacji stoją, więc nachodziłyby na siebie
+      // (check: content_overlap). Ruch siedzi w samym dokumencie.
+      tl.to("#of-doc", { scale: 1.04, duration: 3.2, ease: "power1.inOut" }, 11.6);
+
+      window.__timelines["oferta"] = tl;
+    </script>
+  </body>
+</html>
