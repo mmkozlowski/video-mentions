@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="pl" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>AdresFlow POV — rzut 3D z kartki</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="assets/app.css" />
+    <link rel="stylesheet" href="assets/pov.css" />
+    <style>
+      /* Wnętrze ekranu ma 948 px szerokości w kadrze 1080 px — stopnie pisma są
+         mniejsze niż w kompozycjach pełnoekranowych, ale nadal czytelne. */
+      .pane { padding: 34px 36px; }
+      .tool-head { display: flex; align-items: center; gap: 16px; }
+      .tool-ico {
+        width: 58px; height: 58px; border-radius: 16px;
+        background: rgba(139, 92, 246, 0.15);
+        display: flex; align-items: center; justify-content: center; font-size: 28px;
+      }
+      .tool-name { font-size: 33px; font-weight: 700; letter-spacing: -0.02em; }
+      .tool-sub { font-size: 20px; color: var(--text-3); margin-top: 3px; }
+      .tool-cost { margin-left: auto; font-size: 21px; color: var(--text-2); white-space: nowrap; }
+
+      .drop {
+        margin-top: 26px; height: 500px; border-radius: 22px;
+        border: 3px dashed var(--border-strong); background: rgba(255, 255, 255, 0.02);
+        display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 13px;
+        position: relative; overflow: hidden;
+      }
+      .drop-ico { font-size: 54px; opacity: 0.5; }
+      .drop-txt { font-size: 27px; font-weight: 600; }
+      .drop-hint { font-size: 20px; color: var(--text-3); }
+      .drop-img {
+        position: absolute; inset: 0; opacity: 0; background: #fff;
+        display: flex; align-items: center; justify-content: center;
+      }
+      .drop-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+      .sec-label {
+        margin-top: 26px; font-size: 19px; font-weight: 600;
+        letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-3);
+      }
+      .select {
+        margin-top: 11px; height: 80px; border-radius: 16px;
+        border: 2px solid var(--border-strong); background: var(--surface);
+        display: flex; align-items: center; padding: 0 22px; font-size: 27px; font-weight: 600;
+        position: relative;
+      }
+      .caretd { margin-left: auto; color: var(--text-2); font-size: 22px; }
+      .menu {
+        position: absolute; left: 0; right: 0; top: 88px; z-index: 5;
+        border-radius: 16px; border: 2px solid var(--border-strong); background: #141821;
+        box-shadow: 0 34px 70px rgba(0, 0, 0, 0.75); overflow: hidden; opacity: 0;
+      }
+      .mrow {
+        padding: 19px 22px; font-size: 24px; color: var(--text-2);
+        border-bottom: 1px solid var(--border-soft); display: flex; align-items: center; gap: 13px;
+      }
+      .mrow:last-child { border-bottom: none; }
+      .mrow.on { background: rgba(139, 92, 246, 0.16); color: var(--text); font-weight: 600; }
+      .sw { width: 24px; height: 24px; border-radius: 6px; }
+
+      .go {
+        margin-top: 24px; height: 88px; border-radius: 20px;
+        background: linear-gradient(135deg, var(--accent), var(--magenta));
+        color: #fff; font-size: 30px; font-weight: 700;
+        display: flex; align-items: center; justify-content: center;
+      }
+
+      /* Karta postępu — w oryginale to ona niesie napięcie, bo widać licznik. */
+      .prog {
+        position: absolute; left: 60px; right: 60px; top: 330px; z-index: 9;
+        border-radius: 20px; background: rgba(8, 10, 15, 0.96);
+        border: 2px solid var(--border-strong); padding: 26px 28px;
+        box-shadow: 0 44px 90px rgba(0, 0, 0, 0.85); opacity: 0;
+      }
+      .prog-top { font-size: 21px; color: var(--text-2); }
+      .prog-bar {
+        margin-top: 13px; height: 10px; border-radius: 999px;
+        background: rgba(255, 255, 255, 0.1); overflow: hidden;
+      }
+      .prog-fill {
+        height: 100%; border-radius: 999px;
+        background: linear-gradient(90deg, var(--accent), var(--magenta));
+        transform-origin: left center; transform: scaleX(0);
+      }
+      .prog-time { margin-top: 15px; font-size: 50px; font-weight: 700; font-variant-numeric: tabular-nums; }
+      .prog-stages { margin-top: 16px; display: flex; flex-direction: column; gap: 10px; }
+      .pstage { display: flex; align-items: center; gap: 12px; font-size: 22px; color: var(--text-2); }
+      .tick { width: 26px; text-align: center; }
+
+      .result { position: absolute; inset: 0; background: #fff; opacity: 0; overflow: hidden; }
+      .result img { width: 100%; height: 100%; object-fit: cover; }
+      .result-tag {
+        position: absolute; left: 30px; bottom: 30px;
+        background: rgba(8, 10, 15, 0.92); color: #fff;
+        padding: 12px 20px; border-radius: 10px; font-size: 23px; font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="pov-rzut" data-start="0" data-duration="30"
+         data-width="1080" data-height="1920" data-fps="30">
+      <div class="room"></div>
+      <div class="desk"></div>
+
+      <section id="pov-scene" class="clip" data-start="0" data-duration="30" data-track-index="1">
+        <div class="handheld" id="hand">
+          <div class="laptop">
+            <div class="lid">
+              <div class="notch"></div>
+              <div class="screen">
+                <div class="screen-inner">
+                  <div class="chrome-bar">
+                    <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+                    <span class="url">app.adresflow.com/narzedzia/wizualizacja</span>
+                  </div>
+
+                  <div class="pane">
+                    <div class="tool-head">
+                      <div class="tool-ico">📐</div>
+                      <div>
+                        <div class="tool-name">Rzut 3D z kartki</div>
+                        <div class="tool-sub">Szkic → plan 2D → render 3D</div>
+                      </div>
+                      <div class="tool-cost">2 kr / etap</div>
+                    </div>
+
+                    <div class="drop" id="drop">
+                      <div class="drop-ico">⬆</div>
+                      <div class="drop-txt">Upuść rzut albo odręczny szkic</div>
+                      <div class="drop-hint">JPG / PNG · odręczny szkic też zadziała</div>
+                      <div class="drop-img" id="drop-img"><img id="img-plan" src="assets/img/plan-2d.jpeg" alt="" /></div>
+                    </div>
+
+                    <div class="sec-label">Styl wnętrza</div>
+                    <div class="select">
+                      <span id="sel-val">Nowoczesny</span>
+                      <span class="caretd">▾</span>
+                      <div class="menu" id="menu">
+                        <div class="mrow"><span class="sw" style="background: linear-gradient(135deg,#3a3f47,#8b929c 55%,#d7dbe0)"></span>Nowoczesny</div>
+                        <div class="mrow on" id="mrow-pick"><span class="sw" style="background: linear-gradient(135deg,#f3efe7,#d9c7a8 55%,#b7936a)"></span>Skandynawski</div>
+                        <div class="mrow"><span class="sw" style="background: linear-gradient(135deg,#f4ecdd,#cdae7a 55%,#8a6d3b)"></span>Klasyczny</div>
+                      </div>
+                    </div>
+
+                    <div class="go" id="go">Generuj etap 1</div>
+                  </div>
+
+                  <div class="prog" id="prog">
+                    <div class="prog-top">app.adresflow.com</div>
+                    <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+                    <div class="prog-time"><span id="prog-sec">0</span> s</div>
+                    <div class="prog-stages">
+                      <div class="pstage" id="ps1"><span class="tick">○</span>Etap 1 — kolorowy plan 2D</div>
+                      <div class="pstage" id="ps2"><span class="tick">○</span>Etap 2 — render 3D top-down</div>
+                      <div class="pstage" id="ps3"><span class="tick">○</span>Etap 3 — widok izometryczny</div>
+                    </div>
+                  </div>
+
+                  <div class="result" id="res1">
+                    <img id="img-r1" src="assets/img/render-3d.png" alt="" />
+                    <div class="result-tag">Etap 2 — render 3D top-down</div>
+                  </div>
+                  <div class="result" id="res2">
+                    <img id="img-r2" src="assets/img/izo-3d.png" alt="" />
+                    <div class="result-tag">Etap 3 — widok izometryczny</div>
+                  </div>
+                </div>
+                <div class="glare" id="glare"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hinge"></div>
+
+          <div class="keyboard">
+            <div class="krow"><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span></div>
+            <div class="krow"><span class="key key-wide"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key key-wide"></span></div>
+            <div class="krow"><span class="key key-wide"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key key-wide"></span></div>
+            <div class="krow"><span class="key key-wide"></span><span class="key key-space"></span><span class="key key-wide"></span></div>
+          </div>
+        </div>
+
+        <div class="vignette"></div>
+
+        <div class="hook" id="hook">
+          <div class="hook-line">Tak robię rzut 3D</div>
+          <div class="hook-line">w półtorej minuty</div>
+        </div>
+
+        <div class="endcard" id="end" style="opacity: 0">
+          <div class="end-line">Zrób pierwszy za darmo</div>
+          <div class="end-domain">adresflow.com</div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      /* Dryf ręki — kilka NIESYNCHRONICZNYCH oscylacji o różnych okresach.
+         Jeden równy tween czyta się jak animacja; dopiero rozjechane okresy
+         dają wrażenie trzymanego telefonu. repeat skończony (determinizm). */
+      tl.to("#hand", { x: 8, y: -5, rotation: 0.28, duration: 3.1, ease: "sine.inOut",
+                       repeat: 9, yoyo: true }, 0);
+      tl.to("#hand", { scale: 1.014, duration: 4.7, ease: "sine.inOut",
+                       repeat: 5, yoyo: true }, 0);
+      tl.to("#glare", { xPercent: 12, duration: 7.5, ease: "sine.inOut",
+                        repeat: 3, yoyo: true }, 0);
+
+      // Hook wjeżdża linia po linii i zostaje do końca ujęcia
+      tl.from(".hook-line", { y: 24, autoAlpha: 0, duration: 0.4, stagger: 0.14,
+                              ease: "power3.out" }, 0.35);
+
+      // ── Wgranie pliku ────────────────────────────────────────────────
+      tl.fromTo("#drop", { borderColor: "#6d78a8" },
+                { borderColor: "#a78bfa", duration: 0.3, yoyo: true, repeat: 1 }, 3.3);
+      tl.to("#drop-img", { opacity: 1, duration: 0.28, ease: "power2.out" }, 3.4);
+
+      // ── Wybór stylu ──────────────────────────────────────────────────
+      tl.to("#menu", { opacity: 1, duration: 0.22 }, 6.2);
+      tl.from(".mrow", { y: 12, autoAlpha: 0, duration: 0.22, stagger: 0.07 }, 6.25);
+      tl.to("#mrow-pick", { backgroundColor: "rgba(139,92,246,0.36)", duration: 0.2 }, 7.6);
+      tl.to("#menu", { opacity: 0, duration: 0.2 }, 8.0);
+      tl.call(() => { document.getElementById("sel-val").textContent = "Skandynawski"; }, null, 8.1);
+
+      // ── Klik ─────────────────────────────────────────────────────────
+      tl.to("#go", { scale: 0.97, duration: 0.1 }, 8.7);
+      tl.to("#go", { scale: 1, duration: 0.2 }, 8.82);
+
+      // ── Generowanie: licznik i etapy ─────────────────────────────────
+      tl.to("#prog", { opacity: 1, duration: 0.3, ease: "power2.out" }, 9.1);
+      tl.from("#prog", { y: 28, duration: 0.4, ease: "power3.out" }, 9.1);
+      tl.to("#prog-fill", { scaleX: 1, duration: 9.4, ease: "power1.inOut" }, 9.3);
+
+      // Licznik — tween po proxy, wartość wynika z czasu, więc jest seek-safe
+      const secEl = document.getElementById("prog-sec");
+      const clock = { v: 0 };
+      tl.to(clock, { v: 88, duration: 9.4, ease: "power1.inOut",
+        onUpdate: () => { secEl.textContent = Math.round(clock.v); } }, 9.3);
+
+      const tick = (sel, at) => {
+        tl.call(() => { document.querySelector(sel + " .tick").textContent = "✓"; }, null, at);
+        tl.to(sel, { color: "#4ade80", duration: 0.25 }, at);
+      };
+      tick("#ps1", 12.3);
+      tick("#ps2", 15.6);
+      tick("#ps3", 18.4);
+
+      // ── Wyniki ───────────────────────────────────────────────────────
+      tl.to("#res1", { opacity: 1, duration: 0.35, ease: "power2.out" }, 15.7);
+      tl.to("#prog", { opacity: 0, duration: 0.3 }, 18.6);
+      tl.to("#res2", { opacity: 1, duration: 0.45, ease: "power2.out" }, 18.7);
+      // powolny dojazd na gotowy render — ostatnie sekundy muszą się ruszać
+      tl.to("#img-r2", { scale: 1.08, duration: 7.0, ease: "power1.inOut" }, 19.0);
+
+      // ── Endcard ──────────────────────────────────────────────────────
+      tl.to("#end", { opacity: 1, duration: 0.35 }, 26.6);
+      tl.from(".end-line", { y: 22, autoAlpha: 0, duration: 0.4 }, 26.8);
+      tl.from(".end-domain", { y: 18, autoAlpha: 0, duration: 0.4 }, 27.0);
+
+      window.__timelines["pov-rzut"] = tl;
+    </script>
+  </body>
+</html>

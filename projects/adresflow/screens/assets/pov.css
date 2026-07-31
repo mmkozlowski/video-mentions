@@ -1,0 +1,230 @@
+/* Warstwa „nagrane telefonem" — laptop, perspektywa, refleks, dryf ręki.
+   Dokłada się do app.css (tokeny marki). Reszta grade'u — zmiękczenie, szum,
+   artefakty kompresji — leci w ffmpeg, bo tam jest tańsza.
+
+   GEOMETRIA JEST CAŁĄ SZTUCZKĄ. Pierwsza wersja miała ekran na całą szerokość
+   kadru: obudowa wychodziła poza krawędź, więc nie było widać ani ramki, ani
+   perspektywy — wyglądało jak zwykły zapis ekranu. Laptop MUSI być mniejszy od
+   kadru, żeby dookoła zostało powietrze, a klawiatura musi stykać się z dolną
+   krawędzią ekranu, nie wisieć osobno.
+
+   Kąty trzymamy małe (1–6°): bramka `check` liczy nachodzenie na prostokątach
+   opisanych na elemencie, więc mocno obrócony blok „nachodzi" na sąsiadów,
+   choć wizualnie nie nachodzi. */
+
+.room {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(680px 460px at 52% 10%, rgba(150, 162, 195, 0.13), transparent 72%),
+    linear-gradient(180deg, #0b0d12 0%, #0a0c10 52%, #131620 72%, #191d28 100%);
+}
+
+/* Blat — jasny pas u dołu osadza laptop w pomieszczeniu. */
+.desk {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 760px;
+  background: linear-gradient(180deg, transparent, rgba(150, 160, 185, 0.07) 35%, rgba(165, 176, 200, 0.16));
+}
+
+/* Wszystko, co „trzyma telefon" — dryf idzie na tym jednym wrapperze. */
+.handheld {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 44%;
+}
+
+/* ── Laptop ────────────────────────────────────────────────────────── */
+.laptop {
+  position: absolute;
+  left: 44px;
+  top: 236px;
+  width: 992px;
+  height: 1120px;
+  perspective: 2600px;
+}
+
+.lid {
+  position: absolute;
+  inset: 0;
+  transform: rotateX(4deg) rotateY(-4deg) rotate(-1.1deg);
+  border-radius: 22px;
+  background: linear-gradient(160deg, #23262e 0%, #14161b 40%, #0e1014 100%);
+  padding: 26px 22px 34px;
+  box-shadow:
+    0 70px 130px rgba(0, 0, 0, 0.78),
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.09);
+}
+
+.screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+/* Treść ekranu ma dokładnie rozmiar okna — bez przycinania, bo przy 948 px
+   szerokości w kadrze 1080 px tekst i tak jest na granicy czytelności. */
+.screen-inner {
+  position: absolute;
+  inset: 0;
+}
+
+.notch {
+  position: absolute;
+  left: 50%;
+  top: 9px;
+  width: 9px;
+  height: 9px;
+  margin-left: -4px;
+  border-radius: 999px;
+  background: #333944;
+}
+
+/* Pasek przeglądarki — drobiazg, ale bez niego ekran nie czyta się jak laptop. */
+.chrome-bar {
+  height: 54px;
+  background: #0e1117;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 0 18px;
+}
+.dot { width: 13px; height: 13px; border-radius: 999px; }
+.dot-r { background: #ff5f57; }
+.dot-y { background: #febc2e; }
+.dot-g { background: #28c840; }
+.url {
+  margin-left: 12px;
+  flex: 1;
+  height: 34px;
+  border-radius: 9px;
+  background: #181c25;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  font-size: 19px;
+  color: #8593ab;
+}
+
+/* Refleks na szkle — po perspektywie druga rzecz, która sprzedaje „to jest
+   filmowane": software'owy zapis ekranu odbicia nie ma. */
+.glare {
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  background: linear-gradient(
+    116deg,
+    transparent 22%,
+    rgba(214, 226, 255, 0.07) 33%,
+    rgba(226, 236, 255, 0.15) 42%,
+    rgba(214, 226, 255, 0.06) 51%,
+    transparent 62%
+  );
+  mix-blend-mode: screen;
+}
+
+/* ── Klawiatura ────────────────────────────────────────────────────── */
+/* Styka się z dolną krawędzią obudowy i rozszerza ku dołowi (perspektywa).
+   Jest poza głębią ostrości, więc rozmycie załatwia brak detalu. */
+.keyboard {
+  position: absolute;
+  left: -150px;
+  right: -150px;
+  top: 1356px;
+  height: 1020px;
+  transform: rotateX(52deg) rotate(-1.1deg);
+  transform-origin: 50% 0%;
+  background: linear-gradient(180deg, #2c313b 0%, #1d212a 42%, #12151b 100%);
+  border-radius: 6px 6px 26px 26px;
+  filter: blur(5px);
+  padding: 34px 54px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.55);
+}
+.krow { display: flex; gap: 16px; height: 96px; }
+.key {
+  flex: 1;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #545c6b 0%, #363c48 55%, #262b34 100%);
+  box-shadow: inset 0 -4px 0 rgba(0, 0, 0, 0.42), 0 2px 3px rgba(255, 255, 255, 0.07);
+}
+.key-wide { flex: 2.2; }
+.key-space { flex: 8; }
+
+/* Zawias — cienka ciemna szpara między ekranem a klawiaturą. */
+.hinge {
+  position: absolute;
+  left: 30px;
+  right: 30px;
+  top: 1348px;
+  height: 14px;
+  background: linear-gradient(180deg, #05060a, #16181d);
+  border-radius: 3px;
+  transform: rotate(-1.1deg);
+}
+
+/* ── Warstwy kadru ─────────────────────────────────────────────────── */
+.vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(122% 76% at 50% 42%, transparent 46%, rgba(0, 0, 0, 0.58) 100%);
+}
+
+/* Plansza-hook: przyklejona, w kolorowym pudełku, jak w oryginale.
+   Gradient marki zamiast rdzawego — jedyne miejsce, po którym widać, że to my. */
+.hook {
+  position: absolute;
+  left: 58px;
+  top: 62px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 9px;
+}
+.hook-line {
+  background: linear-gradient(135deg, var(--accent), var(--magenta));
+  color: #fff;
+  font-size: 56px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.16;
+  padding: 9px 20px 13px;
+  border-radius: 9px;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.5);
+}
+
+/* Endcard — w oryginale czarna plansza z jedną linią i domeną. */
+.endcard {
+  position: absolute;
+  inset: 0;
+  background: #05060a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+.end-line {
+  background: linear-gradient(135deg, var(--accent), var(--magenta));
+  color: #fff;
+  font-size: 52px;
+  font-weight: 700;
+  padding: 11px 24px 15px;
+  border-radius: 9px;
+}
+.end-domain {
+  font-size: 50px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}

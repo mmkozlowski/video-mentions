@@ -7,6 +7,7 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 - [Pipeline montażu](memory/pipeline-montazu.md) — kredyty wyłącznie na generacje, cały montaż lokalnie za darmo; zmiana copy nie kosztuje ani kredyta
 - [Copy i hook](memory/copy-i-hook.md) — ból odbiorcy bije opis produktu, ruch w 1. s bije treść; narracja kupuje sustain kosztem hooka
 - [Ekran produktu z HTML](memory/ekran-produktu-hyperframes.md) — UI renderujemy przez HyperFrames, nie modelem wideo; cztery rzeczy, które odrzuca `hyperframes check`
+- [Format POV „nagrane telefonem"](memory/format-pov-nagrane-telefonem.md) — ekran laptopa filmowany telefonem symulujemy w HTML; sprzedaje go geometria kadru i celowa utrata jakości, `hyperframes check` tego formatu nie przepuszcza i tak ma być
 - [Lektor i muzyka](memory/audio-lektor-muzyka.md) — nie generuj fraz osobno (dryf barwy); podkłady mają ciche intro, trzeba startować od najgłośniejszego fragmentu
 
 ## Decyzje (ADR)

@@ -3,13 +3,13 @@
 Spoty pod Reels / TikTok / Shorts dla [AdresFlow](https://adresflow.com) — Studio AI
 dla agentów nieruchomości. Kod aplikacji: `~/Repo/adresflow-v2`.
 
-**Gotowe spoty: [`final/`](final/) — 12 sztuk z opisem, gdzie którego użyć.**
+**Gotowe spoty: [`final/`](final/) — 14 sztuk z opisem, gdzie którego użyć.**
 
 ## Katalogi
 
 | | Co tam jest | W gicie |
 |---|---|---|
-| `final/` | 12 gotowych spotów 1080×1920 + `README.md` z indeksem | tak |
+| `final/` | 14 gotowych spotów 1080×1920 + `README.md` z indeksem | tak |
 | `assets/shots/` | ujęcia z Higgsfielda (`raw-*.mp4`) — kupione za kredyty | tak |
 | `assets/voice/` | lektorzy (`vo-*.mp3`) + testy głosów | tak |
 | `assets/music/` | `music.mp3` (wybrany podkład) + `library/` (YouTube Audio Library) | tak |
@@ -45,6 +45,7 @@ Szczegóły: [`tools/README.md`](tools/README.md) · ekrany produktu:
 python3 tools/brand.py                 # plansze i napisy → build/overlays/
 python3 tools/story.py                 # spoty narracyjne → build/
 python3 tools/render.py                # krótkie warianty → build/
+python3 tools/pov.py                   # spoty POV: grade + muzyka → build/
 python3 tools/finalize.py              # weryfikacja + kopia do final/
 ```
 
@@ -59,6 +60,7 @@ Nowy spot zwykle **nie wymaga nowych generacji** — sprawdź najpierw
   napisy bełkotem. Są pisane jako HTML w `screens/`.
 - Otwieraj spot **bólem odbiorcy i ruchem**, nie opisem funkcji (zmierzone).
 - O własnej cenie nie mówimy — prowadzimy do 30 darmowych kredytów.
+- Spoty POV (13–14) **łamią bramkę `check` celowo** — weryfikuj je `snapshot`-em.
 
 Pełna lista: [`../../.ai/MEMORY.md`](../../.ai/MEMORY.md) ·
 realia branży: [`ai/realia-agenta-nieruchomosci.md`](ai/realia-agenta-nieruchomosci.md)

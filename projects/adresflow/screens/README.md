@@ -232,3 +232,72 @@ Potem w `nazwa-ekranu/index.html` podmień `data-composition-id`, klucz
 `window.__timelines[…]` i prefiksy `id` (muszą być unikalne w obrębie projektu),
 i przepisz treść. Layout bierz z realnego komponentu w `~/Repo/adresflow-v2/apps/web/src` — chodzi o to,
 żeby widz zobaczył ten sam ekran, który dostanie po rejestracji.
+
+---
+
+## Format POV — „nagrane telefonem"
+
+Spoty 13–14 to inny format: **ktoś filmuje telefonem swój laptop** i przechodzi
+workflow. Bez lektora, jedna przyklejona plansza, muzyka niesie rytm. Wzorzec:
+`../assets/reference/inspieracja-*.mp4`. Projekty: `pov-rzut/`, `pov-staging/`,
+wspólny arkusz `assets/pov.css`.
+
+Zmierzone: **hook 40 / sustain 97** (staging) i **hook 37 / sustain 100** (rzut) —
+najwyższy sustain w całej bibliotece. Format buduje napięcie licznikiem i płaci
+transformacją na końcu, więc uwaga rośnie zamiast opadać.
+
+### Co sprzedaje iluzję — w tej kolejności
+
+**1. Geometria kadru.** Laptop MUSI być mniejszy od kadru. Pierwsza wersja miała
+ekran na całą szerokość — obudowa wyszła poza krawędź, nie było widać ani ramki,
+ani perspektywy, i wyglądało to jak zwykły zapis ekranu. Klawiatura musi stykać
+się z dolną krawędzią obudowy, nie wisieć osobno.
+
+Uwaga na kąt klawiatury: przy `rotateX(58deg)` wysokość ścisnęła się do 53 % i
+wyszedł z niej pasek zamiast klawiszy. Działa `52deg` przy bloku 1020 px —
+wtedy wypełnia kadr do dolnej krawędzi.
+
+**2. Utrata jakości** (w ffmpeg, `../tools/pov.py`):
+
+```
+scale=540:960 → noise=alls=7 → scale=1080:1920 → cast → unsharp
+```
+
+Szum sypiemy w **niskiej** rozdzielczości — po powiększeniu zlewa się w ziarno
+zamiast leżeć na wierzchu jako piksele. Czysty render 1080p czyta się jak zapis
+ekranu i zabija format.
+
+**3. Dryf ręki** — kilka **niesynchronicznych** oscylacji o różnych okresach
+(3,1 s / 4,7 s / 7,5 s) na jednym wrapperze. Jeden równy tween czyta się jak
+animacja, nie jak trzymany telefon.
+
+**4. Pokaż czekanie.** Oryginał trzyma widza licznikiem („1 s" → „49 s") i listą
+etapów, które się odhaczają. To jest napięcie spotu — nie skracaj tego.
+
+### `check` tutaj nie obowiązuje
+
+Bramka zgłasza kilkadziesiąt błędów i **to jest poprawne zachowanie**: refleks i
+winieta celowo kładą się na tekście (`text_occluded`), a perspektywa powiększa
+prostokąty (`content_overlap`). Bramka liczy na prostokątach i nie wie ani o
+`overflow: hidden`, ani o zamierzonej stylizacji. **Przy POV weryfikuj
+`snapshot`-em.** Przy zwykłych ekranach (`kw`, `wycena`, `oferta`) bramka
+obowiązuje normalnie.
+
+### Nowy spot POV
+
+```bash
+cp -R pov-rzut pov-<nazwa> && rm -rf pov-<nazwa>/snapshots
+# podmień: data-composition-id, klucz window.__timelines, prefiksy id,
+# treść ekranu, planszę-hook, obrazki w assets/img/
+npx hyperframes snapshot pov-<nazwa> --at 1,4,11,17,21,28   # OGLĄDAJ, nie checkuj
+npx hyperframes render pov-<nazwa> --fps 30 --quality high \
+  --output ../build/screens/pov-<nazwa>-raw.mp4
+python3 ../tools/pov.py pov-<nazwa>                          # grade + muzyka
+```
+
+Dopisz spot do `SPOTS` w `../tools/pov.py` i w `../tools/finalize.py`.
+
+**Pilnuj spójności materiału.** Pierwsza wersja stagingu pokazywała „przed" i
+„po" z trzech różnych mieszkań — technicznie działało, merytorycznie było
+bezwartościowe. Pary w `../assets/photos/` to `przed1`/`po1`, `przed2`/`po2`,
+`przed3`/`po3`, `przed-CZxYyuvD`/`po-CF8Pn4Vn`.

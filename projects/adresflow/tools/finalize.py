@@ -55,6 +55,16 @@ SPOTS = [
      "Biurko w wydrukach → cztery kroki kreatora → gotowe ogłoszenie "
      "(hook 34, sustain 92)",
      "Kampania na kreator oferty; kontrast objętości pracy"),
+    # POV „nagrane telefonem" — inny format niż 01–12: bez lektora, cała
+    # narracja w przyklejonej planszy, ekran filmowany zamiast nagrywanego.
+    ("adresflow-pov-rzut.mp4", "13-pov-rzut-3d.mp4", "Rzut 3D z kartki",
+     "POV: wgranie rzutu → wybór stylu → licznik → izometria. Bez lektora "
+     "(hook 37, sustain 100 — najwyższy w bibliotece)",
+     "Organiczne Reels/TikTok — format „jak to robię”, wygląda jak film użytkownika"),
+    ("adresflow-pov-staging.mp4", "14-pov-home-staging.mp4", "Home Staging",
+     "POV: zagracony pokój → wariant światła → licznik → gotowe zdjęcie. Bez lektora "
+     "(hook 40, sustain 97 — najlepszy hook wśród długich spotów)",
+     "Organiczne Reels/TikTok; najmocniejsza transformacja przed/po"),
 ]
 
 
@@ -93,20 +103,27 @@ def main():
         rows.append((dst, tool, dur(sp), desc, use, has_audio))
 
     lines = ["# AdresFlow — gotowe reklamy\n",
-             "Wszystkie 1080×1920 (9:16), z lektorem PL i podkładem muzycznym.",
-             "Format pod Reels, TikTok i YouTube Shorts.\n",
+             "Wszystkie 1080×1920 (9:16), pod Reels, TikTok i YouTube Shorts.\n",
+             "Dwa formaty:\n",
+             "- **01–12 — narracyjne**: lektor PL + podkład, plansze brandowe, "
+             "konstrukcja ból → koszt starej metody → rozwiązanie → CTA.",
+             "- **13–14 — POV „jak to robię”**: bez lektora, ekran laptopa "
+             "filmowany telefonem, jedna przyklejona plansza. Wygląda jak film "
+             "użytkownika — mocniejsze organicznie, słabsze jako klasyczna reklama.\n",
              "| Plik | Narzędzie | Czas | Co pokazuje | Gdzie użyć |",
              "|---|---|---|---|---|"]
     for dst, tool, d, desc, use, _ in rows:
         lines.append(f"| `{dst}` | {tool} | {d:.0f} s | {desc} | {use} |")
 
     lines += ["\n## Skąd to pochodzi\n",
-              "Spoty buduje `ads/tools/` — `brand.py` (plansze), `story.py` "
-              "(montaż pod lektora), `render.py` (krótkie warianty). "
-              "Teksty siedzą w słownikach `STORIES` / `VERSIONS`; zmiana copy "
-              "nie wymaga generowania niczego na nowo.\n",
-              "Surowe ujęcia i lektorzy zostają w `ads/out/` — są wielokrotnego "
-              "użytku, nowy spot zwykle nie potrzebuje nowych generacji.\n",
+              "Spoty buduje `../tools/` — `brand.py` (plansze), `story.py` "
+              "(montaż pod lektora), `render.py` (krótkie warianty), "
+              "`pov.py` (grade „nagrane telefonem”). Teksty siedzą w słownikach "
+              "`STORIES` / `VERSIONS`; zmiana copy nie wymaga generowania "
+              "niczego na nowo.\n",
+              "Ujęcia i lektorzy leżą w `../assets/` — są wielokrotnego użytku, "
+              "nowy spot zwykle nie potrzebuje nowych generacji. Ekrany produktu "
+              "renderuje `../screens/` (HTML → wideo, 0 kredytów).\n",
               "## Przed publikacją\n",
               "- **899 zł u grafika** to roszczenie porównawcze — mieć na nie źródło.",
               "- **30 kredytów** zgodne z produkcją (`signup_credits_30`); "
