@@ -1,5 +1,5 @@
 #!/bin/bash
-# Rozsyła wspólne arkusze do projektów kompozycji.
+# Rozsyła wspólne arkusze i assety do projektów kompozycji.
 #
 # Każdy projekt MUSI mieć własną kopię `assets/` — HyperFrames serwuje
 # kompozycję z katalogiem projektu jako bazą URL, więc ścieżka `../assets/…`
@@ -20,7 +20,9 @@ changed=0
 for dir in */; do
   p="${dir%/}"
   [ -f "$p/index.html" ] || continue
-  for css in assets/*.css; do
+  # css i wspólne assety (np. ai-icon.png) — pierwsza wersja brała tylko *.css
+  for css in assets/*.css assets/*.png assets/*.svg; do
+    [ -f "$css" ] || continue
     name=$(basename "$css")
     # kopiujemy tylko arkusze, do których projekt faktycznie się odwołuje
     grep -q "assets/$name" "$p/index.html" || continue

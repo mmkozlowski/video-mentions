@@ -81,6 +81,11 @@ realia branży: [`ai/realia-agenta-nieruchomosci.md`](ai/realia-agenta-nieruchom
 
 ## Otwarte
 
+- **Spot 01 został na 30 kredytach.** Agentka MÓWI „trzydzieści darmowych
+  kredytów" w samym ujęciu, więc napis 15 kłóciłby się z tym, co słychać.
+  Do decyzji: ponowny dubbing `raw-ugc-agentka.mp4` z nową kwotą albo wycofanie
+  spotu z kampanii. Pozostałe 13 spotów mówi 15.
+
 - **Brak eksportu PDF w produkcie** — spot 12 mówi „gotowe ogłoszenie do wysłania",
   bo krok 4 kreatora daje tylko *Kopiuj / .txt / podgląd / stronę HTML*.
 - **„899 zł u grafika"** (spoty 02, 08) wymaga źródła przed płatną kampanią.

@@ -329,15 +329,15 @@ Konkretne kwoty biją nieostre „kilka / kilkaset" — liczba jest zapamiętywa
 
 Podawanie własnej kwoty (9,90 zł) okazało się kłopotliwe — trudno ją obronić przy modelu kredytowym, gdzie koszt zależy od pakietu i liczby etapów. Aktualna linia w `story.py` omija ten problem:
 
-> „Znowu rzut na kartce? **899 zł u grafika. Tydzień.** Wrzuć zdjęcie. Render 3D w 60 sekund. **Za darmo — 30 kredytów.**"
+> „Znowu rzut na kartce? **899 zł u grafika. Tydzień.** Wrzuć zdjęcie. Render 3D w 60 sekund. **Za darmo — 15 kredytów.**"
 
-Kontrast zostaje (899 zł i tydzień u grafika), ale zamiast licytować się ceną prowadzimy do **darmowych kredytów startowych**. CTA: „Odbierz 30 kredytów". Zaleta: nie trzeba bronić żadnej własnej kwoty, a bariera wejścia spada do zera.
+Kontrast zostaje (899 zł i tydzień u grafika), ale zamiast licytować się ceną prowadzimy do **darmowych kredytów startowych**. CTA: „Odbierz 15 kredytów". Zaleta: nie trzeba bronić żadnej własnej kwoty, a bariera wejścia spada do zera.
 
-Ta linia obowiązuje we **wszystkich** wersjach — `VERSIONS` w `brand.py`, `SCRIPT` w `story.py` oraz plansza `price_shock` (`899 zł` → `ZA DARMO`). Endcard wszędzie: „Pierwsze rzuty 3D za darmo" → „Odbierz 30 kredytów" → `adresflow.com`.
+Ta linia obowiązuje we **wszystkich** wersjach — `VERSIONS` w `brand.py`, `SCRIPT` w `story.py` oraz plansza `price_shock` (`899 zł` → `ZA DARMO`). Endcard wszędzie: „Pierwsze rzuty 3D za darmo" → „Odbierz 15 kredytów" → `adresflow.com`.
 
 Liczby użyte w copy i ich źródła:
 
-- **30 kredytów gratis na start** — `signup_credits_30` (migracja z 2026-05-20), potwierdzone w `adresflow-v2 → internal-metrics.repository.ts`. Uwaga: `data.ts:322` ma nieaktualne „5 kredytów na start" — rozbieżność do poprawy w produkcie.
+- **15 kredytów gratis na start** — wartość obowiązująca od 2026-08-02 (wcześniej 30). **Do zsynchronizowania po stronie produktu:** nazwa migracji nadal brzmi `signup_credits_30`, a `data.ts:322` mówi „5 kredytów na start" — dopóki to nie zgra się z reklamą, spot obiecuje co innego niż daje rejestracja.
 - **9,90 zł za rzut** — decyzja właściciela. Z cennika w repo wychodzi mniej (2 kr/etap × 3 etapy = 6 kr ≈ 5,88 zł przy `BASE_RATE 0,98 zł/kr`), więc reklama obiecuje **drożej niż jest** — od strony roszczeń bezpieczne.
 - **899 zł za rzut 3D w branży** — wiedza domenowa właściciela, **nie dane z repo**. Roszczenie porównawcze w płatnej kampanii musi być prawdziwe i weryfikowalne, więc przed publikacją warto mieć na to źródło (cennik pracowni, oferta, zrzut).
 

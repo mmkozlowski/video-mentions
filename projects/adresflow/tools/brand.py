@@ -122,33 +122,46 @@ def watermark(img, size=92, margin=54):
     d.text((x0 + 28 + size + 14, y0 + (bh - 52) // 2), name, font=fnt, fill=TEXT + (255,))
     return img
 
-def ai_mark(y=208):
-    """Warstwa z oznaczeniem treści AI — art. 50 ust. 4 AI Act.
+def ai_mark(y=1680, margin=54):
+    """Oznaczenie treści AI — art. 50 ust. 4 AI Act.
 
-    Osobna warstwa, nie część chrome: chrome stoi przez cały klip, a to ma
-    zniknąć po kilku sekundach. Ustawienie: wyśrodkowane pod pigułkami chrome
-    (eyebrow po lewej, znak po prawej kończą się na y=180).
+    Oficjalna ikona Komisji Europejskiej (`ai-icon.png`, wariant `LABEL_AI_white`
+    z pakietu EU icons for labelling AI-generated content) + własna etykieta po
+    polsku. To dokładnie ta para, którą Kodeks przewiduje dla ikony podstawowej:
+    „when a custom text label ... is implemented". Badania użytkowników Komisji
+    pokazały, że skrót „AI" z etykietą tekstową wypada lepiej niż sama ikona.
 
-    Dlaczego NIE przy dolnej krawędzi, mimo że tam mniej przeszkadza: dolne
-    ~15 % kadru zasłania w Reels i TikToku interfejs aplikacji (opis, nick,
-    przyciski). Oznaczenie, którego nie widać, nie jest oznaczeniem.
+    Osobna warstwa, nie część chrome: chrome stoi przez cały klip, a znak ma
+    zniknąć po kilku sekundach.
+
+    Pozycja: LEWY DOLNY RÓG (decyzja właściciela). Uwaga przy publikacji —
+    w Reels i TikToku dolny pas kadru zasłania interfejs aplikacji, dlatego
+    znak siedzi 174 px nad krawędzią, a nie przy samym dole.
     """
     img = blank()
     d = ImageDraw.Draw(img)
     fnt = font("Poppins-SemiBold.ttf", 30)
     txt = "Materiał zawiera treści AI"
     tw = int(d.textlength(txt, font=fnt))
-    dot = 16
-    pad_x, bh = 30, 66
-    bw = pad_x * 2 + dot + 14 + tw
-    x0 = (W - bw) // 2
+
+    ico_p = os.path.join(HERE, "ai-icon.png")
+    ico = None
+    if os.path.exists(ico_p):
+        ico = Image.open(ico_p).convert("RGBA")
+        r = 48 / ico.width
+        ico = ico.resize((48, int(ico.height * r)), Image.LANCZOS)
+
+    pad_l, pad_r, bh = 12, 30, 72
+    ico_w = (ico.width + 16) if ico else 0
+    bw = pad_l + ico_w + tw + pad_r
+    x0 = margin
     pill(d, [x0, y, x0 + bw, y + bh], bh // 2, BG + (215,))
     d.rounded_rectangle([x0, y, x0 + bw, y + bh], radius=bh // 2,
                         outline=ACC_HI + (140,), width=2)
     cy = y + bh // 2
-    d.ellipse([x0 + pad_x, cy - dot // 2, x0 + pad_x + dot, cy + dot // 2],
-              fill=ACC_HI + (255,))
-    d.text((x0 + pad_x + dot + 14, cy - 21), txt, font=fnt, fill=TEXT + (255,))
+    if ico:
+        img.alpha_composite(ico, (x0 + pad_l, cy - ico.height // 2))
+    d.text((x0 + pad_l + ico_w, cy - 21), txt, font=fnt, fill=TEXT + (255,))
     return img
 
 
@@ -277,32 +290,32 @@ def endcard(headline_txt, sub, cta, url="adresflow.com"):
 #   v1 = kontrast cenowy (ile to kosztuje w branży)
 #   v2 = brak pośrednika (deweloper / karta lokalu)
 #   v3 = efekt + szybkość (najmocniejsza animacja)
-# Liczby: 30 kr startowych = migracja signup_credits_30; rzut 3D = 2 kr/etap (data.ts)
+# Liczby: 15 kr startowych = migracja signup_credits_30; rzut 3D = 2 kr/etap (data.ts)
 VERSIONS = {
     "v1": {
         "eyebrow": "RZUT 3D Z KARTKI",
         "hook": ["Rzut 3D u grafika?", "899 zł i tydzień."],
         "payoff": ["Tu: 60 sekund.", "Za darmo."],
-        "end": ("AdresFlow", "Pierwsze rzuty 3D za darmo", "Odbierz 30 kredytów"),
+        "end": ("AdresFlow", "Pierwsze rzuty 3D za darmo", "Odbierz 15 kredytów"),
         "vo": "Rzut trzy de u grafika? Osiemset dziewięćdziesiąt dziewięć złotych i tydzień "
               "czekania. Tutaj zrobisz go w sześćdziesiąt sekund. Wejdź na Adres Flow "
-              "i odbierz trzydzieści darmowych kredytów.",
+              "i odbierz piętnaście darmowych kredytów.",
     },
     "v2": {
         "eyebrow": "RZUT 3D Z KARTKI",
         "hook": ["Masz kartę lokalu.", "Nie masz wizualizacji."],
         "payoff": ["Zrób ją sam.", "Za darmo."],
-        "end": ("AdresFlow", "Pierwsze rzuty 3D za darmo", "Odbierz 30 kredytów"),
+        "end": ("AdresFlow", "Pierwsze rzuty 3D za darmo", "Odbierz 15 kredytów"),
         "vo": "Masz kartę lokalu, ale nie masz wizualizacji? Zrób ją sam, bez grafika. "
-              "Wejdź na Adres Flow i odbierz trzydzieści darmowych kredytów.",
+              "Wejdź na Adres Flow i odbierz piętnaście darmowych kredytów.",
     },
     "v3": {
         "eyebrow": "RZUT 3D Z KARTKI",
         "hook": ["Twój szkic.", "Nasz render 3D rzutu."],
         "payoff": ["W 60 sekund.", "Za darmo."],
-        "end": ("AdresFlow", "Pierwsze rzuty 3D za darmo", "Odbierz 30 kredytów"),
+        "end": ("AdresFlow", "Pierwsze rzuty 3D za darmo", "Odbierz 15 kredytów"),
         "vo": "Twój szkic. Nasz render trzy de rzutu. W sześćdziesiąt sekund. "
-              "Wejdź na Adres Flow i odbierz trzydzieści darmowych kredytów.",
+              "Wejdź na Adres Flow i odbierz piętnaście darmowych kredytów.",
     },
     # --- warianty hooka do testu A/B (ten sam materiał co v3) ---
     # Powód: predictor dał v3 hook_score 27/100 przy sustain 97 — problem jest
@@ -313,28 +326,32 @@ VERSIONS = {
         "eyebrow": "RZUT 3D Z KARTKI",
         "hook": ["Znowu czekasz", "na rzut 3D?"],
         "payoff": ["Masz go w minutę.", "Za darmo."],
-        "end": ("AdresFlow", "Pierwsze rzuty 3D za darmo", "Odbierz 30 kredytów"),
-        "vo": "Znowu czekasz na rzut trzy de? Tydzień, osiemset dziewięćdziesiąt dziewięć złotych. "
-              "Tutaj masz go w minutę, za dziewięć dziewięćdziesiąt. AdresFlow.",
+        "end": ("AdresFlow", "Pierwsze rzuty 3D za darmo", "Odbierz 15 kredytów"),
+        # Pole było nieaktualne wobec nagrania (mówiło o „dziewięć dziewięćdziesiąt",
+        # czyli o naszej cenie — a tej z zasady nie podajemy). Zsynchronizowane
+        # z tym, co realnie jest w vo-v3d.mp3, po zmianie 30 → 15 kredytów.
+        "vo": "Znowu czekasz na rzut trzy de? U grafika to tydzień i osiemset "
+              "dziewięćdziesiąt dziewięć złotych. Tutaj masz go w minutę. Wejdź na "
+              "Adres Flow i odbierz piętnaście darmowych kredytów.",
     },
     # v3e — ból: oferta się nie sprzedaje
     "v3e": {
         "eyebrow": "RZUT 3D Z KARTKI",
         "hook": ["Rzut na kartce.", "Nikt tego nie kupi."],
         "payoff": ["Pokaż render 3D.", "Za darmo."],
-        "end": ("AdresFlow", "Pierwsze rzuty 3D za darmo", "Odbierz 30 kredytów"),
+        "end": ("AdresFlow", "Pierwsze rzuty 3D za darmo", "Odbierz 15 kredytów"),
         "vo": "Dostałeś rzut na kartce? Nikt tego nie kupi. Pokaż klientowi render trzy de. "
-              "Wejdź na Adres Flow i odbierz trzydzieści darmowych kredytów.",
+              "Wejdź na Adres Flow i odbierz piętnaście darmowych kredytów.",
     },
     # v3b — ból: koszt, otwierany planszą price_shock
     "v3b": {
         "eyebrow": "RZUT 3D Z KARTKI",
         "hook": ["Rzut 3D u grafika?", "899 zł i tydzień."],
         "payoff": ["Tu: 60 sekund.", "Za darmo."],
-        "end": ("AdresFlow", "Pierwsze rzuty 3D za darmo", "Odbierz 30 kredytów"),
+        "end": ("AdresFlow", "Pierwsze rzuty 3D za darmo", "Odbierz 15 kredytów"),
         "vo": "Rzut trzy de u grafika? Osiemset dziewięćdziesiąt dziewięć złotych i tydzień "
               "czekania. Tutaj zrobisz go w sześćdziesiąt sekund, za darmo. "
-              "Wejdź na Adres Flow i odbierz trzydzieści kredytów.",
+              "Wejdź na Adres Flow i odbierz piętnaście kredytów.",
     },
 }
 

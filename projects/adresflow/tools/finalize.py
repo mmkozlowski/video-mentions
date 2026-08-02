@@ -173,7 +173,7 @@ def main():
               "renderuje `../screens/` (HTML → wideo, 0 kredytów).\n",
               "## Przed publikacją\n",
               "- **899 zł u grafika** to roszczenie porównawcze — mieć na nie źródło.",
-              "- **30 kredytów** zgodne z produkcją (`signup_credits_30`); "
+              "- **15 kredytów** zgodne z produkcją (`signup_credits_30`); "
               "uwaga: `apps/web/src/lib/data.ts:322` ma nieaktualne „5 kredytów”.",
               "- Muzyka: YouTube Audio Library, licencja bez atrybucji.\n"]
 

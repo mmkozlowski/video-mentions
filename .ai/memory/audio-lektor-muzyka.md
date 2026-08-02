@@ -9,6 +9,18 @@ Ustalenia z produkcji spotów AdresFlow (2026-07-30). Wszystkie zweryfikowane po
 
 **Lektor: NIGDY nie generuj fraz osobnymi wywołaniami.** Każde wywołanie `generate_audio` to niezależny sampling — barwa i akcent dryfują, w odsłuchu **słychać dwie różne osoby**, a nazwa marki bywa czytana raz po polsku, raz po angielsku. Generuj **jeden plik na cały tekst**, a granice fraz wykryj przez `silencedetect` (`detect_phrases` w `story.py` dobiera próg automatycznie pod oczekiwaną liczbę fraz).
 
+**Lektor kosztuje wg DŁUGOŚCI tekstu, nie ryczałtem.** Zmierzone na 14
+generacjach (2026-08-02): od 0,3 kr za jedno zdanie do 1,05 kr za tekst
+~9-zdaniowy. Wcześniejsza notatka mówiła „0,3 kr" — to była cena najkrótszego
+przypadku, nie stawka. Przy przebudowie całej biblioteki licz ~0,7 kr na spot.
+
+**Zanim zregenerujesz jakikolwiek `vo-*.mp3`, sprawdź, czy to na pewno lektor.**
+W AdresFlow `vo-ugc.mp3` NIE był lektorem — to własny, zdubbingowany głos
+postaci wycięty z ujęcia gadającej głowy. Rozpoznaje się to po tym, że plik ma
+**dokładnie** tę samą długość co ujęcie. Nadpisanie go syntezą rozwala
+synchronizację ust i wkłada męski głos pod kobietę na ekranie. Zmiana treści
+takiego spotu wymaga ponownego dubbingu ujęcia, nie nowego TTS.
+
 **Wybrany głos: Harrison** `573e5163-59b3-4926-aab1-951ef2985f81` (ElevenLabs przez `text2speech_v2`). Wybrany po pomiarze ekspresji — `projects/adresflow/tools/voice_test.py` liczy zmienność wysokości tonu, rozrzut głośności i LRA:
 
 | Głos | Zmienność tonu | Ekspresja |

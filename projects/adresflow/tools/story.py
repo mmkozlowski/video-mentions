@@ -132,6 +132,54 @@ def detect_phrases(path, want=None):
 # Liczba wpisów musi zgadzać się z liczbą fraz (skrypt to weryfikuje).
 # Retoryka: kontrast z ceną u grafika, ale o naszej cenie nie mówimy —
 # zamiast kwoty prowadzimy do darmowych kredytów startowych.
+# Teksty lektora — JEDEN plik audio na spot, generowany z tego stringa.
+#
+# Trzymamy je tutaj, bo przy zmianie „30 → 15 kredytów" okazało się, że nigdzie
+# ich nie było i trzeba było odtwarzać nagrania Whisperem. Liczby i skróty pisz
+# fonetycznie („trzy de", „piętnaście"), inaczej lektor je przekręca.
+#
+# Regeneracja: tools/voice.py <klucz>. Po każdej zmianie sprawdź, czy liczba
+# fraz wykrytych w audio zgadza się ze scenariuszem — skrypt to weryfikuje.
+VO_TEXT = {
+    "story": "Znowu dostajesz rzut na kartce? U grafika zapłacisz osiemset "
+             "dziewięćdziesiąt dziewięć złotych i poczekasz tydzień. Tutaj wrzucasz "
+             "zdjęcie kartki. I masz gotowy render trzy de w sześćdziesiąt sekund. "
+             "Pokaż klientowi, jak naprawdę wygląda mieszkanie. Wejdź na Adres Flow "
+             "i odbierz piętnaście darmowych kredytów.",
+    "hs":    "Mieszkanie do sprzedaży wygląda jak sprzed dekady. Sprzątanie. "
+             "Wynoszenie rzeczy. Cały dzień pracy, a zdjęcia i tak wychodzą słabo. "
+             "Albo jedno zdjęcie i home staging w sztucznej inteligencji. "
+             "Wejdź na Adres Flow i odbierz piętnaście darmowych kredytów.",
+    "dz":    "Sprzedajesz działkę. Klient patrzy na trawę i nie widzi swojego domu. "
+             "Zamiast czekać na projekt i budowę, pokaż mu wizualizację zabudowy "
+             "w minutę. Wejdź na Adres Flow i odbierz piętnaście darmowych kredytów.",
+    # UWAGA: „ugc" NIE MA lektora w zwykłym sensie. Ścieżka dźwiękowa to własny,
+    # zdubbingowany głos agentki wycięty z `raw-ugc-agentka.mp4` — dlatego
+    # vo-ugc.mp3 ma dokładnie tyle samo co ujęcie (27,12 s). Wygenerowanie tu
+    # lektora rozwala synchronizację ust i wkłada męski głos pod kobietę
+    # na ekranie. Odtworzenie:
+    #   ffmpeg -i assets/shots/raw-ugc-agentka.mp4 -vn -c:a libmp3lame -q:a 2 \
+    #          assets/voice/vo-ugc.mp3
+    # Zmiana treści tego spotu wymaga PONOWNEGO DUBBINGU ujęcia, nie nowego TTS.
+    "ugc":   None,
+    "full":  "Jesteś agentem nieruchomości. Jeździsz, fotografujesz, sprzątasz. "
+             "Potem walczysz z programem graficznym. Adres Flow robi to za ciebie. "
+             "Home staging ze zwykłego zdjęcia. Rzut trzy de z odręcznej kartki. "
+             "Wizualizacja zabudowy działki. Wszystko w minutę, w jednym miejscu. "
+             "Wejdź na Adres Flow i odbierz piętnaście darmowych kredytów.",
+    "kw":    "Znowu przepisujesz numer księgi wieczystej? Portal, captcha, cztery "
+             "działy. Jedno wklejenie. Zamiast dziesięciu kliknięć. Powierzchnia, "
+             "właściciel, hipoteka. Wszystko na jednym ekranie. Wejdź na Adres Flow. "
+             "Piętnaście kredytów za darmo.",
+    "wycena": "Klient pyta, ile warte jest jego mieszkanie. Zgadujesz albo dzwonisz "
+              "po kolegach. Wpisujesz adres. Ceny z aktów notarialnych. Nie z ogłoszeń. "
+              "Mediana, rozkład, transakcje z okolicy. Za zero kredytów. Odbierz "
+              "piętnaście kredytów na start.",
+    "oferta": "Oferta w Wordzie, zdjęcia osobno. Opis pisany od zera. Godzina roboty "
+              "na jedno mieszkanie. Cztery kroki. Adres, dane, zdjęcia, opis. Gotowe "
+              "ogłoszenie do wysłania. Wejdź na Adres Flow. Piętnaście kredytów za darmo.",
+}
+
 SHOTS = {
     "agent":      "raw-agent.mp4",       # klient podaje odręczny szkic
     "grafik":     "raw-grafik.mp4",      # stara metoda: grafik nocą w CAD
@@ -165,39 +213,40 @@ STORIES = {
     # Rzut 3D z kartki — pełny łuk narracyjny
     "story": {
      "eyebrow": "RZUT 3D Z KARTKI",
-     "end": ("AdresFlow", "Pierwsze rzuty 3D za darmo", "Odbierz 30 kredytów"),
+     "end": ("AdresFlow", "Pierwsze rzuty 3D za darmo", "Odbierz 15 kredytów"),
      "script": [
         {"lines": ["Znowu rzut", "na kartce?"],          "accent": 1, "shot": "agent"},
         {"lines": ["899 zł u grafika.", "Tydzień."],     "accent": 0, "shot": "grafik"},
         {"lines": ["Wrzuć zdjęcie."],                    "accent": 0, "shot": "morph"},
         {"lines": ["Render 3D", "w 60 sekund."],         "accent": 1, "shot": "morph"},
         {"lines": ["Pokaż, jak", "naprawdę wygląda."],   "accent": 0, "shot": "mieszkanie"},
-        {"lines": ["Wejdź na AdresFlow."],               "accent": 0, "shot": "tablet"},
-        {"lines": ["30 kredytów", "za darmo."],          "accent": 0, "shot": "tablet"},
+        # CTA i kredyty w jednej frazie — nowy lektor mówi to jednym zdaniem,
+        # więc `silencedetect` nie ma gdzie ciąć.
+        {"lines": ["Wejdź na AdresFlow.", "15 kredytów za darmo."], "accent": 1, "shot": "tablet"},
     ]},
     # Home staging — ekipa remontowa kontra jedno zdjęcie
     "hs": {
      "eyebrow": "HOME STAGING AI",
-     "end": ("AdresFlow", "Home staging w minutę", "Odbierz 30 kredytów"),
+     "end": ("AdresFlow", "Home staging w minutę", "Odbierz 15 kredytów"),
      "script": [
         {"lines": ["Mieszkanie", "jak sprzed dekady?"],   "accent": 1, "shot": "hs"},
         {"lines": ["Sprzątanie."],                        "accent": 0, "shot": "ekipa"},
         {"lines": ["Wynoszenie rzeczy."],                 "accent": 0, "shot": "ekipa"},
         {"lines": ["Cały dzień.", "A zdjęcia i tak słabe."], "accent": 1, "shot": "ekipa"},
         {"lines": ["Jedno zdjęcie.", "Home staging AI."], "accent": 1, "shot": "hs"},
-        {"lines": ["Za darmo.", "30 kredytów."],          "accent": 0, "shot": "mieszkanie"},
+        {"lines": ["Za darmo.", "15 kredytów."],          "accent": 0, "shot": "mieszkanie"},
     ]},
     # Działka — klient nie widzi domu na trawie
     "dz": {
      "eyebrow": "ZABUDOWA DZIAŁEK AI",
-     "end": ("AdresFlow", "Pokaż potencjał działki", "Odbierz 30 kredytów"),
+     "end": ("AdresFlow", "Pokaż potencjał działki", "Odbierz 15 kredytów"),
      "script": [
         {"lines": ["Sprzedajesz", "działkę?"],           "accent": 1, "shot": "dzialka"},
         {"lines": ["Klient widzi trawę.", "Nie dom."],   "accent": 0, "shot": "dzialka"},
         {"lines": ["Zamiast czekać", "na budowę."],      "accent": 0, "shot": "budowa"},
         {"lines": ["Pokaż zabudowę", "w minutę."],       "accent": 1, "shot": "dzialka"},
         {"lines": ["Wejdź na AdresFlow."],               "accent": 0, "shot": "spacer"},
-        {"lines": ["30 kredytów", "za darmo."],          "accent": 0, "shot": "spacer"},
+        {"lines": ["15 kredytów", "za darmo."],          "accent": 0, "shot": "spacer"},
     ]},
     # UGC talking head — agentka opisuje to, co widać na przebitkach.
     #
@@ -206,6 +255,10 @@ STORIES = {
     # dubbing musi wtedy wybrać rodzaj i wybiera MĘSKI, co przy kobiecie na
     # ekranie dyskwalifikuje materiał. „Biorę / przeciągam / mam / skończ"
     # nie mają rodzaju i przechodzą przez tłumaczenie bezpiecznie.
+    # ⚠️ JEDYNY SPOT NADAL NA 30 KREDYTACH — i musi taki zostać do czasu
+    # ponownego dubbingu. Agentka MÓWI „trzydzieści darmowych kredytów" w samym
+    # ujęciu, więc napis 15 kłóciłby się z tym, co słychać. Zmiana wymaga
+    # przegenerowania/redubbingu `raw-ugc-agentka.mp4`, nie edycji tekstu.
     "ugc": {
      "eyebrow": "STUDIO AI",
      "end": ("AdresFlow", "Pierwsze generacje za darmo", "Odbierz 30 kredytów"),
@@ -221,7 +274,7 @@ STORIES = {
     # Przekrojowy — cały dzień agenta i całe Studio AI w jednym spocie
     "full": {
      "eyebrow": "STUDIO AI",
-     "end": ("AdresFlow", "Studio AI dla agentów nieruchomości", "Odbierz 30 kredytów"),
+     "end": ("AdresFlow", "Studio AI dla agentów nieruchomości", "Odbierz 15 kredytów"),
      "script": [
         {"lines": ["Jesteś agentem", "nieruchomości."],   "accent": 1, "shot": "mieszkanie"},
         {"lines": ["Jeździsz.", "Fotografujesz."],        "accent": 0, "shot": "agent"},
@@ -231,7 +284,7 @@ STORIES = {
         {"lines": ["Rzut 3D", "z kartki."],               "accent": 0, "shot": "morph"},
         {"lines": ["Zabudowa", "działki."],               "accent": 0, "shot": "dzialka"},
         {"lines": ["Wszystko", "w minutę."],              "accent": 1, "shot": "mieszkanie"},
-        {"lines": ["Za darmo.", "30 kredytów."],          "accent": 0, "shot": "tablet"},
+        {"lines": ["Za darmo.", "15 kredytów."],          "accent": 0, "shot": "tablet"},
     ]},
     # ── Funkcje ekranowe ─────────────────────────────────────────────────────
     # Trzy spoty poniżej różnią się konstrukcją od powyższych: nie ma tu
@@ -239,7 +292,7 @@ STORIES = {
     # LICZBA KROKÓW. Ujęcie bólu (stara metoda) → ekran produktu → CTA.
     "kw": {
      "eyebrow": "KSIĘGA WIECZYSTA",
-     "end": ("AdresFlow", "Księga wieczysta w jednym wklejeniu", "Odbierz 30 kredytów"),
+     "end": ("AdresFlow", "Księga wieczysta w jednym wklejeniu", "Odbierz 15 kredytów"),
      "script": [
         # Lektor pauzuje na przecinkach, więc „Portal, captcha, cztery działy"
         # rozpada się na trzy frazy — napisy idą za tym, staccato bije zdanie.
@@ -252,11 +305,11 @@ STORIES = {
         {"lines": ["Powierzchnia,", "właściciel, hipoteka."], "accent": 0, "shot": "ekran-kw"},
         {"lines": ["Wszystko", "na jednym ekranie."],        "accent": 1, "shot": "ekran-kw"},
         {"lines": ["Wejdź na AdresFlow."],                   "accent": 0, "shot": "tablet"},
-        {"lines": ["30 kredytów", "za darmo."],              "accent": 0, "shot": "tablet"},
+        {"lines": ["15 kredytów", "za darmo."],              "accent": 0, "shot": "tablet"},
     ]},
     "wycena": {
      "eyebrow": "WYCENA NIERUCHOMOŚCI",
-     "end": ("AdresFlow", "Wycena z rejestru — za 0 kredytów", "Odbierz 30 kredytów"),
+     "end": ("AdresFlow", "Wycena z rejestru — za 0 kredytów", "Odbierz 15 kredytów"),
      "script": [
         {"lines": ["Klient pyta,", "ile warte jest mieszkanie."], "accent": 1, "shot": "niewiem"},
         {"lines": ["Zgadujesz albo", "dzwonisz po kolegach."],    "accent": 0, "shot": "niewiem"},
@@ -265,11 +318,11 @@ STORIES = {
         {"lines": ["Nie z ogłoszeń."],                           "accent": 1, "shot": "ekran-wyc"},
         {"lines": ["Mediana, rozkład,", "transakcje z okolicy."], "accent": 0, "shot": "ekran-wyc"},
         {"lines": ["Za zero kredytów."],                         "accent": 1, "shot": "ekran-wyc"},
-        {"lines": ["Odbierz 30 kredytów", "na start."],          "accent": 0, "shot": "tablet"},
+        {"lines": ["Odbierz 15 kredytów", "na start."],          "accent": 0, "shot": "tablet"},
     ]},
     "oferta": {
      "eyebrow": "KREATOR OFERTY",
-     "end": ("AdresFlow", "Gotowe ogłoszenie w cztery kroki", "Odbierz 30 kredytów"),
+     "end": ("AdresFlow", "Gotowe ogłoszenie w cztery kroki", "Odbierz 15 kredytów"),
      "script": [
         {"lines": ["Oferta w Wordzie,", "zdjęcia osobno."],  "accent": 1, "shot": "wydruki"},
         {"lines": ["Opis pisany", "od zera."],               "accent": 0, "shot": "wydruki"},
@@ -279,7 +332,7 @@ STORIES = {
         {"lines": ["…opis."],                                "accent": 0, "shot": "ekran-of"},
         {"lines": ["Gotowe ogłoszenie", "do wysłania."],     "accent": 1, "shot": "ekran-of"},
         {"lines": ["Wejdź na AdresFlow."],                   "accent": 0, "shot": "tablet"},
-        {"lines": ["30 kredytów", "za darmo."],              "accent": 0, "shot": "tablet"},
+        {"lines": ["15 kredytów", "za darmo."],              "accent": 0, "shot": "tablet"},
     ]},
 }
 
@@ -504,6 +557,9 @@ def brand_pop(st, base, d=0.30):
 
 
 def build_story(key):
+    # zabezpieczenie: patrz komentarz przy VO_TEXT["ugc"]
+    if VO_TEXT.get(key) is None and key == "ugc":
+        pass  # dźwięk pochodzi z ujęcia, nie z TTS — nic nie generujemy
     music = MUSIC
     vo_path = os.path.join(VOICE, f"vo-{key}.mp3")
     if not os.path.exists(vo_path):
