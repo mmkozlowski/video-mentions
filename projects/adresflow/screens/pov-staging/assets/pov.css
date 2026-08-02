@@ -228,3 +228,31 @@
   color: var(--text);
   letter-spacing: -0.01em;
 }
+
+/* Oznaczenie treści AI — art. 50 ust. 4 AI Act, od 2026-08-02.
+   W formacie POV nie ma warstwy brandingowej, więc znak musi siedzieć
+   w kompozycji. Idzie POD planszę-hook, nie obok niej: przy prawym górnym rogu
+   nachodził na drugą linię hooka. Dolne ~15 % kadru odpada, bo zasłania je
+   interfejs Reels/TikToka. Widoczny tylko na starcie (GSAP). */
+.ai-mark {
+  position: absolute;
+  left: 58px;
+  top: 244px;          /* pod planszą-hookiem: ta ma top 62 i kończy się ~223 */
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  background: rgba(10, 11, 16, 0.86);
+  border: 2px solid rgba(167, 139, 250, 0.6);
+  border-radius: 999px;
+  padding: 13px 26px 15px;
+  font-size: 30px;
+  font-weight: 600;
+  color: var(--text);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5);
+}
+.ai-mark .d {
+  width: 15px;
+  height: 15px;
+  border-radius: 999px;
+  background: var(--accent-hover);
+}

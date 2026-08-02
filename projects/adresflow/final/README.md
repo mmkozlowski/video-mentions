@@ -9,9 +9,9 @@ Dwa formaty:
 
 | Plik | Narzędzie | Czas | Co pokazuje | Gdzie użyć |
 |---|---|---|---|---|
-| `01-ugc-agentka-gadajaca-glowa.mp4` | całe Studio AI | 31 s | Agentka mówi do kamery, przebitki narzędzi między frazami | Reels / TikTok — format UGC, najbardziej „ludzki” |
+| `01-ugc-agentka-gadajaca-glowa.mp4` | całe Studio AI | 30 s | Agentka mówi do kamery, przebitki narzędzi między frazami | Reels / TikTok — format UGC, najbardziej „ludzki” |
 | `02-rzut-3d-z-kartki.mp4` | Rzut 3D z kartki | 24 s | Kartka → grafik nocą w CAD → fioletowa transformacja → mieszkanie | Kampania na rzut 3D; najmocniejsza wizualnie transformacja |
-| `03-home-staging.mp4` | Home staging | 23 s | Stare wnętrze → sprzątanie i wynoszenie rzeczy → jedno zdjęcie | Kampania na home staging |
+| `03-home-staging.mp4` | Home staging | 22 s | Stare wnętrze → sprzątanie i wynoszenie rzeczy → jedno zdjęcie | Kampania na home staging |
 | `04-zabudowa-dzialki.mp4` | Zabudowa działek | 18 s | Pusta działka → koparka → dom wyrastający na parceli | Kampania na działki — dom powstaje w kadrze |
 | `05-studio-ai-przekrojowy.mp4` | całe Studio AI | 27 s | Dzień agenta → wszystkie narzędzia po kolei | Prezentacja produktu, strona www, dłuższe formaty |
 | `06-krotki-znowu-czekasz.mp4` | Rzut 3D | 12 s | „Znowu czekasz na rzut 3D?” — najlepszy zmierzony hook (42/100) | Zimny ruch — łapanie uwagi nieznających marki |

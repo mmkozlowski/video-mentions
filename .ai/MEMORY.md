@@ -8,8 +8,10 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 - [Copy i hook](memory/copy-i-hook.md) — ból odbiorcy bije opis produktu, ruch w 1. s bije treść; narracja kupuje sustain kosztem hooka
 - [Ekran produktu z HTML](memory/ekran-produktu-hyperframes.md) — UI renderujemy przez HyperFrames, nie modelem wideo; cztery rzeczy, które odrzuca `hyperframes check`
 - [Format POV „nagrane telefonem"](memory/format-pov-nagrane-telefonem.md) — ekran laptopa filmowany telefonem symulujemy w HTML; sprzedaje go geometria kadru i celowa utrata jakości, `hyperframes check` tego formatu nie przepuszcza i tak ma być
+- [Oznaczanie treści AI](memory/oznaczanie-tresci-ai.md) — od 2026-08-02 art. 50 ust. 4 AI Act; materiał z Higgsfielda nie ma C2PA, więc platformy nie oznaczą spotu automatycznie — przełącznik trzeba włączyć ręcznie
 - [Lektor i muzyka](memory/audio-lektor-muzyka.md) — nie generuj fraz osobno (dryf barwy); podkłady mają ciche intro, trzeba startować od najgłośniejszego fragmentu
 
 ## Decyzje (ADR)
 
 - [Ekran produktu z HTML zamiast nagrań i generacji](decisions/2026-07-30-ekran-produktu-z-html.md) — 2026-07-30
+- [Oznaczanie treści AI — trzy warstwy, znak tylko na starcie](decisions/2026-08-02-oznaczanie-tresci-ai.md) — 2026-08-02

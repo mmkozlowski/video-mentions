@@ -12,6 +12,41 @@ ROOT = os.path.abspath(os.path.join(HERE, ".."))
 BUILD = os.path.join(ROOT, "build")   # tu ląduje to, co złoży story.py / render.py
 FINAL = os.path.join(ROOT, "final")   # deliverable — gotowe do publikacji
 
+# Co w którym spocie jest wygenerowane przez AI — podstawa oznaczenia wymaganego
+# od 2026-08-02 (art. 50 ust. 4 AI Act) i dowód należytej staranności.
+#
+# UTRZYMUJ RĘCZNIE. Nie da się tego wyprowadzić z plików: materiał z Higgsfielda
+# przychodzi BEZ metadanych C2PA (sprawdzone), a montaż w ffmpeg i tak by je zdjął.
+# Nowy spot = nowy wpis, inaczej rejestr cicho przestaje być prawdziwy.
+AI_COMPONENTS = {
+    "ujecia":   "ujęcia wideo wygenerowane przez Higgsfield (seedance / veo)",
+    "lektor":   "lektor syntetyczny (ElevenLabs przez text2speech_v2)",
+    "dubbing":  "mowa postaci zdubbingowana z angielskiego na polski",
+    "zdjecia":  "zdjęcia przekształcone przez AdresFlow (home staging / rzut 3D)",
+}
+# spot → lista składników AI. Ekrany produktu (HTML) i typografia NIE są AI.
+AI_MAP = {
+    "01-ugc-agentka-gadajaca-glowa.mp4": ["ujecia", "dubbing", "lektor", "zdjecia"],
+    "02-rzut-3d-z-kartki.mp4":           ["ujecia", "lektor", "zdjecia"],
+    "03-home-staging.mp4":               ["ujecia", "lektor", "zdjecia"],
+    "04-zabudowa-dzialki.mp4":           ["ujecia", "lektor", "zdjecia"],
+    "05-studio-ai-przekrojowy.mp4":      ["ujecia", "lektor", "zdjecia"],
+    "06-krotki-znowu-czekasz.mp4":       ["ujecia", "lektor", "zdjecia"],
+    "07-krotki-nikt-nie-kupi.mp4":       ["ujecia", "lektor", "zdjecia"],
+    "08-krotki-cena-u-grafika.mp4":      ["ujecia", "lektor", "zdjecia"],
+    "09-krotki-karta-lokalu.mp4":        ["ujecia", "lektor", "zdjecia"],
+    "10-ksiega-wieczysta.mp4":           ["ujecia", "lektor"],
+    "11-wycena-rciwn.mp4":               ["ujecia", "lektor"],
+    "12-kreator-oferty.mp4":             ["ujecia", "lektor"],
+    # POV nie ma ani generowanych ujęć, ani lektora — AI siedzi wyłącznie
+    # w zdjęciach wynikowych produktu pokazanych na ekranie.
+    "13-pov-rzut-3d.mp4":                ["zdjecia"],
+    "14-pov-home-staging.mp4":           ["zdjecia"],
+}
+
+DISCLOSURE = ("Materiał zawiera treści wygenerowane przez sztuczną inteligencję "
+              "(art. 50 AI Act).")
+
 # (plik źródłowy, nazwa docelowa, narzędzie, opis, gdzie użyć)
 SPOTS = [
     ("adresflow-ugc.mp4", "01-ugc-agentka-gadajaca-glowa.mp4", "całe Studio AI",
@@ -99,7 +134,19 @@ def main():
         if errs:
             skipped.append((src, f"{errs} błędów dekodera — NIE kopiuję"))
             continue
-        shutil.copy2(sp, os.path.join(FINAL, dst))
+        # Remux zamiast kopii: przy okazji wpisujemy oznaczenie AI do metadanych.
+        # To NIE jest watermark w rozumieniu art. 50 ust. 2 (ten jest obowiązkiem
+        # dostawcy modelu) — to nasz ślad, żeby plik oderwany od kontekstu nadal
+        # niósł informację, kto i czym go zrobił.
+        parts = [AI_COMPONENTS[k] for k in AI_MAP.get(dst, [])]
+        note = DISCLOSURE + (" Składniki AI: " + "; ".join(parts) + "." if parts else "")
+        subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", sp, "-c", "copy",
+                        "-map_metadata", "0",
+                        "-metadata", f"comment={note}",
+                        "-metadata", "description=AdresFlow — reklama. " + note,
+                        "-metadata", "copyright=AdresFlow",
+                        "-movflags", "+faststart",
+                        os.path.join(FINAL, dst)], check=True)
         rows.append((dst, tool, dur(sp), desc, use, has_audio))
 
     lines = ["# AdresFlow — gotowe reklamy\n",
@@ -137,6 +184,46 @@ def main():
         lines.append("")
 
     open(os.path.join(FINAL, "README.md"), "w").write("\n".join(lines))
+
+    # ── Rejestr oznaczeń AI ────────────────────────────────────────────────
+    reg = ["# Oznaczenie treści AI — rejestr\n",
+           "Podstawa: **art. 50 ust. 4 AI Act** (rozporządzenie 2024/1689), "
+           "stosowany od **2 sierpnia 2026 r.** Podmiot stosujący system AI, "
+           "który generuje lub modyfikuje obraz, dźwięk albo wideo wyglądające "
+           "na autentyczne, ujawnia, że treść została sztucznie wygenerowana "
+           "lub zmanipulowana.\n",
+           "> **Materiał z Higgsfielda przychodzi bez metadanych C2PA** "
+           "(sprawdzone `ffprobe`), a przekodowanie w ffmpeg i tak by je zdjęło. "
+           "Platformy nie oznaczą tych spotów automatycznie — **oznaczenie przy "
+           "publikacji trzeba włączyć ręcznie za każdym razem**.\n",
+           "| Spot | Składniki AI |", "|---|---|"]
+    for dst, _, _, _, _, _ in rows:
+        keys = AI_MAP.get(dst)
+        if keys is None:
+            reg.append(f"| `{dst}` | ⚠️ **BRAK WPISU — uzupełnij `AI_MAP`** |")
+        elif not keys:
+            reg.append(f"| `{dst}` | brak treści AI |")
+        else:
+            reg.append(f"| `{dst}` | " + "; ".join(AI_COMPONENTS[k] for k in keys) + " |")
+    reg += ["\n## Co zrobić przy publikacji\n",
+            "1. **Włącz oznaczenie na platformie** przy każdym wrzuceniu — "
+            "TikTok „AI-generated content”, Instagram/Facebook „AI info”, "
+            "YouTube „zmienione lub syntetyczne treści”. To jest warstwa, którą "
+            "widzi odbiorca i której platformy pilnują.",
+            "2. **W kampaniach płatnych** zadeklaruj to również w menedżerze reklam — "
+            "oznaczenie AI **nie zastępuje** oznaczenia „reklama” / „materiał sponsorowany”.",
+            "3. Metadane pliku niosą adnotację automatycznie (wpisuje je `finalize.py`), "
+            "ale **nie licz na to, że platforma je odczyta**.\n",
+            "## Czego to NIE obejmuje\n",
+            "- Ekrany produktu w spotach 10–14 są **napisane w HTML**, nie wygenerowane — "
+            "to rekonstrukcja UI, nie treść AI.",
+            "- Typografia, plansze, napisy, montaż i muzyka powstają lokalnie.",
+            "- Spoty 13–14 symulują nagranie telefonem. To nie jest treść AI, ale "
+            "**jest stylizacja** sugerująca nagranie użytkownika — osobna kwestia "
+            "uczciwości przekazu, poza zakresem art. 50.\n",
+            "> Ten plik generuje `tools/finalize.py` ze słownika `AI_MAP`. "
+            "Nowy spot bez wpisu zostanie tu oznaczony jako brakujący.\n"]
+    open(os.path.join(FINAL, "OZNACZENIA-AI.md"), "w").write("\n".join(reg))
 
     print(f"— FINAL/ ({len(rows)} spotów):")
     for dst, tool, d, _, _, a in rows:

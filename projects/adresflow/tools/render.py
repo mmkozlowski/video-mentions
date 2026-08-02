@@ -161,6 +161,13 @@ def build(ver):
 
     for name, _, _ in order:
         inputs += ["-loop", "1", "-t", f"{dur}", "-i", f"{OV}/{ver}-{name}.png"]
+    # Oznaczenie treści AI — art. 50 ust. 4 AI Act. Warstwa wspólna dla spotów,
+    # widoczna tylko na starcie. Przy 10–13-sekundowych wariantach 3,6 s to i tak
+    # jedna trzecia materiału, więc krócej niż w spotach narracyjnych.
+    ai_input_idx = None
+    if os.path.exists(f"{OV}/ai-mark.png"):
+        ai_input_idx = len(inputs) // 2  # każde wejście to para ["-i", path] + flagi
+        inputs += ["-loop", "1", "-t", f"{dur}", "-i", f"{OV}/ai-mark.png"]
 
     # plansza cenowa (gdy jest) zajmuje wejście 1 i przesuwa resztę
     first = 2 if shock else 1
@@ -178,6 +185,16 @@ def build(ver):
             filters.append(f)
             filters.append(f"[{chain}][L{idx}]{o}[c{idx}];")
         chain = f"c{idx}"
+
+    if ai_input_idx is not None:
+        ai_idx = first + len(order)
+        ai_out = min(3.6, dur * 0.42)
+        filters.append(f"[{ai_idx}:v]format=rgba,"
+                       f"fade=t=in:st=0.30:d=0.35:alpha=1,"
+                       f"fade=t=out:st={ai_out:.2f}:d=0.5:alpha=1[aim];")
+        filters.append(f"[{chain}][aim]overlay=0:0:"
+                       f"enable='between(t,0.30,{ai_out + 0.6:.2f})'[cai];")
+        chain = "cai"
 
     fc = "".join(filters).rstrip(";").replace(f"[{chain}];", f"[{chain}]")
     if not fc.endswith(f"[{chain}]"):

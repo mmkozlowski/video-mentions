@@ -122,6 +122,36 @@ def watermark(img, size=92, margin=54):
     d.text((x0 + 28 + size + 14, y0 + (bh - 52) // 2), name, font=fnt, fill=TEXT + (255,))
     return img
 
+def ai_mark(y=208):
+    """Warstwa z oznaczeniem treści AI — art. 50 ust. 4 AI Act.
+
+    Osobna warstwa, nie część chrome: chrome stoi przez cały klip, a to ma
+    zniknąć po kilku sekundach. Ustawienie: wyśrodkowane pod pigułkami chrome
+    (eyebrow po lewej, znak po prawej kończą się na y=180).
+
+    Dlaczego NIE przy dolnej krawędzi, mimo że tam mniej przeszkadza: dolne
+    ~15 % kadru zasłania w Reels i TikToku interfejs aplikacji (opis, nick,
+    przyciski). Oznaczenie, którego nie widać, nie jest oznaczeniem.
+    """
+    img = blank()
+    d = ImageDraw.Draw(img)
+    fnt = font("Poppins-SemiBold.ttf", 30)
+    txt = "Materiał zawiera treści AI"
+    tw = int(d.textlength(txt, font=fnt))
+    dot = 16
+    pad_x, bh = 30, 66
+    bw = pad_x * 2 + dot + 14 + tw
+    x0 = (W - bw) // 2
+    pill(d, [x0, y, x0 + bw, y + bh], bh // 2, BG + (215,))
+    d.rounded_rectangle([x0, y, x0 + bw, y + bh], radius=bh // 2,
+                        outline=ACC_HI + (140,), width=2)
+    cy = y + bh // 2
+    d.ellipse([x0 + pad_x, cy - dot // 2, x0 + pad_x + dot, cy + dot // 2],
+              fill=ACC_HI + (255,))
+    d.text((x0 + pad_x + dot + 14, cy - 21), txt, font=fnt, fill=TEXT + (255,))
+    return img
+
+
 def progress_bar(img, frac, y=None, h=10):
     """Pasek postępu w gradiencie brandu — typowy element rolek."""
     d = ImageDraw.Draw(img)
@@ -354,6 +384,7 @@ def build(vk):
     eyebrow(ch, v["eyebrow"])
     watermark(ch)
     ch.save(f"{OUT}/{vk}-chrome.png")
+    ai_mark().save(f"{OUT}/ai-mark.png")   # wspólna warstwa oznaczenia AI
 
     # linie hooka i payoffu jako osobne warstwy
     for block, accent_idx, y0 in (("hook", 1, 1330), ("payoff", 0, 1330)):

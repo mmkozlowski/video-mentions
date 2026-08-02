@@ -41,6 +41,8 @@ W, H = 1080, 1920
 MAX_SLOW = 1.15   # powyżej tego spowolnienie widać jako slow motion i gasi hook
 ZOOM = 1.30       # zbliżenie w drugiej części ujęcia (zamiast spowalniania)
 TAIL = 3.20       # endcard po ostatniej frazie
+AI_MARK_IN  = 0.35  # oznaczenie treści AI — wchodzi od razu…
+AI_MARK_OUT = 4.20  # …i znika, żeby nie siedzieć w kadrze przez cały spot
 MUS_VOL = 0.40    # poziom podkładu przed duckingiem
 MUS_THRESH = 0.12 # próg duckingu — niżej = agresywniej ścisza pod lektorem
 MUS_RATIO = 4     # stopień ścisznięcia (8 brzmiało jak wyciszenie)
@@ -315,6 +317,7 @@ def make_brand(key, cfg):
     brand.watermark(ch)
     ch.save(f"{OV}/{key}-chrome.png")
     brand.endcard(*cfg["end"]).save(f"{OV}/{key}-end.png")
+    brand.ai_mark().save(f"{OV}/ai-mark.png")   # wspólna dla wszystkich spotów
 
 
 def make_line_overlays(tl, key):
@@ -422,8 +425,10 @@ def compose(tl, meta, base, audio, total, key, music=None):
     inputs = ["-i", base]
     chrome_idx = 1
     inputs += ["-loop", "1", "-t", f"{total + 0.6}", "-i", f"{OV}/{key}-chrome.png"]
+    ai_idx = 2
+    inputs += ["-loop", "1", "-t", f"{total + 0.6}", "-i", f"{OV}/ai-mark.png"]
 
-    layers, idx = [], 2
+    layers, idx = [], 3
     for i, seg in enumerate(tl):
         for j, _ in enumerate(seg["lines"]):
             inputs += ["-loop", "1", "-t", f"{total + 0.6}",
@@ -436,9 +441,17 @@ def compose(tl, meta, base, audio, total, key, music=None):
     f.append(f"[{chrome_idx}:v]format=rgba,fade=t=in:st=0.15:d=0.4:alpha=1,"
              f"fade=t=out:st={end_start:.3f}:d=0.3:alpha=1[chr];")
     f.append(f"[base][chr]overlay=0:0[c0];")
-    chain = "c0"
+    # Oznaczenie treści AI (art. 50 ust. 4 AI Act) — tylko na starcie.
+    # „Najpóźniej przy pierwszej ekspozycji" jest spełnione, a znak nie siedzi
+    # w kadrze przez cały spot. Wchodzi po chrome, żeby nie kolidowało z fade-in.
+    f.append(f"[{ai_idx}:v]format=rgba,"
+             f"fade=t=in:st={AI_MARK_IN:.2f}:d=0.35:alpha=1,"
+             f"fade=t=out:st={AI_MARK_OUT:.2f}:d=0.5:alpha=1[aim];")
+    f.append(f"[c0][aim]overlay=0:0:"
+             f"enable='between(t,{AI_MARK_IN:.2f},{AI_MARK_OUT + 0.6:.2f})'[c1];")
+    chain = "c1"
 
-    for k, (ii, m, st, en) in enumerate(layers, start=1):
+    for k, (ii, m, st, en) in enumerate(layers, start=2):
         sw = brand_pop(st, m["w"])
         sh = brand_pop(st, m["h"])
         f.append(f"[{ii}:v]format=rgba,scale=eval=frame:w={sw}:h={sh},"

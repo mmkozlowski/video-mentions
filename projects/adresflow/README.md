@@ -61,9 +61,23 @@ Nowy spot zwykle **nie wymaga nowych generacji** — sprawdź najpierw
 - Otwieraj spot **bólem odbiorcy i ruchem**, nie opisem funkcji (zmierzone).
 - O własnej cenie nie mówimy — prowadzimy do 30 darmowych kredytów.
 - Spoty POV (13–14) **łamią bramkę `check` celowo** — weryfikuj je `snapshot`-em.
+- **Każdy spot musi mieć wpis w `AI_MAP`** (`tools/finalize.py`) i włączony
+  przełącznik AI przy publikacji — patrz [`final/OZNACZENIA-AI.md`](final/OZNACZENIA-AI.md).
 
 Pełna lista: [`../../.ai/MEMORY.md`](../../.ai/MEMORY.md) ·
 realia branży: [`ai/realia-agenta-nieruchomosci.md`](ai/realia-agenta-nieruchomosci.md)
+
+## Pułapki układu katalogów
+
+- **`build/` jest poza gitem, więc plik źródłowy, który tam trafi, znika z repo.**
+  Przy wydzielaniu repo `rzut3d-8s-raw.mp4` (źródło wariantu `v1`) został
+  zaklasyfikowany jako eksperyment i wylądował w `build/` — `render.py` przestał
+  budować spot 08, a błąd wyszedł dopiero przy następnym pełnym przebiegu.
+  Po zmianach w układzie warto przepuścić kontrolę: każdy plik z `SHOTS`,
+  `JOBS`, `music.mp3` i `vo-*.mp3` musi istnieć w `assets/`.
+- **`screens/sync-css.sh` rozsyła arkusze do projektów kompozycji** — projekty
+  nie współdzielą `assets/`, bo ścieżka `../assets/` 404-uje w Studio. Uruchom go
+  po każdej zmianie w `screens/assets/*.css`.
 
 ## Otwarte
 
