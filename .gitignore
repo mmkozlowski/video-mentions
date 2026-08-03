@@ -3,6 +3,14 @@
 # dostarczony) i DELIVERABLE (final/). Reszta jest odtwarzalna jednym poleceniem
 # i nie ma powodu, żeby każdy klon ciągnął pół giga cache'u ffmpeg.
 projects/*/build/
+# Kadry 1:1 i 16:9 są WYPROWADZANE z gotowych pionów jednym poleceniem
+# (tools/reframe.py), więc obowiązuje ta sama zasada co dla build/: w gicie
+# leży to, czego nie da się odtworzyć. Pion zostaje, kwadrat i poziom nie.
+# 179 MB oszczędności; odtworzenie: python3 tools/reframe.py
+projects/*/final/1x1/
+projects/*/final/16x9/
+projects/*/tools/overlays/
+projects/*/tools/.spot/
 
 # Podglądy i cache narzędzi
 **/snapshots/

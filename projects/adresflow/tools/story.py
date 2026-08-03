@@ -255,21 +255,15 @@ STORIES = {
     # dubbing musi wtedy wybrać rodzaj i wybiera MĘSKI, co przy kobiecie na
     # ekranie dyskwalifikuje materiał. „Biorę / przeciągam / mam / skończ"
     # nie mają rodzaju i przechodzą przez tłumaczenie bezpiecznie.
-    # ⚠️ JEDYNY SPOT NADAL NA 30 KREDYTACH — i musi taki zostać do czasu
-    # ponownego dubbingu. Agentka MÓWI „trzydzieści darmowych kredytów" w samym
-    # ujęciu, więc napis 15 kłóciłby się z tym, co słychać. Zmiana wymaga
-    # przegenerowania/redubbingu `raw-ugc-agentka.mp4`, nie edycji tekstu.
     "ugc": {
      "eyebrow": "STUDIO AI",
-     "end": ("AdresFlow", "Pierwsze generacje za darmo", "Odbierz 30 kredytów"),
+     "end": ("AdresFlow", "Pierwsze generacje za darmo", "Odbierz 15 kredytów"),
      "script": [
         {"lines": ["Ile razy czekasz", "na rzut 3D?"],      "accent": 1, "shot": "agentka"},
         {"lines": ["Robię zdjęcie.", "Mam rzut 3D."],       "accent": 1, "shot": "morph"},
         {"lines": ["Zagracony pokój..."],                    "accent": 0, "shot": "hs"},
         {"lines": ["...wygląda jak nowy."],                  "accent": 0, "shot": "hs"},
         {"lines": ["Pusta działka?", "Już widzisz dom."],   "accent": 1, "shot": "dzialka"},
-        {"lines": ["Przestań czekać.", "30 kredytów gratis."], "accent": 1, "shot": "agentka"},
-        {"lines": [],                                        "accent": 0, "shot": "agentka"},
     ]},
     # Przekrojowy — cały dzień agenta i całe Studio AI w jednym spocie
     "full": {

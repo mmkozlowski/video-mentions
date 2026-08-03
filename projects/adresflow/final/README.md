@@ -9,7 +9,7 @@ Dwa formaty:
 
 | Plik | Narzędzie | Czas | Co pokazuje | Gdzie użyć |
 |---|---|---|---|---|
-| `01-ugc-agentka-gadajaca-glowa.mp4` | całe Studio AI | 30 s | Agentka mówi do kamery, przebitki narzędzi między frazami | Reels / TikTok — format UGC, najbardziej „ludzki” |
+| `01-ugc-agentka-gadajaca-glowa.mp4` | całe Studio AI | 24 s | Agentka mówi do kamery, przebitki narzędzi między frazami | Reels / TikTok — format UGC, najbardziej „ludzki” |
 | `02-rzut-3d-z-kartki.mp4` | Rzut 3D z kartki | 23 s | Kartka → grafik nocą w CAD → fioletowa transformacja → mieszkanie | Kampania na rzut 3D; najmocniejsza wizualnie transformacja |
 | `03-home-staging.mp4` | Home staging | 21 s | Stare wnętrze → sprzątanie i wynoszenie rzeczy → jedno zdjęcie | Kampania na home staging |
 | `04-zabudowa-dzialki.mp4` | Zabudowa działek | 17 s | Pusta działka → koparka → dom wyrastający na parceli | Kampania na działki — dom powstaje w kadrze |
