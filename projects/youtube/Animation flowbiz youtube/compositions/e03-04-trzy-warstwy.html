@@ -52,6 +52,13 @@
   }
   body.chromakey .sep .tag{ background:#0D0D0B }
 
+  /* podpis nad stosem — bez niego widz widzi jedna karte, a nie zlepek trzech */
+  .pile{
+    position:absolute;left:0;right:0;top:368px;text-align:center;
+    font-size:26px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;
+    color:#C0553A;z-index:9;opacity:0;
+  }
+
   .final{
     position:absolute;left:0;right:0;top:918px;text-align:center;
     font-size:52px;font-weight:900;color:#F5A623;letter-spacing:-0.02em;z-index:9;opacity:0;
@@ -70,6 +77,8 @@
 
     <div class="scene">
       <div class="eyebrow" id="eyebrow"><span class="chroma-plate amber">CO MUSI BYĆ W SPECYFIKACJI</span></div>
+
+      <div class="pile" id="pile"><span class="chroma-plate red">wszystko w jednym dokumencie</span></div>
 
       <div class="layer" id="l0" style="top:236px">
         <div class="dot"><i class="ti ti-alert-circle"></i></div>
@@ -110,23 +119,27 @@
 <script>
   const tl = gsap.timeline({ paused:true });
 
-  // START: wszystkie trzy warstwy leza na sobie w jednym miejscu — tak wyglada
-  // specyfikacja, w ktorej problem, reguly i technikalia sa wymieszane.
-  const MERGE_Y = 462;
-  gsap.set('#l0', { y: MERGE_Y - 236, scale:0.97 });
-  gsap.set('#l1', { y: 0,             scale:0.97 });
-  gsap.set('#l2', { y: MERGE_Y - 688, scale:0.97 });
+  // START: trzy warstwy zlozone na kupke. Nie IDEALNIE na sobie — wtedy widac
+  // tylko wierzchnia karte i scena czyta sie jak jedna warstwa, nie jak zlepek.
+  // Przesuniecie o PILE px w gore i w dol zostawia wystajace krawedzie dwoch
+  // pozostalych, wiec od pierwszej klatki widac, ze to stos.
+  const MERGE_Y = 462, PILE = 18;
+  gsap.set('#l0', { y: MERGE_Y - 236 - PILE, x:-14, rotation:-1.2, scale:0.95 });
+  gsap.set('#l1', { y: 0,                    x:  0, rotation: 0,   scale:0.95 });
+  gsap.set('#l2', { y: MERGE_Y - 688 + PILE, x: 14, rotation: 1.2, scale:0.95 });
 
   tl.to('#eyebrow', { opacity:1, duration:0.36, ease:"power2.out" }, 0.0);
 
-  // 0.25 — zlepek wjezdza jako jedno
+  // 0.25 — stos wjezdza jako jedno
   tl.to(['#l0','#l1','#l2'], { opacity:1, duration:0.40, ease:"power2.out" }, 0.25);
-  tl.from(['#l0','#l1','#l2'], { scale:0.88, duration:0.40, ease:"back.out(1.5)" }, 0.25);
+  tl.from(['#l0','#l1','#l2'], { scale:0.86, duration:0.40, ease:"back.out(1.5)" }, 0.25);
+  tl.to('#pile', { opacity:1, duration:0.32, ease:"power2.out" }, 0.58);
 
   // 1.05 — ROZJAZD: warstwy odsuwaja sie od siebie
-  tl.to('#l0', { y:0, scale:1, duration:0.85, ease:"power3.inOut" }, 1.05);
-  tl.to('#l2', { y:0, scale:1, duration:0.85, ease:"power3.inOut" }, 1.05);
-  tl.to('#l1', { scale:1, duration:0.85, ease:"power3.inOut" }, 1.05);
+  tl.to('#pile', { opacity:0, duration:0.30, ease:"power2.in" }, 1.05);
+  tl.to(['#l0','#l1','#l2'], {
+    y:0, x:0, rotation:0, scale:1, duration:0.85, ease:"power3.inOut"
+  }, 1.05);
 
   // 1.75 — linie rozdzielajace wchodza w powstale szczeliny
   tl.to('#sp0', { opacity:1, duration:0.34, ease:"power2.out" }, 1.75);

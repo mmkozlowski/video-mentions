@@ -101,6 +101,12 @@ body.native .controls, body.native .corner-brand{ display:none }
 .chroma-plate.amber {
   color: #F5A623;
 }
+/* Wariant czerwony — dla podpisów, które NIE są neutralnym opisem, tylko
+   nazywają problem („wszystko w jednym dokumencie", „tego nie da się zrobić").
+   Bez tego .chroma-plate wymusza biel i taki podpis traci swój rejestr. */
+.chroma-plate.red {
+  color: #C0553A;
+}
 
 /* Plate background + halo activates ONLY in chromakey mode, so the text
    remains visible after green is keyed out. In normal dark mode the bg
