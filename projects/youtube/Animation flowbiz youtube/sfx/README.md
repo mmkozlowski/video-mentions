@@ -3,11 +3,26 @@
 Siedem dźwięków, generowanych `./make-sfx.sh` (ffmpeg). **Zero licencji, zero kredytów,
 odtwarzalne jednym poleceniem** — dlatego nie leżą w `assets/`, tylko powstają na miejscu.
 
-## Dlaczego nie wbudowuję ich w MP4
+## Nie musisz układać ich ręcznie — `./build-tracks.sh`
+
+Skrypt skleja z paczki **jedną gotową ścieżkę na scenę**: `tracks/<scena>_sfx.wav`, dokładnie
+tak długą jak wstawka, z akcentami w miejscach z arkusza niżej.
+
+```bash
+./make-sfx.sh        # raz — generuje paczkę siedmiu dźwięków
+./build-tracks.sh    # skleja tracks/*_sfx.wav dla wszystkich scen
+./build-tracks.sh e08-05-granice   # albo jednej
+```
+
+W montażu kładziesz **jeden klip wyrównany do początku wstawki** — i masz komplet akcentów w punkt,
+bez odmierzania dziesiątych części sekundy.
+
+## Dlaczego to osobny plik, a nie audio wklejone w MP4
 
 Wstawki idą do montażu jako **chromakey overlay** na gadaną głowę. Gdyby miały wklejoną ścieżkę
 audio, nie dałoby się ich zmiksować pod narrację — a to montaż decyduje, czy w danym momencie
-dźwięk ma być słyszalny, czy schowany pod zdaniem. Dostajesz więc **osobne WAV-y i arkusz czasów**.
+dźwięk ma być słyszalny, czy schowany pod zdaniem. Osobna ścieżka daje to samo ułożenie w czasie
+i zostawia Ci suwak głośności.
 
 ## Paczka
 
@@ -119,6 +134,47 @@ Sekundy liczone od początku wstawki.
 | 5,60 | `whoosh` | **odjazd kamery** — cztery branże w kadrze |
 | 6,35 | `pop` | wspólny szkielet wyłania się pod nimi |
 | 7,15 | `thud` | „Jeden fundament." |
+
+### `e01-03-dostep` · 6,7 s — **pan poziomy + odjazd**
+| s | dźwięk | co się dzieje |
+|---|---|---|
+| 0,30 | `pop` | panel low-code |
+| 0,62 / 0,90 | `pop` ×2 | kafle n8n · Zapier · Make (trzeci zostaje w ciszy) |
+| 1,55 | `error` | **kłódka — nie zajrzysz** |
+| 2,45 | `whoosh` + `line` | **przejazd kamery do repozytorium** |
+| 2,90 | `pop` | panel repo |
+| 3,17 / 3,43 / 3,70 | `tick` ×3 | wiersze drzewa plików |
+| 3,87 | `pop` | Claude → czyta wszystko |
+| 4,55 | `whoosh` | **odjazd — oba światy obok siebie** |
+| 5,60 | `thud` | „Stuprocentowy dostęp do kodu." |
+
+### `e01-04-skad-przenosisz` · 4,7 s
+| s | dźwięk | co się dzieje |
+|---|---|---|
+| 0,30 / 0,54 / 0,78 | `pop` ×3 | HubSpot · Salesforce · Excel |
+| 1,45 / 1,79 | `line` ×2 | proces spływa w dół (trzecia linia bez dźwięku) |
+| 2,40 | `pop` | karta Open Mercato |
+| 3,55 | `thud` | „Szybko i tanio — czy nie?" |
+
+### `e01-05-czym-to-nie-jest` · 4,9 s
+| s | dźwięk | co się dzieje |
+|---|---|---|
+| 0,30 / 0,52 / 0,74 | `pop` ×3 | Make · n8n · Zapier |
+| 1,35 / 1,77 / 2,19 | `error` ×3 | **skreślenia, w rytmie zdania** |
+| 2,85 | `thud` | „To nie ta klasa narzędzia." |
+| 3,55 | `pop` | Open Mercato staje osobno |
+
+### `e08-07-framework` · 6,1 s
+| s | dźwięk | co się dzieje |
+|---|---|---|
+| 0,30 / 0,50 | `pop` ×2 | Claude · Codex |
+| 1,10 | `line` | kabel do struktury |
+| 1,75 | `pop` | panel repozytorium |
+| 2,10 / 2,25 / 2,40 | `tick` ×3 | AGENTS.md · .ai/specs · modules |
+| 3,05 | `klik` | „Brakuje Ci tego…" |
+| 3,57 | `error` | **„Tego nie możesz zrobić."** |
+| 4,09 | `klik` | „Chcesz dobrze? Zrób tak." |
+| 4,85 | `thud` | „Nie zaczyna od pustej kartki." |
 
 ---
 

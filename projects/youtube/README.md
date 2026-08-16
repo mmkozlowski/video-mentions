@@ -21,16 +21,37 @@ Animation flowbiz youtube/     ← system animacji (istniał przed tym projektem
 ├── CLAUDE.md                  ← REGUŁY: chromakey, chroma-plate, pan-path. Czytaj przed edycją.
 ├── compositions/
 │   ├── scene-shell.css/js     wspólny chrome
+│   ├── logos.css              WYGENEROWANE — znaki marek jako maski CSS
 │   ├── sNN-*.html             16 scen z PIERWSZEGO odcinka
 │   ├── eNN-MM-*.html          wstawki do kolejnych odcinków (e01, e08, …)
 │   └── test-pan-path*.html    wzorce ścieżki panoramicznej
+├── assets/logos/              SVG marek + build-logos-css.sh
 ├── render.js                  Playwright + ffmpeg, klatka po klatce
-├── sfx/                       paczka dźwięków + arkusz czasów
+├── sfx/                       paczka dźwięków, arkusz czasów, build-tracks.sh
 └── out/                       rendery, POZA gitem (odtwarzalne)
 ai/                            decyzje tego projektu
 assets/                        nagrania ekranu od Mateusza
 final/                         wstawki zaakceptowane, do montażu
 ```
+
+## Znaki marek w scenach
+
+Kiedy Mateusz wymienia narzędzie z nazwy — Claude, Excel, HubSpot, n8n — na ekranie ma stać
+**jego znak**, nie ikonka-zastępnik. Logotypy leżą w `assets/logos/` i wjeżdżają do scen przez
+`logos.css`:
+
+```html
+<i class="logo logo-claude"></i>                        <!-- w kolorze marki -->
+<i class="logo logo-github" style="color:#F5A623"></i>   <!-- w kolorze sceny -->
+<span class="logo-lockup"><i class="logo logo-n8n"></i> n8n</span>
+```
+
+Rozmiar bierze się z `font-size` rodzica (logo ma 1em wysokości), szerokość liczy się sama
+z proporcji oryginału — wordmark Open Mercato jest ~3,9× szerszy niż wysoki.
+
+Nowe logo: wrzuć SVG do `assets/logos/`, dopisz kolor w `BRAND` w `build-logos-css.mjs`
+(**wersja czytelna na ciemnym tle** — GitHub, Notion i OpenAI mają oficjalne kolory prawie czarne
+i na scenie `#0A0A08` znikają), potem `./build-logos-css.sh`.
 
 ## Konwencja nazw
 
@@ -58,7 +79,12 @@ Jednorazowo: `npm install && npx playwright install chromium`.
 
 ## Co jest zrobione
 
-**Odcinek 08** (nagrany) — sześć wstawek: `cache`, `moduly`, `racja`, `warstwy` (pan pionowy),
-`granice` (pan poziomy), `bariera`.
-**Odcinek 01** (nagrany) — dwie: `kopie`, `cztery-branze` (pan + odjazd kamery).
+**Odcinek 08** (nagrany) — siedem wstawek: `cache`, `moduly`, `racja`, `warstwy` (pan pionowy),
+`granice` (pan poziomy), `bariera`, `framework` (Claude + Codex wpadają w strukturę repo).
+**Odcinek 01** (nagrany) — pięć: `kopie`, `cztery-branze` (pan + odjazd), `dostep` (pan + odjazd,
+low-code vs repozytorium), `skad-przenosisz` (HubSpot · Salesforce · Excel → OM),
+`czym-to-nie-jest` (Make · n8n · Zapier skreślone).
 **Odcinek 03** — do zrobienia, sześć wstawek.
+
+Każda ma wersję ciemną (do oceny) i `_chroma` (do montażu) w `out/eNN/`, oraz gotową ścieżkę
+dźwiękową w `sfx/tracks/<scena>_sfx.wav`.

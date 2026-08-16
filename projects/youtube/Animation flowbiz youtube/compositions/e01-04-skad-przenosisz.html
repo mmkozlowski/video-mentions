@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>E01 · 04 — SKĄD PRZENOSISZ PROCES · flowbiz.pl</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" />
+<link rel="stylesheet" href="scene-shell.css" />
+<link rel="stylesheet" href="logos.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="recorder.js"></script>
+<script src="scene-shell.js"></script>
+<style>
+  .eyebrow{
+    position:absolute;left:0;right:0;top:112px;text-align:center;
+    font-size:24px;font-weight:600;letter-spacing:0.24em;z-index:8;opacity:0;
+  }
+  .src{
+    position:absolute;top:246px;width:400px;margin-left:-200px;
+    background:#0D0D0B;border:1.5px solid rgba(245,166,35,0.26);
+    padding:38px 0 32px;text-align:center;opacity:0;
+  }
+  .src .mark{ font-size:96px;line-height:1;display:block;margin-bottom:24px }
+  .src .nm{ font-size:38px;font-weight:700;color:#FAF8F0;letter-spacing:-0.01em }
+  .src .sub{ font-size:24px;font-weight:500;color:#5A5450;margin-top:8px }
+
+  .flow{ position:absolute;inset:0;z-index:1;pointer-events:none }
+
+  .dest{
+    position:absolute;left:50%;top:672px;transform:translateX(-50%) scale(0.88);
+    background:#0D0D0B;border:2px solid #F5A623;
+    box-shadow:0 0 60px rgba(245,166,35,0.20);
+    padding:44px 76px;text-align:center;opacity:0;
+  }
+  .dest .wm{ font-size:76px;line-height:1;display:block }
+  .dest .sub{ font-size:28px;font-weight:600;color:#FAF8F0;opacity:0.62;margin-top:20px;letter-spacing:0.02em }
+
+  .final{
+    position:absolute;left:0;right:0;top:952px;text-align:center;
+    font-size:44px;font-weight:800;color:#F5A623;letter-spacing:-0.015em;z-index:8;opacity:0;
+  }
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <div class="stage" id="stage">
+    <svg class="grid" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+      <defs><pattern id="g100" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+        <path d="M100 0 L0 0 0 100" fill="none" stroke="rgba(245,166,35,0.04)" stroke-width="1"/>
+      </pattern></defs>
+      <rect width="1920" height="1080" fill="url(#g100)"/>
+    </svg>
+
+    <div class="scene">
+      <div class="eyebrow" id="eyebrow"><span class="chroma-plate amber">GDZIE DZIŚ ŻYJE TWÓJ PROCES</span></div>
+
+      <svg class="flow" id="flow" viewBox="0 0 1920 1080">
+        <path class="fl" id="f0" d="M 420 560 C 420 640, 960 612, 960 672" fill="none"
+              stroke="#F5A623" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
+        <path class="fl" id="f1" d="M 960 560 L 960 672" fill="none"
+              stroke="#F5A623" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
+        <path class="fl" id="f2" d="M 1500 560 C 1500 640, 960 612, 960 672" fill="none"
+              stroke="#F5A623" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
+      </svg>
+
+      <div class="src s" style="left:420px">
+        <span class="mark"><i class="logo logo-hubspot"></i></span>
+        <div class="nm">HubSpot</div>
+        <div class="sub"><span class="chroma-plate">CRM</span></div>
+      </div>
+      <div class="src s" style="left:960px">
+        <span class="mark"><i class="logo logo-salesforce"></i></span>
+        <div class="nm">Salesforce</div>
+        <div class="sub"><span class="chroma-plate">CRM</span></div>
+      </div>
+      <div class="src s" style="left:1500px">
+        <span class="mark"><i class="logo logo-excel"></i></span>
+        <div class="nm">Excel</div>
+        <div class="sub"><span class="chroma-plate">arkusze</span></div>
+      </div>
+
+      <div class="dest" id="dest">
+        <span class="wm"><i class="logo logo-openmercato"></i></span>
+        <div class="sub"><span class="chroma-plate">jeden system, Twój kod</span></div>
+      </div>
+
+      <div class="final" id="final">Szybko i tanio — czy nie?</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const tl = gsap.timeline({ paused:true });
+
+  // linie startują niewidoczne — rysują się dopiero, gdy proces „spływa" w dół
+  gsap.utils.toArray('.fl').forEach(p => {
+    const len = p.getTotalLength();
+    gsap.set(p, { strokeDasharray:len, strokeDashoffset:len });
+  });
+
+  tl.to('#eyebrow', { opacity:1, duration:0.38, ease:"power2.out" }, 0.0);
+
+  // 0.30 — trzy źródła wskakują od lewej
+  tl.to('.src.s', { opacity:1, duration:0.40, stagger:0.24, ease:"back.out(1.6)" }, 0.30);
+  tl.from('.src.s', { y:-30, duration:0.40, stagger:0.24, ease:"back.out(1.6)" }, 0.30);
+
+  // 1.45 — proces spływa do jednego miejsca
+  tl.to('#f0', { strokeDashoffset:0, duration:0.72, ease:"power2.inOut" }, 1.45);
+  tl.to('#f1', { strokeDashoffset:0, duration:0.72, ease:"power2.inOut" }, 1.62);
+  tl.to('#f2', { strokeDashoffset:0, duration:0.72, ease:"power2.inOut" }, 1.79);
+
+  // 2.40 — cel
+  tl.to('#dest', { opacity:1, scale:1, duration:0.50, ease:"back.out(1.7)" }, 2.40);
+
+  // 3.05 — źródła przygasają, zostaje jeden system
+  tl.to('.src.s', { opacity:0.34, duration:0.55, ease:"power2.out" }, 3.05);
+  tl.to('.fl',    { opacity:0.30, duration:0.55, ease:"power2.out" }, 3.05);
+
+  // 3.55 — pytanie odcinka
+  tl.to('#final', { opacity:1, duration:0.42, ease:"power3.out" }, 3.55);
+  tl.from('#final', { y:22, duration:0.42, ease:"power3.out" }, 3.55);
+
+  const DURATION = 4.7;
+  tl.to({}, { duration:0.4 }, DURATION - 0.4);
+
+  flowbizScene.init({
+    id: "e01-04",
+    duration: DURATION,
+    tail: 0.4,
+    label: "E01 · 04 · SKĄD PRZENOSISZ · " + DURATION.toFixed(1) + "s",
+    timeline: tl
+  });
+</script>
+</body>
+</html>

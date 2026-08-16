@@ -316,3 +316,33 @@ body.chromakey .tpp-node{
 - `GAP` (v1) — odległość między węzłami w linii prostej
 - `.tpp-fade` width 220–280px — szerokość gradient-mask na bokach
 - gęstość `NUM_DECOS` — 18 default, 0 wyłącza dekoracje
+
+---
+
+## Znaki marek — `logos.css`
+
+Gdy w skrypcie pada nazwa narzędzia (Claude, Codex, Excel, HubSpot, Salesforce, n8n, Zapier,
+Make, GitHub, Open Mercato), scena pokazuje **prawdziwy znak marki**, nie ikonkę Tablera.
+Rozpoznawalny logotyp robi w ułamku sekundy to, na co napis potrzebuje całego zdania.
+
+```html
+<i class="logo logo-claude"></i>                         <!-- kolor marki -->
+<i class="logo logo-github" style="color:#F5A623"></i>    <!-- kolor sceny -->
+<span class="logo-lockup"><i class="logo logo-n8n"></i> n8n</span>
+```
+
+Trzy rzeczy, o których trzeba pamiętać:
+
+1. **`logos.css` jest generowane** — `assets/logos/build-logos-css.sh`. Ręczna edycja przepada
+   przy następnym buildzie. Nowe logo: SVG do `assets/logos/`, kolor do tablicy `BRAND`, build.
+2. **Kolor marki musi być czytelny na `#0A0A08`.** Oficjalny GitHub to `#181717`, Notion `#000000`,
+   OpenAI `#412991` — wszystkie znikają na naszym tle. W `BRAND` siedzą więc warianty jasne, i to
+   jest celowe, nie pomyłka.
+3. **Logo to maska pokolorowana `background-color`**, więc zachowuje się jak tekst: ciemny wariant
+   poza kartą wymaga `.chroma-plate`, tak samo jak reszta ciemnych elementów. Wszystkie kolory
+   w `BRAND` są jasne albo nasycone, więc dziś to nie gryzie — ale po dodaniu ciemnego logo
+   sprawdź render `_chroma`, nie tylko ciemny.
+
+Znak z jednym plikiem SVG jest **spłaszczany do jednej barwy** — maska nie zna kolorów źródła.
+Loga wielobarwne (Slack, Google Drive) tracą przez to swoją paletę; jeśli w scenie ma być
+oryginał, wstaw `<img>` zamiast maski i pamiętaj o własnym tle pod chromakey.
