@@ -100,7 +100,11 @@ Jednorazowo: `npm install && npx playwright install chromium`.
 **Odcinek 01** (nagrany) — pięć: `kopie`, `cztery-branze` (pan + odjazd), `dostep` (pan + odjazd,
 low-code vs repozytorium), `skad-przenosisz` (HubSpot · Salesforce · Excel → OM),
 `czym-to-nie-jest` (Make · n8n · Zapier skreślone).
-**Odcinek 03** — do zrobienia, sześć wstawek.
+**Odcinek 03** (nagrany) — sześć: `kartka` (pan, kartka stoi w miejscu), `warsztat` (pan + odjazd),
+`droga-zamowienia` (pan + licznik do 12), `trzy-warstwy` (rozjazd z jednego zlepka),
+`slownik` (trzy odczytania jednego słowa), `powtarzalnosc` (ten sam szkielet trzy razy szybciej).
 
 Każda ma wersję ciemną (do oceny) i `_chroma` (do montażu) w `out/eNN/`, oraz gotową ścieżkę
 dźwiękową w `sfx/tracks/<scena>_sfx.wav`.
+
+**Zostają nagrania ekranu od Mateusza** — sześć ujęć, spis w `_plan-broll.md` w vaulcie.

@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>E03 · 02 — PYTANIA UŁOŻONE PO LUDZIACH · flowbiz.pl</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" />
+<link rel="stylesheet" href="scene-shell.css" />
+<link rel="stylesheet" href="logos.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="recorder.js"></script>
+<script src="scene-shell.js"></script>
+<style>
+  .eyebrow{
+    position:absolute;left:0;right:0;top:104px;text-align:center;
+    font-size:23px;font-weight:600;letter-spacing:0.24em;z-index:9;opacity:0;
+  }
+  .counter{
+    position:absolute;left:0;right:0;bottom:126px;text-align:center;
+    font-size:22px;font-weight:600;color:#5A5450;letter-spacing:0.18em;z-index:9;opacity:0;
+  }
+  .counter b{ color:#F5A623;font-variant-numeric:tabular-nums }
+
+  .hfade{ position:absolute;top:0;bottom:0;width:240px;z-index:6;pointer-events:none }
+  .hfade.l{ left:0;  background:linear-gradient(to right, #0A0A08 0%, rgba(10,10,8,0.72) 44%, transparent 100%) }
+  .hfade.r{ right:0; background:linear-gradient(to left,  #0A0A08 0%, rgba(10,10,8,0.72) 44%, transparent 100%) }
+  body.chromakey .hfade{ display:none !important }
+
+  .track{ position:absolute;left:0;top:0;height:1080px;will-change:transform;z-index:2 }
+  .rail{ position:absolute;top:250px;height:2px;background:rgba(245,166,35,0.16) }
+  .rail-fg{ position:absolute;top:250px;height:2px;width:0;background:#F5A623;
+            box-shadow:0 0 16px rgba(245,166,35,0.5) }
+
+  .col{
+    position:absolute;top:296px;width:440px;margin-left:-220px;
+    background:#0D0D0B;border:1.5px solid rgba(245,166,35,0.24);
+    padding:28px 30px 32px;opacity:0;transform:scale(0.9);
+  }
+  .col .role{
+    display:flex;align-items:center;gap:14px;
+    font-size:32px;font-weight:800;color:#FAF8F0;letter-spacing:-0.01em;
+    padding-bottom:18px;margin-bottom:20px;border-bottom:1px solid rgba(245,166,35,0.18);
+  }
+  .col .role i{ font-size:34px;color:#F5A623 }
+  .col .q{
+    display:flex;gap:12px;font-size:25px;font-weight:500;line-height:1.32;
+    color:#C9C3BB;padding:9px 0;opacity:0;
+  }
+  .col .q span.d{ color:#F5A623;flex:none }
+  .col.active{ border-color:#F5A623;box-shadow:0 0 50px rgba(245,166,35,0.16) }
+
+  /* ostatnia kolumna to nie rola, tylko to, co zostaje otwarte */
+  .col.open{ border-style:dashed;border-color:rgba(192,85,58,0.45) }
+  .col.open .role{ color:#C0553A;border-bottom-color:rgba(192,85,58,0.3) }
+  .col.open .role i{ color:#C0553A }
+  .col.open.active{ border-color:#C0553A;box-shadow:0 0 50px rgba(192,85,58,0.18) }
+
+  .final{
+    position:absolute;left:0;right:0;top:900px;text-align:center;
+    font-size:56px;font-weight:900;color:#F5A623;letter-spacing:-0.02em;z-index:9;opacity:0;
+  }
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <div class="stage" id="stage">
+    <svg class="grid" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+      <defs><pattern id="g100" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+        <path d="M100 0 L0 0 0 100" fill="none" stroke="rgba(245,166,35,0.04)" stroke-width="1"/>
+      </pattern></defs>
+      <rect width="1920" height="1080" fill="url(#g100)"/>
+    </svg>
+
+    <div class="scene">
+      <div class="eyebrow" id="eyebrow"><span class="chroma-plate amber">NIE TEMATYCZNIE — PO LUDZIACH</span></div>
+
+      <div class="track" id="track">
+        <div class="rail" id="rail"></div>
+        <div class="rail-fg" id="railFg"></div>
+      </div>
+
+      <div class="hfade l" id="fadeL"></div>
+      <div class="hfade r" id="fadeR"></div>
+
+      <div class="counter" id="counter"><span class="chroma-plate">SEKCJA <b id="cNow">1</b> Z 6 · OK. 60 PYTAŃ</span></div>
+      <div class="final" id="final">Zapytaj konkretną osobę — usłyszysz prawdę.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const COLS = [
+    { icon:"ti ti-crown", nm:"właściciel", qs:["Co dziś boli najbardziej?","Co ma się zmienić za rok?","Ile to kosztuje miesięcznie?"] },
+    { icon:"ti ti-user-check", nm:"handlowiec", qs:["Jak przyjmujesz zamówienie?","Gdzie zapisujesz ustalenia?","Co robisz, gdy klient zmienia zdanie?"] },
+    { icon:"ti ti-tool", nm:"produkcja", qs:["Skąd wiesz, co robić dziś?","Co robisz, gdy brakuje danych?","Kto Ci mówi, że jest pilne?"] },
+    { icon:"ti ti-ruler-measure", nm:"technicy", qs:["Które parametry są krytyczne?","Gdzie leżą karty techniczne?","Jak wygląda odstępstwo?"] },
+    { icon:"ti ti-building", nm:"biuro", qs:["Co przepisujesz ręcznie?","Ile razy dziennie?","Gdzie najczęściej się mylisz?"] },
+    { icon:"ti ti-help-circle", nm:"otwarte decyzje", qs:["Kto zatwierdza wyjątek?","Co zostaje poza zakresem?","Czego jeszcze nie wiemy?"], open:true },
+  ];
+
+  const FIRST_X = 960, GAPX = 540;
+  const X = COLS.map((_, i) => FIRST_X + i * GAPX);
+  const STATIONS = X.map(x => 960 - x);
+
+  const track = document.getElementById('track');
+  const rail  = document.getElementById('rail');
+  const railFg= document.getElementById('railFg');
+
+  track.style.width = (X[X.length-1] + 960) + 'px';
+  rail.style.left = X[0] + 'px';
+  rail.style.width = (X[X.length-1] - X[0]) + 'px';
+  railFg.style.left = X[0] + 'px';
+
+  COLS.forEach((c, i) => {
+    const el = document.createElement('div');
+    el.className = 'col' + (c.open ? ' open' : ''); el.id = 'c' + i;
+    el.style.left = X[i] + 'px';
+    el.innerHTML =
+      '<div class="role"><i class="' + c.icon + '"></i>' + c.nm + '</div>' +
+      c.qs.map(q => '<div class="q q' + i + '"><span class="d">—</span>' + q + '</div>').join('');
+    track.appendChild(el);
+  });
+
+  function activate(i){
+    document.querySelectorAll('.col').forEach(n => n.classList.remove('active'));
+    const el = document.getElementById('c' + i);
+    if (el) el.classList.add('active');
+    document.getElementById('cNow').textContent = i + 1;
+  }
+
+  const tl = gsap.timeline({ paused:true });
+
+  tl.to('#eyebrow', { opacity:1, duration:0.38, ease:"power2.out" }, 0.0);
+  tl.to('#counter', { opacity:1, duration:0.38, ease:"power2.out" }, 0.15);
+
+  tl.to('#c0', { opacity:1, scale:1, duration:0.42, ease:"back.out(1.7)" }, 0.30);
+  tl.call(() => activate(0), null, 0.55);
+  tl.to('.q0', { opacity:1, duration:0.24, stagger:0.11, ease:"power2.out" }, 0.58);
+  tl.from('.q0', { x:-20, duration:0.24, stagger:0.11, ease:"power2.out" }, 0.58);
+
+  const STEP = 1.05;
+  let cursor = 1.30;
+  for (let i = 1; i < COLS.length; i++) {
+    const t = cursor;
+    tl.to(track,  { x: STATIONS[i], duration:0.68, ease:"power2.inOut" }, t);
+    tl.to(railFg, { width: X[i] - X[0], duration:0.68, ease:"power2.inOut" }, t);
+    tl.to('#c' + i, { opacity:1, scale:1, duration:0.38, ease:"back.out(1.7)" }, t + 0.26);
+    tl.call(() => activate(i), null, t + 0.52);
+    tl.to('.q' + i, { opacity:1, duration:0.22, stagger:0.10, ease:"power2.out" }, t + 0.54);
+    tl.from('.q' + i, { x:-20, duration:0.22, stagger:0.10, ease:"power2.out" }, t + 0.54);
+    cursor = t + STEP;
+  }
+
+  // ODJAZD — sześć sekcji obok siebie, widać że to podział po ludziach
+  const S = 0.56, BACK = cursor + 0.10;
+  const MID_X = (X[0] + X[X.length-1]) / 2;
+
+  gsap.set(track, { transformOrigin:"0px 0px" });
+  tl.to(track, { x: 960 - S * MID_X, y: 540 - S * 421, scale:S, duration:1.05, ease:"power3.inOut" }, BACK);
+  tl.to(['#fadeL','#fadeR'], { opacity:0, duration:0.5 }, BACK);
+  tl.to('#counter', { opacity:0, duration:0.4 }, BACK);
+  tl.call(() => activate(-1), null, BACK + 0.5);
+
+  tl.to('#final', { opacity:1, duration:0.44, ease:"power3.out" }, BACK + 1.02);
+  tl.from('#final', { y:24, duration:0.44, ease:"power3.out" }, BACK + 1.02);
+
+  const DURATION = BACK + 2.10;
+  tl.to({}, { duration:0.4 }, DURATION - 0.4);
+
+  flowbizScene.init({
+    id: "e03-02",
+    duration: DURATION,
+    tail: 0.4,
+    label: "E03 · 02 · WARSZTAT (pan + odjazd) · " + DURATION.toFixed(1) + "s",
+    timeline: tl
+  });
+</script>
+</body>
+</html>

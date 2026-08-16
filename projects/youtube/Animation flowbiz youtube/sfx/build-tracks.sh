@@ -27,6 +27,12 @@ SCENES=(
 "e01-04-skad-przenosisz|4.7|0.30:pop,0.54:pop,0.78:pop,1.45:line,1.79:line,2.40:pop,3.55:thud"
 "e01-05-czym-to-nie-jest|4.9|0.30:pop,0.52:pop,0.74:pop,1.35:error,1.77:error,2.19:error,2.85:thud,3.55:pop"
 "e08-07-framework|6.1|0.30:pop,0.50:pop,1.10:line,1.75:pop,2.10:tick,2.25:tick,2.40:tick,3.05:klik,3.57:error,4.09:klik,4.85:thud"
+"e03-01-kartka|8.5|0.20:pop,0.75:pop,1.15:klik,1.70:whoosh,2.40:error,3.00:whoosh,3.70:klik,4.30:whoosh,5.00:pop,5.60:whoosh,6.30:klik,7.42:thud"
+"e03-02-warsztat|8.8|0.30:pop,0.60:tick,0.82:tick,1.30:whoosh,1.56:pop,2.35:whoosh,2.61:pop,3.40:whoosh,3.66:pop,4.45:whoosh,4.71:pop,5.50:whoosh,5.76:pop,6.65:whoosh,7.67:thud"
+"e03-03-droga-zamowienia|8.1|0.35:pop,0.62:tick,1.45:whoosh,1.75:pop,2.03:tick,2.65:whoosh,2.95:pop,3.23:tick,3.85:whoosh,4.15:pop,4.43:tick,5.05:whoosh,5.35:pop,5.63:tick,6.30:error,6.78:thud"
+"e03-04-trzy-warstwy|5.7|0.25:pop,1.05:whoosh,1.75:line,1.90:line,2.25:klik,2.95:klik,3.65:klik,4.45:thud"
+"e03-05-slownik|5.9|0.20:pop,0.95:whoosh,1.11:pop,1.85:whoosh,2.01:pop,2.75:whoosh,2.91:pop,3.70:whoosh,4.05:error,4.62:thud"
+"e03-06-powtarzalnosc|6.2|0.30:pop,0.56:tick,1.08:tick,2.05:whoosh,2.32:pop,3.13:klik,3.45:pop,3.89:klik,4.35:whoosh,4.80:thud"
 )
 
 build () {

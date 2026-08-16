@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>E03 · 06 — POWTARZALNOŚĆ · flowbiz.pl</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" />
+<link rel="stylesheet" href="scene-shell.css" />
+<link rel="stylesheet" href="logos.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="recorder.js"></script>
+<script src="scene-shell.js"></script>
+<style>
+  .eyebrow{
+    position:absolute;left:0;right:0;top:104px;text-align:center;
+    font-size:23px;font-weight:600;letter-spacing:0.24em;z-index:9;opacity:0;
+  }
+
+  .mod{
+    position:absolute;top:270px;width:480px;margin-left:-240px;
+    background:#0D0D0B;border:1.5px solid rgba(245,166,35,0.24);
+    padding:26px 30px 30px;opacity:0;transform:scale(0.92);
+  }
+  .mod .hd{
+    display:flex;align-items:baseline;gap:12px;
+    padding-bottom:18px;margin-bottom:20px;border-bottom:1px solid rgba(245,166,35,0.18);
+  }
+  .mod .hd .n{ font-size:24px;font-weight:800;color:#F5A623;letter-spacing:0.1em }
+  .mod .hd .t{ font-size:31px;font-weight:800;color:#FAF8F0;letter-spacing:-0.01em }
+  .mod .row{
+    display:flex;align-items:center;gap:14px;padding:10px 0;
+    font-size:27px;font-weight:600;color:#FAF8F0;opacity:0;
+  }
+  .mod .row i{ font-size:26px;color:#6BAA6B;width:30px }
+  .mod.done{ border-color:#F5A623;box-shadow:0 0 46px rgba(245,166,35,0.16) }
+
+  .speed{
+    position:absolute;top:632px;width:480px;margin-left:-240px;text-align:center;
+    font-size:25px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;
+    color:#6BAA6B;opacity:0;
+  }
+
+  .final{
+    position:absolute;left:0;right:0;top:790px;text-align:center;
+    font-size:54px;font-weight:900;color:#F5A623;letter-spacing:-0.02em;z-index:9;opacity:0;
+  }
+  .final .s{ display:block;font-size:32px;font-weight:600;color:#FAF8F0;opacity:0.62;margin-top:16px;letter-spacing:0 }
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <div class="stage" id="stage">
+    <svg class="grid" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+      <defs><pattern id="g100" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+        <path d="M100 0 L0 0 0 100" fill="none" stroke="rgba(245,166,35,0.04)" stroke-width="1"/>
+      </pattern></defs>
+      <rect width="1920" height="1080" fill="url(#g100)"/>
+    </svg>
+
+    <div class="scene">
+      <div class="eyebrow" id="eyebrow"><span class="chroma-plate amber">JEDNO SŁOWO, KTÓRE TO SPINA</span></div>
+
+      <div class="mod m" id="m0" style="left:400px">
+        <div class="hd"><span class="n">01</span><span class="t">moduł</span></div>
+        <div class="row r0"><i class="ti ti-check"></i>rekord</div>
+        <div class="row r0"><i class="ti ti-check"></i>role</div>
+        <div class="row r0"><i class="ti ti-check"></i>status</div>
+        <div class="row r0"><i class="ti ti-check"></i>dokument</div>
+      </div>
+      <div class="speed s0" id="sp0" style="left:400px">powoli, po kolei</div>
+
+      <div class="mod m" id="m1" style="left:960px">
+        <div class="hd"><span class="n">02</span><span class="t">moduł</span></div>
+        <div class="row r1"><i class="ti ti-check"></i>rekord</div>
+        <div class="row r1"><i class="ti ti-check"></i>role</div>
+        <div class="row r1"><i class="ti ti-check"></i>status</div>
+        <div class="row r1"><i class="ti ti-check"></i>dokument</div>
+      </div>
+      <div class="speed s1" id="sp1" style="left:960px">tak samo, szybciej</div>
+
+      <div class="mod m" id="m2" style="left:1520px">
+        <div class="hd"><span class="n">03</span><span class="t">moduł</span></div>
+        <div class="row r2"><i class="ti ti-check"></i>rekord</div>
+        <div class="row r2"><i class="ti ti-check"></i>role</div>
+        <div class="row r2"><i class="ti ti-check"></i>status</div>
+        <div class="row r2"><i class="ti ti-check"></i>dokument</div>
+      </div>
+      <div class="speed s2" id="sp2" style="left:1520px">bez zastanowienia</div>
+
+      <div class="final" id="final">Powtarzalność.<span class="s">Przestajesz robić projekty. Zaczynasz mieć system.</span></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const tl = gsap.timeline({ paused:true });
+  const scene = document.querySelector('.scene');
+
+  tl.to('#eyebrow', { opacity:1, duration:0.36, ease:"power2.out" }, 0.0);
+
+  // Ten sam szkielet trzy razy — za kazdym razem szybciej. Rytm jest trescia:
+  // to samo, w tej samej kolejnosci, tylko krocej.
+  const BUILD = [
+    { at:0.30, card:0.42, stagger:0.26, speed:1.55 },   // 01 — cztery osobne kroki
+    { at:2.05, card:0.34, stagger:0.13, speed:0.88 },   // 02 — o polowe krocej
+    { at:3.25, card:0.26, stagger:0.05, speed:0.48 },   // 03 — niemal od razu
+  ];
+
+  // Kamera dryfuje w lewo, gdy powstaja kolejne moduly — kadr sam pokazuje,
+  // ze to sie ciagnie dalej, a nie konczy na trzecim.
+  const DRIFT = [90, 0, -90];
+
+  BUILD.forEach((b, i) => {
+    tl.to(scene, { x: DRIFT[i], duration:0.60, ease:"power2.inOut" }, b.at);
+    tl.to('#m' + i, { opacity:1, scale:1, duration:b.card, ease:"back.out(1.6)" }, b.at);
+    tl.to('.r' + i, {
+      opacity:1, duration:Math.max(0.12, b.stagger * 0.9),
+      stagger:b.stagger, ease:"power2.out"
+    }, b.at + b.card * 0.6);
+    tl.from('.r' + i, {
+      x:-18, duration:Math.max(0.12, b.stagger * 0.9),
+      stagger:b.stagger, ease:"power2.out"
+    }, b.at + b.card * 0.6);
+
+    const doneAt = b.at + b.card * 0.6 + b.speed;
+    tl.call(() => document.getElementById('m' + i).classList.add('done'), null, doneAt);
+    tl.to('#sp' + i, { opacity:1, duration:0.30, ease:"power2.out" }, doneAt);
+  });
+
+  // 4.35 — kamera wraca, trzy identyczne szkielety obok siebie
+  tl.to(scene, { x:0, duration:0.55, ease:"power2.inOut" }, 4.35);
+
+  tl.to('#final', { opacity:1, duration:0.46, ease:"power3.out" }, 4.80);
+  tl.from('#final', { y:26, duration:0.46, ease:"power3.out" }, 4.80);
+
+  const DURATION = 6.2;
+  tl.to({}, { duration:0.4 }, DURATION - 0.4);
+
+  flowbizScene.init({
+    id: "e03-06",
+    duration: DURATION,
+    tail: 0.4,
+    label: "E03 · 06 · POWTARZALNOŚĆ · " + DURATION.toFixed(1) + "s",
+    timeline: tl
+  });
+</script>
+</body>
+</html>

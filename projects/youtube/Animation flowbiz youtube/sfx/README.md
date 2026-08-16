@@ -176,6 +176,69 @@ Sekundy liczone od początku wstawki.
 | 4,09 | `klik` | „Chcesz dobrze? Zrób tak." |
 | 4,85 | `thud` | „Nie zaczyna od pustej kartki." |
 
+### `e03-01-kartka` · 8,5 s — **pan poziomy, kartka stoi**
+| s | dźwięk | co się dzieje |
+|---|---|---|
+| 0,20 | `pop` | kartka wjeżdża |
+| 0,75 | `pop` | stanowisko „handlowiec" |
+| 1,15 | `klik` | podpis |
+| 1,70 / 3,00 / 4,30 / 5,60 | `whoosh` ×4 | **kamera przesuwa firmę pod kartką** |
+| 2,40 | `error` | pieczątka „WPROWADZONE" |
+| 3,70 | `klik` | dopisek na marginesie |
+| 5,00 | `pop` | ptaszek „spakowane" |
+| 6,30 | `klik` | nr faktury |
+| 7,42 | `thud` | „Sześć godzin. Jedna kartka." |
+
+### `e03-02-warsztat` · 8,8 s — **pan poziomy + odjazd**
+| s | dźwięk | co się dzieje |
+|---|---|---|
+| 0,30 | `pop` | sekcja „właściciel" |
+| 0,60 / 0,82 | `tick` ×2 | pytania (trzeciego nie dawaj) |
+| 1,30 / 2,35 / 3,40 / 4,45 / 5,50 | `whoosh` ×5 | **przejazdy do kolejnych ról** |
+| +0,26 po każdym | `pop` | sekcja wjeżdża |
+| 6,65 | `whoosh` | **odjazd — sześć sekcji w kadrze** |
+| 7,67 | `thud` | „Zapytaj konkretną osobę." |
+
+### `e03-03-droga-zamowienia` · 8,1 s — **pan + licznik**
+| s | dźwięk | co się dzieje |
+|---|---|---|
+| 0,35 | `pop` | etap „handlowiec" |
+| 0,62 | `tick` | ludzik + licznik rusza |
+| 1,45 / 2,65 / 3,85 / 5,05 | `whoosh` ×4 | przejazdy |
+| +0,30 `pop`, +0,58 `tick` | | etap i przyrost licznika |
+| 6,30 | `error` | **licznik czerwienieje na 12** |
+| 6,78 | `thud` | „Każda może zepsuć co innego." |
+
+### `e03-04-trzy-warstwy` · 5,7 s
+| s | dźwięk | co się dzieje |
+|---|---|---|
+| 0,25 | `pop` | zlepek trzech warstw wjeżdża jako jedno |
+| 1,05 | `whoosh` | **ROZJAZD — warstwy odsuwają się od siebie** |
+| 1,75 / 1,90 | `line` ×2 | linie „nie mieszamy" wchodzą w szczeliny |
+| 2,25 / 2,95 / 3,65 | `klik` ×3 | podświetlenie kolejnych warstw |
+| 4,45 | `thud` | „Trzy warstwy. Nigdy razem." |
+
+### `e03-05-slownik` · 5,9 s
+| s | dźwięk | co się dzieje |
+|---|---|---|
+| 0,20 | `pop` | słowo „zamówienie" |
+| 0,95 / 1,85 / 2,75 | `whoosh` ×3 | **kamera trąca w bok** przy każdym odczytaniu |
+| 1,11 / 2,01 / 2,91 | `pop` ×3 | dymki: handlowiec, administracja, produkcja |
+| 3,70 | `whoosh` | kamera wraca na środek |
+| 4,05 | `error` | **zderzenie — trzy znaczenia naraz** |
+| 4,62 | `thud` | „Każdy zbuduje coś innego." |
+
+### `e03-06-powtarzalnosc` · 6,2 s
+| s | dźwięk | co się dzieje |
+|---|---|---|
+| 0,30 | `pop` | moduł 01 |
+| 0,56 / 1,08 | `tick` ×2 | rekord, role (status i dokument w ciszy) |
+| 2,05 / 3,25 | `whoosh` ×2 | dryf kamery przy kolejnych modułach |
+| 2,32 / 3,45 | `pop` ×2 | moduł 02, moduł 03 |
+| 3,13 / 3,89 | `klik` ×2 | moduł gotowy |
+| 4,35 | `whoosh` | kamera wraca — trzy identyczne szkielety |
+| 4,80 | `thud` | „Powtarzalność." |
+
 ---
 
 ## Gdyby paczka okazała się za surowa
