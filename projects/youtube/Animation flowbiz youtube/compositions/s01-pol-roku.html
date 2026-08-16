@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>Scene 01 — PÓŁ ROKU · flowbiz.pl</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="scene-shell.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="recorder.js"></script>
+<script src="scene-shell.js"></script>
+<style>
+  .s01-label{
+    position:absolute;left:0;right:0;top:340px;text-align:center;
+    font-size:28px;font-weight:600;color:#3A3630;
+    letter-spacing:0.36em;text-transform:uppercase;
+    opacity:0;
+  }
+  .s01-main{
+    position:absolute;left:0;right:0;top:420px;text-align:center;
+    font-size:280px;font-weight:900;color:#FAF8F0;
+    letter-spacing:-0.025em;line-height:1;
+    opacity:0;transform:translateX(-120px);
+    will-change:transform,opacity;
+  }
+  .s01-rule{
+    position:absolute;left:50%;top:760px;
+    width:0;height:4px;background:#F5A623;
+    transform:translateX(-50%);
+    will-change:width;
+  }
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <div class="stage" id="stage">
+    <svg class="grid" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <pattern id="g100" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+          <path d="M100 0 L0 0 0 100" fill="none" stroke="rgba(245,166,35,0.04)" stroke-width="1"/>
+        </pattern>
+      </defs>
+      <rect width="1920" height="1080" fill="url(#g100)"/>
+    </svg>
+
+    <div class="scene">
+      <div class="s01-label" id="label"><span class="chroma-plate amber">BUDOWANIE NARZĘDZIA</span></div>
+      <div class="s01-main"  id="main">PÓŁ ROKU</div>
+      <div class="s01-rule"  id="rule"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const tl = gsap.timeline({ paused: true });
+
+  // 0.0s — top label fade in
+  tl.to("#label", { opacity:1, duration:0.30, ease:"power2.out" }, 0.0);
+
+  // 0.2s — main "PÓŁ ROKU" springs in from left
+  tl.to("#main", {
+    opacity:1, x:0, duration:0.45,
+    ease:"back.out(1.7)"   // cubic-bezier(0.34, 1.56, 0.64, 1) approximation
+  }, 0.2);
+
+  // 0.65s — amber underline draws L→R (width target ≈ 80% of 280px text → ~860px wide)
+  tl.to("#rule", { width:860, duration:0.35, ease:"power2.inOut" }, 0.65);
+
+  // 1.8s — subtle scale pulse on main
+  tl.to("#main", { scale:1.02, duration:0.20, ease:"power2.out" }, 1.8);
+  tl.to("#main", { scale:1.00, duration:0.20, ease:"power2.in"  }, 2.0);
+
+  // Hold tail to land at 2.5s
+  tl.to({}, { duration: 0.3 }, 2.2);
+
+  flowbizScene.init({
+    id: "scene-01",
+    duration: 2.5,
+    tail: 0.4,
+    label: "Scene 01 · PÓŁ ROKU · 2.5s",
+    timeline: tl
+  });
+</script>
+</body>
+</html>

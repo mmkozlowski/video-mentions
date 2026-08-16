@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>Scene 03 — Wiedza korytarzowa (pan-path) · flowbiz.pl</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" />
+<link rel="stylesheet" href="scene-shell.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="recorder.js"></script>
+<script src="scene-shell.js"></script>
+<style>
+  /* Fixed chrome — eyebrow + counter staying outside the panning track */
+  .tpp-eyebrow{
+    position:absolute;left:50%;top:90px;transform:translateX(-50%);
+    font-size:22px;font-weight:600;letter-spacing:0.24em;
+    z-index:5;opacity:0;
+  }
+  .tpp-counter{
+    position:absolute;left:50%;bottom:110px;transform:translateX(-50%);
+    font-size:20px;font-weight:600;color:#5A5450;letter-spacing:0.18em;
+    z-index:5;font-variant-numeric:tabular-nums;opacity:0;
+  }
+  .tpp-counter b{ color:#F5A623; }
+
+  /* Soft edge masks so panning doesn't show hard cuts on the sides */
+  .tpp-fade{ position:absolute;top:0;bottom:0;width:240px;z-index:6;pointer-events:none; }
+  .tpp-fade.left { left:0;  background:linear-gradient(to right, #0A0A08 0%, rgba(10,10,8,0.7) 50%, transparent 100%); }
+  .tpp-fade.right{ right:0; background:linear-gradient(to left,  #0A0A08 0%, rgba(10,10,8,0.7) 50%, transparent 100%); }
+  body.chromakey .tpp-fade{ display:none !important; }
+
+  /* The wide panning track */
+  .tpp-track{
+    position:absolute;left:0;top:0;
+    height:1080px;
+    will-change:transform;
+    z-index:2;
+  }
+
+  .tpp-svg{
+    position:absolute;left:0;top:0;height:1080px;
+    overflow:visible;
+  }
+
+  /* Node bubble */
+  .tpp-node{
+    position:absolute;
+    width:160px;height:160px;border-radius:50%;
+    border:2px solid rgba(245,166,35,0.30);
+    background:#0D0D0B;
+    transform:translate(-50%,-50%) scale(0);
+    display:flex;align-items:center;justify-content:center;
+    z-index:3;
+    transition:border-color 0.4s ease, box-shadow 0.4s ease;
+  }
+  .tpp-node i{ font-size:60px;color:#F5A623;line-height:1; }
+  .tpp-node.active{
+    border-color:#F5A623;
+    box-shadow:0 0 0 6px rgba(245,166,35,0.10), 0 0 56px rgba(245,166,35,0.45);
+  }
+  /* Red tone — for risk stations */
+  .tpp-node.red i{ color:#C0553A; }
+  .tpp-node.red{ border-color:rgba(192,85,58,0.30); }
+  .tpp-node.red.active{
+    border-color:#C0553A;
+    box-shadow:0 0 0 6px rgba(192,85,58,0.10), 0 0 56px rgba(192,85,58,0.45);
+  }
+
+  /* Label — placed dynamically below OR above each node depending on its y */
+  .tpp-label{
+    position:absolute;
+    transform:translate(-50%, 0);
+    text-align:center;
+    z-index:3;opacity:0;
+    min-width:340px;
+  }
+  .tpp-label .num{ font-size:18px;font-weight:700;letter-spacing:0.28em;color:#F5A623;margin-bottom:8px; }
+  .tpp-label .num.red{ color:#C0553A; }
+  .tpp-label .title{ font-size:54px;font-weight:800;color:#FAF8F0;letter-spacing:-0.01em;line-height:1.05; }
+  .tpp-label .desc{ font-size:24px;font-weight:500;color:#FAF8F0;opacity:0.65;margin-top:10px;text-wrap:pretty; }
+
+  /* Travelling pulse */
+  .tpp-pulse{
+    position:absolute;left:0;top:0;
+    width:22px;height:22px;border-radius:50%;
+    background:#F5A623;
+    transform:translate(-50%,-50%) scale(0);
+    z-index:1;
+    box-shadow:0 0 24px rgba(245,166,35,0.65);
+  }
+
+  /* Floating dot decorations along the curve */
+  .tpp-deco{
+    position:absolute;width:6px;height:6px;border-radius:50%;
+    background:rgba(245,166,35,0.45);
+    transform:translate(-50%,-50%);
+    z-index:1;opacity:0;
+  }
+
+  /* Defensive: ikona w środku węzła zawsze na ciemnym tle, nawet po chroma key */
+  body.chromakey .tpp-node{ background:#0D0D0B !important; }
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <div class="stage" id="stage">
+
+    <svg class="grid" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <pattern id="g100" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+          <path d="M100 0 L0 0 0 100" fill="none" stroke="rgba(245,166,35,0.04)" stroke-width="1"/>
+        </pattern>
+      </defs>
+      <rect width="1920" height="1080" fill="url(#g100)"/>
+    </svg>
+
+    <div class="scene">
+      <div class="tpp-eyebrow" id="eyebrow">
+        <span class="chroma-plate amber">WIEDZA KORYTARZOWA</span>
+      </div>
+
+      <div class="tpp-track" id="track">
+        <svg class="tpp-svg" id="svg" aria-hidden="true">
+          <defs>
+            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="6" result="b"/>
+              <feMerge>
+                <feMergeNode in="b"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <path id="pathBg" d="" fill="none" stroke="rgba(245,166,35,0.18)" stroke-width="2" stroke-linecap="round" stroke-dasharray="6 10"/>
+          <path id="pathFg" d="" fill="none" stroke="#F5A623" stroke-width="3" stroke-linecap="round"
+                pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" filter="url(#glow)"/>
+        </svg>
+
+        <div class="tpp-pulse" id="pulse"></div>
+      </div>
+
+      <div class="tpp-fade left"></div>
+      <div class="tpp-fade right"></div>
+
+      <div class="tpp-counter" id="counter">
+        <span class="chroma-plate"><b id="counterNow">01</b> / <span id="counterTot">04</span></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // 4 stations — wiedza korytarzowa
+  const NODES = [
+    { x: 600,  y: 560, icon:"ti ti-user",          num:"01", numTone:"amber", tone:"amber",
+      title:"Pracownik",  desc:"10+ lat stażu, cała wiedza w głowie",  labelBelow:true  },
+    { x: 1500, y: 380, icon:"ti ti-door-exit",     num:"RYZYKO #1", numTone:"red",   tone:"red",
+      title:"Odejście",   desc:"= utrata algorytmu wyceny",            labelBelow:false },
+    { x: 2400, y: 700, icon:"ti ti-medical-cross", num:"RYZYKO #2", numTone:"red",   tone:"red",
+      title:"Choroba",    desc:"tygodnie bez wycen",                    labelBelow:true  },
+    { x: 3300, y: 460, icon:"ti ti-chart-bar",     num:"SKALA",      numTone:"amber", tone:"amber",
+      title:"Każda firma", desc:"produkcyjna to ma",                    labelBelow:false },
+  ];
+
+  const STATIONS = NODES.map(n => ({ x: 960 - n.x, y: 540 - n.y }));
+
+  const track = document.getElementById('track');
+  const svg   = document.getElementById('svg');
+  const pathBg = document.getElementById('pathBg');
+  const pathFg = document.getElementById('pathFg');
+
+  const TRACK_W = NODES[NODES.length - 1].x + 960;
+  track.style.width = TRACK_W + 'px';
+  svg.setAttribute('width', TRACK_W);
+  svg.setAttribute('height', 1080);
+  svg.setAttribute('viewBox', `0 0 ${TRACK_W} 1080`);
+
+  function buildCurvePath(pts, k=0.35){
+    if (pts.length < 2) return "";
+    let d = `M ${pts[0].x} ${pts[0].y}`;
+    for (let i = 0; i < pts.length - 1; i++){
+      const p0 = pts[i - 1] || pts[i];
+      const p1 = pts[i];
+      const p2 = pts[i + 1];
+      const p3 = pts[i + 2] || p2;
+      const c1x = p1.x + (p2.x - p0.x) * k;
+      const c1y = p1.y + (p2.y - p0.y) * k;
+      const c2x = p2.x - (p3.x - p1.x) * k;
+      const c2y = p2.y - (p3.y - p1.y) * k;
+      d += ` C ${c1x.toFixed(1)} ${c1y.toFixed(1)}, ${c2x.toFixed(1)} ${c2y.toFixed(1)}, ${p2.x} ${p2.y}`;
+    }
+    return d;
+  }
+
+  const PATH_D = buildCurvePath(NODES);
+  pathBg.setAttribute('d', PATH_D);
+  pathFg.setAttribute('d', PATH_D);
+
+  const totalLen = pathFg.getTotalLength();
+  const NODE_T = NODES.map((n) => {
+    let best = 0, bestD = Infinity;
+    const SAMPLES = 600;
+    for (let s = 0; s <= SAMPLES; s++){
+      const t = s / SAMPLES * totalLen;
+      const p = pathFg.getPointAtLength(t);
+      const dx = p.x - n.x, dy = p.y - n.y;
+      const d = dx*dx + dy*dy;
+      if (d < bestD){ bestD = d; best = t; }
+    }
+    return best / totalLen;
+  });
+
+  NODES.forEach((n, i) => {
+    const node = document.createElement('div');
+    node.className = 'tpp-node' + (n.tone === "red" ? ' red' : '');
+    node.id = 'node' + i;
+    node.style.left = n.x + 'px';
+    node.style.top  = n.y + 'px';
+    node.innerHTML = `<i class="${n.icon}"></i>`;
+    track.appendChild(node);
+
+    const lab = document.createElement('div');
+    lab.className = 'tpp-label';
+    lab.id = 'lab' + i;
+    lab.style.left = n.x + 'px';
+    lab.style.top  = (n.y + (n.labelBelow ? 110 : -270)) + 'px';
+    const numCls = n.numTone === "red" ? "chroma-plate" : "chroma-plate amber";
+    const numClsLine = n.numTone === "red" ? "num red" : "num";
+    lab.innerHTML =
+      `<div class="${numClsLine}"><span class="${numCls}">${n.num}</span></div>` +
+      `<div class="title">${n.title}</div>` +
+      `<div class="desc">${n.desc}</div>`;
+    track.appendChild(lab);
+  });
+
+  const NUM_DECOS = 14;
+  for (let i = 0; i < NUM_DECOS; i++){
+    const t = (i + 0.5) / NUM_DECOS;
+    const p = pathFg.getPointAtLength(t * totalLen);
+    const off = (Math.sin(i * 1.7) * 24);
+    const deco = document.createElement('div');
+    deco.className = 'tpp-deco';
+    deco.style.left = (p.x) + 'px';
+    deco.style.top  = (p.y + off) + 'px';
+    track.appendChild(deco);
+  }
+
+  function activate(i){
+    document.querySelectorAll('.tpp-node').forEach(n => n.classList.remove('active'));
+    const el = document.getElementById('node' + i);
+    if (el) el.classList.add('active');
+    document.getElementById('counterNow').textContent = String(i + 1).padStart(2, '0');
+  }
+
+  function pulseAt(t){
+    const p = pathFg.getPointAtLength(t * totalLen);
+    gsap.set('#pulse', { x: p.x, y: p.y });
+  }
+  pulseAt(NODE_T[0]);
+
+  const tl = gsap.timeline({ paused:true });
+  gsap.set(track, { x: STATIONS[0].x, y: STATIONS[0].y });
+
+  tl.fromTo('#eyebrow', { y:-10, opacity:0 }, { y:0, opacity:1, duration:0.4, ease:"power2.out" }, 0.0);
+  tl.to('#counter',  { opacity:1, duration:0.4, ease:"power2.out" }, 0.15);
+
+  tl.fromTo('#node0', { scale:0 }, { scale:1.10, duration:0.45, ease:"back.out(1.7)" }, 0.30);
+  tl.to('#node0', { scale:1, duration:0.15, ease:"power2.out" }, 0.75);
+  tl.call(() => activate(0), null, 0.55);
+  tl.to('#lab0', { opacity:1, duration:0.35, ease:"power2.out" }, 0.70);
+
+  tl.fromTo('#pulse', { scale:0 }, { scale:1, duration:0.35, ease:"back.out(1.7)" }, 0.55);
+  tl.to('.tpp-deco', { opacity:1, duration:0.6, ease:"power1.out", stagger:0.02 }, 0.7);
+
+  gsap.set(pathFg, { attr: { 'stroke-dashoffset': 1 - NODE_T[0] } });
+
+  const STEP = 1.45;
+  let cursor = 1.25;
+
+  for (let i = 1; i < NODES.length; i++){
+    const t = cursor;
+    tl.to(track, { x: STATIONS[i].x, y: STATIONS[i].y, duration: 0.95, ease: "power2.inOut" }, t);
+    tl.to(pathFg, { attr: { 'stroke-dashoffset': 1 - NODE_T[i] }, duration: 0.95, ease: "power2.inOut" }, t);
+    tl.to({ t: NODE_T[i-1] }, {
+      t: NODE_T[i], duration: 0.95, ease: "power2.inOut",
+      onUpdate: function(){ pulseAt(this.targets()[0].t); }
+    }, t);
+    tl.fromTo('#node' + i, { scale:0 }, { scale:1.10, duration:0.45, ease:"back.out(1.7)" }, t + 0.50);
+    tl.to('#node' + i, { scale:1, duration:0.15, ease:"power2.out" }, t + 0.95);
+    tl.call(() => activate(i), null, t + 0.85);
+    tl.to('#lab' + i, { opacity:1, duration:0.35, ease:"power2.out" }, t + 0.95);
+    cursor = t + STEP;
+  }
+
+  const outroAt = cursor;
+  tl.to('#pulse', { scale:1.4, duration:0.9, ease:"sine.inOut", yoyo:true, repeat:1 }, outroAt);
+  tl.to('.tpp-node.active', { scale:1.04, duration:0.9, ease:"sine.inOut", yoyo:true, repeat:1 }, outroAt);
+
+  const DURATION = outroAt + 1.6;
+  tl.to({}, { duration: 0.4 }, DURATION - 0.4);
+
+  flowbizScene.init({
+    id: "scene-03-pan",
+    duration: DURATION,
+    tail: 0.4,
+    label: "Scene 03 · Wiedza korytarzowa (pan) · " + DURATION.toFixed(1) + "s",
+    timeline: tl
+  });
+</script>
+</body>
+</html>

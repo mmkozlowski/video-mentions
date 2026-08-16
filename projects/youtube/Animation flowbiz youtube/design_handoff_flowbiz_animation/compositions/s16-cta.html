@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>Scene 16 — CTA · flowbiz.pl</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="scene-shell.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="recorder.js"></script>
+<script src="scene-shell.js"></script>
+<style>
+  .s16-brand{
+    position:absolute;left:0;right:0;top:200px;text-align:center;
+    font-size:56px;font-weight:600;color:#3A3630;
+    letter-spacing:0.08em;
+    opacity:0;
+  }
+  .s16-cta-wrap{
+    position:absolute;left:0;right:0;top:430px;text-align:center;
+  }
+  .s16-cta{
+    display:inline-block;
+    background:#F5A623;border-radius:60px;
+    padding:28px 80px;
+    font-size:52px;font-weight:700;color:#1A1916;
+    letter-spacing:-0.005em;
+    opacity:0;transform:scale(0);
+    will-change:transform,opacity;
+  }
+  .s16-arrow{
+    position:absolute;left:0;right:0;top:680px;text-align:center;
+    font-size:72px;color:#F5A623;line-height:1;
+    opacity:0;transform:translateY(-10px);
+    will-change:transform,opacity;
+  }
+  .s16-bottom{
+    position:absolute;left:0;right:0;top:830px;text-align:center;
+    font-size:28px;font-weight:500;color:#3A3630;
+    opacity:0;
+  }
+  /* CTA scene already has flowbiz.pl in the title — hide the auto-watermark */
+  .watermark{ display:none; }
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <div class="stage" id="stage">
+    <!-- no grid -->
+    <!-- placeholder watermark so shell.js doesn't auto-append (we hide it via CSS) -->
+    <div class="watermark">flowbiz.pl</div>
+
+    <div class="scene">
+      <div class="s16-brand"   id="brand"><span class="chroma-plate amber">flowbiz.pl</span></div>
+      <div class="s16-cta-wrap">
+        <div class="s16-cta" id="cta">Napisz MERCATO w komentarzu</div>
+      </div>
+      <div class="s16-arrow"   id="arrow">↓</div>
+      <div class="s16-bottom"  id="bottom"><span class="chroma-plate">Bezpłatna konsultacja: flowbiz.pl</span></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const tl = gsap.timeline({ paused:true });
+
+  // 0.0s — brand
+  tl.to("#brand", { opacity:1, duration:0.4, ease:"power2.out" }, 0.0);
+
+  // 0.3s — CTA pill springs in
+  tl.fromTo("#cta",
+    { scale:0, opacity:0 },
+    { scale:1.06, opacity:1, duration:0.50, ease:"power3.out" },
+    0.3
+  );
+  tl.to("#cta", { scale:1.0, duration:0.18, ease:"power2.out" }, 0.80);
+
+  // 1.0s — arrow drops in
+  tl.to("#arrow", { opacity:1, y:0, duration:0.30, ease:"power2.out" }, 1.0);
+  // Then continuous gentle bounce (offset relative to t=1.4s)
+  tl.to("#arrow", { y:8, duration:0.4, ease:"sine.inOut", yoyo:true, repeat:-1 }, 1.4);
+
+  // 1.4s — bottom label
+  tl.to("#bottom", { opacity:1, duration:0.3, ease:"power2.out" }, 1.4);
+
+  // Hold tail
+  tl.to({}, { duration: 0.7 }, 1.8);
+
+  flowbizScene.init({
+    id: "scene-16",
+    duration: 2.5,
+    tail: 0.4,
+    label: "Scene 16 · CTA · 2.5s",
+    timeline: tl
+  });
+</script>
+</body>
+</html>

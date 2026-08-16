@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>Scene 03 — Wiedza korytarzowa · flowbiz.pl</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="recorder.js"></script>
+<style>
+  :root{
+    --bg:#0A0A08;
+    --amber:#F5A623;
+    --light:#FAF8F0;
+    --sec1:#5A5450;
+    --sec2:#3A3630;
+    --red:#C0553A;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:#000;color:var(--light);font-family:"DM Sans",system-ui,sans-serif;overflow:hidden;-webkit-font-smoothing:antialiased}
+
+  .wrap{position:relative;width:100vw;height:100vh;display:flex;align-items:center;justify-content:center}
+  .stage{
+    position:absolute;
+    width:1920px;height:1080px;
+    background:var(--bg);
+    overflow:hidden;
+    transform-origin:top left;
+  }
+  .grid{position:absolute;inset:0;pointer-events:none;z-index:0}
+
+  /* ===== Central node ===== */
+  .center{
+    position:absolute;
+    left:35%;
+    top:50%;
+    transform: translate(-50%,-50%) scale(0);
+    width:180px;height:180px;
+    display:flex;align-items:center;justify-content:center;
+    z-index:3;
+    opacity:0;
+    will-change:transform,opacity;
+  }
+  .center .ring{
+    position:absolute;inset:0;
+    border:3px solid var(--amber);
+    border-radius:50%;
+    background:#0D0D0B;  /* CHROMAKEY: solid bg pod ikoną */
+  }
+  .center .person{
+    position:relative;z-index:2;
+    color:var(--amber);
+    font-size:60px;line-height:1;
+    display:flex;align-items:center;justify-content:center;
+  }
+  /* Pulse layer for the "scale 1→1.08→1" effect on the border specifically */
+  .center .pulse{
+    position:absolute;inset:0;
+    border:3px solid var(--amber);
+    border-radius:50%;
+    transform-origin:center center;
+    pointer-events:none;
+    z-index:1;
+  }
+
+  .center-eyebrow{
+    position:absolute;
+    left:35%;
+    top:calc(50% - 138px);
+    transform:translate(-50%,-100%);
+    font-size:18px;
+    letter-spacing:0.34em;
+    text-transform:uppercase;
+    color:var(--amber);
+    font-weight:700;
+    white-space:nowrap;
+    opacity:0;
+    z-index:3;
+  }
+  .center-lab{
+    position:absolute;
+    left:35%;
+    top:calc(50% + 138px);
+    transform:translateX(-50%);
+    font-size:22px;
+    color:var(--sec1);
+    font-weight:500;
+    white-space:nowrap;
+    opacity:0;
+    z-index:3;
+  }
+
+  /* ===== Branch lines SVG ===== */
+  .connectors{position:absolute;inset:0;z-index:2;pointer-events:none}
+
+  /* ===== Cards ===== */
+  .card{
+    position:absolute;
+    width:380px;
+    padding:24px 28px;
+    border-left:4px solid var(--red);
+    background:#0D0D0B;  /* CHROMAKEY: solid bg pod tekstem karty */
+    border-radius:0 8px 8px 0;
+    display:flex;flex-direction:column;gap:10px;
+    transform: translateX(60px);
+    opacity:0;
+    z-index:3;
+    will-change:transform,opacity;
+  }
+  .card.amber{
+    border-left-color:var(--amber);
+    background:#0D0D0B;  /* CHROMAKEY: solid */
+  }
+  .card .head{
+    display:flex;align-items:center;gap:10px;
+  }
+  .card .icon{
+    font-size:28px;line-height:1;color:var(--red);
+    display:inline-flex;align-items:center;justify-content:center;
+  }
+  .card.amber .icon{color:var(--amber)}
+  .card .tag{
+    font-size:14px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--red);
+  }
+  .card.amber .tag{color:var(--amber)}
+  .card .text{
+    font-size:28px;
+    color:var(--light);
+    font-weight:600;
+    line-height:1.25;
+    text-wrap:pretty;
+  }
+
+  /* Three card positions
+     Stage center node center is at: x = 0.35 * 1920 = 672, y = 540, radius = 90.
+     Branches at angles -40°, 0°, +40°, length 480 from node center.
+     Card top-left corner placed at the line endpoint.
+       cos40 ≈ 0.766, sin40 ≈ 0.643. length = 480.
+       -40°: end = (672+367, 540-309) = (1039, 231)
+        0° : end = (672+480, 540)      = (1152, 540)
+       +40°: end = (672+367, 540+309) = (1039, 849)
+     Card heights are dynamic, so anchor by top-left and adjust visually with translateY(-50%).
+  */
+  .c1{ left:1039px; top:231px; transform: translateY(-50%) translateX(60px); }
+  .c2{ left:1152px; top:540px; transform: translateY(-50%) translateX(60px); }
+  .c3{ left:1039px; top:849px; transform: translateY(-50%) translateX(60px); }
+
+  /* watermark + chrome */
+  .watermark{
+    position:absolute;right:48px;bottom:36px;
+    color:#1E1C18;font-size:22px;font-weight:600;letter-spacing:0.08em;
+    z-index:6;user-select:none;
+  }
+  .corner-brand{
+    position:fixed;top:14px;left:18px;z-index:100;
+    color:var(--sec1);font-size:13px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;
+  }
+  .corner-brand b{color:var(--amber)}
+  .controls{
+    position:fixed;bottom:18px;left:50%;transform:translateX(-50%);
+    display:flex;gap:8px;align-items:center;
+    background:rgba(20,18,14,0.92);
+    border:1px solid rgba(245,166,35,0.2);
+    padding:8px 10px;z-index:100;backdrop-filter:blur(8px);
+  }
+  .controls button{background:transparent;border:0;color:var(--light);font:inherit;padding:8px 14px;cursor:pointer;font-size:14px;font-weight:600;letter-spacing:0.04em;display:inline-flex;align-items:center;gap:6px}
+  .controls button:hover{background:rgba(245,166,35,0.12);color:var(--amber)}
+  .controls .primary{color:var(--amber)}
+  .controls .t{color:var(--sec1);font-size:13px;font-variant-numeric:tabular-nums;padding:0 10px;min-width:84px;text-align:center}
+  .controls .t b{color:var(--amber)}
+  body.export .controls,body.export .corner-brand{display:none}
+  /* OBS-NATIVE-MODE — 1:1 capture, no transform scaling, no letterbox */
+  body.native, body.native html { background:#0A0A08; overflow:hidden; }
+  body.native .wrap{ width:1920px; height:1080px; position:fixed; top:0; left:0; transform:none; }
+  body.native .stage{ left:0 !important; top:0 !important; transform:none !important; }
+  body.native .controls, body.native .corner-brand{ display:none }
+</style>
+</head>
+<body>
+
+<div class="corner-brand"><b>Build with Matt</b> · Scene 03 · Wiedza korytarzowa · 5.0s</div>
+
+<div class="wrap" id="wrap">
+  <div class="stage" id="stage">
+
+    <!-- Grid -->
+    <svg class="grid" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <pattern id="g100" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+          <path d="M100 0 L0 0 0 100" fill="none" stroke="rgba(245,166,35,0.04)" stroke-width="1"/>
+        </pattern>
+      </defs>
+      <rect width="1920" height="1080" fill="url(#g100)"/>
+    </svg>
+
+    <!-- Branch lines: from edge of central circle to card left edge.
+         Center node center = (672, 540); radius = 90.
+         cos40 = 0.766, sin40 = 0.643.
+         Start (on circle edge), End (at card-anchor point):
+           branch 1 (-40°): start = (672+69, 540-58) = (741, 482); end = (1039, 231)
+           branch 2 ( 0°):  start = (762, 540);              end = (1152, 540)
+           branch 3 (+40°): start = (741, 598);              end = (1039, 849)
+    -->
+    <svg class="connectors" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+      <path id="ln1" d="M 741 482 L 1039 231" fill="none" stroke="#C0553A" stroke-width="2.5" stroke-linecap="round"/>
+      <path id="ln2" d="M 762 540 L 1152 540" fill="none" stroke="#C0553A" stroke-width="2.5" stroke-linecap="round"/>
+      <path id="ln3" d="M 741 598 L 1039 849" fill="none" stroke="#F5A623" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- end dots -->
+      <circle id="d1" cx="1039" cy="231" r="5" fill="#C0553A" opacity="0"/>
+      <circle id="d2" cx="1152" cy="540" r="5" fill="#C0553A" opacity="0"/>
+      <circle id="d3" cx="1039" cy="849" r="5" fill="#F5A623" opacity="0"/>
+    </svg>
+
+    <!-- Center -->
+    <div class="center-eyebrow" id="eyebrow">WIEDZA KORYTARZOWA</div>
+    <div class="center" id="center">
+      <div class="ring"></div>
+      <div class="pulse" id="pulse"></div>
+      <div class="person" aria-hidden="true">
+        <!-- simplified person icon: circle head + body lines -->
+        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="30" cy="18" r="9"/>
+          <path d="M12 52 C 12 38, 20 32, 30 32 C 40 32, 48 38, 48 52"/>
+        </svg>
+      </div>
+    </div>
+    <div class="center-lab" id="centerLab">Pracownik z 10+ lat stażu</div>
+
+    <!-- Cards -->
+    <div class="card c1" id="card1">
+      <div class="head">
+        <span class="icon"><i class="ti ti-door-exit"></i></span>
+        <span class="tag">RYZYKO #1</span>
+      </div>
+      <div class="text">Odejście = utrata algorytmu wyceny</div>
+    </div>
+
+    <div class="card c2" id="card2">
+      <div class="head">
+        <span class="icon"><i class="ti ti-medical-cross"></i></span>
+        <span class="tag">RYZYKO #2</span>
+      </div>
+      <div class="text">Choroba = brak wycen przez tygodnie</div>
+    </div>
+
+    <div class="card c3 amber" id="card3">
+      <div class="head">
+        <span class="icon"><i class="ti ti-chart-bar"></i></span>
+        <span class="tag">SKALA</span>
+      </div>
+      <div class="text">Każda firma produkcyjna to ma</div>
+    </div>
+
+    <div class="watermark">flowbiz.pl</div>
+  </div>
+</div>
+
+<div class="controls">
+  <button id="play" class="primary" title="Odtwórz (spacja)"><i class="ti ti-player-play-filled"></i> Odtwórz</button>
+  <button id="restart" title="Restart"><i class="ti ti-refresh"></i> Restart</button>
+  <span class="t"><b id="t-now">0.00</b> / 5.00s</span>
+  <button id="rec" title="Nagraj scenę 1920×1080 (WebM, 25 Mbps)" style="color:#FF6E4F"><i class="ti ti-circle-filled"></i> Nagraj</button>
+  <button id="fullsize" title="Pełny widok do nagrania (fullscreen + ukryte chrome)"><i class="ti ti-arrows-maximize"></i> Full</button>
+  <button id="native11" title="Tryb 1:1 (1920×1080, do OBS)"><i class="ti ti-aspect-ratio"></i> 1:1</button>
+  <button id="fs" title="Pełny ekran"><i class="ti ti-maximize"></i></button>
+</div>
+
+<script>
+  // Fit
+  const stage = document.getElementById('stage');
+  const wrap = document.getElementById('wrap');
+  function fit(){
+    if (document.body.classList.contains('native')) {
+      stage.style.transform = 'none';
+      stage.style.left = '0px';
+      stage.style.top  = '0px';
+      return;
+    }
+    const s = Math.min(wrap.clientWidth/1920, wrap.clientHeight/1080);
+    stage.style.transform = `scale(${s})`;
+    stage.style.left = ((wrap.clientWidth - 1920*s)/2)+'px';
+    stage.style.top  = ((wrap.clientHeight - 1080*s)/2)+'px';
+  }
+  // OBS-NATIVE-INIT
+  (function(){
+    const q = new URLSearchParams(location.search);
+    if (q.get('native') === '1' || location.hash === '#native') {
+      document.body.classList.add('native');
+    }
+  })();
+  function toggleNative(){
+    document.body.classList.toggle('native');
+    fit();
+  }
+  window.toggleNative = toggleNative;
+  window.addEventListener('resize', fit);
+  fit();
+
+  // Prep line strokes for drawSVG-style animation
+  function prepLine(id){
+    const el = document.getElementById(id);
+    const L = el.getTotalLength();
+    el.style.strokeDasharray = L;
+    el.style.strokeDashoffset = L;
+    return L;
+  }
+  prepLine('ln1');
+  prepLine('ln2');
+  prepLine('ln3');
+
+  const tl = gsap.timeline({ paused: true });
+
+  // 0.0s — central node spring in (overshoot then settle)
+  tl.fromTo("#center",
+    { opacity: 0, scale: 0,    xPercent:-50, yPercent:-50 },
+    { opacity: 1, scale: 1.12, xPercent:-50, yPercent:-50, duration: 0.40, ease: "power3.out" },
+    0.0
+  );
+  tl.to("#center", { scale: 1.0, duration: 0.15, ease: "power2.out" }, 0.40);
+
+  // 0.5s — eyebrow label fade + slide down
+  tl.fromTo("#eyebrow",
+    { opacity: 0, y: -15 },
+    { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" },
+    0.5
+  );
+  // Bottom name label slides up softly with the eyebrow
+  tl.fromTo("#centerLab",
+    { opacity: 0, y: 15 },
+    { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" },
+    0.55
+  );
+
+  function branch(at, lineId, dotId, cardId){
+    tl.to("#"+lineId, { strokeDashoffset: 0, duration: 0.4, ease: "power2.out" }, at);
+    tl.to("#"+dotId,  { opacity: 1, duration: 0.2, ease: "power2.out" }, at+0.35);
+    tl.fromTo("#"+cardId,
+      { x: 60, opacity: 0 },
+      { x: 0,  opacity: 1, duration: 0.35, ease: "power3.out" },
+      at + 0.30
+    );
+  }
+
+  // 0.7s, 1.1s, 1.5s — three branches
+  branch(0.7,  "ln1", "d1", "card1");
+  branch(1.1,  "ln2", "d2", "card2");
+  branch(1.5,  "ln3", "d3", "card3");
+
+  // 2.0s — central node pulse (scale 1→1.08→1), repeat forever
+  tl.to("#pulse", {
+    scale: 1.08,
+    opacity: 0.4,
+    duration: 1.0,
+    ease: "sine.inOut",
+    repeat: -1,
+    yoyo: true,
+    transformOrigin: "50% 50%"
+  }, 2.0);
+
+  // Hold tail to land at 5s
+  tl.to({}, { duration: 1.0 }, 4.0);
+
+  // Expose timeline
+  window.__timelines = window.__timelines || {};
+  window.__timelines["scene-03-wiedza-korytarzowa"] = tl;
+
+  // Controls
+  const tNow = document.getElementById('t-now');
+  tl.eventCallback("onUpdate", ()=>{ tNow.textContent = tl.time().toFixed(2); });
+
+  document.getElementById('play').onclick = ()=>{
+    if (tl.progress() >= 1) tl.restart();
+    else tl.play();
+  };
+  document.getElementById('restart').onclick = ()=>tl.restart();
+  document.getElementById('native11').onclick = ()=>{ toggleNative(); };
+  // RECORDER-MODE — expose timeline + fit so recorder.js can drive them
+  window.__sceneTimeline = tl;
+  window.__sceneDuration = 5;
+  window.fit = fit;
+  document.getElementById('rec').onclick = async ()=>{
+    const btn = document.getElementById('rec');
+    const old = btn.innerHTML;
+    btn.innerHTML = '<i class="ti ti-loader-2"></i> Wybierz tę kartę…';
+    btn.disabled = true;
+    try {
+      await window.flowbizRecorder.record({
+        timeline: window.__sceneTimeline,
+        duration: 5,
+        tail: 0.4,
+        fileName: 'scene-03-wiedza-korytarzowa.webm'
+      });
+    } finally {
+      btn.innerHTML = old;
+      btn.disabled = false;
+    }
+  };
+  // FULLSIZE-MODE — fullscreen + hide chrome + auto-1:1 if screen >= 1920×1080
+  document.getElementById('fullsize').onclick = async ()=>{
+    document.body.classList.add('export');
+    try {
+      await document.documentElement.requestFullscreen({ navigationUI: 'hide' });
+    } catch(e){ /* ignore */ }
+    // After entering fullscreen, if the screen comfortably holds 1920×1080, engage native 1:1.
+    setTimeout(()=>{
+      if (window.innerWidth >= 1920 && window.innerHeight >= 1080) {
+        document.body.classList.add('native');
+      }
+      fit();
+    }, 80);
+  };
+  document.addEventListener('fullscreenchange', ()=>{
+    if (!document.fullscreenElement) {
+      document.body.classList.remove('export');
+      document.body.classList.remove('native');
+      fit();
+    }
+  });
+  document.getElementById('fs').onclick = ()=>{
+    if (!document.fullscreenElement) wrap.requestFullscreen?.();
+    else document.exitFullscreen?.();
+  };
+  document.addEventListener('keydown', e=>{
+    if (e.key === ' ' || e.code === 'Space'){
+      e.preventDefault();
+      if (tl.progress() >= 1) tl.restart();
+      else tl.paused() ? tl.play() : tl.pause();
+    }
+  });
+
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(()=>{
+    setTimeout(()=>tl.play(0), 250);
+  });
+</script>
+</body>
+</html>

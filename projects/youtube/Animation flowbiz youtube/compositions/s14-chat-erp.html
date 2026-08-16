@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>Scene 14 — Chat ERP · flowbiz.pl</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="scene-shell.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="recorder.js"></script>
+<script src="scene-shell.js"></script>
+<style>
+  .s14-chat{
+    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    width:900px;
+    background:#0D0D0B;border:1px solid rgba(245,166,35,0.15);
+    border-radius:20px;
+    padding:24px;
+    display:flex;flex-direction:column;gap:18px;
+  }
+  .s14-head{
+    display:flex;align-items:center;gap:12px;
+    padding-bottom:18px;border-bottom:1px solid #1A1916;
+  }
+  .s14-dot{
+    width:8px;height:8px;border-radius:50%;background:#F5A623;
+    will-change:transform;
+  }
+  .s14-head .lab{ font-size:20px;color:#5A5450;font-weight:600;letter-spacing:0.02em; }
+  .s14-msgs{ display:flex;flex-direction:column;gap:14px;min-height:300px; }
+
+  .s14-msg{
+    max-width:80%;
+    padding:18px 24px;
+    font-size:26px;line-height:1.3;
+    word-break:break-word;
+    opacity:0;
+    will-change:transform,opacity;
+  }
+  .s14-msg.user{
+    align-self:flex-end;
+    background:#F5A623;color:#1A1916;font-weight:600;
+    border-radius:20px 20px 4px 20px;
+    transform:translateX(40px) scale(0.9);
+  }
+  .s14-msg.sys{
+    align-self:flex-start;
+    background:#111110;color:#FAF8F0;
+    border:1px solid #1E1C18;
+    border-radius:20px 20px 20px 4px;
+  }
+  .s14-cursor{
+    display:inline-block;width:2px;height:1em;background:#FAF8F0;
+    margin-left:2px;transform:translateY(4px);
+  }
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <div class="stage" id="stage">
+    <svg class="grid" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <pattern id="g100" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+          <path d="M100 0 L0 0 0 100" fill="none" stroke="rgba(245,166,35,0.04)" stroke-width="1"/>
+        </pattern>
+      </defs>
+      <rect width="1920" height="1080" fill="url(#g100)"/>
+    </svg>
+
+    <div class="scene">
+      <div class="s14-chat">
+        <div class="s14-head">
+          <div class="s14-dot" id="dot"></div>
+          <div class="lab">AI Assistant</div>
+        </div>
+        <div class="s14-msgs">
+          <div class="s14-msg user" id="m1">Podsumuj zamówienia z tego miesiąca.</div>
+          <div class="s14-msg sys"  id="m2"><span id="m2t"></span><span class="s14-cursor" id="cur"></span></div>
+          <div class="s14-msg user" id="m3">Które są opóźnione?</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const M2_FULL = "47 zamówień. Wartość: 128 400 zł. Opóźnione: 3.";
+  const m2t = document.getElementById('m2t');
+  const cur = document.getElementById('cur');
+  const dot = document.getElementById('dot');
+
+  // Pulsing amber dot (independent infinite loop — outside the main timeline so it pulses forever)
+  gsap.to(dot, { scale:1.4, duration:0.6, ease:"sine.inOut", yoyo:true, repeat:-1 });
+  // Cursor blink
+  gsap.to(cur, { opacity:0, duration:0.5, ease:"steps(1)", yoyo:true, repeat:-1 });
+
+  const tl = gsap.timeline({ paused:true });
+
+  // 0.4s — User message 1
+  tl.to("#m1", { opacity:1, x:0, scale:1.0, duration:0.35, ease:"back.out(1.6)" }, 0.4);
+
+  // 1.1s — System message bubble fades in (instant), then types
+  tl.to("#m2", { opacity:1, duration:0.2, ease:"power2.out" }, 1.1);
+  // Typing — 30ms/char ≈ M2_FULL.length * 0.03s
+  const obj = { n: 0 };
+  tl.to(obj, {
+    n: M2_FULL.length,
+    duration: M2_FULL.length * 0.03,
+    ease: "none",
+    onUpdate: () => { m2t.textContent = M2_FULL.substring(0, Math.floor(obj.n)); }
+  }, 1.30);
+
+  // 2.8s — User message 3
+  tl.to("#m3", { opacity:1, x:0, scale:1.0, duration:0.35, ease:"back.out(1.6)" }, 2.8);
+
+  // Hold tail to 4s
+  tl.to({}, { duration: 0.85 }, 3.15);
+
+  flowbizScene.init({
+    id: "scene-14",
+    duration: 4.0,
+    tail: 0.4,
+    label: "Scene 14 · Chat ERP · 4.0s",
+    timeline: tl
+  });
+</script>
+</body>
+</html>

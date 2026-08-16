@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>Scene 02 — 40 → 2 min (pan-path) · flowbiz.pl</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" />
+<link rel="stylesheet" href="scene-shell.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="recorder.js"></script>
+<script src="scene-shell.js"></script>
+<style>
+  .tpp-eyebrow{
+    position:absolute;left:50%;top:90px;transform:translateX(-50%);
+    font-size:22px;font-weight:600;letter-spacing:0.24em;
+    z-index:5;opacity:0;
+  }
+  .tpp-counter{
+    position:absolute;left:50%;bottom:110px;transform:translateX(-50%);
+    font-size:20px;font-weight:600;color:#5A5450;letter-spacing:0.18em;
+    z-index:5;font-variant-numeric:tabular-nums;opacity:0;
+  }
+  .tpp-counter b{ color:#F5A623; }
+
+  .tpp-fade{ position:absolute;top:0;bottom:0;width:240px;z-index:6;pointer-events:none; }
+  .tpp-fade.left { left:0;  background:linear-gradient(to right, #0A0A08 0%, rgba(10,10,8,0.7) 50%, transparent 100%); }
+  .tpp-fade.right{ right:0; background:linear-gradient(to left,  #0A0A08 0%, rgba(10,10,8,0.7) 50%, transparent 100%); }
+  body.chromakey .tpp-fade{ display:none !important; }
+
+  .tpp-track{ position:absolute;left:0;top:0;height:1080px;will-change:transform;z-index:2; }
+  .tpp-svg{ position:absolute;left:0;top:0;height:1080px;overflow:visible; }
+
+  /* Regular icon node — middle process stations */
+  .tpp-node{
+    position:absolute;
+    width:150px;height:150px;border-radius:50%;
+    border:2px solid rgba(245,166,35,0.30);
+    background:#0D0D0B;
+    transform:translate(-50%,-50%) scale(0);
+    display:flex;align-items:center;justify-content:center;
+    z-index:3;
+    transition:border-color 0.4s ease, box-shadow 0.4s ease;
+  }
+  .tpp-node i{ font-size:54px;color:#F5A623;line-height:1; }
+  .tpp-node.active{
+    border-color:#F5A623;
+    box-shadow:0 0 0 6px rgba(245,166,35,0.10), 0 0 48px rgba(245,166,35,0.42);
+  }
+
+  /* BIG number node — start (40) + end (2) */
+  .tpp-node.big{
+    width:300px;height:300px;border-width:3px;
+  }
+  .tpp-node.big .num{
+    font-size:160px;font-weight:900;letter-spacing:-0.04em;line-height:0.9;
+    color:#F5A623;font-variant-numeric:tabular-nums;
+  }
+  .tpp-node.big .unit{
+    margin-top:4px;font-size:22px;letter-spacing:0.36em;color:#F5A623;font-weight:700;
+  }
+
+  /* Red tone — "stary proces" 40 min */
+  .tpp-node.red{ border-color:rgba(192,85,58,0.40); }
+  .tpp-node.red .num, .tpp-node.red .unit, .tpp-node.red i{ color:#C0553A; }
+  .tpp-node.red.active{
+    border-color:#C0553A;
+    box-shadow:0 0 0 6px rgba(192,85,58,0.10), 0 0 64px rgba(192,85,58,0.50);
+  }
+
+  /* Diagonal strike across the 40 node (drawn after pan arrives at it) */
+  .tpp-strike{
+    position:absolute;left:0;top:0;width:100%;height:100%;
+    pointer-events:none;z-index:4;overflow:visible;
+  }
+
+  .tpp-label{
+    position:absolute;
+    transform:translate(-50%, 0);
+    text-align:center;
+    z-index:3;opacity:0;
+    min-width:340px;
+  }
+  .tpp-label .num{ font-size:18px;font-weight:700;letter-spacing:0.28em;color:#F5A623;margin-bottom:8px; }
+  .tpp-label .num.red{ color:#C0553A; }
+  .tpp-label .title{ font-size:50px;font-weight:800;color:#FAF8F0;letter-spacing:-0.01em;line-height:1.05; }
+  .tpp-label .desc{ font-size:22px;font-weight:500;color:#FAF8F0;opacity:0.6;margin-top:8px; }
+
+  .tpp-pulse{
+    position:absolute;left:0;top:0;
+    width:22px;height:22px;border-radius:50%;
+    background:#F5A623;
+    transform:translate(-50%,-50%) scale(0);
+    z-index:1;
+    box-shadow:0 0 24px rgba(245,166,35,0.65);
+  }
+
+  .tpp-deco{
+    position:absolute;width:6px;height:6px;border-radius:50%;
+    background:rgba(245,166,35,0.45);
+    transform:translate(-50%,-50%);
+    z-index:1;opacity:0;
+  }
+
+  body.chromakey .tpp-node{ background:#0D0D0B !important; }
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <div class="stage" id="stage">
+
+    <svg class="grid" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <pattern id="g100" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+          <path d="M100 0 L0 0 0 100" fill="none" stroke="rgba(245,166,35,0.04)" stroke-width="1"/>
+        </pattern>
+      </defs>
+      <rect width="1920" height="1080" fill="url(#g100)"/>
+    </svg>
+
+    <div class="scene">
+      <div class="tpp-eyebrow" id="eyebrow">
+        <span class="chroma-plate amber">CZAS WYSTAWIENIA OFERTY</span>
+      </div>
+
+      <div class="tpp-track" id="track">
+        <svg class="tpp-svg" id="svg" aria-hidden="true">
+          <defs>
+            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="6" result="b"/>
+              <feMerge>
+                <feMergeNode in="b"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <path id="pathBg" d="" fill="none" stroke="rgba(245,166,35,0.18)" stroke-width="2" stroke-linecap="round" stroke-dasharray="6 10"/>
+          <path id="pathFg" d="" fill="none" stroke="#F5A623" stroke-width="3" stroke-linecap="round"
+                pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" filter="url(#glow)"/>
+        </svg>
+
+        <!-- Strike-through layer over the "40" node (drawn in JS once positioned) -->
+        <svg class="tpp-strike" id="strikeLayer" aria-hidden="true">
+          <line id="strikeLine" x1="0" y1="0" x2="0" y2="0"
+                stroke="#C0553A" stroke-width="8" stroke-linecap="round"
+                opacity="0"/>
+        </svg>
+
+        <div class="tpp-pulse" id="pulse"></div>
+      </div>
+
+      <div class="tpp-fade left"></div>
+      <div class="tpp-fade right"></div>
+
+      <div class="tpp-counter" id="counter">
+        <span class="chroma-plate"><b id="counterNow">01</b> / <span id="counterTot">05</span></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // 5 stations: big "40" → 3 pain process icons → big "2"
+  const NODES = [
+    { x: 700,  y: 540, big:true,  tone:"red",   num:"40", unit:"MINUT",
+      labNum:"STARY PROCES", labNumTone:"red", title:"Ręcznie",        desc:"Excel + kalkulator + telefon", labelBelow:true  },
+    { x: 1700, y: 360, icon:"ti ti-file-spreadsheet", labNum:"01",
+      title:"Excel",         desc:"kopiuj-wklej wsad",              labelBelow:false },
+    { x: 2500, y: 720, icon:"ti ti-phone",            labNum:"02",
+      title:"Telefon",       desc:"sprawdź ceny u dostawcy",        labelBelow:true  },
+    { x: 3300, y: 360, icon:"ti ti-calculator",       labNum:"03",
+      title:"Kalkulator",    desc:"marże + zaokrąglenia",           labelBelow:false },
+    { x: 4400, y: 540, big:true,  tone:"amber", num:"2",  unit:"MINUTY",
+      labNum:"OPEN MERCATO", title:"Wycena z systemu", desc:"klikasz i gotowe",          labelBelow:true  },
+  ];
+
+  const STATIONS = NODES.map(n => ({ x: 960 - n.x, y: 540 - n.y }));
+
+  const track = document.getElementById('track');
+  const svg   = document.getElementById('svg');
+  const pathBg = document.getElementById('pathBg');
+  const pathFg = document.getElementById('pathFg');
+  const strikeLayer = document.getElementById('strikeLayer');
+  const strikeLine  = document.getElementById('strikeLine');
+
+  const TRACK_W = NODES[NODES.length - 1].x + 960;
+  track.style.width = TRACK_W + 'px';
+  svg.setAttribute('width', TRACK_W);
+  svg.setAttribute('height', 1080);
+  svg.setAttribute('viewBox', `0 0 ${TRACK_W} 1080`);
+  strikeLayer.setAttribute('width', TRACK_W);
+  strikeLayer.setAttribute('height', 1080);
+  strikeLayer.setAttribute('viewBox', `0 0 ${TRACK_W} 1080`);
+
+  function buildCurvePath(pts, k=0.35){
+    if (pts.length < 2) return "";
+    let d = `M ${pts[0].x} ${pts[0].y}`;
+    for (let i = 0; i < pts.length - 1; i++){
+      const p0 = pts[i - 1] || pts[i];
+      const p1 = pts[i];
+      const p2 = pts[i + 1];
+      const p3 = pts[i + 2] || p2;
+      const c1x = p1.x + (p2.x - p0.x) * k;
+      const c1y = p1.y + (p2.y - p0.y) * k;
+      const c2x = p2.x - (p3.x - p1.x) * k;
+      const c2y = p2.y - (p3.y - p1.y) * k;
+      d += ` C ${c1x.toFixed(1)} ${c1y.toFixed(1)}, ${c2x.toFixed(1)} ${c2y.toFixed(1)}, ${p2.x} ${p2.y}`;
+    }
+    return d;
+  }
+
+  const PATH_D = buildCurvePath(NODES);
+  pathBg.setAttribute('d', PATH_D);
+  pathFg.setAttribute('d', PATH_D);
+
+  const totalLen = pathFg.getTotalLength();
+  const NODE_T = NODES.map((n) => {
+    let best = 0, bestD = Infinity;
+    const SAMPLES = 800;
+    for (let s = 0; s <= SAMPLES; s++){
+      const t = s / SAMPLES * totalLen;
+      const p = pathFg.getPointAtLength(t);
+      const dx = p.x - n.x, dy = p.y - n.y;
+      const d = dx*dx + dy*dy;
+      if (d < bestD){ bestD = d; best = t; }
+    }
+    return best / totalLen;
+  });
+
+  NODES.forEach((n, i) => {
+    const node = document.createElement('div');
+    let cls = 'tpp-node';
+    if (n.big) cls += ' big';
+    if (n.tone === "red") cls += ' red';
+    node.className = cls;
+    node.id = 'node' + i;
+    node.style.left = n.x + 'px';
+    node.style.top  = n.y + 'px';
+    if (n.big){
+      node.innerHTML = `<div><div class="num">${n.num}</div><div class="unit">${n.unit}</div></div>`;
+    } else {
+      node.innerHTML = `<i class="${n.icon}"></i>`;
+    }
+    track.appendChild(node);
+
+    const lab = document.createElement('div');
+    lab.className = 'tpp-label';
+    lab.id = 'lab' + i;
+    lab.style.left = n.x + 'px';
+    // Big nodes need more vertical room
+    const off = n.big ? (n.labelBelow ? 200 : -300) : (n.labelBelow ? 105 : -250);
+    lab.style.top = (n.y + off) + 'px';
+    const numCls = n.labNumTone === "red" ? "chroma-plate" : "chroma-plate amber";
+    const numClsLine = n.labNumTone === "red" ? "num red" : "num";
+    lab.innerHTML =
+      `<div class="${numClsLine}"><span class="${numCls}">${n.labNum}</span></div>` +
+      `<div class="title">${n.title}</div>` +
+      `<div class="desc">${n.desc}</div>`;
+    track.appendChild(lab);
+  });
+
+  // Position strike line across the "40" node (NODE 0)
+  {
+    const n0 = NODES[0];
+    const r = 150; // big node radius
+    strikeLine.setAttribute('x1', n0.x - r);
+    strikeLine.setAttribute('y1', n0.y - r);
+    strikeLine.setAttribute('x2', n0.x + r);
+    strikeLine.setAttribute('y2', n0.y + r);
+    const sLen = strikeLine.getTotalLength();
+    strikeLine.style.strokeDasharray  = sLen;
+    strikeLine.style.strokeDashoffset = sLen;
+  }
+
+  const NUM_DECOS = 18;
+  for (let i = 0; i < NUM_DECOS; i++){
+    const t = (i + 0.5) / NUM_DECOS;
+    const p = pathFg.getPointAtLength(t * totalLen);
+    const off = (Math.sin(i * 1.7) * 24);
+    const deco = document.createElement('div');
+    deco.className = 'tpp-deco';
+    deco.style.left = (p.x) + 'px';
+    deco.style.top  = (p.y + off) + 'px';
+    track.appendChild(deco);
+  }
+
+  function activate(i){
+    document.querySelectorAll('.tpp-node').forEach(n => n.classList.remove('active'));
+    const el = document.getElementById('node' + i);
+    if (el) el.classList.add('active');
+    document.getElementById('counterNow').textContent = String(i + 1).padStart(2, '0');
+  }
+
+  function pulseAt(t){
+    const p = pathFg.getPointAtLength(t * totalLen);
+    gsap.set('#pulse', { x: p.x, y: p.y });
+  }
+  pulseAt(NODE_T[0]);
+
+  const tl = gsap.timeline({ paused:true });
+  gsap.set(track, { x: STATIONS[0].x, y: STATIONS[0].y });
+
+  // Intro chrome
+  tl.fromTo('#eyebrow', { y:-10, opacity:0 }, { y:0, opacity:1, duration:0.4, ease:"power2.out" }, 0.0);
+  tl.to('#counter', { opacity:1, duration:0.4, ease:"power2.out" }, 0.15);
+
+  // Node 0 (big "40") — slower more dramatic entrance
+  tl.fromTo('#node0', { scale:0 }, { scale:1.10, duration:0.55, ease:"back.out(1.6)" }, 0.25);
+  tl.to('#node0', { scale:1, duration:0.20, ease:"power2.out" }, 0.80);
+  tl.call(() => activate(0), null, 0.55);
+  tl.to('#lab0', { opacity:1, duration:0.40, ease:"power2.out" }, 0.85);
+
+  tl.fromTo('#pulse', { scale:0 }, { scale:1, duration:0.35, ease:"back.out(1.7)" }, 0.55);
+  tl.to('.tpp-deco', { opacity:1, duration:0.6, ease:"power1.out", stagger:0.02 }, 0.7);
+
+  // Strike across the 40 — at ~1.15s, just before we pan away
+  tl.to(strikeLine, { opacity:1, strokeDashoffset:0, duration:0.30, ease:"power2.out" }, 1.15);
+
+  gsap.set(pathFg, { attr: { 'stroke-dashoffset': 1 - NODE_T[0] } });
+
+  // Mid stations are quick (process is painful and tedious — fast cuts)
+  // Last station is slower (the payoff)
+  const STEPS = [1.10, 1.05, 1.05, 1.55];   // 4 transitions for 5 nodes
+
+  let cursor = 1.55;  // start panning after the strike completes
+
+  for (let i = 1; i < NODES.length; i++){
+    const t = cursor;
+    const isFinal = (i === NODES.length - 1);
+    const panDur  = isFinal ? 1.05 : 0.65;
+    const revealAt = isFinal ? 0.55 : 0.35;
+
+    tl.to(track, { x: STATIONS[i].x, y: STATIONS[i].y, duration: panDur, ease: "power2.inOut" }, t);
+    tl.to(pathFg, { attr: { 'stroke-dashoffset': 1 - NODE_T[i] }, duration: panDur, ease: "power2.inOut" }, t);
+    tl.to({ t: NODE_T[i-1] }, {
+      t: NODE_T[i], duration: panDur, ease: "power2.inOut",
+      onUpdate: function(){ pulseAt(this.targets()[0].t); }
+    }, t);
+
+    tl.fromTo('#node' + i, { scale:0 }, {
+      scale: isFinal ? 1.15 : 1.10,
+      duration: isFinal ? 0.55 : 0.40,
+      ease: "back.out(1.7)"
+    }, t + revealAt);
+    tl.to('#node' + i, { scale:1, duration:0.18, ease:"power2.out" }, t + revealAt + (isFinal ? 0.55 : 0.40));
+
+    tl.call(() => activate(i), null, t + revealAt + 0.25);
+    tl.to('#lab' + i, { opacity:1, duration: isFinal ? 0.45 : 0.30, ease:"power2.out" }, t + revealAt + 0.35);
+
+    cursor = t + STEPS[i-1];
+  }
+
+  // Outro — big "2" node breathes + pulse fades
+  const outroAt = cursor;
+  tl.to('#pulse', { scale:1.4, duration:0.9, ease:"sine.inOut", yoyo:true, repeat:1 }, outroAt);
+  tl.to('.tpp-node.active', { scale:1.04, duration:0.9, ease:"sine.inOut", yoyo:true, repeat:1 }, outroAt);
+
+  const DURATION = outroAt + 1.8;
+  tl.to({}, { duration: 0.4 }, DURATION - 0.4);
+
+  flowbizScene.init({
+    id: "scene-02-pan",
+    duration: DURATION,
+    tail: 0.4,
+    label: "Scene 02 · 40 → 2 min (pan) · " + DURATION.toFixed(1) + "s",
+    timeline: tl
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>E08 · 05 — CZEGO TO NIE ZAŁATWIA · flowbiz.pl</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" />
+<link rel="stylesheet" href="scene-shell.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="recorder.js"></script>
+<script src="scene-shell.js"></script>
+<style>
+  .tpp-eyebrow{
+    position:absolute;left:50%;top:120px;transform:translateX(-50%);
+    font-size:22px;font-weight:600;letter-spacing:0.24em;z-index:5;opacity:0;
+  }
+  .tpp-counter{
+    position:absolute;left:50%;bottom:140px;transform:translateX(-50%);
+    font-size:20px;font-weight:600;color:#5A5450;letter-spacing:0.18em;
+    z-index:5;font-variant-numeric:tabular-nums;opacity:0;
+  }
+  .tpp-counter b{ color:#C0553A; }
+
+  .tpp-fade{ position:absolute;top:0;bottom:0;width:220px;z-index:6;pointer-events:none; }
+  .tpp-fade.left { left:0;  background:linear-gradient(to right, #0A0A08 0%, rgba(10,10,8,0.7) 50%, transparent 100%); }
+  .tpp-fade.right{ right:0; background:linear-gradient(to left,  #0A0A08 0%, rgba(10,10,8,0.7) 50%, transparent 100%); }
+  body.chromakey .tpp-fade{ display:none !important; }
+  body.chromakey .tpp-node{ background:#0D0D0B !important; }
+
+  .tpp-track{ position:absolute;left:0;top:0;height:1080px;will-change:transform;z-index:2; }
+
+  .tpp-line-bg{
+    position:absolute;top:520px;height:2px;background:rgba(192,85,58,0.18);
+    transform:translateY(-50%);
+  }
+  .tpp-line-fg{
+    position:absolute;top:520px;height:2px;background:#C0553A;
+    transform:translateY(-50%);width:0;
+    box-shadow:0 0 16px rgba(192,85,58,0.5);
+  }
+
+  .tpp-node{
+    position:absolute;top:520px;
+    width:170px;height:170px;border-radius:50%;
+    border:2px solid rgba(192,85,58,0.32);
+    background:#0D0D0B;
+    transform:translate(-50%,-50%) scale(0);
+    display:flex;align-items:center;justify-content:center;z-index:3;
+    transition:border-color 0.4s ease, box-shadow 0.4s ease;
+  }
+  .tpp-node i{ font-size:64px;color:#C0553A;line-height:1; }
+  .tpp-node.active{
+    border-color:#C0553A;
+    box-shadow:0 0 0 6px rgba(192,85,58,0.10), 0 0 48px rgba(192,85,58,0.35);
+  }
+
+  .tpp-label{
+    position:absolute;top:740px;transform:translate(-50%,0);
+    text-align:center;z-index:3;opacity:0;min-width:520px;
+  }
+  .tpp-label .num{
+    font-size:18px;font-weight:700;letter-spacing:0.28em;color:#C0553A;margin-bottom:12px;
+  }
+  .tpp-label .title{
+    font-size:52px;font-weight:800;color:#FAF8F0;letter-spacing:-0.015em;line-height:1.08;
+  }
+  .tpp-label .desc{
+    font-size:24px;font-weight:500;color:#FAF8F0;opacity:0.6;margin-top:12px;line-height:1.35;
+  }
+
+  .tpp-pulse{
+    position:absolute;left:960px;top:520px;
+    width:24px;height:24px;border-radius:50%;background:#C0553A;
+    transform:translate(-50%,-50%) scale(0);z-index:1;
+    box-shadow:0 0 24px rgba(192,85,58,0.6);
+  }
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <div class="stage" id="stage">
+    <svg class="grid" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+      <defs><pattern id="g100" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+        <path d="M100 0 L0 0 0 100" fill="none" stroke="rgba(245,166,35,0.04)" stroke-width="1"/>
+      </pattern></defs>
+      <rect width="1920" height="1080" fill="url(#g100)"/>
+    </svg>
+
+    <div class="scene">
+      <div class="tpp-eyebrow" id="eyebrow">
+        <span class="chroma-plate amber">CZEGO TO NIE ZAŁATWIA</span>
+      </div>
+
+      <div class="tpp-track" id="track">
+        <div class="tpp-line-bg" id="lineBg"></div>
+        <div class="tpp-line-fg" id="lineFg"></div>
+        <div class="tpp-pulse" id="pulse"></div>
+      </div>
+
+      <div class="tpp-fade left"></div>
+      <div class="tpp-fade right"></div>
+
+      <div class="tpp-counter" id="counter">
+        <span class="chroma-plate"><b id="counterNow">01</b> / <span id="counterTot">03</span></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const NODES = [
+    { icon:"ti ti-code",             num:"01", title:"To narzędzie programistyczne", desc:"Jeden programista wystarczy. Zero programistów to zero." },
+    { icon:"ti ti-device-mobile-off",num:"02", title:"Brak natywnej apki mobilnej",  desc:"Retool ma to z pudełka. Tu trzeba innej technologii." },
+    { icon:"ti ti-server-cog",       num:"03", title:"Utrzymanie po Twojej stronie", desc:"W SaaSie płacisz, żeby martwił się ktoś inny." },
+  ];
+
+  const FIRST_X = 960;
+  const GAP     = 1100;
+  const NODE_X  = NODES.map((_, i) => FIRST_X + i * GAP);
+  const STATIONS = NODE_X.map(x => 960 - x);
+
+  const track  = document.getElementById('track');
+  const lineBg = document.getElementById('lineBg');
+  const lineFg = document.getElementById('lineFg');
+
+  track.style.width = (NODE_X[NODE_X.length - 1] + 960) + 'px';
+
+  const LINE_START = NODE_X[0];
+  const LINE_END   = NODE_X[NODE_X.length - 1];
+  lineBg.style.left  = LINE_START + 'px';
+  lineBg.style.width = (LINE_END - LINE_START) + 'px';
+  lineFg.style.left  = LINE_START + 'px';
+
+  NODES.forEach((n, i) => {
+    const node = document.createElement('div');
+    node.className = 'tpp-node';
+    node.id = 'node' + i;
+    node.style.left = NODE_X[i] + 'px';
+    node.innerHTML = '<i class="' + n.icon + '"></i>';
+    track.appendChild(node);
+
+    const lab = document.createElement('div');
+    lab.className = 'tpp-label';
+    lab.id = 'lab' + i;
+    lab.style.left = NODE_X[i] + 'px';
+    lab.innerHTML =
+      '<div class="num"><span class="chroma-plate">' + n.num + '</span></div>' +
+      '<div class="title">' + n.title + '</div>' +
+      '<div class="desc">' + n.desc + '</div>';
+    track.appendChild(lab);
+  });
+
+  function activate(i){
+    document.querySelectorAll('.tpp-node').forEach(n => n.classList.remove('active'));
+    const el = document.getElementById('node' + i);
+    if (el) el.classList.add('active');
+    document.getElementById('counterNow').textContent = NODES[i].num;
+  }
+
+  const tl = gsap.timeline({ paused:true });
+
+  tl.to('#eyebrow', { opacity:1, y:0, duration:0.4, ease:"power2.out" }, 0.0);
+  tl.fromTo('#eyebrow', { y:-10 }, { y:0, duration:0.4, ease:"power2.out" }, 0.0);
+  tl.to('#counter', { opacity:1, duration:0.4, ease:"power2.out" }, 0.15);
+
+  tl.fromTo('#node0', { scale:0 }, { scale:1.10, duration:0.45, ease:"back.out(1.7)" }, 0.30);
+  tl.to('#node0', { scale:1, duration:0.15, ease:"power2.out" }, 0.75);
+  tl.call(() => activate(0), null, 0.55);
+  tl.to('#lab0', { opacity:1, duration:0.35, ease:"power2.out" }, 0.70);
+  tl.fromTo('#pulse', { scale:0 }, { scale:1, duration:0.35, ease:"back.out(1.7)" }, 0.55);
+
+  const STEP = 1.55;
+  let cursor = 1.3;
+
+  for (let i = 1; i < NODES.length; i++) {
+    const t = cursor;
+    tl.to(track,  { x: STATIONS[i], duration:0.95, ease:"power2.inOut" }, t);
+    tl.to(lineFg, { width: NODE_X[i] - LINE_START, duration:0.95, ease:"power2.inOut" }, t);
+    tl.fromTo('#node' + i, { scale:0 }, { scale:1.10, duration:0.45, ease:"back.out(1.7)" }, t + 0.50);
+    tl.to('#node' + i, { scale:1, duration:0.15, ease:"power2.out" }, t + 0.95);
+    tl.call(() => activate(i), null, t + 0.85);
+    tl.to('#lab' + i, { opacity:1, duration:0.35, ease:"power2.out" }, t + 0.95);
+    cursor = t + STEP;
+  }
+
+  const outroAt = cursor;
+  tl.to('#pulse', { scale:1.4, opacity:0.6, duration:0.9, ease:"sine.inOut", yoyo:true, repeat:1 }, outroAt);
+  tl.to(() => document.querySelector('.tpp-node.active'),
+    { scale:1.03, duration:0.8, ease:"sine.inOut", yoyo:true, repeat:1 }, outroAt);
+
+  const DURATION = outroAt + 1.6;
+  tl.to({}, { duration: 0.4 }, DURATION - 0.4);
+
+  flowbizScene.init({
+    id: "e08-05",
+    duration: DURATION,
+    tail: 0.4,
+    label: "E08 · 05 · GRANICE (pan) · " + DURATION.toFixed(1) + "s",
+    timeline: tl
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>E01 · 01 — TEN SAM PLIK, TRZY WERSJE · flowbiz.pl</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" />
+<link rel="stylesheet" href="scene-shell.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="recorder.js"></script>
+<script src="scene-shell.js"></script>
+<style>
+  .k-label{
+    position:absolute;left:0;right:0;top:140px;text-align:center;
+    font-size:26px;font-weight:600;color:#3A3630;
+    letter-spacing:0.36em;text-transform:uppercase;opacity:0;
+  }
+  .k-file{
+    position:absolute;top:280px;width:480px;
+    background:#0D0D0B;border:1.5px solid rgba(245,166,35,0.28);
+    opacity:0;
+  }
+  .k-name{
+    padding:22px 28px;border-bottom:1px solid #2E2C28;
+    font-size:26px;font-weight:700;color:#FAF8F0;letter-spacing:0.01em;
+    display:flex;align-items:center;gap:14px;
+  }
+  .k-name i{ font-size:34px;color:#6BAA6B;line-height:1;flex:none }
+  .k-who{
+    padding:14px 28px;border-bottom:1px solid #1E1C18;
+    font-size:21px;font-weight:600;color:#F5A623;letter-spacing:0.14em;text-transform:uppercase;
+  }
+  .k-col{
+    display:flex;justify-content:space-between;
+    padding:18px 28px;font-size:24px;font-weight:400;color:#FAF8F0;
+    border-bottom:1px solid #14120F;
+  }
+  .k-col.off{color:#2E2C28}
+  .k-col.off i{font-style:normal;color:#2E2C28}
+  .k-q{
+    position:absolute;left:0;right:0;top:790px;text-align:center;
+    font-size:46px;font-weight:700;color:#FAF8F0;opacity:0;
+  }
+  .k-a{
+    position:absolute;left:50%;top:880px;transform:translateX(-50%);
+    background:#0D0D0B;border:1.5px solid #C0553A;
+    padding:16px 40px;font-size:34px;font-weight:800;color:#C0553A;
+    letter-spacing:0.02em;opacity:0;
+  }
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <div class="stage" id="stage">
+    <svg class="grid" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+      <defs><pattern id="g100" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+        <path d="M100 0 L0 0 0 100" fill="none" stroke="rgba(245,166,35,0.04)" stroke-width="1"/>
+      </pattern></defs>
+      <rect width="1920" height="1080" fill="url(#g100)"/>
+    </svg>
+
+    <div class="scene">
+      <div class="k-label" id="label"><span class="chroma-plate amber">TEN SAM PLIK. TRZY WERSJE.</span></div>
+
+      <div class="k-file F" id="f1" style="left:150px">
+        <div class="k-name"><i class="ti ti-file-spreadsheet"></i>zamowienia.xlsx</div>
+        <div class="k-who">właściciel</div>
+        <div class="k-col">Klient <span>✓</span></div>
+        <div class="k-col">Ilość <span>✓</span></div>
+        <div class="k-col">Cena <span>✓</span></div>
+        <div class="k-col" style="border-bottom:0">Marża <span>✓</span></div>
+      </div>
+
+      <div class="k-file F" id="f2" style="left:720px">
+        <div class="k-name"><i class="ti ti-file-spreadsheet"></i>zamowienia_v2.xlsx</div>
+        <div class="k-who">handlowiec</div>
+        <div class="k-col">Klient <span>✓</span></div>
+        <div class="k-col">Ilość <span>✓</span></div>
+        <div class="k-col">Cena <span>✓</span></div>
+        <div class="k-col off" style="border-bottom:0">Marża <i>—</i></div>
+      </div>
+
+      <div class="k-file F" id="f3" style="left:1290px">
+        <div class="k-name"><i class="ti ti-file-spreadsheet"></i>zamowienia_biuro.xlsx</div>
+        <div class="k-who">biuro</div>
+        <div class="k-col">Klient <span>✓</span></div>
+        <div class="k-col">Ilość <span>✓</span></div>
+        <div class="k-col off">Cena <i>—</i></div>
+        <div class="k-col off" style="border-bottom:0">Marża <i>—</i></div>
+      </div>
+
+      <div class="k-q" id="q">A kto wprowadza te dane?</div>
+      <div class="k-a" id="a">WSZYSCY TRZEJ</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const tl = gsap.timeline({ paused: true });
+
+  tl.to("#label", { opacity:1, duration:0.30, ease:"power2.out" }, 0.0);
+
+  // pierwszy plik — oryginał
+  tl.fromTo("#f1", { opacity:0, y:40 }, { opacity:1, y:0, duration:0.42, ease:"back.out(1.6)" }, 0.25);
+
+  // kopie wysuwają się z oryginału w prawo — widać, że to ten sam plik
+  tl.fromTo("#f2", { opacity:0, x:-560 }, { opacity:1, x:0, duration:0.55, ease:"power3.out" }, 1.00);
+  tl.fromTo("#f3", { opacity:0, x:-1120 }, { opacity:1, x:0, duration:0.60, ease:"power3.out" }, 1.45);
+
+  // kolumny gasną w kopiach — każdy widzi mniej
+  tl.fromTo("#f2 .off", { color:"#FAF8F0" }, { color:"#2E2C28", duration:0.35, ease:"power2.out" }, 1.75);
+  tl.fromTo("#f3 .off", { color:"#FAF8F0" }, { color:"#2E2C28", duration:0.35, stagger:0.1, ease:"power2.out" }, 2.15);
+
+  // pytanie i odpowiedź
+  tl.to("#q", { opacity:1, duration:0.35, ease:"power3.out" }, 2.70);
+  tl.from("#q", { y:20, duration:0.35, ease:"power3.out" }, 2.70);
+  tl.to("#a", { opacity:1, duration:0.35, ease:"back.out(1.7)" }, 3.20);
+
+  tl.to({}, { duration:0.4 }, 3.6);
+
+  flowbizScene.init({
+    id: "e01-01",
+    duration: 4.0,
+    tail: 0.4,
+    label: "E01 · 01 · TRZY WERSJE · 4.0s",
+    timeline: tl
+  });
+</script>
+</body>
+</html>

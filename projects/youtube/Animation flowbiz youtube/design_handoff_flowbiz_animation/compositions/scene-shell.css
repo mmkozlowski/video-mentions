@@ -1,0 +1,114 @@
+/* Shared shell for all flowbiz scenes.
+   Wspólne style: stage 1920×1080, fit-to-viewport, native 1:1, watermark,
+   pasek odtwarzacza, tryb export (chrome ukryte). */
+:root{
+  --bg:#0A0A08;
+  --amber:#F5A623;
+  --light:#FAF8F0;
+  --sec1:#5A5450;
+  --sec2:#3A3630;
+  --sec3:#2E2C28;
+  --red:#C0553A;
+  --green:#6BAA6B;
+  --watermark:#1E1C18;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#000;color:var(--light);font-family:"DM Sans",system-ui,sans-serif;overflow:hidden;-webkit-font-smoothing:antialiased}
+
+.wrap{position:relative;width:100vw;height:100vh;display:flex;align-items:center;justify-content:center}
+
+.stage{
+  position:absolute;
+  width:1920px;height:1080px;
+  background:var(--bg);
+  overflow:hidden;
+  transform-origin:top left;
+}
+
+.stage .grid{
+  position:absolute;inset:0;
+  pointer-events:none;
+  z-index:0;
+}
+.stage .scene{
+  position:absolute;inset:0;
+  z-index:2;
+}
+
+.watermark{
+  position:absolute;right:58px;bottom:38px;
+  color:var(--watermark);
+  font-size:22px;font-weight:600;letter-spacing:0.06em;
+  z-index:5;
+  user-select:none;
+}
+
+/* Controls (hidden in export/native) */
+.controls{
+  position:fixed;bottom:18px;left:50%;transform:translateX(-50%);
+  display:flex;gap:8px;align-items:center;
+  background:rgba(20,18,14,0.92);
+  border:1px solid rgba(245,166,35,0.2);
+  padding:8px 10px;
+  z-index:100;
+  backdrop-filter:blur(8px);
+}
+.controls button{
+  background:transparent;border:0;color:var(--light);font:inherit;
+  padding:8px 14px;cursor:pointer;font-size:14px;font-weight:600;letter-spacing:0.04em;
+  display:inline-flex;align-items:center;gap:6px;
+}
+.controls button:hover{background:rgba(245,166,35,0.12);color:var(--amber)}
+.controls .primary{color:var(--amber)}
+.controls .t{color:var(--sec1);font-size:13px;font-variant-numeric:tabular-nums;padding:0 10px;min-width:96px;text-align:center}
+.controls .t b{color:var(--amber)}
+.corner-brand{
+  position:fixed;top:14px;left:18px;z-index:100;
+  color:var(--sec1);font-size:13px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;
+}
+.corner-brand b{color:var(--amber)}
+
+body.export .controls,body.export .corner-brand{display:none}
+
+/* OBS-NATIVE-MODE — 1:1 capture, no transform scaling */
+body.native, body.native html { background:#0A0A08; overflow:hidden; }
+body.native .wrap{ width:1920px; height:1080px; position:fixed; top:0; left:0; transform:none; }
+body.native .stage{ left:0 !important; top:0 !important; transform:none !important; }
+body.native .controls, body.native .corner-brand{ display:none }
+
+/* ==========================================================================
+   Chromakey mode (?bg=green / NO_CHROMA=0 in render.js)
+   --------------------------------------------------------------------------
+   Stage background → kolor klucza. UI elements (cards, nodes, chat bubbles)
+   zostają ciemne. "Samotny" ciemny tekst (label-y, podpisy) MUSI mieć dodaną
+   klasę .chroma-plate aby zachować ciemną podkładkę — inaczej po wycięciu
+   zielonego w editorze tekst zniknie na przezroczystym tle.
+
+   Reguła: jeśli element tekstowy w scenie:
+     • jest na NAGIM background (nie wewnątrz karty/węzła/bąbelka), I
+     • jego kolor jest ciemny szary (#1A → #6A, np. #3A3630, #5A5450, #2E2C28)
+   to zawiń tekst w <span class="chroma-plate">…</span>.
+
+   .chroma-plate w trybie normalnym (bez chromakey) jest no-op — można dodawać
+   śmiało wszędzie gdzie pasuje.
+   ========================================================================== */
+
+.chroma-plate {
+  /* Color override applies ALWAYS (both normal dark mode and chromakey).
+     Default: white text — overrides parent's gray for consistency between modes. */
+  color: #FAF8F0;
+}
+.chroma-plate.amber {
+  color: #F5A623;
+}
+
+/* Plate background + halo activates ONLY in chromakey mode, so the text
+   remains visible after green is keyed out. In normal dark mode the bg
+   isn't needed (stage is already dark). */
+body.chromakey .chroma-plate {
+  display:inline-block;
+  background:#0A0A08;
+  /* halo extends the dark plate slightly beyond the text bounds so glow
+     effects / line-height descenders aren't clipped by the green */
+  box-shadow:0 0 0 16px #0A0A08;
+}

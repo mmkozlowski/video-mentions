@@ -1,0 +1,14 @@
+{
+  "name": "flowbiz-open-mercato-animation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Open Mercato — Build with Matt YouTube animation. 16 GSAP scenes + frame-perfect MP4 renderer.",
+  "scripts": {
+    "install:browser": "playwright install chromium",
+    "render": "node render.js",
+    "render:hardcut": "NO_FLASH=1 node render.js"
+  },
+  "dependencies": {
+    "playwright": "^1.48.0"
+  }
+}

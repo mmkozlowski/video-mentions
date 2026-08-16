@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>Sceny · flowbiz · edytor</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0A0A08;
+    --amber:#F5A623;
+    --light:#FAF8F0;
+    --sec1:#5A5450;
+    --sec2:#3A3630;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{
+    background:#000;color:var(--light);
+    font-family:"DM Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased;
+    min-height:100vh;
+  }
+
+  header{
+    padding:32px 40px 24px;
+    border-bottom:1px solid #1A1916;
+    display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;
+  }
+  header h1{
+    font-size:32px;font-weight:800;color:var(--light);letter-spacing:-0.01em;
+  }
+  header h1 b{color:var(--amber);}
+  header .hint{
+    font-size:14px;color:var(--sec1);max-width:560px;
+  }
+  header .hint kbd{
+    background:#1A1916;border:1px solid #2E2C28;padding:2px 6px;
+    border-radius:4px;font-family:"DM Sans",sans-serif;font-size:12px;color:var(--light);
+  }
+  header a.play-all{
+    color:var(--amber);text-decoration:none;font-weight:600;font-size:14px;letter-spacing:0.04em;
+    border:1px solid rgba(245,166,35,0.4);padding:10px 18px;
+    transition:background 0.15s ease;
+  }
+  header a.play-all:hover{ background:rgba(245,166,35,0.1); }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(420px,1fr));
+    gap:24px;
+    padding:32px 40px 80px;
+  }
+
+  .card{
+    background:#0D0D0B;border:1px solid #1A1916;
+    display:flex;flex-direction:column;
+    overflow:hidden;
+  }
+  .card:hover{ border-color:rgba(245,166,35,0.4); }
+
+  .preview{
+    position:relative;width:100%;aspect-ratio:16/9;
+    background:#0A0A08;overflow:hidden;
+  }
+  .preview iframe{
+    position:absolute;left:0;top:0;
+    width:1920px;height:1080px;
+    border:0;background:#0A0A08;
+    transform-origin:top left;
+    pointer-events:none;
+  }
+  .preview .badge{
+    position:absolute;top:12px;left:14px;
+    font-size:11px;font-weight:700;color:#1A1916;background:var(--amber);
+    padding:4px 8px;letter-spacing:0.06em;
+    z-index:2;
+  }
+  .preview .dur{
+    position:absolute;top:12px;right:14px;
+    font-size:11px;font-weight:600;color:var(--sec1);background:rgba(13,13,11,0.85);
+    padding:4px 8px;letter-spacing:0.04em;border:1px solid #2E2C28;
+    z-index:2;
+  }
+  .preview .overlay{
+    position:absolute;inset:0;background:rgba(10,10,8,0.0);
+    transition:background 0.15s ease;
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    z-index:3;
+  }
+  .preview:hover .overlay{ background:rgba(10,10,8,0.5); }
+  .preview .overlay button{
+    opacity:0;pointer-events:none;
+    transition:opacity 0.15s ease;
+    background:var(--amber);color:#1A1916;border:0;
+    padding:10px 16px;font:600 13px "DM Sans",sans-serif;letter-spacing:0.04em;
+    cursor:pointer;
+  }
+  .preview .overlay a{
+    opacity:0;pointer-events:none;
+    transition:opacity 0.15s ease;
+    background:transparent;color:var(--light);border:1px solid var(--light);
+    padding:10px 16px;font:600 13px "DM Sans",sans-serif;letter-spacing:0.04em;
+    text-decoration:none;
+  }
+  .preview:hover .overlay button,
+  .preview:hover .overlay a{ opacity:1;pointer-events:auto; }
+  .preview .overlay button:hover{ background:#FFB643; }
+  .preview .overlay a:hover{ background:rgba(250,248,240,0.1); }
+
+  .meta{
+    padding:18px 20px 20px;
+    display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+  }
+  .meta h2{
+    font-size:18px;font-weight:700;color:var(--light);letter-spacing:-0.005em;line-height:1.2;
+  }
+  .meta .file{
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+    font-size:11px;color:var(--sec1);
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1><b>Sceny</b> · edytor</h1>
+      <p class="hint" style="margin-top:8px">
+        Najedź na kartę i kliknij <b>Edytuj</b> żeby otworzyć plik sceny — klikniesz w tekst i przepiszesz bezpośrednio.
+        <b>Replay</b> przewija miniaturę. Klawisz <kbd>R</kbd> przewija wszystkie naraz.
+      </p>
+    </div>
+    <a class="play-all" href="index.html">▶ Pełny cut →</a>
+  </header>
+
+  <div class="grid" id="grid"></div>
+
+<script>
+  const SCENES = [
+    { n:1,  id:"scene-01", file:"compositions/s01-pol-roku.html",              title:"PÓŁ ROKU",              dur:2.5 },
+    { n:2,  id:"scene-02", file:"compositions/s02-8-miesiecy.html",            title:"8 MIESIĘCY",            dur:2.5 },
+    { n:3,  id:"scene-03", file:"compositions/s03-oplacalo-sie.html",          title:"Opłacało się.",         dur:2.5 },
+    { n:4,  id:"scene-04", file:"compositions/s04-40-minut.html",              title:"40 MINUT",              dur:2.5 },
+    { n:5,  id:"scene-05", file:"compositions/s05-2-minuty.html",              title:"→ 2 MINUTY",            dur:2.5 },
+    { n:6,  id:"scene-06", file:"compositions/s06-wiedza-korytarzowa.html",    title:"WIEDZA KORYTARZOWA",    dur:2.5 },
+    { n:7,  id:"scene-07", file:"compositions/s07-node-ryzyko.html",           title:"Ryzyko (3 gałęzie)",    dur:4.0 },
+    { n:8,  id:"scene-08", file:"compositions/s08-20-30.html",                 title:"20–30 zmiennych",       dur:2.5 },
+    { n:9,  id:"scene-09", file:"compositions/s09-node-zmienne.html",          title:"Zmienne (8 satelitów)", dur:4.5 },
+    { n:10, id:"scene-10", file:"compositions/s10-retool-sufit.html",          title:"RETOOL trafił w SUFIT", dur:2.5 },
+    { n:11, id:"scene-11", file:"compositions/s11-modify-nothing.html",        title:"MODIFY NOTHING",        dur:2.5 },
+    { n:12, id:"scene-12", file:"compositions/s12-node-moduly.html",           title:"Open Mercato — moduły", dur:4.5 },
+    { n:13, id:"scene-13", file:"compositions/s13-z-systemem.html",            title:"Z SYSTEMEM rozmawiasz", dur:2.5 },
+    { n:14, id:"scene-14", file:"compositions/s14-chat-erp.html",              title:"Chat ERP",              dur:4.0 },
+    { n:15, id:"scene-15", file:"compositions/s15-gigantyczny-przeskok.html",  title:"GIGANTYCZNY PRZESKOK",  dur:2.5 },
+    { n:16, id:"scene-16", file:"compositions/s16-cta.html",                   title:"CTA — Napisz MERCATO",  dur:2.5 },
+  ];
+
+  const grid = document.getElementById('grid');
+
+  SCENES.forEach((s, idx) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="preview" data-idx="${idx}">
+        <span class="badge">${String(s.n).padStart(2,'0')}</span>
+        <span class="dur">${s.dur.toFixed(1)}s</span>
+        <iframe data-idx="${idx}" src="${s.file}?native=1&autoplay=0" loading="lazy"></iframe>
+        <div class="overlay">
+          <button data-replay="${idx}">↻ Replay</button>
+          <a href="${s.file}" target="_blank">✎ Edytuj</a>
+        </div>
+      </div>
+      <div class="meta">
+        <h2>${s.n}. ${s.title}</h2>
+        <span class="file">${s.file.replace('compositions/','')}</span>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  // Scale each iframe (1920x1080) to fit its card preview (16:9, sized by CSS).
+  function fitAll(){
+    document.querySelectorAll('.preview iframe').forEach(f => {
+      const w = f.parentElement.clientWidth;
+      const scale = w / 1920;
+      f.style.transform = `scale(${scale})`;
+    });
+  }
+  window.addEventListener('resize', fitAll);
+  // Initial fit + after a tick so layout has settled.
+  setTimeout(fitAll, 50);
+  setTimeout(fitAll, 400);
+
+  // Play each scene timeline once it loads (autoplay=0 keeps them paused otherwise).
+  document.querySelectorAll('.preview iframe').forEach(f => {
+    f.addEventListener('load', () => {
+      // Wait for scene-shell to register timeline.
+      const try_ = () => {
+        const tl = f.contentWindow.__sceneTimeline;
+        if (tl) {
+          tl.pause(0);
+          tl.play(0);
+        } else {
+          setTimeout(try_, 50);
+        }
+      };
+      try_();
+      // Re-scale once content is in.
+      fitAll();
+    });
+  });
+
+  // Replay button on each card
+  document.addEventListener('click', e => {
+    const btn = e.target.closest('[data-replay]');
+    if (!btn) return;
+    const idx = +btn.dataset.replay;
+    const f = document.querySelectorAll('.preview iframe')[idx];
+    const tl = f.contentWindow.__sceneTimeline;
+    if (tl) tl.restart();
+  });
+
+  // R = replay all
+  document.addEventListener('keydown', e => {
+    if (e.key === 'r' || e.key === 'R') {
+      document.querySelectorAll('.preview iframe').forEach(f => {
+        const tl = f.contentWindow.__sceneTimeline;
+        if (tl) tl.restart();
+      });
+    }
+  });
+</script>
+</body>
+</html>

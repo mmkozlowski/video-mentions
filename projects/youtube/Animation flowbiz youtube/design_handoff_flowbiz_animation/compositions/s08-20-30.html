@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>Scene 08 — 20–30 · flowbiz.pl</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="scene-shell.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="recorder.js"></script>
+<script src="scene-shell.js"></script>
+<style>
+  .s08-label{
+    position:absolute;left:0;right:0;top:200px;text-align:center;
+    font-size:28px;font-weight:600;color:#3A3630;
+    letter-spacing:0.32em;text-transform:uppercase;
+    opacity:0;
+  }
+  .s08-num{
+    position:absolute;left:0;right:0;top:50%;text-align:center;
+    transform:translateY(-50%);
+    font-size:520px;font-weight:900;color:#F5A623;
+    letter-spacing:-0.04em;line-height:1;
+    opacity:0;
+    filter:drop-shadow(0 0 0 rgba(245,166,35,0));
+    will-change:transform,opacity,filter;
+  }
+  .s08-bottom{
+    position:absolute;left:0;right:0;top:870px;text-align:center;
+    font-size:40px;font-weight:500;color:#5A5450;
+    opacity:0;transform:translateY(25px);
+  }
+  .s08-burst{
+    position:absolute;left:50%;top:50%;
+    width:0;height:0;
+    pointer-events:none;
+  }
+  .s08-burst .p{
+    position:absolute;left:-3px;top:-3px;
+    width:6px;height:6px;border-radius:50%;background:#F5A623;
+    opacity:0;
+    will-change:transform,opacity;
+  }
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <div class="stage" id="stage">
+    <!-- no grid -->
+    <div class="scene">
+      <div class="s08-label" id="label"><span class="chroma-plate amber">ZMIENNYCH WPŁYWA NA CENĘ</span></div>
+      <div class="s08-num"   id="num">20–30</div>
+      <div class="s08-bottom" id="bottom"><span class="chroma-plate">jednej oferty w szwalni.</span></div>
+      <div class="s08-burst" id="burst"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Build 8 particles in code, equally spaced 45°
+  const burst = document.getElementById('burst');
+  const N = 8, R = 120;
+  for (let i = 0; i < N; i++) {
+    const p = document.createElement('div');
+    p.className = 'p';
+    burst.appendChild(p);
+  }
+  const parts = burst.querySelectorAll('.p');
+
+  const tl = gsap.timeline({ paused:true });
+
+  tl.to("#label", { opacity:1, duration:0.3, ease:"power2.out" }, 0.0);
+
+  // 0.15s — number scales in with overshoot + glow
+  tl.fromTo("#num",
+    { opacity:0, scale:0 },
+    { opacity:1, scale:1.08,
+      filter:"drop-shadow(0 0 80px rgba(245,166,35,0.35))",
+      duration:0.55, ease:"power3.out" },
+    0.15
+  );
+  tl.to("#num", { scale:1.0, duration:0.15, ease:"power2.out" }, 0.70);
+
+  // 0.85s — bottom label
+  tl.to("#bottom", { opacity:1, y:0, duration:0.4, ease:"power2.out" }, 0.85);
+
+  // 1.5s — particle burst
+  parts.forEach((p, i) => {
+    const a = (i * (Math.PI*2/N));
+    const tx = Math.cos(a) * R;
+    const ty = Math.sin(a) * R;
+    tl.fromTo(p,
+      { opacity:1, x:0, y:0 },
+      { opacity:0, x:tx, y:ty, duration:0.5, ease:"power2.out" },
+      1.5 + i*0.04
+    );
+  });
+
+  // Hold tail
+  tl.to({}, { duration: 0.4 }, 2.1);
+
+  flowbizScene.init({
+    id: "scene-08",
+    duration: 2.5,
+    tail: 0.4,
+    label: "Scene 08 · 20–30 · 2.5s",
+    timeline: tl
+  });
+</script>
+</body>
+</html>

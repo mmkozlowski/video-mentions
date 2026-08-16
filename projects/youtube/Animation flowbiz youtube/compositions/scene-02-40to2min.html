@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>Scene 02 — 40 → 2 min · flowbiz.pl</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="recorder.js"></script>
+<style>
+  :root{
+    --bg:#0A0A08;
+    --amber:#F5A623;
+    --light:#FAF8F0;
+    --sec1:#5A5450;
+    --sec2:#3A3630;
+    --sec3:#2E2C28;
+    --red:#C0553A;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:#000;color:var(--light);font-family:"DM Sans",system-ui,sans-serif;overflow:hidden;-webkit-font-smoothing:antialiased}
+
+  .wrap{position:relative;width:100vw;height:100vh;display:flex;align-items:center;justify-content:center}
+
+  .stage{
+    position:absolute;
+    width:1920px;height:1080px;
+    background:var(--bg);
+    overflow:hidden;
+    transform-origin:top left;
+  }
+  .grid{position:absolute;inset:0;pointer-events:none;z-index:0}
+
+  /* Graph layout — absolute coords on a 1920×1080 canvas */
+  .graph{position:absolute;inset:0;z-index:2}
+  .node{
+    position:absolute;
+    width:260px;height:260px;
+    border-radius:50%;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    transform-origin:center center;
+    opacity:0;
+    will-change:transform,opacity;
+  }
+  .node .num{
+    font-size:120px;font-weight:900;letter-spacing:-0.04em;line-height:1;
+    font-variant-numeric:tabular-nums;
+  }
+  .node .lab{
+    margin-top:14px;
+    font-size:22px;letter-spacing:0.36em;
+  }
+
+  .node.a{
+    left: calc(50% - 480px);  /* center is at 50% - 350, edge at -480 */
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    border:4px solid var(--sec2);
+    background:transparent;
+  }
+  .node.a .num{ color:var(--sec3); }
+  .node.a .lab{ color:var(--sec2); font-weight:600 }
+
+  .node.b{
+    left: calc(50% + 480px);
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    border:4px solid var(--amber);
+    background:#0D0D0B;  /* CHROMAKEY: solid bg pod liczbą */
+  }
+  .node.b .num{ color:var(--amber); }
+  .node.b .lab{ color:var(--amber); font-weight:700 }
+
+  /* Connector SVG sits over the whole stage; coordinates in viewBox space */
+  .connector{position:absolute;inset:0;z-index:3;pointer-events:none}
+
+  /* Strike on Node A */
+  .strike{position:absolute;inset:0;z-index:4;pointer-events:none}
+
+  /* Pulse ring */
+  .pulse{
+    position:absolute;
+    width:260px;height:260px;
+    border-radius:50%;
+    border:3px solid var(--amber);
+    left:calc(50% - 480px);
+    top:50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity:0;
+    pointer-events:none;
+    z-index:5;
+  }
+
+  /* Graph caption */
+  .caption{
+    position:absolute;left:0;right:0;
+    top: calc(50% + 220px);
+    text-align:center;
+    font-size:30px;color:var(--sec1);font-weight:500;letter-spacing:0.02em;
+    opacity:0;
+    transform:translateY(20px);
+    z-index:2;
+  }
+
+  /* Optional channel tag, kept subtle */
+  .corner-brand{
+    position:fixed;top:14px;left:18px;z-index:100;
+    color:var(--sec1);font-size:13px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;
+  }
+  .corner-brand b{color:var(--amber)}
+
+  .watermark{
+    position:absolute;right:48px;bottom:36px;
+    color:#1E1C18;
+    font-size:22px;font-weight:600;letter-spacing:0.08em;
+    z-index:6;user-select:none;
+  }
+
+  /* Controls */
+  .controls{
+    position:fixed;bottom:18px;left:50%;transform:translateX(-50%);
+    display:flex;gap:8px;align-items:center;
+    background:rgba(20,18,14,0.92);
+    border:1px solid rgba(245,166,35,0.2);
+    padding:8px 10px;z-index:100;backdrop-filter:blur(8px);
+  }
+  .controls button{
+    background:transparent;border:0;color:var(--light);font:inherit;
+    padding:8px 14px;cursor:pointer;font-size:14px;font-weight:600;letter-spacing:0.04em;
+    display:inline-flex;align-items:center;gap:6px;
+  }
+  .controls button:hover{background:rgba(245,166,35,0.12);color:var(--amber)}
+  .controls .primary{color:var(--amber)}
+  .controls .t{color:var(--sec1);font-size:13px;font-variant-numeric:tabular-nums;padding:0 10px;min-width:84px;text-align:center}
+  .controls .t b{color:var(--amber)}
+  body.export .controls,body.export .corner-brand{display:none}
+  /* OBS-NATIVE-MODE — 1:1 capture, no transform scaling, no letterbox */
+  body.native, body.native html { background:#0A0A08; overflow:hidden; }
+  body.native .wrap{ width:1920px; height:1080px; position:fixed; top:0; left:0; transform:none; }
+  body.native .stage{ left:0 !important; top:0 !important; transform:none !important; }
+  body.native .controls, body.native .corner-brand{ display:none }
+</style>
+</head>
+<body>
+
+<div class="corner-brand"><b>Build with Matt</b> · Scene 02 · 40 → 2 min · 5.0s</div>
+
+<div class="wrap" id="wrap">
+  <div class="stage" id="stage">
+
+    <!-- Grid -->
+    <svg class="grid" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <pattern id="g100" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+          <path d="M100 0 L0 0 0 100" fill="none" stroke="rgba(245,166,35,0.04)" stroke-width="1"/>
+        </pattern>
+      </defs>
+      <rect width="1920" height="1080" fill="url(#g100)"/>
+    </svg>
+
+    <!-- Connector path (dashed-draw animation) -->
+    <!--
+      Node A center: x=480 (1920/2 - 480 = 480)
+      Node B center: x=1440
+      Both at y=540
+      Node radius = 130, so path starts at x≈610 (480+130), ends at x≈1310 (1440-130)
+      Small diagonal dip mid-flight.
+    -->
+    <svg class="connector" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+      <path id="connector-path"
+            d="M 610 540 L 880 540 L 960 600 L 1040 540 L 1310 540"
+            fill="none"
+            stroke="#F5A623"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"/>
+    </svg>
+
+    <!-- Strike across Node A -->
+    <svg class="strike" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+      <line id="strike-line"
+            x1="386" y1="446" x2="574" y2="634"
+            stroke="#C0553A"
+            stroke-width="6"
+            stroke-linecap="round"/>
+    </svg>
+
+    <!-- Node A -->
+    <div class="node a" id="nodeA">
+      <div class="num">40</div>
+      <div class="lab">MINUT</div>
+    </div>
+
+    <!-- Pulse ring (originates at Node A) -->
+    <div class="pulse" id="pulse"></div>
+
+    <!-- Node B -->
+    <div class="node b" id="nodeB">
+      <div class="num">2</div>
+      <div class="lab">MINUTY</div>
+    </div>
+
+    <!-- Caption -->
+    <div class="caption" id="caption">Czas wystawienia jednej oferty</div>
+
+    <div class="watermark">flowbiz.pl</div>
+  </div>
+</div>
+
+<div class="controls">
+  <button id="play" class="primary" title="Odtwórz (spacja)"><i class="ti ti-player-play-filled"></i> Odtwórz</button>
+  <button id="restart" title="Restart"><i class="ti ti-refresh"></i> Restart</button>
+  <span class="t"><b id="t-now">0.00</b> / 5.00s</span>
+  <button id="rec" title="Nagraj scenę 1920×1080 (WebM, 25 Mbps)" style="color:#FF6E4F"><i class="ti ti-circle-filled"></i> Nagraj</button>
+  <button id="fullsize" title="Pełny widok do nagrania (fullscreen + ukryte chrome)"><i class="ti ti-arrows-maximize"></i> Full</button>
+  <button id="native11" title="Tryb 1:1 (1920×1080, do OBS)"><i class="ti ti-aspect-ratio"></i> 1:1</button>
+  <button id="fs" title="Pełny ekran"><i class="ti ti-maximize"></i></button>
+</div>
+
+<script>
+  // Fit
+  const stage = document.getElementById('stage');
+  const wrap = document.getElementById('wrap');
+  function fit(){
+    if (document.body.classList.contains('native')) {
+      stage.style.transform = 'none';
+      stage.style.left = '0px';
+      stage.style.top  = '0px';
+      return;
+    }
+    const s = Math.min(wrap.clientWidth/1920, wrap.clientHeight/1080);
+    stage.style.transform = `scale(${s})`;
+    stage.style.left = ((wrap.clientWidth - 1920*s)/2)+'px';
+    stage.style.top  = ((wrap.clientHeight - 1080*s)/2)+'px';
+  }
+  // OBS-NATIVE-INIT
+  (function(){
+    const q = new URLSearchParams(location.search);
+    if (q.get('native') === '1' || location.hash === '#native') {
+      document.body.classList.add('native');
+    }
+  })();
+  function toggleNative(){
+    document.body.classList.toggle('native');
+    fit();
+  }
+  window.toggleNative = toggleNative;
+  window.addEventListener('resize', fit);
+  fit();
+
+  // Prep strokes for "drawSVG" via dasharray/offset
+  const cpath  = document.getElementById('connector-path');
+  const cLen   = cpath.getTotalLength();
+  cpath.style.strokeDasharray = cLen;
+  cpath.style.strokeDashoffset = cLen;
+
+  const sline  = document.getElementById('strike-line');
+  const sLen   = sline.getTotalLength();
+  sline.style.strokeDasharray = sLen;
+  sline.style.strokeDashoffset = sLen;
+
+  // Spring approximation of cubic-bezier(0.34, 1.56, 0.64, 1): go to overshoot, settle to 1.
+  const tl = gsap.timeline({ paused: true });
+
+  // 0.0s — Node A spring in
+  tl.fromTo("#nodeA",
+    { opacity: 0, scale: 0,    xPercent:-50, yPercent:-50 },
+    { opacity: 1, scale: 1.10, xPercent:-50, yPercent:-50, duration: 0.40, ease: "power3.out" },
+    0.0
+  );
+  tl.to("#nodeA", { scale: 1.0, duration: 0.15, ease: "power2.out" }, 0.40);
+
+  // 0.6s — connector path draws + strike-through draws across Node A
+  tl.to(cpath, { strokeDashoffset: 0, duration: 0.6, ease: "power2.inOut" }, 0.6);
+  tl.to(sline, { strokeDashoffset: 0, duration: 0.28, ease: "power2.out" }, 0.6);
+
+  // 0.8s — amber flash ring expanding from Node A
+  tl.fromTo("#pulse",
+    { opacity: 0.4, scale: 0 },
+    { opacity: 0,   scale: 2, duration: 0.3, ease: "power2.out" },
+    0.8
+  );
+
+  // 1.2s — Node B stronger spring
+  tl.fromTo("#nodeB",
+    { opacity: 0, scale: 0,    xPercent:-50, yPercent:-50 },
+    { opacity: 1, scale: 1.15, xPercent:-50, yPercent:-50, duration: 0.45, ease: "power3.out" },
+    1.2
+  );
+  tl.to("#nodeB", { scale: 1.0, duration: 0.20, ease: "power2.out" }, 1.65);
+
+  // 1.8s — caption fade + slide up
+  tl.to("#caption", { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 1.8);
+
+  // 2.5s — subtle continuous pulse on Node B border (yoyo, repeat -1)
+  tl.to("#nodeB", {
+    borderColor: "rgba(245,166,35,0.5)",
+    duration: 0.75,
+    ease: "sine.inOut",
+    repeat: -1,
+    yoyo: true
+  }, 2.5);
+
+  // Hold tail to land at 5s
+  tl.to({}, { duration: 0.5 }, 4.5);
+
+  // Expose timeline
+  window.__timelines = window.__timelines || {};
+  window.__timelines["scene-02-40to2min"] = tl;
+
+  // Controls
+  const tNow = document.getElementById('t-now');
+  tl.eventCallback("onUpdate", ()=>{ tNow.textContent = tl.time().toFixed(2); });
+
+  document.getElementById('play').onclick = ()=>{
+    if (tl.progress() >= 1) tl.restart();
+    else tl.play();
+  };
+  document.getElementById('restart').onclick = ()=>tl.restart();
+  document.getElementById('native11').onclick = ()=>{ toggleNative(); };
+  // RECORDER-MODE — expose timeline + fit so recorder.js can drive them
+  window.__sceneTimeline = tl;
+  window.__sceneDuration = 5;
+  window.fit = fit;
+  document.getElementById('rec').onclick = async ()=>{
+    const btn = document.getElementById('rec');
+    const old = btn.innerHTML;
+    btn.innerHTML = '<i class="ti ti-loader-2"></i> Wybierz tę kartę…';
+    btn.disabled = true;
+    try {
+      await window.flowbizRecorder.record({
+        timeline: window.__sceneTimeline,
+        duration: 5,
+        tail: 0.4,
+        fileName: 'scene-02-40to2min.webm'
+      });
+    } finally {
+      btn.innerHTML = old;
+      btn.disabled = false;
+    }
+  };
+  // FULLSIZE-MODE — fullscreen + hide chrome + auto-1:1 if screen >= 1920×1080
+  document.getElementById('fullsize').onclick = async ()=>{
+    document.body.classList.add('export');
+    try {
+      await document.documentElement.requestFullscreen({ navigationUI: 'hide' });
+    } catch(e){ /* ignore */ }
+    // After entering fullscreen, if the screen comfortably holds 1920×1080, engage native 1:1.
+    setTimeout(()=>{
+      if (window.innerWidth >= 1920 && window.innerHeight >= 1080) {
+        document.body.classList.add('native');
+      }
+      fit();
+    }, 80);
+  };
+  document.addEventListener('fullscreenchange', ()=>{
+    if (!document.fullscreenElement) {
+      document.body.classList.remove('export');
+      document.body.classList.remove('native');
+      fit();
+    }
+  });
+  document.getElementById('fs').onclick = ()=>{
+    if (!document.fullscreenElement) wrap.requestFullscreen?.();
+    else document.exitFullscreen?.();
+  };
+  document.addEventListener('keydown', e=>{
+    if (e.key === ' ' || e.code === 'Space'){
+      e.preventDefault();
+      if (tl.progress() >= 1) tl.restart();
+      else tl.paused() ? tl.play() : tl.pause();
+    }
+  });
+
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(()=>{
+    setTimeout(()=>tl.play(0), 250);
+  });
+</script>
+</body>
+</html>

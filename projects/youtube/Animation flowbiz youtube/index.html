@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>Open Mercato · Build with Matt — full cut</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&display=swap" rel="stylesheet" />
+<style>
+  :root{ --bg:#0A0A08; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:#000;color:#FAF8F0;font-family:"DM Sans",system-ui,sans-serif;overflow:hidden;-webkit-font-smoothing:antialiased}
+
+  .wrap{position:relative;width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;background:#000}
+  .stage{
+    position:absolute;
+    width:1920px;height:1080px;
+    background:var(--bg);
+    overflow:hidden;
+    transform-origin:top left;
+  }
+  iframe{
+    position:absolute;inset:0;width:1920px;height:1080px;border:0;
+    background:#0A0A08;
+  }
+  iframe.hidden{ visibility:hidden;opacity:0;pointer-events:none; }
+
+  .flash{
+    position:absolute;inset:0;background:#FAF8F0;opacity:0;
+    pointer-events:none;z-index:50;
+    transition:opacity 100ms linear;
+  }
+
+  /* Hidden clip metadata — picked up by downstream tooling if needed */
+  .clip{ display:none; }
+</style>
+</head>
+<body
+  data-composition-id="open-mercato-buildwithmatt"
+  data-width="1920"
+  data-height="1080"
+>
+  <div class="wrap" id="wrap">
+    <div class="stage" id="stage">
+      <iframe id="ifA"></iframe>
+      <iframe id="ifB" class="hidden"></iframe>
+      <div class="flash" id="flash"></div>
+    </div>
+  </div>
+
+  <!-- Clip manifest (start/duration/track-index for downstream tools) -->
+  <div id="manifest">
+    <div class="clip" data-id="scene-01" data-start="0.0"  data-duration="2.5" data-track-index="0"></div>
+    <div class="clip" data-id="scene-02" data-start="2.7"  data-duration="2.5" data-track-index="0"></div>
+    <div class="clip" data-id="scene-03" data-start="5.4"  data-duration="2.5" data-track-index="0"></div>
+    <div class="clip" data-id="scene-04" data-start="8.1"  data-duration="2.5" data-track-index="0"></div>
+    <div class="clip" data-id="scene-05" data-start="10.8" data-duration="2.5" data-track-index="0"></div>
+    <div class="clip" data-id="scene-06" data-start="13.5" data-duration="2.5" data-track-index="0"></div>
+    <div class="clip" data-id="scene-07" data-start="16.2" data-duration="4.0" data-track-index="0"></div>
+    <div class="clip" data-id="scene-08" data-start="20.4" data-duration="2.5" data-track-index="0"></div>
+    <div class="clip" data-id="scene-09" data-start="23.1" data-duration="4.5" data-track-index="0"></div>
+    <div class="clip" data-id="scene-10" data-start="27.8" data-duration="2.5" data-track-index="0"></div>
+    <div class="clip" data-id="scene-11" data-start="30.5" data-duration="2.5" data-track-index="0"></div>
+    <div class="clip" data-id="scene-12" data-start="33.2" data-duration="4.5" data-track-index="0"></div>
+    <div class="clip" data-id="scene-13" data-start="37.9" data-duration="2.5" data-track-index="0"></div>
+    <div class="clip" data-id="scene-14" data-start="40.6" data-duration="4.0" data-track-index="0"></div>
+    <div class="clip" data-id="scene-15" data-start="44.8" data-duration="2.5" data-track-index="0"></div>
+    <div class="clip" data-id="scene-16" data-start="47.5" data-duration="2.5" data-track-index="0"></div>
+  </div>
+
+<script>
+  const SCENES = [
+    { id:"scene-01", file:"compositions/s01-pol-roku.html",            duration:2.5 },
+    { id:"scene-02", file:"compositions/s02-8-miesiecy.html",          duration:2.5 },
+    { id:"scene-03", file:"compositions/s03-oplacalo-sie.html",        duration:2.5 },
+    { id:"scene-04", file:"compositions/s04-40-minut.html",            duration:2.5 },
+    { id:"scene-05", file:"compositions/s05-2-minuty.html",            duration:2.5 },
+    { id:"scene-06", file:"compositions/s06-wiedza-korytarzowa.html",  duration:2.5 },
+    { id:"scene-07", file:"compositions/s07-node-ryzyko.html",         duration:4.0 },
+    { id:"scene-08", file:"compositions/s08-20-30.html",               duration:2.5 },
+    { id:"scene-09", file:"compositions/s09-node-zmienne.html",        duration:4.5 },
+    { id:"scene-10", file:"compositions/s10-retool-sufit.html",        duration:2.5 },
+    { id:"scene-11", file:"compositions/s11-modify-nothing.html",      duration:2.5 },
+    { id:"scene-12", file:"compositions/s12-node-moduly.html",         duration:4.5 },
+    { id:"scene-13", file:"compositions/s13-z-systemem.html",          duration:2.5 },
+    { id:"scene-14", file:"compositions/s14-chat-erp.html",            duration:4.0 },
+    { id:"scene-15", file:"compositions/s15-gigantyczny-przeskok.html",duration:2.5 },
+    { id:"scene-16", file:"compositions/s16-cta.html",                 duration:2.5 },
+  ];
+  const TRANS = 0.2;
+
+  // Fit 1920×1080 → viewport
+  const stage = document.getElementById('stage');
+  const wrap  = document.getElementById('wrap');
+  function fit(){
+    const s = Math.min(wrap.clientWidth/1920, wrap.clientHeight/1080);
+    stage.style.transform = `scale(${s})`;
+    const w = 1920*s, h = 1080*s;
+    stage.style.left = ((wrap.clientWidth - w)/2)+'px';
+    stage.style.top  = ((wrap.clientHeight - h)/2)+'px';
+  }
+  window.addEventListener('resize', fit);
+  fit();
+
+  const ifA = document.getElementById('ifA');
+  const ifB = document.getElementById('ifB');
+  const flash = document.getElementById('flash');
+
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+
+  function loadInto(iframe, i){
+    if (i >= SCENES.length) return Promise.resolve();
+    return new Promise(res => {
+      iframe.onload = () => res();
+      iframe.src = SCENES[i].file + '?native=1&autoplay=0';
+    });
+  }
+
+  async function waitForTimeline(iframe){
+    const win = iframe.contentWindow;
+    const doc = iframe.contentDocument;
+    // Wait until scene-shell.js has registered the timeline.
+    for (let i = 0; i < 50 && !win.__sceneTimeline; i++) await wait(20);
+    // Mirror scene-shell's font-ready wait.
+    if (doc && doc.fonts) { try { await doc.fonts.ready; } catch(e){} }
+    await wait(60);
+    // ⚠️ GSAP timelines are thenables — returning one directly makes await
+    // wait for the animation to finish (forever, if paused). Wrap in a box.
+    return { tl: win.__sceneTimeline };
+  }
+
+  async function flashSwap(toIframe, fromIframe){
+    flash.style.opacity = '1';
+    await wait(100);                       // half of TRANS = 200ms
+    fromIframe.classList.add('hidden');
+    toIframe.classList.remove('hidden');
+    flash.style.opacity = '0';
+    await wait(100);
+  }
+
+  async function run(){
+    // Load scene 0 into A (front) and scene 1 into B (back), both paused.
+    ifA.classList.remove('hidden'); ifB.classList.add('hidden');
+    await loadInto(ifA, 0);
+    loadInto(ifB, 1);
+
+    for (let i = 0; i < SCENES.length; i++) {
+      const front = (i % 2 === 0) ? ifA : ifB;
+      const back  = (i % 2 === 0) ? ifB : ifA;
+
+      const { tl } = await waitForTimeline(front);
+      if (tl) { tl.pause(0); tl.play(0); }
+
+      await wait(SCENES[i].duration * 1000);
+
+      if (i < SCENES.length - 1) {
+        const flashP = flashSwap(back, front);
+        loadInto(front, i+2);   // preload scene i+2 into the iframe we're leaving
+        await flashP;
+      }
+    }
+  }
+
+  // Kick off after fonts + a tiny settle delay.
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(()=>{
+    setTimeout(run, 100);
+  });
+
+  // Restart on Space, in case you want to rewatch.
+  document.addEventListener('keydown', e => {
+    if (e.key === ' ' || e.code === 'Space') { e.preventDefault(); location.reload(); }
+  });
+</script>
+</body>
+</html>

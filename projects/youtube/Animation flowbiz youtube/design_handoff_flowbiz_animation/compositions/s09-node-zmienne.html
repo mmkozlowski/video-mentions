@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>Scene 09 — Node graph: zmienne · flowbiz.pl</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" />
+<link rel="stylesheet" href="scene-shell.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="recorder.js"></script>
+<script src="scene-shell.js"></script>
+<style>
+  .s09-bg-rays{ position:absolute;inset:0;z-index:0;pointer-events:none; }
+  .s09-lines{   position:absolute;inset:0;z-index:1;pointer-events:none; }
+
+  .s09-center{
+    position:absolute;left:960px;top:540px;
+    width:220px;height:220px;border-radius:50%;
+    border:3px solid #F5A623;background:rgba(245,166,35,0.06);
+    transform:translate(-50%,-50%) scale(0);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    z-index:4;
+  }
+  .s09-center .big{ font-size:72px;font-weight:900;color:#F5A623;letter-spacing:-0.02em;line-height:1; }
+  .s09-center .small{ font-size:20px;font-weight:500;color:#5A5450;margin-top:6px; }
+
+  .s09-ring{ position:absolute;left:0;top:0;width:100%;height:100%;z-index:2;pointer-events:none; }
+
+  .s09-sat{
+    position:absolute;
+    width:130px;height:130px;border-radius:16px;
+    border:1.5px solid rgba(245,166,35,0.2);
+    background:rgba(245,166,35,0.02);
+    transform:translate(-50%,-50%) scale(0);
+    opacity:0;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    z-index:3;
+  }
+  .s09-sat i{ font-size:44px;color:#F5A623;line-height:1;opacity:0;transform:translateY(4px); }
+  .s09-sat.dim i{ color:#3A3630; }
+  .s09-sat .lab{ font-size:20px;font-weight:500;color:#5A5450;margin-top:8px;opacity:0;transform:translateY(4px); }
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <div class="stage" id="stage">
+
+    <svg class="s09-bg-rays" viewBox="0 0 1920 1080" aria-hidden="true">
+      <!-- 8 radial guide lines from center, very subtle -->
+      <g stroke="rgba(245,166,35,0.04)" stroke-width="1">
+        <line x1="960" y1="540" x2="960"  y2="100"/>
+        <line x1="960" y1="540" x2="1271" y2="229"/>
+        <line x1="960" y1="540" x2="1400" y2="540"/>
+        <line x1="960" y1="540" x2="1271" y2="851"/>
+        <line x1="960" y1="540" x2="960"  y2="980"/>
+        <line x1="960" y1="540" x2="649"  y2="851"/>
+        <line x1="960" y1="540" x2="520"  y2="540"/>
+        <line x1="960" y1="540" x2="649"  y2="229"/>
+      </g>
+    </svg>
+
+    <svg class="s09-lines" id="s09lines" viewBox="0 0 1920 1080" aria-hidden="true">
+      <!-- 8 connector paths from center to each satellite — generated below in JS -->
+    </svg>
+
+    <div class="scene">
+      <div class="s09-center" id="center">
+        <div class="big">30</div>
+        <div class="small">zmiennych</div>
+      </div>
+      <div class="s09-ring" id="ring"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const NODES = [
+    { icon:"ti ti-chart-bar",            label:"Ilość" },
+    { icon:"ti ti-droplet",              label:"Kolor" },
+    { icon:"ti ti-pencil",               label:"Nadruk" },
+    { icon:"ti ti-clock",                label:"Czas prod." },
+    { icon:"ti ti-stack-2",              label:"Materiał" },
+    { icon:"ti ti-truck",                label:"Dostawa" },
+    { icon:"ti ti-tool",                 label:"Robocizna" },
+    { icon:"ti ti-dots-circle-horizontal", label:"+ 22 inne", dim:true },
+  ];
+
+  const CX = 960, CY = 540, R = 380;
+  // Clock positions: 12, 1:30, 3, 4:30, 6, 7:30, 9, 10:30  → angles in radians, starting top going CW
+  const ANGLES = [-90, -45, 0, 45, 90, 135, 180, 225].map(d => d * Math.PI / 180);
+
+  const ring = document.getElementById('ring');
+  const lines = document.getElementById('s09lines');
+
+  NODES.forEach((n, i) => {
+    const a = ANGLES[i];
+    const x = CX + Math.cos(a) * R;
+    const y = CY + Math.sin(a) * R;
+
+    // Connector path: cubic bezier, slight bulge midway
+    const mx = (CX + x) / 2, my = (CY + y) / 2;
+    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path.setAttribute("d", `M ${CX} ${CY} Q ${mx} ${my} ${x} ${y}`);
+    path.setAttribute("fill", "none");
+    path.setAttribute("stroke", "#F5A623");
+    path.setAttribute("stroke-opacity", "0.18");
+    path.setAttribute("stroke-width", "1.5");
+    path.setAttribute("pathLength", "1");
+    path.setAttribute("stroke-dasharray", "1");
+    path.setAttribute("stroke-dashoffset", "1");
+    path.dataset.line = i;
+    lines.appendChild(path);
+
+    // Satellite node
+    const sat = document.createElement('div');
+    sat.className = 's09-sat' + (n.dim ? ' dim' : '');
+    sat.style.left = x + 'px';
+    sat.style.top  = y + 'px';
+    sat.innerHTML = `<i class="${n.icon}"></i><div class="lab">${n.label}</div>`;
+    sat.dataset.idx = i;
+    ring.appendChild(sat);
+  });
+
+  const tl = gsap.timeline({ paused:true });
+
+  // 0.0s — central node spring
+  tl.fromTo("#center",
+    { scale:0 },
+    { scale:1.10, duration:0.50, ease:"power3.out" },
+    0.0
+  );
+  tl.to("#center", { scale:1.0, duration:0.15, ease:"power2.out" }, 0.50);
+
+  // 0.6s — lines draw
+  tl.to("#s09lines path",
+    { strokeDashoffset:0, duration:0.5, ease:"power2.inOut" },
+    0.6
+  );
+
+  // 1.1s — satellite nodes spring in
+  tl.to(".s09-sat",
+    { scale:1.08, opacity:1, duration:0.4, ease:"back.out(1.7)", stagger:0.07 },
+    1.1
+  );
+  tl.to(".s09-sat",
+    { scale:1.0, duration:0.18, ease:"power2.out", stagger:0.07 },
+    1.5
+  );
+
+  // 1.7s — icons fade
+  tl.to(".s09-sat i",   { opacity:1, y:0, duration:0.25, ease:"power2.out", stagger:0.05 }, 1.7);
+  // 2.0s — labels fade
+  tl.to(".s09-sat .lab",{ opacity:1, y:0, duration:0.25, ease:"power2.out", stagger:0.05 }, 2.0);
+
+  // 2.8s — slow ring rotation (continuous, yoyo)
+  tl.to("#ring", { rotation:4, duration:3.0, ease:"sine.inOut", yoyo:true, repeat:-1, transformOrigin:"960px 540px" }, 2.8);
+
+  // Hold tail to land at 4.5s
+  tl.to({}, { duration: 1.0 }, 3.5);
+
+  flowbizScene.init({
+    id: "scene-09",
+    duration: 4.5,
+    tail: 0.4,
+    label: "Scene 09 · Node graph: zmienne · 4.5s",
+    timeline: tl
+  });
+</script>
+</body>
+</html>
