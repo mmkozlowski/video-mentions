@@ -53,6 +53,22 @@ Nowe logo: wrzuć SVG do `assets/logos/`, dopisz kolor w `BRAND` w `build-logos-
 (**wersja czytelna na ciemnym tle** — GitHub, Notion i OpenAI mają oficjalne kolory prawie czarne
 i na scenie `#0A0A08` znikają), potem `./build-logos-css.sh`.
 
+### Te same znaki do ręcznego montażu
+
+`logos.css` działa tylko wewnątrz sceny HTML. Żeby położyć logo bezpośrednio na osi czasu:
+
+```bash
+node "Animation flowbiz youtube/assets/logos/export-png.mjs"
+```
+
+Wypluwa do **`final/logos/`** każdy znak w trzech wariantach — kolor marki, `-white`, `-amber` —
+jako przezroczysty PNG (dłuższy bok 512 px), plus kopię wektorów w `final/logos/svg/` i trzy
+arkusze poglądowe `_przeglad-*.png`. Kolor `-amber` (`#F5A623`) jest wtedy, gdy logo ma należeć
+do naszej planszy, a nie stać obok niej.
+
+Pułapka: **wnętrza znaków są przezroczyste, nie białe** (siatka Excela, litera N w Notion).
+Na ciemnym kadrze czytają się dobrze, na jasnym znak zrobi się pusty.
+
 ## Konwencja nazw
 
 `eNN-MM-slug.html` — `NN` numer odcinka, `MM` kolejność wstawki w odcinku.
