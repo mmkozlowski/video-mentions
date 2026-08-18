@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>OVERLAY — RAMKA FLOWBIZ (brandbook 2026) · flowbiz.pl</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" />
+<link rel="stylesheet" href="scene-shell.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="recorder.js"></script>
+<script src="scene-shell.js"></script>
+<style>
+  /* ==========================================================================
+     RAMKA FLOWBIZ — overlay chromakey na gadaną głowę.
+     Odpowiednik starego b-rolle/new.mp4, przeniesiony na paletę brandbooka.
+
+     Stara ramka była żółta (#F5C518-ish) z czarnym wordmarkiem. Brandbook
+     2026 nie ma takiej żółci. W konfiguracji CIEMNEJ (a ramka jest ciemna,
+     bo leży na obrazie z kamery) role kolorów się przestawiają: zieleń
+     schodzi do tła, a funkcję akcentu przejmuje bursztyn. Stąd:
+
+       bór     #183028  → powierzchnia belek
+       bursztyn#ECAB45  → wordmark, URL, kreska akcentu
+       mięta   #EDF6F1  → tekst podpisu
+       zieleń  #4B9C7C  → subtelna linia oddzielająca
+
+     Środek kadru zostaje pusty — po wycięciu zielonego widać przez niego wideo.
+     ========================================================================== */
+  :root{
+    --bor:#183028;
+    --bursztyn:#ECAB45;
+    --mieta:#EDF6F1;
+    --zielen:#4B9C7C;
+    --limonka:#85AC68;
+  }
+
+  .scene{ overflow:hidden }
+
+  /* belka pionowa — lewa krawędź kadru */
+  .bar-l{
+    position:absolute;left:0;top:0;bottom:0;width:96px;
+    background:var(--bor);z-index:6;
+    display:flex;align-items:center;justify-content:center;
+  }
+  /* cienka kreska brandowa na wewnętrznej krawędzi belki */
+  .bar-l::after{
+    content:"";position:absolute;right:0;top:0;bottom:0;width:3px;
+    background:linear-gradient(to bottom,var(--zielen),var(--limonka));
+    opacity:0.9;
+  }
+
+  .mark{
+    transform:rotate(-90deg);display:flex;align-items:center;gap:20px;
+    white-space:nowrap;opacity:0;
+  }
+  .mark .wd{
+    font-size:40px;font-weight:800;color:var(--bursztyn);letter-spacing:-0.02em;
+  }
+  .mark i{ font-size:38px;color:var(--bursztyn);transform:rotate(90deg) }
+
+  /* belka pozioma — dolna krawędź kadru */
+  .bar-b{
+    position:absolute;left:96px;right:0;bottom:0;height:92px;
+    background:var(--bor);z-index:6;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 46px 0 40px;
+  }
+  .bar-b::before{
+    content:"";position:absolute;left:0;right:0;top:0;height:3px;
+    background:linear-gradient(to right,var(--zielen),var(--limonka));
+    opacity:0.9;
+  }
+
+  .cap{
+    font-size:28px;font-weight:600;color:var(--mieta);
+    letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap;
+  }
+  /* kursor maszyny do pisania — miga tylko, gdy tekst się dopisuje */
+  .cap .cur{
+    display:inline-block;width:3px;height:26px;margin-left:6px;
+    background:var(--bursztyn);vertical-align:-4px;opacity:0;
+  }
+
+  .url{
+    font-size:28px;font-weight:800;color:var(--bursztyn);
+    letter-spacing:0.01em;white-space:nowrap;opacity:0;
+  }
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <div class="stage" id="stage">
+    <div class="scene">
+      <div class="bar-l" id="barL">
+        <div class="mark" id="mark">
+          <i class="ti ti-rocket"></i>
+          <span class="wd">flowbiz</span>
+        </div>
+      </div>
+
+      <div class="bar-b" id="barB">
+        <div class="cap"><span id="capTxt"></span><span class="cur" id="cur"></span></div>
+        <div class="url" id="url">flowbiz.pl/bezplatna-konsultacja</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const LINES = [
+    "Sprawiamy, że praca staje się prosta",
+    "Umów się na bezpłatną konsultację",
+  ];
+
+  const capTxt = document.getElementById('capTxt');
+  const cur    = document.getElementById('cur');
+
+  // Maszyna do pisania: proxy z licznikiem znaków, nie osobny tween na literę.
+  // Dzięki temu tempo jest równe niezależnie od długości zdania.
+  function typeIn(tl, text, at, dur){
+    const p = { n: 0 };
+    tl.to(p, {
+      n: text.length, duration: dur, ease: "none",
+      onStart:  () => { cur.style.opacity = 1; },
+      onUpdate: () => { capTxt.textContent = text.slice(0, Math.round(p.n)); },
+    }, at);
+  }
+  function typeOut(tl, text, at, dur){
+    const p = { n: text.length };
+    tl.to(p, {
+      n: 0, duration: dur, ease: "none",
+      onUpdate: () => { capTxt.textContent = text.slice(0, Math.round(p.n)); },
+    }, at);
+  }
+
+  const tl = gsap.timeline({ paused:true });
+
+  // belki wjeżdżają z krawędzi kadru
+  tl.from('#barL', { x:-96, duration:0.55, ease:"power3.out" }, 0.0);
+  tl.from('#barB', { y: 92, duration:0.55, ease:"power3.out" }, 0.12);
+  tl.to('#mark',   { opacity:1, duration:0.45, ease:"power2.out" }, 0.55);
+
+  // migający kursor przez cały czas pisania
+  tl.to(cur, { opacity:0, duration:0.42, repeat:20, yoyo:true, ease:"steps(1)" }, 0.85);
+
+  typeIn (tl, LINES[0], 0.90, 1.75);
+  typeOut(tl, LINES[0], 4.55, 0.60);
+  typeIn (tl, LINES[1], 5.35, 1.60);
+
+  // URL dochodzi dopiero przy wezwaniu do działania, nie od początku
+  tl.to('#url',   { opacity:1, duration:0.40, ease:"power2.out" }, 6.60);
+  tl.from('#url', { x:26, duration:0.40, ease:"power2.out" }, 6.60);
+
+  // kursor gaśnie, gdy tekst już stoi
+  tl.to(cur, { opacity:0, duration:0.25 }, 7.10);
+
+  const DURATION = 10.0;
+  tl.to({}, { duration:0.4 }, DURATION - 0.4);
+
+  flowbizScene.init({
+    id: "overlay-ramka",
+    duration: DURATION,
+    tail: 0.4,
+    label: "OVERLAY · RAMKA FLOWBIZ (brandbook 2026) · " + DURATION.toFixed(1) + "s",
+    timeline: tl
+  });
+</script>
+</body>
+</html>

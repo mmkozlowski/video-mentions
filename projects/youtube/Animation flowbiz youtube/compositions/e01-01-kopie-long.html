@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>E01 · 01 LONG — TEN SAM PLIK, TRZY WERSJE · flowbiz.pl</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" />
+<link rel="stylesheet" href="scene-shell.css" />
+<link rel="stylesheet" href="logos.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="recorder.js"></script>
+<script src="scene-shell.js"></script>
+<style>
+  /* KARTA PLIKU — kompaktowa, bo strefa „hero" i rząd docelowy muszą
+     zmieścić się w kadrze jedna nad drugą. Gdy karta rodzi się na środku
+     w powiększeniu, nie może zasłaniać tej, która już stoi w rzędzie. */
+  .row{ position:absolute;inset:0 }
+  .file{
+    position:absolute;top:640px;width:440px;
+    background:#0D0D0B;border:1.5px solid rgba(245,166,35,0.26);
+    opacity:0;
+  }
+  .file.hero{ z-index:8;border-color:#F5A623;box-shadow:0 0 70px rgba(245,166,35,0.18) }
+  .file.dim{ opacity:0.40 }
+
+  .fh{
+    display:flex;align-items:center;gap:13px;padding:16px 22px;
+    font-size:27px;font-weight:700;color:#FAF8F0;letter-spacing:-0.01em;
+    border-bottom:1px solid rgba(245,166,35,0.18);
+  }
+  .fh .logo{ font-size:30px }
+
+  .fr{
+    display:flex;align-items:center;gap:14px;padding:13px 22px;
+    border-bottom:1px solid rgba(245,166,35,0.12);
+  }
+  .fr .av{
+    width:44px;height:44px;border-radius:50%;flex:none;
+    background:#0A0A08;border:2px solid #F5A623;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .fr .av i{ font-size:24px;color:#F5A623 }
+  .fr .rn{ font-size:21px;font-weight:800;letter-spacing:0.16em;color:#F5A623 }
+
+  .col{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:11px 22px;font-size:25px;font-weight:600;color:#FAF8F0;opacity:0;
+    border-bottom:1px solid rgba(245,166,35,0.07);
+  }
+  .col:last-child{ border-bottom:none }
+  .col i{ font-size:25px;color:#FAF8F0 }
+  .col .dash{ display:none;font-size:25px;color:#3A3630 }
+  /* kolumna, której dana rola NIE widzi */
+  .col.off .k{ color:#3A3630 }
+  .col.off i{ display:none }
+  .col.off .dash{ display:block }
+
+  /* duch — kopia wysuwa się z pliku, który już stoi w rzędzie */
+  .ghost{
+    position:absolute;top:640px;width:440px;height:354px;
+    border:2px dashed rgba(245,166,35,0.55);background:rgba(245,166,35,0.05);
+    opacity:0;z-index:7;pointer-events:none;
+  }
+
+  .ask{
+    position:absolute;left:0;right:0;top:772px;text-align:center;
+    font-size:44px;font-weight:700;color:#FAF8F0;letter-spacing:-0.01em;z-index:9;opacity:0;
+  }
+  .ans{
+    position:absolute;left:0;right:0;top:856px;text-align:center;
+    font-size:78px;font-weight:900;color:#F5A623;letter-spacing:-0.02em;z-index:9;opacity:0;
+  }
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <div class="stage" id="stage">
+    <svg class="grid" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+      <defs><pattern id="g100" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+        <path d="M100 0 L0 0 0 100" fill="none" stroke="rgba(245,166,35,0.04)" stroke-width="1"/>
+      </pattern></defs>
+      <rect width="1920" height="1080" fill="url(#g100)"/>
+    </svg>
+
+    <div class="scene">
+      <div class="row" id="row"><div class="ghost" id="ghost"></div></div>
+      <div class="ask" id="ask">A kto wprowadza te dane?</div>
+      <div class="ans" id="ans">WSZYSCY TRZEJ</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const COLUMNS = ["Klient","Ilość","Cena","Marża"];
+  const FILES = [
+    { name:"zamowienia.xlsx",       role:"WŁAŚCICIEL", icon:"ti ti-crown",      },
+    { name:"zamowienia_v2.xlsx",    role:"HANDLOWIEC", icon:"ti ti-user-check", },
+    { name:"zamowienia_biuro.xlsx", role:"BIURO",      icon:"ti ti-building",   },
+  ];
+
+  // Strefa „hero" siedzi NAD rzędem docelowym, nie na nim — inaczej karta
+  // rodząca się na środku zasłaniałaby tę zaparkowaną w środkowym slocie.
+  const CX = [480, 960, 1440];
+  const W = 440, TOP = 640, H = 354;
+  const HERO_SCALE = 1.32, HERO_CX = 960, HERO_CY = 360;
+
+  const row   = document.getElementById('row');
+  const ghost = document.getElementById('ghost');
+
+  FILES.forEach((f, i) => {
+    const el = document.createElement('div');
+    el.className = 'file'; el.id = 'f' + i;
+    el.style.left = (CX[i] - W/2) + 'px';
+    el.innerHTML =
+      '<div class="fh"><i class="logo logo-excel"></i>' + f.name + '</div>' +
+      '<div class="fr"><div class="av"><i class="' + f.icon + '"></i></div>' +
+        '<div class="rn">' + f.role + '</div></div>' +
+      COLUMNS.map((c, j) =>
+        '<div class="col k' + i + '" id="c' + i + '_' + j + '">' +
+          '<span class="k">' + c + '</span>' +
+          '<i class="ti ti-check"></i><span class="dash">—</span>' +
+        '</div>').join('');
+    row.insertBefore(el, ghost);
+  });
+
+  const heroX = i => HERO_CX - CX[i];
+  const heroY = HERO_CY - (TOP + H/2);
+
+  const tl = gsap.timeline({ paused:true });
+
+  // ── BEAT 1-2 · karta tytułowa, potem ucieka w górę jako nagłówek ────────
+  flowbizScene.titleCard({ tl, text:"TEN SAM PLIK. TRZY WERSJE." });
+
+  // ── BEAT 3-5 · trzy pliki, każdy najpierw na środku ─────────────────────
+  const BEATS = [
+    { born: 3.70, rows: 4.10, gray:[],                    park: 6.55 },
+    { born: 8.00, rows: 8.36, gray:[[9.60,3]],            park:10.85 },
+    { born:12.30, rows:12.66, gray:[[13.90,2],[14.30,3]], park:15.35 },
+  ];
+
+  FILES.forEach((f, i) => {
+    const b = BEATS[i];
+
+    if (i > 0) {
+      tl.set(ghost, { left: CX[i-1] - W/2, x:0, y:0, scale:1, opacity:0 }, b.born - 0.78);
+      tl.to(ghost,  { opacity:1, duration:0.22, ease:"power2.out" }, b.born - 0.75);
+      tl.to(ghost,  { x: HERO_CX - CX[i-1], y: heroY, scale: HERO_SCALE,
+                      duration:0.62, ease:"power2.inOut" }, b.born - 0.72);
+      tl.to(ghost,  { opacity:0, duration:0.20, ease:"power2.in" }, b.born - 0.12);
+    }
+
+    gsap.set('#f' + i, { x: heroX(i), y: heroY, scale: HERO_SCALE });
+    tl.call(() => {
+      document.getElementById('f' + i).classList.add('hero');
+      document.querySelectorAll('.file').forEach((n, j) => { if (j < i) n.classList.add('dim'); });
+    }, null, b.born);
+    tl.to('#f' + i,   { opacity:1, duration:0.34, ease:"power2.out" }, b.born);
+    tl.from('#f' + i, { scale: HERO_SCALE * 0.86, duration:0.44, ease:"back.out(1.6)" }, b.born);
+
+    tl.to('.k' + i,   { opacity:1, duration:0.26, stagger:0.16, ease:"power2.out" }, b.rows);
+    tl.from('.k' + i, { x:-22, duration:0.26, stagger:0.16, ease:"power2.out" }, b.rows);
+
+    b.gray.forEach(([t, j]) => {
+      tl.call(() => document.getElementById('c' + i + '_' + j).classList.add('off'), null, t);
+      tl.fromTo('#c' + i + '_' + j, { scale:1 },
+        { scale:0.96, duration:0.15, yoyo:true, repeat:1, ease:"power2.inOut" }, t);
+    });
+
+    tl.to('#f' + i, { x:0, y:0, scale:1, duration:0.88, ease:"power3.inOut" }, b.park);
+    tl.call(() => {
+      document.getElementById('f' + i).classList.remove('hero');
+      document.querySelectorAll('.file').forEach(n => n.classList.remove('dim'));
+    }, null, b.park + 0.62);
+  });
+
+  // ── BEAT 6 · rząd podjeżdża, robiąc miejsce na pytanie ──────────────────
+  gsap.set(row, { transformOrigin:"960px 640px" });
+  tl.to(row, { y:-268, scale:0.94, duration:0.90, ease:"power3.inOut" }, 16.40);
+
+  // ── BEAT 7 · puenta ─────────────────────────────────────────────────────
+  tl.to('#ask',   { opacity:1, duration:0.42, ease:"power3.out" }, 17.25);
+  tl.from('#ask', { y:20, duration:0.42, ease:"power3.out" }, 17.25);
+
+  tl.to('#ans',   { opacity:1, duration:0.46, ease:"back.out(1.6)" }, 18.15);
+  tl.from('#ans', { scale:0.82, duration:0.46, ease:"back.out(1.6)" }, 18.15);
+  tl.to('.file',  { borderColor:"#F5A623", duration:0.5, stagger:0.09, ease:"power2.out" }, 18.25);
+
+  const DURATION = 19.8;
+  tl.to({}, { duration:0.4 }, DURATION - 0.4);
+
+  flowbizScene.init({
+    id: "e01-01-long",
+    duration: DURATION,
+    tail: 0.4,
+    label: "E01 · 01 LONG · TEN SAM PLIK, TRZY WERSJE · " + DURATION.toFixed(1) + "s",
+    timeline: tl
+  });
+</script>
+</body>
+</html>

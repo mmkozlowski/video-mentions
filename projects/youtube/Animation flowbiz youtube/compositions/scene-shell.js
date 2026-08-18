@@ -34,6 +34,40 @@
     document.body.appendChild(c);
   }
 
+
+  /* Karta tytułowa dla długich wersji wstawek.
+   *   flowbizScene.titleCard({ tl, text:'TEN SAM PLIK. TRZY WERSJE.' })
+   * Zwraca element, żeby scena mogła dołożyć własne tweeny.
+   *
+   * Domyślne czasy dają ~1,9 s czytania na pełnym ekranie zanim napis
+   * ucieknie w górę — tyle trzeba, żeby dało się to wyciąć jako osobny kadr.
+   */
+  function titleCard(opts){
+    const {
+      tl, text,
+      at = 0.15,          // kiedy napis wjeżdża
+      fly = 2.60,         // kiedy ucieka do nagłówka
+      big = 96,           // px na pełnym ekranie (~70% szerokości kadru)
+      small = 23,         // px w nagłówku
+      top = 56,           // docelowa pozycja nagłówka
+      centerY = 500,      // gdzie napis stoi jako karta tytułowa
+      dur = 0.95,
+    } = opts;
+
+    const el = document.createElement('div');
+    el.className = 'scene-title';
+    el.style.top = top + 'px';
+    el.innerHTML = '<span class="chroma-plate amber">' + text + '</span>';
+    document.querySelector('.scene').appendChild(el);
+
+    gsap.set(el, { fontSize: big, letterSpacing: '0.012em', y: centerY - top });
+    tl.to(el,   { opacity:1, duration:0.55, ease:'power2.out' }, at);
+    tl.from(el, { scale:0.90, duration:0.70, ease:'back.out(1.4)' }, at);
+    tl.to(el,   { y:0, fontSize:small, letterSpacing:'0.24em',
+                  duration:dur, ease:'power3.inOut' }, fly);
+    return el;
+  }
+
   function init(opts){
     const { id, duration, tail = 0.4, label = id, timeline } = opts;
 
@@ -164,5 +198,5 @@
     });
   }
 
-  global.flowbizScene = { init };
+  global.flowbizScene = { init, titleCard };
 })(window);
