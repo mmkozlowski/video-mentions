@@ -125,4 +125,27 @@ if [ -z "$1" ] || [ "$1" = "e01-01-kopie-long" ]; then
     "0.20:pop,2.60:whoosh,3.70:pop,4.10:tick,4.42:tick,6.55:whoosh,7.25:whoosh,8.00:pop,8.36:tick,8.68:tick,9.60:error,10.85:whoosh,11.55:whoosh,12.30:pop,12.66:tick,12.98:tick,13.90:error,14.30:error,15.35:whoosh,16.40:whoosh,17.25:klik,18.15:thud"
 fi
 
+
+# ── eksperymenty ────────────────────────────────────────────────────────────
+# Nie da się ich wyprowadzić ze scen krótkich, bo nie mają odpowiedników —
+# to nowe układy. Czasy liczone ręcznie z lead + t/slow każdej sceny.
+EXP=(
+"x01-split-co-kupujesz|13.0|0.20:pop,2.60:whoosh,4.18:pop,5.12:tick,6.54:whoosh,7.65:pop,8.59:tick,10.50:thud"
+"x02-kinetyka-cache|14.0|0.10:pop,1.65:pop,3.05:pop,4.60:pop,6.05:pop,7.50:error,9.40:pop,10.70:thud"
+"x03-zegar-szesc-godzin|15.0|0.20:pop,2.60:whoosh,4.13:klik,5.47:klik,6.81:klik,8.15:klik,9.49:klik,10.83:klik,12.60:thud"
+"x04-venn-dostep|13.0|0.20:pop,2.60:whoosh,4.04:pop,5.04:pop,7.19:pop,8.97:pop,10.40:thud"
+"x05-izo-warstwy|11.0|0.20:pop,2.60:whoosh,4.08:pop,5.03:pop,5.98:pop,6.93:pop,8.00:whoosh,9.60:thud"
+"x06-kalkulator-40min|12.0|0.20:pop,2.60:whoosh,4.03:pop,5.12:klik,5.63:pop,6.72:line,8.80:pop,9.90:thud"
+"x07-terminal-granice|14.0|0.20:pop,2.60:whoosh,4.45:tick,6.34:klik,7.28:klik,8.22:error,9.17:pop,10.11:klik,11.60:thud"
+"x08-graf-fundament|12.0|0.20:pop,2.60:whoosh,4.08:pop,4.84:pop,5.59:pop,6.35:pop,7.20:line,8.50:pop,10.00:thud"
+"x09-miernik-trafnosci|12.0|0.20:pop,2.60:whoosh,4.03:tick,5.15:line,6.53:pop,8.24:error,9.60:thud"
+"x10-rozlewanie-modulu|14.0|0.20:pop,2.60:whoosh,5.00:whoosh,6.23:whoosh,7.45:whoosh,8.55:error,9.83:thud,11.50:pop"
+)
+
+for row in "${EXP[@]}"; do
+  IFS='|' read -r name dur events <<< "$row"
+  if [ -n "$1" ] && [ "$1" != "$name" ]; then continue; fi
+  build "$name" "$dur" "$events"
+done
+
 echo "── gotowe"

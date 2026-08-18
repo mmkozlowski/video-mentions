@@ -16,13 +16,13 @@
   /* EKSPERYMENT: układ radialny zamiast liniowego.
      Warsztat to nie jest ciąg kroków — to jeden dzień, w którym wskazówka
      obraca się przez sześć rozmów. Tarcza mówi to bez podpisu. */
-  .dial{ position:absolute;left:50%;top:520px;transform:translate(-50%,-50%);width:520px;height:520px }
+  .dial{ position:absolute;left:50%;top:520px;transform:translate(-50%,-50%);width:660px;height:660px }
   .ring{ position:absolute;inset:0;border:2px solid rgba(245,166,35,0.20);border-radius:50% }
   .prog{ position:absolute;inset:0 }
   .hand{
-    position:absolute;left:50%;top:50%;width:4px;height:212px;
+    position:absolute;left:50%;top:50%;width:4px;height:270px;
     background:linear-gradient(to top,#F5A623,rgba(245,166,35,0.25));
-    transform-origin:2px 212px;transform:translate(-2px,-212px) rotate(0deg);
+    transform-origin:2px 270px;transform:translate(-2px,-270px) rotate(0deg);
     box-shadow:0 0 20px rgba(245,166,35,0.5);
   }
   .hub{
@@ -65,10 +65,10 @@
     <div class="scene">
       <div class="dial">
         <div class="ring"></div>
-        <svg class="prog" viewBox="0 0 520 520">
-          <circle id="arc" cx="260" cy="260" r="259" fill="none"
+        <svg class="prog" viewBox="0 0 660 660">
+          <circle id="arc" cx="330" cy="330" r="329" fill="none"
                   stroke="#F5A623" stroke-width="3" stroke-linecap="round"
-                  transform="rotate(-90 260 260)"/>
+                  transform="rotate(-90 330 330)"/>
         </svg>
         <div class="hand" id="hand"></div>
         <div class="hub"><div class="h" id="hh">0</div><div class="u">GODZIN</div></div>
@@ -88,7 +88,7 @@
     { ic:"ti ti-help-circle",   nm:"decyzje",     qn:"co zostaje otwarte" },
   ];
 
-  const CX = 960, CY = 520, R = 396;   // promień, na którym siedzą etykiety
+  const CX = 960, CY = 520, R = 402;   // promień, na którym siedzą etykiety
   const scene = document.querySelector('.scene');
 
   SLOTS.forEach((s, i) => {
@@ -104,7 +104,7 @@
   });
 
   const arc = document.getElementById('arc');
-  const LEN = 2 * Math.PI * 259;
+  const LEN = 2 * Math.PI * 329;
   gsap.set(arc, { strokeDasharray: LEN, strokeDashoffset: LEN });
 
   const hh = document.getElementById('hh');
