@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>E03 LONG · 05 — SŁOWNIK POJĘĆ · flowbiz.pl</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" />
+<link rel="stylesheet" href="scene-shell.css" />
+<link rel="stylesheet" href="logos.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="recorder.js"></script>
+<script src="scene-shell.js"></script>
+<style>
+  .eyebrow{
+    position:absolute;left:0;right:0;top:92px;text-align:center;
+    font-size:23px;font-weight:600;letter-spacing:0.24em;z-index:9;opacity:0;
+  }
+
+  /* SŁOWO — jedno, w centrum, nieruchome */
+  .word{
+    position:absolute;left:0;right:0;top:176px;text-align:center;z-index:8;opacity:0;
+  }
+  .word .w{
+    display:inline-block;background:#13110D;border:2px solid #F5A623;
+    box-shadow:0 0 58px rgba(245,166,35,0.20);
+    padding:22px 60px;font-size:78px;font-weight:900;color:#F5A623;letter-spacing:-0.03em;
+  }
+  .word .sub{ font-size:25px;font-weight:600;color:#6E6862;margin-top:16px;letter-spacing:0.04em }
+
+  /* trzy odczytania tego samego slowa */
+  .bub{
+    position:absolute;top:492px;width:520px;margin-left:-260px;
+    background:#0D0D0B;border:1.5px solid rgba(245,166,35,0.24);
+    padding:26px 30px 28px;opacity:0;transform:scale(0.9);
+  }
+  .bub::before{
+    content:"";position:absolute;top:-11px;left:50%;margin-left:-11px;
+    width:20px;height:20px;background:#0D0D0B;
+    border-left:1.5px solid rgba(245,166,35,0.24);
+    border-top:1.5px solid rgba(245,166,35,0.24);
+    transform:rotate(45deg);
+  }
+  .bub .who{
+    display:flex;align-items:center;gap:12px;
+    font-size:26px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#F5A623;
+    padding-bottom:16px;margin-bottom:18px;border-bottom:1px solid rgba(245,166,35,0.18);
+  }
+  .bub .who i{ font-size:28px }
+  .bub .def{ font-size:31px;font-weight:600;line-height:1.34;color:#FAF8F0 }
+  .bub.clash{ border-color:#C0553A;box-shadow:0 0 46px rgba(192,85,58,0.20) }
+  .bub.clash::before{ border-left-color:#C0553A;border-top-color:#C0553A }
+  .bub.clash .who{ color:#C0553A;border-bottom-color:rgba(192,85,58,0.3) }
+
+  .final{
+    position:absolute;left:0;right:0;top:844px;text-align:center;
+    font-size:50px;font-weight:900;color:#C0553A;letter-spacing:-0.02em;z-index:9;opacity:0;
+  }
+  .final .s{ display:block;font-size:31px;font-weight:600;color:#FAF8F0;opacity:0.62;margin-top:14px;letter-spacing:0 }
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <div class="stage" id="stage">
+    <svg class="grid" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+      <defs><pattern id="g100" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+        <path d="M100 0 L0 0 0 100" fill="none" stroke="rgba(245,166,35,0.04)" stroke-width="1"/>
+      </pattern></defs>
+      <rect width="1920" height="1080" fill="url(#g100)"/>
+    </svg>
+
+    <div class="scene">
+
+      <div class="word" id="word">
+        <div class="w">„zamówienie"</div>
+        <div class="sub"><span class="chroma-plate">jedno słowo, trzy różne rzeczy</span></div>
+      </div>
+
+      <div class="bub b" id="b0" style="left:340px">
+        <div class="who"><i class="ti ti-user-check"></i>u handlowca</div>
+        <div class="def">to, co klient obiecał kupić</div>
+      </div>
+      <div class="bub b" id="b1" style="left:960px">
+        <div class="who"><i class="ti ti-building"></i>w administracji</div>
+        <div class="def">pozycja do wprowadzenia i rozdzielenia</div>
+      </div>
+      <div class="bub b" id="b2" style="left:1580px">
+        <div class="who"><i class="ti ti-tool"></i>na produkcji</div>
+        <div class="def">zlecenie na konkretny wyrób</div>
+      </div>
+
+      <div class="final" id="final">Jak tego nie spiszesz<span class="s">— każdy zbuduje coś innego.</span></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const beats = gsap.timeline();
+  const scene = document.querySelector('.scene');
+  beats.to('#word',    { opacity:1, duration:0.46, ease:"back.out(1.5)" }, 0.20);
+  beats.from('#word',  { scale:0.86, duration:0.46, ease:"back.out(1.5)" }, 0.20);
+
+  // Kamera trąca w bok przy każdym odczytaniu — scena nie stoi, ale porównanie
+  // zostaje możliwe, bo wszystkie trzy dymki caly czas sa w kadrze.
+  const NUDGE = [140, 0, -140];
+  [0, 1, 2].forEach(i => {
+    const t = 0.95 + i * 0.90;
+    beats.to(scene, { x: NUDGE[i], duration:0.56, ease:"power2.inOut" }, t);
+    beats.to('#b' + i, { opacity:1, scale:1, duration:0.42, ease:"back.out(1.7)" }, t + 0.16);
+  });
+
+  // 3.70 — trzy definicje naraz w kadrze, kamera wraca na srodek
+  beats.to(scene, { x:0, duration:0.55, ease:"power2.inOut" }, 3.70);
+
+  // 4.05 — zderzenie: to samo slowo, trzy rozne znaczenia
+  beats.call(() => document.querySelectorAll('.bub').forEach(n => n.classList.add('clash')), null, 4.05);
+  beats.to('.bub.b', { y:-14, duration:0.16, yoyo:true, repeat:1, stagger:0.06, ease:"power2.inOut" }, 4.05);
+  beats.to('#word .w', { borderColor:"#C0553A", color:"#C0553A", duration:0.4, ease:"power2.out" }, 4.10);
+
+  beats.to('#final', { opacity:1, duration:0.44, ease:"power3.out" }, 4.62);
+  beats.from('#final', { y:24, duration:0.44, ease:"power3.out" }, 4.62);
+
+  const BEATS_DUR = 5.9;
+  beats.timeScale(0.6);
+
+  // oś główna: najpierw karta tytułowa, potem spowolnione beaty oryginału
+  const tl = gsap.timeline({ paused:true });
+  flowbizScene.titleCard({ tl, text:"SŁOWNIK POJĘĆ — WSZYSCY GO POMIJAJĄ" });
+  tl.add(beats, 3.9);
+
+  const DURATION = 3.9 + BEATS_DUR / 0.6 + 2.6;
+  beats.to({}, { duration:0.4 }, DURATION - 0.4);
+
+  flowbizScene.init({
+    id: "e03-05-long",
+    duration: DURATION,
+    tail: 0.4,
+    label: "E03 LONG · 05 · SŁOWNIK POJĘĆ · " + DURATION.toFixed(1) + "s",
+    timeline: tl
+  });
+</script>
+</body>
+</html>

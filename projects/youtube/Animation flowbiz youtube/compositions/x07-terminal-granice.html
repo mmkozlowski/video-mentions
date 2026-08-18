@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>X07 — TERMINAL: STRUKTURA ODPOWIADA (odc. 08) · flowbiz.pl</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="scene-shell.css" />
+<link rel="stylesheet" href="logos.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="recorder.js"></script>
+<script src="scene-shell.js"></script>
+<style>
+  /* EKSPERYMENT: pełnoekranowy terminal zamiast planszy z cytatami.
+     e08-07 opowiada to kartami. Tutaj widz patrzy na to, co realnie widzi
+     programista — dialog w konsoli. Wstawka niesie ten sam sens, ale
+     wygląda jak dowód, nie jak ilustracja. */
+  .term{
+    position:absolute;left:150px;right:150px;top:150px;bottom:186px;
+    background:#0D0D0B;border:1.5px solid rgba(245,166,35,0.26);
+    display:flex;flex-direction:column;opacity:0;
+  }
+  .bar{
+    display:flex;align-items:center;gap:12px;padding:16px 24px;
+    border-bottom:1px solid rgba(245,166,35,0.18);
+    font-size:21px;font-weight:600;color:#5A5450;letter-spacing:0.06em;
+  }
+  .bar .dot{ width:12px;height:12px;border-radius:50%;background:#2E2C28 }
+  .bar .who{ margin-left:auto;display:flex;align-items:center;gap:10px;color:#FAF8F0 }
+  .bar .who .logo{ font-size:22px }
+
+  .body{ padding:26px 34px;font-family:"JetBrains Mono",monospace;flex:1 }
+  .ln{ font-size:27px;line-height:1.62;opacity:0;white-space:pre-wrap }
+  .ln .p{ color:#6BAA6B;font-weight:800 }     /* zachęta użytkownika */
+  .ln.usr{ color:#FAF8F0 }
+  .ln.sys{ color:#8A837C }
+  .ln.warn{ color:#F5A623;font-weight:600 }
+  .ln.stop{ color:#C0553A;font-weight:700 }
+  .ln.ok{ color:#6BAA6B;font-weight:600 }
+  .cur{ display:inline-block;width:13px;height:26px;background:#F5A623;vertical-align:-4px;margin-left:4px }
+
+  .final{
+    position:absolute;left:0;right:0;bottom:62px;text-align:center;
+    font-size:50px;font-weight:900;color:#F5A623;letter-spacing:-0.02em;z-index:9;opacity:0;
+  }
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <div class="stage" id="stage">
+    <svg class="grid" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+      <defs><pattern id="g100" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+        <path d="M100 0 L0 0 0 100" fill="none" stroke="rgba(245,166,35,0.04)" stroke-width="1"/>
+      </pattern></defs>
+      <rect width="1920" height="1080" fill="url(#g100)"/>
+    </svg>
+
+    <div class="scene">
+      <div class="term" id="term">
+        <div class="bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span>moduł: karty techniczne</span>
+          <span class="who"><i class="logo logo-claude"></i>Claude<i class="logo logo-github" style="margin-left:14px"></i>repo</span>
+        </div>
+        <div class="body" id="body"></div>
+      </div>
+      <div class="final" id="final">Nie zaczyna od pustej kartki.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Dialog jest skrótem tego, co mówi segment 3 — struktura nie wykonuje
+  // polecenia w ciemno, tylko odpowiada trzema rzeczami po kolei.
+  const LINES = [
+    { cls:"usr",  txt:"> zbuduj moduł kart technicznych", type:true },
+    { cls:"sys",  txt:"  czytam AGENTS.md, .ai/specs/, modules/" },
+    { cls:"warn", txt:"  ⚠ brakuje: właściciel rekordu, polityka wersji, kto zatwierdza odstępstwo" },
+    { cls:"stop", txt:"  ⨯ nie zrobię: zapis do bazy z pominięciem uprawnień" },
+    { cls:"ok",   txt:"  ✓ zrób tak: encja → rola → uprawnienie → moduł" },
+    { cls:"sys",  txt:"  spec gotowa. dopiero teraz kod." },
+  ];
+
+  const body = document.getElementById('body');
+  LINES.forEach((l, i) => {
+    const el = document.createElement('div');
+    el.className = 'ln ' + l.cls; el.id = 'l' + i;
+    el.textContent = l.type ? "" : l.txt;
+    if (l.type) el.innerHTML = '<span id="typed"></span><span class="cur" id="cur"></span>';
+    body.appendChild(el);
+  });
+
+  const beats = gsap.timeline();
+  beats.to('#term', { opacity:1, duration:0.42, ease:"power2.out" }, 0.0);
+  beats.from('#term', { scale:0.97, duration:0.5, ease:"power2.out" }, 0.0);
+
+  // pierwsza linia wpisuje się znak po znaku — to człowiek pisze polecenie
+  const typed = document.getElementById('typed');
+  const cmd = LINES[0].txt, prog = { n:0 };
+  beats.to('#l0', { opacity:1, duration:0.2 }, 0.45);
+  beats.to(prog, {
+    n: cmd.length, duration:1.30, ease:"none",
+    onUpdate: () => { typed.textContent = cmd.slice(0, Math.round(prog.n)); }
+  }, 0.50);
+  beats.to('#cur', { opacity:0, duration:0.36, repeat:9, yoyo:true, ease:"steps(1)" }, 0.50);
+  beats.to('#cur', { opacity:0, duration:0.2 }, 2.00);
+
+  // odpowiedzi struktury dochodzą po jednej, z wyraźną przerwą
+  [1,2,3,4,5].forEach((i, k) => {
+    const t = 2.20 + k * 0.85;
+    beats.to('#l' + i,   { opacity:1, duration:0.28, ease:"power2.out" }, t);
+    beats.from('#l' + i, { x:-18, duration:0.28, ease:"power2.out" }, t);
+  });
+
+  const END = 2.20 + 5 * 0.85;
+  beats.to('#final',   { opacity:1, duration:0.44, ease:"power3.out" }, END + 0.55);
+  beats.from('#final', { y:22, duration:0.44, ease:"power3.out" }, END + 0.55);
+
+  const tl = gsap.timeline({ paused:true });
+  flowbizScene.titleCard({ tl, text:"STRUKTURA MU ODPOWIADA" });
+  beats.timeScale(0.90);
+  tl.add(beats, 3.90);
+
+  const DURATION = 3.90 + (END + 1.5) / 0.90 + 1.4;
+  tl.to({}, { duration:0.4 }, DURATION - 0.4);
+
+  flowbizScene.init({
+    id: "x07-terminal", duration: DURATION, tail: 0.4,
+    label: "X07 · TERMINAL — GRANICE · " + DURATION.toFixed(1) + "s",
+    timeline: tl
+  });
+</script>
+</body>
+</html>

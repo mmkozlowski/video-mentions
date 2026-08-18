@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>X06 — ILE TO KOSZTUJE ROCZNIE (odc. 03) · flowbiz.pl</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="scene-shell.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="recorder.js"></script>
+<script src="scene-shell.js"></script>
+<style>
+  /* EKSPERYMENT: rachunek na ekranie zamiast planszy z tezą.
+     Segment 4 mówi „nie »traci dużo czasu«, tylko »czterdzieści minut
+     dziennie«". Wstawka pokazuje, co z tej jednej liczby wynika —
+     i pokazuje CAŁE działanie, żeby widz mógł je sprawdzić. */
+  .row{
+    position:absolute;left:0;right:0;text-align:center;
+    font-weight:900;color:#FAF8F0;letter-spacing:-0.02em;opacity:0;
+  }
+  .row .u{ font-size:0.42em;font-weight:700;color:#6E6862;letter-spacing:0.14em;display:block;margin-top:8px }
+  .op{
+    position:absolute;left:0;right:0;text-align:center;
+    font-size:44px;font-weight:700;color:#F5A623;letter-spacing:0.2em;opacity:0;
+  }
+  .rule{
+    position:absolute;left:50%;width:0;height:3px;margin-left:0;
+    background:#F5A623;box-shadow:0 0 18px rgba(245,166,35,0.5);
+  }
+  .out{
+    position:absolute;left:0;right:0;text-align:center;
+    font-size:150px;font-weight:900;color:#F5A623;letter-spacing:-0.04em;opacity:0;
+  }
+  .out .u{ font-size:0.24em;font-weight:700;color:#FAF8F0;opacity:0.6;letter-spacing:0.14em;display:block;margin-top:10px }
+  .note{
+    position:absolute;left:0;right:0;bottom:66px;text-align:center;
+    font-size:34px;font-weight:600;color:#FAF8F0;opacity:0;
+  }
+  .note b{ color:#C0553A }
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <div class="stage" id="stage">
+    <svg class="grid" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+      <defs><pattern id="g100" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+        <path d="M100 0 L0 0 0 100" fill="none" stroke="rgba(245,166,35,0.04)" stroke-width="1"/>
+      </pattern></defs>
+      <rect width="1920" height="1080" fill="url(#g100)"/>
+    </svg>
+
+    <div class="scene">
+      <div class="row" id="r1" style="top:212px;font-size:104px">40<span class="u">MINUT DZIENNIE</span></div>
+      <div class="op"  id="op" style="top:392px">×</div>
+      <div class="row" id="r2" style="top:452px;font-size:104px">250<span class="u">DNI ROBOCZYCH</span></div>
+      <div class="rule" id="rule" style="top:628px"></div>
+      <div class="out" id="out" style="top:672px"><span id="num">0</span><span class="u">GODZIN ROCZNIE</span></div>
+      <div class="note" id="note">To <b>ponad dwadzieścia dni roboczych</b> jednej osoby.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const beats = gsap.timeline();
+
+  beats.to('#r1',   { opacity:1, duration:0.36, ease:"power3.out" }, 0.10);
+  beats.from('#r1', { y:26, duration:0.36, ease:"power3.out" }, 0.10);
+
+  beats.to('#op',   { opacity:1, duration:0.28, ease:"back.out(2)" }, 0.95);
+  beats.from('#op', { scale:0.6, duration:0.28, ease:"back.out(2)" }, 0.95);
+
+  beats.to('#r2',   { opacity:1, duration:0.36, ease:"power3.out" }, 1.35);
+  beats.from('#r2', { y:26, duration:0.36, ease:"power3.out" }, 1.35);
+
+  // kreska rachunku rozjeżdża się od środka
+  beats.fromTo('#rule', { width:0, marginLeft:0 },
+    { width:620, marginLeft:-310, duration:0.55, ease:"power2.inOut" }, 2.20);
+
+  // wynik doliczany, nie wpisany — widać, że to rachunek, a nie hasło
+  const n = { v:0 }, numEl = document.getElementById('num');
+  beats.to('#out', { opacity:1, duration:0.30 }, 2.70);
+  beats.to(n, {
+    v:166, duration:1.15, ease:"power2.out",
+    onUpdate: () => { numEl.textContent = Math.round(n.v); }
+  }, 2.70);
+  beats.to('#out', { scale:1.05, duration:0.30, yoyo:true, repeat:1, ease:"power2.inOut" }, 3.85);
+
+  beats.to('#note',   { opacity:1, duration:0.42, ease:"power3.out" }, 4.35);
+  beats.from('#note', { y:20, duration:0.42, ease:"power3.out" }, 4.35);
+
+  const tl = gsap.timeline({ paused:true });
+  flowbizScene.titleCard({ tl, text:"CZTERDZIEŚCI MINUT DZIENNIE" });
+  beats.timeScale(0.78);
+  tl.add(beats, 3.90);
+
+  const DURATION = 3.90 + 5.2 / 0.78 + 2.2;
+  tl.to({}, { duration:0.4 }, DURATION - 0.4);
+
+  flowbizScene.init({
+    id: "x06-kalkulator", duration: DURATION, tail: 0.4,
+    label: "X06 · RACHUNEK — 40 MINUT · " + DURATION.toFixed(1) + "s",
+    timeline: tl
+  });
+</script>
+</body>
+</html>

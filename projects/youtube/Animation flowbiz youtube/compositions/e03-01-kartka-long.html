@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>E03 LONG · 01 — SZEŚĆ GODZIN Z KARTKĄ · flowbiz.pl</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" />
+<link rel="stylesheet" href="scene-shell.css" />
+<link rel="stylesheet" href="logos.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="recorder.js"></script>
+<script src="scene-shell.js"></script>
+<style>
+  .eyebrow{
+    position:absolute;left:0;right:0;top:64px;text-align:center;
+    font-size:22px;font-weight:600;letter-spacing:0.24em;z-index:9;opacity:0;
+  }
+
+  /* KARTKA — stoi w miejscu, firma przewija się pod nią */
+  .sheet{
+    position:absolute;left:50%;top:132px;width:376px;height:520px;
+    margin-left:-188px;background:#13110D;
+    border:1.5px solid rgba(245,166,35,0.34);
+    box-shadow:0 18px 60px rgba(0,0,0,0.55);
+    z-index:5;opacity:0;transform:scale(0.92) rotate(-1.2deg);
+  }
+  .sheet .head{
+    padding:22px 26px 16px;border-bottom:1px solid rgba(245,166,35,0.18);
+    font-size:21px;font-weight:700;letter-spacing:0.14em;color:#5A5450;text-transform:uppercase;
+  }
+  .sheet .body{ position:relative;height:434px }
+
+  /* ślady, które kartka zbiera po drodze */
+  .mark{ position:absolute;opacity:0 }
+  .mark .txt{ font-size:25px;font-weight:600;color:#FAF8F0 }
+  .mark .sub{ font-size:18px;font-weight:500;color:#6E6862;margin-top:3px }
+  .mark i{ font-size:34px;color:#F5A623 }
+
+  .m-sign{ left:30px;  top:26px;  transform:rotate(-3deg) }
+  .m-sign .scribble{ width:190px;height:2.5px;background:#F5A623;margin-top:9px;border-radius:2px;
+                     box-shadow:0 0 12px rgba(245,166,35,0.5) }
+  .m-stamp{ right:26px; top:118px;  transform:rotate(9deg);
+            border:3px solid #C0553A;border-radius:12px;padding:9px 15px;
+            font-size:22px;font-weight:800;color:#C0553A;letter-spacing:0.1em }
+  .m-note{ left:34px;  top:196px; transform:rotate(-1.6deg) }
+  .m-check{ right:34px;top:288px; transform:rotate(2deg);display:flex;align-items:center;gap:12px }
+  .m-check i{ color:#6BAA6B }
+  .m-fv{ left:30px;  top:364px; transform:rotate(-0.8deg) }
+
+  /* PAS STANOWISK — jedzie pod kartką */
+  .track{ position:absolute;left:0;top:706px;height:150px;will-change:transform;z-index:2 }
+  .rail{ position:absolute;top:74px;height:2px;background:rgba(245,166,35,0.16) }
+  .rail-fg{ position:absolute;top:74px;height:2px;width:0;background:#F5A623;
+            box-shadow:0 0 16px rgba(245,166,35,0.5) }
+  .stop{
+    position:absolute;top:0;width:300px;margin-left:-150px;
+    background:#0D0D0B;border:1.5px solid rgba(245,166,35,0.22);
+    padding:20px 0;text-align:center;opacity:0;transform:scale(0.9);
+  }
+  .stop i{ font-size:36px;color:#5A5450;display:block;margin-bottom:8px }
+  .stop .nm{ font-size:28px;font-weight:700;color:#FAF8F0 }
+  .stop.active{ border-color:#F5A623;box-shadow:0 0 40px rgba(245,166,35,0.16) }
+  .stop.active i{ color:#F5A623 }
+
+  .hfade{ position:absolute;top:660px;height:240px;width:300px;z-index:6;pointer-events:none }
+  .hfade.l{ left:0;  background:linear-gradient(to right, #0A0A08 0%, rgba(10,10,8,0.75) 40%, transparent 100%) }
+  .hfade.r{ right:0; background:linear-gradient(to left,  #0A0A08 0%, rgba(10,10,8,0.75) 40%, transparent 100%) }
+  body.chromakey .hfade{ display:none !important }
+
+  .final{
+    position:absolute;left:0;right:0;top:918px;text-align:center;
+    font-size:54px;font-weight:900;color:#F5A623;letter-spacing:-0.02em;z-index:9;opacity:0;
+  }
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <div class="stage" id="stage">
+    <svg class="grid" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+      <defs><pattern id="g100" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+        <path d="M100 0 L0 0 0 100" fill="none" stroke="rgba(245,166,35,0.04)" stroke-width="1"/>
+      </pattern></defs>
+      <rect width="1920" height="1080" fill="url(#g100)"/>
+    </svg>
+
+    <div class="scene">
+
+      <div class="sheet" id="sheet">
+        <div class="head">Zamówienie</div>
+        <div class="body">
+          <div class="mark m-sign" id="mk0">
+            <div class="txt">Adam K.</div>
+            <div class="scribble"></div>
+            <div class="sub">przyjął</div>
+          </div>
+          <div class="mark m-stamp" id="mk1">WPROWADZONE</div>
+          <div class="mark m-note" id="mk2">
+            <div class="txt">„poprawka ×2"</div>
+            <div class="sub">dopisek na marginesie</div>
+          </div>
+          <div class="mark m-check" id="mk3">
+            <i class="ti ti-check"></i>
+            <div>
+              <div class="txt">spakowane</div>
+              <div class="sub">status zmieniony</div>
+            </div>
+          </div>
+          <div class="mark m-fv" id="mk4">
+            <div class="txt">nr faktury</div>
+            <div class="sub">i tu kartka się kończy</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="track" id="track">
+        <div class="rail" id="rail"></div>
+        <div class="rail-fg" id="railFg"></div>
+      </div>
+
+      <div class="hfade l"></div>
+      <div class="hfade r"></div>
+
+      <div class="final" id="final">Sześć godzin. Jedna kartka.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const STOPS = [
+    { icon:"ti ti-user-check",   nm:"handlowiec" },
+    { icon:"ti ti-building",     nm:"administracja" },
+    { icon:"ti ti-tool",         nm:"produkcja" },
+    { icon:"ti ti-package",      nm:"pakowanie" },
+    { icon:"ti ti-file-invoice", nm:"faktury" },
+  ];
+
+  const FIRST_X = 960, GAPX = 440;
+  const X = STOPS.map((_, i) => FIRST_X + i * GAPX);
+  const STATIONS = X.map(x => 960 - x);
+
+  const track = document.getElementById('track');
+  const rail  = document.getElementById('rail');
+  const railFg= document.getElementById('railFg');
+
+  track.style.width = (X[X.length-1] + 960) + 'px';
+  rail.style.left = X[0] + 'px';
+  rail.style.width = (X[X.length-1] - X[0]) + 'px';
+  railFg.style.left = X[0] + 'px';
+
+  STOPS.forEach((s, i) => {
+    const el = document.createElement('div');
+    el.className = 'stop'; el.id = 's' + i;
+    el.style.left = X[i] + 'px';
+    el.innerHTML = '<i class="' + s.icon + '"></i><div class="nm">' + s.nm + '</div>';
+    track.appendChild(el);
+  });
+
+  function activate(i){
+    document.querySelectorAll('.stop').forEach(n => n.classList.remove('active'));
+    const el = document.getElementById('s' + i);
+    if (el) el.classList.add('active');
+  }
+
+  const beats = gsap.timeline();
+  beats.to('#sheet',   { opacity:1, scale:1, duration:0.52, ease:"back.out(1.5)" }, 0.20);
+
+  // pierwsze stanowisko + pierwszy ślad
+  beats.to('#s0',  { opacity:1, scale:1, duration:0.42, ease:"back.out(1.7)" }, 0.75);
+  beats.call(() => activate(0), null, 1.00);
+  beats.to('#mk0', { opacity:1, duration:0.34, ease:"power3.out" }, 1.10);
+  beats.from('#mk0', { scale:0.7, duration:0.34, ease:"back.out(2)" }, 1.10);
+
+  // kamera przesuwa firmę pod kartką; na każdym postoju przybywa ślad
+  const STEP = 1.30;
+  let cursor = 1.70;
+  for (let i = 1; i < STOPS.length; i++) {
+    const t = cursor;
+    beats.to(track,  { x: STATIONS[i], duration:0.80, ease:"power2.inOut" }, t);
+    beats.to(railFg, { width: X[i] - X[0], duration:0.80, ease:"power2.inOut" }, t);
+    beats.to('#s' + i, { opacity:1, scale:1, duration:0.40, ease:"back.out(1.7)" }, t + 0.34);
+    beats.call(() => activate(i), null, t + 0.62);
+    beats.to('#mk' + i, { opacity:1, duration:0.32, ease:"power3.out" }, t + 0.70);
+    beats.from('#mk' + i, { scale:0.7, duration:0.32, ease:"back.out(2)" }, t + 0.70);
+    cursor = t + STEP;
+  }
+
+  // kartka jest pełna — puenta
+  const END = cursor + 0.10;
+  beats.to('.stop', { opacity:0.34, duration:0.5, ease:"power2.out" }, END);
+  beats.call(() => activate(-1), null, END);
+  beats.to('#sheet', { scale:1.05, duration:0.6, ease:"power2.out" }, END);
+  beats.to('#final', { opacity:1, duration:0.44, ease:"power3.out" }, END + 0.42);
+  beats.from('#final', { y:24, duration:0.44, ease:"power3.out" }, END + 0.42);
+
+  const BEATS_DUR = END + 1.55;
+  beats.timeScale(0.7);
+
+  // oś główna: najpierw karta tytułowa, potem spowolnione beaty oryginału
+  const tl = gsap.timeline({ paused:true });
+  flowbizScene.titleCard({ tl, text:"ZANIM NAPISZĘ LINIJKĘ KODU" });
+  tl.add(beats, 3.9);
+
+  const DURATION = 3.9 + BEATS_DUR / 0.7 + 2.2;
+  beats.to({}, { duration:0.4 }, DURATION - 0.4);
+
+  flowbizScene.init({
+    id: "e03-01-long",
+    duration: DURATION,
+    tail: 0.4,
+    label: "E03 LONG · 01 · KARTKA (pan poziomy) · " + DURATION.toFixed(1) + "s",
+    timeline: tl
+  });
+</script>
+</body>
+</html>

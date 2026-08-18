@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>X10 — MODUŁ SIĘ ROZLEWA (odc. 03) · flowbiz.pl</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" />
+<link rel="stylesheet" href="scene-shell.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="recorder.js"></script>
+<script src="scene-shell.js"></script>
+<style>
+  /* EKSPERYMENT: sam kształt niesie treść — nic tu nie wjeżdża po kolei,
+     tylko JEDEN prostokąt rośnie. Segment 6 („zaczynasz od kart technicznych,
+     a po miesiącu budujesz ERP") nie miał dotąd żadnej wstawki, bo trudno go
+     pokazać listą. Rozlewanie się granicy pokazuje to bez ani jednego zdania. */
+  .blob{
+    position:absolute;left:50%;top:530px;transform:translate(-50%,-50%);
+    width:420px;height:190px;
+    background:rgba(245,166,35,0.08);border:2px solid #F5A623;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .blob .t{
+    font-size:40px;font-weight:800;color:#F5A623;letter-spacing:-0.01em;text-align:center;
+  }
+  .blob.big{ background:rgba(192,85,58,0.10);border-color:#C0553A }
+  .blob.big .t{ color:#C0553A }
+
+  /* to, co moduł po drodze połyka */
+  .eaten{
+    position:absolute;font-size:29px;font-weight:700;color:#6E6862;
+    background:#0D0D0B;border:1.5px solid rgba(245,166,35,0.22);
+    padding:12px 22px;opacity:0;
+  }
+  .eaten.in{ color:#C0553A;border-color:rgba(192,85,58,0.45) }
+
+  /* twarda granica — wchodzi na końcu i zatrzymuje rozlewanie */
+  .fence{
+    position:absolute;left:50%;top:530px;transform:translate(-50%,-50%);
+    width:470px;height:240px;border:3px dashed #6BAA6B;opacity:0;z-index:6;
+  }
+  .fence .lbl{
+    position:absolute;left:50%;top:-19px;transform:translateX(-50%);
+    background:#0A0A08;padding:0 16px;
+    font-size:22px;font-weight:800;letter-spacing:0.16em;color:#6BAA6B;text-transform:uppercase;
+  }
+  body.chromakey .fence .lbl{ background:#0D0D0B }
+
+  .month{
+    position:absolute;left:0;right:0;top:126px;text-align:center;
+    font-size:30px;font-weight:800;letter-spacing:0.2em;color:#5A5450;text-transform:uppercase;opacity:0;
+  }
+  .final{
+    position:absolute;left:0;right:0;bottom:66px;text-align:center;
+    font-size:50px;font-weight:900;color:#6BAA6B;letter-spacing:-0.02em;z-index:9;opacity:0;
+  }
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <div class="stage" id="stage">
+    <svg class="grid" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+      <defs><pattern id="g100" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+        <path d="M100 0 L0 0 0 100" fill="none" stroke="rgba(245,166,35,0.04)" stroke-width="1"/>
+      </pattern></defs>
+      <rect width="1920" height="1080" fill="url(#g100)"/>
+    </svg>
+
+    <div class="scene">
+      <div class="month" id="month">PO MIESIĄCU</div>
+
+      <div class="eaten" id="e0" style="left:300px; top:300px">zamówienia</div>
+      <div class="eaten" id="e1" style="left:1380px;top:318px">magazyn</div>
+      <div class="eaten" id="e2" style="left:262px; top:742px">produkcja</div>
+      <div class="eaten" id="e3" style="left:1400px;top:726px">faktury</div>
+      <div class="eaten" id="e4" style="left:846px; top:212px">kadry</div>
+      <div class="eaten" id="e5" style="left:838px; top:834px">raporty</div>
+
+      <div class="blob" id="blob"><div class="t" id="blobT">karty techniczne</div></div>
+      <div class="fence" id="fence"><span class="lbl">granica modułu</span></div>
+
+      <div class="final" id="final">Agent Ci jej nie postawi.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const beats = gsap.timeline();
+  const blob = document.getElementById('blob');
+
+  beats.from(blob, { scale:0.7, opacity:0, duration:0.50, ease:"back.out(1.6)" }, 0.10);
+
+  // Kolejne obszary pojawiają się DOOKOŁA, a moduł rośnie tak, żeby je objąć.
+  // Rozmiary dobrane tak, by na końcu prostokąt sięgał poza wszystkie etykiety.
+  const STEPS = [
+    { at:0.95, w:760,  h:330, eat:[0,1] },
+    { at:2.00, w:1180, h:560, eat:[2,3] },
+    { at:3.05, w:1560, h:780, eat:[4,5] },
+  ];
+
+  STEPS.forEach(s => {
+    s.eat.forEach((i, k) => {
+      beats.to('#e' + i, { opacity:1, duration:0.26, ease:"power2.out" }, s.at - 0.28 + k * 0.10);
+    });
+    beats.to(blob, { width:s.w, height:s.h, duration:0.85, ease:"power2.inOut" }, s.at);
+    s.eat.forEach(i => {
+      beats.call(() => document.getElementById('e' + i).classList.add('in'), null, s.at + 0.55);
+    });
+  });
+
+  // moduł przestał być modułem
+  beats.call(() => {
+    blob.classList.add('big');
+    document.getElementById('blobT').textContent = "ERP";
+  }, null, 4.00);
+  beats.to('#blobT', { fontSize:96, duration:0.55, ease:"power2.out" }, 4.00);
+  beats.to('#month', { opacity:1, duration:0.36 }, 4.05);
+
+  // twarda granica wchodzi i ściąga wszystko z powrotem
+  beats.to('#fence', { opacity:1, duration:0.32, ease:"power3.out" }, 5.10);
+  beats.from('#fence', { scale:1.5, duration:0.45, ease:"power3.out" }, 5.10);
+  beats.call(() => {
+    blob.classList.remove('big');
+    document.getElementById('blobT').textContent = "karty techniczne";
+  }, null, 5.55);
+  beats.to('#blobT', { fontSize:40, duration:0.60, ease:"power3.inOut" }, 5.55);
+  beats.to(blob, { width:420, height:190, duration:0.85, ease:"power3.inOut" }, 5.55);
+  beats.to('.eaten', { opacity:0.22, duration:0.6, ease:"power2.out" }, 5.55);
+  beats.to('#month', { opacity:0, duration:0.4 }, 5.55);
+
+  beats.to('#final',   { opacity:1, duration:0.44, ease:"power3.out" }, 6.55);
+  beats.from('#final', { y:22, duration:0.44, ease:"power3.out" }, 6.55);
+
+  const tl = gsap.timeline({ paused:true });
+  flowbizScene.titleCard({ tl, text:"GDZIE KOŃCZY SIĘ MODUŁ?" });
+  beats.timeScale(0.86);
+  tl.add(beats, 3.90);
+
+  const DURATION = 3.90 + 7.4 / 0.86 + 1.8;
+  tl.to({}, { duration:0.4 }, DURATION - 0.4);
+
+  flowbizScene.init({
+    id: "x10-rozlewanie", duration: DURATION, tail: 0.4,
+    label: "X10 · MODUŁ SIĘ ROZLEWA · " + DURATION.toFixed(1) + "s",
+    timeline: tl
+  });
+</script>
+</body>
+</html>

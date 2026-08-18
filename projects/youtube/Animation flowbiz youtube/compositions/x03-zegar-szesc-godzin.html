@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>X03 — SZEŚĆ GODZIN NA TARCZY (odc. 03) · flowbiz.pl</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" />
+<link rel="stylesheet" href="scene-shell.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="recorder.js"></script>
+<script src="scene-shell.js"></script>
+<style>
+  /* EKSPERYMENT: układ radialny zamiast liniowego.
+     Warsztat to nie jest ciąg kroków — to jeden dzień, w którym wskazówka
+     obraca się przez sześć rozmów. Tarcza mówi to bez podpisu. */
+  .dial{ position:absolute;left:50%;top:520px;transform:translate(-50%,-50%);width:520px;height:520px }
+  .ring{ position:absolute;inset:0;border:2px solid rgba(245,166,35,0.20);border-radius:50% }
+  .prog{ position:absolute;inset:0 }
+  .hand{
+    position:absolute;left:50%;top:50%;width:4px;height:212px;
+    background:linear-gradient(to top,#F5A623,rgba(245,166,35,0.25));
+    transform-origin:2px 212px;transform:translate(-2px,-212px) rotate(0deg);
+    box-shadow:0 0 20px rgba(245,166,35,0.5);
+  }
+  .hub{
+    position:absolute;left:50%;top:50%;width:118px;height:118px;margin:-59px 0 0 -59px;
+    border-radius:50%;background:#0D0D0B;border:2px solid rgba(245,166,35,0.34);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+  }
+  .hub .h{ font-size:56px;font-weight:900;color:#F5A623;line-height:1 }
+  .hub .u{ font-size:17px;font-weight:700;color:#5A5450;letter-spacing:0.16em;margin-top:3px }
+
+  /* etykiety ról rozstawione po okręgu */
+  .slot{ position:absolute;width:300px;margin-left:-150px;text-align:center;opacity:0 }
+  .slot .ic{
+    width:66px;height:66px;margin:0 auto 12px;border-radius:18px;
+    background:#0A0A08;border:2px solid rgba(245,166,35,0.3);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .slot .ic i{ font-size:32px;color:#5A5450 }
+  .slot .nm{ font-size:29px;font-weight:800;color:#FAF8F0;letter-spacing:-0.01em }
+  .slot .qn{ font-size:21px;font-weight:500;color:#6E6862;margin-top:4px }
+  .slot.on .ic{ border-color:#F5A623;box-shadow:0 0 32px rgba(245,166,35,0.22) }
+  .slot.on .ic i{ color:#F5A623 }
+
+  .final{
+    position:absolute;left:0;right:0;bottom:56px;text-align:center;
+    font-size:50px;font-weight:900;color:#F5A623;letter-spacing:-0.02em;z-index:9;opacity:0;
+  }
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <div class="stage" id="stage">
+    <svg class="grid" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+      <defs><pattern id="g100" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+        <path d="M100 0 L0 0 0 100" fill="none" stroke="rgba(245,166,35,0.04)" stroke-width="1"/>
+      </pattern></defs>
+      <rect width="1920" height="1080" fill="url(#g100)"/>
+    </svg>
+
+    <div class="scene">
+      <div class="dial">
+        <div class="ring"></div>
+        <svg class="prog" viewBox="0 0 520 520">
+          <circle id="arc" cx="260" cy="260" r="259" fill="none"
+                  stroke="#F5A623" stroke-width="3" stroke-linecap="round"
+                  transform="rotate(-90 260 260)"/>
+        </svg>
+        <div class="hand" id="hand"></div>
+        <div class="hub"><div class="h" id="hh">0</div><div class="u">GODZIN</div></div>
+      </div>
+      <div class="final" id="final">Jeden dzień. Sześć rozmów.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const SLOTS = [
+    { ic:"ti ti-crown",         nm:"właściciel",  qn:"co dziś boli" },
+    { ic:"ti ti-user-check",    nm:"handlowiec",  qn:"jak przyjmujesz zamówienie" },
+    { ic:"ti ti-tool",          nm:"produkcja",   qn:"skąd wiesz, co robić" },
+    { ic:"ti ti-ruler-measure", nm:"technicy",    qn:"co jest krytyczne" },
+    { ic:"ti ti-building",      nm:"biuro",       qn:"co przepisujesz ręcznie" },
+    { ic:"ti ti-help-circle",   nm:"decyzje",     qn:"co zostaje otwarte" },
+  ];
+
+  const CX = 960, CY = 520, R = 396;   // promień, na którym siedzą etykiety
+  const scene = document.querySelector('.scene');
+
+  SLOTS.forEach((s, i) => {
+    const a = (-90 + i * 60) * Math.PI / 180;
+    const el = document.createElement('div');
+    el.className = 'slot'; el.id = 'sl' + i;
+    el.style.left = (CX + R * Math.cos(a)) + 'px';
+    el.style.top  = (CY + R * Math.sin(a) - 60) + 'px';
+    el.innerHTML = '<div class="ic"><i class="' + s.ic + '"></i></div>' +
+                   '<div class="nm">' + s.nm + '</div>' +
+                   '<div class="qn"><span class="chroma-plate">' + s.qn + '</span></div>';
+    scene.appendChild(el);
+  });
+
+  const arc = document.getElementById('arc');
+  const LEN = 2 * Math.PI * 259;
+  gsap.set(arc, { strokeDasharray: LEN, strokeDashoffset: LEN });
+
+  const hh = document.getElementById('hh');
+  const clock = { h: 0 };
+
+  const beats = gsap.timeline();
+  const STEP = 1.15;
+
+  SLOTS.forEach((s, i) => {
+    const t = 0.20 + i * STEP;
+    const deg = i * 60;
+
+    // wskazówka przeskakuje na kolejną godzinę, łuk dorysowuje przebytą drogę
+    beats.to('#hand', { rotation: deg, duration:0.62, ease:"power2.inOut" }, t);
+    beats.to(arc, { strokeDashoffset: LEN * (1 - i / 6), duration:0.62, ease:"power2.inOut" }, t);
+    beats.to(clock, {
+      h: i + 1, duration:0.62, ease:"power2.inOut",
+      onUpdate: () => { hh.textContent = Math.round(clock.h); }
+    }, t);
+
+    beats.to('#sl' + i, { opacity:1, duration:0.34, ease:"back.out(1.6)" }, t + 0.34);
+    beats.call(() => {
+      document.querySelectorAll('.slot').forEach(n => n.classList.remove('on'));
+      document.getElementById('sl' + i).classList.add('on');
+    }, null, t + 0.50);
+  });
+
+  const END = 0.20 + SLOTS.length * STEP;
+  beats.to('#hand', { rotation:360, duration:0.7, ease:"power2.inOut" }, END);
+  beats.call(() => document.querySelectorAll('.slot').forEach(n => n.classList.remove('on')), null, END);
+  beats.to('#final',   { opacity:1, duration:0.44, ease:"power3.out" }, END + 0.55);
+  beats.from('#final', { y:22, duration:0.44, ease:"power3.out" }, END + 0.55);
+
+  const tl = gsap.timeline({ paused:true });
+  flowbizScene.titleCard({ tl, text:"SZEŚĆ GODZIN. JEDEN DZIEŃ." });
+  beats.timeScale(0.86);
+  tl.add(beats, 3.90);
+
+  const DURATION = 3.90 + (END + 1.6) / 0.86 + 1.4;
+  tl.to({}, { duration:0.4 }, DURATION - 0.4);
+
+  flowbizScene.init({
+    id: "x03-zegar",
+    duration: DURATION,
+    tail: 0.4,
+    label: "X03 · ZEGAR — SZEŚĆ GODZIN · " + DURATION.toFixed(1) + "s",
+    timeline: tl
+  });
+</script>
+</body>
+</html>

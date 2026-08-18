@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>X09 — MIERNIK TRAFNOŚCI (odc. 03) · flowbiz.pl</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" />
+<link rel="stylesheet" href="scene-shell.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="recorder.js"></script>
+<script src="scene-shell.js"></script>
+<style>
+  /* EKSPERYMENT: skala z zaznaczonym PRZEDZIAŁEM, nie słupek z jedną liczbą.
+     Mateusz mówi „siedemdziesiąt do dziewięćdziesięciu procent" — to widełki,
+     nie wynik. Pojedynczy słupek zrobiłby z tego twardą liczbę, której
+     w nagraniu nie ma. Przy złej specyfikacji nie pada ŻADNA liczba,
+     więc dolny wiersz zostaje bez wartości — celowo. */
+  .scale{ position:absolute;left:210px;right:210px;top:300px;height:118px }
+  .bg{ position:absolute;inset:0;background:#0D0D0B;border:1.5px solid rgba(245,166,35,0.24) }
+  .band{
+    position:absolute;top:0;bottom:0;left:70%;width:20%;
+    background:rgba(245,166,35,0.18);border-left:2px solid #F5A623;border-right:2px solid #F5A623;
+    opacity:0;
+  }
+  .fill{ position:absolute;left:0;top:0;bottom:0;width:0;background:rgba(245,166,35,0.10) }
+  .ticks{ position:absolute;left:210px;right:210px;top:428px;height:40px }
+  .tick{ position:absolute;top:0;font-size:23px;font-weight:700;color:#5A5450;transform:translateX(-50%);opacity:0 }
+  .tick.hi{ color:#F5A623 }
+
+  .cap{
+    position:absolute;left:210px;top:238px;
+    font-size:27px;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#6BAA6B;opacity:0;
+  }
+  .val{
+    position:absolute;right:210px;top:222px;text-align:right;
+    font-size:64px;font-weight:900;color:#F5A623;letter-spacing:-0.02em;opacity:0;
+  }
+
+  /* druga skala — bez liczby, bo w nagraniu jej nie ma */
+  .scale2{ position:absolute;left:210px;right:210px;top:596px;height:118px;opacity:0 }
+  .bg2{ position:absolute;inset:0;background:#0D0D0B;border:1.5px dashed rgba(192,85,58,0.5) }
+  .q{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-size:38px;font-weight:800;color:#C0553A;letter-spacing:0.04em;
+  }
+  .cap2{
+    position:absolute;left:210px;top:534px;
+    font-size:27px;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#C0553A;opacity:0;
+  }
+
+  .final{
+    position:absolute;left:0;right:0;bottom:72px;text-align:center;
+    font-size:50px;font-weight:900;color:#F5A623;letter-spacing:-0.02em;z-index:9;opacity:0;
+  }
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <div class="stage" id="stage">
+    <svg class="grid" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+      <defs><pattern id="g100" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+        <path d="M100 0 L0 0 0 100" fill="none" stroke="rgba(245,166,35,0.04)" stroke-width="1"/>
+      </pattern></defs>
+      <rect width="1920" height="1080" fill="url(#g100)"/>
+    </svg>
+
+    <div class="scene">
+      <div class="cap" id="cap">przy dobrej specyfikacji</div>
+      <div class="val" id="val">70–90%</div>
+      <div class="scale">
+        <div class="bg"></div>
+        <div class="fill" id="fill"></div>
+        <div class="band" id="band"></div>
+      </div>
+      <div class="ticks" id="ticks"></div>
+
+      <div class="cap2" id="cap2">przy złej specyfikacji</div>
+      <div class="scale2" id="s2">
+        <div class="bg2"></div>
+        <div class="q">nie jest</div>
+      </div>
+
+      <div class="final" id="final">I to jest cała tajemnica.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const ticks = document.getElementById('ticks');
+  [0,25,50,70,90,100].forEach(v => {
+    const el = document.createElement('div');
+    el.className = 'tick' + (v === 70 || v === 90 ? ' hi' : '');
+    el.style.left = v + '%';
+    el.textContent = v + '%';
+    ticks.appendChild(el);
+  });
+
+  const beats = gsap.timeline();
+
+  beats.to('#cap', { opacity:1, duration:0.34 }, 0.10);
+  beats.to('.tick', { opacity:1, duration:0.24, stagger:0.09 }, 0.30);
+
+  // wypełnienie dojeżdża do dolnej krawędzi widełek, potem otwiera się pasmo
+  beats.to('#fill', { width:"70%", duration:1.10, ease:"power2.out" }, 0.95);
+  beats.to('#band', { opacity:1, duration:0.40, ease:"power2.out" }, 2.00);
+  beats.from('#band', { scaleX:0.2, transformOrigin:"left center", duration:0.55, ease:"power3.out" }, 2.00);
+  beats.to('#val',  { opacity:1, duration:0.36, ease:"back.out(1.6)" }, 2.25);
+
+  // druga skala — bez liczby
+  beats.to('#cap2', { opacity:1, duration:0.34 }, 3.30);
+  beats.to('#s2',   { opacity:1, duration:0.40, ease:"power2.out" }, 3.45);
+  beats.from('#s2', { y:18, duration:0.40, ease:"power2.out" }, 3.45);
+
+  beats.to('#final',   { opacity:1, duration:0.44, ease:"power3.out" }, 4.35);
+  beats.from('#final', { y:22, duration:0.44, ease:"power3.out" }, 4.35);
+
+  const tl = gsap.timeline({ paused:true });
+  flowbizScene.titleCard({ tl, text:"JAK TRAFNY JEST WYNIK?" });
+  beats.timeScale(0.76);
+  tl.add(beats, 3.90);
+
+  const DURATION = 3.90 + 5.2 / 0.76 + 2.2;
+  tl.to({}, { duration:0.4 }, DURATION - 0.4);
+
+  flowbizScene.init({
+    id: "x09-miernik", duration: DURATION, tail: 0.4,
+    label: "X09 · MIERNIK TRAFNOŚCI · " + DURATION.toFixed(1) + "s",
+    timeline: tl
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>E03 LONG · 04 — TRZY WARSTWY SPECYFIKACJI · flowbiz.pl</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" />
+<link rel="stylesheet" href="scene-shell.css" />
+<link rel="stylesheet" href="logos.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="recorder.js"></script>
+<script src="scene-shell.js"></script>
+<style>
+  .eyebrow{
+    position:absolute;left:0;right:0;top:92px;text-align:center;
+    font-size:23px;font-weight:600;letter-spacing:0.24em;z-index:9;opacity:0;
+  }
+
+  .layer{
+    position:absolute;left:50%;width:1200px;margin-left:-600px;
+    background:#0D0D0B;border:1.5px solid rgba(245,166,35,0.26);
+    padding:24px 34px 26px;display:flex;align-items:center;gap:28px;opacity:0;
+  }
+  .layer .dot{
+    width:78px;height:78px;border-radius:50%;flex:none;
+    background:#0A0A08;border:2px solid rgba(245,166,35,0.34);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .layer .dot i{ font-size:38px;color:#F5A623 }
+  .layer .txt{ flex:1 }
+  .layer .nm{ font-size:40px;font-weight:800;color:#FAF8F0;letter-spacing:-0.015em }
+  .layer .qs{ font-size:25px;font-weight:500;color:#6E6862;margin-top:5px }
+  .layer .ex{
+    flex:none;max-width:390px;text-align:right;
+    font-size:26px;font-weight:600;color:#6BAA6B;line-height:1.3;
+  }
+  .layer.active{ border-color:#F5A623;box-shadow:0 0 50px rgba(245,166,35,0.16) }
+
+  /* linie rozdzielajace — pojawiaja sie DOPIERO po rozjezdzie */
+  .sep{
+    position:absolute;left:50%;width:1200px;margin-left:-600px;height:2px;
+    background:repeating-linear-gradient(to right,#C0553A 0 14px,transparent 14px 26px);
+    opacity:0;
+  }
+  .sep .tag{
+    position:absolute;left:50%;top:-17px;transform:translateX(-50%);
+    background:#0A0A08;padding:0 16px;
+    font-size:20px;font-weight:700;letter-spacing:0.16em;color:#C0553A;text-transform:uppercase;
+  }
+  body.chromakey .sep .tag{ background:#0D0D0B }
+
+  /* podpis nad stosem — bez niego widz widzi jedna karte, a nie zlepek trzech */
+  .pile{
+    position:absolute;left:0;right:0;top:368px;text-align:center;
+    font-size:26px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;
+    color:#C0553A;z-index:9;opacity:0;
+  }
+
+  .final{
+    position:absolute;left:0;right:0;top:918px;text-align:center;
+    font-size:52px;font-weight:900;color:#F5A623;letter-spacing:-0.02em;z-index:9;opacity:0;
+  }
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <div class="stage" id="stage">
+    <svg class="grid" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+      <defs><pattern id="g100" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+        <path d="M100 0 L0 0 0 100" fill="none" stroke="rgba(245,166,35,0.04)" stroke-width="1"/>
+      </pattern></defs>
+      <rect width="1920" height="1080" fill="url(#g100)"/>
+    </svg>
+
+    <div class="scene">
+
+      <div class="pile" id="pile"><span class="chroma-plate red">wszystko w jednym dokumencie</span></div>
+
+      <div class="layer" id="l0" style="top:236px">
+        <div class="dot"><i class="ti ti-alert-circle"></i></div>
+        <div class="txt">
+          <div class="nm">Problem biznesowy</div>
+          <div class="qs"><span class="chroma-plate">co boli, kogo boli, ile to kosztuje</span></div>
+        </div>
+        <div class="ex"><span class="chroma-plate">„handlowiec traci 40 minut dziennie"</span></div>
+      </div>
+
+      <div class="sep" id="sp0" style="top:432px"><span class="tag">nie mieszamy</span></div>
+
+      <div class="layer" id="l1" style="top:462px">
+        <div class="dot"><i class="ti ti-scale"></i></div>
+        <div class="txt">
+          <div class="nm">Reguły biznesowe</div>
+          <div class="qs"><span class="chroma-plate">co wolno, kto zatwierdza, co jest wyjątkiem</span></div>
+        </div>
+        <div class="ex"><span class="chroma-plate">słownik pojęć siedzi tutaj</span></div>
+      </div>
+
+      <div class="sep" id="sp1" style="top:658px"><span class="tag">nie mieszamy</span></div>
+
+      <div class="layer" id="l2" style="top:688px">
+        <div class="dot"><i class="ti ti-code"></i></div>
+        <div class="txt">
+          <div class="nm">Specyfikacja techniczna</div>
+          <div class="qs"><span class="chroma-plate">encje, pola, uprawnienia, zakres i poza zakresem</span></div>
+        </div>
+        <div class="ex"><span class="chroma-plate">dopiero to czyta agent</span></div>
+      </div>
+
+      <div class="final" id="final">Trzy warstwy. Nigdy razem.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const beats = gsap.timeline();
+
+  // START: trzy warstwy zlozone na kupke. Nie IDEALNIE na sobie — wtedy widac
+  // tylko wierzchnia karte i scena czyta sie jak jedna warstwa, nie jak zlepek.
+  // Przesuniecie o PILE px w gore i w dol zostawia wystajace krawedzie dwoch
+  // pozostalych, wiec od pierwszej klatki widac, ze to stos.
+  const MERGE_Y = 462, PILE = 18;
+  gsap.set('#l0', { y: MERGE_Y - 236 - PILE, x:-14, rotation:-1.2, scale:0.95 });
+  gsap.set('#l1', { y: 0,                    x:  0, rotation: 0,   scale:0.95 });
+  gsap.set('#l2', { y: MERGE_Y - 688 + PILE, x: 14, rotation: 1.2, scale:0.95 });
+
+  // 0.25 — stos wjezdza jako jedno
+  beats.to(['#l0','#l1','#l2'], { opacity:1, duration:0.40, ease:"power2.out" }, 0.25);
+  beats.from(['#l0','#l1','#l2'], { scale:0.86, duration:0.40, ease:"back.out(1.5)" }, 0.25);
+  beats.to('#pile', { opacity:1, duration:0.32, ease:"power2.out" }, 0.58);
+
+  // 1.05 — ROZJAZD: warstwy odsuwaja sie od siebie
+  beats.to('#pile', { opacity:0, duration:0.30, ease:"power2.in" }, 1.05);
+  beats.to(['#l0','#l1','#l2'], {
+    y:0, x:0, rotation:0, scale:1, duration:0.85, ease:"power3.inOut"
+  }, 1.05);
+
+  // 1.75 — linie rozdzielajace wchodza w powstale szczeliny
+  beats.to('#sp0', { opacity:1, duration:0.34, ease:"power2.out" }, 1.75);
+  beats.to('#sp1', { opacity:1, duration:0.34, ease:"power2.out" }, 1.90);
+
+  // 2.25 — po kolei, zeby bylo widac, ze to trzy ROZNE pytania
+  [['#l0',2.25],['#l1',2.95],['#l2',3.65]].forEach(([id, t]) => {
+    beats.call(() => {
+      document.querySelectorAll('.layer').forEach(n => n.classList.remove('active'));
+      document.querySelector(id).classList.add('active');
+    }, null, t);
+  });
+
+  beats.call(() => document.querySelectorAll('.layer').forEach(n => n.classList.remove('active')), null, 4.35);
+
+  beats.to('#final', { opacity:1, duration:0.44, ease:"power3.out" }, 4.45);
+  beats.from('#final', { y:24, duration:0.44, ease:"power3.out" }, 4.45);
+
+  const BEATS_DUR = 5.7;
+  beats.timeScale(0.6);
+
+  // oś główna: najpierw karta tytułowa, potem spowolnione beaty oryginału
+  const tl = gsap.timeline({ paused:true });
+  flowbizScene.titleCard({ tl, text:"CO MUSI BYĆ W SPECYFIKACJI" });
+  tl.add(beats, 3.9);
+
+  const DURATION = 3.9 + BEATS_DUR / 0.6 + 2.6;
+  beats.to({}, { duration:0.4 }, DURATION - 0.4);
+
+  flowbizScene.init({
+    id: "e03-04-long",
+    duration: DURATION,
+    tail: 0.4,
+    label: "E03 LONG · 04 · TRZY WARSTWY (rozjazd) · " + DURATION.toFixed(1) + "s",
+    timeline: tl
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>X02 — TYPOGRAFIA KINETYCZNA (hook 08) · flowbiz.pl</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="scene-shell.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="recorder.js"></script>
+<script src="scene-shell.js"></script>
+<style>
+  /* EKSPERYMENT: zero kart, zero ikon — sam tekst.
+     Wstawka, którą można położyć pod narracją bez rywalizacji o uwagę,
+     bo widz czyta dokładnie to, co słyszy. Każda linia zajmuje kadr sama. */
+  .line{
+    position:absolute;left:0;right:0;top:50%;text-align:center;
+    font-weight:900;letter-spacing:-0.03em;line-height:1.02;
+    color:#FAF8F0;opacity:0;
+  }
+  .line b{ color:#F5A623 }
+  .line s{ color:#C0553A;text-decoration:none }
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <div class="stage" id="stage">
+    <svg class="grid" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+      <defs><pattern id="g100" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+        <path d="M100 0 L0 0 0 100" fill="none" stroke="rgba(245,166,35,0.04)" stroke-width="1"/>
+      </pattern></defs>
+      <rect width="1920" height="1080" fill="url(#g100)"/>
+    </svg>
+    <div class="scene" id="scene"></div>
+  </div>
+</div>
+
+<script>
+  // Każda linia to osobny kadr. Rozmiar dobrany do długości — krótkie zdania
+  // dostają większy stopień, żeby wszystkie wypełniały kadr podobnie mocno.
+  const LINES = [
+    { html:"Kolega pokazał mi system",            size:96,  hold:1.35 },
+    { html:"zbudowany <b>bez bazy danych</b>",    size:104, hold:1.55 },
+    { html:"Wszystko siedziało",                  size:96,  hold:1.20 },
+    { html:"w <b>pamięci przeglądarki</b>",       size:104, hold:1.55 },
+    { html:"Jedno kliknięcie",                    size:100, hold:1.25 },
+    { html:"<s>Wyczyść dane przeglądania</s>",    size:86,  hold:1.70 },
+    { html:"Cała jego praca.",                    size:104, hold:1.10 },
+    { html:"<b>Zniknęła.</b>",                    size:136, hold:2.00 },
+  ];
+
+  const scene = document.getElementById('scene');
+  LINES.forEach((l, i) => {
+    const el = document.createElement('div');
+    el.className = 'line'; el.id = 'ln' + i;
+    el.style.fontSize = l.size + 'px';
+    el.style.marginTop = (-l.size * 0.55) + 'px';
+    el.innerHTML = l.html;
+    scene.appendChild(el);
+  });
+
+  const beats = gsap.timeline();
+  let t = 0.10;
+  LINES.forEach((l, i) => {
+    // wjazd od dołu, wyjazd w górę — wrażenie, że zdania przewijają się jak taśma
+    beats.to('#ln' + i,   { opacity:1, duration:0.30, ease:"power3.out" }, t);
+    beats.from('#ln' + i, { y:52, duration:0.34, ease:"power3.out" }, t);
+    if (i < LINES.length - 1) {
+      beats.to('#ln' + i, { opacity:0, y:-46, duration:0.28, ease:"power2.in" }, t + l.hold);
+    }
+    t += l.hold + 0.20;
+  });
+  // ostatnia linia jeszcze podbija — to puenta hooka
+  beats.to('#ln' + (LINES.length-1), { scale:1.06, duration:0.5, ease:"power2.out" }, t - 1.6);
+
+  const tl = gsap.timeline({ paused:true });
+  beats.timeScale(1.0);          // linie same trzymają rytm, nie zwalniamy
+  tl.add(beats, 0.0);
+
+  const DURATION = t + 0.9;
+  tl.to({}, { duration:0.4 }, DURATION - 0.4);
+
+  flowbizScene.init({
+    id: "x02-kinetyka",
+    duration: DURATION,
+    tail: 0.4,
+    label: "X02 · TYPOGRAFIA KINETYCZNA · " + DURATION.toFixed(1) + "s",
+    timeline: tl
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>E08 LONG · 01 — WYCZYŚĆ CACHE · flowbiz.pl</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="scene-shell.css" />
+<link rel="stylesheet" href="logos.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="recorder.js"></script>
+<script src="scene-shell.js"></script>
+<style>
+  .c-label{
+    position:absolute;left:0;right:0;top:150px;text-align:center;
+    font-size:26px;font-weight:600;color:#3A3630;
+    letter-spacing:0.36em;text-transform:uppercase;opacity:0;
+  }
+  .c-card{
+    position:absolute;left:50%;top:240px;transform:translateX(-50%);
+    width:900px;background:#0D0D0B;
+    border:1.5px solid rgba(245,166,35,0.2);
+    padding:0;opacity:0;
+  }
+  .c-head{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:26px 34px;border-bottom:1px solid #2E2C28;
+    font-size:26px;font-weight:700;color:#FAF8F0;letter-spacing:0.02em;
+  }
+  .c-count{font-size:22px;font-weight:600;color:#F5A623;font-variant-numeric:tabular-nums}
+  .c-row{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:24px 34px;border-bottom:1px solid #1E1C18;
+    font-size:28px;font-weight:400;color:#FAF8F0;
+  }
+  .c-row span{color:#5A5450;font-size:24px}
+  .c-empty{
+    position:absolute;left:50%;top:430px;transform:translateX(-50%);
+    font-size:34px;font-weight:600;color:#5A5450;letter-spacing:0.04em;
+    opacity:0;text-align:center;width:900px;
+  }
+  .c-action{
+    position:absolute;left:50%;top:810px;transform:translateX(-50%);
+    display:inline-flex;align-items:center;gap:18px;
+    background:#0D0D0B;border:1.5px solid #C0553A;
+    padding:22px 40px;opacity:0;
+  }
+  .c-action b{font-size:30px;font-weight:700;color:#C0553A;letter-spacing:0.02em}
+  .c-final{
+    position:absolute;left:0;right:0;top:930px;text-align:center;
+    font-size:40px;font-weight:800;color:#FAF8F0;letter-spacing:-0.01em;opacity:0;
+  }
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <div class="stage" id="stage">
+    <svg class="grid" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+      <defs><pattern id="g100" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+        <path d="M100 0 L0 0 0 100" fill="none" stroke="rgba(245,166,35,0.04)" stroke-width="1"/>
+      </pattern></defs>
+      <rect width="1920" height="1080" fill="url(#g100)"/>
+    </svg>
+
+    <div class="scene">
+
+      <div class="c-card" id="card">
+        <div class="c-head">Pracownicy <span class="c-count" id="count">6 rekordów</span></div>
+        <div class="c-row r">Anna K. <span>urlop · 12 dni</span></div>
+        <div class="c-row r">Marek W. <span>urlop · 4 dni</span></div>
+        <div class="c-row r">Tomasz L. <span>urlop · 0 dni</span></div>
+        <div class="c-row r">Ewa S. <span>urlop · 21 dni</span></div>
+        <div class="c-row r">Piotr N. <span>urlop · 7 dni</span></div>
+        <div class="c-row r" style="border-bottom:0">Julia B. <span>urlop · 15 dni</span></div>
+      </div>
+
+      <div class="c-empty" id="empty"><span class="chroma-plate">— brak danych —</span></div>
+
+      <div class="c-action" id="action"><b>WYCZYŚĆ DANE PRZEGLĄDANIA</b></div>
+      <div class="c-final" id="final">Cała jego praca. Zniknęła.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const beats = gsap.timeline();
+  const rows = gsap.utils.toArray(".c-row.r");
+  beats.to("#card",  { opacity:1, duration:0.40, ease:"back.out(1.4)" }, 0.20);
+
+  // 1.1s — przycisk „wyczyść" pojawia się, po chwili wciśnięty
+  beats.to("#action", { opacity:1, duration:0.30, ease:"back.out(1.6)" }, 1.10);
+  beats.to("#action", { scale:0.96, duration:0.10, ease:"power2.out" }, 1.75);
+  beats.to("#action", { scale:1.00, duration:0.18, ease:"power2.out" }, 1.85);
+
+  // 1.95s — wiersze znikają jeden po drugim, od dołu
+  beats.to(rows.slice().reverse(), {
+    opacity:0, x:40, height:0, paddingTop:0, paddingBottom:0,
+    duration:0.22, stagger:0.09, ease:"power2.in"
+  }, 1.95);
+
+  // licznik leci do zera razem z wierszami
+  const c = { v: 6 };
+  beats.to(c, {
+    v: 0, duration: 0.75, ease: "power2.in",
+    onUpdate(){ document.getElementById("count").textContent = Math.round(c.v) + " rekordów"; }
+  }, 1.95);
+
+  beats.to("#count", { color:"#C0553A", duration:0.3 }, 2.4);
+
+  // karta się kurczy, więc dół sceny podjeżdża za nią — inaczej zostaje dziura
+  beats.to(["#action","#final"], { y:-190, duration:0.55, ease:"power2.inOut" }, 2.15);
+  beats.to("#empty", { y:-40, duration:0.55, ease:"power2.inOut" }, 2.15);
+
+  beats.to("#empty", { opacity:1, duration:0.35, ease:"power2.out" }, 2.75);
+
+  // 3.2s — puenta
+  beats.to("#final", { opacity:1, duration:0.40, ease:"power3.out" }, 3.20);
+
+  beats.to({}, { duration:0.4 }, 3.7);
+
+  const BEATS_DUR = 4.1;
+  beats.timeScale(0.6);
+
+  // oś główna: najpierw karta tytułowa, potem spowolnione beaty oryginału
+  const tl = gsap.timeline({ paused:true });
+  flowbizScene.titleCard({ tl, text:"SYSTEM BEZ BAZY DANYCH" });
+  tl.add(beats, 3.9);
+
+  const DURATION = 3.9 + BEATS_DUR / 0.6 + 3;
+
+  flowbizScene.init({
+    id: "e08-01-long",
+    duration: DURATION,
+    tail: 0.4,
+    label: "E08 LONG · 01 · WYCZYŚĆ CACHE · 4.1s",
+    timeline: tl
+  });
+</script>
+</body>
+</html>

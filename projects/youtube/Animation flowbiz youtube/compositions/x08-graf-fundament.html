@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>X08 — GRAF: CZTERY BRANŻE, JEDEN RDZEŃ · flowbiz.pl</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" />
+<link rel="stylesheet" href="scene-shell.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="recorder.js"></script>
+<script src="scene-shell.js"></script>
+<style>
+  /* EKSPERYMENT: graf w dwóch wymiarach zamiast ścieżki panoramicznej.
+     e01-02 prowadzi widza od stacji do stacji. Tu wszystkie cztery wdrożenia
+     leżą naraz w przestrzeni i dopiero potem ZBIEGAJĄ SIĘ do wspólnego
+     rdzenia — ruch zbieżny mówi „to samo pod spodem" mocniej niż napis. */
+  .net{ position:absolute;inset:0;z-index:1 }
+  .node{
+    position:absolute;width:250px;margin-left:-125px;text-align:center;opacity:0;
+  }
+  .node .ic{
+    width:104px;height:104px;margin:0 auto 14px;border-radius:28px;
+    background:#0D0D0B;border:2px solid rgba(245,166,35,0.34);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .node .ic i{ font-size:46px;color:#F5A623 }
+  .node .nm{ font-size:30px;font-weight:800;color:#FAF8F0;letter-spacing:-0.01em }
+  .node .br{ font-size:22px;font-weight:500;color:#6E6862;margin-top:4px }
+
+  .core{
+    position:absolute;left:50%;top:552px;transform:translate(-50%,-50%) scale(0.6);
+    background:#13110D;border:2px solid #F5A623;
+    box-shadow:0 0 70px rgba(245,166,35,0.22);
+    padding:26px 46px;opacity:0;z-index:4;
+    display:flex;align-items:center;gap:20px;
+  }
+  .core .t{ font-size:34px;font-weight:800;color:#FAF8F0;letter-spacing:-0.01em }
+  .core i{ font-size:26px;color:#F5A623 }
+
+  .final{
+    position:absolute;left:0;right:0;bottom:58px;text-align:center;
+    font-size:52px;font-weight:900;color:#F5A623;letter-spacing:-0.02em;z-index:9;opacity:0;
+  }
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <div class="stage" id="stage">
+    <svg class="grid" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+      <defs><pattern id="g100" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+        <path d="M100 0 L0 0 0 100" fill="none" stroke="rgba(245,166,35,0.04)" stroke-width="1"/>
+      </pattern></defs>
+      <rect width="1920" height="1080" fill="url(#g100)"/>
+    </svg>
+
+    <div class="scene">
+      <svg class="net" id="net" viewBox="0 0 1920 1080"></svg>
+      <div class="core" id="core">
+        <span class="t">rekord</span><i class="ti ti-arrow-narrow-right"></i>
+        <span class="t">role</span><i class="ti ti-arrow-narrow-right"></i>
+        <span class="t">status</span><i class="ti ti-arrow-narrow-right"></i>
+        <span class="t">dokument</span>
+      </div>
+      <div class="final" id="final">Jeden fundament pod czterema firmami.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const CORE = { x:960, y:552 };
+  const NODES = [
+    { x:330,  y:250, ic:"ti ti-package",         nm:"Karta techniczna", br:"opakowania" },
+    { x:1590, y:250, ic:"ti ti-stethoscope",     nm:"Wizyta pacjenta",  br:"medycyna" },
+    { x:270,  y:830, ic:"ti ti-building-factory",nm:"Zamówienie B2B",   br:"produkcja MTO" },
+    { x:1650, y:830, ic:"ti ti-tool",            nm:"Zlecenie",         br:"mała produkcja" },
+  ];
+
+  const scene = document.querySelector('.scene');
+  const net   = document.getElementById('net');
+
+  NODES.forEach((n, i) => {
+    const el = document.createElement('div');
+    el.className = 'node'; el.id = 'n' + i;
+    el.style.left = n.x + 'px';
+    el.style.top  = (n.y - 84) + 'px';
+    el.innerHTML = '<div class="ic"><i class="' + n.ic + '"></i></div>' +
+                   '<div class="nm">' + n.nm + '</div>' +
+                   '<div class="br"><span class="chroma-plate">' + n.br + '</span></div>';
+    scene.insertBefore(el, document.getElementById('core'));
+
+    const p = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    p.setAttribute("d", `M ${n.x} ${n.y} L ${CORE.x} ${CORE.y}`);
+    p.setAttribute("stroke", "#F5A623");
+    p.setAttribute("stroke-width", "2.5");
+    p.setAttribute("fill", "none");
+    p.setAttribute("id", "e" + i);
+    net.appendChild(p);
+  });
+
+  gsap.utils.toArray('#net path').forEach(p => {
+    const len = p.getTotalLength();
+    gsap.set(p, { strokeDasharray:len, strokeDashoffset:len, opacity:0.85 });
+  });
+
+  const beats = gsap.timeline();
+
+  // cztery wdrożenia — każde osobno, w swoim rogu
+  NODES.forEach((_, i) => {
+    const t = 0.15 + i * 0.62;
+    beats.to('#n' + i,   { opacity:1, duration:0.40, ease:"back.out(1.6)" }, t);
+    beats.from('#n' + i, { scale:0.82, duration:0.40, ease:"back.out(1.6)" }, t);
+  });
+
+  // dopiero teraz krawędzie — i widać, że wszystkie idą w to samo miejsce
+  const AFTER = 0.15 + NODES.length * 0.62;
+  NODES.forEach((_, i) => {
+    beats.to('#e' + i, { strokeDashoffset:0, duration:0.70, ease:"power2.inOut" }, AFTER + i * 0.22);
+  });
+
+  beats.to('#core',   { opacity:1, scale:1, duration:0.55, ease:"back.out(1.7)" }, AFTER + 1.15);
+  beats.to('.node',   { opacity:0.45, duration:0.6, ease:"power2.out" }, AFTER + 1.60);
+  beats.to('#net path', { opacity:0.35, duration:0.6, ease:"power2.out" }, AFTER + 1.60);
+
+  beats.to('#final',   { opacity:1, duration:0.44, ease:"power3.out" }, AFTER + 2.10);
+  beats.from('#final', { y:22, duration:0.44, ease:"power3.out" }, AFTER + 2.10);
+
+  const tl = gsap.timeline({ paused:true });
+  flowbizScene.titleCard({ tl, text:"CZTERY BRANŻE. JEDEN FUNDAMENT." });
+  beats.timeScale(0.82);
+  tl.add(beats, 3.90);
+
+  const DURATION = 3.90 + (AFTER + 3.0) / 0.82 + 1.4;
+  tl.to({}, { duration:0.4 }, DURATION - 0.4);
+
+  flowbizScene.init({
+    id: "x08-graf", duration: DURATION, tail: 0.4,
+    label: "X08 · GRAF — JEDEN RDZEŃ · " + DURATION.toFixed(1) + "s",
+    timeline: tl
+  });
+</script>
+</body>
+</html>

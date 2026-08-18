@@ -93,6 +93,67 @@ Jednorazowo: `npm install && npx playwright install chromium`.
 3. **Konflikt tweenów na tej samej właściwości.** `tl.from(el, {y:26})` nadpisze wcześniejszy
    ruch `y` tego elementu. Kosztowało to jedną nieudaną wersję sceny `e08-01`.
 
+
+## Wersje długie (`-long`)
+
+Wstawki 4-sekundowe pokazują wszystko naraz i są za krótkie do montażu. Obok każdej leży
+wersja `-long` (10–20 s), rozbita na wyraźne beaty, żeby dało się ją **przyciąć zamiast
+przyspieszyć**:
+
+1. karta tytułowa na ~70% szerokości kadru
+2. tytuł ucieka w górę i tym samym elementem staje się nagłówkiem
+3. beaty z przerwami
+4. puenta osobno
+
+```bash
+node tools-make-long.mjs e08-01-cache "SYSTEM BEZ BAZY DANYCH" 0.60 3.90 3.0 label
+#                        ^scena       ^tytuł                   ^slow ^lead ^ogon ^id-nagłówka
+```
+
+**Długie nie są kopiami — są nadbudową.** Generator wkłada oryginalne tweeny w podrzędną oś
+GSAP, spowalnia ją `timeScale` i dokleja po karcie tytułowej. Poprawka w scenie krótkiej
+propaguje się do długiej sama, więc obie wersje nie mogą się rozjechać.
+
+Wyjątek: `e01-01-kopie-long` napisana od zera — dostała nową choreografię (każdy plik rodzi się
+powiększony na środku i dopiero potem odjeżdża na miejsce), a nie samo spowolnienie.
+
+**Pułapka geometrii:** strefa „hero" musi siedzieć NAD rzędem docelowym. Karta rodząca się
+na środku zasłaniałaby tę już zaparkowaną w środkowym slocie — i przez sekundę wygląda to,
+jakby zniknęła.
+
+## Ujęcia filmowe z Veo
+
+Tam, gdzie potrzeba obrazu z życia zamiast planszy. Osiemnaście ujęć, prompty i przypisanie
+do miejsc w skryptach: `tools-veo-generate.mjs`.
+
+```bash
+node tools-veo-generate.mjs --dry     # co poszłoby, bez wydawania
+GEMINI_API_KEY=… node tools-veo-generate.mjs --list   # które modele veo-* widzi klucz
+GEMINI_API_KEY=… node tools-veo-generate.mjs          # komplet
+GEMINI_API_KEY=… node tools-veo-generate.mjs 06 11    # wybrane
+```
+
+Wynik: `assets/veo/`. **Te pliki wchodzą do gita** — są płatne i generatywne, więc drugi raz
+nie wyjdą identycznie.
+
+Trzy rzeczy, które kosztowały próby:
+
+1. **`personGeneration: "allow_adult"` jest odrzucane** przez Veo 3.1 (400). Pomijamy parametr.
+2. **Nazwy modeli zmieniają się między wydaniami** — skrypt pyta API, co widzi klucz, i bierze
+   wariant `fast` (do b-rolla pod narrację pełna jakość nie robi różnicy, a kosztuje wielokrotnie
+   więcej). Nadpisanie: `VEO_MODEL=…`.
+3. **Domyślnie wychodzi 720p** — trzeba podać `resolution: "1080p"` jawnie.
+
+Wspólny sufiks stylu trzyma ujęcia w estetyce animacji: ciemne wnętrza, ciepłe światło
+praktyczne, płytka głębia, **zero tekstu na ekranie** (model miesza litery).
+
+## Ramka brandowa
+
+`overlay-ramka-flowbiz` — L-kształtny overlay chromakey (belka pionowa + dolna), odpowiednik
+starego `b-rolle/new.mp4` na palecie brandbooka 2026. Stara była żółta; brandbook takiej żółci
+nie ma, a w konfiguracji ciemnej role kolorów się przestawiają — belki biorą bór `#183028`,
+akcent bierze bursztyn `#ECAB45`.
+
 ## Co jest zrobione
 
 **Odcinek 08** (nagrany) — siedem wstawek: `cache`, `moduly`, `racja`, `warstwy` (pan pionowy),

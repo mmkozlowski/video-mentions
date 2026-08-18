@@ -64,4 +64,65 @@ for row in "${SCENES[@]}"; do
   if [ -n "$1" ] && [ "$1" != "$name" ]; then continue; fi
   build "$name" "$dur" "$events"
 done
+
+# ── wersje długie ───────────────────────────────────────────────────────────
+# Nie przepisujemy czasów ręcznie. Długa wersja to te same beaty spowolnione
+# o `slow` i przesunięte o `lead` (karta tytułowa), więc każdy akcent wypada
+# w  lead + t/slow.  Dzięki temu poprawka w scenie krótkiej propaguje się tu
+# sama, a arkusz nie może się rozjechać z obrazem.
+#
+# scena-bazowa|slow|lead|długość-wersji-długiej
+LONG=(
+"e01-02-cztery-branze|0.62|3.90|19.3"
+"e01-03-dostep|0.58|3.90|17.7"
+"e01-04-skad-przenosisz|0.50|3.90|15.7"
+"e01-05-czym-to-nie-jest|0.50|3.90|16.1"
+"e03-01-kartka|0.70|3.90|18.2"
+"e03-02-warsztat|0.70|3.90|18.5"
+"e03-03-droga-zamowienia|0.68|3.90|18.0"
+"e03-04-trzy-warstwy|0.60|3.90|16.0"
+"e03-05-slownik|0.60|3.90|16.3"
+"e03-06-powtarzalnosc|0.62|3.90|16.5"
+"e08-01-cache|0.60|3.90|13.7"
+"e08-02-moduly|0.60|3.90|13.4"
+"e08-03-racja|0.60|3.90|14.1"
+"e08-04-warstwy|0.65|3.90|17.5"
+"e08-05-granice|0.62|3.90|16.2"
+"e08-06-bariera|0.60|3.90|13.0"
+"e08-07-framework|0.62|3.90|16.3"
+)
+
+# akcenty samej karty tytułowej — te same w każdej długiej wersji
+TITLE_CUES="0.20:pop,2.60:whoosh"
+
+for row in "${LONG[@]}"; do
+  IFS='|' read -r base slow lead dur <<< "$row"
+  if [ -n "$1" ] && [ "$1" != "${base}-long" ]; then continue; fi
+
+  src=""
+  for r in "${SCENES[@]}"; do
+    IFS='|' read -r n d e <<< "$r"
+    [ "$n" = "$base" ] && src="$e"
+  done
+  [ -z "$src" ] && { echo "  ! brak bazy dla $base"; continue; }
+
+  shifted=$(python3 -c "
+import sys
+src, slow, lead = sys.argv[1], float(sys.argv[2]), float(sys.argv[3])
+out = []
+for ev in src.split(','):
+    t, snd = ev.split(':')
+    out.append('%.2f:%s' % (lead + float(t)/slow, snd))
+print(','.join(out))
+" "$src" "$slow" "$lead")
+
+  build "${base}-long" "$dur" "${TITLE_CUES},${shifted}"
+done
+
+# e01-01 ma wersję długą pisaną od zera, nie przeskalowaną — własne czasy
+if [ -z "$1" ] || [ "$1" = "e01-01-kopie-long" ]; then
+  build "e01-01-kopie-long" "19.8" \
+    "0.20:pop,2.60:whoosh,3.70:pop,4.10:tick,4.42:tick,6.55:whoosh,7.25:whoosh,8.00:pop,8.36:tick,8.68:tick,9.60:error,10.85:whoosh,11.55:whoosh,12.30:pop,12.66:tick,12.98:tick,13.90:error,14.30:error,15.35:whoosh,16.40:whoosh,17.25:klik,18.15:thud"
+fi
+
 echo "── gotowe"

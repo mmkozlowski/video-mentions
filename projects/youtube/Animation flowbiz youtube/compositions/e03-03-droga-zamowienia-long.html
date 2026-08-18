@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>E03 LONG · 03 — DROGA JEDNEGO ZAMÓWIENIA · flowbiz.pl</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" />
+<link rel="stylesheet" href="scene-shell.css" />
+<link rel="stylesheet" href="logos.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="recorder.js"></script>
+<script src="scene-shell.js"></script>
+<style>
+  .eyebrow{
+    position:absolute;left:0;right:0;top:88px;text-align:center;
+    font-size:22px;font-weight:600;letter-spacing:0.24em;z-index:9;opacity:0;
+  }
+
+  /* LICZNIK — stoi w miejscu, rośnie z każdym etapem */
+  .meter{
+    position:absolute;left:50%;top:158px;transform:translateX(-50%);
+    text-align:center;z-index:8;opacity:0;
+  }
+  .meter .cap{
+    font-size:23px;font-weight:700;letter-spacing:0.2em;color:#5A5450;text-transform:uppercase;
+  }
+  .meter .num{
+    font-size:172px;font-weight:900;line-height:0.92;margin-top:6px;
+    color:#F5A623;font-variant-numeric:tabular-nums;letter-spacing:-0.04em;
+  }
+  .meter .unit{ font-size:26px;font-weight:600;color:#6E6862;letter-spacing:0.16em;margin-top:2px }
+  .meter.hot .num{ color:#C0553A }
+
+  .hfade{ position:absolute;top:436px;height:340px;width:280px;z-index:6;pointer-events:none }
+  .hfade.l{ left:0;  background:linear-gradient(to right, #0A0A08 0%, rgba(10,10,8,0.74) 42%, transparent 100%) }
+  .hfade.r{ right:0; background:linear-gradient(to left,  #0A0A08 0%, rgba(10,10,8,0.74) 42%, transparent 100%) }
+  body.chromakey .hfade{ display:none !important }
+
+  .track{ position:absolute;left:0;top:466px;height:300px;will-change:transform;z-index:2 }
+  .rail{ position:absolute;top:236px;height:2px;background:rgba(245,166,35,0.16) }
+  .rail-fg{ position:absolute;top:236px;height:2px;width:0;background:#F5A623;
+            box-shadow:0 0 16px rgba(245,166,35,0.5) }
+
+  .step{
+    position:absolute;top:34px;width:360px;margin-left:-180px;
+    background:#0D0D0B;border:1.5px solid rgba(245,166,35,0.22);
+    padding:24px 26px 26px;opacity:0;transform:scale(0.9);
+  }
+  .step .nm{ font-size:31px;font-weight:800;color:#FAF8F0;letter-spacing:-0.01em }
+  .step .does{ font-size:22px;font-weight:500;color:#6E6862;margin-top:6px }
+  .step .ppl{ display:flex;gap:7px;margin-top:18px;flex-wrap:wrap }
+  .step .ppl i{ font-size:26px;color:#F5A623;opacity:0 }
+  .step.active{ border-color:#F5A623;box-shadow:0 0 46px rgba(245,166,35,0.16) }
+
+  .final{
+    position:absolute;left:0;right:0;top:850px;text-align:center;
+    font-size:50px;font-weight:900;color:#C0553A;letter-spacing:-0.02em;z-index:9;opacity:0;
+  }
+  .final .s{ display:block;font-size:31px;font-weight:600;color:#FAF8F0;opacity:0.62;margin-top:14px;letter-spacing:0 }
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <div class="stage" id="stage">
+    <svg class="grid" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+      <defs><pattern id="g100" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+        <path d="M100 0 L0 0 0 100" fill="none" stroke="rgba(245,166,35,0.04)" stroke-width="1"/>
+      </pattern></defs>
+      <rect width="1920" height="1080" fill="url(#g100)"/>
+    </svg>
+
+    <div class="scene">
+
+      <div class="meter" id="meter">
+        <div class="cap"><span class="chroma-plate">Dotknęło tej kartki</span></div>
+        <div class="num" id="num">1</div>
+        <div class="unit"><span class="chroma-plate">OSÓB</span></div>
+      </div>
+
+      <div class="track" id="track">
+        <div class="rail" id="rail"></div>
+        <div class="rail-fg" id="railFg"></div>
+      </div>
+
+      <div class="hfade l"></div>
+      <div class="hfade r"></div>
+
+      <div class="final" id="final">Każda widzi co innego.<span class="s">Każda może zepsuć co innego.</span></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const STEPS = [
+    { nm:"handlowiec",    does:"przyjmuje zamówienie", add:1 },
+    { nm:"administracja", does:"wprowadza i rozdziela", add:2 },
+    { nm:"produkcja",     does:"robi w swoim tempie",   add:3 },
+    { nm:"pakowanie",     does:"zbiera, wysyła, zmienia status", add:3 },
+    { nm:"dokumenty",     does:"rachunki, faktury",     add:3 },
+  ];
+
+  // narastajaca suma — licznik pokazuje, ile RAZEM osob dotknelo kartki
+  const TOTAL = STEPS.reduce((acc, s) => { acc.push((acc[acc.length-1] || 0) + s.add); return acc; }, []);
+
+  const FIRST_X = 960, GAPX = 460;
+  const X = STEPS.map((_, i) => FIRST_X + i * GAPX);
+  const STATIONS = X.map(x => 960 - x);
+
+  const track = document.getElementById('track');
+  const rail  = document.getElementById('rail');
+  const railFg= document.getElementById('railFg');
+
+  track.style.width = (X[X.length-1] + 960) + 'px';
+  rail.style.left = X[0] + 'px';
+  rail.style.width = (X[X.length-1] - X[0]) + 'px';
+  railFg.style.left = X[0] + 'px';
+
+  STEPS.forEach((s, i) => {
+    const el = document.createElement('div');
+    el.className = 'step'; el.id = 'p' + i;
+    el.style.left = X[i] + 'px';
+    el.innerHTML =
+      '<div class="nm">' + s.nm + '</div>' +
+      '<div class="does"><span class="chroma-plate">' + s.does + '</span></div>' +
+      '<div class="ppl">' + Array.from({length:s.add}, () => '<i class="ti ti-user-filled u' + i + '"></i>').join('') + '</div>';
+    track.appendChild(el);
+  });
+
+  function activate(i){
+    document.querySelectorAll('.step').forEach(n => n.classList.remove('active'));
+    const el = document.getElementById('p' + i);
+    if (el) el.classList.add('active');
+  }
+
+  // licznik przewija sie do nowej wartosci, zamiast przeskakiwac
+  const counter = { v: 0 };
+  const numEl = document.getElementById('num');
+  function countTo(beats, at, target){
+    beats.to(counter, {
+      v: target, duration:0.55, ease:"power2.out",
+      onUpdate: () => { numEl.textContent = Math.round(counter.v); }
+    }, at);
+  }
+
+  const beats = gsap.timeline();
+  beats.to('#meter',   { opacity:1, duration:0.36, ease:"power2.out" }, 0.15);
+
+  beats.to('#p0', { opacity:1, scale:1, duration:0.40, ease:"back.out(1.7)" }, 0.35);
+  beats.call(() => activate(0), null, 0.58);
+  beats.to('.u0', { opacity:1, duration:0.22, stagger:0.09, ease:"back.out(2)" }, 0.60);
+  countTo(beats, 0.60, TOTAL[0]);
+
+  const STEP = 1.20;
+  let cursor = 1.45;
+  for (let i = 1; i < STEPS.length; i++) {
+    const t = cursor;
+    beats.to(track,  { x: STATIONS[i], duration:0.74, ease:"power2.inOut" }, t);
+    beats.to(railFg, { width: X[i] - X[0], duration:0.74, ease:"power2.inOut" }, t);
+    beats.to('#p' + i, { opacity:1, scale:1, duration:0.38, ease:"back.out(1.7)" }, t + 0.30);
+    beats.call(() => activate(i), null, t + 0.56);
+    beats.to('.u' + i, { opacity:1, duration:0.20, stagger:0.09, ease:"back.out(2)" }, t + 0.58);
+    countTo(beats, t + 0.58, TOTAL[i]);
+    cursor = t + STEP;
+  }
+
+  // licznik czerwienieje — to nie jest ciekawostka, to lista miejsc, gdzie moze pojsc zle
+  const END = cursor + 0.05;
+  beats.call(() => document.getElementById('meter').classList.add('hot'), null, END);
+  beats.to('#meter', { scale:1.08, duration:0.42, ease:"power3.out" }, END);
+  beats.to('.step', { opacity:0.32, duration:0.5, ease:"power2.out" }, END);
+  beats.call(() => activate(-1), null, END);
+
+  beats.to('#final', { opacity:1, duration:0.44, ease:"power3.out" }, END + 0.48);
+  beats.from('#final', { y:24, duration:0.44, ease:"power3.out" }, END + 0.48);
+
+  const BEATS_DUR = END + 1.75;
+  beats.timeScale(0.68);
+
+  // oś główna: najpierw karta tytułowa, potem spowolnione beaty oryginału
+  const tl = gsap.timeline({ paused:true });
+  flowbizScene.titleCard({ tl, text:"DROGA JEDNEGO ZAMÓWIENIA" });
+  tl.add(beats, 3.9);
+
+  const DURATION = 3.9 + BEATS_DUR / 0.68 + 2.2;
+  beats.to({}, { duration:0.4 }, DURATION - 0.4);
+
+  flowbizScene.init({
+    id: "e03-03-long",
+    duration: DURATION,
+    tail: 0.4,
+    label: "E03 LONG · 03 · DROGA ZAMÓWIENIA (pan + licznik) · " + DURATION.toFixed(1) + "s",
+    timeline: tl
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>X05 — STOS IZOMETRYCZNY (odc. 08) · flowbiz.pl</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" />
+<link rel="stylesheet" href="scene-shell.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="recorder.js"></script>
+<script src="scene-shell.js"></script>
+<style>
+  /* EKSPERYMENT: warstwy w przestrzeni, nie w kolumnie.
+     e08-04 pokazuje ten sam zestaw jako listę pionową. Tu płyty leżą jedna
+     nad drugą w rzucie izometrycznym, więc od razu widać, że to jest STOS
+     — coś, co ma grubość — a nie cztery punkty listy. */
+  .space{
+    position:absolute;left:50%;top:540px;width:1px;height:1px;
+    perspective:2200px;transform-style:preserve-3d;
+  }
+  .plate{
+    position:absolute;left:-460px;top:-150px;width:920px;height:300px;
+    background:#0D0D0B;border:2px solid rgba(245,166,35,0.32);
+    transform-style:preserve-3d;opacity:0;
+    display:flex;align-items:center;gap:34px;padding:0 46px;
+  }
+  .plate .n{ font-size:30px;font-weight:900;color:#F5A623;letter-spacing:0.12em;flex:none;width:58px }
+  .plate .ic{
+    width:92px;height:92px;border-radius:24px;flex:none;
+    background:#0A0A08;border:2px solid rgba(245,166,35,0.34);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .plate .ic i{ font-size:44px;color:#F5A623 }
+  .plate .nm{ font-size:52px;font-weight:800;color:#FAF8F0;letter-spacing:-0.015em }
+  .plate .nt{ margin-left:auto;font-size:27px;font-weight:500;color:#FAF8F0;opacity:0.55 }
+  .plate.on{ border-color:#F5A623;box-shadow:0 0 60px rgba(245,166,35,0.20) }
+
+  .final{
+    position:absolute;left:0;right:0;bottom:58px;text-align:center;
+    font-size:52px;font-weight:900;color:#F5A623;letter-spacing:-0.02em;z-index:9;opacity:0;
+  }
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <div class="stage" id="stage">
+    <svg class="grid" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+      <defs><pattern id="g100" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+        <path d="M100 0 L0 0 0 100" fill="none" stroke="rgba(245,166,35,0.04)" stroke-width="1"/>
+      </pattern></defs>
+      <rect width="1920" height="1080" fill="url(#g100)"/>
+    </svg>
+
+    <div class="scene">
+      <div class="space" id="space"></div>
+      <div class="final" id="final">To jest stos, nie lista.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const LAYERS = [
+    { n:"01", ic:"ti ti-users",        nm:"Użytkownicy", nt:"kto się loguje" },
+    { n:"02", ic:"ti ti-id-badge-2",   nm:"Role",        nt:"kim jest w firmie" },
+    { n:"03", ic:"ti ti-lock-check",   nm:"Uprawnienia", nt:"co wolno mu zrobić" },
+    { n:"04", ic:"ti ti-box-multiple", nm:"Moduły",      nt:"gdzie mu wolno" },
+  ];
+
+  const space = document.getElementById('space');
+  const TILT = 62;      // stopni odchylenia od pionu — rzut „izometryczny"
+  const GAPZ = 150;     // odstęp między płytami w głąb
+
+  LAYERS.forEach((l, i) => {
+    const el = document.createElement('div');
+    el.className = 'plate'; el.id = 'p' + i;
+    el.innerHTML =
+      '<div class="n">' + l.n + '</div>' +
+      '<div class="ic"><i class="' + l.ic + '"></i></div>' +
+      '<div class="nm">' + l.nm + '</div>' +
+      '<div class="nt"><span class="chroma-plate">' + l.nt + '</span></div>';
+    space.appendChild(el);
+  });
+
+  // Płyty leżą płasko i są rozsunięte w osi Y ekranu — dolna jest „najbliżej".
+  // Rotacja idzie na kontenerze, żeby cały stos obracał się jak jeden obiekt.
+  gsap.set('#space', { rotationX: TILT, rotationZ: -22 });
+  LAYERS.forEach((_, i) => {
+    gsap.set('#p' + i, { z: -i * GAPZ, y: i * 26, opacity:0 });
+  });
+
+  const beats = gsap.timeline();
+
+  LAYERS.forEach((_, i) => {
+    const t = 0.15 + i * 0.78;
+    // każda płyta opada na swoje miejsce z góry
+    beats.to('#p' + i,   { opacity:1, duration:0.42, ease:"power2.out" }, t);
+    beats.from('#p' + i, { z: -i * GAPZ + 420, duration:0.62, ease:"power3.out" }, t);
+    beats.call(() => {
+      document.querySelectorAll('.plate').forEach(n => n.classList.remove('on'));
+      document.getElementById('p' + i).classList.add('on');
+    }, null, t + 0.30);
+  });
+
+  // obrót stosu — dopiero teraz widać, że warstwy mają głębokość
+  const END = 0.15 + LAYERS.length * 0.78;
+  beats.to('#space', { rotationZ:-4, rotationX:52, duration:1.30, ease:"power2.inOut" }, END);
+  beats.call(() => document.querySelectorAll('.plate').forEach(n => n.classList.remove('on')), null, END + 0.6);
+
+  beats.to('#final',   { opacity:1, duration:0.44, ease:"power3.out" }, END + 1.15);
+  beats.from('#final', { y:22, duration:0.44, ease:"power3.out" }, END + 1.15);
+
+  const tl = gsap.timeline({ paused:true });
+  flowbizScene.titleCard({ tl, text:"TO NIE SĄ DWIE WARSTWY" });
+  beats.timeScale(0.82);
+  tl.add(beats, 3.90);
+
+  const DURATION = 3.90 + (END + 2.0) / 0.82 + 1.4;
+  tl.to({}, { duration:0.4 }, DURATION - 0.4);
+
+  flowbizScene.init({
+    id: "x05-izo", duration: DURATION, tail: 0.4,
+    label: "X05 · STOS IZOMETRYCZNY · " + DURATION.toFixed(1) + "s",
+    timeline: tl
+  });
+</script>
+</body>
+</html>
