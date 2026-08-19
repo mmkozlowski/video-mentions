@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>E01 · 08 — KARTA TYTUŁOWA · flowbiz.pl</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" />
+<link rel="stylesheet" href="scene-shell.css" />
+<link rel="stylesheet" href="logos.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="recorder.js"></script>
+<script src="scene-shell.js"></script>
+<style>
+  .eyebrow{
+    position:absolute;left:0;right:0;top:246px;text-align:center;z-index:8;
+    font-size:25px;font-weight:600;letter-spacing:0.26em;opacity:0;
+  }
+
+  /* kazda linia ma wlasna maske — tekst wyjezdza spod krawedzi */
+  .ln{ position:absolute;left:0;right:0;text-align:center;overflow:hidden;z-index:7 }
+  .ln > span{
+    display:inline-block;
+    font-size:104px;font-weight:900;letter-spacing:-0.028em;line-height:1.06;
+    color:#FAF8F0;
+  }
+  #l1{ top:344px;height:126px }
+  #l2{ top:462px;height:126px }
+  #l3{ top:580px;height:132px }
+  #l3 > span{ color:#F5A623 }
+
+  /* bursztynowa belka, ktora podjezdza pod ostatnia linie */
+  .rule{
+    position:absolute;left:50%;top:722px;height:8px;width:0;margin-left:0;
+    background:#F5A623;box-shadow:0 0 34px rgba(245,166,35,0.5);z-index:6;
+  }
+
+  .sub{
+    position:absolute;left:0;right:0;top:774px;text-align:center;z-index:8;
+    font-size:33px;font-weight:600;opacity:0;
+  }
+
+  /* znacznik odcinka w rogu — spina karte z reszta serii */
+  .badge{
+    position:absolute;left:50%;top:884px;transform:translateX(-50%) scale(0.9);
+    display:flex;align-items:center;gap:16px;
+    background:#0D0D0B;border:1.5px solid rgba(245,166,35,0.34);
+    padding:17px 30px;z-index:8;opacity:0;
+  }
+  .badge .lg{ font-size:27px;line-height:1;display:inline-flex }
+  .badge .tx{
+    font:700 21px/1 'DM Sans',sans-serif;letter-spacing:0.14em;color:#F5A623;
+  }
+  .badge .sep{ width:1.5px;height:22px;background:#2E2C28 }
+  .badge .no{ font:600 21px/1 'DM Sans',sans-serif;letter-spacing:0.14em;color:#5A5450 }
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <div class="stage" id="stage">
+    <svg class="grid" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+      <defs><pattern id="g100" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+        <path d="M100 0 L0 0 0 100" fill="none" stroke="rgba(245,166,35,0.04)" stroke-width="1"/>
+      </pattern></defs>
+      <rect width="1920" height="1080" fill="url(#g100)"/>
+    </svg>
+
+    <div class="scene">
+      <div class="eyebrow" id="eyebrow"><span class="chroma-plate amber">OBIETNICA TEGO ODCINKA</span></div>
+
+      <div class="ln" id="l1"><span>Czy da się przenieść</span></div>
+      <div class="ln" id="l2"><span>Twój proces</span></div>
+      <div class="ln" id="l3"><span>szybko i tanio?</span></div>
+
+      <div class="rule" id="rule"></div>
+
+      <div class="sub" id="sub"><span class="chroma-plate">Albo uczciwie — czy nie.</span></div>
+
+      <div class="badge" id="badge">
+        <span class="lg"><i class="logo logo-openmercato"></i></span>
+        <span class="sep"></span>
+        <span class="no">ODCINEK 01</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const RULE_W = 470;
+  gsap.set('#rule', { width:0, marginLeft:0 });
+  gsap.set(['#l1 > span','#l2 > span','#l3 > span'], { yPercent:118 });
+
+  const tl = gsap.timeline({ paused:true });
+
+  tl.to('#eyebrow', { opacity:1, duration:0.34, ease:"power2.out" }, 0.0);
+  tl.from('#eyebrow', { y:-14, duration:0.34, ease:"power2.out" }, 0.0);
+
+  // 0.26 — trzy linie wyjezdzaja spod maski, jedna po drugiej
+  tl.to('#l1 > span', { yPercent:0, duration:0.52, ease:"power4.out" }, 0.26);
+  tl.to('#l2 > span', { yPercent:0, duration:0.52, ease:"power4.out" }, 0.42);
+  tl.to('#l3 > span', { yPercent:0, duration:0.56, ease:"power4.out" }, 0.60);
+
+  // 1.02 — belka rozjezdza sie od srodka
+  tl.to('#rule', { width:RULE_W, marginLeft:-RULE_W / 2, duration:0.46, ease:"power3.out" }, 1.02);
+
+  // 1.34 — dopisek i znacznik
+  tl.to('#sub', { opacity:1, duration:0.38, ease:"power2.out" }, 1.34);
+  tl.from('#sub', { y:16, duration:0.38, ease:"power2.out" }, 1.34);
+  tl.to('#badge', { opacity:1, scale:1, duration:0.44, ease:"back.out(1.7)" }, 1.62);
+
+  // 2.20 — caly blok delikatnie oddycha do gory: karta nie stoi martwo
+  tl.to(['#l1','#l2','#l3','#rule','#sub','#badge','#eyebrow'],
+        { y:-16, duration:2.0, ease:"power1.inOut" }, 2.20);
+
+  const DURATION = 4.4;
+  tl.to({}, { duration:0.4 }, DURATION - 0.4);
+
+  flowbizScene.init({
+    id: "e01-08",
+    duration: DURATION,
+    tail: 0.4,
+    label: "E01 · 08 · KARTA TYTUŁOWA · " + DURATION.toFixed(1) + "s",
+    timeline: tl
+  });
+</script>
+</body>
+</html>
