@@ -80,12 +80,25 @@
     text-shadow:0 3px 10px rgba(0,0,0,0.8);opacity:0;pointer-events:none;
   }
 
+  /* Werdykt lezy na dloniach i swetrze — goly tekst tam przegrywa z tlem
+     niezaleznie od koloru. Dlatego karta z wlasnym ciemnym tlem, w tym samym
+     jezyku co panele wyzej: solid #0D0D0B, cienki bursztynowy akcent po lewej. */
   .verdict{
-    position:absolute;left:0;right:0;top:848px;text-align:center;z-index:8;
-    font-size:56px;font-weight:800;letter-spacing:-0.015em;opacity:0;
+    position:absolute;left:50%;top:822px;transform:translateX(-50%) scale(0.94);
+    display:flex;align-items:center;gap:26px;
+    background:#0D0D0B;border:1.5px solid #2E2C28;
+    box-shadow:0 30px 90px rgba(0,0,0,0.72);
+    padding:30px 44px 30px 40px;z-index:8;opacity:0;
+  }
+  .verdict::before{
+    content:"";width:7px;align-self:stretch;background:#F5A623;flex:none;
+  }
+  .verdict .t{
+    font-size:50px;font-weight:800;letter-spacing:-0.015em;white-space:nowrap;
   }
   .verdict .a{ color:#F5A623 }
   .verdict .r{ color:#E4795C }
+  .verdict .dot{ width:7px;height:7px;border-radius:50%;background:#3A3630;flex:none }
 </style>
 </head>
 <body>
@@ -99,8 +112,6 @@
     </svg>
 
     <div class="scene">
-      <div class="scrim band" id="scrim"></div>
-
       <div class="eyebrow" id="eyebrow"><span class="chroma-plate amber">DOSTĘP DO INFRASTRUKTURY</span></div>
 
       <!-- ZAMKNIETA PLATFORMA -->
@@ -150,8 +161,10 @@
 
       <div class="mouse" id="mouse"><i class="ti ti-pointer-filled"></i></div>
 
-      <div class="verdict halo strong" id="verdict">
-        <span class="r">Tam nie ma gdzie wejść.</span> &nbsp;<span class="a">Tu wchodzisz.</span>
+      <div class="verdict" id="verdict">
+        <span class="t r">Tam nie ma gdzie wejść.</span>
+        <span class="dot"></span>
+        <span class="t a">Tu wchodzisz.</span>
       </div>
     </div>
   </div>
@@ -197,10 +210,8 @@
   });
 
   // 4.80 — werdykt
-  tl.to('#scrim', { opacity:1, duration:0.40, ease:"power2.out" }, 4.66);
-  tl.to('#scrim', { opacity:0, duration:0.34, ease:"power2.in" }, 6.06);
-  tl.to('#verdict', { opacity:1, duration:0.42, ease:"power3.out" }, 4.80);
-  tl.from('#verdict', { y:24, duration:0.42, ease:"power3.out" }, 4.80);
+  tl.to('#verdict', { opacity:1, scale:1, duration:0.46, ease:"back.out(1.6)" }, 4.80);
+  tl.from('#verdict', { y:22, duration:0.46, ease:"back.out(1.6)" }, 4.80);
 
   const DURATION = 6.4;
   tl.to({}, { duration:0.4 }, DURATION - 0.4);

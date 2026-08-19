@@ -195,3 +195,8 @@ body.chromakey .chroma-plate {
 /* W trybie chromakey poswiata musi zniknac — ciemne rozmycie wokol liter
    zlewa sie z zielenia i po wycieciu zostawia brudna obwodke. */
 body.chromakey .halo{ text-shadow:none; }
+
+/* Scrim NIE MOZE trafic na green screen: polprzezroczysta ciemna warstwa na
+   zieleni daje ciemnozielony, ktorego key nie usunie — zostaje brudna plama
+   na calej klatce. Scrim jest narzedziem WYLACZNIE trybu alfa. */
+body.chromakey .scrim{ display:none; }

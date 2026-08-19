@@ -268,6 +268,46 @@ ffmpeg -i klatka.png -ss 2.6 -i wstawka_alpha.mov \
   -filter_complex "[0:v][1:v]overlay=0:0:format=auto" -frames:v 1 test.jpg
 ```
 
+### Goly tekst na dloniach i swetrze — karta, nie gradient
+
+Werdykt e01-07 lezal jako goly tekst w dolnej tercji, czyli **na dloniach i jasnym swetrze**.
+Ani jasniejsza czerwien, ani poswiata, ani pas-scrim tego nie uratowaly — tlo jest tam ruchome
+i jasne, wiec kazde rozwiazanie polowiczne przegrywa.
+
+**Rozwiazanie: karta z wlasnym solidnym tlem**, w tym samym jezyku co panele wyzej —
+`background:#0D0D0B`, cienki bursztynowy pasek akcentu po lewej krawedzi, twardy cien pod spodem.
+Czyta sie jak zaprojektowany element, a nie jak napis walczacy z tlem. Przy okazji **znika
+potrzeba scrimu**, wiec plik chudnie z 140 MB do 20 MB.
+
+Reguła: **tekst w dolnej tercji kadru dostaje karte, nie gradient.** Gradient zostaw dla
+momentow, w ktorych wstawka przejmuje caly kadr.
+
+### 🔴 Scrim NIE dziala z chromakeyem
+
+Polprzezroczysta ciemna warstwa na zieleni daje **ciemnozielony**, ktorego key nie usunie —
+zostaje brudna plama na calej klatce. `scene-shell.css` chowa scrim w trybie chromakey
+(`body.chromakey .scrim{ display:none }`), ale to znaczy, ze **scena ze scrimem ma sens
+wylacznie w wersji `_alpha`**. Wersja `_chroma` tej samej sceny jest bez scrimu, czyli bez
+warstwy czytelnosci.
+
+To samo dotyczy `.halo` — w chromakey wylaczona, bo ciemne rozmycie brudzi krawedz po wycieciu.
+
+**Konsekwencja praktyczna: do montazu bierz `_alpha.mov`.** `_chroma.mp4` to wersja awaryjna
+dla narzedzi bez alfy i jest z zalozenia gorsza — nie ma ani scrimu, ani poswiaty.
+**Nie dokladaj do niej wlasnej blendy w edytorze** — blenda pod golym tekstem bez poswiaty
+niewiele daje, a przy alfie jest juz niepotrzebna, bo scrim siedzi w pliku.
+
+### FPS: 30, nie 60
+
+Nagrania Mateusza sa w **30 kl./s** (`ffprobe` na plikach z `~/Youtube Projects`). Wstawka
+w 60 kl./s nie doda plynnosci na osi 30-klatkowej, a wazy dwa razy tyle. Renderuj `FPS=30`:
+
+```bash
+FPS=30 ALPHA=1 node render.js <scena>
+```
+
+Karta tytulowa: 316 MB przy 60 kl./s, 163 MB przy 30. Zero roznicy na wyjsciu.
+
 ### Koszt: scrim powieksza plik
 
 Gradient na calej klatce nie ma powtarzalnych ciagow, wiec bezstratny RLE nie ma czego skrocic.
