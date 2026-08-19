@@ -29,6 +29,8 @@ const BRAND = {
   slack:        "#FAF8F0",  // logo wielokolorowe, maska i tak spłaszcza do jednego
   notion:       "#FAF8F0",
   airtable:     "#18BFFF",
+  retool:       "#5B8AF5",   // oficjalny #3D3D3D ginie na ciemnym
+  gmail:        "#EA4335",
   wordpress:    "#5A9FC4",
 };
 

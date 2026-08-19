@@ -47,7 +47,7 @@
   .step{
     position:absolute;top:34px;width:360px;margin-left:-180px;
     background:#0D0D0B;border:1.5px solid rgba(245,166,35,0.22);
-    padding:24px 26px 26px;opacity:0;transform:scale(0.9);
+    padding:24px 26px 26px;opacity:0;transform:scale(0.96);
   }
   .step .nm{ font-size:31px;font-weight:800;color:#FAF8F0;letter-spacing:-0.01em }
   .step .does{ font-size:22px;font-weight:500;color:#6E6862;margin-top:6px }
@@ -140,7 +140,7 @@
   const numEl = document.getElementById('num');
   function countTo(beats, at, target){
     beats.to(counter, {
-      v: target, duration:0.55, ease:"power2.out",
+      v: target, duration:0.70, ease:"power2.out",
       onUpdate: () => { numEl.textContent = Math.round(counter.v); }
     }, at);
   }
@@ -148,28 +148,30 @@
   const beats = gsap.timeline();
   beats.to('#meter',   { opacity:1, duration:0.36, ease:"power2.out" }, 0.15);
 
-  beats.to('#p0', { opacity:1, scale:1, duration:0.40, ease:"back.out(1.7)" }, 0.35);
+  beats.to('#p0', { opacity:1, scale:1, duration:0.46, ease:"power3.out" }, 0.35);
   beats.call(() => activate(0), null, 0.58);
-  beats.to('.u0', { opacity:1, duration:0.22, stagger:0.09, ease:"back.out(2)" }, 0.60);
+  beats.to('.u0', { opacity:1, duration:0.28, stagger:0.12, ease:"power2.out" }, 0.60);
   countTo(beats, 0.60, TOTAL[0]);
 
-  const STEP = 1.20;
-  let cursor = 1.45;
+  const STEP = 1.42;
+  let cursor = 1.55;
   for (let i = 1; i < STEPS.length; i++) {
     const t = cursor;
-    beats.to(track,  { x: STATIONS[i], duration:0.74, ease:"power2.inOut" }, t);
-    beats.to(railFg, { width: X[i] - X[0], duration:0.74, ease:"power2.inOut" }, t);
-    beats.to('#p' + i, { opacity:1, scale:1, duration:0.38, ease:"back.out(1.7)" }, t + 0.30);
-    beats.call(() => activate(i), null, t + 0.56);
-    beats.to('.u' + i, { opacity:1, duration:0.20, stagger:0.09, ease:"back.out(2)" }, t + 0.58);
-    countTo(beats, t + 0.58, TOTAL[i]);
+    beats.to(track,  { x: STATIONS[i], duration:0.92, ease:"power2.inOut" }, t);
+    beats.to(railFg, { width: X[i] - X[0], duration:0.92, ease:"power2.inOut" }, t);
+    // karta wchodzi DOPIERO gdy kamera prawie stanie — inaczej dwa ruchy
+    // nakladaja sie na siebie i oko nie wie, za czym isc
+    beats.to('#p' + i, { opacity:1, scale:1, duration:0.44, ease:"power3.out" }, t + 0.62);
+    beats.call(() => activate(i), null, t + 0.86);
+    beats.to('.u' + i, { opacity:1, duration:0.26, stagger:0.12, ease:"power2.out" }, t + 0.88);
+    countTo(beats, t + 0.88, TOTAL[i]);
     cursor = t + STEP;
   }
 
   // licznik czerwienieje — to nie jest ciekawostka, to lista miejsc, gdzie moze pojsc zle
   const END = cursor + 0.05;
   beats.call(() => document.getElementById('meter').classList.add('hot'), null, END);
-  beats.to('#meter', { scale:1.08, duration:0.42, ease:"power3.out" }, END);
+  beats.to('#num', { color:"#C0553A", duration:0.45, ease:"power2.out" }, END);
   beats.to('.step', { opacity:0.32, duration:0.5, ease:"power2.out" }, END);
   beats.call(() => activate(-1), null, END);
 
@@ -177,14 +179,14 @@
   beats.from('#final', { y:24, duration:0.44, ease:"power3.out" }, END + 0.48);
 
   const BEATS_DUR = END + 1.75;
-  beats.timeScale(0.68);
+  beats.timeScale(0.72);
 
   // oś główna: najpierw karta tytułowa, potem spowolnione beaty oryginału
   const tl = gsap.timeline({ paused:true });
   flowbizScene.titleCard({ tl, text:"DROGA JEDNEGO ZAMÓWIENIA" });
   tl.add(beats, 3.9);
 
-  const DURATION = 3.9 + BEATS_DUR / 0.68 + 2.2;
+  const DURATION = 3.9 + BEATS_DUR / 0.72 + 2.2;
   beats.to({}, { duration:0.4 }, DURATION - 0.4);
 
   flowbizScene.init({

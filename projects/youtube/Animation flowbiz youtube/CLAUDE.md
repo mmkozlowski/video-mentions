@@ -346,3 +346,49 @@ Trzy rzeczy, o których trzeba pamiętać:
 Znak z jednym plikiem SVG jest **spłaszczany do jednej barwy** — maska nie zna kolorów źródła.
 Loga wielobarwne (Slack, Google Drive) tracą przez to swoją paletę; jeśli w scenie ma być
 oryginał, wstaw `<img>` zamiast maski i pamiętaj o własnym tle pod chromakey.
+
+---
+
+## Trzy pułapki układu, które wracały (19.08)
+
+Wszystkie trzy widać dopiero na renderze chromakey albo w ruchu — nie w kodzie.
+
+### 1. Halo `.chroma-plate` zjada sąsiada z góry
+
+Podkładka dostaje `box-shadow:0 0 0 10px` **we wszystkie strony**. Podpis leżący 4 px pod
+tytułem zakrywał go swoim halo (`x03`, `x08`). Reguła: **element z `.chroma-plate` potrzebuje
+co najmniej ~16 px odstępu od tego, co nad nim.** Halo zmniejszone z 16 na 10 px, ale samo
+to nie wystarczy — odstęp trzeba dać w scenie.
+
+### 2. Linie łączące malują się NAD ikonami
+
+Warstwa SVG z krawędziami ma zwykle `z-index:1`, a węzły nie mają żadnego — czyli `auto`,
+co w tym samym kontekście układania znaczy „pod jedynką". Efekt: kreski przecinają ikony
+i napisy. **Każdy węzeł/karta nad warstwą połączeń musi mieć jawny `z-index` (3+).**
+
+### 3. Jeden akcent sprężynowy na takt, nie cztery
+
+`e03-03` miała na każdym takcie naraz: sprężynę karty, sprężynę ikon ludzików, przeskok
+licznika i jazdę kamery. Każdy ruch z osobna poprawny, razem obraz „skacze".
+
+Reguła: **kamera najpierw staje, dopiero potem wchodzi treść.** Karta pojawia się na
+`t + 0.62` przy przejeździe trwającym 0.92 s, nie na `t + 0.30`. Sprężyna (`back.out`)
+zostaje tylko na jednym elemencie w takcie; reszta wchodzi na `power2/3.out`.
+
+## Wzorce zaakceptowane przez Mateusza — powtarzać
+
+- **`e01-01-kopie-long`** — element rodzi się powiększony na środku kadru, animuje się
+  i dopiero potem odjeżdża na swoje miejsce w układzie docelowym. Strefa „hero" musi siedzieć
+  NAD rzędem docelowym, inaczej nowy element zasłania ten już zaparkowany.
+- **`e03-02-warsztat-long`** — przejazd po stacjach z wyraźnym postojem przy każdej,
+  zakończony odjazdem, który pokazuje cały układ naraz.
+- **`e03-05-slownik`** — jedno pojęcie w centrum, kilka odczytań dookoła, kamera trąca w bok
+  przy każdym, na końcu zderzenie wszystkich naraz.
+
+## Nazewnictwo w treści
+
+- **Liczby piszemy cyfrą, nie słownie.** „100% dostępu", nie „stuprocentowy dostęp" —
+  liczba uderza mocniej i czyta się szybciej na wstawce, która stoi 2 sekundy.
+- **Low-code/no-code to Retool i Bubble**, nie tylko n8n/Zapier/Make. Te ostatnie to
+  narzędzia AUTOMATYZACJI — pokazywanie ich jako reprezentantów kategorii jest nieścisłe.
+  Bubble nie ma znaku w simple-icons; kafel niesie samą nazwę.

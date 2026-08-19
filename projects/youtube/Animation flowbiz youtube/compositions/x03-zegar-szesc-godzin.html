@@ -16,13 +16,13 @@
   /* EKSPERYMENT: układ radialny zamiast liniowego.
      Warsztat to nie jest ciąg kroków — to jeden dzień, w którym wskazówka
      obraca się przez sześć rozmów. Tarcza mówi to bez podpisu. */
-  .dial{ position:absolute;left:50%;top:520px;transform:translate(-50%,-50%);width:660px;height:660px }
+  .dial{ position:absolute;left:50%;top:560px;transform:translate(-50%,-50%);width:560px;height:560px;opacity:0 }
   .ring{ position:absolute;inset:0;border:2px solid rgba(245,166,35,0.20);border-radius:50% }
   .prog{ position:absolute;inset:0 }
   .hand{
-    position:absolute;left:50%;top:50%;width:4px;height:270px;
+    position:absolute;left:50%;top:50%;width:4px;height:230px;
     background:linear-gradient(to top,#F5A623,rgba(245,166,35,0.25));
-    transform-origin:2px 270px;transform:translate(-2px,-270px) rotate(0deg);
+    transform-origin:2px 230px;transform:translate(-2px,-230px) rotate(0deg);
     box-shadow:0 0 20px rgba(245,166,35,0.5);
   }
   .hub{
@@ -42,13 +42,13 @@
   }
   .slot .ic i{ font-size:32px;color:#5A5450 }
   .slot .nm{ font-size:29px;font-weight:800;color:#FAF8F0;letter-spacing:-0.01em }
-  .slot .qn{ font-size:21px;font-weight:500;color:#6E6862;margin-top:4px }
+  .slot .qn{ font-size:21px;font-weight:500;color:#6E6862;margin-top:18px }
   .slot.on .ic{ border-color:#F5A623;box-shadow:0 0 32px rgba(245,166,35,0.22) }
   .slot.on .ic i{ color:#F5A623 }
 
   .final{
-    position:absolute;left:0;right:0;bottom:56px;text-align:center;
-    font-size:50px;font-weight:900;color:#F5A623;letter-spacing:-0.02em;z-index:9;opacity:0;
+    position:absolute;left:0;right:0;bottom:24px;text-align:center;
+    font-size:48px;font-weight:900;color:#F5A623;letter-spacing:-0.02em;z-index:9;opacity:0;
   }
 </style>
 </head>
@@ -65,10 +65,10 @@
     <div class="scene">
       <div class="dial">
         <div class="ring"></div>
-        <svg class="prog" viewBox="0 0 660 660">
-          <circle id="arc" cx="330" cy="330" r="329" fill="none"
+        <svg class="prog" viewBox="0 0 560 560">
+          <circle id="arc" cx="280" cy="280" r="279" fill="none"
                   stroke="#F5A623" stroke-width="3" stroke-linecap="round"
-                  transform="rotate(-90 330 330)"/>
+                  transform="rotate(-90 280 280)"/>
         </svg>
         <div class="hand" id="hand"></div>
         <div class="hub"><div class="h" id="hh">0</div><div class="u">GODZIN</div></div>
@@ -88,7 +88,7 @@
     { ic:"ti ti-help-circle",   nm:"decyzje",     qn:"co zostaje otwarte" },
   ];
 
-  const CX = 960, CY = 520, R = 402;   // promień, na którym siedzą etykiety
+  const CX = 960, CY = 560, R = 330;   // promień, na którym siedzą etykiety
   const scene = document.querySelector('.scene');
 
   SLOTS.forEach((s, i) => {
@@ -104,13 +104,15 @@
   });
 
   const arc = document.getElementById('arc');
-  const LEN = 2 * Math.PI * 329;
+  const LEN = 2 * Math.PI * 279;
   gsap.set(arc, { strokeDasharray: LEN, strokeDashoffset: LEN });
 
   const hh = document.getElementById('hh');
   const clock = { h: 0 };
 
   const beats = gsap.timeline();
+  // tarcza wchodzi razem z beatami — inaczej prześwituje pod kartą tytułową
+  beats.to('.dial', { opacity:1, duration:0.40, ease:"power2.out" }, 0.0);
   const STEP = 1.15;
 
   SLOTS.forEach((s, i) => {

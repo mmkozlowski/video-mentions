@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" />
 <link rel="stylesheet" href="scene-shell.css" />
 <link rel="stylesheet" href="logos.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -39,6 +40,9 @@
     padding:11px 18px;font-size:26px;font-weight:700;color:#FAF8F0;opacity:0;
   }
   .chip .logo{ font-size:28px }
+  .chip .wd{ font-size:26px;font-weight:800;color:#3D8BFD }
+  .chip i.ti{ font-size:26px;color:#6BAA6B }
+  .chip.cr{ border-color:rgba(107,170,107,0.4) }
 
   .core{
     position:absolute;left:50%;top:280px;transform:translate(-50%,-50%) scale(0.8);
@@ -72,9 +76,14 @@
         <div class="circ a" id="ca"></div>
         <div class="circ b" id="cb"></div>
 
-        <div class="chip" id="ch0" style="left:96px;  top:186px"><i class="logo logo-make"></i>Make</div>
-        <div class="chip" id="ch1" style="left:70px;  top:280px"><i class="logo logo-n8n"></i>n8n</div>
-        <div class="chip" id="ch2" style="left:120px; top:374px"><i class="logo logo-zapier"></i>Zapier</div>
+        <div class="chip cl" id="ch0" style="left:104px; top:132px"><i class="logo logo-retool"></i>Retool</div>
+        <div class="chip cl" id="ch1" style="left:66px;  top:212px"><span class="wd">Bubble</span></div>
+        <div class="chip cl" id="ch2" style="left:52px;  top:292px"><i class="logo logo-make"></i>Make</div>
+        <div class="chip cl" id="ch3" style="left:66px;  top:372px"><i class="logo logo-n8n"></i>n8n</div>
+        <div class="chip cl" id="ch4" style="left:104px; top:452px"><i class="logo logo-zapier"></i>Zapier</div>
+
+        <div class="chip cr" id="cr0" style="left:640px; top:172px"><i class="ti ti-code"></i>Własny system od zera</div>
+        <div class="chip cr" id="cr1" style="left:668px; top:392px"><i class="ti ti-clock-hour-4"></i>miesiące pracy</div>
 
         <div class="core" id="core">
           <span class="wm"><i class="logo logo-openmercato"></i></span>
@@ -94,12 +103,13 @@
   beats.to('#ca',   { opacity:1, duration:0.45, ease:"power2.out" }, 0.10);
   beats.from('#ca', { scale:0.86, duration:0.55, ease:"back.out(1.4)" }, 0.10);
   beats.to('#la',   { opacity:1, duration:0.35 }, 0.40);
-  beats.to('.chip', { opacity:1, duration:0.30, stagger:0.30, ease:"back.out(1.6)" }, 0.80);
+  beats.to('.chip.cl', { opacity:1, duration:0.30, stagger:0.22, ease:"back.out(1.6)" }, 0.80);
 
   // dopiero potem drugi — i widać, że narzędzia w nim nie leżą
   beats.to('#cb',   { opacity:1, duration:0.45, ease:"power2.out" }, 2.30);
   beats.from('#cb', { scale:0.86, duration:0.55, ease:"back.out(1.4)" }, 2.30);
   beats.to('#lb',   { opacity:1, duration:0.35 }, 2.60);
+  beats.to('.chip.cr', { opacity:1, duration:0.30, stagger:0.26, ease:"back.out(1.6)" }, 2.80);
 
   // część wspólna zapala się dopiero, gdy coś w niej stanie
   beats.to('#core',   { opacity:1, scale:1, duration:0.52, ease:"back.out(1.7)" }, 3.55);
@@ -113,7 +123,7 @@
   beats.timeScale(0.70);
   tl.add(beats, 3.90);
 
-  const DURATION = 3.90 + 5.4 / 0.70 + 2.2;
+  const DURATION = 3.90 + 5.9 / 0.70 + 2.2;
   tl.to({}, { duration:0.4 }, DURATION - 0.4);
 
   flowbizScene.init({

@@ -15,32 +15,37 @@
 <script src="scene-shell.js"></script>
 <style>
   .eyebrow{
-    position:absolute;left:0;right:0;top:112px;text-align:center;
-    font-size:24px;font-weight:600;letter-spacing:0.24em;z-index:8;opacity:0;
+    position:absolute;left:0;right:0;top:80px;text-align:center;
+    font-size:24px;font-weight:600;letter-spacing:0.24em;z-index:9;opacity:0;
   }
+
+  /* Sześć źródeł w dwóch rzędach: u góry systemy, u dołu to, co systemem nie jest.
+     Ten podział sam w sobie jest treścią — proces rzadko siedzi w jednym miejscu. */
   .src{
-    position:absolute;top:246px;width:400px;margin-left:-200px;
+    position:absolute;width:380px;margin-left:-190px;
     background:#0D0D0B;border:1.5px solid rgba(245,166,35,0.26);
-    padding:38px 0 32px;text-align:center;opacity:0;
+    padding:22px 0 20px;text-align:center;opacity:0;
+    z-index:3;   /* nad liniami — kreski mają biec POD kartami */
   }
-  .src .mark{ font-size:96px;line-height:1;display:block;margin-bottom:24px }
-  .src .nm{ font-size:38px;font-weight:700;color:#FAF8F0;letter-spacing:-0.01em }
-  .src .sub{ font-size:24px;font-weight:500;color:#5A5450;margin-top:8px }
+  .src .mark{ font-size:64px;line-height:1;display:block;margin-bottom:16px }
+  .src .mark i.ti{ color:#F5A623 }
+  .src .nm{ font-size:31px;font-weight:700;color:#FAF8F0;letter-spacing:-0.01em }
+  .src .sub{ font-size:21px;font-weight:500;color:#5A5450;margin-top:6px }
 
   .flow{ position:absolute;inset:0;z-index:1;pointer-events:none }
 
   .dest{
-    position:absolute;left:50%;top:672px;transform:translateX(-50%) scale(0.88);
+    position:absolute;left:50%;top:668px;transform:translateX(-50%) scale(0.88);
     background:#0D0D0B;border:2px solid #F5A623;
     box-shadow:0 0 60px rgba(245,166,35,0.20);
-    padding:44px 76px;text-align:center;opacity:0;
+    padding:34px 72px;text-align:center;opacity:0;z-index:4;
   }
-  .dest .wm{ font-size:76px;line-height:1;display:block }
-  .dest .sub{ font-size:28px;font-weight:600;color:#FAF8F0;opacity:0.62;margin-top:20px;letter-spacing:0.02em }
+  .dest .wm{ font-size:66px;line-height:1;display:block }
+  .dest .sub{ font-size:26px;font-weight:600;color:#FAF8F0;opacity:0.62;margin-top:16px;letter-spacing:0.02em }
 
   .final{
-    position:absolute;left:0;right:0;top:952px;text-align:center;
-    font-size:44px;font-weight:800;color:#F5A623;letter-spacing:-0.015em;z-index:8;opacity:0;
+    position:absolute;left:0;right:0;top:928px;text-align:center;
+    font-size:44px;font-weight:800;color:#F5A623;letter-spacing:-0.015em;z-index:9;opacity:0;
   }
 </style>
 </head>
@@ -56,31 +61,7 @@
 
     <div class="scene">
       <div class="eyebrow" id="eyebrow"><span class="chroma-plate amber">GDZIE DZIŚ ŻYJE TWÓJ PROCES</span></div>
-
-      <svg class="flow" id="flow" viewBox="0 0 1920 1080">
-        <path class="fl" id="f0" d="M 420 560 C 420 640, 960 612, 960 672" fill="none"
-              stroke="#F5A623" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
-        <path class="fl" id="f1" d="M 960 560 L 960 672" fill="none"
-              stroke="#F5A623" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
-        <path class="fl" id="f2" d="M 1500 560 C 1500 640, 960 612, 960 672" fill="none"
-              stroke="#F5A623" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
-      </svg>
-
-      <div class="src s" style="left:420px">
-        <span class="mark"><i class="logo logo-hubspot"></i></span>
-        <div class="nm">HubSpot</div>
-        <div class="sub"><span class="chroma-plate">CRM</span></div>
-      </div>
-      <div class="src s" style="left:960px">
-        <span class="mark"><i class="logo logo-salesforce"></i></span>
-        <div class="nm">Salesforce</div>
-        <div class="sub"><span class="chroma-plate">CRM</span></div>
-      </div>
-      <div class="src s" style="left:1500px">
-        <span class="mark"><i class="logo logo-excel"></i></span>
-        <div class="nm">Excel</div>
-        <div class="sub"><span class="chroma-plate">arkusze</span></div>
-      </div>
+      <svg class="flow" id="flow" viewBox="0 0 1920 1080"></svg>
 
       <div class="dest" id="dest">
         <span class="wm"><i class="logo logo-openmercato"></i></span>
@@ -93,37 +74,73 @@
 </div>
 
 <script>
-  const tl = gsap.timeline({ paused:true });
+  // Górny rząd to systemy, dolny — to, co systemem nie jest, a proces i tak w tym siedzi.
+  const SRC = [
+    { x:420,  y:176, logo:"logo-hubspot",    nm:"HubSpot",         sub:"CRM" },
+    { x:960,  y:176, logo:"logo-salesforce", nm:"Salesforce",      sub:"CRM" },
+    { x:1500, y:176, icon:"ti ti-database",  nm:"Inny CRM / ERP",  sub:"system, z którego wychodzisz" },
+    { x:420,  y:404, logo:"logo-excel",      nm:"Excel",           sub:"arkusze" },
+    { x:960,  y:404, logo:"logo-gmail",      nm:"Mail",            sub:"ustalenia w skrzynce" },
+    { x:1500, y:404, icon:"ti ti-file-text", nm:"Kartka papieru",  sub:"i notatnik na biurku" },
+  ];
 
-  // linie startują niewidoczne — rysują się dopiero, gdy proces „spływa" w dół
-  gsap.utils.toArray('.fl').forEach(p => {
+  const DEST = { x:960, y:668 };
+  const scene = document.querySelector('.scene');
+  const flow  = document.getElementById('flow');
+  const dest  = document.getElementById('dest');
+
+  SRC.forEach((s, i) => {
+    const el = document.createElement('div');
+    el.className = 'src'; el.id = 's' + i;
+    el.style.left = s.x + 'px';
+    el.style.top  = s.y + 'px';
+    const mark = s.logo ? '<i class="logo ' + s.logo + '"></i>' : '<i class="' + s.icon + '"></i>';
+    el.innerHTML = '<span class="mark">' + mark + '</span>' +
+                   '<div class="nm">' + s.nm + '</div>' +
+                   '<div class="sub"><span class="chroma-plate">' + s.sub + '</span></div>';
+    scene.insertBefore(el, dest);
+
+    // krzywa od dolnej krawędzi kafla do karty celu; górny rząd omija dolny łukiem
+    const y0 = s.y + 196;
+    const p = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    p.setAttribute("d", `M ${s.x} ${y0} C ${s.x} ${y0 + 90}, ${DEST.x} ${DEST.y - 110}, ${DEST.x} ${DEST.y}`);
+    p.setAttribute("stroke", "#F5A623");
+    p.setAttribute("stroke-width", "2.5");
+    p.setAttribute("stroke-linecap", "round");
+    p.setAttribute("fill", "none");
+    p.setAttribute("opacity", "0.85");
+    p.setAttribute("id", "f" + i);
+    flow.appendChild(p);
+
     const len = p.getTotalLength();
     gsap.set(p, { strokeDasharray:len, strokeDashoffset:len });
   });
 
+  const tl = gsap.timeline({ paused:true });
+
   tl.to('#eyebrow', { opacity:1, duration:0.38, ease:"power2.out" }, 0.0);
 
-  // 0.30 — trzy źródła wskakują od lewej
-  tl.to('.src.s', { opacity:1, duration:0.40, stagger:0.24, ease:"back.out(1.6)" }, 0.30);
-  tl.from('.src.s', { y:-30, duration:0.40, stagger:0.24, ease:"back.out(1.6)" }, 0.30);
+  // najpierw systemy, potem to, co systemem nie jest
+  tl.to('#s0, #s1, #s2', { opacity:1, duration:0.40, stagger:0.26, ease:"back.out(1.6)" }, 0.30);
+  tl.from('#s0, #s1, #s2', { y:-26, duration:0.40, stagger:0.26, ease:"back.out(1.6)" }, 0.30);
 
-  // 1.45 — proces spływa do jednego miejsca
-  tl.to('#f0', { strokeDashoffset:0, duration:0.72, ease:"power2.inOut" }, 1.45);
-  tl.to('#f1', { strokeDashoffset:0, duration:0.72, ease:"power2.inOut" }, 1.62);
-  tl.to('#f2', { strokeDashoffset:0, duration:0.72, ease:"power2.inOut" }, 1.79);
+  tl.to('#s3, #s4, #s5', { opacity:1, duration:0.40, stagger:0.26, ease:"back.out(1.6)" }, 1.35);
+  tl.from('#s3, #s4, #s5', { y:-26, duration:0.40, stagger:0.26, ease:"back.out(1.6)" }, 1.35);
 
-  // 2.40 — cel
-  tl.to('#dest', { opacity:1, scale:1, duration:0.50, ease:"back.out(1.7)" }, 2.40);
+  // proces spływa do jednego miejsca
+  SRC.forEach((_, i) => {
+    tl.to('#f' + i, { strokeDashoffset:0, duration:0.78, ease:"power2.inOut" }, 2.45 + i * 0.13);
+  });
 
-  // 3.05 — źródła przygasają, zostaje jeden system
-  tl.to('.src.s', { opacity:0.34, duration:0.55, ease:"power2.out" }, 3.05);
-  tl.to('.fl',    { opacity:0.30, duration:0.55, ease:"power2.out" }, 3.05);
+  tl.to('#dest', { opacity:1, scale:1, duration:0.50, ease:"back.out(1.7)" }, 3.65);
 
-  // 3.55 — pytanie odcinka
-  tl.to('#final', { opacity:1, duration:0.42, ease:"power3.out" }, 3.55);
-  tl.from('#final', { y:22, duration:0.42, ease:"power3.out" }, 3.55);
+  tl.to('.src', { opacity:0.34, duration:0.55, ease:"power2.out" }, 4.35);
+  tl.to('.flow path', { opacity:0.28, duration:0.55, ease:"power2.out" }, 4.35);
 
-  const DURATION = 4.7;
+  tl.to('#final',   { opacity:1, duration:0.42, ease:"power3.out" }, 4.85);
+  tl.from('#final', { y:22, duration:0.42, ease:"power3.out" }, 4.85);
+
+  const DURATION = 6.0;
   tl.to({}, { duration:0.4 }, DURATION - 0.4);
 
   flowbizScene.init({

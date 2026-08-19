@@ -41,9 +41,11 @@
   .panel.on{ border-color:#F5A623;box-shadow:0 0 52px rgba(245,166,35,0.16) }
 
   /* lewy panel — pudełko low-code */
-  .tiles{ display:flex;gap:26px;justify-content:center }
+  .tiles{ display:flex;gap:20px;justify-content:center }
+  /* Bubble nie ma znaku w simple-icons — kafel niesie sama nazwę */
+  .tile .wd{ font-size:27px;font-weight:800;color:#3D8BFD;letter-spacing:-0.01em }
   .tile{
-    width:170px;height:150px;font-size:70px;
+    width:152px;height:150px;font-size:62px;
     background:#0A0A08;border:2px solid rgba(245,166,35,0.24);border-radius:20px;
     display:flex;align-items:center;justify-content:center;opacity:0;
   }
@@ -94,6 +96,8 @@
         <div class="panel" id="p0" style="left:960px">
           <div class="cap">Low-code · no-code</div>
           <div class="tiles">
+            <div class="tile t0"><i class="logo logo-retool"></i></div>
+            <div class="tile t0"><span class="wd">Bubble</span></div>
             <div class="tile t0"><i class="logo logo-n8n"></i></div>
             <div class="tile t0"><i class="logo logo-zapier"></i></div>
             <div class="tile t0"><i class="logo logo-make"></i></div>
@@ -121,7 +125,7 @@
       <div class="hfade l" id="fadeL"></div>
       <div class="hfade r" id="fadeR"></div>
 
-      <div class="final" id="final">Stuprocentowy dostęp do kodu.</div>
+      <div class="final" id="final">100% dostępu do kodu.</div>
     </div>
   </div>
 </div>

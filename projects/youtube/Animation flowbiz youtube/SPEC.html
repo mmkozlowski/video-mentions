@@ -1,3 +1,190 @@
+<title>Wstawki Flowbiz</title>
+<style>
+/* ==========================================================================
+   KARTA SPECYFIKACJI WSTAWEK — flowbiz / seria OpenMercato
+   Strona świadomie trzyma paletę scen zamiast własnej: to, co tu widać,
+   ma się renderować identycznie w MP4. Dlatego jeden motyw, nie dwa.
+   ========================================================================== */
+:root{
+  --bg:#0A0A08;          /* węgiel — tło sceny */
+  --card:#0D0D0B;        /* karta */
+  --up:#13110D;          /* powierzchnia podniesiona */
+  --amber:#F5A623;       /* jedyny mocny akcent */
+  --light:#FAF8F0;
+  --red:#C0553A;
+  --green:#6BAA6B;
+  --sec1:#5A5450;        /* podpis */
+  --sec2:#3A3630;        /* linia */
+  --sec3:#2E2C28;
+  --key:#00B140;         /* zielony klucz */
+  --rule:rgba(245,166,35,0.16);
+  --rule-soft:rgba(245,166,35,0.08);
+
+  --sans:ui-sans-serif,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+
+  /* przybliżenia easingów GSAP w CSS — używane przez wszystkie dema niżej */
+  --e-power2-out:cubic-bezier(0.25,0.46,0.45,0.94);
+  --e-power3-out:cubic-bezier(0.215,0.61,0.355,1);
+  --e-power2-inout:cubic-bezier(0.45,0,0.55,1);
+  --e-power3-inout:cubic-bezier(0.65,0,0.35,1);
+  --e-back-out:cubic-bezier(0.34,1.56,0.64,1);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--light);
+  font-family:var(--sans);font-size:17px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%}
+
+/* ── siatka strony ───────────────────────────────────────────────────── */
+.shell{ display:grid;grid-template-columns:238px minmax(0,1fr);gap:56px;
+        max-width:1320px;margin:0 auto;padding:0 32px 120px }
+@media (max-width:940px){ .shell{ grid-template-columns:1fr;gap:0 } }
+
+nav.rail{ position:sticky;top:0;align-self:start;padding:44px 0;height:100dvh;overflow-y:auto }
+@media (max-width:940px){ nav.rail{ position:static;height:auto;padding:24px 0 0 } }
+.rail .mark{ font-weight:900;font-size:19px;letter-spacing:-0.02em;color:var(--amber) }
+.rail .mark span{ color:var(--sec1);font-weight:600 }
+.rail ol{ list-style:none;margin:26px 0 0;padding:0;display:flex;flex-direction:column;gap:2px }
+.rail a{ display:flex;gap:10px;padding:7px 10px;color:var(--sec1);text-decoration:none;
+         font-size:14.5px;font-weight:600;border-left:2px solid transparent }
+.rail a:hover,.rail a:focus-visible{ color:var(--light);background:var(--card);border-left-color:var(--amber) }
+.rail a b{ font-family:var(--mono);font-size:12px;font-weight:600;color:var(--sec2);font-variant-numeric:tabular-nums }
+.rail a:hover b{ color:var(--amber) }
+
+main{ padding:44px 0 0;min-width:0 }
+
+/* ── typografia ──────────────────────────────────────────────────────── */
+h1{ font-size:clamp(38px,5.2vw,64px);font-weight:900;letter-spacing:-0.035em;line-height:1.02;
+    margin:0;text-wrap:balance }
+h2{ font-size:29px;font-weight:800;letter-spacing:-0.02em;margin:0;text-wrap:balance }
+h3{ font-size:19px;font-weight:800;letter-spacing:-0.01em;margin:0 }
+p{ margin:0;max-width:66ch }
+.lead{ font-size:20px;color:#C9C3BB;max-width:62ch }
+.eyebrow{ font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:0.2em;
+          text-transform:uppercase;color:var(--amber) }
+.muted{ color:var(--sec1) }
+code,kbd{ font-family:var(--mono);font-size:0.88em;background:var(--up);
+          border:1px solid var(--rule-soft);padding:1px 6px;color:#D8D2CA }
+
+section{ padding:72px 0;border-top:1px solid var(--sec3) }
+section:first-of-type{ border-top:0 }
+.sec-head{ display:flex;flex-direction:column;gap:12px;margin-bottom:36px }
+.stack{ display:flex;flex-direction:column;gap:18px }
+.stack-lg{ display:flex;flex-direction:column;gap:44px }
+
+/* ── hero ────────────────────────────────────────────────────────────── */
+.hero{ padding:72px 0 0;border:0 }
+.hero .lede{ display:flex;flex-direction:column;gap:22px;margin-top:26px }
+.facts{ display:flex;flex-wrap:wrap;gap:0;margin-top:40px;border:1px solid var(--rule) }
+.fact{ flex:1 1 150px;padding:20px 22px;border-right:1px solid var(--rule) }
+.fact:last-child{ border-right:0 }
+.fact b{ display:block;font-size:34px;font-weight:900;color:var(--amber);letter-spacing:-0.03em;
+         font-variant-numeric:tabular-nums;line-height:1 }
+.fact span{ display:block;font-size:13px;font-weight:600;color:var(--sec1);margin-top:8px;
+            letter-spacing:0.06em;text-transform:uppercase }
+
+/* ── specimen: scena demo ────────────────────────────────────────────── */
+.spec{ display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:30px;align-items:start }
+@media (max-width:860px){ .spec{ grid-template-columns:1fr } }
+
+.stage{
+  position:relative;aspect-ratio:16/9;background:var(--bg);
+  border:1px solid var(--rule);overflow:hidden;
+}
+.stage.keyed{ background:var(--key) }
+.stage .tag{
+  position:absolute;left:10px;top:9px;z-index:9;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--sec2);
+}
+.stage.keyed .tag{ color:rgba(0,0,0,0.45) }
+
+.ctl{ display:flex;align-items:center;gap:10px;margin-top:12px }
+.btn{
+  font:inherit;font-size:13px;font-weight:700;letter-spacing:0.04em;
+  background:var(--up);color:var(--light);border:1px solid var(--rule);
+  padding:7px 14px;cursor:pointer;
+}
+.btn:hover,.btn:focus-visible{ border-color:var(--amber);color:var(--amber) }
+.btn[aria-pressed="true"]{ background:var(--amber);color:#14120C;border-color:var(--amber) }
+
+/* tabela parametrów obok demo */
+.params{ width:100%;border-collapse:collapse;font-size:14.5px }
+.params th,.params td{ text-align:left;padding:9px 0;border-bottom:1px solid var(--sec3);vertical-align:top }
+.params th{ width:38%;color:var(--sec1);font-weight:600 }
+.params td{ font-family:var(--mono);font-size:13px;color:#D8D2CA;font-variant-numeric:tabular-nums }
+.params td em{ font-style:normal;color:var(--amber) }
+.where{ font-size:14.5px;color:var(--sec1);margin-top:14px }
+.where b{ color:var(--light);font-weight:600 }
+
+/* ── elementy scen odtworzone 1:1 ────────────────────────────────────── */
+.card-el{ background:var(--card);border:1.5px solid rgba(245,166,35,0.26);padding:14px 18px }
+.card-el.on{ border-color:var(--amber);box-shadow:0 0 34px rgba(245,166,35,0.16) }
+.tile-el{ background:var(--bg);border:2px solid rgba(245,166,35,0.28);border-radius:14px;
+          width:60px;height:54px;display:grid;place-items:center }
+.chip-el{ display:inline-flex;align-items:center;gap:8px;background:var(--card);
+          border:1.5px solid rgba(245,166,35,0.3);padding:7px 12px;font-weight:700;font-size:14px }
+.plate-el{ background:var(--bg);box-shadow:0 0 0 10px var(--bg);display:inline-block }
+
+/* ── paleta ──────────────────────────────────────────────────────────── */
+.swatches{ display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:1px;
+           background:var(--sec3);border:1px solid var(--sec3) }
+.sw{ background:var(--bg);padding:16px 16px 14px }
+.sw .chipc{ height:46px;border:1px solid rgba(250,248,240,0.10) }
+.sw .nm{ font-size:14px;font-weight:700;margin-top:11px }
+.sw .hex{ font-family:var(--mono);font-size:12.5px;color:var(--amber);margin-top:3px }
+.sw .use{ font-size:12.5px;color:var(--sec1);margin-top:5px;line-height:1.45 }
+
+/* ── logotypy ────────────────────────────────────────────────────────── */
+.logos{ display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:10px }
+.lg{ background:var(--card);border:1px solid var(--rule-soft);padding:16px 8px 11px;text-align:center }
+.lg .logo{ font-size:34px }
+.lg span{ display:block;font-family:var(--mono);font-size:10.5px;color:var(--sec1);margin-top:11px;
+          word-break:break-all }
+
+/* ── dźwięk ──────────────────────────────────────────────────────────── */
+.sfx{ display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1px;
+      background:var(--sec3);border:1px solid var(--sec3) }
+.sfx .s{ background:var(--bg);padding:15px 16px }
+.sfx .s b{ font-family:var(--mono);font-size:14px;color:var(--amber) }
+.sfx .s i{ font-style:normal;font-family:var(--mono);font-size:12px;color:var(--sec1);float:right }
+.sfx .s p{ font-size:13.5px;color:#C9C3BB;margin-top:7px;line-height:1.5 }
+
+/* ── pułapki ─────────────────────────────────────────────────────────── */
+.trap{ border-left:3px solid var(--red);background:var(--up);padding:18px 22px }
+.trap h3{ color:var(--red) }
+.trap p{ margin-top:9px;font-size:15.5px;color:#C9C3BB }
+.ok{ border-left-color:var(--green) }
+.ok h3{ color:var(--green) }
+
+/* ── katalog scen ────────────────────────────────────────────────────── */
+.tablewrap{ overflow-x:auto;border:1px solid var(--sec3) }
+table.cat{ width:100%;border-collapse:collapse;font-size:14px;min-width:620px }
+table.cat th{ text-align:left;padding:11px 14px;background:var(--up);color:var(--sec1);
+              font-size:11.5px;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;
+              position:sticky;top:0 }
+table.cat td{ padding:10px 14px;border-top:1px solid var(--sec3);vertical-align:top }
+table.cat td.f{ font-family:var(--mono);font-size:12.5px;color:#D8D2CA;white-space:nowrap }
+table.cat td.d{ font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--amber);
+                text-align:right;white-space:nowrap }
+table.cat tr:hover td{ background:rgba(245,166,35,0.04) }
+.pill{ display:inline-block;font-family:var(--mono);font-size:11px;font-weight:600;
+       padding:2px 8px;border:1px solid currentColor;white-space:nowrap }
+.p-krotka{ color:var(--sec1) }
+.p-dluga{ color:var(--amber) }
+.p-eksp{ color:var(--green) }
+.p-overlay{ color:var(--red) }
+
+footer{ padding:56px 0 0;border-top:1px solid var(--sec3);color:var(--sec1);font-size:14px }
+
+@media (prefers-reduced-motion:reduce){
+  .demo *{ animation:none !important;transition:none !important }
+}
+</style>
+<style>
 /* WYGENEROWANE — nie edytuj ręcznie.
    Źródło: assets/logos/*.svg  →  ./build-logos-css.sh
    Znaki marek jako maski CSS: sylwetka bierze kolor z `color`, więc jedno
@@ -157,3 +344,816 @@
   -webkit-mask-image:url("data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+WmFwaWVyPC90aXRsZT48cGF0aCBkPSJNNC4xNTcgMEE0LjE1MSA0LjE1MSAwIDAgMCAwIDQuMTYxdjE1LjY3OEE0LjE1MSA0LjE1MSAwIDAgMCA0LjE1NyAyNGgxNS42ODJBNC4xNTIgNC4xNTIgMCAwIDAgMjQgMTkuODM5VjQuMTYxQTQuMTUyIDQuMTUyIDAgMCAwIDE5LjgzOSAwSDQuMTU3Wm0xMC42MSA4Ljc2MWguMDNhLjU3Ny41NzcgMCAwIDEgLjIzLjAzOC41ODUuNTg1IDAgMCAxIC4yMDEuMTI0LjYzLjYzIDAgMCAxIC4xNjIuNDMxLjYxMi42MTIgMCAwIDEtLjE2Mi40MzUuNTguNTggMCAwIDEtLjIwMS4xMjguNTguNTggMCAwIDEtLjIzLjA0Mi41MjkuNTI5IDAgMCAxLS4yMzUtLjA0Mi41ODUuNTg1IDAgMCAxLS4zMzItLjMyOC41NTkuNTU5IDAgMCAxLS4wMzgtLjIzNS42MTMuNjEzIDAgMCAxIC4xNy0uNDMxLjU5LjU5IDAgMCAxIC40MDUtLjE2MlptMi44NTMgMS41NzJjLjAzLjAwNC4wNjEuMDA0LjA5NS4wMDQuMzI1LS4wMTEuNjQ2LjA2NC45MzcuMjE5LjIzOC4xNDQuNDMxLjM1NS41NTIuNjA5LjEyOC4yNzkuMTg5LjU4Mi4xODUuODg4di4xOTNhMiAyIDAgMCAxIDAgLjIxOWgtMi40OThjLjAwMy4yMjcuMDc1LjQ1LjIwNC42NDJhLjc4Ljc4IDAgMCAwIC42NDYuMjY1LjcxNC43MTQgMCAwIDAgLjQ4NC0uMTM2LjY0Mi42NDIgMCAwIDAgLjIzLS4zMThsLjkxNS4yNTdhMS4zOTggMS4zOTggMCAwIDEtLjI4LjUzN2MtLjE0LjE1OS0uMzIxLjI4NC0uNTIxLjM1NWEyLjIzNCAyLjIzNCAwIDAgMS0uODM2LjEzNiAxLjkyMyAxLjkyMyAwIDAgMS0xLjAwMS0uMjQ1IDEuNjE4IDEuNjE4IDAgMCAxLS42NjUtLjcwMyAyLjIyMSAyLjIyMSAwIDAgMS0uMjI3LTEuMDM2IDEuOTUgMS45NSAwIDAgMSAuNDgtMS4zOTggMS45IDEuOSAwIDAgMSAxLjMtLjQ4OFptLTkuNjA3LjAyM2MuMTYyLjAwNC4zMjUuMDI2LjQ4LjA3OS4yMDcuMDY1LjQuMTc0LjU2My4zMTQuMjYuMzAyLjM5My42OTIuMzY2IDEuMDg4djIuMjc2SDguNTNsLS4xMDktLjcxMWgtLjA2NWMtLjA2NC4xNjMtLjE1NS4zMS0uMjcyLjQzOWExLjEyMiAxLjEyMiAwIDAgMS0uMzc0LjI2NCAxLjAyMyAxLjAyMyAwIDAgMS0uNDUzLjA4MyAxLjMzNCAxLjMzNCAwIDAgMS0uODY2LS4yNjQuOTY1Ljk2NSAwIDAgMS0uMzI5LS44MDEuOTkzLjk5MyAwIDAgMSAuMDc2LS40MzEgMS4wMiAxLjAyIDAgMCAxIC4yNDItLjM2MyAxLjQ3OCAxLjQ3OCAwIDAgMSAxLjA0My0uMzAzaC45NTJ2LS4xODFhLjY5Ni42OTYgMCAwIDAtLjEzNi0uNDU0LjU1My41NTMgMCAwIDAtLjQzOC0uMTU0LjY5NS42OTUgMCAwIDAtLjM3OC4wODYuNDguNDggMCAwIDAtLjE5My4yNTRsLS45OS0uMTQ0YTEuMjYgMS4yNiAwIDAgMSAuMjU3LS41NjNjLjE0LS4xNzQuMzIxLS4zMDIuNTMzLS4zNzguMjYxLS4wOTEuNTQtLjEzNi44Mi0uMTI5LjA1My0uMDAzLjEwNi0uMDA3LjE2My0uMDA3Wm00LjM4NC4wMDdjLjE3NCAwIC4zNDcuMDM4LjUwNi4xMTQuMTgyLjA4My4zNC4yMTEuNDU4LjM3NC4yNTcuNDIzLjM3Ny45MTEuMzUxIDEuNDA2YTIuNTMgMi41MyAwIDAgMS0uMzU1IDEuNDQ4IDEuMTQ4IDEuMTQ4IDAgMCAxLTEuMDA5LjUxN2MtLjIwNCAwLS40MDEtLjA0NS0uNTgyLS4xMzZhMS4wNTIgMS4wNTIgMCAwIDEtLjQ4LS40NTcgMS4yOTggMS4yOTggMCAwIDEtLjExNC0uMjM0aC0uMDQ1bC4wMDQgMS43ODRoLTEuMDU5di00LjcxM2guOTA0bC4xMTcuODA1aC4wNTdjLjA2OC0uMjA4LjE3Ny0uNDAxLjMyOC0uNTZhMS4xMjkgMS4xMjkgMCAwIDEgLjg0My0uMzQ0aC4wNzZ2LS4wMDRabTcuNTU5LjA4NGguOTAzbC4xMTMuODA1aC4wNTNhMS4zNyAxLjM3IDAgMCAxIC4yMzUtLjQ4NC44MTMuODEzIDAgMCAxIC4zMTMtLjI0Mi44Mi44MiAwIDAgMSAuMzktLjA3NmguMjM0djEuMDUxaC0uNDAxYS42NjIuNjYyIDAgMCAwLS4zMTMuMDA4LjYyMy42MjMgMCAwIDAtLjI3Mi4xNTUuNjYzLjY2MyAwIDAgMC0uMTc0LjI2LjY4My42ODMgMCAwIDAtLjAyNy4zMTR2MS44NzVoLTEuMDU0di0zLjY2NlptLTE3LjUxNS4wMDNoMy4yNjJ2Ljg5NkwzLjczIDEzLjEwNGwuMDM0LjExM2gxLjk3M2wuMDQyLjlIMi40di0uOWwxLjkzMS0xLjc1NC0uMDQ1LS4xMTdIMi40NDF2LS44OTZabTExLjgxNSAwaDEuMDU1djMuNjU5aC0xLjA1NVYxMC40NVptMy40NDMuNjg0LjAxOS4wMTZhLjY5LjY5IDAgMCAwLS4zNTEuMDQ1Ljc1Ni43NTYgMCAwIDAtLjI4Ny4yMDRjLS4xMS4xNTUtLjE3NC4zMzYtLjE4OS41MjJoMS41NDVjLS4wMzQtLjUyNi0uMjU3LS43ODctLjc0LS43ODdoLjAwM1ptLTUuNzE4LjE2M2MtLjAyNiAwLS4wNTcgMC0uMDgzLjAwNGEuNzguNzggMCAwIDAtLjMxLjA1My43NDYuNzQ2IDAgMCAwLS4yNTcuMTg5IDEuMDE2IDEuMDE2IDAgMCAwLS4yMDQuNjk1di4wNjRjLS4wMTUuMjU3LjA1Ny41MDcuMjA0LjcxMWEuNjM0LjYzNCAwIDAgMCAuMjUzLjE5Ni42MzguNjM4IDAgMCAwIC4zMTQuMDYxLjY0NC42NDQgMCAwIDAgLjU3OC0uMjY1Yy4xNC0uMjIzLjIwNC0uNDguMTg5LS43NGExLjIxNiAxLjIxNiAwIDAgMC0uMTgxLS43MTEuNjc3LjY3NyAwIDAgMC0uNTAzLS4yNTdabS00LjUwOSAxLjI2NmEuNDY0LjQ2NCAwIDAgMC0uMjY4LjEwMi4zNzMuMzczIDAgMCAwLS4xMTQuMjc2YzAgLjA1My4wMDguMTA2LjAyNy4xNTVhLjM3NS4zNzUgMCAwIDAgLjA4Ny4xMzIuNTc2LjU3NiAwIDAgMCAuMzk3LjExdi4wMDRhLjg2My44NjMgMCAwIDAgLjU2My0uMTgyLjU3My41NzMgMCAwIDAgLjIxMS0uNDU3di0uMTRoLS45MDNaIi8+PC9zdmc+");
           mask-image:url("data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+WmFwaWVyPC90aXRsZT48cGF0aCBkPSJNNC4xNTcgMEE0LjE1MSA0LjE1MSAwIDAgMCAwIDQuMTYxdjE1LjY3OEE0LjE1MSA0LjE1MSAwIDAgMCA0LjE1NyAyNGgxNS42ODJBNC4xNTIgNC4xNTIgMCAwIDAgMjQgMTkuODM5VjQuMTYxQTQuMTUyIDQuMTUyIDAgMCAwIDE5LjgzOSAwSDQuMTU3Wm0xMC42MSA4Ljc2MWguMDNhLjU3Ny41NzcgMCAwIDEgLjIzLjAzOC41ODUuNTg1IDAgMCAxIC4yMDEuMTI0LjYzLjYzIDAgMCAxIC4xNjIuNDMxLjYxMi42MTIgMCAwIDEtLjE2Mi40MzUuNTguNTggMCAwIDEtLjIwMS4xMjguNTguNTggMCAwIDEtLjIzLjA0Mi41MjkuNTI5IDAgMCAxLS4yMzUtLjA0Mi41ODUuNTg1IDAgMCAxLS4zMzItLjMyOC41NTkuNTU5IDAgMCAxLS4wMzgtLjIzNS42MTMuNjEzIDAgMCAxIC4xNy0uNDMxLjU5LjU5IDAgMCAxIC40MDUtLjE2MlptMi44NTMgMS41NzJjLjAzLjAwNC4wNjEuMDA0LjA5NS4wMDQuMzI1LS4wMTEuNjQ2LjA2NC45MzcuMjE5LjIzOC4xNDQuNDMxLjM1NS41NTIuNjA5LjEyOC4yNzkuMTg5LjU4Mi4xODUuODg4di4xOTNhMiAyIDAgMCAxIDAgLjIxOWgtMi40OThjLjAwMy4yMjcuMDc1LjQ1LjIwNC42NDJhLjc4Ljc4IDAgMCAwIC42NDYuMjY1LjcxNC43MTQgMCAwIDAgLjQ4NC0uMTM2LjY0Mi42NDIgMCAwIDAgLjIzLS4zMThsLjkxNS4yNTdhMS4zOTggMS4zOTggMCAwIDEtLjI4LjUzN2MtLjE0LjE1OS0uMzIxLjI4NC0uNTIxLjM1NWEyLjIzNCAyLjIzNCAwIDAgMS0uODM2LjEzNiAxLjkyMyAxLjkyMyAwIDAgMS0xLjAwMS0uMjQ1IDEuNjE4IDEuNjE4IDAgMCAxLS42NjUtLjcwMyAyLjIyMSAyLjIyMSAwIDAgMS0uMjI3LTEuMDM2IDEuOTUgMS45NSAwIDAgMSAuNDgtMS4zOTggMS45IDEuOSAwIDAgMSAxLjMtLjQ4OFptLTkuNjA3LjAyM2MuMTYyLjAwNC4zMjUuMDI2LjQ4LjA3OS4yMDcuMDY1LjQuMTc0LjU2My4zMTQuMjYuMzAyLjM5My42OTIuMzY2IDEuMDg4djIuMjc2SDguNTNsLS4xMDktLjcxMWgtLjA2NWMtLjA2NC4xNjMtLjE1NS4zMS0uMjcyLjQzOWExLjEyMiAxLjEyMiAwIDAgMS0uMzc0LjI2NCAxLjAyMyAxLjAyMyAwIDAgMS0uNDUzLjA4MyAxLjMzNCAxLjMzNCAwIDAgMS0uODY2LS4yNjQuOTY1Ljk2NSAwIDAgMS0uMzI5LS44MDEuOTkzLjk5MyAwIDAgMSAuMDc2LS40MzEgMS4wMiAxLjAyIDAgMCAxIC4yNDItLjM2MyAxLjQ3OCAxLjQ3OCAwIDAgMSAxLjA0My0uMzAzaC45NTJ2LS4xODFhLjY5Ni42OTYgMCAwIDAtLjEzNi0uNDU0LjU1My41NTMgMCAwIDAtLjQzOC0uMTU0LjY5NS42OTUgMCAwIDAtLjM3OC4wODYuNDguNDggMCAwIDAtLjE5My4yNTRsLS45OS0uMTQ0YTEuMjYgMS4yNiAwIDAgMSAuMjU3LS41NjNjLjE0LS4xNzQuMzIxLS4zMDIuNTMzLS4zNzguMjYxLS4wOTEuNTQtLjEzNi44Mi0uMTI5LjA1My0uMDAzLjEwNi0uMDA3LjE2My0uMDA3Wm00LjM4NC4wMDdjLjE3NCAwIC4zNDcuMDM4LjUwNi4xMTQuMTgyLjA4My4zNC4yMTEuNDU4LjM3NC4yNTcuNDIzLjM3Ny45MTEuMzUxIDEuNDA2YTIuNTMgMi41MyAwIDAgMS0uMzU1IDEuNDQ4IDEuMTQ4IDEuMTQ4IDAgMCAxLTEuMDA5LjUxN2MtLjIwNCAwLS40MDEtLjA0NS0uNTgyLS4xMzZhMS4wNTIgMS4wNTIgMCAwIDEtLjQ4LS40NTcgMS4yOTggMS4yOTggMCAwIDEtLjExNC0uMjM0aC0uMDQ1bC4wMDQgMS43ODRoLTEuMDU5di00LjcxM2guOTA0bC4xMTcuODA1aC4wNTdjLjA2OC0uMjA4LjE3Ny0uNDAxLjMyOC0uNTZhMS4xMjkgMS4xMjkgMCAwIDEgLjg0My0uMzQ0aC4wNzZ2LS4wMDRabTcuNTU5LjA4NGguOTAzbC4xMTMuODA1aC4wNTNhMS4zNyAxLjM3IDAgMCAxIC4yMzUtLjQ4NC44MTMuODEzIDAgMCAxIC4zMTMtLjI0Mi44Mi44MiAwIDAgMSAuMzktLjA3NmguMjM0djEuMDUxaC0uNDAxYS42NjIuNjYyIDAgMCAwLS4zMTMuMDA4LjYyMy42MjMgMCAwIDAtLjI3Mi4xNTUuNjYzLjY2MyAwIDAgMC0uMTc0LjI2LjY4My42ODMgMCAwIDAtLjAyNy4zMTR2MS44NzVoLTEuMDU0di0zLjY2NlptLTE3LjUxNS4wMDNoMy4yNjJ2Ljg5NkwzLjczIDEzLjEwNGwuMDM0LjExM2gxLjk3M2wuMDQyLjlIMi40di0uOWwxLjkzMS0xLjc1NC0uMDQ1LS4xMTdIMi40NDF2LS44OTZabTExLjgxNSAwaDEuMDU1djMuNjU5aC0xLjA1NVYxMC40NVptMy40NDMuNjg0LjAxOS4wMTZhLjY5LjY5IDAgMCAwLS4zNTEuMDQ1Ljc1Ni43NTYgMCAwIDAtLjI4Ny4yMDRjLS4xMS4xNTUtLjE3NC4zMzYtLjE4OS41MjJoMS41NDVjLS4wMzQtLjUyNi0uMjU3LS43ODctLjc0LS43ODdoLjAwM1ptLTUuNzE4LjE2M2MtLjAyNiAwLS4wNTcgMC0uMDgzLjAwNGEuNzguNzggMCAwIDAtLjMxLjA1My43NDYuNzQ2IDAgMCAwLS4yNTcuMTg5IDEuMDE2IDEuMDE2IDAgMCAwLS4yMDQuNjk1di4wNjRjLS4wMTUuMjU3LjA1Ny41MDcuMjA0LjcxMWEuNjM0LjYzNCAwIDAgMCAuMjUzLjE5Ni42MzguNjM4IDAgMCAwIC4zMTQuMDYxLjY0NC42NDQgMCAwIDAgLjU3OC0uMjY1Yy4xNC0uMjIzLjIwNC0uNDguMTg5LS43NGExLjIxNiAxLjIxNiAwIDAgMC0uMTgxLS43MTEuNjc3LjY3NyAwIDAgMC0uNTAzLS4yNTdabS00LjUwOSAxLjI2NmEuNDY0LjQ2NCAwIDAgMC0uMjY4LjEwMi4zNzMuMzczIDAgMCAwLS4xMTQuMjc2YzAgLjA1My4wMDguMTA2LjAyNy4xNTVhLjM3NS4zNzUgMCAwIDAgLjA4Ny4xMzIuNTc2LjU3NiAwIDAgMCAuMzk3LjExdi4wMDRhLjg2My44NjMgMCAwIDAgLjU2My0uMTgyLjU3My41NzMgMCAwIDAgLjIxMS0uNDU3di0uMTRoLS45MDNaIi8+PC9zdmc+");
 }
+</style>
+<style>
+/* ==========================================================================
+   DEMA RUCHU — czyste CSS, bo osadzanie GSAP z CDN jest tu zablokowane.
+   Każda animacja startuje po dodaniu klasy .run (patrz skrypt na dole)
+   i używa krzywych z bloku :root, będących przybliżeniem easingów GSAP.
+   ========================================================================== */
+.stage.demo{ cursor:pointer }
+.demo .pan-track,.demo .back-track{ position:absolute;inset:0 }
+
+/* 01 pan-path */
+.pan-track{ transform:translateX(0) }
+.demo.run .pan-track{ animation:panMove 4.6s var(--e-power2-inout) forwards }
+@keyframes panMove{
+  0%,14%{transform:translateX(0)} 26%,42%{transform:translateX(-24%)}
+  54%,70%{transform:translateX(-48%)} 82%,100%{transform:translateX(-72%)} }
+.pan-rail{ position:absolute;left:14%;right:-60%;top:50%;height:2px;background:var(--rule) }
+.pan-railfg{ position:absolute;left:14%;top:50%;height:2px;width:0;background:var(--amber);
+             box-shadow:0 0 12px rgba(245,166,35,.5) }
+.demo.run .pan-railfg{ animation:railGrow 4.6s var(--e-power2-inout) forwards }
+@keyframes railGrow{ 0%,14%{width:0} 42%{width:24%} 70%{width:48%} 100%{width:72%} }
+.pan-node{ position:absolute;top:50%;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:12px;
+           background:var(--card);border:2px solid var(--rule);opacity:0;transform:scale(.8) }
+.pan-node.n1{left:14%} .pan-node.n2{left:38%} .pan-node.n3{left:62%} .pan-node.n4{left:86%}
+.demo.run .pan-node{ animation:nodeIn .42s var(--e-back-out) forwards }
+.demo.run .n1{animation-delay:.25s} .demo.run .n2{animation-delay:1.5s}
+.demo.run .n3{animation-delay:2.7s} .demo.run .n4{animation-delay:3.9s}
+@keyframes nodeIn{ to{opacity:1;transform:scale(1);border-color:var(--amber);
+                      box-shadow:0 0 26px rgba(245,166,35,.2)} }
+
+/* 02 hero -> park */
+.hero-slot{ position:absolute;bottom:14%;width:22%;height:26%;border:1px dashed var(--sec3) }
+.hero-slot.s1{left:10%} .hero-slot.s2{left:39%} .hero-slot.s3{left:68%}
+.hero-card{ position:absolute;left:39%;top:16%;width:22%;height:34%;
+            background:var(--card);border:2px solid var(--amber);
+            box-shadow:0 0 40px rgba(245,166,35,.18);opacity:0;transform:scale(1.3) }
+.demo.run .hero-card{ animation:heroIn .5s var(--e-back-out) forwards,
+                                 heroPark .9s var(--e-power3-inout) 2.1s forwards }
+@keyframes heroIn{ from{opacity:0;transform:scale(1.1)} to{opacity:1;transform:scale(1.3)} }
+@keyframes heroPark{ to{ top:14%;left:10%;transform:scale(1) translateY(160%) } }
+
+/* 03 odjazd */
+.back-track{ transform:scale(1) translateX(0) }
+.demo.run .back-track{ animation:pullBack 1.2s var(--e-power3-inout) .8s forwards }
+@keyframes pullBack{ to{ transform:scale(.5) translateX(-50%) } }
+.back-card{ position:absolute;top:34%;width:16%;height:32%;background:var(--card);
+            border:1.5px solid var(--rule) }
+.back-card:nth-child(1){left:6%} .back-card:nth-child(2){left:30%}
+.back-card:nth-child(3){left:54%} .back-card:nth-child(4){left:78%}
+
+/* 04 rozjazd */
+.sp-bar{ position:absolute;left:14%;width:72%;height:17%;background:var(--card);
+         border:1.5px solid rgba(245,166,35,.28) }
+.sp-bar.b1{ top:41.5%;transform:translateY(-18px) rotate(-1.2deg) }
+.sp-bar.b2{ top:41.5%;transform:translateY(0) }
+.sp-bar.b3{ top:41.5%;transform:translateY(18px) rotate(1.2deg) }
+.demo.run .sp-bar{ animation-duration:.85s;animation-timing-function:var(--e-power3-inout);
+                   animation-delay:.7s;animation-fill-mode:forwards }
+.demo.run .b1{ animation-name:sp1 } .demo.run .b2{ animation-name:sp2 } .demo.run .b3{ animation-name:sp3 }
+@keyframes sp1{ to{ top:18%;transform:none } }
+@keyframes sp2{ to{ top:41.5%;transform:none } }
+@keyframes sp3{ to{ top:65%;transform:none } }
+.sp-sep{ position:absolute;left:14%;width:72%;height:2px;opacity:0;
+         background:repeating-linear-gradient(to right,var(--red) 0 10px,transparent 10px 18px) }
+.sp-sep.p1{ top:36.5% } .sp-sep.p2{ top:60% }
+.demo.run .sp-sep{ animation:fadeIn .34s var(--e-power2-out) 1.5s forwards }
+@keyframes fadeIn{ to{opacity:1} }
+
+/* 05 wycieraczka */
+.wp-half{ position:absolute;top:12%;bottom:12%;width:41%;border:1.5px solid rgba(245,166,35,.24) }
+.wp-half.l{ left:5%;background:var(--card) }
+.wp-half.r{ right:5%;background:var(--up);border-color:var(--amber);box-shadow:0 0 34px rgba(245,166,35,.14) }
+.wp-shade{ position:absolute;left:50%;right:0;top:0;bottom:0;background:var(--bg) }
+.demo.run .wp-shade{ animation:wipe 1.05s var(--e-power3-inout) 1s forwards }
+@keyframes wipe{ to{ transform:translateX(100%) } }
+.wp-edge{ position:absolute;left:50%;top:6%;bottom:6%;width:3px;background:var(--amber);
+          box-shadow:0 0 20px rgba(245,166,35,.6) }
+.demo.run .wp-edge{ animation:wipe 1.05s var(--e-power3-inout) 1s forwards,
+                               fadeOut .35s linear 2s forwards }
+@keyframes fadeOut{ to{opacity:0} }
+
+/* 06 licznik */
+.ct-wrap{ position:absolute;inset:0;display:grid;place-content:center;text-align:center }
+.ct-cap{ font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--sec1) }
+.ct-num{ font-size:64px;font-weight:900;color:var(--amber);line-height:1;margin-top:4px;
+         font-variant-numeric:tabular-nums;transition:color .45s var(--e-power2-out) }
+.ct-num.hot{ color:var(--red) }
+.ct-unit{ font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sec1);margin-top:4px }
+
+/* 07 maszyna do pisania */
+.tp-line{ position:absolute;left:8%;top:44%;font-family:var(--mono);font-size:clamp(11px,2vw,17px);
+          color:var(--light);white-space:nowrap;display:flex;align-items:center }
+.tp-txt{ display:inline-block;overflow:hidden;white-space:nowrap;width:0 }
+.demo.run .tp-txt{ animation:typing 1.9s steps(31,end) .4s forwards }
+@keyframes typing{ to{ width:31ch } }
+.tp-cur{ width:8px;height:1.05em;background:var(--amber);margin-left:3px;opacity:0 }
+.demo.run .tp-cur{ animation:blink .42s steps(1) .4s 6, fadeOut .2s linear 2.9s forwards }
+@keyframes blink{ 50%{opacity:0} 0%,100%{opacity:1} }
+
+/* 08 skreślenie */
+.st-word{ position:absolute;left:0;right:0;top:30%;text-align:center;font-size:clamp(20px,4vw,38px);
+          font-weight:900;letter-spacing:-.02em;color:var(--light);opacity:0 }
+.demo.run .st-word{ animation:fadeIn .4s var(--e-power3-out) .2s forwards, dim .35s linear 1.5s forwards }
+@keyframes dim{ to{ opacity:.34 } }
+.st-line{ position:absolute;left:50%;top:52%;height:5px;width:0;margin-left:-50%;
+          background:var(--red);border-radius:3px;box-shadow:0 0 16px rgba(192,85,58,.55) }
+.demo.run .st-line{ animation:strike .3s var(--e-power3-out) 1.3s forwards }
+@keyframes strike{ to{ width:100% } }
+.st-new{ position:absolute;left:0;right:0;top:56%;text-align:center;font-size:clamp(20px,4vw,38px);
+         font-weight:900;letter-spacing:-.02em;color:var(--amber);opacity:0 }
+.demo.run .st-new{ animation:riseIn .42s var(--e-back-out) 1.9s forwards }
+@keyframes riseIn{ from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:none} }
+
+/* 09 kinetyka */
+.kn{ position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:0 8% }
+.kn span{ grid-area:1/1;font-size:clamp(16px,3.2vw,30px);font-weight:900;letter-spacing:-.03em;
+          color:var(--light);opacity:0 }
+.kn .k3{ color:var(--amber) }
+.demo.run .kn span{ animation-duration:1.5s;animation-timing-function:linear;animation-fill-mode:forwards }
+.demo.run .k1{ animation-name:knFlash;animation-delay:.2s }
+.demo.run .k2{ animation-name:knFlash;animation-delay:1.5s }
+.demo.run .k3{ animation-name:knHold;animation-delay:2.8s }
+@keyframes knFlash{ 0%{opacity:0;transform:translateY(24px)} 18%,72%{opacity:1;transform:none}
+                    100%{opacity:0;transform:translateY(-22px)} }
+@keyframes knHold{ 0%{opacity:0;transform:translateY(24px)} 18%,100%{opacity:1;transform:none} }
+
+/* 10 radialny */
+.dl{ position:absolute;left:50%;top:50%;width:60%;aspect-ratio:1;transform:translate(-50%,-50%) }
+.dl-ring{ position:absolute;inset:0;border:2px solid var(--rule);border-radius:50% }
+.dl-hand{ position:absolute;left:50%;top:50%;width:3px;height:44%;margin-left:-1.5px;
+          background:linear-gradient(to top,var(--amber),rgba(245,166,35,.25));
+          transform-origin:bottom center;transform:translateY(-100%) rotate(0deg) }
+.demo.run .dl-hand{ animation:sweep 4.2s var(--e-power2-inout) .3s forwards }
+@keyframes sweep{ 0%{transform:translateY(-100%) rotate(0)} 16%{transform:translateY(-100%) rotate(60deg)}
+  33%{transform:translateY(-100%) rotate(120deg)} 50%{transform:translateY(-100%) rotate(180deg)}
+  67%{transform:translateY(-100%) rotate(240deg)} 84%{transform:translateY(-100%) rotate(300deg)}
+  100%{transform:translateY(-100%) rotate(360deg)} }
+.dl-hub{ position:absolute;left:50%;top:50%;width:30%;aspect-ratio:1;transform:translate(-50%,-50%);
+         border-radius:50%;background:var(--card);border:2px solid var(--rule);
+         display:grid;place-items:center;font-size:clamp(14px,2.6vw,26px);font-weight:900;color:var(--amber) }
+
+/* 11 rozlewanie */
+.gr-box{ position:absolute;left:50%;top:50%;width:30%;height:26%;transform:translate(-50%,-50%);
+         background:rgba(245,166,35,.08);border:2px solid var(--amber);
+         display:grid;place-items:center;text-align:center;
+         font-size:clamp(10px,1.6vw,15px);font-weight:800;color:var(--amber) }
+.demo.run .gr-box{ animation:grow 3.6s var(--e-power2-inout) .4s forwards }
+@keyframes grow{ 0%{width:30%;height:26%} 30%{width:54%;height:46%}
+  55%{width:76%;height:66%} 72%,84%{width:92%;height:86%;
+      background:rgba(192,85,58,.1);border-color:var(--red);color:var(--red)}
+  100%{width:30%;height:26%;background:rgba(245,166,35,.08);border-color:var(--amber);color:var(--amber)} }
+.gr-fence{ position:absolute;left:50%;top:50%;width:36%;height:34%;transform:translate(-50%,-50%) scale(1.5);
+           border:3px dashed var(--green);opacity:0 }
+.demo.run .gr-fence{ animation:fenceIn .35s var(--e-power3-out) 3.4s forwards }
+@keyframes fenceIn{ to{ opacity:1;transform:translate(-50%,-50%) scale(1) } }
+
+/* 12 sprężyna */
+.spr{ position:absolute;top:38%;width:20%;height:24%;background:var(--card);
+      border:1.5px solid rgba(245,166,35,.3);opacity:0;transform:scale(.82) }
+.spr.c1{left:14%} .spr.c2{left:40%} .spr.c3{left:66%}
+.demo.run .spr{ animation:springIn .42s var(--e-back-out) forwards }
+.demo.run .c1{animation-delay:.2s} .demo.run .c2{animation-delay:.46s} .demo.run .c3{animation-delay:.72s}
+@keyframes springIn{ to{ opacity:1;transform:scale(1) } }
+</style>
+<div class="shell">
+
+<nav class="rail">
+  <div class="mark">Wstawki <span>/ flowbiz</span></div>
+  <ol>
+    <li><a href="#fundament"><b>01</b>Fundament</a></li>
+    <li><a href="#paleta"><b>02</b>Paleta</a></li>
+    <li><a href="#typografia"><b>03</b>Typografia</a></li>
+    <li><a href="#ruch"><b>04</b>Katalog ruchu</a></li>
+    <li><a href="#komponenty"><b>05</b>Komponenty</a></li>
+    <li><a href="#marki"><b>06</b>Znaki marek</a></li>
+    <li><a href="#dzwiek"><b>07</b>Dźwięk</a></li>
+    <li><a href="#pulapki"><b>08</b>Pułapki</a></li>
+    <li><a href="#katalog"><b>09</b>Katalog scen</a></li>
+  </ol>
+</nav>
+
+<main>
+
+<header class="hero">
+  <div class="eyebrow">Specyfikacja systemu wstawek · seria OpenMercato</div>
+  <div class="lede">
+    <h1>Wszystko, co się rusza<br>w tych odcinkach.</h1>
+    <p class="lead">Jedna karta zamiast krążenia po plikach: paleta, skala pisma, dwanaście
+    wzorców ruchu z żywymi demami, komponenty, znaki marek, dźwięk i katalog czterdziestu
+    siedmiu scen.</p>
+  </div>
+
+  <div class="facts">
+    <div class="fact"><b>47</b><span>scen</span></div>
+    <div class="fact"><b>12</b><span>wzorców ruchu</span></div>
+    <div class="fact"><b>20</b><span>znaków marek</span></div>
+    <div class="fact"><b>7</b><span>dźwięków</span></div>
+    <div class="fact"><b>1</b><span>akcent</span></div>
+  </div>
+</header>
+
+<section id="fundament">
+  <div class="sec-head">
+    <div class="eyebrow">01 — Fundament</div>
+    <h2>Wstawka nie zastępuje obrazu. Wchodzi na niego.</h2>
+    <p class="lead">Wszystko renderuje się dwa razy: ciemno do oceny i na zielonym
+    <code>#00B140</code> do montażu. To jedna decyzja, z której wynika cała reszta reguł.</p>
+  </div>
+
+  <div class="spec">
+    <div>
+      <div class="stage demo" id="stKey">
+        <span class="tag">podgląd klucza</span>
+        <div style="position:absolute;inset:0;display:grid;place-items:center;gap:18px;align-content:center">
+          <div class="card-el on" style="padding:16px 26px">
+            <div style="font-weight:800;font-size:19px">Pracownicy</div>
+            <div style="font-size:13px;color:var(--sec1);margin-top:3px">6 rekordów</div>
+          </div>
+          <div style="font-size:14px;font-weight:600">
+            <span class="plate-el" id="plateDemo" style="color:var(--sec1)">— tekst bez karty —</span>
+          </div>
+        </div>
+      </div>
+      <div class="ctl">
+        <button class="btn" id="keyToggle" aria-pressed="false">Wytnij zielone</button>
+        <button class="btn" id="plateToggle" aria-pressed="true">Podkładka włączona</button>
+      </div>
+    </div>
+
+    <div>
+      <table class="params">
+        <tr><th>Kolor klucza</th><td><em>#00B140</em> broadcast green</td></tr>
+        <tr><th>Wywołanie</th><td>FPS=30 node render.js &lt;scena&gt;</td></tr>
+        <tr><th>Wersja ciemna</th><td>NO_CHROMA=1 …</td></tr>
+        <tr><th>Format</th><td>1920×1080, 30 fps, h.264</td></tr>
+      </table>
+      <p class="where"><b>Dwie reguły, które z tego wynikają.</b> Każdy kontener musi mieć
+      własne tło <code>#0D0D0B</code> — bez niego treść po wycięciu zielonego wisi w powietrzu.
+      A ciemny tekst leżący poza kartą idzie w <code>.chroma-plate</code>, bo inaczej znika
+      razem z tłem. Przełącz oba przyciski obok i zobacz, co się dzieje bez podkładki.</p>
+    </div>
+  </div>
+</section>
+
+<section id="paleta">
+  <div class="sec-head">
+    <div class="eyebrow">02 — Paleta</div>
+    <h2>Jeden akcent, reszta to grunt.</h2>
+    <p class="lead">Bursztyn jest jedynym mocnym kolorem. Czerwień i zieleń nie są akcentami —
+    niosą znaczenie: coś nie działa, coś jest w porządku.</p>
+  </div>
+
+  <div class="swatches">
+    <div class="sw"><div class="chipc" style="background:#0A0A08"></div><div class="nm">Węgiel</div><div class="hex">#0A0A08</div><div class="use">Tło sceny</div></div>
+    <div class="sw"><div class="chipc" style="background:#0D0D0B"></div><div class="nm">Karta</div><div class="hex">#0D0D0B</div><div class="use">Każdy kontener z treścią</div></div>
+    <div class="sw"><div class="chipc" style="background:#13110D"></div><div class="nm">Powierzchnia</div><div class="hex">#13110D</div><div class="use">Element podniesiony, terminal</div></div>
+    <div class="sw"><div class="chipc" style="background:#F5A623"></div><div class="nm">Bursztyn</div><div class="hex">#F5A623</div><div class="use">Akcent, puenta, aktywna karta</div></div>
+    <div class="sw"><div class="chipc" style="background:#FAF8F0"></div><div class="nm">Kość</div><div class="hex">#FAF8F0</div><div class="use">Tekst główny</div></div>
+    <div class="sw"><div class="chipc" style="background:#C0553A"></div><div class="nm">Czerwień</div><div class="hex">#C0553A</div><div class="use">Problem, skreślenie, „nie zrobię”</div></div>
+    <div class="sw"><div class="chipc" style="background:#6BAA6B"></div><div class="nm">Zieleń</div><div class="hex">#6BAA6B</div><div class="use">Zgoda, ptaszek, „zrób tak”</div></div>
+    <div class="sw"><div class="chipc" style="background:#5A5450"></div><div class="nm">Podpis</div><div class="hex">#5A5450</div><div class="use">Nagłówki sekcji, opisy</div></div>
+    <div class="sw"><div class="chipc" style="background:#3A3630"></div><div class="nm">Linia</div><div class="hex">#3A3630</div><div class="use">Wygaszone obramowanie</div></div>
+    <div class="sw"><div class="chipc" style="background:#00B140"></div><div class="nm">Klucz</div><div class="hex">#00B140</div><div class="use">Tylko tło do wycięcia</div></div>
+  </div>
+</section>
+
+<section id="typografia">
+  <div class="sec-head">
+    <div class="eyebrow">03 — Typografia</div>
+    <h2>DM Sans, cztery role, nic poza tym.</h2>
+    <p class="lead">Skala jest krótka celowo — wstawka stoi na ekranie dwie sekundy, więc
+    każdy dodatkowy stopień to strata czasu widza.</p>
+  </div>
+
+  <div class="stack">
+    <div class="card-el" style="padding:26px 30px">
+      <div style="font-size:56px;font-weight:900;letter-spacing:-0.02em;color:var(--amber)">Puenta sceny</div>
+      <div class="muted" style="font-family:var(--mono);font-size:12.5px;margin-top:10px">44–78 px · waga 900 · tracking −0,02em · zwykle bursztyn</div>
+    </div>
+    <div class="card-el" style="padding:26px 30px">
+      <div style="font-size:40px;font-weight:800;letter-spacing:-0.015em">Nazwa elementu</div>
+      <div class="muted" style="font-family:var(--mono);font-size:12.5px;margin-top:10px">28–52 px · waga 800 · tytuł karty, nazwa warstwy</div>
+    </div>
+    <div class="card-el" style="padding:26px 30px">
+      <div style="font-size:25px;font-weight:500;color:#C9C3BB">Opis, pytanie, definicja</div>
+      <div class="muted" style="font-family:var(--mono);font-size:12.5px;margin-top:10px">21–31 px · waga 500 · treść wewnątrz kart</div>
+    </div>
+    <div class="card-el" style="padding:26px 30px">
+      <div style="font-size:23px;font-weight:600;letter-spacing:0.24em;text-transform:uppercase;color:var(--amber)">Nagłówek sceny</div>
+      <div class="muted" style="font-family:var(--mono);font-size:12.5px;margin-top:10px">22–24 px · waga 600 · tracking 0,24em · wersaliki</div>
+    </div>
+  </div>
+
+  <p class="where" style="margin-top:24px"><b>Ta strona nie renderuje w DM Sans.</b> Osadzanie
+  fontów z CDN jest tu zablokowane, więc podstawiony jest krój systemowy. W scenach jest
+  DM Sans w wagach 400–900 i tak samo wygląda render.</p>
+</section>
+<section id="ruch">
+  <div class="sec-head">
+    <div class="eyebrow">04 — Katalog ruchu</div>
+    <h2>Dwanaście wzorców. Każdy odpowiada na inne pytanie.</h2>
+    <p class="lead">Dema niżej chodzą w tych samych czasach i krzywych co sceny — CSS-owe
+    przybliżenia easingów GSAP są wypisane przy każdym. Kliknij scenę, żeby odtworzyć.</p>
+  </div>
+
+  <div class="stack-lg">
+
+    <!-- 01 pan-path -->
+    <article class="spec">
+      <div>
+        <div class="stage demo" data-anim="pan"><span class="tag">01 · ścieżka panoramiczna</span>
+          <div class="pan-track">
+            <div class="pan-rail"></div><div class="pan-railfg"></div>
+            <div class="pan-node n1"></div><div class="pan-node n2"></div>
+            <div class="pan-node n3"></div><div class="pan-node n4"></div>
+          </div>
+        </div>
+        <div class="ctl"><button class="btn replay">Odtwórz</button></div>
+      </div>
+      <div>
+        <h3>Ścieżka panoramiczna</h3>
+        <table class="params">
+          <tr><th>Krzywa</th><td>power2.inOut <em>→</em> cubic-bezier(.45,0,.55,1)</td></tr>
+          <tr><th>Przejazd</th><td>0,90 s</td></tr>
+          <tr><th>Takt</th><td>1,42 s na stację</td></tr>
+          <tr><th>Linia</th><td>stroke-dashoffset, ten sam czas co pan</td></tr>
+        </table>
+        <p class="where"><b>Kiedy.</b> Proces, który ma kolejność. Kamera jedzie po szerokim
+        torze, stacje zapalają się po kolei. <b>Reguła:</b> kamera najpierw staje, treść wchodzi
+        dopiero potem — inaczej obraz skacze.</p>
+      </div>
+    </article>
+
+    <!-- 02 hero -> park -->
+    <article class="spec">
+      <div>
+        <div class="stage demo" data-anim="hero"><span class="tag">02 · narodziny na środku</span>
+          <div class="hero-slot s1"></div><div class="hero-slot s2"></div><div class="hero-slot s3"></div>
+          <div class="hero-card"></div>
+        </div>
+        <div class="ctl"><button class="btn replay">Odtwórz</button></div>
+      </div>
+      <div>
+        <h3>Narodziny na środku, potem odjazd na miejsce</h3>
+        <table class="params">
+          <tr><th>Skala hero</th><td>1,26–1,32×</td></tr>
+          <tr><th>Wjazd</th><td>0,44 s · back.out(1.6)</td></tr>
+          <tr><th>Odjazd na miejsce</th><td>0,88 s · power3.inOut</td></tr>
+        </table>
+        <p class="where"><b>Kiedy.</b> Element wymaga przeczytania, zanim stanie się jednym
+        z wielu. <b>Pułapka:</b> strefa hero musi siedzieć NAD rzędem docelowym — inaczej nowy
+        element zasłania ten już zaparkowany i wygląda to, jakby tamten zniknął.</p>
+      </div>
+    </article>
+
+    <!-- 03 odjazd kamery -->
+    <article class="spec">
+      <div>
+        <div class="stage demo" data-anim="back"><span class="tag">03 · odjazd kamery</span>
+          <div class="back-track">
+            <div class="back-card"></div><div class="back-card"></div>
+            <div class="back-card"></div><div class="back-card"></div>
+          </div>
+        </div>
+        <div class="ctl"><button class="btn replay">Odtwórz</button></div>
+      </div>
+      <div>
+        <h3>Odjazd kamery</h3>
+        <table class="params">
+          <tr><th>Skala docelowa</th><td>0,40–0,58×</td></tr>
+          <tr><th>Czas</th><td>1,05–1,10 s · power3.inOut</td></tr>
+          <tr><th>Podpisy</th><td>gasną do 0,28 — i tak byłyby nieczytelne</td></tr>
+        </table>
+        <p class="where"><b>Kiedy.</b> Domknięcie po przejeździe: widz przeszedł stacje po
+        kolei, teraz ma zobaczyć całość naraz. Bez tego zostaje z pamięcią ostatniej stacji,
+        a nie z układem.</p>
+      </div>
+    </article>
+
+    <!-- 04 rozjazd -->
+    <article class="spec">
+      <div>
+        <div class="stage demo" data-anim="split"><span class="tag">04 · rozjazd zlepka</span>
+          <div class="sp-bar b1"></div><div class="sp-bar b2"></div><div class="sp-bar b3"></div>
+          <div class="sp-sep p1"></div><div class="sp-sep p2"></div>
+        </div>
+        <div class="ctl"><button class="btn replay">Odtwórz</button></div>
+      </div>
+      <div>
+        <h3>Rozjazd zlepka</h3>
+        <table class="params">
+          <tr><th>Start</th><td>stos z przesunięciem 18 px + obrót 1,2°</td></tr>
+          <tr><th>Rozjazd</th><td>0,85 s · power3.inOut</td></tr>
+          <tr><th>Przegrody</th><td>wchodzą 0,7 s PO rozjeździe</td></tr>
+        </table>
+        <p class="where"><b>Kiedy.</b> Zdanie mówi „nie miesza się ich ze sobą”. Ruch niesie
+        tezę. <b>Pułapka:</b> stos musi być widoczny jako stos od pierwszej klatki — trzy karty
+        idealnie na sobie czytają się jak jedna.</p>
+      </div>
+    </article>
+
+    <!-- 05 wycieraczka -->
+    <article class="spec">
+      <div>
+        <div class="stage demo" data-anim="wipe"><span class="tag">05 · wycieraczka</span>
+          <div class="wp-half l"></div><div class="wp-half r"></div>
+          <div class="wp-shade"></div><div class="wp-edge"></div>
+        </div>
+        <div class="ctl"><button class="btn replay">Odtwórz</button></div>
+      </div>
+      <div>
+        <h3>Wycieraczka</h3>
+        <table class="params">
+          <tr><th>Czas</th><td>1,05 s · power3.inOut</td></tr>
+          <tr><th>Krawędź</th><td>3 px bursztyn + poświata 22 px</td></tr>
+        </table>
+        <p class="where"><b>Kiedy.</b> Porównanie dwóch stron, gdzie druga ma być zaskoczeniem.
+        Statyczny podział pokazałby obie naraz i zabił pointę.</p>
+      </div>
+    </article>
+
+    <!-- 06 licznik -->
+    <article class="spec">
+      <div>
+        <div class="stage demo" data-anim="count"><span class="tag">06 · licznik</span>
+          <div class="ct-wrap">
+            <div class="ct-cap">Dotknęło tej kartki</div>
+            <div class="ct-num" id="ctNum">1</div>
+            <div class="ct-unit">osób</div>
+          </div>
+        </div>
+        <div class="ctl"><button class="btn replay">Odtwórz</button></div>
+      </div>
+      <div>
+        <h3>Licznik narastający</h3>
+        <table class="params">
+          <tr><th>Przewijanie</th><td>0,70 s · power2.out</td></tr>
+          <tr><th>Cyfry</th><td>font-variant-numeric: tabular-nums</td></tr>
+          <tr><th>Finał</th><td>zmiana koloru, nie skok skali</td></tr>
+        </table>
+        <p class="where"><b>Kiedy.</b> Liczba jest treścią, nie ozdobą. <b>Reguła:</b> licznik
+        przewija się do wartości, nie przeskakuje — a na końcu zmienia kolor zamiast podskoczyć,
+        bo skok dokłada szarpnięcie do i tak zajętego kadru.</p>
+      </div>
+    </article>
+
+    <!-- 07 maszyna do pisania -->
+    <article class="spec">
+      <div>
+        <div class="stage demo" data-anim="type"><span class="tag">07 · maszyna do pisania</span>
+          <div class="tp-line"><span class="tp-txt">&gt; zbuduj moduł kart technicznych</span><span class="tp-cur"></span></div>
+        </div>
+        <div class="ctl"><button class="btn replay">Odtwórz</button></div>
+      </div>
+      <div>
+        <h3>Maszyna do pisania</h3>
+        <table class="params">
+          <tr><th>Tempo</th><td>proxy licznika znaków · ease none</td></tr>
+          <tr><th>Kursor</th><td>0,42 s · steps(1) · miga tylko w trakcie</td></tr>
+        </table>
+        <p class="where"><b>Kiedy.</b> Coś pisze człowiek albo agent. <b>Reguła:</b> tempo
+        z licznika znaków, nie osobny tween na literę — inaczej długie zdanie leci wolniej
+        od krótkiego i rytm się rozjeżdża.</p>
+      </div>
+    </article>
+
+    <!-- 08 skreślenie -->
+    <article class="spec">
+      <div>
+        <div class="stage demo" data-anim="strike"><span class="tag">08 · skreślenie</span>
+          <div class="st-word">BUDOWANIA<span class="st-line"></span></div>
+          <div class="st-new">PROJEKTOWANIA</div>
+        </div>
+        <div class="ctl"><button class="btn replay">Odtwórz</button></div>
+      </div>
+      <div>
+        <h3>Skreślenie</h3>
+        <table class="params">
+          <tr><th>Kreska</th><td>0,30 s · power3.out · 5 px czerwień</td></tr>
+          <tr><th>Po skreśleniu</th><td>obramowanie gaśnie do #2E2C28</td></tr>
+        </table>
+        <p class="where"><b>Kiedy.</b> „To nie jest X, to jest Y”. Kreska musi mieścić się
+        w obrysie słowa — przestrzelona o kilkadziesiąt pikseli wygląda na błąd, nie na gest.</p>
+      </div>
+    </article>
+
+    <!-- 09 kinetyka -->
+    <article class="spec">
+      <div>
+        <div class="stage demo" data-anim="kin"><span class="tag">09 · typografia kinetyczna</span>
+          <div class="kn"><span class="k1">Kolega pokazał mi system</span><span class="k2">bez bazy danych</span><span class="k3">Zniknęła.</span></div>
+        </div>
+        <div class="ctl"><button class="btn replay">Odtwórz</button></div>
+      </div>
+      <div>
+        <h3>Typografia kinetyczna</h3>
+        <table class="params">
+          <tr><th>Wjazd / wyjazd</th><td>0,30 s power3.out · 0,28 s power2.in</td></tr>
+          <tr><th>Postój</th><td>1,1–2,0 s zależnie od długości</td></tr>
+          <tr><th>Elementy</th><td>zero kart, zero ikon</td></tr>
+        </table>
+        <p class="where"><b>Kiedy.</b> Widz ma czytać dokładnie to, co słyszy. <b>Ostrożnie:</b>
+        pod dłuższą narracją potrafi męczyć — dlatego jest w eksperymentach, nie w komplecie
+        podstawowym.</p>
+      </div>
+    </article>
+
+    <!-- 10 radialny -->
+    <article class="spec">
+      <div>
+        <div class="stage demo" data-anim="dial"><span class="tag">10 · układ radialny</span>
+          <div class="dl"><div class="dl-ring"></div><div class="dl-hand"></div><div class="dl-hub">6</div></div>
+        </div>
+        <div class="ctl"><button class="btn replay">Odtwórz</button></div>
+      </div>
+      <div>
+        <h3>Układ radialny</h3>
+        <table class="params">
+          <tr><th>Skok wskazówki</th><td>0,62 s · power2.inOut</td></tr>
+          <tr><th>Łuk</th><td>stroke-dashoffset, ten sam czas</td></tr>
+        </table>
+        <p class="where"><b>Kiedy.</b> Rzecz nie jest ciągiem kroków, tylko jednym cyklem —
+        dzień, doba, powtarzalny obieg. Tarcza mówi to bez podpisu.</p>
+      </div>
+    </article>
+
+    <!-- 11 rosnący prostokąt -->
+    <article class="spec">
+      <div>
+        <div class="stage demo" data-anim="grow"><span class="tag">11 · rozlewanie</span>
+          <div class="gr-box"><span>karty techniczne</span></div>
+          <div class="gr-fence"></div>
+        </div>
+        <div class="ctl"><button class="btn replay">Odtwórz</button></div>
+      </div>
+      <div>
+        <h3>Rosnący prostokąt</h3>
+        <table class="params">
+          <tr><th>Wzrost</th><td>3 kroki × 0,85 s · power2.inOut</td></tr>
+          <tr><th>Granica</th><td>0,32 s power3.out, potem powrót 0,85 s</td></tr>
+        </table>
+        <p class="where"><b>Kiedy.</b> Treścią jest zmiana rozmiaru, a nie wyliczanka.
+        „Zaczynasz od kart technicznych, a po miesiącu budujesz ERP” nie da się pokazać listą.</p>
+      </div>
+    </article>
+
+    <!-- 12 sprężyna -->
+    <article class="spec">
+      <div>
+        <div class="stage demo" data-anim="spring"><span class="tag">12 · sprężyna</span>
+          <div class="spr c1"></div><div class="spr c2"></div><div class="spr c3"></div>
+        </div>
+        <div class="ctl"><button class="btn replay">Odtwórz</button></div>
+      </div>
+      <div>
+        <h3>Sprężyna</h3>
+        <table class="params">
+          <tr><th>Krzywa</th><td>back.out(1.6–1.7) <em>→</em> cubic-bezier(.34,1.56,.64,1)</td></tr>
+          <tr><th>Czas</th><td>0,38–0,46 s</td></tr>
+          <tr><th>Rozrzut</th><td>0,13–0,26 s między elementami</td></tr>
+        </table>
+        <p class="where"><b>Limit.</b> Jeden akcent sprężynowy na takt. Cztery naraz —
+        karta, ikony, licznik i kamera — dają wrażenie, że obraz skacze, choć każdy ruch
+        z osobna jest poprawny.</p>
+      </div>
+    </article>
+
+  </div>
+</section>
+<section id="komponenty">
+  <div class="sec-head"><div class="eyebrow">05 — Komponenty</div>
+  <h2>Sześć klocków, z których zbudowana jest każda scena.</h2>
+  <p class="lead">Nic poza tą listą nie powinno się pojawić — nowy kształt to sygnał, że scena robi coś, czego system jeszcze nie umie nazwać.</p></div>
+  <div class="swatches" style="grid-template-columns:repeat(auto-fill,minmax(232px,1fr))">
+    <div class="sw"><div style="min-height:74px;display:grid;place-items:center;align-content:center"><div class='card-el' style='width:100%'><b style='font-size:15px'>Pracownicy</b><div style='font-size:12px;color:var(--sec1);margin-top:2px'>6 rekordów</div></div></div><div class="nm">Karta</div><div class="use">kontener treści</div></div>
+    <div class="sw"><div style="min-height:74px;display:grid;place-items:center;align-content:center"><div class='card-el on' style='width:100%'><b style='font-size:15px'>Pracownicy</b><div style='font-size:12px;color:var(--sec1);margin-top:2px'>6 rekordów</div></div></div><div class="nm">Karta aktywna</div><div class="use">ta, o której mowa</div></div>
+    <div class="sw"><div style="min-height:74px;display:grid;place-items:center;align-content:center"><div style='display:flex;gap:8px'><div class='tile-el'></div><div class='tile-el'></div></div></div><div class="nm">Kafel</div><div class="use">znak marki, ikona</div></div>
+    <div class="sw"><div style="min-height:74px;display:grid;place-items:center;align-content:center"><span class='chip-el'>Retool</span></div><div class="nm">Chip</div><div class="use">pozycja na liście</div></div>
+    <div class="sw"><div style="min-height:74px;display:grid;place-items:center;align-content:center"><span class='plate-el' style='color:var(--sec1);font-size:14px'>opakowania</span></div><div class="nm">Podkładka</div><div class="use">ciemny tekst poza kartą</div></div>
+    <div class="sw"><div style="min-height:74px;display:grid;place-items:center;align-content:center"><div style='width:52px;height:52px;border-radius:14px;background:var(--card);border:2px solid var(--amber);box-shadow:0 0 24px rgba(245,166,35,.2)'></div></div><div class="nm">Węzeł</div><div class="use">stacja na ścieżce</div></div>
+  </div>
+</section>
+<section id="marki">
+  <div class="sec-head">
+    <div class="eyebrow">06 — Znaki marek</div>
+    <h2>Gdy pada nazwa narzędzia, na ekranie stoi jego znak.</h2>
+    <p class="lead">Rozpoznawalne logo robi w ćwierć sekundy to, na co napisowi trzeba całego
+    zdania — a widz wstawki nie czyta, tylko omiata wzrokiem.</p>
+  </div>
+
+  <div class="logos">
+    <div class="lg"><i class="logo logo-claude"></i><span>claude</span></div>
+    <div class="lg"><i class="logo logo-openai"></i><span>openai</span></div>
+    <div class="lg"><i class="logo logo-github"></i><span>github</span></div>
+    <div class="lg"><i class="logo logo-excel"></i><span>excel</span></div>
+    <div class="lg"><i class="logo logo-gmail"></i><span>gmail</span></div>
+    <div class="lg"><i class="logo logo-hubspot"></i><span>hubspot</span></div>
+    <div class="lg"><i class="logo logo-salesforce"></i><span>salesforce</span></div>
+    <div class="lg"><i class="logo logo-retool"></i><span>retool</span></div>
+    <div class="lg"><i class="logo logo-n8n"></i><span>n8n</span></div>
+    <div class="lg"><i class="logo logo-make"></i><span>make</span></div>
+    <div class="lg"><i class="logo logo-zapier"></i><span>zapier</span></div>
+    <div class="lg"><i class="logo logo-notion"></i><span>notion</span></div>
+    <div class="lg"><i class="logo logo-slack"></i><span>slack</span></div>
+    <div class="lg"><i class="logo logo-airtable"></i><span>airtable</span></div>
+    <div class="lg"><i class="logo logo-googlesheets"></i><span>googlesheets</span></div>
+    <div class="lg"><i class="logo logo-googledrive"></i><span>googledrive</span></div>
+    <div class="lg"><i class="logo logo-shopify"></i><span>shopify</span></div>
+    <div class="lg"><i class="logo logo-woocommerce"></i><span>woocommerce</span></div>
+    <div class="lg"><i class="logo logo-wordpress"></i><span>wordpress</span></div>
+    <div class="lg" style="grid-column:span 2"><i class="logo logo-openmercato" style="font-size:26px"></i><span>openmercato</span></div>
+  </div>
+
+  <div class="stack" style="margin-top:26px">
+    <div class="trap ok">
+      <h3>Kolory są celowo nieoficjalne tam, gdzie oryginał jest za ciemny</h3>
+      <p>GitHub to <code>#181717</code>, Notion <code>#000000</code>, OpenAI <code>#412991</code> —
+      wszystkie giną na tle <code>#0A0A08</code>. W generatorze siedzą więc warianty jasne.
+      To nie pomyłka, tylko warunek czytelności.</p>
+    </div>
+    <div class="trap">
+      <h3>Znak jest spłaszczany do jednej barwy</h3>
+      <p>Logo wchodzi jako maska CSS, a maska nie zna kolorów źródła. Slack i Google Drive tracą
+      przez to swoją paletę. Bubble nie ma znaku w simple-icons — jego kafel niesie samą nazwę.</p>
+    </div>
+  </div>
+</section>
+
+<section id="dzwiek">
+  <div class="sec-head">
+    <div class="eyebrow">07 — Dźwięk</div>
+    <h2>Siedem dźwięków, zero licencji.</h2>
+    <p class="lead">Generowane ffmpegiem na miejscu. Do montażu idą jako gotowa ścieżka na scenę —
+    jeden klip wyrównany do początku wstawki, z akcentami już w punkt.</p>
+  </div>
+
+  <div class="sfx">
+    <div class="s"><b>pop</b><i>0,28 s</i><p>Element wskakuje sprężyną — karta, węzeł, dymek.</p></div>
+    <div class="s"><b>klik</b><i>0,06 s</i><p>Wciśnięcie przycisku, pojedyncze zdarzenie.</p></div>
+    <div class="s"><b>tick</b><i>0,035 s</i><p>Licznik, wpisywanie, znikający wiersz.</p></div>
+    <div class="s"><b>whoosh</b><i>0,55 s</i><p>Przejazd kamery, przesunięcie ekranu.</p></div>
+    <div class="s"><b>line</b><i>0,90 s</i><p>Dorysowywanie linii między stacjami.</p></div>
+    <div class="s"><b>thud</b><i>0,55 s</i><p>Puenta, ciężkie lądowanie słowa.</p></div>
+    <div class="s"><b>error</b><i>0,40 s</i><p>Coś znika, coś się nie udało.</p></div>
+  </div>
+
+  <div class="stack" style="margin-top:26px">
+    <div class="trap ok"><h3>Trzy zasady miksu</h3>
+      <p><b>−18 do −24 dBFS pod narracją</b> — dźwięk ma być wyczuwalny, nie słyszalny jako
+      osobna warstwa. <b>Maksymalnie jeden akcent na ~0,8 s</b> — osiem modułów wskakujących
+      po kolei to nie osiem popów, tylko trzy pierwsze i ostatni. <b>Pod zdaniem kluczowym
+      nie ma nic</b> — <code>thud</code> idzie po ostatnim słowie, nie pod nim.</p></div>
+  </div>
+</section>
+
+<section id="pulapki">
+  <div class="sec-head">
+    <div class="eyebrow">08 — Pułapki</div>
+    <h2>Trzy rzeczy, które widać dopiero na renderze.</h2>
+    <p class="lead">Każda kosztowała osobną poprawkę. Wszystkie są niewidoczne w kodzie —
+    kompilują się, przechodzą, i dopiero obraz pokazuje problem.</p>
+  </div>
+
+  <div class="stack">
+    <div class="trap">
+      <h3>Halo podkładki zjada sąsiada z góry</h3>
+      <p><code>.chroma-plate</code> dostaje poświatę <b>we wszystkie strony</b>. Podpis leżący
+      4 px pod tytułem zakrywał go swoim halo. Element z podkładką potrzebuje co najmniej
+      <b>16 px odstępu</b> od tego, co nad nim — samo zmniejszenie halo nie wystarczy.</p>
+    </div>
+    <div class="trap">
+      <h3>Linie łączące malują się nad ikonami</h3>
+      <p>Warstwa SVG z krawędziami ma <code>z-index:1</code>, a węzły nie mają żadnego — czyli
+      <code>auto</code>, co w tym samym kontekście znaczy „pod jedynką”. Kreski przecinały
+      ikony i napisy. <b>Każdy węzeł nad warstwą połączeń musi mieć jawny z-index.</b></p>
+    </div>
+    <div class="trap">
+      <h3>Cztery sprężyny na jeden takt</h3>
+      <p>Karta, ikony, licznik i kamera ruszały jednocześnie. Każdy ruch z osobna poprawny,
+      razem obraz „skacze”. <b>Kamera najpierw staje, dopiero potem wchodzi treść</b> —
+      i jeden akcent sprężynowy na takt, reszta na <code>power2/3.out</code>.</p>
+    </div>
+  </div>
+</section>
+
+<section id="katalog">
+  <div class="sec-head"><div class="eyebrow">09 — Katalog scen</div>
+  <h2>47 scen, każda przypisana do miejsca w skrypcie.</h2>
+  <p class="lead">Krótka i długa to ta sama treść w dwóch rytmach — długa ma kartę tytułową i przerwy do przycięcia. Eksperymenty to inne układy w miejscach, które wcześniej nie miały wstawki.</p></div>
+  <div class="tablewrap"><table class="cat">
+    <thead><tr><th>Plik</th><th>Rodzaj</th><th>Miejsce w skrypcie</th><th style="text-align:right">Czas</th></tr></thead><tbody>
+      <tr><td class="f">e01-01-kopie-long</td><td><span class="pill p-dluga">długa</span></td><td>01 · SEG 1 — ten sam plik w kilku wersjach</td><td class="d">19.8 s</td></tr>
+      <tr><td class="f">e01-01-kopie</td><td><span class="pill p-krotka">krótka</span></td><td>01 · SEG 1 — ten sam plik w kilku wersjach</td><td class="d">19.0 s</td></tr>
+      <tr><td class="f">e01-02-cztery-branze-long</td><td><span class="pill p-dluga">długa</span></td><td>01 · PAYOFF — cztery branże, jeden fundament</td><td class="d">19.3 s</td></tr>
+      <tr><td class="f">e01-02-cztery-branze</td><td><span class="pill p-krotka">krótka</span></td><td>01 · PAYOFF — cztery branże, jeden fundament</td><td class="d">8.2 s</td></tr>
+      <tr><td class="f">e01-03-dostep-long</td><td><span class="pill p-dluga">długa</span></td><td>01 · HOOK — 100% dostępu do kodu</td><td class="d">17.7 s</td></tr>
+      <tr><td class="f">e01-03-dostep</td><td><span class="pill p-krotka">krótka</span></td><td>01 · HOOK — 100% dostępu do kodu</td><td class="d">6.7 s</td></tr>
+      <tr><td class="f">e01-04-skad-przenosisz-long</td><td><span class="pill p-dluga">długa</span></td><td>01 · OBIETNICA — skąd przenosisz proces</td><td class="d">16.6 s</td></tr>
+      <tr><td class="f">e01-04-skad-przenosisz</td><td><span class="pill p-krotka">krótka</span></td><td>01 · OBIETNICA — skąd przenosisz proces</td><td class="d">6.0 s</td></tr>
+      <tr><td class="f">e01-05-czym-to-nie-jest-long</td><td><span class="pill p-dluga">długa</span></td><td>01 · SEG 3 — z czym to mylą</td><td class="d">16.1 s</td></tr>
+      <tr><td class="f">e01-05-czym-to-nie-jest</td><td><span class="pill p-krotka">krótka</span></td><td>01 · SEG 3 — z czym to mylą</td><td class="d">4.9 s</td></tr>
+      <tr><td class="f">e03-01-kartka-long</td><td><span class="pill p-dluga">długa</span></td><td>03 · HOOK — sześć godzin z kartką</td><td class="d">18.3 s</td></tr>
+      <tr><td class="f">e03-01-kartka</td><td><span class="pill p-krotka">krótka</span></td><td>03 · HOOK — sześć godzin z kartką</td><td class="d">8.5 s</td></tr>
+      <tr><td class="f">e03-02-warsztat-long</td><td><span class="pill p-dluga">długa</span></td><td>03 · SEG 1 — pytania ułożone po ludziach</td><td class="d">18.4 s</td></tr>
+      <tr><td class="f">e03-02-warsztat</td><td><span class="pill p-krotka">krótka</span></td><td>03 · SEG 1 — pytania ułożone po ludziach</td><td class="d">8.8 s</td></tr>
+      <tr><td class="f">e03-03-droga-zamowienia-long</td><td><span class="pill p-dluga">długa</span></td><td>03 · SEG 2 — droga jednego zamówienia</td><td class="d">18.6 s</td></tr>
+      <tr><td class="f">e03-03-droga-zamowienia</td><td><span class="pill p-krotka">krótka</span></td><td>03 · SEG 2 — droga jednego zamówienia</td><td class="d">9.0 s</td></tr>
+      <tr><td class="f">e03-04-trzy-warstwy-long</td><td><span class="pill p-dluga">długa</span></td><td>03 · SEG 4 — trzy warstwy specyfikacji</td><td class="d">16.0 s</td></tr>
+      <tr><td class="f">e03-04-trzy-warstwy</td><td><span class="pill p-krotka">krótka</span></td><td>03 · SEG 4 — trzy warstwy specyfikacji</td><td class="d">5.7 s</td></tr>
+      <tr><td class="f">e03-05-slownik-long</td><td><span class="pill p-dluga">długa</span></td><td>03 · SEG 4 — słownik pojęć</td><td class="d">16.3 s</td></tr>
+      <tr><td class="f">e03-05-slownik</td><td><span class="pill p-krotka">krótka</span></td><td>03 · SEG 4 — słownik pojęć</td><td class="d">5.9 s</td></tr>
+      <tr><td class="f">e03-06-powtarzalnosc-long</td><td><span class="pill p-dluga">długa</span></td><td>03 · PAYOFF — powtarzalność</td><td class="d">16.5 s</td></tr>
+      <tr><td class="f">e03-06-powtarzalnosc</td><td><span class="pill p-krotka">krótka</span></td><td>03 · PAYOFF — powtarzalność</td><td class="d">6.2 s</td></tr>
+      <tr><td class="f">e08-01-cache-long</td><td><span class="pill p-dluga">długa</span></td><td>08 · HOOK — system bez bazy danych</td><td class="d">13.7 s</td></tr>
+      <tr><td class="f">e08-01-cache</td><td><span class="pill p-krotka">krótka</span></td><td>08 · HOOK — system bez bazy danych</td><td class="d">4.1 s</td></tr>
+      <tr><td class="f">e08-02-moduly-long</td><td><span class="pill p-dluga">długa</span></td><td>08 · SEG 1 — moduły, które nie gadają</td><td class="d">13.4 s</td></tr>
+      <tr><td class="f">e08-02-moduly</td><td><span class="pill p-krotka">krótka</span></td><td>08 · SEG 1 — moduły, które nie gadają</td><td class="d">3.9 s</td></tr>
+      <tr><td class="f">e08-03-racja-long</td><td><span class="pill p-dluga">długa</span></td><td>08 · SEG 2 — agent zawsze przyznaje rację</td><td class="d">14.1 s</td></tr>
+      <tr><td class="f">e08-03-racja</td><td><span class="pill p-krotka">krótka</span></td><td>08 · SEG 2 — agent zawsze przyznaje rację</td><td class="d">4.3 s</td></tr>
+      <tr><td class="f">e08-04-warstwy-long</td><td><span class="pill p-dluga">długa</span></td><td>08 · SEG 3 — to nie są dwie warstwy</td><td class="d">17.5 s</td></tr>
+      <tr><td class="f">e08-04-warstwy</td><td><span class="pill p-krotka">krótka</span></td><td>08 · SEG 3 — to nie są dwie warstwy</td><td class="d">7.3 s</td></tr>
+      <tr><td class="f">e08-05-granice-long</td><td><span class="pill p-dluga">długa</span></td><td>08 · SEG 4 — czego to nie załatwia</td><td class="d">16.2 s</td></tr>
+      <tr><td class="f">e08-05-granice</td><td><span class="pill p-krotka">krótka</span></td><td>08 · SEG 4 — czego to nie załatwia</td><td class="d">6.0 s</td></tr>
+      <tr><td class="f">e08-06-bariera-long</td><td><span class="pill p-dluga">długa</span></td><td>08 · PAYOFF — budowania → projektowania</td><td class="d">12.9 s</td></tr>
+      <tr><td class="f">e08-06-bariera</td><td><span class="pill p-krotka">krótka</span></td><td>08 · PAYOFF — budowania → projektowania</td><td class="d">3.6 s</td></tr>
+      <tr><td class="f">e08-07-framework-long</td><td><span class="pill p-dluga">długa</span></td><td>08 · SEG 3 — framework we frameworku</td><td class="d">16.3 s</td></tr>
+      <tr><td class="f">e08-07-framework</td><td><span class="pill p-krotka">krótka</span></td><td>08 · SEG 3 — framework we frameworku</td><td class="d">6.1 s</td></tr>
+      <tr><td class="f">overlay-ramka-flowbiz</td><td><span class="pill p-overlay">overlay</span></td><td>dowolny odcinek — ramka brandowa</td><td class="d">10.0 s</td></tr>
+      <tr><td class="f">x01-split-co-kupujesz</td><td><span class="pill p-eksp">eksperyment</span></td><td>01 · SEG 2 — co naprawdę kupujesz</td><td class="d">13.9 s</td></tr>
+      <tr><td class="f">x02-kinetyka-cache</td><td><span class="pill p-eksp">eksperyment</span></td><td>08 · HOOK — sam tekst, linia na kadr</td><td class="d">14.3 s</td></tr>
+      <tr><td class="f">x03-zegar-szesc-godzin</td><td><span class="pill p-eksp">eksperyment</span></td><td>03 · SEG 1 — sześć godzin na tarczy</td><td class="d">15.4 s</td></tr>
+      <tr><td class="f">x04-venn-dostep</td><td><span class="pill p-eksp">eksperyment</span></td><td>01 · SEG 4 — szybko albo swoje</td><td class="d">14.5 s</td></tr>
+      <tr><td class="f">x05-izo-warstwy</td><td><span class="pill p-eksp">eksperyment</span></td><td>08 · SEG 3 — stos izometryczny</td><td class="d">11.7 s</td></tr>
+      <tr><td class="f">x06-kalkulator-40min</td><td><span class="pill p-eksp">eksperyment</span></td><td>03 · SEG 4 — 40 minut dziennie w rachunku</td><td class="d">12.8 s</td></tr>
+      <tr><td class="f">x07-terminal-granice</td><td><span class="pill p-eksp">eksperyment</span></td><td>08 · SEG 3 — dialog agenta ze strukturą</td><td class="d">14.1 s</td></tr>
+      <tr><td class="f">x08-graf-fundament</td><td><span class="pill p-eksp">eksperyment</span></td><td>01 · PAYOFF — graf zbiegający do rdzenia</td><td class="d">12.2 s</td></tr>
+      <tr><td class="f">x09-miernik-trafnosci</td><td><span class="pill p-eksp">eksperyment</span></td><td>03 · SEG 5 — trafność 70–90%</td><td class="d">12.9 s</td></tr>
+      <tr><td class="f">x10-rozlewanie-modulu</td><td><span class="pill p-eksp">eksperyment</span></td><td>03 · SEG 6 — gdzie kończy się moduł</td><td class="d">14.3 s</td></tr>
+    </tbody></table></div>
+</section>
+
+</main>
+</div>
+
+<div class="shell"><div></div><footer>
+  <p><b>Źródło systemu:</b> <code>video-mentions / projects/youtube/Animation flowbiz youtube</code>.
+  Reguły w <code>CLAUDE.md</code>, sceny w <code>compositions/</code>, dźwięk w <code>sfx/</code>,
+  znaki marek w <code>assets/logos/</code>. Plan wstawek i przypisanie do skryptów żyje w vaulcie:
+  <code>marketing/content/youtube/_plan-broll.md</code>.</p>
+</footer></div>
+
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function play(stage){
+    stage.classList.remove('run');
+    void stage.offsetWidth;              // wymuszenie restartu animacji
+    stage.classList.add('run');
+    if (stage.dataset.anim === 'count') runCount(stage);
+  }
+
+  // Licznik jest jedyną rzeczą, której CSS nie policzy — reszta to czyste keyframes.
+  function runCount(stage){
+    var el = stage.querySelector('#ctNum');
+    if (!el) return;
+    el.classList.remove('hot');
+    var steps = [1,3,6,9,12], i = 0;
+    clearInterval(stage._t);
+    el.textContent = steps[0];
+    stage._t = setInterval(function(){
+      i++;
+      if (i >= steps.length){ clearInterval(stage._t); el.classList.add('hot'); return; }
+      el.textContent = steps[i];
+    }, 700);
+  }
+
+  document.querySelectorAll('.stage.demo').forEach(function(stage){
+    stage.addEventListener('click', function(){ play(stage); });
+    var btn = stage.parentElement.querySelector('.replay');
+    if (btn) btn.addEventListener('click', function(e){ e.stopPropagation(); play(stage); });
+  });
+
+  // Pierwsze odtworzenie, gdy scena wjeżdża w kadr — żeby nie trzeba było klikać wszystkiego.
+  if (!reduce && 'IntersectionObserver' in window){
+    var seen = new WeakSet();
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting && !seen.has(en.target)){ seen.add(en.target); play(en.target); }
+      });
+    }, { threshold: 0.45 });
+    document.querySelectorAll('.stage.demo').forEach(function(s){ io.observe(s); });
+  }
+
+  // Podgląd klucza + podkładki w sekcji „Fundament”.
+  var stKey = document.getElementById('stKey'),
+      kb = document.getElementById('keyToggle'),
+      pb = document.getElementById('plateToggle'),
+      plate = document.getElementById('plateDemo');
+
+  kb.addEventListener('click', function(){
+    var on = stKey.classList.toggle('keyed');
+    kb.setAttribute('aria-pressed', String(on));
+    kb.textContent = on ? 'Pokaż wersję ciemną' : 'Wytnij zielone';
+  });
+  pb.addEventListener('click', function(){
+    var on = plate.classList.toggle('plate-el');
+    pb.setAttribute('aria-pressed', String(on));
+    pb.textContent = on ? 'Podkładka włączona' : 'Podkładka wyłączona';
+    plate.style.color = on ? 'var(--sec1)' : '#3A3630';
+  });
+})();
+</script>

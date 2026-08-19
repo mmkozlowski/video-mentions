@@ -114,9 +114,11 @@ body.native .controls, body.native .corner-brand{ display:none }
 body.chromakey .chroma-plate {
   display:inline-block;
   background:#0A0A08;
-  /* halo extends the dark plate slightly beyond the text bounds so glow
-     effects / line-height descenders aren't clipped by the green */
-  box-shadow:0 0 0 16px #0A0A08;
+  /* Halo poszerza ciemną podkładkę poza obrys tekstu, żeby zielone nie
+     przycięło poświaty ani ogonków liter. 16 px okazało się ZA DUŻO:
+     podpis leżący 10-15 px pod tytułem zakrywał go swoim halo (x03, x08).
+     10 px nadal chroni descendery, a przestaje zjadać sąsiada. */
+  box-shadow:0 0 0 10px #0A0A08;
 }
 
 /* ==========================================================================
