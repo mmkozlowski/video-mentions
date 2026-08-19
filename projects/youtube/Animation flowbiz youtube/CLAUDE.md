@@ -224,6 +224,58 @@ piksel zmienia się co klatkę (wpisywany kod), więc RLE nie ma na czym oszczę
 
 ---
 
+## ⚠️ CZYTELNOSC NA MATERIALE — scrim albo poswiata, nigdy nagi tekst
+
+Wstawka lezy na gadanej glowie: jasna sciana, ksiazki, **jasny sweter i dlonie**. Sam tekst —
+nawet bialy — gubi sie na takim tle. Bursztyn na jasnej scianie znika prawie calkiem,
+a ciemna czerwien `#C0553A` przegrywa z kazdym jasnym tlem.
+
+**Dwa narzedzia, uzywane rozlacznie. Nigdy oba naraz.**
+
+### `.scrim` — gdy wstawka przejmuje kadr
+
+Pelnoekranowy gradient przyciemniajacy, wbudowany w scene i animowany razem z trescia
+(wchodzi przed tekstem, schodzi po nim). **Gradient, nie plaski prostokat** — plaski czyta sie
+jak czarna plansza doklejona na obraz.
+
+| Wariant | Kiedy |
+|---|---|
+| `.scrim` | karta tytulowa, pelnoekranowy moment |
+| `.scrim.band` | pas u dolu — pod werdykt albo podpis w dolnej tercji |
+| `.scrim.left` | blok tekstu po lewej, prawa strona kadru zostaje odslonieta |
+
+### `.halo` — gdy tekst lezy NA obrazie
+
+Miekka ciemna poswiata wokol liter, trzy warstwy o roznym rozmyciu. Jedna warstwa daje twarda
+obwodke, trzy daja przejscie, ktorego oko nie czyta jako obramowania. `.halo.strong` pod tekst
+na jasnym swetrze albo na dloniach.
+
+W trybie chromakey poswiata jest **wylaczana** (`body.chromakey .halo{ text-shadow:none }`) —
+ciemne rozmycie zlewa sie z zielenia i po wycieciu zostawia brudna obwodke.
+
+### Uklad: blok po lewej bije wysrodkowanie
+
+Sprawdzone na kompozycie z realnym nagraniem 19.08. Wysrodkowany tytul z radialnym scrimem
+**zakrywa twarz** — material wyglada jak plansza, ktora ktos przykleil na wideo. Ten sam tytul
+jako blok po lewej, mniejszym stopniem pisma, z `.scrim.left`: tekst w pelni czytelny,
+mowiacy dalej widoczny, calosc czyta sie redakcyjnie. Wariant referencyjny: `e01-08b-tytul-lewy`.
+
+**Weryfikuj kompozytem na prawdziwej klatce, nie na podgladzie sceny** — na ciemnym tle
+podgladu wszystko jest czytelne i problem nie istnieje:
+
+```bash
+ffmpeg -i klatka.png -ss 2.6 -i wstawka_alpha.mov \
+  -filter_complex "[0:v][1:v]overlay=0:0:format=auto" -frames:v 1 test.jpg
+```
+
+### Koszt: scrim powieksza plik
+
+Gradient na calej klatce nie ma powtarzalnych ciagow, wiec bezstratny RLE nie ma czego skrocic.
+Karta tytulowa: 8 MB bez scrimu, 316 MB ze scrimem. ProRes tu nie pomaga (558 MB na tym samym
+materiale) — qtrle zostaje domyslny. Jesli rozmiar zacznie przeszkadzac, `FPS=30` polowi go.
+
+---
+
 ## Renderowanie
 
 ```bash

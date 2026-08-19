@@ -85,7 +85,7 @@
     font-size:56px;font-weight:800;letter-spacing:-0.015em;opacity:0;
   }
   .verdict .a{ color:#F5A623 }
-  .verdict .r{ color:#C0553A }
+  .verdict .r{ color:#E4795C }
 </style>
 </head>
 <body>
@@ -99,6 +99,8 @@
     </svg>
 
     <div class="scene">
+      <div class="scrim band" id="scrim"></div>
+
       <div class="eyebrow" id="eyebrow"><span class="chroma-plate amber">DOSTĘP DO INFRASTRUKTURY</span></div>
 
       <!-- ZAMKNIETA PLATFORMA -->
@@ -148,7 +150,7 @@
 
       <div class="mouse" id="mouse"><i class="ti ti-pointer-filled"></i></div>
 
-      <div class="verdict" id="verdict">
+      <div class="verdict halo strong" id="verdict">
         <span class="r">Tam nie ma gdzie wejść.</span> &nbsp;<span class="a">Tu wchodzisz.</span>
       </div>
     </div>
@@ -195,6 +197,8 @@
   });
 
   // 4.80 — werdykt
+  tl.to('#scrim', { opacity:1, duration:0.40, ease:"power2.out" }, 4.66);
+  tl.to('#scrim', { opacity:0, duration:0.34, ease:"power2.in" }, 6.06);
   tl.to('#verdict', { opacity:1, duration:0.42, ease:"power3.out" }, 4.80);
   tl.from('#verdict', { y:24, duration:0.42, ease:"power3.out" }, 4.80);
 

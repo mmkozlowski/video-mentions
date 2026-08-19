@@ -133,3 +133,65 @@ body.chromakey .chroma-plate {
   position:absolute;left:0;right:0;text-align:center;z-index:9;
   font-weight:900;color:#F5A623;white-space:nowrap;opacity:0;
 }
+
+/* ─────────────────────────────────────────────────────────────────────────
+   CZYTELNOSC NA MATERIALE (dodane 19.08)
+
+   Wstawka lezy na gadanej glowie: jasna sciana, ksiazki, jasny sweter, dlonie.
+   Sam tekst — nawet bialy — gubi sie na takim tle. Dwa narzedzia, uzywane
+   ROZLACZNIE, nie razem:
+
+   .scrim  — pelnoekranowy gradient przyciemniajacy. Do momentow, w ktorych
+             wstawka przejmuje kadr (karta tytulowa, werdykt na pelnym ekranie).
+             Gradient, nie plaski prostokat: najciemniej tam, gdzie tekst,
+             przezroczysto przy krawedziach — dzieki temu nie czyta sie jak
+             czarna plansza doklejona na obraz.
+
+   .halo   — miekka ciemna poswiata wokol samych liter. Do krotkich podpisow
+             lezacych NA obrazie, gdzie scrim bylby za ciezki. Zastepuje
+             .chroma-plate wszedzie tam, gdzie renderujemy z alfa.
+   ───────────────────────────────────────────────────────────────────────── */
+
+.scrim{
+  position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;
+  background:
+    radial-gradient(120% 78% at 50% 46%, rgba(6,6,5,0.90) 0%,
+                                          rgba(6,6,5,0.80) 42%,
+                                          rgba(6,6,5,0.52) 72%,
+                                          rgba(6,6,5,0.24) 100%);
+}
+/* wariant pod pas tekstu u dolu kadru — gora zostaje odsloniena */
+.scrim.band{
+  background:linear-gradient(to bottom, rgba(6,6,5,0) 0%,
+                                        rgba(6,6,5,0.30) 38%,
+                                        rgba(6,6,5,0.82) 68%,
+                                        rgba(6,6,5,0.92) 100%);
+}
+/* wariant pod blok tekstu po lewej */
+.scrim.left{
+  background:linear-gradient(to right, rgba(6,6,5,0.92) 0%,
+                                       rgba(6,6,5,0.80) 34%,
+                                       rgba(6,6,5,0.34) 62%,
+                                       rgba(6,6,5,0) 84%);
+}
+
+/* Poswiata: trzy warstwy o roznym rozmyciu. Jedna warstwa daje twarda obwodke,
+   trzy daja miekkie przejscie, ktorego oko nie czyta jako obramowania. */
+.halo{
+  text-shadow:
+    0 0 14px rgba(6,6,5,0.92),
+    0 0 38px rgba(6,6,5,0.78),
+    0 3px 10px rgba(6,6,5,0.85);
+}
+/* mocniejszy wariant — tekst lezacy na jasnym swetrze albo na dloniach */
+.halo.strong{
+  text-shadow:
+    0 0 10px rgba(6,6,5,0.96),
+    0 0 26px rgba(6,6,5,0.92),
+    0 0 60px rgba(6,6,5,0.72),
+    0 3px 12px rgba(6,6,5,0.9);
+}
+
+/* W trybie chromakey poswiata musi zniknac — ciemne rozmycie wokol liter
+   zlewa sie z zielenia i po wycieciu zostawia brudna obwodke. */
+body.chromakey .halo{ text-shadow:none; }
