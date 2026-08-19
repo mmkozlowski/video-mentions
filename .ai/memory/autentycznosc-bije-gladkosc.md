@@ -1,6 +1,6 @@
 ---
 name: autentycznosc-bije-gladkosc
-description: Przy materiale nagranym telefonem Mateusz woli potknięcie i oddech niż gładkie cięcie — montaż ma nie „poprawiać" wypowiedzi
+description: Przy materiale nagranym telefonem Mateusz woli potknięcie, oddech i dłuższy materiał niż gładkie cięcie — montaż ma nie „poprawiać" wypowiedzi ani nie skracać dowodu
 metadata:
   type: feedback
 ---
@@ -30,6 +30,12 @@ Co to znaczy w praktyce:
   odrzucona: „żeby to nie była tylko czarna płachta, żeby to był jednak
   początkowy pierwszy screen". Tytuł kładziemy jako pas NA pierwszych sekundach
   materiału (u nas: dzielony ekran twarz + kokpit agentów).
+
+- **Długość ustępuje kompletności dowodu.** Propozycja skrótu 152 s → 127 s
+  została odrzucona: „nie przejmuj się tą długością". Materiał pokazuje trzy
+  rzeczy, które agenty zrobiły przez noc — wycięcie któregokolwiek aktu robi
+  z dowodu zapowiedź. **Nigdy nie skracaj progami cięcia pauz**; jeśli już, to
+  całymi myślami, i po decyzji autora.
 
 **Why:** przy reklamie z lektorem każde cięcie bliżej ideału jest ulepszeniem.
 Tutaj jest odwrotnie — im bardziej materiał wygląda na zmontowany, tym mniej

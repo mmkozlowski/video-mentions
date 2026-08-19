@@ -1,6 +1,6 @@
 ---
 name: shorty-z-telefonu-pulapki
-description: Pięć pułapek montażu shortów z nagrań iPhone'em — rotacja w metadanych, próg ciszy per plik, pauzy niewidoczne w amplitudzie, ffmpeg bez libass, nakładka dłuższa od materiału
+description: Sześć pułapek montażu shortów z nagrań iPhone'em — rotacja w metadanych, próg ciszy per plik, pauzy niewidoczne w amplitudzie, ffmpeg bez libass, nakładka dłuższa od materiału, dziura w numeracji plików
 metadata:
   type: reference
 ---
@@ -38,6 +38,14 @@ poprzedniego wpisu. `overlay` rozciąga wynik do dłuższego wejścia, dźwięk
 (kopiowany) się nie rozciąga i na końcu zostaje **niema, zamrożona klatka**.
 Lek: `-t <długość materiału>` i na pasie napisów, i na wyjściu kompozycji.
 Wyłapała to dopiero kontrola „dźwięk nie może być krótszy od obrazu".
+
+**6. Kompletność materiału sprawdzaj po NUMERACH plików, nie po tym, czy
+historia się klei.** Jedno nagranie nie zostało skopiowane razem z resztą
+i wyszło to dopiero wtedy, gdy short był zmontowany, z muzyką i zaakceptowany.
+Nic tego nie sygnalizowało: pliki układały się w spójną opowieść, w transkrypcjach
+nie było urwanego wątku. Historia klei się **zawsze**, bo składasz ją z tego,
+co masz. Jedyny realny sygnał to **dziura w numeracji `IMG_`** (tu: 1604, 1605,
+brak 1606, 1607) — sprawdź ją, zanim zaczniesz transkrybować.
 
 **Bonus, który zmylił montaż:** `creation_time` w tych plikach kłamał
 o kolejności — największy miał najwcześniejszy znacznik, a znaczniki mniejszych

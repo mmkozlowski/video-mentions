@@ -13,8 +13,10 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 
 - [Lip-sync AI po polsku nie działa](memory/lipsync-ai-nie-dziala-pl.md) — trzy podejścia, ~80 kredytów, wszystkie odrzucone; twarz mówiąca tylko z prawdziwego nagrania
 - [Montaż: pułapki synchronizacji](memory/montaz-pulapki-synchronizacji.md) — `-c copy` tnie po klatkach kluczowych, ujęcie restartuje się po przebitce, `loudnorm` wydłuża ścieżkę, napisy z ciszy zamiast z treści
-- [Shorty z telefonu: pięć pułapek](memory/shorty-z-telefonu-pulapki.md) — rotacja pionu siedzi w metadanych; próg ciszy per plik i zmierzony; 1,8 s wiatru to nie cisza; ffmpeg z Homebrew nie ma `libass` ani `drawtext`; nakładka dłuższa od materiału rozciąga obraz
-- [Autentyczność bije gładkość](memory/autentycznosc-bije-gladkosc.md) — przy własnym nagraniu potknięcia i oddechy zostają; próg cięcia pauz 0,62 s, nie 0,30 s; otwarcie to kadr, nie czarna plansza
+- [Shorty z telefonu: sześć pułapek](memory/shorty-z-telefonu-pulapki.md) — rotacja pionu siedzi w metadanych; próg ciszy per plik i zmierzony; 1,8 s wiatru to nie cisza; ffmpeg z Homebrew nie ma `libass` ani `drawtext`; nakładka dłuższa od materiału rozciąga obraz; dziura w numeracji `IMG_` to jedyny sygnał brakującego pliku
+- [Autentyczność bije gładkość](memory/autentycznosc-bije-gladkosc.md) — przy własnym nagraniu potknięcia i oddechy zostają; próg cięcia pauz 1,10 s, nie 0,30 s; otwarcie i finał to kadr, nie czarna plansza; długość ustępuje kompletności dowodu
+- [Opis do rolki: krótko i na luzie](memory/opis-do-rolki-pisz-krotko-i-na-luzie.md) — zaczynaj od dwóch zdań; pointa potrzebuje własnej linii; żadnej listy tego, co widać w materiale; zdanie o niedoskonałości zostaje zawsze
+- [Prośby o głośność tłumacz na decybele](memory/prosby-o-glosnosc-tlumacz-na-decybele.md) — „ścisz o 2 %" to −0,18 dB, czyli poniżej progu słyszalności; procent = kierunek, nie mnożnik; raportuj w dB
 - [Nigdy nie rozciągaj kadru](memory/nigdy-nie-rozciagaj-kadru.md) — `scale=W:H` na innych proporcjach deformuje; blur-fill albo czysty crop
 
 ## Decyzje (ADR)
