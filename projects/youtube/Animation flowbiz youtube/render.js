@@ -32,9 +32,19 @@ const FLASH_DURATION = 0.2;
 // Chromakey background — domyślnie WŁĄCZONY (broadcast green #00B140).
 // Wyłącz: NO_CHROMA=1 node render.js   → ciemne tło #0A0A08 (jak w przeglądarce).
 // Inny kolor: CHROMA=greenpure|blue|magenta|%23FF1493 node render.js
-const CHROMA = process.env.NO_CHROMA === '1'
+// ALPHA=1 → render z prawdziwym kanalem alfa (ProRes 4444 .mov), bez green screena.
+// To jest tryb PREFEROWANY do montazu: nie ma keyowania, wiec nie ma zielonej
+// obwodki na antyaliasowanych krawedziach liter. Green zostaje dla narzedzi,
+// ktore alfy nie przyjmuja.
+const ALPHA = process.env.ALPHA === '1';
+// Domyslny kodek alfy: qtrle (QuickTime Animation) — bezstratny, ~9x mniejszy
+// niz ProRes 4444 na plaskiej grafice (11 MB vs 106 MB na karcie tytulowej),
+// czytany natywnie przez QuickTime, Final Cut i CapCut na macOS.
+// ALPHA_CODEC=prores → ProRes 4444, gdy narzedzie docelowe nie przyjmuje qtrle.
+const ALPHA_CODEC = process.env.ALPHA_CODEC || 'qtrle';
+const CHROMA = ALPHA ? null : (process.env.NO_CHROMA === '1'
   ? null
-  : (process.env.CHROMA || (process.env.GREENSCREEN === '0' ? null : 'green'));
+  : (process.env.CHROMA || (process.env.GREENSCREEN === '0' ? null : 'green')));
 const OUT_NAME = CHROMA ? 'open-mercato-chromakey.mp4' : 'open-mercato.mp4';
 
 // Scene list is now AUTO-DISCOVERED from compositions/*.html (alphabetical order).
@@ -59,7 +69,8 @@ async function renderScene(browser, id) {
   const qs = ['native=1'];
   if (CHROMA) qs.push('bg=' + encodeURIComponent(CHROMA));
   const url = 'file://' + path.join(ROOT, 'compositions', `${id}.html`) + '?' + qs.join('&');
-  const frameDir = path.join(FRAMES, id + (CHROMA ? '_chroma' : ''));
+  const suffix = ALPHA ? '_alpha' : (CHROMA ? '_chroma' : '');
+  const frameDir = path.join(FRAMES, id + suffix);
   ensureDir(frameDir);
 
   const ctx = await browser.newContext({
@@ -93,9 +104,23 @@ async function renderScene(browser, id) {
 
   // Force the native 1:1 layout (no transform scale), strip all chrome,
   // and pause the timeline.
-  await page.evaluate(() => {
+  await page.evaluate((isAlpha) => {
     document.body.classList.add('native');
     document.body.classList.add('export');
+
+    // Tryb alfa: zdejmujemy tlo sceny i dekoracje tla, zeby PNG mial realna
+    // przezroczystosc. Plate'ow chromakeya tu NIE chcemy — istnieja wylacznie
+    // po to, zeby tekst przetrwal wycinanie zieleni; przy alfie robia brzydkie
+    // czarne prostokaty na materiale.
+    if (isAlpha) {
+      const a = document.createElement('style');
+      a.textContent = `
+        html, body, .wrap, .stage { background: transparent !important; }
+        .grid, .rays, .watermark, .vignette { display: none !important; }
+        .chroma-plate { background: transparent !important; box-shadow: none !important; }
+      `;
+      document.head.appendChild(a);
+    }
     // Belt-and-suspenders: nuke the player bar + "Build with Matt · …" header.
     const css = `
       .controls, .corner-brand { display: none !important; }
@@ -108,7 +133,7 @@ async function renderScene(browser, id) {
     if (typeof window.fit === 'function') window.fit();
     const tl = window.__sceneTimeline;
     tl.pause(0);
-  });
+  }, ALPHA);
 
   // Step through frames, scrubbing the timeline deterministically.
   for (let f = 0; f < totalFrames; f++) {
@@ -124,7 +149,7 @@ async function renderScene(browser, id) {
     await page.screenshot({
       path: path.join(frameDir, name),
       clip: { x: 0, y: 0, width: W, height: H },
-      omitBackground: false,
+      omitBackground: ALPHA,
     });
 
     if (f % 30 === 0) process.stdout.write(`\r  frame ${f}/${totalFrames}`);
@@ -137,7 +162,8 @@ async function renderScene(browser, id) {
   const epMatch = id.match(/^(e\d{2})-/);
   const epDir = epMatch ? path.join(OUT, epMatch[1]) : OUT;
   ensureDir(epDir);
-  await encode(frameDir, path.join(epDir, `${id}${CHROMA ? '_chroma' : ''}.mp4`));
+  const ext = ALPHA ? 'mov' : 'mp4';
+  await encode(frameDir, path.join(epDir, `${id}${suffix}.${ext}`));
   if (process.env.KEEP_FRAMES !== '1') rmrf(frameDir);
 
   return { id, duration };
@@ -146,7 +172,19 @@ async function renderScene(browser, id) {
 function encode(frameDir, outFile) {
   return new Promise((resolve, reject) => {
     console.log(`  ↳ ffmpeg → ${path.basename(outFile)}`);
-    const args = [
+    const alphaArgs = ALPHA_CODEC === 'prores'
+      ? ['-c:v', 'prores_ks', '-profile:v', '4444',
+         '-pix_fmt', 'yuva444p10le', '-alpha_bits', '16', '-vendor', 'ap4h']
+      : ['-c:v', 'qtrle', '-pix_fmt', 'argb'];
+    const args = ALPHA
+      ? [
+          '-y',
+          '-framerate', String(FPS),
+          '-i', path.join(frameDir, '%05d.png'),
+          ...alphaArgs,
+          outFile,
+        ]
+      : [
       '-y',
       '-framerate', String(FPS),
       '-i', path.join(frameDir, '%05d.png'),

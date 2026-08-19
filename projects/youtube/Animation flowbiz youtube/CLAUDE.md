@@ -178,6 +178,52 @@ Naprzemiennie używaj amber i białego między scenami i w obrębie sceny — ż
 - **Tekst z animacją `translateX`/`translateY` z dużymi offsetami:** plate animuje się razem z tekstem — OK.
 - **SVG paths (linie łączące węzły):** zostają widoczne na green. Po keyu są floating amber liniami. Akceptowalne wizualnie.
 
+## ⚠️ ALFA ZAMIAST GREEN SCREENA — tryb preferowany od 19.08
+
+**Do montażu renderuj `ALPHA=1`, nie na zielonym.** Green screen zostaje wyłącznie dla narzędzi,
+które kanału alfa nie przyjmują.
+
+```bash
+ALPHA=1 node render.js e01-08-tytul      # → out/e01/e01-08-tytul_alpha.mov (qtrle + alfa)
+ALPHA_CODEC=prores ALPHA=1 node render.js e01-08-tytul   # ProRes 4444, gdy qtrle nie wchodzi
+```
+
+### Dlaczego — problem, którego keyowanie nie da się pozbyć
+
+Krawędzie liter są antyaliasowane: piksel brzegowy to **mieszanka koloru tekstu i tła**.
+Na zielonym tle biała litera ma obwódkę z pikseli biało-zielonych. Key usuwa czystą zieleń,
+a te mieszane piksele **zostają** — stąd zielony rant wokół każdej litery w CapCucie.
+Nie da się tego wyczyścić progiem keya: podniesiony próg zaczyna zjadać sam tekst.
+
+Przy renderze z alfą nie ma czego wycinać — półprzezroczysty piksel brzegowy zlewa się
+z materiałem pod spodem tak, jak powinien.
+
+### Konsekwencja: `.chroma-plate` w trybie alfa jest WYŁĄCZANY
+
+Renderer sam zdejmuje podkładki (`background:transparent; box-shadow:none`), zostawiając
+sam kolor tekstu. Plate'y istnieją wyłącznie po to, żeby ciemny tekst przetrwał wycinanie
+zieleni — przy alfie robią z siebie **czarne prostokąty na twarzy**.
+
+**Nie nadawaj `chroma-plate` tekstowi jasnemu ani bursztynowemu.** Drzewo decyzyjne wyżej
+mówi o tym wprost, a i tak łatwo je nadużyć: karta tytułowa `e01-08` miała plate'y na eyebrow
+(bursztyn) i na podpisie (biały), i oba wyszły czarnymi prostokątami na materiale.
+
+### Kodek: qtrle, nie ProRes
+
+Domyślnie `qtrle` (QuickTime Animation) — bezstratny, z alfą, czytany natywnie na macOS.
+Na płaskiej grafice pakuje **~9× lepiej niż ProRes 4444** przy identycznym obrazie:
+
+| Scena | ProRes 4444 | qtrle |
+|---|---|---|
+| `e01-08-tytul` (4,4 s) | 106 MB | **8,1 MB** |
+| `e01-07-serwer-i-dostep` (6,4 s) | 234 MB | **33,3 MB** |
+| `e01-06-kod-agenta` (6,2 s) | 225 MB | **89,5 MB** |
+
+Kompozyt sprawdzony klatka po klatce — różnica zerowa. `e01-06` jest cięższy, bo prawie każdy
+piksel zmienia się co klatkę (wpisywany kod), więc RLE nie ma na czym oszczędzić.
+
+---
+
 ## Renderowanie
 
 ```bash

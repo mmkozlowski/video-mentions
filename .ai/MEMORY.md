@@ -19,6 +19,8 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 - [Prośby o głośność tłumacz na decybele](memory/prosby-o-glosnosc-tlumacz-na-decybele.md) — „ścisz o 2 %" to −0,18 dB, czyli poniżej progu słyszalności; procent = kierunek, nie mnożnik; raportuj w dB
 - [Nigdy nie rozciągaj kadru](memory/nigdy-nie-rozciagaj-kadru.md) — `scale=W:H` na innych proporcjach deformuje; blur-fill albo czysty crop
 
+- [Wstawki: alfa zamiast green screena](memory/wstawki-alfa-nie-green-screen.md) — key zawsze zostawia zielony rant na krawędziach liter; `ALPHA=1`, kodek qtrle (~9× mniejszy od ProRes), podkładki chromakeya wtedy wyłączone
+
 ## Decyzje (ADR)
 
 - [Ekran produktu z HTML zamiast nagrań i generacji](decisions/2026-07-30-ekran-produktu-z-html.md) — 2026-07-30
