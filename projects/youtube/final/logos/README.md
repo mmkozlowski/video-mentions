@@ -33,6 +33,7 @@ Podgląd całej paczki bez otwierania 54 plików: `_przeglad-kolor-marki.png`,
 | `claude` | 512×512 | `#D97757` |
 | `excel` | 512×512 | `#21A366` |
 | `github` | 512×512 | `#FAF8F0` |
+| `gmail` | 512×512 | `#FAF8F0` |
 | `googledrive` | 512×512 | `#4285F4` |
 | `googlesheets` | 512×512 | `#34A853` |
 | `hubspot` | 512×512 | `#FF7A59` |
@@ -41,6 +42,7 @@ Podgląd całej paczki bez otwierania 54 plików: `_przeglad-kolor-marki.png`,
 | `notion` | 512×512 | `#FAF8F0` |
 | `openai` | 512×512 | `#FAF8F0` |
 | `openmercato` | 512×131 | `#F5A623` |
+| `retool` | 512×512 | `#FAF8F0` |
 | `salesforce` | 512×512 | `#00A1E0` |
 | `shopify` | 512×512 | `#7AB55C` |
 | `slack` | 512×512 | `#FAF8F0` |
