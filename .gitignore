@@ -26,3 +26,13 @@ Thumbs.db
 
 # Rendery wstawek YouTube — odtwarzalne przez node render.js, jak build/
 projects/youtube/**/out/
+
+# ── shorts IG: surówka z telefonu i wyrenderowany short ───────────────────
+# WYJĄTEK od reguły „assets/ i final/ idą do gita". Materiał jest
+# nieodtwarzalny, ale waży 450 MB surówki + ~70 MB gotowego pliku, a repo jest
+# współdzielone — wypchnięcie tego bez ustalenia zablokowałoby klony na długo.
+# Do decyzji: git-lfs czy trzymanie surówki poza repo (jest w bibliotece zdjęć).
+# Skrypty i tak działają na plikach lokalnych — brak ich w gicie nie psuje
+# pipeline'u, tylko odtworzenie renderu na innej maszynie.
+projects/shorts IG/assets/raw/
+projects/shorts IG/final/

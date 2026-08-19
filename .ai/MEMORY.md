@@ -11,7 +11,14 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 - [Oznaczanie treści AI](memory/oznaczanie-tresci-ai.md) — od 2026-08-02 art. 50 ust. 4 AI Act; materiał z Higgsfielda nie ma C2PA, więc platformy nie oznaczą spotu automatycznie — przełącznik trzeba włączyć ręcznie
 - [Lektor i muzyka](memory/audio-lektor-muzyka.md) — nie generuj fraz osobno (dryf barwy); podkłady mają ciche intro, trzeba startować od najgłośniejszego fragmentu
 
+- [Lip-sync AI po polsku nie działa](memory/lipsync-ai-nie-dziala-pl.md) — trzy podejścia, ~80 kredytów, wszystkie odrzucone; twarz mówiąca tylko z prawdziwego nagrania
+- [Montaż: pułapki synchronizacji](memory/montaz-pulapki-synchronizacji.md) — `-c copy` tnie po klatkach kluczowych, ujęcie restartuje się po przebitce, `loudnorm` wydłuża ścieżkę, napisy z ciszy zamiast z treści
+- [Shorty z telefonu: pięć pułapek](memory/shorty-z-telefonu-pulapki.md) — rotacja pionu siedzi w metadanych; próg ciszy per plik i zmierzony; 1,8 s wiatru to nie cisza; ffmpeg z Homebrew nie ma `libass` ani `drawtext`; nakładka dłuższa od materiału rozciąga obraz
+- [Autentyczność bije gładkość](memory/autentycznosc-bije-gladkosc.md) — przy własnym nagraniu potknięcia i oddechy zostają; próg cięcia pauz 0,62 s, nie 0,30 s; otwarcie to kadr, nie czarna plansza
+- [Nigdy nie rozciągaj kadru](memory/nigdy-nie-rozciagaj-kadru.md) — `scale=W:H` na innych proporcjach deformuje; blur-fill albo czysty crop
+
 ## Decyzje (ADR)
 
 - [Ekran produktu z HTML zamiast nagrań i generacji](decisions/2026-07-30-ekran-produktu-z-html.md) — 2026-07-30
 - [Oznaczanie treści AI — trzy warstwy, znak tylko na starcie](decisions/2026-08-02-oznaczanie-tresci-ai.md) — 2026-08-02
+- [Pipeline shortów z telefonu (ADR projektowy)](../projects/shorts%20IG/ai/decisions/2026-08-19-pipeline-shortow-z-telefonu.md) — 2026-08-19

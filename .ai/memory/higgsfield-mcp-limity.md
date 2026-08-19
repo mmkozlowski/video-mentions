@@ -28,3 +28,19 @@ Dodatkowo `generate_video` przy pierwszym wywołaniu podpowiada preset zamiast g
 **How to apply:** zawsze rób preflight `get_cost: true` przed generacją wideo i planuj budżet na kredytach, nie na trialu. Do przejść „obraz A → obraz B" wybieraj model z rolą `end_image` (`veo3_1_lite` 8 kr/8 s, `seedance_2_0` 17,5 kr/5 s + 4K) — bez `end_image` model halucynuje własny kadr końcowy zamiast trafić w naszą grafikę. Szczegóły i zmierzony cennik: `projects/adresflow/ai/decisions/2026-07-30-reklamy-higgsfield-rzut-3d.md`.
 
 **Bliźniacze notatki w projekcie Granit** (`~/Repo/granit/.ai/memory/`), gdzie też powstają reklamy przez Higgsfield: `higgsfield-audio-mozliwosci` (m.in. `tiktok_music_trending` jako jedyna licencjonowana muzyka — bez pliku do montażu), `higgsfield-wideo-koszty-limity`, `reklamy-hook-lektor-lekcje`. Przy zmianie ustaleń warto zaktualizować oba miejsca.
+
+## Zmierzony cennik (9:16, 2026-07/08)
+
+| Model | Konfiguracja | Kredyty |
+|---|---|---|
+| `kling3_0_turbo` | 5 s, start_image | 7,5 |
+| `veo3_1_lite` | 8 s | 8 |
+| `seedance_2_0` | 5 s / 720p | 17,5–23 |
+| `seedance_2_0` | 6–7 s / 720p | 27–31 |
+| `text2speech_v2` (elevenlabs) | jedna wypowiedź | 0,3 |
+
+**`get_cost` bywa niewiarygodny** — przy obrazach `nano_banana` pokazywał 2 kredyty, a partia 4 obrazów plus 8 linii lektora zjadła 58. Licz po `balance` przed i po, nie po preflight.
+
+**Limity planu Plus:** 2 równoległe zadania (trzecie zwraca „Rate limit reached"), `virality_predictor` przyjmuje **wideo maks. 16 s**.
+
+**`seedance_2_0` z `audio_references` dolicza osobną pozycję `Dubbing`** — jeden render potrafi wygenerować dwie linie na wyciągu.

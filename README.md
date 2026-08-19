@@ -13,7 +13,9 @@ video-mentions/
 │   ├── memory/               pułapki i ustalenia (jeden fakt na plik)
 │   └── decisions/            ADR-y dotyczące metody, nie klienta
 └── projects/
-    └── adresflow/            ← JEDEN PROJEKT
+    ├── adresflow/            ← JEDEN PROJEKT
+    ├── shorts IG/            ← shorty z telefonu; własny pipeline, patrz jego README
+    └── granit/
         ├── ai/               decyzje i plany TEGO projektu
         ├── assets/           ŹRÓDŁA — nieodtwarzalne
         ├── screens/          ekrany produktu jako HTML (HyperFrames)
@@ -64,6 +66,14 @@ cp -R projects/adresflow/tools/* projects/<nazwa>/tools/
 Pipeline jest przenośny — wszystkie ścieżki liczą się względem katalogu projektu.
 Do podmiany: paleta i fonty w `tools/brand.py`, słowniki `SHOTS` i `STORIES`
 w `tools/story.py`.
+
+## Projekty
+
+| Projekt | Klient | Co to jest |
+|---|---|---|
+| `adresflow` | AdresFlow | wizualizacje nieruchomości — rzut 3D z kartki, home staging |
+| `granit` | Granit Kończewo × FlowBiz AI | kampania sponsorska klubu; sponsor dostaje bezpłatny audyt AI |
+| `shorts IG` | FlowBiz (kanał Mateusza) | pionowe shorty z nagrań telefonem — gadana głowa, przebitki, filmowany ekran |
 
 ## Powiązane repo
 
