@@ -46,6 +46,12 @@ const ALPHA = process.env.ALPHA === '1';
 // czytany natywnie przez QuickTime, Final Cut i CapCut na macOS.
 // ALPHA_CODEC=prores → ProRes 4444, gdy narzedzie docelowe nie przyjmuje qtrle.
 const ALPHA_CODEC = process.env.ALPHA_CODEC || 'qtrle';
+// ALPHA_PREMULT=1 → alfa WYMNOZONA (premultiplied): RGB przemnozone przez alfe.
+// Domyslnie wychodzi alfa PROSTA (straight). Jesli edytor zaklada wymnozona,
+// a dostaje prosta, rozjasnia piksele brzegowe i wokol liter pojawia sie
+// JASNA OBWODKA. Objaw jest inny niz podprobkowanie chrominancji (tam krawedz
+// jest miekka, nie jasna) — nie mylic tych dwoch.
+const ALPHA_PREMULT = process.env.ALPHA_PREMULT === '1';
 const CHROMA = ALPHA ? null : (process.env.NO_CHROMA === '1'
   ? null
   : (process.env.CHROMA || (process.env.GREENSCREEN === '0' ? null : 'green')));
@@ -73,7 +79,7 @@ async function renderScene(browser, id) {
   const qs = ['native=1'];
   if (CHROMA) qs.push('bg=' + encodeURIComponent(CHROMA));
   const url = 'file://' + path.join(ROOT, 'compositions', `${id}.html`) + '?' + qs.join('&');
-  const res = (W === 1920) ? '' : `_${H}p`;
+  const res = ((W === 1920) ? '' : `_${H}p`) + (ALPHA_PREMULT ? '_premult' : '');
   const suffix = (ALPHA ? '_alpha' : (CHROMA ? '_chroma' : '')) + res;
   const frameDir = path.join(FRAMES, id + suffix);
   ensureDir(frameDir);
@@ -177,6 +183,7 @@ async function renderScene(browser, id) {
 function encode(frameDir, outFile) {
   return new Promise((resolve, reject) => {
     console.log(`  ↳ ffmpeg → ${path.basename(outFile)}`);
+    const premultArgs = ALPHA_PREMULT ? ['-vf', 'premultiply=inplace=1'] : [];
     const alphaArgs = ALPHA_CODEC === 'prores'
       ? ['-c:v', 'prores_ks', '-profile:v', '4444',
          '-pix_fmt', 'yuva444p10le', '-alpha_bits', '16', '-vendor', 'ap4h']
@@ -186,6 +193,7 @@ function encode(frameDir, outFile) {
           '-y',
           '-framerate', String(FPS),
           '-i', path.join(frameDir, '%05d.png'),
+          ...premultArgs,
           ...alphaArgs,
           outFile,
         ]
