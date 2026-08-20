@@ -21,6 +21,10 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 
 - [Wstawki: alfa zamiast green screena](memory/wstawki-alfa-nie-green-screen.md) — key zawsze zostawia zielony rant na krawędziach liter; `ALPHA=1`, kodek qtrle (~9× mniejszy od ProRes), podkładki chromakeya wtedy wyłączone
 
+- [Wstawki: układ lewy domyślny](memory/wstawki-uklad-lewy-domyslny.md) — scena tekstowa w dwóch wariantach; wyśrodkowany zakrywa twarz mówiącego, lewy idzie do montażu
+- [Wstawki: karta, scrim czy poświata](memory/wstawki-czytelnosc-scrim-halo-karta.md) — tekst w dolnej tercji zawsze dostaje kartę; poświata rozmywa krawędzie i przy karcie jest zbędna
+- [Wstawki: rozdzielczość pod projekt montażowy](memory/wstawki-rozdzielczosc-pod-projekt.md) — 1920x1080 na płótnie 720p pokazuje środkowe 66 %; renderuj W/H pod projekt
+
 ## Decyzje (ADR)
 
 - [Ekran produktu z HTML zamiast nagrań i generacji](decisions/2026-07-30-ekran-produktu-z-html.md) — 2026-07-30

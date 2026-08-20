@@ -253,6 +253,29 @@ na jasnym swetrze albo na dloniach.
 W trybie chromakey poswiata jest **wylaczana** (`body.chromakey .halo{ text-shadow:none }`) —
 ciemne rozmycie zlewa sie z zielenia i po wycieciu zostawia brudna obwodke.
 
+### 🟢 STANDARD: scena z tekstem powstaje w DWOCH wariantach
+
+**Kazda scena, w ktorej tekst jest trescia** — karta tytulowa, teza, cytat, werdykt na pelnym
+kadrze — dostaje dwa pliki:
+
+| Wariant | Plik | Rola |
+|---|---|---|
+| **lewy** | `<scena>-lewy.html` → `_alpha.mov` | **DOMYSLNY do montazu** |
+| wysrodkowany | `<scena>.html` → `_alpha.mov` | zapasowy, do momentow bez mowiacego w kadrze |
+
+Wariant lewy to: blok wyrownany do lewej (`left:132px`), stopien pisma o ~18 % mniejszy niz
+w wersji wysrodkowanej (86 px zamiast 104 px), `.scrim.left` zamiast pelnego, belka i znacznik
+rozjezdzajace sie od lewej krawedzi. Wzorzec referencyjny: `e01-08b-tytul-lewy.html` —
+kopiuj z niego, nie wymyslaj ukladu od nowa.
+
+**Dlaczego to jest standard, a nie preferencja:** wstawka wchodzi na gadana glowe, w ktorej
+mowiacy siedzi **posrodku kadru**. Wysrodkowany tekst laduje dokladnie na jego twarzy, a scrim
+radialny jest tam najciemniejszy — material wyglada wtedy jak plansza przyklejona na wideo
+i traci sie jedyna rzecz, ktora odcinek ma: czlowieka, ktory to mowi. Wariant lewy zostawia
+prawa polowe kadru odslonieta, wiec **tekst i mowiacy dzialaja rownoczesnie**.
+
+Zatwierdzone przez Mateusza 20.08 na kompozycie z realnym nagraniem 01.
+
 ### Uklad: blok po lewej bije wysrodkowanie
 
 Sprawdzone na kompozycie z realnym nagraniem 19.08. Wysrodkowany tytul z radialnym scrimem
@@ -296,6 +319,23 @@ To samo dotyczy `.halo` — w chromakey wylaczona, bo ciemne rozmycie brudzi kra
 dla narzedzi bez alfy i jest z zalozenia gorsza — nie ma ani scrimu, ani poswiaty.
 **Nie dokladaj do niej wlasnej blendy w edytorze** — blenda pod golym tekstem bez poswiaty
 niewiele daje, a przy alfie jest juz niepotrzebna, bo scrim siedzi w pliku.
+
+### Rozdzielczosc: pod projekt montazowy, nie „na maksa"
+
+Nagrania sa w **1280×720**, wiec projekt w CapCucie ma plotno 720p. Wstawka 1920×1080 wrzucona
+w skali 100 % jest **1,5× szersza od plotna** i widac z niej srodkowe 66 %: panele uciete przy
+obu krawedziach, napisy bez pierwszej litery. Wyglada na zepsuty render, a jest arytmetyka skali.
+
+```bash
+W=1280 H=720 FPS=30 ALPHA=1 node render.js <scena>   # → *_alpha_720p.mov
+```
+
+Sceny sa projektowane na 1920×1080; renderer skaluje calosc przez `deviceScaleFactor`, wiec
+**uklad zostaje ten sam**, zmienia sie tylko liczba pikseli.
+
+> 🔴 **Pulapka CapCuta:** po podmianie pliku o tej samej nazwie edytor bierze zaimportowana
+> kopie z cache'u i nowej wersji nie widzi. Usun klip z biblioteki mediow i wczytaj ponownie —
+> inaczej oceniasz poprawke, ktorej tam nie ma. Zdarzylo sie 20.08 przy werdykcie e01-07.
 
 ### FPS: 30, nie 60
 

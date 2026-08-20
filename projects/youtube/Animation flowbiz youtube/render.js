@@ -23,8 +23,12 @@ const path = require('path');
 const fs = require('fs');
 
 const FPS = parseInt(process.env.FPS || '60', 10);
-const W = 1920;
-const H = 1080;
+// Rozdzielczosc wyjsciowa. Sceny sa projektowane na 1920x1080; renderer skaluje
+// cala scene przez deviceScaleFactor, wiec uklad zostaje ten sam, zmienia sie
+// tylko liczba pikseli. Do projektu montazowego w 720p:  W=1280 H=720
+const W = parseInt(process.env.W || '1920', 10);
+const H = parseInt(process.env.H || '1080', 10);
+const SCALE = W / 1920;
 const ROOT = __dirname;
 const OUT = path.join(ROOT, 'out');
 const FRAMES = path.join(OUT, 'frames');
@@ -69,13 +73,14 @@ async function renderScene(browser, id) {
   const qs = ['native=1'];
   if (CHROMA) qs.push('bg=' + encodeURIComponent(CHROMA));
   const url = 'file://' + path.join(ROOT, 'compositions', `${id}.html`) + '?' + qs.join('&');
-  const suffix = ALPHA ? '_alpha' : (CHROMA ? '_chroma' : '');
+  const res = (W === 1920) ? '' : `_${H}p`;
+  const suffix = (ALPHA ? '_alpha' : (CHROMA ? '_chroma' : '')) + res;
   const frameDir = path.join(FRAMES, id + suffix);
   ensureDir(frameDir);
 
   const ctx = await browser.newContext({
-    viewport: { width: W, height: H },
-    deviceScaleFactor: 1,
+    viewport: { width: 1920, height: 1080 },
+    deviceScaleFactor: SCALE,
     reducedMotion: 'no-preference',
   });
   const page = await ctx.newPage();
@@ -148,7 +153,7 @@ async function renderScene(browser, id) {
     const name = String(f).padStart(5, '0') + '.png';
     await page.screenshot({
       path: path.join(frameDir, name),
-      clip: { x: 0, y: 0, width: W, height: H },
+      clip: { x: 0, y: 0, width: 1920, height: 1080 },
       omitBackground: ALPHA,
     });
 
