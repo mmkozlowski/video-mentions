@@ -116,9 +116,9 @@
   tl.from('#sub', { y:16, duration:0.38, ease:"power2.out" }, 1.34);
   tl.to('#badge', { opacity:1, scale:1, duration:0.44, ease:"back.out(1.7)" }, 1.62);
 
-  // 2.20 — caly blok delikatnie oddycha do gory: karta nie stoi martwo
-  tl.to(['#l1','#l2','#l3','#rule','#sub','#badge','#eyebrow'],
-        { y:-16, duration:2.0, ease:"power1.inOut" }, 2.20);
+  // Zaden dryf po ustawieniu sie karty. Powolny ruch bez przyczyny czyta sie
+  // na materiale jak usterka albo zjezdzajaca grafika — zgloszone 20.08.
+  // Ruch nalezy do wejscia, nie do bezruchu.
 
   const DURATION = 4.4;
   tl.to({}, { duration:0.4 }, DURATION - 0.4);
