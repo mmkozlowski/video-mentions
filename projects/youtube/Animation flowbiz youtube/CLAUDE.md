@@ -320,22 +320,42 @@ dla narzedzi bez alfy i jest z zalozenia gorsza — nie ma ani scrimu, ani poswi
 **Nie dokladaj do niej wlasnej blendy w edytorze** — blenda pod golym tekstem bez poswiaty
 niewiele daje, a przy alfie jest juz niepotrzebna, bo scrim siedzi w pliku.
 
-### Rozdzielczosc: pod projekt montazowy, nie „na maksa"
+### 🔴 Rozdzielczosc: NIGDY ponizej plotna montazu
 
-Nagrania sa w **1280×720**, wiec projekt w CapCucie ma plotno 720p. Wstawka 1920×1080 wrzucona
-w skali 100 % jest **1,5× szersza od plotna** i widac z niej srodkowe 66 %: panele uciete przy
-obu krawedziach, napisy bez pierwszej litery. Wyglada na zepsuty render, a jest arytmetyka skali.
+**Renderuj 1920×1080 i pozwol edytorowi skalowac W DOL. Nigdy w gore.**
 
-```bash
-W=1280 H=720 FPS=30 ALPHA=1 node render.js <scena>   # → *_alpha_720p.mov
-```
+Skalowanie w dol zachowuje jakosc — nadmiarowe piksele sa usredniane. Skalowanie w gore
+jej nie odtworzy: napis wyrenderowany jako 16 pikseli wysokosci i powiekszony 1,5× to
+poszarpana kaszana, bo antyaliasing nie ma z czego zbudowac gladkiej krawedzi.
 
-Sceny sa projektowane na 1920×1080; renderer skaluje calosc przez `deviceScaleFactor`, wiec
-**uklad zostaje ten sam**, zmienia sie tylko liczba pikseli.
+> **Blad popelniony 20.08, opisany tu, zeby sie nie powtorzyl.** Wstawka 1920×1080 wchodzila
+> do CapCuta przycieta, wiec wyrenderowalem wersje 1280×720 „pod projekt". To pogorszylo
+> sprawe: eyebrow o rozmiarze 24 px w projekcie 1920 zszedl do **16 px realnych**, a CapCut
+> i tak skalowal wstawke w gore, zeby wypelnila plotno. Panele wygladaly dobrze (duze plaskie
+> plamy), a sam tekst rozsypal sie na krawedziach. Wersje 720p zostaly skasowane.
 
-> 🔴 **Pulapka CapCuta:** po podmianie pliku o tej samej nazwie edytor bierze zaimportowana
-> kopie z cache'u i nowej wersji nie widzi. Usun klip z biblioteki mediow i wczytaj ponownie —
-> inaczej oceniasz poprawke, ktorej tam nie ma. Zdarzylo sie 20.08 przy werdykcie e01-07.
+Przyciecie w edytorze **nie jest powodem do zmniejszania renderu** — to znak, ze edytor
+dopasowuje wstawke do plotna. Ustaw skale klipu recznie albo zrownaj plotno projektu
+z 1920×1080.
+
+`W`/`H` w rendererze zostaja jako furtka na nietypowe plotna (np. 9:16), ale **domyslnie
+ich nie ruszaj**.
+
+### Minimalne stopnie pisma — liczone na 1920×1080
+
+Tekst przezywa kompresje YouTube i oglad na telefonie tylko powyzej pewnego progu.
+Wartosci sprawdzone 20.08 po tym, jak eyebrow 24 px i etykiety 15 px wyszly nieczytelnie:
+
+| Element | Min. | Uwaga |
+|---|---|---|
+| eyebrow / nadtytul | **34 px**, waga 700 | `letter-spacing` max `0.18em` — szerszy rozrzedza kreske |
+| etykiety w paskach (pigulki) | **19 px**, waga 700 | |
+| podpisy i drugi plan | **21 px** | ponizej znika po kompresji |
+| tekst w kartach | 24 px+ | |
+| glowna teza / werdykt | 50 px+ | |
+
+Cienki, mocno rozstrzelony tekst jest najbardziej wrazliwy — przy `letter-spacing` powyzej
+`0.2em` podnies wage kroju, inaczej kreska robi sie za cienka na krawedzi.
 
 ### FPS: 30, nie 60
 
