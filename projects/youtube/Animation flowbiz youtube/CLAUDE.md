@@ -362,6 +362,35 @@ w tym samym ujeciu jest ostry, bursztynowy nie.
 3. Bursztyn bez podkladki tylko **duzy** (50 px+) i najlepiej na ciemniejszej czesci kadru.
 4. Wewnatrz ciemnych kart bursztyn jest bezpieczny — tam kontrast luminancji juz jest.
 
+### Klasy tekstu przetestowane przez kodek — uzywaj ich zamiast wymyslac
+
+Arkusz `compositions/test-typografia-alfa.html` sprawdza 10 wariantow jednej linii przez pelny
+lancuch: alfa → kompozyt na realnym nagraniu → h.264 4:2:0. **Wyniki z 20.08:**
+
+| # | Wariant | Wynik |
+|---|---|---|
+| 01 | `#FAF8F0` waga 800, bez tla | ✅ ostry |
+| 02 | `#FFFFFF` waga 900 | ✅ ostry |
+| 03 | `#F5A623` goly | ❌ rozmyty (kontrola) |
+| 04 | `#F5A623` na pelnej pigulce | ✅ ostry |
+| 05 | **`#F5A623` + obrys 6 px** | ✅✅ **ostry bez tla — najlepszy** |
+| 06 | `#FFD089` goly | ❌ najgorszy z calej dziesiatki |
+| 07 | `#FAF8F0` + twardy cien | ✅ ostry |
+| 08 | `#F5A623` 60 px | ⚠️ lepiej, ale nie rozwiazuje |
+| 09 | `#FAF8F0` + bursztynowe podkreslenie | ✅ ostry |
+| 10 | `#F5A623` na plycie `rgba(10,10,8,0.78)` | ✅ ostry |
+
+Gotowe klasy w `scene-shell.css`: `.tx-light`, `.tx-amber` (+`.sm`/`.lg`), `.tx-plate`,
+`.tx-light.shadow`, `.tx-underline`. **Nie dobieraj parametrow od nowa** — te sa zmierzone.
+
+**Wariant 06 jest najwazniejszy dla intuicji:** jasniejszy bursztyn wyszedl GORZEJ niz ciemniejszy,
+bo zblizyl sie jasnoscia do sciany. To dowodzi, ze decyduje **dystans luminancji wzgledem tla**,
+a nie nasycenie czy „ladnosc" koloru. Przy nowym kolorze policz luminancje Rec.709
+(`0.2126·R + 0.7152·G + 0.0722·B`) i porownaj z tlem — nie oceniaj na oko.
+
+Po zmianie tla ujecia (inne wnetrze, przeswietlone okno) **przepusc arkusz jeszcze raz**
+na klatce z tego nagrania. To dwie minuty i zastepuje zgadywanie.
+
 ### 🔬 Weryfikuj po kompresji, nie na klatce PNG
 
 To jest metodologiczny blad, ktory kosztowal 20.08 kilka rund poprawek: sprawdzalem kompozyty

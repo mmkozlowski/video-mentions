@@ -219,3 +219,52 @@ body.chromakey .scrim{ display:none; }
   padding:13px 30px;
 }
 body.chromakey .pill{ background:#0A0A08; }
+
+/* ═════════════════════════════════════════════════════════════════════════
+   TEKST NA MATERIALE — klasy przetestowane 20.08 przez h.264 4:2:0
+   Arkusz testowy: compositions/test-typografia-alfa.html (10 wariantow)
+
+   ZASADA: kodek zapisuje krawedz w LUMINANCJI (pelna rozdzielczosc),
+   a kolor w chrominancji (cwiartkowa). Krawedz przezywa tylko wtedy, gdy ma
+   kontrast JASNOSCI wzgledem tla. Kontrast samego koloru nie wystarczy.
+
+   Luminancja Rec.709 naszej palety wobec jasnej sciany (~200):
+     #FAF8F0  248  → Δ48  bezpieczne
+     #FFFFFF  255  → Δ55  bezpieczne
+     #F5A623  173  → Δ27  ZA MALO bez wsparcia
+     #FFD089  213  → Δ13  NAJGORSZE — nie uzywac na materiale
+
+   Nie dobieraj kolorow „na oko" — policz dystans jasnosci wzgledem tla.
+   ═════════════════════════════════════════════════════════════════════════ */
+
+/* ✅ DOMYSLNY tekst na materiale. Nic wiecej nie potrzebuje. */
+.tx-light{ color:#FAF8F0; font-weight:800; }
+
+/* ✅ NAJLEPSZE rozwiazanie dla bursztynu: obrys zamiast tla.
+   paint-order:stroke fill kladzie kontur POD glifem, wiec nie pogrubia liter.
+   Grubosc ~0,13 stopnia pisma: 44px → 6px, 60px → 8px, 34px → 4px. */
+.tx-amber{
+  color:#F5A623; font-weight:800;
+  -webkit-text-stroke:6px #0A0A08;
+  paint-order:stroke fill;
+}
+.tx-amber.sm{ -webkit-text-stroke-width:4px }
+.tx-amber.lg{ -webkit-text-stroke-width:8px }
+
+/* ✅ Alternatywa dla bursztynu, gdy obrys nie pasuje stylistycznie. */
+.tx-plate{
+  color:#F5A623; font-weight:800;
+  background:rgba(10,10,8,0.78); padding:14px 28px;
+}
+
+/* ✅ Biel na bardzo jasnym tle (przeswietlone okno, biala sciana w sloncu). */
+.tx-light.shadow{ text-shadow:0 3px 0 #0A0A08, 0 0 8px rgba(10,10,8,0.9) }
+
+/* ✅ Gdy chcesz bursztyn jako AKCENT bez ryzyka: kolor idzie w ksztalt,
+   nie w krawedz glifu. Tekst zostaje bialy, bursztyn jest podkresleniem. */
+.tx-underline{ color:#FAF8F0; font-weight:800; border-bottom:7px solid #F5A623; padding-bottom:8px }
+
+/* W chromakey obrys i cien musza zniknac — ciemne krawedzie zlewaja sie
+   z zielenia i brudza wyciecie. Wersja zielona jest i tak awaryjna. */
+body.chromakey .tx-amber{ -webkit-text-stroke-width:0 }
+body.chromakey .tx-light.shadow{ text-shadow:none }
