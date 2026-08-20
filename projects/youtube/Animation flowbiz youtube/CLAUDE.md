@@ -341,6 +341,42 @@ z 1920×1080.
 `W`/`H` w rendererze zostaja jako furtka na nietypowe plotna (np. 9:16), ale **domyslnie
 ich nie ruszaj**.
 
+### 🔴 NASYCONY BURSZTYN NIE MOZE LEZEC NA MATERIALE
+
+**Maly bursztynowy tekst bezposrednio na obrazie zawsze wyjdzie poszarpany.** Nie da sie tego
+naprawic ani rozmiarem, ani rozdzielczoscia, ani antyaliasingiem — powod jest kodekowy.
+
+H.264 w 4:2:0 trzyma **luminancje w pelnej rozdzielczosci, a chrominancje w cwiartkowej**.
+Bialy tekst niesie krawedz w luminancji i przezywa kompresje. Nasycony bursztyn `#F5A623`
+na jasnej scianie ma niski kontrast luminancji — informacja o krawedzi siedzi glownie
+w chrominancji, ktora idzie do kosza przy podprobkowaniu.
+
+**Objaw myli**, bo wyglada jak zly render albo problem z alfa. Test rozstrzygajacy: bialy napis
+w tym samym ujeciu jest ostry, bursztynowy nie.
+
+**Zasady:**
+
+1. Maly bursztynowy tekst → na **ciemna pigulke** (`.pill`). Kontrast wraca do luminancji,
+   bursztyn zostaje marka.
+2. Tekst bezposrednio na materiale → **bialy** `#FAF8F0`, waga 700+.
+3. Bursztyn bez podkladki tylko **duzy** (50 px+) i najlepiej na ciemniejszej czesci kadru.
+4. Wewnatrz ciemnych kart bursztyn jest bezpieczny — tam kontrast luminancji juz jest.
+
+### 🔬 Weryfikuj po kompresji, nie na klatce PNG
+
+To jest metodologiczny blad, ktory kosztowal 20.08 kilka rund poprawek: sprawdzalem kompozyty
+jako PNG/JPEG, gdzie chrominancja jest pelna, wiec **problem byl niewidoczny**. Trzeba przepuscic
+material przez ten sam kodek co eksport:
+
+```bash
+ffmpeg -loop 1 -t 1 -i klatka.png -ss 3.0 -i wstawka_alpha.mov \
+  -filter_complex "[0:v][1:v]overlay=0:0:format=auto" \
+  -frames:v 30 -c:v libx264 -pix_fmt yuv420p -crf 20 test.mp4
+ffmpeg -ss 0.5 -i test.mp4 -frames:v 1 -vf "crop=900:120:520:70,scale=1800:240:flags=neighbor" z.jpg
+```
+
+Dopiero to pokazuje, co zobaczy widz.
+
 ### Minimalne stopnie pisma — liczone na 1920×1080
 
 Tekst przezywa kompresje YouTube i oglad na telefonie tylko powyzej pewnego progu.

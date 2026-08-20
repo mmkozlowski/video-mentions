@@ -200,3 +200,22 @@ body.chromakey .halo{ text-shadow:none; }
    zieleni daje ciemnozielony, ktorego key nie usunie — zostaje brudna plama
    na calej klatce. Scrim jest narzedziem WYLACZNIE trybu alfa. */
 body.chromakey .scrim{ display:none; }
+
+/* ─────────────────────────────────────────────────────────────────────────
+   .pill — nadtytul / etykieta na WLASNYM ciemnym tle (dodane 20.08)
+
+   Powod jest kodekowy, nie estetyczny. H.264 w 4:2:0 trzyma luminancje w pelnej
+   rozdzielczosci, a chrominancje w cwiartkowej. Bialy tekst niesie krawedz
+   w luminancji i przezywa kompresje. NASYCONY BURSZTYN niesie ja glownie
+   w chrominancji — po podprobkowaniu krawedz sie rozsypuje i napis wyglada
+   na poszarpany. Widac to dopiero na materiale wideo, nie na klatce PNG.
+
+   Dlatego maly bursztynowy tekst NIE MOZE lezec bezposrednio na materiale.
+   Albo idzie na ciemna pigulke (kontrast wraca do luminancji), albo jest bialy.
+   ───────────────────────────────────────────────────────────────────────── */
+.pill{
+  display:inline-flex;align-items:center;gap:12px;
+  background:#0D0D0B;border:1.5px solid rgba(245,166,35,0.32);
+  padding:13px 30px;
+}
+body.chromakey .pill{ background:#0A0A08; }

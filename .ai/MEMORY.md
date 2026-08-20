@@ -25,6 +25,8 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 - [Wstawki: karta, scrim czy poświata](memory/wstawki-czytelnosc-scrim-halo-karta.md) — tekst w dolnej tercji zawsze dostaje kartę; poświata rozmywa krawędzie i przy karcie jest zbędna
 - [Wstawki: rozdzielczość pod projekt montażowy](memory/wstawki-rozdzielczosc-pod-projekt.md) — 1920x1080 na płótnie 720p pokazuje środkowe 66 %; renderuj W/H pod projekt
 
+- [Nasycony kolor tekstu na materiale](memory/tekst-nasycony-kolor-na-materiale.md) — h.264 4:2:0 zabija krawędź bursztynu; mały kolorowy tekst na ciemną pigułkę, weryfikuj PO kompresji nie na PNG
+
 ## Decyzje (ADR)
 
 - [Ekran produktu z HTML zamiast nagrań i generacji](decisions/2026-07-30-ekran-produktu-z-html.md) — 2026-07-30
