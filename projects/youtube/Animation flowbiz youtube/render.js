@@ -77,6 +77,11 @@ function rmrf(p) { fs.rmSync(p, { recursive: true, force: true }); }
 
 async function renderScene(browser, id) {
   const qs = ['native=1'];
+  // TXT="..." pozwala podmienic tresc sceny bez edycji HTML-a.
+  // Scena czyta parametr z location.search; sceny, ktore go nie obsluguja,
+  // po prostu go ignoruja.
+  if (process.env.TXT) qs.push('txt=' + encodeURIComponent(process.env.TXT));
+  if (process.env.SUB) qs.push('sub=' + encodeURIComponent(process.env.SUB));
   if (CHROMA) qs.push('bg=' + encodeURIComponent(CHROMA));
   const url = 'file://' + path.join(ROOT, 'compositions', `${id}.html`) + '?' + qs.join('&');
   const res = ((W === 1920) ? '' : `_${H}p`) + (ALPHA_PREMULT ? '_premult' : '');

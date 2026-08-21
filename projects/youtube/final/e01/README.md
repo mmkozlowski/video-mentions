@@ -31,3 +31,24 @@ w ustawieniach projektu, nie w plikach.
 
 Edytor trzyma zaimportowane media w cache'u — podmiana pliku o tej samej nazwie nie zadziała.
 Dlatego wersja i data są w nazwie. Przy aktualizacji **usuń stary klip z biblioteki mediów**.
+
+## Szablon gołego tekstu — `txt-linia`
+
+Jedna linia na materiale, **bez karty i bez scrimu**. Czytelność niesie sama typografia:
+waga 900 + twardy cień + delikatna poświata. Bursztyn tylko w belce i podpisie, gdzie ma
+obrys — nigdy w samym zdaniu.
+
+Treść podmieniasz **z linii poleceń, bez dotykania HTML-a**:
+
+```bash
+cd ~/Repo/video-mentions/projects/youtube/"Animation flowbiz youtube"
+TXT="Twoje zdanie" SUB="podpis" FPS=30 ALPHA=1 node render.js txt-linia-lewy
+# → out/txt-linia-lewy_alpha.mov
+```
+
+`SUB` jest opcjonalny — pusty znika razem z bursztynową belką.
+Warianty: `txt-linia` (wyśrodkowany, 76 px) i `txt-linia-lewy` (blok po lewej, 64 px,
+zalecany, bo nie zasłania mówiącego).
+
+Przykłady w tym katalogu: `txt-linia-PRZYKLAD-v1` i `txt-linia-lewy-PRZYKLAD-v1`
+(treść: „Nie kupujesz systemu. Kupujesz własność kodu.").
