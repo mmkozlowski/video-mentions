@@ -38,8 +38,7 @@
   }
   .podpis{
     margin-top:22px;font-family:'DM Sans',sans-serif;
-    font-size:31px;font-weight:700;color:#F5A623;opacity:0;
-    -webkit-text-stroke:4px #0A0A08;paint-order:stroke fill;
+    font-size:31px;font-weight:700;opacity:0;
   }
 </style>
 </head>
@@ -50,7 +49,7 @@
       <div class="blok" id="blok">
         <span class="maska"><span class="linia" id="linia"></span></span>
         <div class="belka" id="belka"></div>
-        <div class="podpis" id="podpis"></div>
+        <div class="podpis" id="podpis"><span class="pill" id="podpisTxt"></span></div>
       </div>
     </div>
   </div>
@@ -64,7 +63,7 @@
   document.getElementById('linia').textContent = TXT;
   const podpis = document.getElementById('podpis');
   const belka = document.getElementById('belka');
-  if (SUB) podpis.textContent = SUB; else { podpis.style.display = 'none'; }
+  if (SUB) document.getElementById('podpisTxt').textContent = SUB; else { podpis.style.display = 'none'; }
 
   // Belka dopasowuje sie do szerokosci tekstu, ale nie wiecej niz 460 px —
   // przy dlugim zdaniu kreska przez caly kadr wyglada jak podkreslenie bledu.

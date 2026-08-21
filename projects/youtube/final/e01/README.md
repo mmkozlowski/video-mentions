@@ -1,6 +1,6 @@
 # Wstawki e01 — gotowe do montażu
 
-**Bierz pliki `-v4-2026-08-21`.** Starsze wersje leżą w `_stare/` wyłącznie na wypadek
+**Bierz pliki `-v5-2026-08-21`.** Starsze wersje leżą w `../_archiwum/` wyłącznie na wypadek
 porównania — nie wrzucaj ich do montażu.
 
 | Plik | Czas | Gdzie w skrypcie |
@@ -53,11 +53,11 @@ zalecany, bo nie zasłania mówiącego).
 Przykłady w tym katalogu: `txt-linia-PRZYKLAD-v1` i `txt-linia-lewy-PRZYKLAD-v1`
 (treść: „Nie kupujesz systemu. Kupujesz własność kodu.").
 
-## Co zmienilo sie w v4
+## Co zmieniło się w v5
 
-**Ciemne ramki pod nadtytulami zniknely.** Bursztynowe napisy maja teraz **obrys 4 px**
-zamiast pigulki — ten sam efekt czytelnosci, ale bez czarnego prostokata na materiale.
-Dotyczy nadtytulow w `e01-07`, `e01-08` i `e01-08b` oraz podpisu w `e01-06`.
+**Obrys na bursztynie wycofany** — wyglądał jak naklejka. Mały bursztyn (nadtytuły, podpisy)
+wrócił na **ramkę**; duży bursztyn („szybko i tanio?") dostał **cień** zamiast konturu.
+Biel bez zmian: waga 900 + twardy cień.
 
 **Ciemne karty zostaly nietkniete** i to jest swiadome: okno IDE, panele platform, karta
 werdyktu i znacznik odcinka **sa elementem ukladu**, a nie latka na czytelnosc. Ramka pod

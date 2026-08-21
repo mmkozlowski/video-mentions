@@ -240,16 +240,13 @@ body.chromakey .pill{ background:#0A0A08; }
 /* ✅ DOMYSLNY tekst na materiale. Nic wiecej nie potrzebuje. */
 .tx-light{ color:#FAF8F0; font-weight:800; }
 
-/* ✅ NAJLEPSZE rozwiazanie dla bursztynu: obrys zamiast tla.
-   paint-order:stroke fill kladzie kontur POD glifem, wiec nie pogrubia liter.
-   Grubosc ~0,13 stopnia pisma: 44px → 6px, 60px → 8px, 34px → 4px. */
+/* ✅ BURSZTYN DUZY (teza, akapit, haslo — od ~50 px w gore): cien, bez obrysu.
+   Obrys na bursztynie wyglada jak naklejka — decyzja Mateusza 21.08.
+   Przy duzym stopniu pisma sam cien wystarcza, bo krawedz jest gruba. */
 .tx-amber{
-  color:#F5A623; font-weight:800;
-  -webkit-text-stroke:6px #0A0A08;
-  paint-order:stroke fill;
+  color:#F5A623; font-weight:900;
+  text-shadow:0 3px 0 #0A0A08, 0 0 12px rgba(10,10,8,0.9);
 }
-.tx-amber.sm{ -webkit-text-stroke-width:4px }
-.tx-amber.lg{ -webkit-text-stroke-width:8px }
 
 /* ✅ Alternatywa dla bursztynu, gdy obrys nie pasuje stylistycznie. */
 .tx-plate{
@@ -266,7 +263,6 @@ body.chromakey .pill{ background:#0A0A08; }
 
 /* W chromakey obrys i cien musza zniknac — ciemne krawedzie zlewaja sie
    z zielenia i brudza wyciecie. Wersja zielona jest i tak awaryjna. */
-body.chromakey .tx-amber{ -webkit-text-stroke-width:0 }
 body.chromakey .tx-light.shadow{ text-shadow:none }
 
 /* ✅ WYBOR MATEUSZA 21.08 (arkusz test-typografia-biel, wariant 10).
@@ -297,11 +293,14 @@ body.chromakey .tx-hero{ text-shadow:none }
 body.alpha .chroma-plate{
   text-shadow:0 3px 0 #0A0A08, 0 0 10px rgba(10,10,8,0.85);
 }
-/* kolorowy plate → obrys, bo sam cien koloru nie uratuje */
+/* kolorowy plate ZOSTAJE ramka — bursztyn i czerwien maja za maly dystans
+   luminancji wzgledem jasnej sciany, a obrys na kolorze wyglada jak naklejka.
+   Dlatego w trybie alfa przywracamy im ciemna podkladke z halo. */
 body.alpha .chroma-plate.amber,
 body.alpha .chroma-plate.red{
-  -webkit-text-stroke:4px #0A0A08;
-  paint-order:stroke fill;
+  display:inline-block;
+  background:#0A0A08;
+  box-shadow:0 0 0 14px #0A0A08;
   text-shadow:none;
 }
 
