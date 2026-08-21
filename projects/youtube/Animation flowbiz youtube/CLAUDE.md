@@ -253,6 +253,16 @@ na jasnym swetrze albo na dloniach.
 W trybie chromakey poswiata jest **wylaczana** (`body.chromakey .halo{ text-shadow:none }`) —
 ciemne rozmycie zlewa sie z zielenia i po wycieciu zostawia brudna obwodke.
 
+### Wjazd tekstu: wysuniecie spod maski
+
+**Domyslne wejscie dla tekstu to wysuniecie spod maski od dolu** (`overflow:hidden` na rodzicu
++ `yPercent:120 → 0`, ease `power4.out`), a wyjscie tak samo w gore. Zatwierdzone przez Mateusza
+21.08 po eksporcie: *„fajny efekt z tego, jak z dolu wyjezdza tekst"*.
+
+Dwie zalety poza wygladem: wstawke mozna dociac w dowolnym miejscu bez twardego skoku,
+i nie ma pokusy dorabiania ruchu w bezruchu — cala dynamika siedzi w wejsciu i wyjsciu.
+Wzorzec: `txt-linia-lewy.html`.
+
 ### 🟢 STANDARD: scena z tekstem powstaje w DWOCH wariantach
 
 **Kazda scena, w ktorej tekst jest trescia** — karta tytulowa, teza, cytat, werdykt na pelnym
