@@ -279,3 +279,39 @@ body.chromakey .tx-light.shadow{ text-shadow:none }
   text-shadow:0 3px 0 #0A0A08, 0 0 10px rgba(10,10,8,0.85);
 }
 body.chromakey .tx-hero{ text-shadow:none }
+
+/* ═════════════════════════════════════════════════════════════════════════
+   TRYB ALFA — automatyczna migracja starszych scen (21.08)
+
+   Sceny e01-01..05, e03-* i e08-* powstaly przed testami typografii i opieraja
+   sie na .chroma-plate. W trybie alfa renderer zdejmuje podkladke (bo przy alfie
+   robi z siebie czarny prostokat), ale ZOSTAWIA kolor. Dla tekstu bialego to
+   juz jest docelowy standard. Dla bursztynu i czerwieni — nie, bo nasycony
+   kolor bez wsparcia przegrywa z podprobkowaniem chrominancji.
+
+   Ponizsze reguly dokladaja brakujace wsparcie automatycznie, wiec starsze
+   sceny nie wymagaja edycji jedna po drugiej.
+   ═════════════════════════════════════════════════════════════════════════ */
+
+/* bialy plate → docelowe potraktowanie tekstu na materiale */
+body.alpha .chroma-plate{
+  text-shadow:0 3px 0 #0A0A08, 0 0 10px rgba(10,10,8,0.85);
+}
+/* kolorowy plate → obrys, bo sam cien koloru nie uratuje */
+body.alpha .chroma-plate.amber,
+body.alpha .chroma-plate.red{
+  -webkit-text-stroke:4px #0A0A08;
+  paint-order:stroke fill;
+  text-shadow:none;
+}
+
+/* Nadtytuly w starszych scenach maja 22–24 px, a zmierzony prog czytelnosci
+   po kompresji to 34 px. Podnosimy je w trybie alfa jedna regula, zeby nie
+   edytowac kilkunastu scen po kolei. Waga i rozstrzelenie tez — cienka,
+   mocno rozstrzelona kreska jest najbardziej wrazliwa. */
+body.alpha .eyebrow,
+body.alpha .tpp-eyebrow{
+  font-size:34px !important;
+  font-weight:700 !important;
+  letter-spacing:0.18em !important;
+}

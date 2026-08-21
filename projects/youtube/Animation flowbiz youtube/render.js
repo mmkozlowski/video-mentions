@@ -129,6 +129,10 @@ async function renderScene(browser, id) {
     // po to, zeby tekst przetrwal wycinanie zieleni; przy alfie robia brzydkie
     // czarne prostokaty na materiale.
     if (isAlpha) {
+      // Klasa na body pozwala scene-shell.css reagowac na tryb alfy — dzieki temu
+      // starsze sceny oparte na .chroma-plate dostaja obrys automatycznie,
+      // bez edytowania kazdej z osobna.
+      document.body.classList.add('alpha');
       const a = document.createElement('style');
       a.textContent = `
         html, body, .wrap, .stage { background: transparent !important; }
