@@ -391,6 +391,24 @@ a nie nasycenie czy „ladnosc" koloru. Przy nowym kolorze policz luminancje Rec
 Po zmianie tla ujecia (inne wnetrze, przeswietlone okno) **przepusc arkusz jeszcze raz**
 na klatce z tego nagrania. To dwie minuty i zastepuje zgadywanie.
 
+### 📐 Waskim gardlem jest PLOTNO PROJEKTU, nie rozdzielczosc renderu
+
+Zmierzone 21.08 na arkuszu `test-typografia-biel`, metryka: odchylenie laplasjanu na tekscie
+(wiecej = ostrzejsza krawedz).
+
+| Scenariusz | Ostrosc | Zmiana |
+|---|---|---|
+| plotno 1080p, wstawka 1080p | **32,4** | odniesienie |
+| plotno 720p, wstawka 1080p | 25,0 | **−23 %** |
+| plotno 720p, wstawka 4K | 26,0 | +4 % wzgledem powyzszego |
+
+**Wniosek: renderowanie w 4K nie oplaca sie.** Zejscie na plotno 720p zjada 23 % ostrosci
+i nadprobkowanie tego nie odrabia — zyskuje sie 4 %, a plik puchnie kilkukrotnie.
+
+**Dzwignia jest jedna: plotno projektu montazowego ma byc 1920×1080.** Material 720p zostanie
+podniesiony i bedzie miekki (to wina zrodla, nie da sie inaczej), ale grafika renderuje sie 1:1
+i zostaje ostra. Widz ocenia ostrosc glownie po napisach, nie po tle.
+
 ### 🔬 Weryfikuj po kompresji, nie na klatce PNG
 
 To jest metodologiczny blad, ktory kosztowal 20.08 kilka rund poprawek: sprawdzalem kompozyty

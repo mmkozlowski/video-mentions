@@ -268,3 +268,14 @@ body.chromakey .pill{ background:#0A0A08; }
    z zielenia i brudza wyciecie. Wersja zielona jest i tak awaryjna. */
 body.chromakey .tx-amber{ -webkit-text-stroke-width:0 }
 body.chromakey .tx-light.shadow{ text-shadow:none }
+
+/* ✅ WYBOR MATEUSZA 21.08 (arkusz test-typografia-biel, wariant 10).
+   Waga 900 + twardy cien + delikatna poswiata. Twardy cien buduje kontrast
+   luminancji przy krawedzi, poswiata dokleja zapas na jasniejszym tle.
+   To jest DOMYSLNY tekst na materiale — uzywaj go zamiast .tx-light,
+   chyba ze tekst lezy na wlasnej ciemnej karcie. */
+.tx-hero{
+  color:#FAF8F0; font-weight:900;
+  text-shadow:0 3px 0 #0A0A08, 0 0 10px rgba(10,10,8,0.85);
+}
+body.chromakey .tx-hero{ text-shadow:none }
