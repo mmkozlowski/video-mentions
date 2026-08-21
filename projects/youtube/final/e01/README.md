@@ -1,14 +1,14 @@
 # Wstawki e01 — gotowe do montażu
 
-**Bierz pliki `-v3-2026-08-21`.** Wersje `v2` leżą w `_stare-v2/` wyłącznie na wypadek
+**Bierz pliki `-v4-2026-08-21`.** Starsze wersje leżą w `_stare/` wyłącznie na wypadek
 porównania — nie wrzucaj ich do montażu.
 
 | Plik | Czas | Gdzie w skrypcie |
 |---|---|---|
-| `e01-06-kod-agenta-v3` | 6,2 s | hook, „Claude i tak wchodzi w ten kod" |
-| `e01-07-serwer-i-dostep-v3` | 6,4 s | segment 3, „ani do kodu, ani do infrastruktury" |
-| `e01-08b-tytul-lewy-v3` | 4,4 s | obietnica, ~0:55 — **wariant zalecany** |
-| `e01-08-tytul-v3` | 4,4 s | ta sama karta wyśrodkowana — zapasowa |
+| `e01-06-kod-agenta-v4` | 6,2 s | hook, „Claude i tak wchodzi w ten kod" |
+| `e01-07-serwer-i-dostep-v4` | 6,4 s | segment 3, „ani do kodu, ani do infrastruktury" |
+| `e01-08b-tytul-lewy-v4` | 4,4 s | obietnica, ~0:55 — **wariant zalecany** |
+| `e01-08-tytul-v4` | 4,4 s | ta sama karta wyśrodkowana — zapasowa |
 
 ## Jak je wstawić
 
@@ -52,3 +52,21 @@ zalecany, bo nie zasłania mówiącego).
 
 Przykłady w tym katalogu: `txt-linia-PRZYKLAD-v1` i `txt-linia-lewy-PRZYKLAD-v1`
 (treść: „Nie kupujesz systemu. Kupujesz własność kodu.").
+
+## Co zmienilo sie w v4
+
+**Ciemne ramki pod nadtytulami zniknely.** Bursztynowe napisy maja teraz **obrys 4 px**
+zamiast pigulki — ten sam efekt czytelnosci, ale bez czarnego prostokata na materiale.
+Dotyczy nadtytulow w `e01-07`, `e01-08` i `e01-08b` oraz podpisu w `e01-06`.
+
+**Ciemne karty zostaly nietkniete** i to jest swiadome: okno IDE, panele platform, karta
+werdyktu i znacznik odcinka **sa elementem ukladu**, a nie latka na czytelnosc. Ramka pod
+napisem to obejscie; karta z trescia to projekt. Nie kasuj drugiego przy sprzataniu pierwszego.
+
+Zasada, ktora z tego wynika:
+
+| Element | Czego potrzebuje |
+|---|---|
+| naglowek / akapit **bialy** | nic — waga 700–900 + twardy cien |
+| **bursztyn** | **albo** pigulka, **albo** obrys — jedno z dwoch, nigdy oba |
+| cokolwiek w ciemnej karcie | nic, karta juz to zalatwia |
