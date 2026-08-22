@@ -23,6 +23,10 @@ cd ~/Repo/video-mentions/projects/youtube
 
 Parametry: `pro` | `fast` | `lite`, długość w sekundach, rozdzielczość.
 
+> 🔴 **Sprawdzaj plik po pobraniu.** Pobranie z API potrafi się urwać i zostawić plik
+> zerowej długości bez nagłówka `moov` — wygląda jak zapisany, a nie da się go otworzyć.
+> Skrypt weryfikuje to teraz sam i kasuje wadliwy plik zamiast go zostawiać.
+
 > 🔴 **1080p działa TYLKO przy 8 sekundach.** Przy 4 i 6 s API odrzuca żądanie komunikatem
 > „1080p is not supported for a duration of N seconds". Domyślne 6 s daje ciche 720p —
 > czyli dokładnie tę rozdzielczość, przez którą napisy się rozsypywały.

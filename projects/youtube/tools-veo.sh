@@ -11,6 +11,18 @@ case "$TIER" in
   *)    M="veo-3.1-fast-generate-preview" ;;
 esac
 OUT="$(dirname "$0")/assets/broll-gemini"; mkdir -p "$OUT"
+
+# Sufiks stylistyczny doklejany do KAZDEGO promptu. Trzyma paczke spojna i pilnuje
+# dwoch rzeczy, o ktorych latwo zapomniec przy pisaniu opisu ujecia:
+#   1. obsada — kanal jest polski, wiec ludzie maja wygladac na Polakow,
+#   2. brak napisow i logotypow — model sam z siebie doklada tekst, ktory gryzie
+#      sie z nasza warstwa graficzna i wyglada jak blad montazu.
+STYL="All people are Polish, Central European appearance and features. \
+Documentary style, handheld, shallow depth of field. Muted teal and amber tones, \
+slightly desaturated, warm afternoon light through a window. \
+No text, no captions, no on-screen graphics, no logos, no signage. \
+Realistic, cinematic, natural office ambience."
+PROMPT="$PROMPT $STYL"
 echo "model: $M | $SEC s | $RES | $SLUG"
 # UWAGA: 1080p dziala tylko przy 8 s — przy 4 i 6 s API odrzuca zadanie.
 REQ=$(python3 -c "
@@ -38,7 +50,14 @@ if d.get('done'):
         except Exception: print('RAW:'+json.dumps(d['response'])[:300])
 else: print('WAIT')")
   case "$D" in
-    URI:*) curl -s -L "${D#URI:}&key=$KEY" -o "$OUT/$SLUG.mp4"; echo "  gotowe → assets/broll-gemini/$SLUG.mp4"; exit 0;;
+    URI:*)
+      curl -s -L --retry 3 --retry-delay 2 "${D#URI:}&key=$KEY" -o "$OUT/$SLUG.mp4"
+      # Weryfikacja: pobranie potrafi sie urwac i zostawic plik bez naglowka moov.
+      if ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 "$OUT/$SLUG.mp4" >/dev/null 2>&1; then
+        echo "  gotowe → assets/broll-gemini/$SLUG.mp4"; exit 0
+      else
+        echo "  POBRANIE USZKODZONE — plik nie da sie odczytac, ponow generacje"; rm -f "$OUT/$SLUG.mp4"; exit 1
+      fi ;;
     ERR:*) echo "  ${D#ERR:}"; exit 1;;
     RAW:*) echo "  nieoczekiwana odpowiedz: ${D#RAW:}"; exit 1;;
   esac
