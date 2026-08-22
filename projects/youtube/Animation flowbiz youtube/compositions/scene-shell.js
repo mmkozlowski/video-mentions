@@ -57,7 +57,10 @@
     const el = document.createElement('div');
     el.className = 'scene-title';
     el.style.top = top + 'px';
-    el.innerHTML = '<span class="chroma-plate amber">' + text + '</span>';
+    // NIE 'chroma-plate amber': ta klasa daje ramke, ktora przy 96 px zamienia sie
+    // w czarna plyte przez pol kadru. Karta tytulowa jest DUZA, wiec zgodnie
+    // z reguła paletową dostaje cien, nie ramke.
+    el.innerHTML = '<span class="tx-title">' + text + '</span>';
     document.querySelector('.scene').appendChild(el);
 
     gsap.set(el, { fontSize: big, letterSpacing: '0.012em', y: centerY - top });
