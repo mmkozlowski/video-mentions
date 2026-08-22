@@ -1,21 +1,32 @@
-# final/ — wstawki zaakceptowane
+# final/ — wstawki gotowe do montażu
 
-Katalog **produktu**: to, co idzie do montażu. Rzeczy robocze i odtwarzalne siedzą
-w `Animation flowbiz youtube/out/`.
+Katalog **produktu**. Rzeczy robocze i odtwarzalne siedzą w `Animation flowbiz youtube/out/`.
 
 | Katalog | Co tam jest |
 |---|---|
-| `e01/` | wstawki do odcinka 01 — **bierz `-v5-2026-08-21`** |
-| `e01/referencje/` | te same wstawki złożone z materiałem poza edytorem, do porównania z własnym eksportem |
+| `e01/` | 9 wstawek do odcinka 01 |
+| `e03/` | 6 wstawek do odcinka 03 |
+| `e08/` | 7 wstawek do odcinka 08 |
+| `eNN/warianty-long/` | dłuższe wersje tych samych scen — bierz, gdy potrzebujesz więcej czasu na antenie |
+| `e01/referencje/` | wstawki złożone z materiałem **poza edytorem**, do porównania z własnym eksportem |
 | `szablony/` | `txt-linia` — goła linia tekstu, treść podmieniana z linii poleceń |
 | `testy/` | arkusze typograficzne: który wariant przeżywa kompresję |
-| `_archiwum/` | starsze wersje (v2–v4), wyłącznie do porównania — **nie wrzucaj do montażu** |
 | `logos/` | znaki marek |
 
-## Odcinki 03 i 08
+Wszystkie pliki to `*_alpha.mov` (qtrle, 1920×1080, 30 kl./s) z oznaczeniem `v5-2026-08-22`.
+Wersja w nazwie nie jest ozdobą: edytor trzyma media w cache'u i podmiana pliku o tej samej
+nazwie nie zadziała. **Przy aktualizacji usuń stary klip z biblioteki mediów.**
 
-Ich wstawki **są wyrenderowane**, ale leżą w `out/e03/` i `out/e08/`, bo nie przeszły jeszcze
-przeglądu. Do `final/` trafiają dopiero po akceptacji — taka jest umowa tego katalogu.
+## Cztery kroki, bez których to nie zadziała
+
+1. **Płótno projektu 1920×1080.** Edytor dziedziczy rozdzielczość z pierwszego klipu,
+   a nagrania mają 720p. Płótno 720p kosztuje **23 % ostrości krawędzi** (zmierzone).
+2. Materiał 720p rozciągnij do pełnego kadru — będzie miękki, to wina źródła.
+3. **Wstawkę wstaw w skali 100 %.** Jeśli edytor sam ją dopasuje, nadpisz ręcznie.
+4. Eksport 1080p, bitrate zalecany lub wyżej.
+
+Jeśli Twój eksport odbiega od `e01/referencje/`, przyczyna jest w ustawieniach projektu,
+nie w plikach.
 
 ## Trzy reguły typografii (zmierzone, nie wymyślone)
 
@@ -25,10 +36,5 @@ przeglądu. Do `final/` trafiają dopiero po akceptacji — taka jest umowa tego
 | **bursztyn mały** — nadtytuł, etykieta, podpis | **ramka**, nigdy obrys |
 | **bursztyn duży** — teza, akapit od ~50 px | **cień**, bez ramki |
 
-Obrys na bursztynie odpadł 21.08 — wygląda jak naklejka. Pełne uzasadnienie i pomiary:
+Pełne uzasadnienie, pomiary i pięć pułapek, które to kosztowało:
 `../ai/decisions/2026-08-20-wstawki-e01-czytelnosc-i-dostarczanie.md`.
-
-## Pułapka
-
-Edytor trzyma zaimportowane media w cache'u — podmiana pliku o tej samej nazwie nie zadziała.
-Dlatego wersja i data są w nazwie. Przy aktualizacji **usuń stary klip z biblioteki mediów**.

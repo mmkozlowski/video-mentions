@@ -36,3 +36,11 @@ projects/youtube/**/out/
 # pipeline'u, tylko odtworzenie renderu na innej maszynie.
 projects/shorts IG/assets/raw/
 projects/shorts IG/final/
+
+# --- projects/youtube: wstawki POZA gitem, referencje w gicie (decyzja 22.08.2026)
+# Wstawki alfa (qtrle) waza po kilkadziesiat–kilkaset MB sztuka: komplet 40 scen
+# to ~1,8 GB, a kazda odtwarza sie jednym poleceniem z kompozycji, ktore SA w gicie.
+# W repo zostaja referencje — lekkie kompozyty h.264 pokazujace, jak wstawka
+# wyglada na materiale. To one niosa wiedze "jak ma wygladac", nie same pliki.
+projects/youtube/final/**/*.mov
+!projects/youtube/final/**/referencje/*.mp4
