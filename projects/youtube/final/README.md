@@ -13,7 +13,7 @@ Katalog **produktu**. Rzeczy robocze i odtwarzalne siedzą w `Animation flowbiz 
 | `testy/` | arkusze typograficzne: który wariant przeżywa kompresję |
 | `logos/` | znaki marek |
 
-Wszystkie pliki to `*_alpha.mov` (qtrle, 1920×1080, 30 kl./s) z oznaczeniem `v5-2026-08-22`.
+Wszystkie pliki to `*_alpha.mov` (qtrle, 1920×1080, 30 kl./s) z oznaczeniem `v6-2026-08-22`.
 Wersja w nazwie nie jest ozdobą: edytor trzyma media w cache'u i podmiana pliku o tej samej
 nazwie nie zadziała. **Przy aktualizacji usuń stary klip z biblioteki mediów.**
 
