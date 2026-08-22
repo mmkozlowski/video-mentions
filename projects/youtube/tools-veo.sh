@@ -4,19 +4,20 @@
 # Model: fast (domyslny) | lite | pro
 set -e
 KEY=$(python3 -c "print(open('$HOME/Repo/Gemini_API').read().split('=',1)[1].strip())")
-SLUG="$1"; PROMPT="$2"; TIER="${3:-fast}"; SEC="${4:-6}"
+SLUG="$1"; PROMPT="$2"; TIER="${3:-fast}"; SEC="${4:-8}"; RES="${5:-1080p}"
 case "$TIER" in
   pro)  M="veo-3.1-generate-preview" ;;
   lite) M="veo-3.1-lite-generate-preview" ;;
   *)    M="veo-3.1-fast-generate-preview" ;;
 esac
 OUT="$(dirname "$0")/assets/broll-gemini"; mkdir -p "$OUT"
-echo "model: $M | $SEC s | $SLUG"
+echo "model: $M | $SEC s | $RES | $SLUG"
+# UWAGA: 1080p dziala tylko przy 8 s — przy 4 i 6 s API odrzuca zadanie.
 REQ=$(python3 -c "
 import json,sys
 print(json.dumps({'instances':[{'prompt':sys.argv[1]}],
- 'parameters':{'aspectRatio':'16:9','durationSeconds':int(sys.argv[2])}}))
-" "$PROMPT" "$SEC")
+ 'parameters':{'aspectRatio':'16:9','durationSeconds':int(sys.argv[2]),'resolution':sys.argv[3]}}))
+" "$PROMPT" "$SEC" "$RES")
 OP=$(curl -s -X POST "https://generativelanguage.googleapis.com/v1beta/models/$M:predictLongRunning?key=$KEY" \
   -H 'Content-Type: application/json' -d "$REQ" | python3 -c "
 import sys,json; d=json.load(sys.stdin)
