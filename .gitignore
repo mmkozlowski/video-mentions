@@ -44,3 +44,5 @@ projects/shorts IG/final/
 # wyglada na materiale. To one niosa wiedze "jak ma wygladac", nie same pliki.
 projects/youtube/final/**/*.mov
 !projects/youtube/final/**/referencje/*.mp4
+# zgrubne montaze — odtwarzalne z planu jednym poleceniem, po kilkaset MB
+projects/youtube/final/**/zgrubny/
