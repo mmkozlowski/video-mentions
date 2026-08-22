@@ -125,9 +125,9 @@ async function renderScene(browser, id) {
     document.body.classList.add('export');
 
     // Tryb alfa: zdejmujemy tlo sceny i dekoracje tla, zeby PNG mial realna
-    // przezroczystosc. Plate'ow chromakeya tu NIE chcemy — istnieja wylacznie
-    // po to, zeby tekst przetrwal wycinanie zieleni; przy alfie robia brzydkie
-    // czarne prostokaty na materiale.
+    // przezroczystosc. Podkladkami .chroma-plate steruje scene-shell.css przez
+    // klase body.alpha — NIE dopisuj ich tutaj z !important, bo przebijesz
+    // regule, ktora bursztynowi i czerwieni ma te podkladke zostawic.
     if (isAlpha) {
       // Klasa na body pozwala scene-shell.css reagowac na tryb alfy — dzieki temu
       // starsze sceny oparte na .chroma-plate dostaja obrys automatycznie,
@@ -136,8 +136,7 @@ async function renderScene(browser, id) {
       const a = document.createElement('style');
       a.textContent = `
         html, body, .wrap, .stage { background: transparent !important; }
-        .grid, .rays, .watermark, .vignette { display: none !important; }
-        .chroma-plate { background: transparent !important; box-shadow: none !important; }
+        .grid, .watermark, .s07-bg, .s09-bg-rays { display: none !important; }
       `;
       document.head.appendChild(a);
     }
