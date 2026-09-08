@@ -18,6 +18,9 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 - [Opis do rolki: krótko i na luzie](memory/opis-do-rolki-pisz-krotko-i-na-luzie.md) — zaczynaj od dwóch zdań; pointa potrzebuje własnej linii; żadnej listy tego, co widać w materiale; zdanie o niedoskonałości zostaje zawsze
 - [Prośby o głośność tłumacz na decybele](memory/prosby-o-glosnosc-tlumacz-na-decybele.md) — „ścisz o 2 %" to −0,18 dB, czyli poniżej progu słyszalności; procent = kierunek, nie mnożnik; raportuj w dB
 - [Nigdy nie rozciągaj kadru](memory/nigdy-nie-rozciagaj-kadru.md) — `scale=W:H` na innych proporcjach deformuje; blur-fill albo czysty crop
+- [virality_predictor w procesie shortów](memory/virality-predictor-w-procesie-shortow.md) — darmowy na planie plus (0 kredytów), max 16 s, 2 równolegle; grafiki/przebitki podbijają korę wzrokową, mikro-ruch w intro nie rejestruje się (próbkowanie ~1 fps); porównuj wersje, nie czytaj pojedynczej liczby
+- [ffmpeg: atempo w jednym grafie z setpts nie działa](memory/ffmpeg-atempo-w-jednym-grafie.md) — ffmpeg 8.1 po cichu gubi atempo, gdy w tym samym filter_complex jest setpts na wideo; tempo zmieniaj dwoma przebiegami + mux
+- [Shorty studyjne vs reelsy IG](memory/shorty-studyjne-vs-reelsy-ig.md) — dwa reżimy pionowych shortów: telefon = autentyczność (Poppins, potknięcia zostają), studio = polish i brand odcinka (DM Sans, punch-iny, pionowe przebudowy plansz); nie przenosić reguł między nimi
 
 ## Decyzje (ADR)
 
