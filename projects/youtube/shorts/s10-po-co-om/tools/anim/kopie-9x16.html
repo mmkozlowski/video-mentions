@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>s2 · TEN SAM PLIK, TRZY WERSJE · 9:16</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../../../Animation flowbiz youtube/compositions/logos.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<style>
+  /* Pionowa plansza pod short 1080x1920. Treść żyje NAD pasem napisów
+     (y<1140). Tła kontenerów solid — reguła z CLAUDE.md systemu animacji. */
+  *{ margin:0; padding:0; box-sizing:border-box }
+  html,body{ width:1080px; height:1920px; overflow:hidden; background:#0A0A08 }
+  .stage{
+    position:relative; width:1080px; height:1920px; background:#0A0A08;
+    font-family:"DM Sans",system-ui,sans-serif; color:#FAF8F0;
+  }
+  .grid{ position:absolute; inset:0; opacity:1 }
+  .label{
+    position:absolute; left:0; right:0; top:150px; text-align:center;
+    font-size:34px; font-weight:600; color:#F5A623;
+    letter-spacing:0.32em; text-transform:uppercase; opacity:0;
+  }
+  .label small{ display:block; margin-top:18px; font-size:24px;
+    letter-spacing:0.36em; color:#3A3630 }
+  .card{
+    position:absolute; left:120px; width:840px; background:#0D0D0B;
+    border:1.5px solid rgba(245,166,35,0.28); opacity:0;
+  }
+  .card .head{
+    display:flex; align-items:center; gap:18px; padding:26px 34px;
+    border-bottom:1px solid #2E2C28; font-size:34px; font-weight:700;
+  }
+  .card .head i.logo{ font-size:44px; color:#6BAA6B; font-style:normal }
+  .card .who{
+    padding:14px 34px; font-size:24px; font-weight:600; color:#F5A623;
+    letter-spacing:0.16em; text-transform:uppercase;
+    border-bottom:1px solid #1E1C18;
+  }
+  .chips{ display:flex; gap:16px; padding:22px 34px 26px }
+  .chip{
+    flex:1; text-align:center; padding:16px 0 14px; font-size:26px;
+    font-weight:600; background:#0A0A08; border:1.5px solid #2E2C28;
+    border-radius:14px; color:#FAF8F0;
+  }
+  .chip b{ display:block; font-size:30px; margin-top:6px; color:#6BAA6B }
+  .chip.off{ color:#57524C }
+  .chip.off b{ color:#57524C }
+  .card.c1{ top:330px }
+  .card.c2{ top:600px }
+  .card.c3{ top:870px }
+  .punch{
+    position:absolute; left:0; right:0; top:176px; text-align:center;
+    font-size:46px; font-weight:800; color:#C0553A; opacity:0;
+    letter-spacing:0.01em;
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+  <svg class="grid" viewBox="0 0 1080 1920" preserveAspectRatio="none" aria-hidden="true">
+    <defs><pattern id="g100" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+      <path d="M100 0 L0 0 0 100" fill="none" stroke="rgba(245,166,35,0.045)" stroke-width="1"/>
+    </pattern></defs>
+    <rect width="1080" height="1920" fill="url(#g100)"/>
+  </svg>
+
+  <div class="label" id="label">Ten sam plik.<br>Trzy wersje.<small>ZAMÓWIENIA W EXCELU</small></div>
+
+  <div class="card c1" id="c1">
+    <div class="head"><i class="logo logo-excel"></i>zamowienia.xlsx</div>
+    <div class="who">właściciel</div>
+    <div class="chips">
+      <div class="chip">Klient<b>✓</b></div>
+      <div class="chip">Ilość<b>✓</b></div>
+      <div class="chip">Cena<b>✓</b></div>
+      <div class="chip">Marża<b>✓</b></div>
+    </div>
+  </div>
+
+  <div class="card c2" id="c2">
+    <div class="head"><i class="logo logo-excel"></i>zamowienia_v2.xlsx</div>
+    <div class="who">handlowiec</div>
+    <div class="chips">
+      <div class="chip">Klient<b>✓</b></div>
+      <div class="chip">Ilość<b>✓</b></div>
+      <div class="chip">Cena<b>✓</b></div>
+      <div class="chip off hid">Marża<b>—</b></div>
+    </div>
+  </div>
+
+  <div class="card c3" id="c3">
+    <div class="head"><i class="logo logo-excel"></i>zamowienia_biuro.xlsx</div>
+    <div class="who">biuro</div>
+    <div class="chips">
+      <div class="chip">Klient<b>✓</b></div>
+      <div class="chip">Ilość<b>✓</b></div>
+      <div class="chip off hid">Cena<b>—</b></div>
+      <div class="chip off hid">Marża<b>—</b></div>
+    </div>
+  </div>
+
+  <div class="punch" id="punch">Marża i ceny — tylko dla wtajemniczonych</div>
+</div>
+
+<script>
+  // Oś czasu zgrana z wypowiedzią pod planszą (t=0 to 10,29 s osi shorta):
+  //  1.8  „…jedna osoba widziała kolumnę tą"      → karta 1
+  //  7.1  „druga jeszcze inną"                    → karta 2
+  //  8.6  „a kolejna jeszcze inną"                → karta 3
+  //  9.9  „nie chcemy, żeby ktokolwiek widział…"  → gasną ukryte kolumny
+  // 14.4  „ile zarabiamy, jaka marża, za ile…"    → czerwona puenta
+  const tl = gsap.timeline({ paused: true });
+  tl.to("#label", { opacity: 1, duration: 0.7, ease: "power2.out" }, 0.3)
+    .fromTo("#c1", { y: 40 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 1.8)
+    .fromTo("#c2", { y: 40 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 7.1)
+    .fromTo("#c3", { y: 40 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 8.6)
+    .to(".hid", { borderColor: "#C0553A", color: "#C0553A", duration: 0.4 }, 9.9)
+    .to(".hid b", { color: "#C0553A", duration: 0.4 }, 9.9)
+    .to("#label", { opacity: 0, duration: 0.4 }, 14.2)
+    .to("#punch", { opacity: 1, duration: 0.5, ease: "power2.out" }, 14.5)
+    .to(".hid", { boxShadow: "0 0 26px rgba(192,85,58,0.4)", duration: 0.5 }, 14.4)
+    .to({}, { duration: 0.01 }, 17.9);
+  window.__sceneTimeline = tl;
+  window.__sceneDuration = 17.93;
+</script>
+</body>
+</html>
