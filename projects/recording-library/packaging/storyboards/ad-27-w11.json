@@ -1,0 +1,86 @@
+{
+ "clip": "ad-27-w11",
+ "brand": "aislupsk",
+ "hook": {
+  "text": "*Pizza, szefowie firm ze Słupska i jeden temat: *agent AI",
+  "until": "Bez"
+ },
+ "topic": {
+  "kicker": "Warsztaty AI Słupsk",
+  "text": "Zbuduj *swojego agenta AI",
+  "sub": "na prawdziwym przykładzie"
+ },
+ "cta": {
+  "chip": "Warsztaty AI · aislupsk.pl",
+  "ad": {
+   "kicker": "Listopad 2026 · Słupsk",
+   "title": "Pizza, szefowie firm i *agent AI",
+   "sub": "Termin i miejsce ogłoszę zapisanym",
+   "button": "aislupsk.pl"
+  },
+  "reels": {
+   "kicker": "Wpadasz?",
+   "title": "Napisz *PIZZA w komentarzu",
+   "sub": "Dopiszę Cię do listy — termin dostaniesz pierwszy"
+  }
+ },
+ "events": [
+  {
+   "type": "broll",
+   "at": "kilku",
+   "until": "Jak",
+   "src": "assets/broll/video/s09-warsztat-pizza.mp4",
+   "from": 0.0
+  },
+  {
+   "type": "logos",
+   "at": "Jak",
+   "until": "Bez",
+   "kicker": "Jeden temat: agent AI",
+   "items": [
+    {
+     "logo": "telegram",
+     "name": "Telegram"
+    },
+    {
+     "logo": "claude",
+     "name": "Claude"
+    },
+    {
+     "logo": "obsidian",
+     "name": "Obsidian"
+    }
+   ]
+  },
+  {
+   "type": "title",
+   "at": "Bez",
+   "until": "A",
+   "kicker": "Bez teorii",
+   "text": "Prawdziwy przykład z *firmy produkcyjnej"
+  },
+  {
+   "type": "title",
+   "at": "A",
+   "until": "Termin",
+   "kicker": "Potem",
+   "text": "Co z tego ma sens *u Ciebie"
+  },
+  {
+   "type": "broll",
+   "at": "porozmawiamy",
+   "until": "+2.4",
+   "src": "assets/broll/video/s09-warsztat-pizza.mp4",
+   "from": 4.0,
+   "label": "Potem rozmawiamy o Twojej firmie"
+  },
+  {
+   "type": "title",
+   "at": "Termin",
+   "until": 31.4,
+   "kicker": "Lista zapisów",
+   "text": "Zapisz się na *aislupsk.pl",
+   "sub": "Termin i miejsce ogłoszę zapisanym"
+  }
+ ]
+}

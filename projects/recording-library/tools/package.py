@@ -359,7 +359,9 @@ class Composition:
 
     def ai_label(self, start, dur):
         # art. 50 ust. 4 AI Act: przy pierwszej ekspozycji, u góry kadru (dół zasłania UI)
-        place = "left:40px;top:318px" if self.vertical else "right:40px;top:40px"
+        # pod hookiem znak AI zjeżdża nad napisy — u góry stoi wtedy tytuł
+        top = 318 if start >= self.hook_end else 930
+        place = f"left:40px;top:{top}px" if self.vertical else "right:40px;top:40px"
         self.html.append(f'<div class="ai-label clip" id="{self.uid('ai')}" style="{place}" data-start="{start}" data-duration="{round(dur, 3)}" data-track-index="5">'
                          f'<span class="ai-dot">AI</span>Ujęcie wygenerowane przez AI</div>')
 
@@ -528,7 +530,8 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .mark-text b{{color:{accent}}}
 #side-plate{{position:absolute;right:0;top:0;width:800px;height:{H}px;background:{bg};border-left:6px solid {accent}}}
 
-.card-host{{position:absolute;pointer-events:none}}
+.card-host{{position:absolute;pointer-events:none;z-index:3}}
+.broll{{z-index:2}} .brand-mark,.cta-chip,.lower-third{{z-index:5}} .cap,.hook,.ai-label{{z-index:6}} .endcard{{z-index:9}}
 .zone-panel{{left:44px;right:132px;top:{FH}px;height:500px;padding-top:46px}}
 .zone-side{{right:40px;top:90px;width:700px;height:900px;display:flex;align-items:center}}
 .zone-full{{inset:0}}

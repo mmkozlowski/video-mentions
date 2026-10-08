@@ -1,0 +1,18 @@
+{
+ "clip": "ad-14-r4", "brand": "flowbiz",
+ "hook": {"text": "Twój *ERP mówi jedno. *Hala robi drugie.", "until": "W"},
+ "topic": {"kicker": "Produkcja", "text": "System, który *zgadza się z halą", "sub": "etapami, w tempie firmy"},
+ "cta": {
+  "chip": "Bezpłatna konsultacja · flowbiz.pl",
+  "ad": {"kicker": "Bezpłatna konsultacja", "title": "Przejdziemy proces *od zamówienia do wysyłki", "sub": "Przyjadę do Twojej firmy — Słupsk i całe Pomorze", "button": "flowbiz.pl"},
+  "reels": {"kicker": "Znasz to?", "title": "Napisz *HALA w komentarzu", "sub": "Powiem Ci, od czego bym zaczął u Ciebie"}
+ },
+ "events": [
+  {"type": "broll", "at": "hala", "until": "W", "src": "../youtube/Animation flowbiz youtube/assets/veo/18-hala-timelapse.mp4", "from": 3.0},
+  {"type": "compare", "at": "W", "until": "Nie", "kicker": "Ten sam dzień", "before": {"value": "plan", "label": "w systemie wszystko się zgadza"}, "after": {"value": "hala", "label": "zużyto więcej, nikt nie zapisał"}, "after_at": "Zużyto"},
+  {"type": "broll", "at": "materiału", "until": "+2.0", "src": "../youtube/Animation flowbiz youtube/assets/veo/09-operator-karta.mp4", "from": 2.0, "label": "Zrobiono inaczej"},
+  {"type": "list", "at": "Nie", "until": "Jestem", "kicker": "Zamiast wdrożenia na rok", "items": [{"text": "Jeden ból na start", "at": "bólu"}, {"text": "Moduły etapami", "at": "moduły"}, {"text": "Ludzie się nie boją", "at": "ludzie"}]},
+  {"type": "title", "at": "Jestem", "until": "Wejdź", "kicker": "Flowbiz · Słupsk", "text": "Od zamówienia *do wysyłki", "sub": "powiem, gdzie jest największa dźwignia"},
+  {"type": "title", "at": "Wejdź", "until": 45.0, "kicker": "Bezpłatna konsultacja", "text": "Do zobaczenia *u Ciebie w firmie", "sub": "flowbiz.pl"}
+ ]
+}

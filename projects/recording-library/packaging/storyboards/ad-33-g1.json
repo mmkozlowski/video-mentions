@@ -1,0 +1,103 @@
+{
+ "clip": "ad-33-g1",
+ "brand": "flowbiz",
+ "hook": {
+  "text": "Programista: *3 miesiące. ChatGPT: *3 dni. Kto kłamie?",
+  "until": "Nikt"
+ },
+ "cta": {
+  "chip": "Systemy z AI · flowbiz.pl",
+  "ad": {
+   "kicker": "Bezpłatna konsultacja",
+   "title": "Prawdziwy system *w kilka tygodni",
+   "sub": "Uprawnienia, historia zmian, dane klientów — z AI w ręku",
+   "button": "flowbiz.pl"
+  },
+  "reels": {
+   "kicker": "Też to słyszałeś?",
+   "title": "Napisz *PROTOTYP w komentarzu",
+   "sub": "Wyślę Ci listę, czego prototyp nie ma"
+  }
+ },
+ "events": [
+  {
+   "type": "compare",
+   "at": "Programista",
+   "until": "Nikt",
+   "kicker": "Wycena systemu",
+   "before": {
+    "value": "3 mies.",
+    "label": "programista"
+   },
+   "after": {
+    "value": "3 dni",
+    "label": "ChatGPT"
+   },
+   "after_at": "chat"
+  },
+  {
+   "type": "title",
+   "at": "Nikt",
+   "until": "3",
+   "kicker": "Nikt",
+   "text": "Mówią o *dwóch różnych rzeczach"
+  },
+  {
+   "type": "list",
+   "at": "3",
+   "until": "Ja",
+   "kicker": "Prototyp tego nie ma",
+   "items": [
+    {
+     "text": "Uprawnienia",
+     "at": "uprawnienia"
+    },
+    {
+     "text": "Dane klientów",
+     "at": "dane"
+    },
+    {
+     "text": "Historia zmian",
+     "at": "historia"
+    }
+   ]
+  },
+  {
+   "type": "broll",
+   "at": "prototyp",
+   "until": "+2.0",
+   "src": "../youtube/Animation flowbiz youtube/assets/veo/10-kod-okulary.mp4",
+   "from": 1.0,
+   "label": "Prototyp w 3 dni"
+  },
+  {
+   "type": "logos",
+   "at": "Ja",
+   "until": "Jeżeli",
+   "kicker": "To drugie, tylko szybciej",
+   "items": [
+    {
+     "logo": "claude",
+     "name": "Claude"
+    },
+    {
+     "logo": "openai",
+     "name": "Codex"
+    },
+    {
+     "logo": "openmercato",
+     "name": ""
+    }
+   ],
+   "sub": "szybciej niż tradycyjny software house"
+  },
+  {
+   "type": "title",
+   "at": "Jeżeli",
+   "until": 45.4,
+   "kicker": "Po kilku tygodniach",
+   "text": "Zobacz, co uzyskasz *z nami",
+   "sub": "flowbiz.pl"
+  }
+ ]
+}

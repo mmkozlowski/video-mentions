@@ -1,0 +1,81 @@
+{
+ "clip": "ad-34-e4",
+ "brand": "flowbiz",
+ "hook": {
+  "text": "Gdzie AI ma sens, a gdzie to *wyrzucone pieniądze?",
+  "until": "3#1"
+ },
+ "cta": {
+  "chip": "Wdrożenia AI · flowbiz.pl",
+  "ad": {
+   "kicker": "Bezpłatna konsultacja",
+   "title": "Sprawdzę, gdzie AI *u Ciebie się opłaca",
+   "sub": "Bez licencji dla wszystkich na zapas",
+   "button": "flowbiz.pl"
+  },
+  "reels": {
+   "kicker": "Zapisz, wróć do tego",
+   "title": "Napisz *SENS w komentarzu",
+   "sub": "Wyślę Ci tę listę jako ściągawkę"
+  }
+ },
+ "events": [
+  {
+   "type": "list",
+   "at": "3#1",
+   "until": "Na#3",
+   "kicker": "3 na TAK",
+   "items": [
+    {
+     "text": "Czytanie maili i dokumentów",
+     "logo": "gmail",
+     "at": "czytanie"
+    },
+    {
+     "text": "Pierwsze szkice ofert",
+     "at": "szkice"
+    },
+    {
+     "text": "Szukanie informacji w firmie",
+     "at": "szukanie"
+    }
+   ]
+  },
+  {
+   "type": "list",
+   "at": "Na#3",
+   "until": "Zasada",
+   "kicker": "3 na NIE",
+   "items": [
+    {
+     "text": "Rzeczy dla prostej reguły",
+     "at": "reguła"
+    },
+    {
+     "text": "Ceny bez człowieka",
+     "at": "Decyzje"
+    },
+    {
+     "text": "Licencje dla wszystkich",
+     "at": "licencja"
+    }
+   ],
+   "floor": 4.0
+  },
+  {
+   "type": "broll",
+   "at": "reguła",
+   "until": "+1.8",
+   "src": "../youtube/Animation flowbiz youtube/assets/veo/12-terminal-logi.mp4",
+   "from": 1.0,
+   "label": "Tu wystarczy prosta reguła"
+  },
+  {
+   "type": "quote",
+   "at": "Zasada",
+   "until": 33.9,
+   "text": "AI przygotowuje. Człowiek decyduje.",
+   "sub": "Zasada jest prosta"
+  }
+ ]
+}
