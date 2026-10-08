@@ -1,0 +1,80 @@
+{
+ "clip": "ad-25-e5",
+ "brand": "flowbiz",
+ "hook": {
+  "text": "Wdrażasz AI i *nie *działa?",
+  "until": "Pewnie"
+ },
+ "cta": {
+  "chip": "Wdrożenia AI · flowbiz.pl",
+  "ad": {
+   "kicker": "Bezpłatna konsultacja",
+   "title": "Wdrożymy AI *bez tych błędów",
+   "sub": "Zaczynamy od jednej rzeczy, która wkurza wszystkich",
+   "button": "flowbiz.pl"
+  },
+  "reels": {
+   "kicker": "Darmowa checklista",
+   "title": "Napisz *CHECKLISTA w komentarzu",
+   "sub": "Wyślę Ci 4 pytania do zadania przed wdrożeniem AI"
+  }
+ },
+ "events": [
+  {
+   "type": "list",
+   "at": "Pewnie",
+   "until": "który",
+   "kicker": "4 błędy przy wdrożeniu AI",
+   "items": [
+    {
+     "text": "Licencje bez zmiany procesu",
+     "at": "Kupujesz"
+    },
+    {
+     "text": "Brak zasad dla danych",
+     "at": "Nikt"
+    },
+    {
+     "text": "Za duży start",
+     "at": "Zaczynasz"
+    },
+    {
+     "text": "Ludzie się boją",
+     "at": "pytasz"
+    }
+   ]
+  },
+  {
+   "type": "broll",
+   "at": "okienku",
+   "until": "+2.0",
+   "src": "../youtube/Animation flowbiz youtube/assets/veo/03-palce-klawiatura.mp4",
+   "from": 1.0,
+   "label": "AI w okienku obok pracy"
+  },
+  {
+   "type": "broll",
+   "at": "wklejają",
+   "until": "+2.2",
+   "src": "assets/broll/video/s03-umowa-do-czatu.mp4",
+   "from": 2.0,
+   "label": "Umowy klientów w czacie"
+  },
+  {
+   "type": "broll",
+   "at": "boją",
+   "until": "+2.4",
+   "src": "../youtube/Animation flowbiz youtube/assets/veo/07-warsztat-stol.mp4",
+   "from": 1.0,
+   "label": "Zapytaj zespół, zanim kupisz"
+  },
+  {
+   "type": "title",
+   "at": "który",
+   "until": 49.5,
+   "kicker": "Twoja kolej",
+   "text": "Który błąd jest *u *Ciebie?",
+   "sub": "Napisz w komentarzu"
+  }
+ ]
+}

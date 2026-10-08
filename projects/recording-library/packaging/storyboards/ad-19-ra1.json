@@ -1,0 +1,166 @@
+{
+ "clip": "ad-19-ra1",
+ "brand": "flowbiz",
+ "hook": {
+  "text": "Prezes na *lotnisku wie, co się dzieje na *produkcji",
+  "until": "telefonu"
+ },
+ "cta": {
+  "chip": "Agent AI dla zarządu · flowbiz.pl",
+  "ad": {
+   "kicker": "Bezpłatna konsultacja",
+   "title": "Zbudujemy *agenta dla Twojej firmy",
+   "sub": "Przyjadę do Ciebie — Słupsk, Pomorze, Zachodniopomorskie",
+   "button": "flowbiz.pl"
+  },
+  "reels": {
+   "kicker": "Chcesz takiego agenta?",
+   "title": "Napisz *AGENT w komentarzu",
+   "sub": "Wyślę Ci, od czego zacząć — bez sprzedawania"
+  }
+ },
+ "events": [
+  {
+   "type": "broll",
+   "at": "lotnisku",
+   "until": "telefonu",
+   "src": "assets/broll/video/s01-prezes-lotnisko.mp4",
+   "from": 0.0
+  },
+  {
+   "type": "broll",
+   "at": "telefonu",
+   "until": "+1.7",
+   "src": "assets/broll/video/s02-telefon-czat-dlon.mp4",
+   "from": 0.5,
+   "label": "Telefon zamiast systemu"
+  },
+  {
+   "type": "chat",
+   "at": "czyli",
+   "until": "Budujemy",
+   "app": "telegram",
+   "bot": "Agent firmy",
+   "messages": [
+    {
+     "side": "me",
+     "text": "Co z zamówieniem dla Nordwind?",
+     "at": "czyli"
+    },
+    {
+     "side": "bot",
+     "text": "W produkcji, etap 3 z 5. Wysyłka w czwartek.",
+     "at": "codziennie"
+    }
+   ]
+  },
+  {
+   "type": "broll",
+   "at": "produkcyjnych",
+   "until": "Siedzi",
+   "src": "../youtube/Animation flowbiz youtube/assets/veo/18-hala-timelapse.mp4",
+   "from": 2.0,
+   "label": "Agent AI dla zarządu"
+  },
+  {
+   "type": "logos",
+   "at": "telegramie",
+   "until": "Ma",
+   "kicker": "Tam, gdzie i tak piszesz",
+   "items": [
+    {
+     "logo": "telegram",
+     "name": "Telegram"
+    },
+    {
+     "logo": "whatsapp",
+     "name": "WhatsApp"
+    },
+    {
+     "logo": "slack",
+     "name": "Slack"
+    }
+   ]
+  },
+  {
+   "type": "list",
+   "at": "Ma",
+   "until": "Rano",
+   "kicker": "Mózg firmy",
+   "items": [
+    {
+     "text": "Dokumenty",
+     "logo": "googledrive",
+     "at": "dokumentów"
+    },
+    {
+     "text": "Statusy zamówień",
+     "logo": "openmercato",
+     "at": "statusów"
+    },
+    {
+     "text": "Wiedza firmy",
+     "logo": "obsidian",
+     "at": "wiedzy"
+    }
+   ]
+  },
+  {
+   "type": "broll",
+   "at": "Rano",
+   "until": "+2.3",
+   "src": "assets/broll/video/s10-poranny-raport-kawa.mp4",
+   "from": 0.5,
+   "label": "Raport o 7:00"
+  },
+  {
+   "type": "chat",
+   "at": "Rano",
+   "until": "najważniejsze",
+   "app": "telegram",
+   "bot": "Raport 7:00",
+   "messages": [
+    {
+     "side": "bot",
+     "text": "Wpadło: 4 nowe zamówienia",
+     "at": "wpadło"
+    },
+    {
+     "side": "bot",
+     "text": "Opóźnia się: ZP/112 — 2 dni",
+     "at": "opóźnia"
+    },
+    {
+     "side": "bot",
+     "text": "Do decyzji: rabat 8% dla Hortex?",
+     "at": "decyzji"
+    }
+   ]
+  },
+  {
+   "type": "chat",
+   "at": "agent nic",
+   "until": 37.3,
+   "app": "telegram",
+   "bot": "Agent firmy",
+   "messages": [
+    {
+     "side": "bot",
+     "text": "Przygotowałem ofertę dla Hortex. Wysłać?",
+     "at": "agent nic",
+     "buttons": true
+    },
+    {
+     "side": "me",
+     "text": "✓ Zatwierdzone",
+     "at": "zatwierdzasz"
+    }
+   ]
+  }
+ ],
+ "topic": {
+  "kicker": "Agent AI dla zarządu",
+  "text": "Firma w *telefonie prezesa",
+  "sub": "Telegram · dane firmy · zero logowania"
+ }
+}

@@ -36,3 +36,9 @@ projects/youtube/**/out/
 # pipeline'u, tylko odtworzenie renderu na innej maszynie.
 projects/shorts IG/assets/raw/
 projects/shorts IG/final/
+
+# ── recording-library: próbki wideo ───────────────────────────────────────
+# Odtwarzalne jednym poleceniem (tools/package.py --render) z bazy klipów,
+# a 30 wariantów × ~20 MB zablokowałoby klony. W gicie zostają storyboardy,
+# generator i płatne b-rolle (assets/broll/), tak jak ujęcia Veo w youtube/.
+projects/recording-library/final/

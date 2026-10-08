@@ -22,9 +22,14 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 - [Nagranie z promptera nie trzyma się tekstu](memory/nagranie-z-promptera-nie-trzyma-sie-tekstu.md) — dubel z transkrypcji, scenariusz tylko identyfikuje; poprawki liczb na nagraniu są celowe
 - [Whisper gubi falstarty](memory/whisper-gubi-falstarty.md) — przy powtórkach dubla czasy słów kłamią; sklejka po ciszy w sygnale, kontrola transkrypcją gotowego klipu
 
+- [Veo i Nano Banana przez Gemini API](memory/veo-gemini-api.md) — kadr → ożywienie; klucz `GEMINI_API=`, JPEG zamiast PNG, „jeden kadr” bywa tryptykiem, image-to-video 4–5 min
+- [Pion: strefy zakazane Reels](memory/pion-strefy-zakazane-reels.md) — góra ~230, prawa ~130, dół ~260 px; wszystko u góry wchodzi po hooku
+- [HyperFrames wymaga Node 22](memory/hyperframes-wymaga-node-22.md) — domyślny nvm to 20; PATH na v22.22.2 w skrypcie, nie globalnie
+
 ## Decyzje (ADR)
 
 - [Ekran produktu z HTML zamiast nagrań i generacji](decisions/2026-07-30-ekran-produktu-z-html.md) — 2026-07-30
 - [Oznaczanie treści AI — trzy warstwy, znak tylko na starcie](decisions/2026-08-02-oznaczanie-tresci-ai.md) — 2026-08-02
 - [Pipeline shortów z telefonu (ADR projektowy)](../projects/shorts%20IG/ai/decisions/2026-08-19-pipeline-shortow-z-telefonu.md) — 2026-08-19
 - [Baza klipów z sesji nagraniowej (ADR projektowy)](../projects/recording-library/ai/decisions/2026-10-08-baza-klipow-z-sesji-nagraniowej.md) — 2026-10-08
+- [Opakowanie klipów: 3 formaty × 2 palety (ADR projektowy)](../projects/recording-library/ai/decisions/2026-10-09-opakowanie-klipow-trzy-formaty-dwie-palety.md) — 2026-10-09

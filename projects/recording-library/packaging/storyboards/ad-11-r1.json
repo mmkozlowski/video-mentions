@@ -1,0 +1,125 @@
+{
+ "clip": "ad-11-r1",
+ "brand": "flowbiz",
+ "hook": {
+  "text": "*11 stron zamówienia. *6 godzin przepisywania",
+  "until": "u"
+ },
+ "topic": {
+  "kicker": "Producent mebli ogrodowych",
+  "text": "Zamówienia bez *przepisywania",
+  "sub": "Excel od kontrahenta → system"
+ },
+ "cta": {
+  "chip": "Bezpłatna konsultacja · flowbiz.pl",
+  "ad": {
+   "kicker": "Bezpłatna konsultacja",
+   "title": "Pokażę, co da się *zautomatyzować",
+   "sub": "Przyjadę do Twojej firmy — Słupsk i całe Pomorze",
+   "button": "flowbiz.pl"
+  },
+  "reels": {
+   "kicker": "Chcesz to zobaczyć?",
+   "title": "Napisz *ZAMÓWIENIE w komentarzu",
+   "sub": "Pokażę Ci, jak wygląda takie wczytywanie"
+  }
+ },
+ "events": [
+  {
+   "type": "broll",
+   "at": "11",
+   "until": "6",
+   "src": "../youtube/Animation flowbiz youtube/assets/veo/02-drukarka-zamowienie.mp4",
+   "from": 0.5
+  },
+  {
+   "type": "stat",
+   "at": "11",
+   "until": "6",
+   "kicker": "Jedno zamówienie",
+   "from": 1,
+   "to": 11,
+   "suffix": "stron",
+   "label": "Excel od kontrahenta z Niemiec"
+  },
+  {
+   "type": "compare",
+   "at": "6",
+   "until": "Nie",
+   "kicker": "Przepisywanie zamówienia",
+   "before": {
+    "value": "6 h",
+    "label": "ręcznie, pozycja po pozycji"
+   },
+   "after": {
+    "value": "sam",
+    "label": "system wczytuje"
+   },
+   "after_at": "Dziś"
+  },
+  {
+   "type": "broll",
+   "at": "przepisywania",
+   "until": "+1.9",
+   "src": "assets/broll/video/s04-wydruk-zamowienia.mp4",
+   "from": 0.5,
+   "label": "Ręczne przepisywanie do Excela"
+  },
+  {
+   "type": "logos",
+   "at": "Nie",
+   "until": "Kolejne",
+   "kicker": "Zamiast wielkiego ERP",
+   "items": [
+    {
+     "logo": "gmail",
+     "name": "Mail"
+    },
+    {
+     "logo": "excel",
+     "name": "Excel"
+    },
+    {
+     "logo": "openmercato",
+     "name": ""
+    }
+   ],
+   "sub": "Zaczęliśmy od jednego bólu: zamówień"
+  },
+  {
+   "type": "list",
+   "at": "Kolejne",
+   "until": "Jestem",
+   "kicker": "Etapami, w tempie firmy",
+   "items": [
+    {
+     "text": "Zamówienia",
+     "at": "Kolejne"
+    },
+    {
+     "text": "Produkcja",
+     "at": "dokładamy"
+    },
+    {
+     "text": "Wysyłka",
+     "at": "tempie"
+    }
+   ]
+  },
+  {
+   "type": "title",
+   "at": "Jestem",
+   "until": 40.9,
+   "kicker": "Flowbiz · Słupsk",
+   "text": "Przyjadę na *konsultację do Twojej firmy"
+  },
+  {
+   "type": "broll",
+   "at": "budujemy",
+   "until": "+2.6",
+   "src": "../youtube/Animation flowbiz youtube/assets/veo/18-hala-timelapse.mp4",
+   "from": 1.0,
+   "label": "Systemy dla firm produkcyjnych"
+  }
+ ]
+}

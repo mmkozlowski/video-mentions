@@ -1,0 +1,22 @@
+{
+ "clip": "ch-doram-5-70-94", "brand": "flowbiz",
+ "hook": {"text": "AI nauczyło się zamówień: *70% → *94%", "until": "polegało"},
+ "topic": {"kicker": "Case study · meble ogrodowe", "text": "Zamówienia od niemieckich *kontrahentów", "sub": "dopasowanie pozycji do katalogu"},
+ "cta": {
+  "chip": "Case study · flowbiz.pl",
+  "ad": {"kicker": "Bezpłatna konsultacja", "title": "Nauczymy AI *Twoich zamówień", "sub": "Producent z Pomorza? Przyjadę do Ciebie", "button": "flowbiz.pl"},
+  "reels": {"kicker": "Chcesz szczegóły?", "title": "Napisz *PAMIĘĆ w komentarzu", "sub": "Wyślę Ci opis, jak uczymy AI na zamówieniach"}
+ },
+ "events": [
+  {"type": "title", "at": "AI się", "until": "więc", "kicker": "Pamięć dla AI", "text": "Jeden produkt, *pięć nazw", "sub": "każdy kontrahent pisze inaczej"},
+  {"type": "broll", "at": "dany", "until": "+2.3", "src": "../youtube/Animation flowbiz youtube/assets/veo/01-biuro-excele.mp4", "from": 2.0, "label": "Zamówienie w Excelu od kontrahenta"},
+  {"type": "logos", "at": "miernik", "until": "początku", "kicker": "Mierzymy wpływ AI", "items": [{"logo": "excel", "name": "Zamówienie"}, {"logo": "claude", "name": "AI"}, {"logo": "openmercato", "name": ""}]},
+  {"type": "stat", "at": "początku", "until": "Po", "kicker": "Trafność dopasowania · start", "from": 0, "to": 70, "suffix": "%", "label": "na pierwszych zamówieniach"},
+  {"type": "stat", "at": "Po", "until": "czyli", "kicker": "Po miesiącu", "from": 70, "to": 94, "suffix": "%", "label": "bez zmiany sposobu pracy biura"},
+  {"type": "list", "at": "czyli", "until": "nagle#1", "kicker": "Jak AI się uczy",
+   "items": [{"text": "Operator wskazuje produkt", "at": "powiedzieć"}, {"text": "AI zapamiętuje", "at": "zapamiętało"}, {"text": "Baza zapamiętuje", "at": "zapamiętała"}]},
+  {"type": "broll", "at": "kolejne", "until": "+2.4", "src": "../youtube/Animation flowbiz youtube/assets/veo/09-operator-karta.mp4", "from": 1.0, "label": "Kolejne zamówienie, inne nazwy"},
+  {"type": "stat", "at": "dopasowuje", "until": "Zostają", "kicker": "Kolejne zamówienie", "from": 94, "to": 95, "suffix": "%", "label": "AI dopasowuje samo"},
+  {"type": "quote", "at": "Zostają", "until": 80.0, "text": "Zostają marginalne przypadki", "sub": "a człowiek tylko sprawdza"}
+ ]
+}

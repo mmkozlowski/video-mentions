@@ -1,0 +1,118 @@
+{
+ "clip": "ad-12-r2",
+ "brand": "flowbiz",
+ "hook": {
+  "text": "Co, jak *jedyna osoba, która wie, pójdzie na *emeryturę?",
+  "until": "Na"
+ },
+ "topic": {
+  "kicker": "Wiedza produkcji",
+  "text": "Z zeszytu do *systemu",
+  "sub": "zanim odejdzie osoba, która go prowadzi"
+ },
+ "cta": {
+  "chip": "Bezpłatna konsultacja · flowbiz.pl",
+  "ad": {
+   "kicker": "Bezpłatna konsultacja",
+   "title": "Zabezpiecz *wiedzę swojej produkcji",
+   "sub": "Przyjadę do Twojej firmy — Słupsk i całe Pomorze",
+   "button": "flowbiz.pl"
+  },
+  "reels": {
+   "kicker": "Darmowy materiał",
+   "title": "Napisz *ZESZYT w komentarzu",
+   "sub": "Wyślę Ci, jak przenieść wiedzę z zeszytów do systemu"
+  }
+ },
+ "events": [
+  {
+   "type": "broll",
+   "at": "emeryturę",
+   "until": "+2.0",
+   "src": "assets/broll/video/s05-zeszyt-na-hali.mp4",
+   "from": 0.5
+  },
+  {
+   "type": "list",
+   "at": "Na",
+   "until": "producenta",
+   "kicker": "Gdzie siedzi wiedza o produkcji",
+   "items": [
+    {
+     "text": "W głowach",
+     "at": "głowach"
+    },
+    {
+     "text": "W zeszytach",
+     "at": "zeszytach"
+    }
+   ]
+  },
+  {
+   "type": "stat",
+   "at": "wiedza",
+   "until": "Właściciel",
+   "kicker": "Wyroby specjalne",
+   "from": 5,
+   "to": 1,
+   "suffix": "osoba",
+   "label": "wie, jak je robić — z zeszytu",
+   "dur": 1.0
+  },
+  {
+   "type": "quote",
+   "at": "Właściciel",
+   "until": "To",
+   "text": "Jak odejdzie, nie będziemy wiedzieli, jak to robić",
+   "sub": "— właściciel firmy produkcyjnej"
+  },
+  {
+   "type": "compare",
+   "at": "I",
+   "until": "A",
+   "kicker": "System to nie wygoda",
+   "before": {
+    "value": "wygoda",
+    "label": "tak myśli większość"
+   },
+   "after": {
+    "value": "polisa",
+    "label": "zabezpieczenie firmy"
+   },
+   "after_at": "zabezpieczeniem"
+  },
+  {
+   "type": "broll",
+   "at": "odczytać",
+   "until": "+2.2",
+   "src": "assets/broll/video/s05-zeszyt-na-hali.mp4",
+   "from": 0.0,
+   "label": "AI czyta odręczne notatki"
+  },
+  {
+   "type": "logos",
+   "at": "odczytać",
+   "until": "Jestem",
+   "kicker": "Zeszyt → system",
+   "items": [
+    {
+     "logo": "claude",
+     "name": "AI czyta"
+    },
+    {
+     "logo": "openmercato",
+     "name": ""
+    }
+   ],
+   "sub": "Wiedza musi mieć swoje miejsce"
+  },
+  {
+   "type": "title",
+   "at": "Jestem",
+   "until": 52.3,
+   "kicker": "Flowbiz · Słupsk",
+   "text": "Bezpłatna *konsultacja u Ciebie w firmie",
+   "sub": "flowbiz.pl"
+  }
+ ]
+}

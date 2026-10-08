@@ -1,0 +1,240 @@
+[
+ {
+  "id": "s01",
+  "kind": "still",
+  "model": "gemini-3-pro-image",
+  "file": "assets/broll/stills/s01-prezes-lotnisko.jpg",
+  "est_usd": 0.134,
+  "prompt": "a businessman in his fifties sitting in a quiet airport lounge at dusk, looking at his smartphone with a calm, satisfied expression, large windows with an airplane on the tarmac behind him",
+  "at": "2026-10-08 23:36",
+  "ai_generated": true
+ },
+ {
+  "id": "s02",
+  "kind": "still",
+  "model": "gemini-3-pro-image",
+  "file": "assets/broll/stills/s02-telefon-czat-dlon.jpg",
+  "est_usd": 0.134,
+  "prompt": "close-up of a hand holding a smartphone with an abstract messaging app on screen (soft colored chat bubbles, nothing readable), dark office, screen glow on the fingers",
+  "at": "2026-10-08 23:37",
+  "ai_generated": true
+ },
+ {
+  "id": "s03",
+  "kind": "still",
+  "model": "gemini-3-pro-image",
+  "file": "assets/broll/stills/s03-umowa-do-czatu.jpg",
+  "est_usd": 0.134,
+  "prompt": "an office employee at a laptop dragging a document into an AI chat window, screen content abstract and unreadable, a printed contract lies next to the laptop, evening office",
+  "at": "2026-10-08 23:38",
+  "ai_generated": true
+ },
+ {
+  "id": "s04",
+  "kind": "still",
+  "model": "gemini-3-pro-image",
+  "file": "assets/broll/stills/s04-wydruk-zamowienia.jpg",
+  "est_usd": 0.134,
+  "prompt": "a thick stack of printed order pages fanned out on a desk next to a laptop with a spreadsheet, tired hands sorting the pages under a warm desk lamp",
+  "at": "2026-10-08 23:38",
+  "ai_generated": true
+ },
+ {
+  "id": "s05",
+  "kind": "still",
+  "model": "gemini-3-pro-image",
+  "file": "assets/broll/stills/s05-zeszyt-na-hali.jpg",
+  "est_usd": 0.134,
+  "prompt": "older craftsman's hands turning the pages of a worn handwritten notebook full of sketches and numbers, on a workbench in a small furniture factory",
+  "at": "2026-10-08 23:38",
+  "ai_generated": true
+ },
+ {
+  "id": "s06",
+  "kind": "still",
+  "model": "gemini-3-pro-image",
+  "file": "assets/broll/stills/s06-worki-paszy-etykiety.jpg",
+  "est_usd": 0.134,
+  "prompt": "a small e-commerce warehouse with stacked 25 kg animal feed sacks, a worker sticking shipping labels onto four identical sacks, a label printer on the table",
+  "at": "2026-10-08 23:39",
+  "ai_generated": true
+ },
+ {
+  "id": "s07",
+  "kind": "still",
+  "model": "gemini-3-pro-image",
+  "file": "assets/broll/stills/s07-pamiatki-tablet.jpg",
+  "est_usd": 0.134,
+  "prompt": "a sales representative showing a tablet catalogue to a shop owner in a seaside souvenir shop, shelves with colorful magnets, mugs and wooden souvenirs, daylight through the window",
+  "at": "2026-10-08 23:39",
+  "ai_generated": true
+ },
+ {
+  "id": "s08",
+  "kind": "still",
+  "model": "gemini-3-pro-image",
+  "file": "assets/broll/stills/s08-szwalnia-meble-ogrodowe.jpg",
+  "est_usd": 0.134,
+  "prompt": "an upholstery workshop sewing cushions for garden furniture, rolls of outdoor fabric, a worker at an industrial sewing machine",
+  "at": "2026-10-08 23:40",
+  "ai_generated": true
+ },
+ {
+  "id": "s09",
+  "kind": "still",
+  "model": "gemini-3-pro-image",
+  "file": "assets/broll/stills/s09-warsztat-pizza.jpg",
+  "est_usd": 0.134,
+  "prompt": "a small group of business owners around a workshop table with laptops and open pizza boxes, a presenter gestures at a screen, friendly evening atmosphere",
+  "at": "2026-10-08 23:40",
+  "ai_generated": true
+ },
+ {
+  "id": "s10",
+  "kind": "still",
+  "model": "gemini-3-pro-image",
+  "file": "assets/broll/stills/s10-poranny-raport-kawa.jpg",
+  "est_usd": 0.134,
+  "prompt": "a business owner at home in the morning holding a coffee cup and reading a short report on his phone, kitchen window light",
+  "at": "2026-10-08 23:40",
+  "ai_generated": true
+ },
+ {
+  "id": "s11",
+  "kind": "still",
+  "model": "gemini-3-pro-image",
+  "file": "assets/broll/stills/s11-hala-sprzet-sportowy.jpg",
+  "est_usd": 0.134,
+  "prompt": "a small factory assembling high-end fitness equipment, metal frames on stands, a worker welding with sparks",
+  "at": "2026-10-08 23:41",
+  "ai_generated": true
+ },
+ {
+  "id": "s12",
+  "kind": "still",
+  "model": "gemini-3-pro-image",
+  "file": "assets/broll/stills/s12-etykiety-kody-kreskowe.jpg",
+  "est_usd": 0.134,
+  "prompt": "a label printer quickly printing a long strip of barcode labels, a hand peels a label and sticks it onto a cardboard box",
+  "at": "2026-10-08 23:41",
+  "ai_generated": true
+ },
+ {
+  "id": "s03",
+  "kind": "still",
+  "model": "gemini-3-pro-image",
+  "file": "assets/broll/stills/s03-umowa-do-czatu.jpg",
+  "est_usd": 0.134,
+  "prompt": "one single continuous shot: a woman office employee seen from the side at her desk, her laptop screen shows an abstract glowing chat interface (nothing readable), a printed contract with a signature lies next to the laptop, evening office, one camera angle only, no split screen",
+  "at": "2026-10-08 23:42",
+  "ai_generated": true
+ },
+ {
+  "id": "s05",
+  "kind": "still",
+  "model": "gemini-3-pro-image",
+  "file": "assets/broll/stills/s05-zeszyt-na-hali.jpg",
+  "est_usd": 0.134,
+  "prompt": "full-bleed wide 16:9 frame edge to edge, no borders: older craftsman's hands turning the pages of a worn handwritten notebook full of sketches and numbers, on a workbench in a small furniture factory with tools and wood shavings around",
+  "at": "2026-10-08 23:43",
+  "ai_generated": true
+ },
+ {
+  "id": "s05",
+  "kind": "still",
+  "model": "gemini-3-pro-image",
+  "file": "assets/broll/stills/s05-zeszyt-na-hali.jpg",
+  "est_usd": 0.134,
+  "prompt": "a single photograph, one frame, no panels, no collage: close-up of an old worn handwritten notebook lying open on a wooden workbench, an elderly worker's hand resting on the page, blurred furniture workshop behind",
+  "at": "2026-10-08 23:43",
+  "ai_generated": true
+ },
+ {
+  "id": "s01",
+  "kind": "video",
+  "model": "veo-3.1-fast-generate-preview",
+  "file": "assets/broll/video/s01-prezes-lotnisko.mp4",
+  "est_usd": 1.2,
+  "seconds": 8,
+  "motion": "slow push-in towards the man, he glances at the phone and slightly nods, airplane lights blink outside",
+  "at": "2026-10-08 23:45",
+  "ai_generated": true
+ },
+ {
+  "id": "s02",
+  "kind": "video",
+  "model": "veo-3.1-fast-generate-preview",
+  "file": "assets/broll/video/s02-telefon-czat-dlon.mp4",
+  "est_usd": 1.2,
+  "seconds": 8,
+  "motion": "thumb taps the screen, new chat bubble slides in, gentle handheld drift",
+  "at": "2026-10-08 23:47",
+  "ai_generated": true
+ },
+ {
+  "id": "s03",
+  "kind": "video",
+  "model": "veo-3.1-fast-generate-preview",
+  "file": "assets/broll/video/s03-umowa-do-czatu.mp4",
+  "est_usd": 1.2,
+  "seconds": 8,
+  "motion": "slow lateral dolly, the employee hesitates, then clicks, screen light flickers on the face",
+  "at": "2026-10-08 23:49",
+  "ai_generated": true
+ },
+ {
+  "id": "s04",
+  "kind": "video",
+  "model": "veo-3.1-fast-generate-preview",
+  "file": "assets/broll/video/s04-wydruk-zamowienia.mp4",
+  "est_usd": 1.2,
+  "seconds": 8,
+  "motion": "hands flip pages one after another, slow top-down push-in",
+  "at": "2026-10-08 23:51",
+  "ai_generated": true
+ },
+ {
+  "id": "s05",
+  "kind": "video",
+  "model": "veo-3.1-fast-generate-preview",
+  "file": "assets/broll/video/s05-zeszyt-na-hali.mp4",
+  "est_usd": 1.2,
+  "seconds": 8,
+  "motion": "a page is turned slowly, dust in the light beam, subtle push-in",
+  "at": "2026-10-08 23:52",
+  "ai_generated": true
+ },
+ {
+  "id": "s06",
+  "kind": "video",
+  "model": "veo-3.1-fast-generate-preview",
+  "file": "assets/broll/video/s06-worki-paszy-etykiety.mp4",
+  "est_usd": 1.2,
+  "seconds": 8,
+  "motion": "worker sticks a label, a new label comes out of the printer, slow pan along the sacks",
+  "at": "2026-10-08 23:54",
+  "ai_generated": true
+ },
+ {
+  "id": "s09",
+  "kind": "video",
+  "model": "veo-3.1-fast-generate-preview",
+  "file": "assets/broll/video/s09-warsztat-pizza.mp4",
+  "est_usd": 1.2,
+  "seconds": 8,
+  "motion": "people laugh and lean towards the screen, slow lateral dolly",
+  "at": "2026-10-08 23:56",
+  "ai_generated": true
+ },
+ {
+  "id": "s10",
+  "kind": "video",
+  "model": "veo-3.1-fast-generate-preview",
+  "file": "assets/broll/video/s10-poranny-raport-kawa.mp4",
+  "est_usd": 1.2,
+  "seconds": 8,
+  "motion": "steam rises from the cup, he scrolls and smiles, slow push-in",
+  "at": "2026-10-08 23:58",
+  "ai_generated": true
+ }
+]

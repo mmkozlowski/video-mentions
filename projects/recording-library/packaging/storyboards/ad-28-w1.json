@@ -1,0 +1,119 @@
+{
+ "clip": "ad-28-w1",
+ "brand": "aislupsk",
+ "hook": {
+  "text": "Szefie, Twoi ludzie już używają *AI",
+  "until": "Wiesz"
+ },
+ "topic": {
+  "kicker": "Warsztaty AI Słupsk",
+  "text": "Zasady AI w *Twojej firmie",
+  "sub": "Słupsk · Lębork · Koszalin"
+ },
+ "cta": {
+  "chip": "Warsztaty AI · aislupsk.pl",
+  "ad": {
+   "kicker": "Listopad 2026 · Słupsk",
+   "title": "Zapisz się na *warsztaty AI",
+   "sub": "Konkretne przykłady, pizza i ludzie z firm z regionu",
+   "button": "aislupsk.pl"
+  },
+  "reels": {
+   "kicker": "Darmowa checklista",
+   "title": "Napisz *ZASADY w komentarzu",
+   "sub": "Wyślę Ci listę: co wolno wklejać do AI, a czego nie"
+  }
+ },
+ "events": [
+  {
+   "type": "logos",
+   "at": "Wiesz",
+   "until": "Wklejają",
+   "kicker": "Codziennie, bez zasad",
+   "items": [
+    {
+     "logo": "openai",
+     "name": "ChatGPT"
+    },
+    {
+     "logo": "googlegemini",
+     "name": "Gemini"
+    },
+    {
+     "logo": "claude",
+     "name": "Claude"
+    }
+   ]
+  },
+  {
+   "type": "broll",
+   "at": "Wklejają",
+   "until": "+2.4",
+   "src": "assets/broll/video/s03-umowa-do-czatu.mp4",
+   "from": 0.5,
+   "label": "Dane firmy lądują w czacie"
+  },
+  {
+   "type": "list",
+   "at": "Wklejają",
+   "until": "nikt",
+   "kicker": "Co ląduje w czacie",
+   "items": [
+    {
+     "text": "Maile klientów",
+     "logo": "gmail",
+     "at": "maile"
+    },
+    {
+     "text": "Umowy",
+     "logo": "adobeacrobatreader",
+     "at": "umowy"
+    },
+    {
+     "text": "Cenniki",
+     "logo": "excel",
+     "at": "cenniki"
+    }
+   ]
+  },
+  {
+   "type": "title",
+   "at": "nikt",
+   "until": "Na",
+   "kicker": "Problem",
+   "text": "Nikt nie ustalił, *co *wolno"
+  },
+  {
+   "type": "broll",
+   "at": "warsztatach",
+   "until": "+2.6",
+   "src": "../youtube/Animation flowbiz youtube/assets/veo/16-tablica-rysunek.mp4",
+   "from": 0.5,
+   "label": "Warsztaty AI Słupsk"
+  },
+  {
+   "type": "title",
+   "at": "warsztatach",
+   "until": "Zapisz",
+   "kicker": "Na warsztatach pokażę",
+   "text": "Kiedy AI *pomaga, a kiedy *szkodzi",
+   "sub": "dla menedżerów i właścicieli firm"
+  },
+  {
+   "type": "title",
+   "at": "Zapisz",
+   "until": "Warsztaty",
+   "kicker": "Lista zapisów",
+   "text": "Termin ogłosimy *zapisanym",
+   "sub": "aislupsk.pl"
+  },
+  {
+   "type": "title",
+   "at": "Warsztaty",
+   "until": 35.5,
+   "kicker": "Słupsk · Lębork · Koszalin",
+   "text": "Dla firm z *całego regionu",
+   "sub": "Zapisy: aislupsk.pl"
+  }
+ ]
+}

@@ -1,0 +1,18 @@
+{
+ "clip": "ch-marpasz-2-100-godzin", "brand": "flowbiz",
+ "hook": {"text": "*100 godzin miesięcznie mniej ręcznej pracy", "until": "pomaga"},
+ "topic": {"kicker": "Case study · sklep z paszą", "text": "Etykiety jednym *kliknięciem", "sub": "worki po 25 kg, cztery paczki na zamówienie"},
+ "cta": {
+  "chip": "Automatyzacje e-commerce · flowbiz.pl",
+  "ad": {"kicker": "Bezpłatna konsultacja", "title": "Odzyskaj *100 godzin miesięcznie", "sub": "Sklep internetowy? Pokażę, co da się zautomatyzować", "button": "flowbiz.pl"},
+  "reels": {"kicker": "Masz sklep internetowy?", "title": "Napisz *ETYKIETY w komentarzu", "sub": "Pokażę Ci ten proces krok po kroku"}
+ },
+ "events": [
+  {"type": "broll", "at": "Teraz", "until": "dostał", "src": "assets/broll/video/s06-worki-paszy-etykiety.mp4", "from": 0.5},
+  {"type": "list", "at": "pomaga", "until": "zaoszczędził", "kicker": "Teraz", "items": [{"text": "AI łączy podobne zamówienia", "at": "znajdywać"}, {"text": "Jeden koszyk", "at": "koszyk"}, {"text": "Wygeneruj etykiety", "at": "wygeneruj"}, {"text": "Prosto do drukarki", "at": "drukarki"}]},
+  {"type": "broll", "at": "drukarki", "until": "+2.2", "src": "assets/broll/video/s06-worki-paszy-etykiety.mp4", "from": 4.0, "label": "Drukarka etykiet"},
+  {"type": "stat", "at": "zaoszczędził", "until": "Nikt", "kicker": "Zmierzone u klienta", "from": 0, "to": 100, "suffix": "h", "label": "miesięcznie mniej ręcznej pracy", "dur": 1.6},
+  {"type": "title", "at": "Nikt", "until": "Tak#1", "kicker": "Praca, której nikt nie chce", "text": "Monotonna, *łatwa pomyłka, gaszenie pożarów"},
+  {"type": "title", "at": "Tak#1", "until": 103.8, "kicker": "Co dalej z tą osobą?", "text": "Zadania, gdzie *człowiek jest potrzebny", "sub": "to, na co nigdy nie było czasu"}
+ ]
+}

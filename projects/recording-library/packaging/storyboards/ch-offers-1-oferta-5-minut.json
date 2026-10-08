@@ -1,0 +1,125 @@
+{
+ "clip": "ch-offers-1-oferta-5-minut",
+ "brand": "flowbiz",
+ "hook": {
+  "text": "Oferta w *5 minut zamiast *kilkunastu godzin",
+  "until": "U"
+ },
+ "topic": {
+  "kicker": "Case study · producent sprzętu sportowego",
+  "text": "Asystent AI *czyta maile",
+  "sub": "i szykuje szkic oferty"
+ },
+ "cta": {
+  "chip": "Asystent AI · flowbiz.pl",
+  "ad": {
+   "kicker": "Bezpłatna konsultacja",
+   "title": "Twoje oferty w *5 minut",
+   "sub": "Asystent AI na Twoich mailach i Twoim cenniku",
+   "button": "flowbiz.pl"
+  },
+  "reels": {
+   "kicker": "Chcesz zobaczyć?",
+   "title": "Napisz *OFERTA w komentarzu",
+   "sub": "Pokażę Ci, jak działa taki asystent"
+  }
+ },
+ "events": [
+  {
+   "type": "broll",
+   "at": "producenta",
+   "until": "+2.6",
+   "src": "assets/broll/video/s02-telefon-czat-dlon.mp4",
+   "from": 1.0,
+   "label": "Producent sprzętu sportowego"
+  },
+  {
+   "type": "logos",
+   "at": "czyta",
+   "until": "Sprawdza",
+   "kicker": "Asystent czyta maile",
+   "items": [
+    {
+     "logo": "gmail",
+     "name": "Maile"
+    },
+    {
+     "logo": "claude",
+     "name": "AI"
+    },
+    {
+     "logo": "telegram",
+     "name": "Telegram"
+    }
+   ]
+  },
+  {
+   "type": "chat",
+   "at": "Sprawdza",
+   "until": "Wszystko",
+   "app": "telegram",
+   "bot": "Asystent ofert",
+   "messages": [
+    {
+     "side": "bot",
+     "text": "Nowe zapytanie o wycenę: 12 ławek, Hamburg",
+     "at": "Sprawdza"
+    },
+    {
+     "side": "bot",
+     "text": "Szkic oferty gotowy. Zaakceptować?",
+     "at": "Dostajesz",
+     "buttons": true
+    },
+    {
+     "side": "me",
+     "text": "Daj 5% rabatu i wyślij",
+     "at": "korektę"
+    }
+   ]
+  },
+  {
+   "type": "compare",
+   "at": "Wszystko",
+   "until": "Czemu",
+   "kicker": "Jedna oferta",
+   "before": {
+    "value": "kilkanaście h",
+    "label": "pon. rano → wt. wieczór"
+   },
+   "after": {
+    "value": "5 min",
+    "label": "szkic od asystenta"
+   },
+   "after_at": "Wcześniej"
+  },
+  {
+   "type": "list",
+   "at": "Czemu",
+   "until": 65.3,
+   "kicker": "Gdzie uciekał czas",
+   "items": [
+    {
+     "text": "Zanim się zabraliśmy",
+     "at": "zabraliśmy"
+    },
+    {
+     "text": "Odkopywanie starych ofert",
+     "at": "odkopaliśmy"
+    },
+    {
+     "text": "Szukanie tej najlepszej",
+     "at": "najlepsza"
+    }
+   ]
+  },
+  {
+   "type": "broll",
+   "at": "odkopaliśmy",
+   "until": "+2.4",
+   "src": "assets/broll/video/s04-wydruk-zamowienia.mp4",
+   "from": 2.0,
+   "label": "Szukanie starych ofert"
+  }
+ ]
+}

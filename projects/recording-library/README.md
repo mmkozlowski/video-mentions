@@ -113,6 +113,27 @@ po ciszy w sygnale, bo Whisper zgubił falstart / przesunął czasy słów
 - Adres **aislupsk.pl** jest wymawiany niewyraźnie — w napisach zawsze
   poprawiony (`caption-fixes.json`).
 
+## Opakowanie: rolki, reklamy, YouTube (etap 2)
+
+Szczegóły i decyzje: `ai/decisions/2026-10-09-opakowanie-klipow-trzy-formaty-dwie-palety.md`.
+
+```bash
+python3 tools/package.py ad-19-ra1 --check          # 3 formaty × 2 palety → build/packaging/
+python3 tools/package.py ad-19-ra1 --format reels --palette A --snapshot 2 12 30
+python3 tools/package.py ad-19-ra1 --render         # render + −14 LUFS → final/samples/
+tools/package_all.sh                                # wszystkie storyboardy
+python3 tools/broll_gen.py --list                   # b-rolle generowane: kadr → ożywienie
+```
+
+Storyboard (`packaging/storyboards/<clip>.json`) zna typy kart: `title`, `logos`, `stat`
+(licznik), `compare` (przed/po), `list` (punkty zapalane na słowach), `chat` (Telegram
+z przyciskiem „Zatwierdź”), `quote`, `broll`. Kotwice to słowa z `words.json`
+(`"at": "lotnisku"`, `"until": "+2.0"`, `"zapam~"` = prefiks, `"nagle#2"` = drugie wystąpienie).
+
+Logotypy narzędzi: `packaging/brand/logos/*.svg` (20 z systemu wstawek + Telegram, WhatsApp,
+Obsidian, Gemini, Allegro, Acrobat, Kalendarz, Dropbox), kolory czytelne na ciemnym tle
+w `LOGO_COLORS`.
+
 ## Kolejne etapy (kolejka nocna)
 
 Każdy punkt jest niezależny i da się go puścić bez nadzoru:
