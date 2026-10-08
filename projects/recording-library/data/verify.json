@@ -1,0 +1,410 @@
+{
+ "ad-01-01-3": {
+  "verdict": "ok",
+  "coverage": 0.974,
+  "av_drift": 0.023,
+  "new_repeats": [],
+  "heard": "Pracownik pyta AI ile zarabia jego szef na danym zleceniu i dostaje odpowiedź.\nTo nie jest problem AI, to jest problem uprawnień, których w firmie nigdy nie było.\nW Open Mercato systemie ERP AI każda funkcja ma swoje uprawnienia w roli.\nTechnik nie widzi cen, handlowiec nie widzi wypłat, oddział widzi tylko swoje.\nU mnie przyprzyjeszło klienta z narzędzi low-code, Excela lub czegokolwiek innego\ni samo zarządzanie ludźmi i dostępami poszło jakieś kilkukrotnie,\ncztery razy szybciej, bo już tego się nie buduje, to już jest.\nWięcej o tym, jak buduje się takie systemy, znajdziesz na moim odcinku na YouTubie,\njak zbudować system, który pozwoli Ci zachować granice i rolę całkowicie za darmo.\n"
+ },
+ "ad-02-01-1": {
+  "verdict": "ok",
+  "coverage": 0.993,
+  "av_drift": 0.026,
+  "new_repeats": [],
+  "heard": "Kto kurwa zmienił ceny tego produktu?\nPrzepraszam za kolokwializm, ale nieraz padały takie słowa od szefów firm,\nz którymi współpracuję.\nI najgorsze, że nikt nie wie.\nSzukasz w mailach, w Excelach, dzwonisz do swoich pracowników w nerwach,\na teraz chcesz, żeby w tym systemie dane zmieniały jeszcze AI?\nJeśli nie wiesz tego o ludziach, nie będziesz tego wiedział o AI.\nDlatego w systemach, które buduje na Open Mercato, każda zmiana zostawia ślad.\nKto, kiedy, co było przed, co jest po.\na jak ktoś się pomyli, człowiek czy AI, jedno kliknięcie cofni i wszystko wraca.\nTo nie jest dodatek, to nie jest warunek, żeby w ogóle wpuścić AI do firmy.\nWięcej o tym, jak buduję takie systemy znajdziesz na moim kanale na YouTube,\nwięc zapraszam Cię do tego, aby zobaczyć jak budować takie systemy całkowicie za darmo.\n"
+ },
+ "ad-03-02-3": {
+  "verdict": "ok",
+  "coverage": 1.0,
+  "av_drift": 0.003,
+  "new_repeats": [],
+  "heard": "Zapytaj chat GPT, ile masz otwartych zamówień.\nNo właśnie, nie wie, bo AI zna cały internet, ale nie zna kontekstu, nie zna Twojej firmy.\nOpen Mercato ma takie gniazdko, przez które podłączysz AI na przykład Clouda prosto do danych firmy.\nI wtedy pytasz, ile mam otwartych zamówień, które zamówienia czekają na wysyłkę,\na ono odpowiada z Twojego systemu, nie z internetu.\nwidzi tylko tyle, na ile pozwalają mu uprawnienia, a samo podłączenie nic nie kosztuje.\nAle więcej o tym, jak się buduje takie systemy, znajdziesz na moim kanale YouTube,\ngdzie merytorycznie opowiadam o tym, jak wdrożyć systemy ERP, CRM do swoich firm.\n"
+ },
+ "ad-04-02-4": {
+  "verdict": "ok",
+  "coverage": 0.991,
+  "av_drift": 0.007,
+  "new_repeats": [],
+  "heard": "A co, jak AI skasuje mi pół bazy? Jeśli tak pytasz, to bardzo dobrze, bo AI w systemie firmowym to nie jest czat do pisania maili. W Open Mercato asystent AI siedzi w panelu systemu, pisze po polsku, zmień numer telefonu u tego klienta i on to robi, ale każde jego działanie jest sprawdzane wobec Twoich uprawnień, nie zrobi niczego, czego Ty sam nie możesz.\nAI ma dokładnie te same klucze co Ty, ani jednego więcej.\nWięc o tym jak buduję takie systemy znajdziesz na moim kanale na YouTube.\nWięc zapraszam serdecznie, gdzie opowiadam więcej o systemach ERP, CRM, AI dla Twojej firmy.\nTak, aby oszczędzać czas i wyeliminować ręczną pracę w Twojej firmie.\n"
+ },
+ "ad-05-m1": {
+  "verdict": "ok",
+  "coverage": 1.0,
+  "av_drift": 0.01,
+  "new_repeats": [],
+  "heard": "Prowadzisz firmę w Słupsku? To nie musisz szukać wdrożeniowca AI w Warszawie.\nJestem stąd, ze Słupska. Przyjdę do Ciebie, zobaczę jak pracuje Twój zespół\ni powiem co warto zautomatyzować, a czego nie ruszać.\nTak zwane quickqueeny. Bez wideorozmów z kimś, kto nawet nie wie gdzie jest Twoja firma.\nZapraszam. Mateusz Kozłowski, firma Flowbiz. Zadzwoń 536-507-701\nalbo wejdź na flowbiz.pl i zostaw swój kontakt do siebie.\n"
+ },
+ "ad-06-m2": {
+  "verdict": "ok",
+  "coverage": 0.988,
+  "av_drift": 0.01,
+  "new_repeats": [],
+  "heard": "Jeżeli masz firmę w zachodniopomorskim albo w pomorskim województwie, to jestem niecałe 40 minut od Ciebie.\nWdrożenie AI albo nowy system nie musi przyjeżdżać z drugiego końca Polski.\nUsiądziemy przy Twoim biurku z Twoimi Excelami i z Twoimi ludźmi i pokażę Ci, co da się uprościć,\ngdzie da radę zmniejszyć liczbę ręcznego klikania.\nPokażę Ci, gdzie można zaoszczędzić kilkadziesiąt godzin tygodniowo.\nZapraszam Cię do kontaktu. Mateusz Kozowski, firma Flowbiz 536 507 701.\nAbo wejdź na flowbiz.pl i zostaw do siebie kontakt.\n"
+ },
+ "ad-07-m3": {
+  "verdict": "ok",
+  "coverage": 0.958,
+  "av_drift": 0.01,
+  "new_repeats": [],
+  "heard": "Lemberg, szukasz firm od AI i systemów, a wszystkie są z Warszawy albo z Krakowa?\nJa jestem ze Słupska i na konsultacje przyjadę do Ciebie na miejsce, a nie na wideorozmowę.\nZobaczę, gdzie w Twojej firmie ucieka czas i powiem, co z tym zrobić.\nMateusz Kozowski, firma Flowbiz.\n"
+ },
+ "ad-08-m4": {
+  "verdict": "ok",
+  "coverage": 0.976,
+  "av_drift": 0.01,
+  "new_repeats": [],
+  "heard": "Prowadzisz firmy w Bytowie?\nNie musisz ściągać konsultantów z drugiego końca Polski.\nPrzyjadę do Ciebie ze Słupska, czyli dosyć niedaleko,\ngdzie wdrażam AI i buduję systemy dla firm z Pomorza.\nPrzyjadę porozmawianym przy Twoim biurku, a nie przez ekran.\nZobaczę, jak naprawdę pracuje Twoja firma.\nZapraszam do kontaktu.\nWejdź na moją stronę flowbiz.pl i zostaw do siebie kontakt\nz krótką notką, gdzie najwięcej widzisz możliwości,\nale jeśli nawet nie widzisz tych możliwości, to umów się ze mną,\na pokażę Ci, gdzie możemy usprawnić Twoją pracę.\n"
+ },
+ "ad-09-m5": {
+  "verdict": "ok",
+  "coverage": 1.0,
+  "av_drift": 0.003,
+  "new_repeats": [],
+  "heard": "Koszalin, myślisz o AI albo o nowym systemie dla Twojej firmy?\nZanim zadzwonisz do Warszawy, zadzwoń niedaleko, po sąsiedzku, do Słupska.\nJestem godzinę drogi, a już teraz przy naszej S6-20 w dniu drogi,\ngdzie przyjadę na konsultację, zobaczę jak Twój zespół pracuje\ni powiem wprost co ma sens, a co jest stratą pieniędzy.\nZapraszam, Mateusz Kozowski, firma Flowbiz.\n"
+ },
+ "ad-10-m6": {
+  "verdict": "ok",
+  "coverage": 1.0,
+  "av_drift": 0.003,
+  "new_repeats": [],
+  "heard": "Gdańsk, Gdynia, Sopot, wdrożeniowiec z Pomorza, nie z Mazowsza.\nWiem, że w Trójmieście firm IT nie brakuje, ale jeśli chcesz kogoś,\nkto przyjedzie, usiądzie z Twoim zespołem i zrobi system pod Wasz sposób pracy,\na nie sprzedać Ci gotowca, zapraszam Cię do kontaktu.\nPorozmawiajmy, jak można zmniejszyć liczbę ręcznej pracy do tego,\naby przyspieszyć Twoją firmę w tym samym zespole, a być bardziej po prostu efektywnym.\n"
+ },
+ "ad-11-r1": {
+  "verdict": "ok",
+  "coverage": 0.987,
+  "av_drift": 0.003,
+  "new_repeats": [],
+  "heard": "11 stron zamówienia w Excelu.\n6 godzin ręcznego przepisywania.\nTak to wyglądało u producenta mebli ogrodowych, z którym pracuję.\nDziś system wczytuje takie zamówienie sam.\nNie zaczynaliśmy od wielkiego systemu ERP.\nZaczęliśmy od jednego bólu zamówień.\nKolejne moduły dokładamy etapami w tempie firmy,\ntak aby pracownicy też mieli czas się tego uczyć.\nJestem Mateusz Kozowski i prowadzę firmę Flobi ze Słupska.\ngdzie budujemy systemy i automatyzację dla firm produkcyjnych.\nZadzwoń, a przyjadę do Ciebie na konsultacje i porozmawiamy o Twoich największych bolączkach.\n"
+ },
+ "ad-12-r2": {
+  "verdict": "ok",
+  "coverage": 0.984,
+  "av_drift": 0.003,
+  "new_repeats": [],
+  "heard": "Co się stanie z Twoją produkcją, jak jedna osoba, która wie jak to robić, pójdzie na emeryturę?\nNa produkcji wiedza siedzi w głowach i w zeszytach.\nU producenta mebli ogrodowych, z którym współpracuję, wiedza o wyrobach specjalnych jest w zeszytach jednej osoby.\nWasil powiedział mi wprost, jak ona odejdzie na emeryturę, nie będziemy wiedzieli jak to robić.\nTo jest realne zagrożenie dla firmy.\nI to jest moment, w którym system przestaje być wygodą, a staje się zabezpieczeniem firmy.\nA i potrafi dziś odczytać nawet odręczne notatki, ale najpierw wiedza musi mieć swoje miejsce w systemie.\nWiedza musi być scentralizowana.\nJestem ze Słupska i przyjadę do Ciebie na konsultacje.\nWejdź na stronę flowbiz.pl i zarezerwuj bezpłatną konsultację na miejscu u Ciebie w firmie.\n"
+ },
+ "ad-13-r3": {
+  "verdict": "ok",
+  "coverage": 0.971,
+  "av_drift": 0.007,
+  "new_repeats": [],
+  "heard": "Nowe przepisy o opakowaniach i znowu kolejna papierologia.\nMarża znowu spada, bo musisz więcej czasu poświęcać na dokumentację,\nna dokumentację, której i tak nikt nie rozumie.\nKolejna papierologia.\nPracuję z producentem opakowań tekturowych spod Gdańska z 30-letnią historią.\nNowe unijne przepisy wymagają dokumentów do produktów, tak zwane PPWE.\nKiedy zaczynaliśmy firma jeszcze ich w ogóle nie robił, a termin, kiedy wchodziła możliwość kar się bardzo mocno zbliżał.\nZbudowaliśmy generator, biuro wybiera produkt, system sam uzupełnia dane z bazy surowców i wystawia gotowy dokument.\nA wystawiony dokument trafia do panelu klienta, gdzie klient sam może wejść,\npobrać go, zobaczyć jego historię i nie musi zawracać Ci już głowy mailowo\nani telefonicznie, co oczywiście powoduje, że tracimy na to dużo czasu.\nNiestety komunikacja w dzisiejszych czasach jest utrudniona.\nMamy dużo możliwości tej komunikacji, a to powoduje duży chaos w firmie.\nI co najlepsze, nie wymienialiśmy im całego systemu.\nKilka modułów wokół jednego dokumentu.\nJeżeli chcesz zobaczyć ten przykład, wejdź na flowbiz.pl, zakładka realizacje\ni zobaczysz, jak to zrobiliśmy.\n"
+ },
+ "ad-14-r4": {
+  "verdict": "ok",
+  "coverage": 0.979,
+  "av_drift": 0.003,
+  "new_repeats": [],
+  "heard": "Twój ERP mówi jedną, hala robi drugie.\nW systemie wszystko się zgadza, a na hali jest już więcej materiału niż zakładano.\nZrobiono inaczej i nikt tego nie zapisał.\nNie naprawiasz tego wielkim wdrożeniem na rok.\nJa zaczynam od jednego bólu i dokładamy moduły etapami w tempie firmy,\ntak aby ludzie też się nie przestraszyli całego wdrożenia.\nJestem ze Słupska i przyjadę do Twojej firmy porozmawiać o tym procesach,\nod zamówienia do wysyłki i powiem od czego warto zacząć i gdzie jest największa dźwignia dla Twojego biznesu.\nWejdź na flowbiz.pl i umów bezpłatną konsultację. Do zobaczenia u Ciebie w firmie.\n"
+ },
+ "ad-15-r5": {
+  "verdict": "check",
+  "coverage": 0.897,
+  "av_drift": 0.013,
+  "new_repeats": [],
+  "heard": "Prowadzisz firmę produkcyjną z Pomorza?\nNie musisz szukać wdrożeniowca w Warszawie.\nZamówienie przychodzi mailem.\nKtoś przypisuje je do Excela, potem robi kartkę do hali, potem naklejki.\nKażde przypisanie to miejsce na błąd i dziesiątki godzin miesięcznie stracony.\nU jednego z producentów mebli ogrodowych z Podsłupska, z którym pracuję,\njedno zamówienie było 11 stron i kilka godzin i 6 godzin przepisywania.\nCzęsto nawet to przedłużało się do 3 dni, jeżeli były błędy.\nDziś system robi to sam.\nJestem ze Słupska i przyszedłem do Twojej firmy i powiem od czego warto zacząć.\n"
+ },
+ "ad-16-r6": {
+  "verdict": "ok",
+  "coverage": 1.0,
+  "av_drift": 0.003,
+  "new_repeats": [],
+  "heard": "Twój kontrahent z Niemiec przesyła zamówienia, a u Ciebie ktoś przepisuje je do Excela?\nU jednego z producentów mebli ogrodowych z Podsłupska, z którym współpracuję,\nAI doposowuje pozycję zamówień do produktów w systemie i przygotowuje karty dla produkcji.\nCzłowiek tylko to sprawdza.\nNie mam zamiaru sprzedawać Ci AI do wszystkiego.\nAI dokładam tam, gdzie trzeba czytać zamówienia, dokumenty, trzeba zrobić tam, gdzie jest ta praca ręczna,\na całą resztą zajmuje się system.\nWejdź na flowbiz.pl i zamów konsultację na miejscu u Ciebie w biurze.\n"
+ },
+ "ad-17-r7": {
+  "verdict": "ok",
+  "coverage": 0.99,
+  "av_drift": 0.01,
+  "new_repeats": [],
+  "heard": "Myślisz, że system dla produkcji to rok wdrożenia i wymiana wszystkiego.\nU producenta opakowań, z którym pracuję, nie wymieniliśmy całego systemu.\nKilka modułów wokół jednego dokumentu. Reszta firmy pracuje tak jak tak wcześniej.\nBardzo gładkie wdrożenie.\nU producenta mebli ogrodowych zaczynaliśmy od jednego bólu, zamówień.\nKolejne moduły dokładamy etapami.\nWszystko oparte jest na platformie Open Mercato\nGotowy fundament w 80% już zdrobiony\nI co najlepsze za darmo?\nA na nim tylko to, co jest specyficzne dla Twojej firmy\nTak zwane 20%, bo 80% systemu już masz za darmo\nWięc warto wejść na openmercato.com i sprawdzić jak system może pomóc Twojej firmie\n"
+ },
+ "ad-18-r8": {
+  "verdict": "ok",
+  "coverage": 0.984,
+  "av_drift": 0.03,
+  "new_repeats": [],
+  "heard": "Produkujesz na zamówienie i każde zlecenie jest inne?\nExcel tego nie udźwignie i doskonale o tym wiemy.\nZnam to z autopcji.\nA gotowy ERP każe Ci pracować tak, jak on chce.\nTwoja produkcja ma swoje wyjątki i finalnie używasz 20% systemu,\nza którego płacisz rocznie dziesiątki tysięcy złotych.\nKompletnie bez sensu.\nDuże systemy pod indywidualne zamówienie\nw erze AI stały się realne dla małych firm.\nU 1% opakowania, z którym pracuję, zbudowaliśmy generator dokumentów.\nBiuro wybiera produkt, system sam uzupełnia dane z bazy surowców\ni wystawia gotowe PDF-y.\nJestem Mateusz Kozowski z Flobi, ze Słupska,\ngdzie buduję systemy dla firm produkcyjnych, handlowych etapami,\ntak, aby po kilku tygodniach firma już mogła mieć zaoszczędzony czas\nw swojej firmie.\nTak, aby zwrot inwestycji był już po kilku tygodniach pracy.\n"
+ },
+ "ad-19-ra1": {
+  "verdict": "ok",
+  "coverage": 0.962,
+  "av_drift": 0.003,
+  "new_repeats": [],
+  "heard": "Prezes firmy siedzi na lotnisku i wie, co się dzieje na produkcji z telefonu,\nczyli narzędzia, które ma codziennie pod ręką, 24 godziny na dobę.\nBudujemy dla firm produkcyjnych agentów AI dla zarządu.\nSiedzi np. na Telegramie lub innym komunikatorze.\nMa dostęp do dokumentów, statusu firmy i całej wiedzy tzw. mózgu firmowego.\nRano wysyła krótki raport, co wpadło, co się opóźnia, co wymaga decyzji.\nI najważniejsze, agent nic nie wysyła sam.\nProponuje, a Ty jednym kliknięciem zatwierdzasz.\n"
+ },
+ "ad-20-ra2": {
+  "verdict": "ok",
+  "coverage": 0.962,
+  "av_drift": 0.006,
+  "new_repeats": [],
+  "heard": "Pytasz w telefonie, co z zamówieniem dla klienta i dostajesz odpowiedź w 5 sekund.\nTakiego agenta AI budujemy dla firm produkcyjnych.\nSiedzi na telegramie lub innym komunikatorze i ma dostęp do Twoich dokumentów i statusów firmy.\nAle powie Ci uczciwie, agent bez danych odpowie nie wiem.\nWięc najpierw porządkujemy dane, centralizujemy firmy, a dopiero później tworzymy drugi mózg firmy.\ni nie wypuszczamy AI wszędzie.\nUstalamy, do czego ten agent ma dostęp, a czego nigdy nie zobaczy.\nJeżeli interesują Cię takie rozwiązania, wejdź na flowbiz.pl\ni umów bezpośrednio spotkanie u Ciebie w firmie,\na na pewno pokażę Ci, jak to wszystko może działać na Twoje...\n"
+ },
+ "ad-21-ra3": {
+  "verdict": "ok",
+  "coverage": 0.931,
+  "av_drift": 0.01,
+  "new_repeats": [],
+  "heard": "Twój asystent nie śpi, nie bierze urlopu\ni nie siedzi w Twoim telegramie\nnic się wysyła sam\nproponuje, a Ty jednym kliknięciem zatwierdzasz\njestem ze Słupska\nprzyjadna konsultacje\n"
+ },
+ "ad-22-e2": {
+  "verdict": "ok",
+  "coverage": 1.0,
+  "av_drift": 0.017,
+  "new_repeats": [],
+  "heard": "22. Masz firmę produkcyjną?\nCztery rzeczy, które AI już dziś robi u moich klientów.\n1. Czyta zamówienia od klientów, nawet te na 11 stron i wrzuca je do systemu.\nWcześniej ktoś przepisywał je ręcznie, nawet 6 godzin.\n2. Dopasowuje pozycję z zamówienia do produktów i przygotowuje karty dla produkcji.\n3. Wystawia dokumenty, wymagane przepisy z danymi z bazy surowców\nzamiast ręcznego klepania\n4. I to jest najciekawsze\nPomaga przenieść do systemu wiedzę z odręcznych zeszytów\nzanim odejdzie osoba, która je prowadzi\nAI genialnie sobie radzi z odczytem skanów i ręcznych notatek\ni żadna z tych rzeczy nie wymagała wymiany całego systemu.\nJeżeli to jest dla Ciebie ciekawe i chciałbyś zobaczyć,\njak u Ciebie w firmie to działa, zadzwoń,\na przyjadę na terenie Pomorza i Zachodniopomorskiego do Ciebie\ni zobaczę, jak to może pomóc Twojej firmie.\n"
+ },
+ "ad-23-e1": {
+  "verdict": "ok",
+  "coverage": 0.978,
+  "av_drift": 0.003,
+  "new_repeats": [],
+  "heard": "5 rzeczy, które AI może zrobić w systemie Twojej firmy, nie płacisz za nie licencji.\n1. Czytam maile od klientów i przygotowuję z nich zamówienie albo ofertę.\nTy tylko klikasz, akceptuję.\n2. Odpowiada na pytania o Twoją firmę.\nIle mamy otwartych zamówień, co czeka na wysyłkę, gdzie mamy opóźnienia.\nTaki project manager na zawołanie, który się nie męczy.\n3. Robi rzeczy w systemie na Twoje polecenia, ale tylko te, do których ma uprawnienia.\n4. Szuka po znaczeniu, a nie po słowach. Klient, który narzekał na dostawę i system go znajduje.\n5. Czyta zeskanowane dokumenty, więc fakturę znajdziesz po jej treści.\nkod jest w pakiecie\npłacisz tylko za to ile AI pracuje\njak za prąd\nwięcej jest zobaczyć na flowbiz.pl\ntam opisuję jak korzystam\nz systemu Open Mercato\nktóry dostarcza\n80% rzeczy\ndla Twojej firmy za darmo\n"
+ },
+ "ad-24-e7": {
+  "verdict": "ok",
+  "coverage": 0.992,
+  "av_drift": 0.023,
+  "new_repeats": [],
+  "heard": "Agent AI dla prezesa firmy, co naprawdę on może robić,\npokaże na tym, jak budujemy dla firm produkcyjnej.\n1. Siedzi w telegramie, więc masz go w telefonie.\nNie musisz logować się do żadnego systemu.\nRozumie Twój język, a nie konkretne polecenia w systemie.\n2. Pytasz o status zamówienia albo dokument i dostajesz odpowiedź od razu.\n3. Rano wysyła krótki raport, co wymaga Twojej decyzji, gdzie są opóźnienia\ni z jakimi problemami firma się aktualnie boryka.\n4. Nic nie robi sam, proponuje, a Ty zatwierdzasz.\nTaki project manager, który się nie męczy.\nJeżeli chcesz zobaczyć jak się takiego agenta buduje, robię o tym warsztaty w SUBSKu.\nWejdź na stronę ai.subs.pl i dowiesz się więcej.\nZapisz się na listę, a na pewno niedługo z Tobą się skontaktuję.\n"
+ },
+ "ad-25-e5": {
+  "verdict": "ok",
+  "coverage": 0.96,
+  "av_drift": 0.023,
+  "new_repeats": [],
+  "heard": "Wdrażasz AI w firmie i nie działa?\nPewnie popełniasz jeden z tych czterech błędów.\nPierwszy. Kupujesz licencję, ale nie zmieniasz procesu.\nAI siedzi w okienku obok pracy.\nDwa. Nikt nie ustalił, jakie dane wolno dawać AI\ni ludzie wklejają umowy klientów i inne poufne dane.\nTrzy. Zaczynasz od wielkiej transformacji,\nzamiast od jednej rzeczy, która wkurza wszystkich w biurze.\nCztery, nie pytasz ludzi, a oni boją się, że AI zabierze im pracę,\nwięc po cichu go nie używają i się jego boją.\nKtóry z nich jest u Ciebie? Napisz koniecznie w komentarzu,\na z chęcią wymienię się z Tobą doświadczeniami.\n"
+ },
+ "ad-26-w10": {
+  "verdict": "ok",
+  "coverage": 0.949,
+  "av_drift": 0.007,
+  "new_repeats": [],
+  "heard": "telefonie. Chceś mieć w telefonie agenta AI, który wie co się dzieje w Twojej firmie?\nJeżeli tak, to robię warsztaty w subsku dla prezesów i menadżerów.\nPokażę krok po kroku jak budować takiego agenta. Na telegramie, na danych firmy\nbezpiecze, jak wykorzystać clouda w Twojej firmie, jak wykorzystać grok, groka, grokbota\nw Twojej firmie i lub innych narzędzi, które naprawdę mogą wpłynąć na sposób\nTwojej codziennej pracy.\nZapraszam Cię, bo będzie też smacznie, będzie pizza i ludzie z firm z regionu.\nTermin i miejsce ogłoszę wszystkim chętnym, którzy się zapiszą.\nWejdź na AI Słupsk i zapisz siebie i swoją firmę na szkolenia.\n"
+ },
+ "ad-27-w11": {
+  "verdict": "ok",
+  "coverage": 0.933,
+  "av_drift": 0.007,
+  "new_repeats": [],
+  "heard": "Pisa, kilku szefów firmy ze Słupska, jeden temat.\nJak zbudować swojego agenta AI, który pomoże mi ogarnąć moją firmę.\nBez zbędnej teorii.\nPokazuję na prawdziwym przykładzie, jak budujemy dla firmy produkcyjnej.\nA potem porozmawiamy, co z tego ma sens i co można wykorzystać u Ciebie.\nTermin i miejsce ogłoszę zapisanym osobom.\nwejdź na AISUPSK i zapisz się na listę.\n"
+ },
+ "ad-28-w1": {
+  "verdict": "ok",
+  "coverage": 0.972,
+  "av_drift": 0.01,
+  "new_repeats": [],
+  "heard": "Szefie, Twoi ludzie już używają AI. Pytanie, czy wiesz do czego?\nWklejają maile klientów, umowy, cenniki i nikt nie ustalił co wolno, a czego nie wolno robić.\nNa warsztatach AI Słupsk pokazuje menadżerom i właścicielom firm, kiedy AI naprawdę pomaga,\nkiedy szkodzi i jak chroni dane Twojej firmy. Zapisz się na listę, damy znać o najbliższych terminach.\nwarsztaty są w Słupsku dla firm\nze Słupska, Lęborka, Koszalina\ni całego regionu\nwejdź na\nwww.ai.słupsk.pl\n"
+ },
+ "ad-29-w4": {
+  "verdict": "ok",
+  "coverage": 0.958,
+  "av_drift": 0.02,
+  "new_repeats": [],
+  "heard": "Zapraszamy szefów firm, menadżerów ze Słupska i okolicy na śniadanie.\nTemat, dlaczego AI w Twojej firmie nie działa.\nBez prezentacji sprzedażowej przy kawie opowiem, gdzie firmy wykładają się na AI\ni od czego zacząć. A Ty opowiesz, co nie działa u Ciebie i jak ludzie u Ciebie\nkorzystają z AI. Spotkanie jest bezpłatne, ale liczba miejsc jest ograniczona,\nwięc wejdź na stronę EJSŁUP i zapisz siebie i zapisz się na te warsztaty.\n"
+ },
+ "ad-30-l5": {
+  "verdict": "ok",
+  "coverage": 0.988,
+  "av_drift": 0.01,
+  "new_repeats": [],
+  "heard": "Masz trzy wersje tego samego Excela i nikt nie wie, która jest aktualna.\nCzęsto to spotykam, dane rozrzucane po Excelach, mailach, telefonach\ni z tego bierze się chaos i gaszenie pożarów.\nBudujemy systemy, w których dane są w jednym miejscu.\nKażdy widzi tylko swoje, a każda zmiana zostawia swój ślad.\nBez kupowania wielkiego ERP.\nwejdź na stronę flowbiz.pl\nzostaw do siebie kontakt\na przyjadę do siebie i porozmawiamy o tym\njak możesz\nzmienić sposób pracy\nw dzisiejszych czasach z AI\ndla swojej firmy\n"
+ },
+ "ad-31-l9": {
+  "verdict": "ok",
+  "coverage": 0.976,
+  "av_drift": 0.017,
+  "new_repeats": [],
+  "heard": "Kupiłeś chat GPT dla pracowników i nic się nie zmieniło?\nBo dostęp do narzędzia to nie jest wdrożenie.\nLudzie muszą zobaczyć AI na swoich zadaniach, na swoich mailach, ofertach, dokumentach.\nWdrażam AI w zespołach, w firmach z całej Polski.\nPracujemy na Waszych procesach, nie na przykładach z internetu.\nJestem ze Sucka i przyjadę Ciebie na konsultacje.\njeżeli zostawisz, wejdziesz na flowbiz.pl i zostawisz do siebie kontakt,\na ja zobaczę, gdzie traci Twoja firma najwięcej czasu i gdzie będzie miała\nnajwiększy zwrot inwestycji.\n"
+ },
+ "ad-32-l1": {
+  "verdict": "ok",
+  "coverage": 0.95,
+  "av_drift": 0.037,
+  "new_repeats": [],
+  "heard": "Prowadzisz firmę w Słupsku i Twoja najlepsza osoba w biurze przepisuje maile do systemu?\nSzkoda jej na to, szkoda jej na to.\nTakie rzeczy da się dziś zautomatyzować z AI.\nOferta z mailem klienta, dodatka po rozmowie, dane z faktury prosto do systemu.\nJest to do zrobienia w kilka tygodni bez większego chaosu.\nJa nazywam się Mateusz Kuzowski, jestem ze Słupska i robię takie automatyzacje dla firm.\nZacznijmy od jednej rzeczy, która zjada Wam najwięcej czasu i najwięcej frustracji.\n"
+ },
+ "ad-33-g1": {
+  "verdict": "ok",
+  "coverage": 0.989,
+  "av_drift": 0.006,
+  "new_repeats": [],
+  "heard": "Programista mówi 3 miesiące, chat GPT mówi 3 dni. Kto kłamie?\nNikt. Mówią o dwóch różnych rzeczach.\n3 dni AI zrobi Ci prototyp, coś co wygląda jak system,\nale uprawnienia daje dane klientów, historia zmian, to żeby działało,\nto jest długi czas pracy. To jest kilka miesięcy pracy.\nJa robię to drugie, tylko z AI w ręku, więc szybciej niż tradycyjny software house.\nJeżeli chcesz zobaczyć, co można uzyskać w swojej firmie po kilku tygodniach pracy,\nco można uzyskać po kilku tygodniach z nami, daj znać, wejdź na flowbiz.pl\ni zostaw do siebie kontakt.\n"
+ },
+ "ad-34-e4": {
+  "verdict": "ok",
+  "coverage": 0.986,
+  "av_drift": 0.01,
+  "new_repeats": [],
+  "heard": "Gdzie AI w firmie ma sens, a gdzie to wyrzucone pieniądze?\n3 na tak, 3 na nie.\nNo tak, czytanie maili, dokumentów, pierwsze szkice, ofert i odpowiedzi,\nszukanie informacji w firmie.\nNa nie, rzeczy, które załatwia prosta reguła.\nTu AI to modny, drogi dodatek.\nDecyzje o cenach bez człowieka i licencja dla wszystkich,\nzanim ktokolwiek wie do czego całe to AI użyć.\nZasada jest prosta. AI przygotowuje, człowiek decyduje.\n"
+ },
+ "ad-35-w9": {
+  "verdict": "ok",
+  "coverage": 0.907,
+  "av_drift": 0.013,
+  "new_repeats": [],
+  "heard": "Twój pracownik właśnie wkleił umowę klienta do chat GPT.\nCzy zdawałeś sobie o tym sprawę? Czy wiesz o tym?\nNa warsztatach AI subsk uczy menadżerów i szefów firm, jak korzystać z AI bezpiecznie,\njakie dane wolno dać AI, a jakich nie, jak ustawić zasady w zespole,\nplus konkretne zastosowania, które oszczędzają czas w Twojej firmie.\nNajbliższy termin, wejdź na AI-Subsk i zapisz się na listę,\na skontaktuj się z Wami dokładnym miejscem i terminem.\nLiczba miejsc jest ograniczona.\n"
+ },
+ "ad-36-w7": {
+  "verdict": "ok",
+  "coverage": 0.925,
+  "av_drift": 0.003,
+  "new_repeats": [],
+  "heard": "Wdrażasz AI w firmie i nie wychodzi?\nPrzyjdź na warsztaty i przynieś swój problem.\nNa warsztatach AI Słupsk nie oglądamy slajdów.\nPracujemy na prawdziwych zadaniach z Waszych firm.\nMaile, oferty, dokumenty, notatki ze spotkań.\nWychodzisz z rozwiązaniem sprawdzonym na swoim przykładzie.\nWejdź na AI Słupsk i zapisz się na listę, a niedługo się z tobą skontaktuje.\nWarsztaty są dla firm Zasłupska, Gdańska i okolic.\n"
+ },
+ "ch-doram-1-nazwy": {
+  "verdict": "ok",
+  "coverage": 1.0,
+  "av_drift": 0.01,
+  "new_repeats": [],
+  "heard": "klient dostawał od swoich kontrahentów niemieckich zamówienia w Excelu.\nDługoletni kontrahenci współpracowali już, jakieś Excele mieli dopracowane,\njakiś szablon, jakieś kolumny, wyglądało to nie tak źle.\nJednak diabeł tutaj tkwi w szczegółach, bo klient, kontrahent, który zamawiał, potrafił tą samą rzecz nazwać na kilkanaście różnych sposobów. Potrafił raz napisać po niemiecku, raz po angielsku i rozszyfrowanie tych rzeczy było bardzo czasochłonne.\n"
+ },
+ "ch-doram-2-kilka-dni-10-minut": {
+  "verdict": "ok",
+  "coverage": 0.978,
+  "av_drift": 0.001,
+  "new_repeats": [],
+  "heard": "Tutaj od klienta z Podsłupska, który miał ten problem, była dość duża frustracja i co najważniejsze, to nie była tylko samego właściciela frustracja, ale też osób, które to wykonywano.\nDlaczego? Bo robiły rzeczy niewłaściwe. Niewłaściwe dlatego, bo takie klepanie potrafiło im zająć nawet kilka dni, żeby takie zamówienie z setką pozycji po prostu obrobić, znaleźć.\nA dlaczego teraz nazwał tak, a dlaczego nazwał tak ten dany kontrahent, a kogoś nie było na przykład w firmie, kto miał na ten temat wiedzę i cała praca na tych Excelach naprawdę była bardzo mocno frustrująca i przyznam szczerze, że dawno też nie widziałem takiej radości i w głosie właściciela i osób, które to robiły, takiego entuzjazmu do tego, jak system, który wdrożyliśmy właśnie z tą nakładką AI spowodował, że ten czas skrócił się,\nno do dosłownie 10 minut, tak?\n"
+ },
+ "ch-doram-3-przeklejala-drukowala": {
+  "verdict": "ok",
+  "coverage": 0.993,
+  "av_drift": 0.017,
+  "new_repeats": [],
+  "heard": "Dużo też czasu w tym wszystkim zajmowało przygotowanie dla osoby, która była w biurze, w tych pracach administracyjnych, generowanie kodów kreskowych. Trzeba było wygenerować kod całego zamówienia, trzeba było wygenerować kod konkretnego produktu i jeszcze części konkretnych do tego, aby te paczki popakować.\nTo powodowało, że to było moje też bardzo ciekawe doświadczenie,\na już coraz mniej zaskakujące, że ta osoba, która to robiła,\nbrała te wszystkie numery, które przychodziły w tych Excelach,\nwklejała do innego specjalnego Excela, w którym generował się kod kreskowy\ni ten kod kreskowy drukowała i przechodziła do kolejnej pozycji,\nprzeklejała, drukowała, przeklejała, drukowała, przeklejała, drukowała.\nNo przy setce zamówień ciężko tutaj się dziwić, że to trwało na przykład 3 dni,\nno bo jak wiadomo, robimy to jedno zamówienie, a jeszcze ktoś nas odciąga\nod tych zadań, chce, żebyśmy robili coś innego, awarię, gaszenie pożarów,\nwięc no to była dla tej osoby też bardzo czasochłonna, frustrująca,\nfrustrujący proces.\n"
+ },
+ "ch-doram-4-fundamenty": {
+  "verdict": "ok",
+  "coverage": 0.983,
+  "av_drift": 0.023,
+  "new_repeats": [],
+  "heard": "I teraz jak to uprościliśmy, tak? No dzięki całej tutaj mocy AI, jakie nam daje,\npozwoliliśmy sobie na to, żeby po pierwsze trzeba było tą bazę scentralizować,\ntrzeba było wszystkie Excel wgrać do jednej bazy, do jednego systemu.\nTo zajęło dość długo czasu, to tutaj nie ukrywam, ale to po prostu bolało,\nale to trzeba było zrobić. Bez tych fundamentów AI nie będzie wiedziało,\njak się po tym poruszać, nie będzie wiedziało jaka jest struktura,\njak dana firma po prostu pracuje i w jakich schematach.\nI przez to też te początki nie były łatwe, żeby to wszystko zrobić,\nale finałem tego było naprawdę praca na jedno tak zwane kliknięcie,\nno może na dwa kliknięcia.\n"
+ },
+ "ch-doram-5-70-94": {
+  "verdict": "ok",
+  "coverage": 1.0,
+  "av_drift": 0.053,
+  "new_repeats": [],
+  "heard": "I w tym przypadku do tego klienta, już wracając znowu do brzegu, polegało to na tym, żeby AI się nauczyło tego wszystkiego, że dany produkt może być nazwany w różnych momentach, więc nawet jeżeli zrobiliśmy miernik i wyliczaliśmy tutaj też, żeby mieć te dane, jak AI wpłynęło na pracę tej firmy, to powodowało, że z początku prawdopodobieństwo znajdywania i dopasowywania zamówień do tego, co mamy, było na poziomie 70%.\nPo miesiącu osiągnęliśmy 94%, czyli jeżeli zamówienie wcześniej musieliśmy\npo prostu ręcznie jeszcze, dlatego mówiłem też o tych kilkunastu kliknięciach,\npowiedzieć mu, hej, ten produkt, to tak naprawdę to jest ten produkt\ni z taką i z taką tkaniną, tak, bo tam dużo też rzeczy było o samej tkaninie,\nwięc dopasowaliśmy go, zapisaliśmy, AI to zapamiętało, system baza danych\nteż to zapamiętała i nagle później dostajemy kolejne zamówienie\ndo tego kontrahenta w podobnym po prostu tutaj jakby nazwach\ni lekko się różniącym i nagle AI dopasowuje to w 95%.\nZostają nam jakieś bardzo marginalne przypadki tego wszystkiego.\n"
+ },
+ "ch-doram-6-kody-15-minut": {
+  "verdict": "ok",
+  "coverage": 0.959,
+  "av_drift": 0.01,
+  "new_repeats": [],
+  "heard": "Jeżeli chodzi o tą część taką jeszcze bardzo czasochłoną, czy generowanie samych kodów kreskowych, no to tutaj to nie było żadnej magii, żadnego AI, po prostu program, system bierze cztery numery, które potrzebujemy, generuje z nich po prostu PDF-a od razu, gotowego, po kliknięciu, po minucie masz gotowego PDF-a z 40 stronami etykiet, które po prostu trzeba tylko wydrukować,\nwydrukować, przykleić i nagle z kilku dni pracy dostajemy 15 minut pracy.\n"
+ },
+ "ch-vacu-1-chatgpt-zapomina": {
+  "verdict": "ok",
+  "coverage": 0.988,
+  "av_drift": 0.027,
+  "new_repeats": [],
+  "heard": "Jaki był problem? Problem był taki, że właściciel tutaj korzystając z tych narzędzi najbardziej popularnych jak chat GPT po prostu miał dosyć dużo frustracji do tego, że ten czat w pewnym momencie przestaje pamiętać moje wcześniej się wytyczne.\nTen czad przestaje rozumieć i zaczyna haucynować i to jest bardzo frustrujące, zdaję sobie z tego sprawę i powodował, że często to AI było naszym wrogiem, a nie sprzymierzęcym w tym wszystkim i żeby nam pomagało w pracy, a nie utrudniało.\nI niestety to jest ten syndrom tego, że te narzędzia mają po prostu ograniczony kontekst. Kontekst to możemy powiedzieć w takim mniej więcej języku potocznym, że to jest po prostu pamięć, która po prostu się kończy.\ni przypuśćmy narzędzia, część narzędzi, duża część narzędzi ma to powiedzmy\nmilion kontekstu samego w sobie albo duże liczby, które wydają się wręcz nieosiągalne,\nżeby to wypełnić to wszystko, jednak siedząc nad danym czatem powiedzmy\nkilkanaście miesięcy, ten czat zaczyna nam się zacinać, ten czat zaczyna nam\nhalucynować, ten czat zaczyna wymyślać i powoduje jeszcze większą frustrację.\n"
+ },
+ "ch-vacu-2-dane-w-glowach": {
+  "verdict": "ok",
+  "coverage": 0.994,
+  "av_drift": 0.02,
+  "new_repeats": [],
+  "heard": "No więc pierwsze tutaj hasło agent AI dla tego właściciela.\nJednak problem się stał o wiele bardziej złożony, bo w momencie, kiedy weszliśmy do tej firmy,\nokazało się, że dane są w głowach, na kartkach, na mailach i niestety agent AI nie ma skąd tych danych pobierać.\nI oczywiście mogliśmy częściowo ten problem rozwiązać i tylko po ten jeden problem,\npo ten jeden prompt, który na przykład dany w oświe powtarzał,\nale wiedzieliśmy razem tutaj z Marcinem, którym tutaj tworzymy ten projekt,\nże to nie da takiego przełożenia i takiej siły we wdrożeniu i trzeba to zrobić\npo prostu całościowo i porządnie, a porządnie to oznacza tyle,\nże trzeba zbudować fundamenty, fundamenty pod AI, czyli AI musi mieć,\nskąd te dane pobierać, musi mieć możliwość tych danych po prostu,\nżeby one były w jakimś konkretnym miejscu, cyfrowym miejscu,\na nie w głowach, no bo tam nam AI jeszcze, na razie jeszcze nie zajrzy,\nkto wie jak to dalej, to w jakim kierunku to dalej pójdzie.\n"
+ },
+ "ch-vacu-3-mozg-firmy": {
+  "verdict": "ok",
+  "coverage": 0.993,
+  "av_drift": 0.01,
+  "new_repeats": [],
+  "heard": "I idąc tym tropem, poszliśmy w tym kierunku, ok, tworzymy mózg firmy.\nMózg firmy polega na tym, że po prostu dostaliśmy dostęp do dysku,\ndostaliśmy dostęp do danych około, wydaje mi się, że tam było między 100 a 150 giga\nróżnych danych, manuali, procedur, filmów instruktażowych, ofert, wycen,\npo prostu wielki, gigantyczny miszmasz, jeżeli chodzi o te dane.\nNo i zaczęliśmy je z nich budować po prostu wiedzę dla tej firmy\ni efekt był o tyle imponujący, że nagle dowolne zadanie pytania właściciela\ndo tego agenta AI powodował, że dostawał bardzo konkretną odpowiedź.\nI to o tyle rozpaliło ciekawość i chęć dalszych wdrożeń u tego właściciela\ndo tego, że ja chcę wiedzieć, co się dzisiaj dzieje w firmie.\nJa chcę mieć codzienny brief tego, co się w firmie wydarzyło rano, po południu,\nchcę wiedzieć po tygodniu.\n"
+ },
+ "ch-vacu-4-duze-systemy": {
+  "verdict": "ok",
+  "coverage": 1.0,
+  "av_drift": 0.007,
+  "new_repeats": [],
+  "heard": "A to dlatego, że ja mam takie odczucie, że często kupując gotowca system dla produkcji,\nbierzemy coś, co do czegoś musimy dostosować i nagle z pewnego układu,\nnawet w Excelu, jaki mieliśmy, musimy się kompletnie przestawić na to, jak to używać,\nbo nagle jakaś firma sobie wymyśliła w ten sposób, a nie inny,\na my, kurde, chcieliśmy tylko mieć system, który dużo będzie się nie różnił od tego, co na co dzień robimy i to powoduje, że jest duża niechęć do dużych wdrożeń, dużych systemów, bo widzę to i to jest powtarzający się problem, że duże systemy nie udaje się wdrożyć, duże systemy wdrażają, wdraża się kilka miesięcy i te wdrożenia też nie są, nie kończą się sukcesem.\ni nie kończą się sukcesem dlatego, że te systemy są oderwane od rzeczywistości.\nOne wymagają od nas, żeby się dostosować do tych systemów,\na nie dostosowują się do nas.\nA jeżeli w ogóle chcemy, żeby system się dostosował do nas\ni chcemy jakiejś customowej, niestandardowej integracji,\nno to firmy tutaj jakby powodują, że nasze budżety po prostu wykraczają\nna rozwiązania IT bardzo mocno poza planowane budżety i to jest też częsta\nblokada dla firm, które by chciały takie rozwiązania.\n"
+ },
+ "ch-vacu-5-kierownik-w-godzine": {
+  "verdict": "ok",
+  "coverage": 0.977,
+  "av_drift": 0.0,
+  "new_repeats": [],
+  "heard": "My wychodzimy z innego założenia, czyli Excel miał pewien plan produkcji, nie był to może idealny sposób planowania, nie był to taki, że tak powiem, książkowy planowanie produkcji, ale miał swój sposób.\nKierownik produkcji miał swój sposób, a miał go na tyle ten sposób, że miał na tyle ten sposób ułożony,\nże mi zależało na tym, żeby odzwierciedlić jak najbliżej tego, co on ma.\nI finalnie widoki, które udało się ułożyć, były bardzo bliskie temu Excelowi.\nByły o wiele bardziej oczywiście funkcjonalne, tak? Zapisywały historię każdego z etapów,\ndawały gigantyczne możliwości, ale nauka i wdrożenie tego u tego kierownika produkcji\nnaprawdę, uwierzcie mi, że zajęła godzinę i ewentualnie później jakieś tam uwagi,\nczy możemy jeszcze ten przycisk tak zrobić, a czy to może się inaczej wyświetlać,\na jakieś drobne tutaj jakby poprawki, ale to możliwości dało naprawdę potężne\nOpen Mercato, które dawało gigantyczne podstawy gotowych modułów, z których tak naprawdę trzeba było złożyć\njeden konkretny moduł, jedną konkretną tutaj dla danego kierownika produkcji konkretny proces,\ndo tego, żeby tutaj to wdrożnienie zajęło dosłownie kilka godzin, tak, kilka godzin też mówię o takich godzinach\nteż gdzieś tam na wymianie na Whatsappie i zapytaniu się, dlaczego tak działa,\na czy mogę tak, żeby tak działało i na takiej zasadzie wymiany zdań.\nI najlepsze było to, że efektem był wydrukowany bardzo, że tak powiem,\njeden do jednego Excel, który, przepraszam, nie Excel, tylko PDF,\nktóry przypominał tego Excela wyjściowego. Więc kierownik produkcji naprawdę tutaj\ndużo, dużo z tego wszystkiego miał radości, że to wdrożenie poszło bardzo sprawnie.\n"
+ },
+ "ch-vacu-6-brief-telegram": {
+  "verdict": "ok",
+  "coverage": 0.984,
+  "av_drift": 0.067,
+  "new_repeats": [],
+  "heard": "A jak to wpłynęło dalej na tego właściciela, który temu wszystkiemu chciał, żeby te dane wszystkie mieć w jednym miejscu? No tak, że jeżeli kierownik produkcji uzupełnia te dane i je robi, bo może je łatwo uzupełniać, nie ma strachu przed nowym systemem, przed dużym systemem, przed dużym wdrożeniem, zaczyna z niego korzystać, to nagle się okazało, że codzienny briefing właściciela firmy staje się przyjemnością.\nWłaściciel dostaje codziennie powiadomienie na temat postępów produkcji, na temat opóźnie produkcji, na temat tego danego zamówienia, czyli jak wygląda zamówienie dla kluczowych klientów i dostaje listę tych kluczowych klientów.\ndostaje możliwość generowania oferty z samego komunikatora, czy to będzie\nWhatsapp, czy Slack, nie ma to dużego znaczenia, jeżeli chodzi o konfigurację,\ndostaje też możliwość tworzenia w ogóle dla fajnych, no sam właściciel w ogóle\nnie jest potrzebny do tego, żeby w tym systemie do niego wchodzić, bo jeżeli\nwiemy jak praca właściciela często wygląda tak, że siedzimy na telefonie,\nto ten asystent AI w połączeniu z mózgiem spowodował, że właściciel wpisuje,\nchce utwórz mi zamówienie dla tego klienta i dostajesz informację,\nże takie i takie zamówienie było w niedawnym czasie stworzone,\nczy chcesz które zduplikować, czy chcesz całkowicie nowe stworzyć\ndla tego klienta i nie wychodząc z żadnego komunikatora i robiąc to\nbardzo przystępny i banalny wręcz sposób, w zasadzie tylko klikania w menu\nna przykład w Telegramie, powoduje, że w trzech kliknięcia masz gotowe\nnowe zamówienie, masz gotową nową ofertę w tym wszystkim, więc tutaj to też powoduje.\n"
+ },
+ "ch-vacu-7-narzedzie-to-nie-wdrozenie": {
+  "verdict": "ok",
+  "coverage": 0.988,
+  "av_drift": 0.013,
+  "new_repeats": [],
+  "heard": "bo samo rozwiązanie techniczne często, jak widzimy po tych różnych wdrożeniach\nnieudanych, po prostu samo narzędzie nie rozwiązuje problemu.\nPosiadanie narzędzia jakiegokolwiek, wykupienia na niego licencji\nnie oznacza, że będziemy z niego korzystać, więc my tutaj mocno na to stawiamy,\nżeby było rozwiązanie to naszyte na miarę, żeby to było rozwiązanie,\nktóre będzie efektywne i które będzie łatwe do wdrożenia, które nie będzie\nrozwiązaniem, które po prostu powoduje ścisk żołądka, niechęć pracowników\ni tak dalej, tak, więc tutaj każdy jako właściciel\n"
+ },
+ "ch-offers-1-oferta-5-minut": {
+  "verdict": "ok",
+  "coverage": 0.992,
+  "av_drift": 0.007,
+  "new_repeats": [],
+  "heard": "chwili. A jak to działa w praktyce? U jednego producenta maszyn sportowych\nwdrożyliśmy asystenta AI, który po prostu na bieżąco czyta maile.\nCzyta maile i zbiera z nich informacje na temat wycen.\nSprawdza, które dotyczą wycen i w locie przygotowuje Ci szkic takiej oferty.\nDostajesz powiadomienia na Telegrama przykładowo albo na inny komunikator i możesz je zaakceptować albo poprosić o drobną korektę, zmianę. Wszystko w ciągu 5 minut. Wcześniej ta sama oferta zajmowała nawet kilkanaście godzin.\nCzemu kilkanaście godzin? No bo zanim się do niej zabraliśmy, zanim odkopaliśmy stare oferty, jak one wyglądały, która to była ta najlepsza oferta, powoduje, że zaczynamy tworzenie tej oferty prawdopodobnie w poniedziałek rano, a kończymy ją na przykład we wtorek pod koniec pracy, o ile wszystko dobrze.\n"
+ },
+ "ch-rezon-1-ksiegowosc-po-fakcie": {
+  "verdict": "ok",
+  "coverage": 0.986,
+  "av_drift": 0.01,
+  "new_repeats": [],
+  "heard": "Kontrola była głównie od księgowych i od raportów miesięcznych, kwartalnych, rocznych do tego jak firma pracuje i w jakiej jest firma kondycji\nTylko, że to już jest po fakcie, jeżeli chodzi o dane z księgowości\nMy jako osoby, które prowadzą firmę potrzebujemy danych na zawołanie,\ndanych codziennie, tygodniowo, miesięcznie, kwartalnie.\nDzięki temu jesteśmy w stanie szybciej podejmować decyzje,\nszybciej rozwiązywać problemy w naszej firmie, bo wiemy gdzie one się pojawiają.\nI sama centralizacja danych, gdzie nawet AI nie jest tutaj jeszcze w tym wszystkim\npotrzebne, powoduje, że dane mamy w jednym miejscu i to jest ta rzecz,\nna której często zaczynamy, czyli scentralizowanie danych w jedno miejsce,\ntak, aby zbudować fundament pod sztuczną inteligencję.\nDlaczego fundament pod sztuczną inteligencję?\nBo jeżeli będziemy mieć w firmie bardzo rozproszone dane na kilku Excelach,\nw kilku systemach, to uwierz mi, ale AI sobie z tym nie poradzi.\n"
+ },
+ "ch-rezon-2-ustka-rowy": {
+  "verdict": "ok",
+  "coverage": 0.972,
+  "av_drift": 0.023,
+  "new_repeats": [],
+  "heard": "Ta branża też jest tutaj specyficzna, że dla każdej nadmorskiej miejscowości albo południowo tutaj, albo na każdej nadmorskiej miejscowości każdy, jak dobrze wiecie, każdy wzór, każda miejscowość ma swój napis, ma swoją jakby taką indywidualne dostosowanie do potrzeb danej miejscowości.\nTo powoduje, że jeżeli wyprodukowaliśmy tysiące sztuk na miejscowość,\nprzypuśćmy Ustka, nie zrobisz tego samego na tych samych półproduktach do rowów\nalbo do łeby na przykład, bo już zostały wykorzystane.\nDzięki temu możemy zmienić sposób pracy na to, żeby firma mogła\nz handlowiec jeżdżący z tabletem po prostu prezentował nam te produkty i w momencie,\nkiedy klient się zdecyduje składać je na zamówienie i przyspieszyć sposób dostawy.\n"
+ },
+ "ch-rezon-3-panel-klienta": {
+  "verdict": "check",
+  "coverage": 0.995,
+  "av_drift": 0.03,
+  "new_repeats": [
+   "i dzięki temu"
+  ],
+  "heard": "Co tu jeszcze zmieniliśmy w sposobie pracy? Zmieniliśmy to, że klient przestaje zamawiać mailowo przez jakieś formularze, które są bardzo nieczytelne, na jakichś karteczkach odręcznie napisanych przez handlowców, które były bardzo trudne do zrozumienia, często powodowały błędy, często powodowały nadprodukcje, często powodowały złą relację z klientem i nieporozumienia.\nDzięki wprowadzeniu systemu i panelu klienta, który właśnie został zrobiony w oparciu o Open Mercato, klient sam się loguje, sam może złożyć zamówienie, sam widzi statusy, w których to zamówienie jest i dzięki temu mamy zaoszczędzone bardzo dużo czasu, bo nasz pracownik w biurze na produkcji dostaje powiadomienie, że wpadło nowe zamówienie i dzięki temu może już przystąpić do realizacji.\nOczywiście nie zawsze jest tak, że klient musi to zrobić sam, bo powiedzmy nie każdy klient sobie poradzi z takim systemem. Dzięki temu wiemy, że na przykład daliśmy możliwości handlowcowi składania zamówień za klienta. To jest rzecz normalna, to się zawsze odbywało, jednak dajemy dwie drogi.\nJeśli klient sobie nie radzi, handlowiec przejmuje tą rolę, którą zawsze miał\ni wprowadza za klienta zamówienie i oczywiście handlowiec ma swój do tego panel,\nhandlowiec widzi zamówienia swoich klientów, a klient dalej widzi tylko swoje zamówienie.\nWięc to jest ten przypadek, jeżeli chodzi o zastosowanie Open Mercato\ni jak to zastosowanie jest dla firmy i handlu B2B w branży pamiątkarskiej.\n"
+ },
+ "ch-marpasz-1-cztery-worki": {
+  "verdict": "ok",
+  "coverage": 0.944,
+  "av_drift": 0.013,
+  "new_repeats": [],
+  "heard": "Jednym z nich jest firma handlowa, która handluje paszą dla zwierząt i miała dosyć poważny problem z tym, że systemy typu Apilo, Baselinker, które dają możliwość zarządzania e-commercem i zarządzania różnymi marketplace'ami, mają o tyle utrudnioną sytuację, że standardowe paczki są do 25 kg.\ni nie było za bardzo rozwiązania, które powodowało, żeby te paczki po prostu\nlepiej pakować, lepiej oznaczać, bo jedno zamówienie składało się na przykład\nz czterech paczek. Klient zamawiał cztery worki paszy po 25 kilo,\nwięc nie mogliśmy wsadzić tego w jedno zamówienie, nie dawało rady\nwydrukować jednej etykiety, bo to musiały być cztery różne etykiety,\nWięc tutaj zgłosiła się do mnie klientka ze subska, która z takim problemem i jak sytuacja ma się teraz i jak wcześniej ta sytuacja wyglądała.\nKlient wchodził wcześniej w Apillo i po to, żeby wydrukować na przykład cztery różne etykiety\ndla tego samego produktu, bo tak musiał to zrobić, jeżeli na przykład było wysłane to in postem,\nmusiał wchodzić w Apillo, system, o którym tutaj możecie sobie zobaczyć, link do niego podeślę,\nbo to jest całkiem fajny system do zarządzania e-commerce'em i do zarządzania marketplacesami,\nale już wracając do sedna sprawy, musiał klient wejść w komentarzu,\nżeby wiedzieć, do którego zamówienia dana etykieta jest,\nmusiał w komentarzu usunąć jedną część, zostawić tylko ten produkt,\nktóry będzie dla tego drukowany, to sobie gdzieś przeklejał z boku do Excela\ni klient drukował etykietę.\nPóźniej z tego Excela wklejał całą resztę, brał drugi człon, trzeci, czwarty\ni tak po kolei ten proces wykonywał dla każdego zamówienia.\nJak ja to widziałem, to zajmowało jedno zamówienie około 10 minut do 15,\nw zależności od tego, jak duże to zamówienie było, a do tego jeszcze na końcu\nklient zapisywał sobie informację, od którego kuriera to dane zamówienie idzie.\n"
+ },
+ "ch-marpasz-2-100-godzin": {
+  "verdict": "ok",
+  "coverage": 0.973,
+  "av_drift": 0.02,
+  "new_repeats": [],
+  "heard": "Teraz klient widzi, dostał system, w którym opiera się też tutaj o AI i pomaga\nznajdywać podobne zamówienia. Łączy to wszystko w jeden koszyk i klikasz\nwygeneruj etykiety. Wszystkie etykiety generują się w ciągu kilku minut\ni masz je od razu do wydrukowania.\nOd razu idą do drukarki etykiet, etykiety są drukowane\ni zaoszczędził klient z tego, co tutaj jakby od informacji\ni mierzyliśmy około 100 godzin miesięcznie.\nWyobraź sobie, że ściąga ktoś z Ciebie 100 godzin miesięcznie\nręcznej, frustrującej, wkurzającej pracy, która jest niechętnie robiona\nprzez nikogo. Nikt nie chce takiej pracy robić, bo to jest po prostu praca,\nktóra jest też energetycznie bardzo, bardzo obciążająca, bardzo monotonna,\nłatwą pomyłkę i tak naprawdę to są rzeczy, które klienci powodują dużo nerwów\ni dużo gaszenia pożarów, tak, więc zaostrzegliśmy bardzo dużo czasu\ni dzięki temu pojawiła się przestrzeń na to, żeby osobę, która wcześniej to robiła,\ndać ją do innych zadań, dać ją do rzeczy, gdzie bardziej potrzebujemy w tym wszystkim\nczłowieka, do rzeczy, które nie są po prostu łatwe do zautomatyzowania,\nalbo to, co zawsze dla firmy było ważne, ale nigdy nie było czasu.\n"
+ },
+ "ch-marpasz-3-katalog-ai": {
+  "verdict": "ok",
+  "coverage": 0.976,
+  "av_drift": 0.007,
+  "new_repeats": [],
+  "heard": "dalej, to też jest katalog AI. Katalog AI, jak to wygląda?\nWcześniej klient musiał dane z faktury przekopowywać ręcznie do na przykład\nprogramu Nexo. Do programu Nexo i ten program Nexo trzeba było wszystkie te dane\nuzupełnić, przekleić, do tego trzeba było wejść z chat GPT albo Gmini,\nstworzyć opis jeden dla Allegro, opis dla swojego sklepu na WordPressie,\nopis dla Early na przykład i jeszcze dla innych Marketplace'ów.\nDo tego trzeba było znaleźć zdjęcia.\nNaprawdę dużo, dużo pracy ręcznej i tutaj z informacji, jakie widziałem,\njakie klientka do mnie tutaj przyszła z tymi informacjami,\nwprowadzenie pięciu, dziesięciu produktów i oczywiście robienie jeszcze\nże przy tym innych rzeczy i gaszenie pożarów, bo co chwilę ktoś puka\ni co chwilę ktoś wchodzi, generowało to, że kilkanaście produktów\npotrafiło być wprowadzanych na przykład cały dzień.\nNieraz, jeżeli na przykład to była faktura na 100 pozycji,\nto te wszystkie pozycje nawet nie były wprowadzone.\nNie było na to po prostu czasu, bo ktoś zachorował, bo były ważniejsze rzeczy\ni przez to nasz asortyment nie rósł w żaden sposób, więc tutaj znowu wchodzi\nAI, które pozwala po pierwsze odczytać te dokumenty w bardzo prosty sposób,\nzbudować listę produktów, jakie chcemy dodać w naszego katalogu,\nprzygotować nam opisy pod każdą platformę, sprawdzić to z naszymi magazynami\ni czy ten produkt już istnieje i dosłownie jednym kliknięciem dodać wszystko\ndo naszego magazynu i do naszych programów księgowych, magazynowych, fakturowych,\njakkolwiek, gdzie tego niekolwiek byśmy nie potrzebowali.\nWięc to są takie dwa zastosowania, że tak powiem, z pola bitwy,\njeżeli chodzi o firmę handlową.\n"
+ },
+ "ch-marpasz-4-srubki": {
+  "verdict": "ok",
+  "coverage": 1.0,
+  "av_drift": 0.003,
+  "new_repeats": [],
+  "heard": "I teraz pytanie, czy to działa idealnie? No nie, pamiętajmy, że systemy oparte o AI potrzebują czasu, żeby się pewnej rzeczy nauczyć, potrzebują doślifowania tych rzeczy, ja to tak nazywam, to są takie dokręcanie śrubek w tym wszystkim i te śrubki po prostu przez jakiś czas trzeba podokręcać, tak żeby po kilku miesiącach po prostu ten proces zostawić i o nim zapomnieć.\nA jeżeli chciałbyś zobaczyć, jak o takim procesie zapomnieć i jak te śrubki ja dokręcam,\nto zapraszam Cię na flowbiz.pl, a porozmawiamy i pokażę Ci, jak można to zrobić u Ciebie w firmie\ni jak rozwiązać Twoje problemy używając nowych technologii.\n"
+ },
+ "raw-freestyle-workshop": {
+  "verdict": "ok",
+  "coverage": 0.989,
+  "av_drift": 0.017,
+  "new_repeats": [],
+  "heard": "Cześć, czy masz wrażenie, że cała bańka AI-owa powoduje strach w Twojej firmie?\nCzy cały czas masz poczucie, że wszystkie nowinki techniczne uciekają Ci,\na Ty dalej masz problem z tym, żeby dobrze nawet wykorzystać czar GPT w Twojej firmie?\nto jest normalne uczucie i zagubienie w tych gościu informacji jest czymś zupełnie normalnym.\nJa zapraszam Cię na warsztaty, na których będę pokazywał jak mądrze i jak etapami wdrażać AI w Twojej firmie.\nPo co AI w Twojej firmie? A po to, aby zlikwidować pracę ręczną,\ntak zwane klikanie i przenoszenie rzeczy z jednego miejsca w drugie.\nNiestety jest to jedna z pierwszych pozycji na raportach od firmy Antropi,\nktóra jest właścicielem narzędzia Cloud, od tego, że ta praca będzie likwidowana jako pierwsza.\nRzeczy, które przenosimy ręcznie będą najszybciej automatyzowane.\ngenerują teraz bardzo dużo zawsze problemów, błędów i kosztów dla firmy.\nJakie to są problemy? Jakie to są rzeczy, które można wdrożyć?\nRęczne wystawianie ofert.\nRęczne wystawianie ofert, raportowanie danych, przenoszenie z jednego Excel do drugiego,\naby druga osoba miała na przykład dostęp.\nAutomatyczne, zautomatyzowane wystawianie faktur dla firmie.\n"
+ }
+}

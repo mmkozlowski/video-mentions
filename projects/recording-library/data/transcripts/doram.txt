@@ -1,0 +1,147 @@
+    6.4 No dobra, lecimy z kolejnymi praktycznymi użyciami AI w firmach.
+   14.3 Teraz na warsztat możemy wziąć firmę produkcyjną meble ogrodowe
+   25.2 i opowiem Wam trochę, gdzie był problem, jak go rozwiązaliśmy,
+   29.0 jak on wyglądał przed i jak wygląda teraz.
+   33.5 Klient dostawał od swoich kontrahentów niemieckich zamówienia w Excelu.
+   40.6 Długoletni kontrahenci współpracowali już, jakieś Excele mieli dopracowane,
+   48.2 jakiś szablon, jakieś kolumny, wyglądało to nie tak źle.
+   55.6 Jednak diabeł tutaj tkwi w szczegółach, bo klient, kontrahent, który zamawiał,
+   63.6 potrafił tą samą rzecz nazwać na kilkanaście różnych sposobów.
+   69.0 Potrafił raz napisać po niemiecku, raz po angielsku.
+   73.3 I rozszyfrowanie tych rzeczy było bardzo czasochłonne.
+   79.4 Tutaj od klienta z Podsłupska, który miał ten problem, była dość duża frustracja
+   86.4 i co najważniejsze, to nie była tylko samego właściciela frustracja,
+   90.6 ale też osób, które to wykonywały.
+   92.2 Dlaczego? Bo robiły rzeczy, których...
+   96.9 Dlaczego? Bo robiły rzeczy niewłaściwe.
+  101.4 Niewłaściwe dlatego, bo takie klepanie potrafiło im zająć nawet kilka dni,
+  107.0 żeby takie zamówienie z setką pozycji po prostu obrobić, znaleźć.
+  111.6 A dlaczego teraz nazwał tak? A dlaczego nazwał tak?
+  114.4 Ten dany kontrahent, a kogoś nie było na przykład w firmie,
+  118.3 kto miałem na ten temat wiedzę i cała praca na tych Excelach
+  122.6 naprawdę była bardzo mocno frustrująca i przyznam szczerze,
+  127.8 że dawno też nie widziałem takiej radości i w głosi właściciela
+  131.8 i osób, które to robiły, takiego entuzjazmu do tego,
+  135.0 jak system, który wdrożyliśmy właśnie z tą nakładką AI
+  138.6 spowodował, że ten czas skrócił się do dosłownie 10 minut.
+  145.8 A teraz dlaczego ten proces tak długo trwał?
+  149.2 Ten proces trwał, tak jak wcześniej powiedziałem,
+  150.8 dlatego, że musieliśmy dopasować różne nazwy.
+  153.9 Musieliśmy też sprawdzić, czy te ceny się zgadzają z cenami
+  158.6 w naszym katalogu, który był też rozproszony na różne Excel.
+  165.6 Musieliśmy dopisać swoje kolumny, które były po prostu takim procesem,
+  169.5 gdzie zawsze to robiliśmy.
+  171.4 Okazało się, że klient ma trzech różnych kontrahentów głównych
+  175.3 i każdy z tych kontrahentów jednak trochę inaczej te Excel przygotowywał.
+  179.5 Nie wiadomo, ale nie chciał się dostosować.
+  181.8 No wiadomo, długoletnia współpraca i po prostu pewne utarte schematy
+  185.6 i ciężko to zmienić u siebie w firmie, a co dopiero u zewnętrznej firmy,
+  190.2 która jest naszym kontrahentem.
+  191.3 Więc po prostu braliśmy jak było.
+  193.1 Tak, żeby nie odkładać dodatkowych problemów.
+  199.5 I wiem, że były próby tego, żeby te Excel ujednolicić,
+  202.5 ale one po prostu kończyły się po tygodniu.
+  204.9 Były drobne zmiany, ale to nie były na tyle znaczące zmiany,
+  207.7 żeby faktycznie coś się zmieniło w sposobie pracy między firmą,
+  211.6 a produkcyjną, a tymi kontrahentami.
+  215.5 Dużo też czasu w tym wszystkim zajmowało przygotowanie dla osoby,
+  221.2 która była w biurze, w tych pracach administracyjnych,
+  224.0 generowanie kodów kreskowych.
+  226.9 Trzeba było wygenerować kod całego zamówienia,
+  231.2 trzeba było wygenerować kod konkretnego produktu
+  234.4 i jeszcze części konkretnych do tego, aby te paczki popakować.
+  238.3 To powodowało, że to było moje też bardzo ciekawe doświadczenie,
+  243.0 a już coraz mniej zaskakujące, że ta osoba, która to robiła,
+  246.9 brała te wszystkie numery, które przychodziły w tych Excelach,
+  250.4 wklejała do innego specjalnego Excela, w którym generował się kod kreskowy
+  258.1 i ten kod kreskowy drukowała i przechodziła do kolejnej pozycji,
+  264.2 przeklejała, drukowała, przeklejała, drukowała, przeklejała, drukowała.
+  268.0 No przy setce zamówień ciężko tutaj się dziwić, że to trwało na przykład trzy dni,
+  274.0 no bo jak wiadomo, robimy to jedno zamówienie,
+  276.1 a jeszcze ktoś nas odciąga od tych zadań, chce, żebyśmy robili coś innego,
+  280.7 awarię, gaszenie pożarów, więc no to była dla tej osoby też bardzo czasochłonna,
+  289.4 frustrująca, frustrujący proces.
+  292.3 I teraz jak to uprościliśmy, tak?
+  295.2 No dzięki całej tutaj mocy AI, jakie nam daje,
+  300.0 pozwoliliśmy sobie na to, żeby po pierwsze trzeba było tą bazę scentralizować,
+  304.5 trzeba było wszystkie Excel wgrać do jednej bazy, do jednego systemu.
+  309.5 To zajęło dość długo czasu, to tutaj to nie ukrywam,
+  312.8 ale to po prostu bolało, ale to trzeba było zrobić.
+  318.1 Bez tych fundamentów AI nie będzie wiedziało, jak się po tym poruszać,
+  321.7 nie będzie wiedziało, jaka jest struktura,
+  324.1 jak dana firma po prostu pracuje i w jakich schematach.
+  328.5 I przez to też, no te początki nie były łatwe, żeby to wszystko zrobić,
+  333.1 ale finałem tego było naprawdę praca na jedno tak zwane kliknięcie,
+  339.4 no może na dwa kliknięcia.
+  342.3 Z początku może też to było trochę więcej niż dwa kliknięcia,
+  345.3 może pięć, dziesięć, ciężko mi to też tutaj ocenić,
+  348.1 ale już Wam mówię, dlaczego to mogło być nawet dziesięć kliknięć.
+  352.0 O tym to było ciekawe, że w momencie, kiedy wprowadziliśmy te wszystkie produkty
+  355.9 już do bazy, klient zaciągał tego Excela wyjściowego,
+  362.4 przepraszam, tego Excela wyjściowego od kontrahenta,
+  367.4 klient to zaciągał i musiał zbudować tak zwaną pamięć dla sztucznej inteligencji.
+  375.5 Pamięć dla sztucznej inteligencji to jest coś, co powoduje,
+  380.9 że na przykład ten sam produkt, uczymy naszą sztuczną inteligencję
+  386.0 za pomocą wkładania tutaj jakby pamięci, to, że ten produkt może
+  391.4 i dla tego kontrahenta może się nazywać w trzech różnych wariantach,
+  396.1 w pięciu różnych wariantach, bo my nie do końca wiemy,
+  398.3 który wariant będzie tutaj dopasowany, a sztuczna inteligencja dzięki tutaj
+  405.0 swojej tutaj jakby możliwości analizowania tekstu danych powodowało,
+  409.8 że przy wgraniu takiego dokumentu mieliśmy możliwość zobaczenia,
+  414.5 że prawdopodobieństwa, że ten produkt, który tutaj ten klient tak nazwał,
+  419.4 to jest prawdopodobnie to i na przykład to mogło być pokazywane
+  422.8 w kilku różnych kolorach, tak, czyli nie wiem, nie dopasowałem,
+  427.9 na 80% wydaje mi się, że to jest ten produkt albo na 100%,
+  431.2 że to jest ten produkt i oczywiście pierwsze zamówienia były takie,
+  434.6 że trochę klient był nie do końca, czuł ten efekt, a to dlatego też jest często
+  440.8 tak we wdrożeniach AI, że oczekujemy, no taka ta inteligencja AI jest takie mądre,
+  445.7 to to powinno od razu wejść w naszą firmę i powinniśmy to wszystko robić
+  449.3 i trochę tak to też działa, że no znowu to powtórzę,
+  454.6 AI po prostu wymaga chwilę czasu, nad nim trzeba iteracyjnie,
+  458.4 czyli co jakiś czas uczyć go jak ten proces ma działać, tak,
+  463.3 nawet jak sobie zobaczycie jak działacie na przykład z jakimś czatem GPT
+  466.1 albo Gmini i poprawiacie go błędy, to nawet jak to jest zwykły czat
+  470.6 i te okno jest dosyć tutaj krótkie, jeżeli chodzi o pamięć,
+  475.0 jeżeli chodzi, mówimy o tych popularnych narzędziach,
+  477.7 to z czasem czat GPT już wie jak my chcemy, żeby te odpowiedzi wyglądały,
+  482.5 jak nie chcemy, żeby te odpowiedzi wyglądały, dzięki temu po wrzuceniu
+  486.9 danego polecenia albo danego wycinku na przykład maila,
+  489.9 dostajemy od razu to, co byśmy chcieli, tak, no bo się nauczył,
+  494.3 potrzebował ileś tygodni na przykład czasu i naszych prób do tego,
+  500.4 żeby ta wiedza po prostu mu się ustrukturyzowała, tak,
+  504.2 że chcemy, żeby to było robione w ten sposób, ale nie w ten,
+  508.1 albo taki układ zdań jest dobry, a taki nie jest dobry, tak,
+  513.2 taki jakby nastrój, taka jakby forma maila jest okej,
+  519.1 a ta inna nie jest okej, dzięki temu to uczymy.
+  521.7 I w tym przypadku do tego klienta, już wracając znowu do brzegu,
+  526.5 polegało to na tym, żeby AI się nauczyło tego wszystkiego,
+  530.1 że dany produkt może być nazwany w różnych momentach,
+  533.4 więc nawet jeżeli zrobiliśmy miernik i wyliczaliśmy tutaj też,
+  538.2 żeby mieć te dane, jak AI wpłynęło na pracę tej firmy,
+  541.2 to powodowało, że z początku prawdopodobieństwo znajdywania
+  546.0 i dopasowywania zamówień do tego, co mamy, było na poziomie 70%.
+  553.3 Po miesiącu osiągnęliśmy 94%, czyli jeżeli zamówienie wcześniej,
+  560.0 musieliśmy po prostu ręcznie jeszcze, dlatego mówiłem też o tych kilkunastu
+  563.0 kliknięciach, powiedzieć mu, hej, ten produkt, to tak naprawdę to jest ten produkt
+  568.1 i z taką i z taką tkaniną, tak, bo tam dużo też rzeczy było o samej tkaninie,
+  573.2 więc dopasowaliśmy go, zapisaliśmy, AI to zapamiętało,
+  577.8 system baza danych też to zapamiętała i nagle później dostajemy
+  583.1 kolejne zamówienie do tego kontrahenta w podobnym po prostu tutaj jakby nazwach
+  589.0 i lekko się różniącym i nagle AI dopasowuje to w 95%.
+  596.7 Zostają nam jakieś bardzo marginalne przypadki tego wszystkiego.
+  602.3 Jeżeli chodzi o tą część taką jeszcze bardzo czasochłoną,
+  606.4 czy generowanie samych kodów kreskowych, no to tutaj to nie było tutaj żadnej magii,
+  612.4 żadnego AI, po prostu program, system bierze cztery numery, które potrzebujemy,
+  619.8 generuje z nich po prostu PDF-a od razu gotowego, po kliknięciu, po minucie,
+  624.8 masz gotowego PDF-a z 40 stronami, etykiet, który po prostu trzeba tylko wydrukować,
+  631.7 przykleić i nagle z kilku dni pracy dostajemy 15 minut pracy,
+  637.2 więc to by było na razie na tyle.
+  639.4 W tej firmie dalej automatyzujemy, dalej wdrażamy AI.
+  644.2 Będą pewnie kolejne przypadki, jak to, do czego doszliśmy i jakie tutaj kolejne
+  648.9 oszczędności wyszły w tym wszystkim, więc mam nadzieję, że będziecie to śledzić,
+  652.9 a ja na pewno wrócę do Was z informacjami, jak to wyglądało przed, po
+  657.7 i jak to może wyglądać też w Waszej firmie, więc dziękuję Wam na dzisiaj
+  662.5 i zapraszam do oglądania i subskrybowania kanału i zostawienia też komentarza,
+  668.8 z jakimi problemami Wy się borykacie, jakie Wy rzeczy byście chcieli
+  673.8 zautomazować w swojej firmie albo zadajcie jakiekolwiek pytanie związane z tą tematyką,
+  679.7 a z chęcią na nie odpowiem. Dzięki i do usłyszenia.

@@ -1,0 +1,686 @@
+    1.3 Raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa, raz, dwa
+   38.6 Raz, dwa, raz, dwa.
+   40.4 Open Mercato.
+   43.6 Pracownik pyta AI ile zarabia szef i dostaje odpowiedź.
+   47.6 To nie jest problem AI, to jest problem uprawnień, których w firmie nigdy dotąd nie było.
+   57.6 Pracownik pyta AI ile zarabia jego firma i dostaje odpowiedź.
+   61.5 I to nie jest problem AI, to jest problem uprawnień, których w firmie nigdy nie było.
+   65.9 W Open Mercato to nie jest problem AI, to jest problem uprawnień,
+   79.3 których w firmie nigdy nie było.
+   81.4 W Open Mercato każda funkcja ma swoje uprawnienia w roli.
+   85.1 Technik nie widzi cen, handlowiec nie widzi wypłat, oddział widzi tylko swoje dane.
+   96.1 U mnie przy migracji klientów z narzędzi low-code samo zarządzanie ludźmi z dostępami poszło jakieś 4 razy szybciej, bo tego się już nie buduje, to już jest.
+  108.7 Więcej o tym jak buduje się takie systemy znajdziesz w długim odcinku na kanale.
+  121.6 Pracownik pyta AI ile zarabia jego szef na danym zleceniu i dostaje odpowiedź.
+  128.1 To nie jest problem AI, to jest problem uprawnień, których w firmie nigdy nie było.
+  132.6 W Open Mercato systemie ERP AI każda funkcja ma swoje uprawnienia w roli.
+  137.3 Technik nie widzi cen, handlowiec nie widzi wypłat, oddział widzi tylko swoje dane.
+  145.8 U mnie przy przenoszeniu danych klienta z narzędzia low-code albo innego no-codu samo narzędzie...
+  157.4 U mnie przy przenoszeniu klienta z narzędzi low-code, Excela lub czegokolwiek innego
+  161.8 i samo zarządzanie ludźmi i dostępami poszło jakieś kilkukrotnie, cztery razy szybciej,
+  167.8 bo już tego się nie buduje, to już jest.
+  170.5 Więcej o tym jak buduje się takie systemy znajdziesz na moim odcinku na YouTubie.
+  175.8 jak zbudować system, który pozwoli Ci zachować granice i rolę całkowicie za darmo.
+  193.0 Open Mercato daje Ci gigantyczne możliwości uprawnień o ról całkowicie za darmo.
+  199.9 To jest system, w którym już 80% najważniejszych funkcji masz gotowe.
+  205.8 Jeżeli interesuje Cię to, te sprawy, zapraszam Cię na mój odcinek na kanale na YouTube.
+  214.0 Nagranie drugie z 36.
+  219.9 Kto kurwa zmienił cenę tego produktu?
+  223.0 Przepraszam za wulgaryzm, ale nieraz już słyszałem takie sprawy pomiędzy...
+  231.8 Kto kurwa zmienił cenę tego produktu?
+  235.8 kolokwializm, ale nieraz padały takie słowa od szefów firm, z którymi współpracuję.
+  240.8 I najgorsze, że nikt nie wie. Szukasz w mailach, w Excelach, dzwonisz do swoich
+  244.6 pracowników w nerwach, a teraz chcesz, żeby w tym systemie dane zmieniały jeszcze AI?
+  249.0 Jeśli nie wiesz tego o ludziach, nie będzie...
+  256.7 Szukasz w mailach, w Excelach, dzwonisz po ludziach w nerwowej atmosferze,
+  260.3 a teraz chcesz, żeby w tym wszystkim dane jeszcze zmieniało AI?
+  263.5 Jeśli nie wiesz tego o ludziach, nie będziesz tego wiedział o AI.
+  268.0 Dlatego w systemach, które buduje na Open Mercato każda zmiana zostawia ślad.
+  272.1 Kto, kiedy, co, przed i po, jaki był efekt.
+  281.2 Każda zmiana zostawia ślad.
+  282.9 Kto, kiedy, co było przed, co jest po, a jak ktoś się pomyli,
+  287.2 człowiek czy AI, jedno kliknięcie, cofni i wszystko wraca.
+  290.2 To nie jest dodatek, to nie jest warunek, żeby w ogóle wpuścić AI do firmy.
+  295.4 Więcej o tym, jak buduję takie systemy znajdziesz na moim kanale na YouTube,
+  299.1 więc zapraszam Cię do tego, aby zobaczyć jak budować takie systemy całkowicie za darmo.
+  307.6 Nagranie trzecie.
+  309.4 Zapytaj chat GPT ile masz otwartych zamówień.
+  313.6 No właśnie, nie wie, bo AI zna cały internet.
+  320.2 firmy nie zna. Open Mercato ma takie gniazdko, przez które podłączysz AI
+  324.6 na przykład do Clouda prosto do danych...
+  331.9 No właśnie, nie wie, bo AI zna cały internet, ale nie zna kontekstu,
+  336.8 nie zna Twojej firmy. Open Mercato ma takie gniazdko, przez które podłączysz
+  341.8 AI na przykład Clouda prosto do danych firmy i wtedy pytasz, ile mam
+  347.0 otwartych zamówień, które zamówienia czekają na wysyłkę, a ono odpowiada
+  350.8 z Twojego systemu, nie z internetu. Widzi tylko tyle, na ile pozwalają mu
+  356.9 uprawnienia, a samo podłączenie nic nie kosztuje. Ale więcej o tym,
+  361.4 jak się buduje takie systemy znajdziesz na moim kanale YouTube,
+  368.2 gdzie merytorycznie opowiadam o tym, jak wdrożyć systemy ERP, CRM
+  374.3 do swoich firm.
+  392.3 Nagranie trzecie.
+  394.6 A co, jak AI skasuje mi pół bazy?
+  400.1 Jeśli tak pytasz,
+  401.6 to bardzo dobrze, że pytasz,
+  404.3 numer jeden, bo AI w systemie, w firmie to nie jest czat do pisania.
+  412.1 Jeśli tak pytasz, to bardzo dobrze, że o to pytanie stawiasz sobie.
+  420.8 Jeśli tak pytasz, to bardzo dobrze, bo AI w systemie firmowym to nie jest czat do pisania maili.
+  427.3 W Open Mercato asystent AI siedzi w panelu systemu.
+  430.6 Pisze po polsku, zmień numer telefonu u tego klienta i on to robi.
+  434.6 Ale każde jego działanie jest sprawdzane wobec Twoich uprawnień,
+  438.9 nie zrobi niczego, czego Ty sam nie możesz.
+  442.4 AI ma dokładnie te same klucze, co Ty, ani jednego więcej.
+  446.8 Więc o tym, jak buduję takie systemy, znajdziesz na moim kanale na YouTube.
+  451.2 Więc zapraszam serdecznie, gdzie opowiadam więcej o systemach ERP,
+  456.1 cerem AI dla Twojej firmy. Tak, aby oszczędzać czas i wyeliminować ręczną pracę w Twojej firmie.
+  470.5 Prowadzisz firmę w Słupsku? To nie musisz szukać wdrożeniowca AI w Warszawie.
+  476.1 Jestem stąd, ze Słupska. Przyjdę do Ciebie, zobaczę jak pracuje Twój zespół
+  481.7 i powiem co warto zautomatyzować, a czego nie ruszać.
+  486.1 Tak zwane quickqueeny. Bez wideorozmów z kimś, kto nawet nie wie, gdzie jest Twoja firma.
+  492.3 Zapraszam. Mateusz Kozłowski, firma Flowbiz. Zadzwoń 536 507 701 albo wejdź na flowbiz.pl
+  501.0 i zostaw swój kontakt do siebie.
+  507.1 Prowadzisz firmę w Słupsku, w Ustce?
+  509.5 że jestem...
+  518.7 Masz firmę w zachodniopomorskim albo w pomorskim województwie?
+  523.1 To jestem niecałe 40 minut od Ciebie.
+  526.5 Wdrożenie AI albo nowy system nie musi przyjeżdżać z drugiego końca Polski.
+  531.7 Usiądziemy przy Twoim biurku z Twoimi Excelami i z Twoimi ludźmi
+  535.3 i pokażę Ci, co da się uprościć, gdzie da radę zmniejszyć liczbę ręcznego klikania.
+  545.6 Pokażę Ci, gdzie można zaoszczędzić kilkadziesiąt godzin tygodniowo.
+  551.7 Zapraszam Cię do kontaktu.
+  553.3 Mateusz Kozowski, firma Flowbiz 536 507 701.
+  558.1 Albo wejdź na flowbiz.pl i zostaw do siebie kontakt.
+  574.3 Lemberg, szukasz firmy od AI i systemów?
+  577.2 A wszystkie są z Warszawy albo z Krakowa?
+  580.2 Ja jestem ze Słupska i na konsultacje przyjadę do Ciebie na miejsce,
+  586.0 a nie na wideorozmowę.
+  587.6 Zobaczę, gdzie w Twojej firmie ucieka czas i powiem, co z tym zrobić.
+  592.0 Mateusz Kozowski, firma Flobis.
+  595.8 Tutaj warto te same wstawki zrobić.
+  607.2 Prowadzisz firmę w Bytowie? Nie musisz ściągać konsultantów z drugiego końca Polski.
+  614.0 Przyjadę do Ciebie ze Słupska, czyli dosyć niedaleko, gdzie wdrażam AI i buduję systemy dla firm z Pomorza.
+  621.3 Przyjadę porozmawianym przy Twoim biurku, a nie przez ekran.
+  625.3 jak naprawdę pracuje Twoja firma. Zapraszam do kontaktu, wejdź na moją stronę
+  630.0 flowbiz.pl i zostaw do siebie kontakt z krótką notką, gdzie najwięcej widzisz
+  636.8 możliwości, a jeśli nawet nie widzisz tych możliwości, to umów się ze mną,
+  640.8 a pokażę Ci, gdzie możemy usprawnić Twoją pracę.
+  644.8 Koszalin, myślisz o AI albo o nowym systemie dla Twojej firmy?
+  648.3 Zanim zadzwonisz do Warszawy, zadzwoń niedaleko, po sąsiedzku, do Słupska.
+  653.1 Jestem godzinę drogi, a już teraz przy naszej S6-20 w dniu drogi,
+  658.5 gdzie przyjadę na konsultację, zobaczę jak Twój zespół pracuje
+  661.2 i powiem wprost co ma sens, a co jest stratą pieniędzy.
+  665.0 Zapraszam, Mateusz Kozowski, firma Flowbiz.
+  677.7 Gdańsk, Gdynia.
+  684.3 Gdańsk, Gdynia, Sopot,
+  686.7 wdrożeniowiec z Pomorza, nie z Mazowsza.
+  689.2 Wiem, że w Trójmieście firm IT nie brakuje,
+  692.6 ale jeśli chcesz kogoś, kto przyjedzie, usiądzie
+  695.2 z Twoim zespołem i zrobi system pod Wasz sposób pracy,
+  698.8 a nie sprzedać Ci gotowca, zapraszam Cię do kontaktu.
+  702.0 Porozmawiajmy, jak można zmniejszyć liczbę
+  705.7 ręcznej pracy do tego,
+  708.3 aby przyspieszyć Twoją firmę w tym samym zespole,
+  711.1 a być bardziej po prostu efektywnym.
+  730.8 11 stron zamówienia w Excelu.
+  734.1 3 godziny ręcznego przepisywania.
+  737.2 6 godzin ręcznego przepisywania.
+  741.1 u producenta mebli ogrodowych, z którym pracuję.
+  743.9 Dziś system wczytuje takie zamówienie sam.
+  746.2 Nie zaczynaliśmy od wielkiego systemu ERP.
+  749.4 Zaczęliśmy od jednego bólu zamówień.
+  751.6 Kolejne moduły dokładamy etapami w tempie firmy,
+  755.2 tak aby pracownicy też mieli czas się tego uczyć.
+  758.5 Jestem Mateusz Kozowski i prowadzę firmę Flobi ze Słupska,
+  765.2 gdzie budujemy systemy i automatyzacje dla firm produkcyjnych.
+  771.1 Ciebie na konsultacje i porozmawiamy o Twoich największych bolączkach.
+  784.2 Co się stanie z Twoją produkcją, jak jedna osoba, która wie, jak to robić,
+  789.7 pójdzie na emeryturę? Na produkcji wiedza siedzi w głowach i w zeszytach.
+  796.2 u procenta mebli ogrodowych, z którym współpracuję,
+  800.3 wiedza o wyrobach specjalnych jest w zeszytach jednej osoby.
+  806.1 Wasil powiedział mi wprost, jak ona odejdzie na emeryturę,
+  808.9 nie będziemy wiedzieli, jak to robić.
+  811.0 To jest realne zagrożenie dla firmy.
+  813.3 I to jest moment, w którym system przestaje być wygodą,
+  816.2 a staje się zabezpieczeniem firmy.
+  818.3 A i potrafi gdzieś odczytać nawet odręczne notatki,
+  821.2 ale najpierw wiedza musi mieć swoje miejsce w systemie.
+  823.9 Wiedza musi być scentralizowana.
+  826.2 Jestem ze Słupska i przyjadę do Ciebie na konsultacje.
+  829.0 Wejdź na stronę flowbiz.pl i zarezerwuj bezpłatną konsultację na miejscu u Ciebie w firmie.
+  840.1 Nowe przepisy o opakowaniach i znowu kolejna papierologia.
+  844.4 Marża znowu spada, bo musisz więcej czasu poświęcać na dokumentację,
+  853.2 na dokumentację, której i tak nie rozumie, nikt nie rozumie, kolejna papierologia.
+  857.9 Pracuję z producentem opakowań tekturowych spod Gdańska
+  861.4 z 30-letnią historią. Nowe unijne przepisy wymagają
+  869.4 dokumentów do produktów, tak zwane PPWR.
+  872.2 Kiedy zaczynaliśmy firma jeszcze ich w ogóle nie robiła, a teraz się zbliżał
+  882.3 Kiedy zaczynaliśmy firma jeszcze ich w ogóle nie robiła
+  885.4 A termin kiedy wchodziła możliwość kar
+  890.2 A termin kiedy wchodziła możliwość kar się bardzo mocno zbliżał
+  896.6 Zbudowaliśmy generator, biuro wybiera produkt, system sam uzupełnia dane z bazy surowców
+  901.6 I wystawia gotowy dokument PDF
+  903.2 A wystawiony dokument trafia do archiwum i nikt go już sobie nie zmieni.
+  912.2 A wystawiony dokument trafia do panelu klienta, gdzie klient sam może wejść,
+  917.6 pobrać go, zobaczyć jego historię i nie musi zawracać Ci już głowy mailowo
+  921.9 ani telefonicznie, co oczywiście powoduje, że tracimy na to dużo czasu.
+  926.9 Niestety komunikacja w dzisiejszych czasach jest utrudniona.
+  930.0 Mamy dużo możliwości tej komunikacji, a to powoduje duży chaos w firmie.
+  939.2 I co najlepsze, nie wymienialiśmy im całego systemu.
+  942.2 Kilka modułów wokół jednego dokumentu.
+  944.4 Jeżeli chcesz zobaczyć ten przykład, wejdź na flowbiz.pl,
+  948.8 zakładka realizacje i zobaczysz, jak to zrobiliśmy.
+  957.3 Twój ERP mówi jedną, hala robi drugie
+  961.5 W systemie wszystko się zgadza
+  964.4 A na hali zrzutu więcej
+  966.2 Zrobiono
+  968.5 A na hali
+  971.0 Zrzutu więcej materiału niż zakładano
+  973.7 Zrobiono inaczej i nikt tego nie zapisał
+  976.4 Nie naprawiasz tego wielkim wdrożeniem na rok
+  979.1 Ja zaczynam od jednego bólu i dokładamy moduły etapami
+  982.6 w tempie firmy, tak aby ludzie też się nie przestraszyli całego wzrożenia.
+  987.0 Jestem ze Słupska i przyjadę do Twojej firmy porozmawiać o tym procesach,
+  991.4 od zamówienia do wysyłki i powiem od czego warto zacząć i gdzie jest największa
+  999.3 dźwignia dla Twojego biznesu. Wejdź na flowbiz.pl i umów bezpłatną konsultację.
+ 1004.9 Do zobaczenia u Ciebie w firmie.
+ 1009.9 Prowadzisz firmę produkcyjną z Pomorza?
+ 1012.3 Nie musisz szukać wdrożeniowca w Warszawie
+ 1015.5 Zamówienie przychodzi mailem
+ 1018.9 Ktoś przypisuje je do Excela, potem robi kartkę do hali
+ 1022.7 potem naklejki, każde przypisanie to miejsce na błąd
+ 1025.9 i godziny
+ 1031.2 każde przypisanie to miejsce na błąd
+ 1033.5 i dziesiątki godzin miesięcznie straconych
+ 1037.9 automatyzację
+ 1042.2 na rzeczy, które może robić automat.
+ 1046.3 U jednego z procentów mebli ogrodowych
+ 1049.6 z Podsłupska, z którym pracuję, jedno zamówienie było
+ 1052.2 11 stron i kilka godzin,
+ 1056.0 nawet 3 godziny przepisywania
+ 1061.9 i 6 godzin przepisywania.
+ 1065.9 Często nawet to przedłużało się do 3 dni, jeżeli były błędy.
+ 1068.8 Dziś system robi to sam.
+ 1071.0 Jestem ze Słupska i przywadzę do Twojej firmy i powiem od czego warto zacząć.
+ 1086.9 Klient z Niemiec przyszedł o zamówieniu, a u Ciebie ktoś przepisuje je do Excela?
+ 1092.4 Kontrahent z Niemiec.
+ 1096.6 Twój kontrahent z Niemiec przesyła zamówienia, a u Ciebie ktoś przepisuje je do Excela?
+ 1103.0 U jednego z producentów mebli ogrodowych z Podsłupska, z którym współpracuję,
+ 1108.9 AI doposowuje pozycję zamówień do produktów w systemie i przygotowuje karty dla produkcji.
+ 1115.4 Człowiek tylko to sprawdza. Nie sprzedam Ci AI do wszystkiego.
+ 1119.4 AI dokładam tam, gdzie trzeba czytać zamówienia dokumenty i odręczne notatki.
+ 1125.1 Resztę to porządny, reszta to...
+ 1131.2 Nie mam zamiaru sprzedawać Ci AI do wszystkiego.
+ 1134.0 AI dokładam tam, gdzie trzeba czytać zamówienia, dokumenty,
+ 1137.4 trzeba zrobić tam, gdzie jest ta praca ręczna, a całą resztą zajmuje się system.
+ 1143.2 Wejdź na flowbiz.pl i zamów konsultację na miejscu u Ciebie w biurze.
+ 1153.0 Myślisz, że system dla produkcji to rok wdrożenia i wymiana wszystkiego?
+ 1161.4 Myślisz, że system dla Twojej firmy handlowej to rok wdrożenia i wymiana wszystkiego?
+ 1167.0 U producenta opakowań, z którym pracuję, nie wymieniliśmy całego systemu.
+ 1172.7 Kilka modułów wokół jednego dokumentu. Reszta firmy pracuje tak jak tak wcześniej.
+ 1177.4 Bardzo gładkie wdrożenie.
+ 1179.6 U procenta mebli ogrodowych zaczynaliśmy od jednego bólu, zamówień.
+ 1183.5 Kolejne moduły dokładamy etapami.
+ 1188.3 Wszystko oparte jest na platformie Open Mercato.
+ 1191.4 Gotowy fundament w 80% już zdrobiony.
+ 1194.7 Co najlepsze za darmo?
+ 1198.6 I co najlepsze za darmo?
+ 1202.4 A na nim tylko to, co jest specyficzne dla Twojej firmy, tak zwane 20%,
+ 1209.6 już masz za darmo, więc warto wejść na openmercato.com i sprawdzić,
+ 1214.1 jak system może pomóc Twojej firmie.
+ 1221.1 Produkujesz na zamówienie i każde zlecenie jest inne?
+ 1224.5 Excel tego nie udźwignie i doskonale o tym wiemy.
+ 1227.7 Znam to z autopcji.
+ 1228.8 A gotowy ERP każe Ci pracować tak, jak on chce.
+ 1231.8 Twoja produkcja ma swoje wyjątki i finalnie używasz 20% systemu,
+ 1236.6 za którego płacisz rocznie dziesiątki tysięcy złotych. Kompletnie bez sensu.
+ 1245.1 W erze AI duże systemy korporacyjne stały się dostępne dla małych firm.
+ 1256.7 Duże systemy pod indywidualne zamówienie w erze AI stały się realne dla małych firm.
+ 1263.4 U 1% opakowania, z którym pracuję zbudowaliśmy generator dokumentów.
+ 1268.6 Biuro wybiera produkt, system sam uzupełnia dane z bazy surowców i wystawia gotowe PDF-y.
+ 1274.0 Jestem Mateusz Kozowski z Flobby, z Słupska, gdzie buduję systemy dla firm produkcyjnych, handlowych, etapami tak, aby po kilku tygodniach firma już mogła mieć zaoszczędzony czas w swojej firmie.
+ 1288.8 Tak, aby zwrot inwestycji był już po kilku tygodniach pracy.
+ 1317.3 Nagranie 19.
+ 1322.0 Prezes firmy siedzi na lotnisku i wie co się dzieje na produkcji z telefonu,
+ 1327.6 czyli narzędzia, które ma codziennie pod ręką, 24 godziny na dobę.
+ 1332.3 Budujemy dla firm produkcyjnych agentów AI dla zarządu.
+ 1335.6 Siedzi na przykład na telegramie lub innym komunikatorze.
+ 1341.7 Ma dostęp do dokumentów, statusów firmy i całej wiedzy tzw. mózgu firmowego.
+ 1348.5 Rano wysyła krótki raport, co wpadło, co się opóźnia, co wymaga decyzji.
+ 1352.8 I najważniejsze, agent nic nie wysyła sam.
+ 1355.4 Proponuje, a Ty jednym kliknięciem zatwierdzasz.
+ 1372.6 Nagranie 20.
+ 1378.1 Pytasz w telefonie, co z zamówieniem dla klienta i dostajesz odpowiedź w 5 sekund.
+ 1387.1 Takiego agenta AI budujemy dla firm produkcyjnych.
+ 1390.0 Siedzi na telegramie lub innym komunikatorze i ma dostęp do Twoich dokumentów i statusów firmy.
+ 1394.8 Ale powie Ci uczciwie, agent bez danych odpowie nie wiem.
+ 1398.1 No więc najpierw porządkujemy dane, centralizujemy je, a później najpierw porządkujemy dane, centralizujemy dane firmy, a dopiero później tworzymy drugi mózg firmy.
+ 1412.4 I nie wypuszczamy AI wszędzie, ustalamy do czego ten agent ma dostęp, a czego nigdy nie zobaczy.
+ 1417.8 Jeżeli interesują Cię takie rozwiązania, wejdź na flowbiz.pl i umów bezpośrednio spotkanie u Ciebie w firmie,
+ 1425.4 a na pewno pokażę Ci, jak to wszystko może działać dla Twojej firmy.
+ 1432.2 Twój asystent nie śpi, nie bierze urlopu i nie siedzi w Twoim telegramie.
+ 1437.5 Nic się wysyła sam, proponuje, a Ty jednym kliknięciem zatwierdzasz.
+ 1441.5 Jestem ze Słupska, przyjadę na konsultacje.
+ 1465.8 Dobra, blok czwarty.
+ 1467.6 Reelsy edukacyjne
+ 1469.5 po 60 sekund.
+ 1478.3 Co AI daje produkcji?
+ 1480.2 22.
+ 1481.4 Masz firmę produkcyjną?
+ 1483.5 Cztery rzeczy, które AI już dziś robi u moich klientów.
+ 1487.5 1. Czyta zamówienia od klientów, nawet te na 11 stron i wrzuca je do systemu.
+ 1493.8 Wcześniej ktoś przepisywał je ręcznie, nawet 6 godzin.
+ 1497.7 2. Dopasowuje pozycję z zamówienia do produktów i przygotowuje karty dla produkcji.
+ 1507.2 3. Wystawia dokumenty, wymagane przepisy z danymi z bazy surowców
+ 1512.5 zamiast ręcznego klepania
+ 1515.2 4. I to jest najciekawsze
+ 1517.4 Pomaga przenieść do systemu wiedzę z odręcznych zeszytów
+ 1521.4 zanim odejdzie osoba, która je prowadzi
+ 1523.8 AI genialnie sobie radzi z odczytem skanów i ręcznych notatek
+ 1537.5 i żadna z tych rzeczy nie wymagała wymiany całego systemu.
+ 1542.1 Jeżeli to jest dla Ciebie ciekawe i chciałbyś zobaczyć jak u Ciebie w firmie to działa,
+ 1547.2 zadzwoń, a przyjadę na terenie Pomorza i Zachodniopomorskiego do Ciebie
+ 1552.3 i zobaczę jak to może pomóc Twojej firmie.
+ 1555.9 5 rzeczy, które AI może zrobić w systemie Twojej firmy, nie płacisz za nie licencji.
+ 1563.6 Czyta maile od klientów i przygotowuje z nich zamówienie albo ofertę.
+ 1568.4 Ty tylko klikasz, akceptuje.
+ 1571.3 2. Odpowiada na pytania o Twoją firmę.
+ 1574.7 Ile mamy otwartych zamówień, co czeka na wysyłkę, gdzie mamy opóźnienia.
+ 1579.2 Taki project manager na zawołanie, który się nie męczy.
+ 1582.7 3. Robi rzeczy w systemie na Twoje polecenia, ale tylko te, do których ma uprawnienia.
+ 1589.5 4. Szuka po znaczeniu, a nie po słowach.
+ 1593.5 który narzekał na dostawę i system go znajduje.
+ 1599.0 5. Czyta zeskanowane dokumenty, więc fakturę znajdziesz po jej treści.
+ 1606.3 Kod jest w pakiecie, płacisz tylko za to, ile AI pracuje, jak za prąd.
+ 1612.2 Więcej jest zobaczyć na flowbiz.pl, tam opisuję, jak korzystam z systemu Open Mercato,
+ 1617.7 który dostarcza 80% rzeczy dla Twojej firmy za darmo.
+ 1628.5 Agent 24.
+ 1632.7 Agent AI dla prezesa firmy, co naprawdę on może robić?
+ 1637.6 Pokaże na tym, jak budujemy dla firm produkcyjnej.
+ 1642.0 Jeden. Siedzi w telegramie, więc masz go w telefonie.
+ 1645.9 Nie musisz logować się do żadnego systemu.
+ 1648.6 Rozumie Twój język, a nie konkretne polecenia w systemie.
+ 1656.7 2. Pytasz o status zamówienia albo dokument i dostajesz odpowiedź od razu.
+ 1662.7 3. Rano wysyła krótki raport, co wymaga Twojej decyzji, gdzie są opóźnienia
+ 1668.3 i z jakimi problemami firma się aktualnie boryka.
+ 1672.6 4. Nic nie robi sam. Proponuje, a Ty zatwierdzasz.
+ 1676.3 Taki project manager, który się nie męczy.
+ 1682.6 Jeżeli chcesz zobaczyć, jak się takiego agenta buduje, robię o tym warsztaty w subsku.
+ 1688.2 Wejdź na stronę ai.subs.pl i dowiesz się więcej, zapisz się na listę,
+ 1694.4 a na pewno niedługo z Tobą się skontaktuję.
+ 1697.8 Wdrażasz AI w firmie i nie działa?
+ 1700.3 Pewnie popełniasz jeden z tych czterech błędów.
+ 1703.7 1. Kupujesz licencję, ale nie zmieniasz procesu. AI siedzi w okienku obok pracy.
+ 1712.5 2. Nikt nie ustalił jakie dane wolno dawać AI i ludzie wklejają umowy klientów i inne poufne dane.
+ 1720.8 3. Zaczynasz od wielkiej transformacji zamiast od jednej rzeczy, która wkurza wszystkich w biurze.
+ 1729.3 4. Nie pytasz ludzi
+ 1731.5 a oni boją się, że AI zabierze im pracę
+ 1734.8 więc po cichu go nie używają
+ 1737.7 i się jego boją
+ 1739.5 który z nich jest u Ciebie?
+ 1742.1 napisz koniecznie w komentarzu
+ 1743.8 a z chęcią wymienię się z Tobą doświadczeniami
+ 1766.5 Dziękuję.
+ 1795.8 Dziękuję.
+ 1833.5 warsztaty AI Słupsk
+ 1835.6 blok piąty
+ 1841.1 nagranie 26
+ 1843.0 szósty agent w telefonie
+ 1844.8 chcesz mieć w telefonie agenta AI
+ 1847.8 wie co się dzieje w Twojej firmie?
+ 1851.6 Jeżeli tak, to robię warsztaty w Słupsku dla prezesów i menadżerów.
+ 1856.8 Pokażę krok po kroku jak budować takiego agenta.
+ 1859.6 Na telegramie, na danych firmy bezpiecze, jak wykorzystać clouda w Twojej firmie,
+ 1864.4 jak wykorzystać grog bota w Twojej firmie lub innych narzędzi,
+ 1869.9 które naprawdę mogą wpłynąć na sposób Twojej codziennej pracy.
+ 1880.5 Zapraszam Cię, bo będzie też smacznie, będzie pizza i ludzie z firm z regionu.
+ 1885.7 Termin, miejsce i ogłoszenia...
+ 1890.9 Termin i miejsce ogłoszę wszystkim chętnym, którzy się zapiszą.
+ 1895.6 Wejdź na AI Subsk i zapisz siebie i swoją firmę na szkolenia.
+ 1906.2 27 nagranie
+ 1908.0 Pizza, kilku szefów firmy ze Słupska
+ 1911.8 Jeden temat
+ 1912.5 Jak zbudować swojego agenta AI, który pomoże mi ogarnąć moją firmę
+ 1918.2 Bez teorii
+ 1924.8 Bez bennej teorii
+ 1926.5 Pokazuję na prawdziwym przykładzie, jak budujemy dla firmy produkcyjnej
+ 1930.3 A potem porozmawiamy, co z tego ma sens i co można wykorzystać u Ciebie.
+ 1938.9 Termin i miejsce ogłoszę zapisanym osobom.
+ 1942.7 Wejdź na AI.subsk i zapisz się na listę.
+ 1954.4 28.
+ 1956.0 Szefie, Twoi ludzie już używają AI.
+ 1960.3 Wiesz do czego?
+ 1962.3 Wklejają maile klientów, umowy, cenniki i nikt nie ustalił co wolno,
+ 1967.0 a czego nie wolno robić.
+ 1968.5 Na warsztatach AI Słupsk pokazuje menadżerom i właścicielom firm,
+ 1972.5 kiedy AI naprawdę pomaga, kiedy szkodzi i jak chroni dane Twoje firmy.
+ 1977.8 Zapisz się na listę, damy znać o najbliższych terminach.
+ 1982.6 Warsztaty są w Słupsku dla firm ze Słupska, Lęborka, Koszalina i całego regionu.
+ 1987.9 Wejdź na aiajsłupsk.pl i zapisz się na listę 29.
+ 2000.2 Zapraszamy szefów firm, menadżerów ze Słupska i okolicy na śniadanie.
+ 2011.4 Temat, dlaczego AI w Twojej firmie nie działa.
+ 2014.7 bez prezentacji sprzedażowej
+ 2017.2 przy kawie opowiem, gdzie
+ 2019.2 firmy wykładają się na AI
+ 2021.1 i od czego zacząć, a Ty opowiesz
+ 2023.7 co nie działa u Ciebie i jak
+ 2025.5 ludzie u Ciebie korzystają z AI
+ 2027.3 spotkanie jest bezpłatne
+ 2028.9 ale liczba miejsc jest ograniczona
+ 2031.1 więc wejdź na stronę
+ 2033.2 AI Słupsk i
+ 2035.6 zapisz z siebie
+ 2037.3 i zapisz się na
+ 2039.3 te warsztaty
+ 2053.2 Ok, ostatni blok, szósty.
+ 2066.6 Masz trzy wersje tego samego Excela i nikt nie wie, która jest aktualna.
+ 2074.4 Często to spotykam, dane rozrzucane po Excelach, mailach, telefonach
+ 2078.6 i z tego bierze się chaos i gaszenie pożarów
+ 2082.4 Budujemy systemy, w których dane są w jednym miejscu
+ 2084.8 Każdy widzi tylko swoje, a każda zmiana zostawia swój ślad
+ 2088.6 Bez kupowania wielkiego ERP
+ 2094.6 Wejdź na stronę flowbiz.pl
+ 2096.3 Zostaw do siebie kontakt, a przyjadę do Ciebie i porozmawiamy o tym
+ 2101.5 jak możesz zmienić sposób pracy w dzisiejszych czasach z AI dla swojej firmy.
+ 2109.6 Kupiłeś chat GPT dla pracowników i nic się nie zmieniło?
+ 2115.0 Bo dostęp do narzędzia to nie jest wdrożenie.
+ 2120.8 Ludzie muszą zobaczyć AI na swoich zadaniach, na swoich mailach, ofertach, dokumentach.
+ 2126.2 Wdrażam AI od kilku lat w zespołach, w różnych firmach.
+ 2137.1 na
+ 2137.7 wdrażam AI w zespołach
+ 2139.2 w firmach z całej Polski.
+ 2141.9 Pracujemy na Waszych
+ 2143.1 procesach, nie na przykładach z internetu.
+ 2146.6 Jestem ze Słupskiej
+ 2147.7 i przyjadę Ciebie na konsultacje.
+ 2149.5 Jeżeli zostawisz, wejdziesz na
+ 2150.8 flowbiz.pl i zostawisz do siebie kontakt,
+ 2153.2 a ja zobaczę, gdzie traci
+ 2155.1 Twoja firma najwięcej czasu
+ 2156.5 i gdzie będzie miała
+ 2158.6 największy zwrot z inwestycji.
+ 2162.7 Prowadzisz firmę w subsku i Twoja najlepsza osoba w biurze przepisuje maile do systemu?
+ 2170.5 Szkoda jej na to, szkoda jej na to.
+ 2173.9 Takie rzeczy da się dziś zautomatyzować z AI.
+ 2176.6 Oferta z mailem klienta, dodatka po rozmowie, dane z faktury prosto do systemu.
+ 2182.7 Jest to do zrobienia w kilka tygodni.
+ 2189.5 i jest to do zrobienia w kilka tygodni
+ 2191.3 bez większego chaosu.
+ 2194.0 Ja nazywam się Mateusz Kozowski, jestem ze Słupska
+ 2196.0 i robię takie automatyzacje
+ 2197.7 dla firm. Zacznę od jednej rzeczy,
+ 2200.2 która zjada Wam najwięcej czasu
+ 2201.6 i najwięcej frustracji.
+ 2223.5 33 nagranie.
+ 2226.1 Programista mówi 3 miesiące,
+ 2228.8 chat GPT mówi 3 dni.
+ 2230.7 Kto kłamie?
+ 2232.6 Nikt.
+ 2233.9 Mówią o dwóch różnych rzeczach.
+ 2237.0 3 dni AI zrobi Ci prototyp,
+ 2239.3 coś co wygląda jak system,
+ 2240.9 ale uprawnienia daje dane klientów,
+ 2243.5 historia zmian,
+ 2245.9 To jest długi czas pracy.
+ 2247.8 To jest kilka miesięcy pracy.
+ 2249.8 Ja robię to...
+ 2254.9 Ja robię to drugie, tylko z AI w ręku,
+ 2258.0 więc szybciej niż tradycyjny software house.
+ 2262.6 Jeżeli chcesz zobaczyć, co można uzyskać w swojej firmie
+ 2265.7 po kilku tygodniach pracy,
+ 2269.3 co można uzyskać po kilku tygodniach z nami,
+ 2272.3 daj znać, wejdź na flobis.pl i zostaw do siebie kontakt.
+ 2279.7 Nagranie 34.
+ 2283.0 Gdzie AI w firmie ma sens, a gdzie to wyrzucone pieniądze?
+ 2287.5 3 na tak, 3 na nie.
+ 2290.4 No tak, czytanie maili i dokumentów, pierwsze szkice, ofert i odpowiedzi,
+ 2296.0 szukanie informacji w firmie.
+ 2298.5 Na nie rzeczy, które załatwia prosta reguła.
+ 2303.1 Tu AI to modny, drogi dodatek.
+ 2305.5 Decyzje o cenach bez człowieka i licencja dla wszystkich,
+ 2308.9 zanim ktokolwiek wie, do czego całe to AI użyć.
+ 2313.2 Zasada jest prosta.
+ 2314.4 AI przygotowuje, człowiek decyduje.
+ 2320.7 Nagranie 35.
+ 2322.7 Umowa w chat GPT.
+ 2324.4 Twój pracownik właśnie wkleił umowę klienta do chat GPT.
+ 2328.4 Czy zdawałeś sobie o tym sprawę? Czy wiesz o tym?
+ 2331.0 Na warsztatach AI subsk uczy menadżerów i szefów firm, jak korzystać z AI bezpiecznie,
+ 2337.0 jakie dane wolno dać AI, a jak ich nie, jak ustawić zasady w zespole,
+ 2342.6 plus konkretne zastosowania, które oszczędzają czas w Twojej firmie.
+ 2355.4 Najbliższy termin wejdź na AI subsk i zapisz się na listę, a skontaktuj się z osobami,
+ 2362.3 a skontaktuj się z Wami do dokładnym miejscem i terminem.
+ 2367.8 Liczba miejsc jest ograniczona.
+ 2372.9 Nagranie 36.
+ 2375.6 Przynieś swój problem.
+ 2377.6 Wdrażasz AI w firmie i nie wychodzi?
+ 2380.1 Przyjdź na warsztaty i przynieś swój problem.
+ 2382.9 Na warsztatach AI Słupsk nie oglądamy slajdów.
+ 2387.8 Pracujemy na prawdziwych zadaniach z Waszych firm.
+ 2391.5 Maile, oferty, dokumenty, notatki ze spotkań.
+ 2394.5 Wychodzisz z rozwiązaniem sprawdzonym na swoim przykładzie.
+ 2400.0 Wejdź na AI Słupsk i zapisz się na listę, a na długo, niedługo się z Tobą skontaktuję.
+ 2405.4 Warsztaty są dla firm ze Słupska, Gdańska i okolic.
+ 2417.5 Ok, to teraz będzie trochę w freestylu.
+ 2424.8 Cześć, czy masz wrażenie, że cała bańka AI-owa powoduje strach w Twojej firmie?
+ 2433.9 Czy cały czas masz poczucie, że wszystkie nowinki techniczne uciekają Ci,
+ 2440.0 a Ty dalej masz problem z tym, żeby dobrze nawet wykorzystać czat GPT w Twojej firmie.
+ 2446.8 To jest normalne uczucie i zagubienie w tych gościu informacji jest czymś zupełnie normalnym.
+ 2455.4 Ja zapraszam Cię na warsztaty, na których będę pokazywał jak mądrze i jak etapami wdrażać AI w Twojej firmie.
+ 2465.3 Po co AI w Twojej firmie?
+ 2466.9 A po to, aby zlikwidować pracę ręczną, tak zwane klikanie i przenoszenie rzeczy
+ 2474.8 z jednego miejsca w drugie.
+ 2476.7 Niestety jest to jedna z pierwszych pozycji na raportach od firmy Antropi,
+ 2483.9 która jest właścicielem narzędzia Cloud, od tego, że ta praca będzie likwidowana
+ 2489.9 jako pierwsza.
+ 2492.3 Rzeczy, które przenosimy ręcznie będą najszybciej automatyzowane.
+ 2498.4 Generują teraz bardzo dużo zawsze problemów, błędów i kosztów dla firmy.
+ 2506.3 Jakie to są problemy? Jakie to są rzeczy, które można wdrożyć?
+ 2511.1 Ręczne wystawianie ofert.
+ 2517.7 Ręczne wystawianie ofert, raportowanie danych, przenoszenie z jednego Excel do drugiego,
+ 2525.2 aby druga osoba miała na przykład dostęp.
+ 2537.5 Zautomatyczne, zautomatyzowane wystawianie faktur dla firmie.
+ 2551.0 Cześć. Dzisiaj opowiem Ci, jak wykorzystałem Open Mercato
+ 2557.3 Cześć. Zrobiłem już 8 wdrożeń z Open Mercato i chciałbym Ci powiedzieć pokrótce,
+ 2564.8 jak to wyglądało w praktyce.
+ 2569.2 Mam na swoim koncie już firmy handlowe i produkcyjne, które korzystałem na co dzień z Open Mercato.
+ 2575.8 Gdzie one tego najwięcej widzą korzyści? Już Wam o tym mówię.
+ 2579.9 Pierwsza rzecz to jest tworzenie ofert. To jest jeden z najczęściej powtarzających się problemów,
+ 2587.5 tą ofertę z tysiąca indeksów często móc tworzyć szybkie oferty,
+ 2594.2 czyli dostajemy maila i nie czeka klient na niego kilka dni,
+ 2598.4 żeby w ogóle tą ofertę przygotować, do tego też nie ma osoby,
+ 2601.2 która tą ofertę z miłą chęcią przygotuje, bo wiemy jak to jest trudne w firmie.
+ 2606.2 Każdy w tej firmie ma swoją wersję jakiegoś PDF-a, niektórzy z takim logiem,
+ 2614.1 niektórzy z jakimś nowym logotypem, bo wiemy, że te szaty graficzne się różnią,
+ 2618.8 każdy ma jakiś system wyceny, wszystko jest bardzo rozmyte i rozbite
+ 2622.9 na kilkanaście różnych sposobów pracy, nie ma jednego systemu,
+ 2628.0 a wprowadzenie tego systemu i ograniczenie go do bardzo wąskiej liczby reguł
+ 2634.6 i ułożenie tego procesu powoduje, że zaczynamy pracować w jednolity
+ 2640.1 i ten sam sposób. To powoduje przejrzystość danych, lepsze zrozumienie klienta,
+ 2646.8 wiedzę o tym, dlaczego te oferty są odrzucane albo dlaczego te oferty nie zwracają się.
+ 2655.1 I to też wszystko powoduje, że oferty często, oferty, które są różne i różnie pisane
+ 2663.2 nie do końca wiemy, dlaczego na przykład tylko na 20 wystawionych ofert
+ 2668.6 3 oferty stały się zamówieniem.
+ 2672.1 Dzięki zbieraniu tym danym, powiedzmy po pół roku i mając te dane w systemie,
+ 2677.1 wiesz jaka jest konwersja Twoich handlowców na to, żeby te oferty
+ 2682.9 jeszcze lepiej sprzedawały.
+ 2686.2 Obłożenie je na pewno w jakimś jednym procesie, layoutie, sekcjach,
+ 2693.2 oferta ma mieć w produktach, które są dostępne aktualnie w magazynie,
+ 2696.8 powoduje, że możemy tą ofertę wygenerować dosłownie w ciągu chwili.
+ 2703.1 A jak to działa w praktyce? U jednego producenta maszyn sportowych
+ 2709.5 wdrożyliśmy asystenta AI, który po prostu na bieżąco czyta maile.
+ 2714.9 Czyta maile i zbiera z nich informacje na temat wycen.
+ 2723.2 Sprawdza, które dotyczą wycen i w locie przygotowuje Ci szkic takiej oferty.
+ 2729.4 Dostajesz powiadomienia na Telegrama przykładowo albo na inny komunikator
+ 2733.3 i możesz je zaakceptować albo poprosić o drobną korektę, zmianę.
+ 2739.5 Wszystko w ciągu 5 minut.
+ 2741.6 Wcześniej ta sama oferta zajmowała nawet kilkanaście godzin.
+ 2747.2 Czemu kilkanaście godzin?
+ 2748.5 no bo zanim się do niej zabraliśmy, zanim odkopaliśmy stare oferty,
+ 2754.5 jak one wyglądały, która to była ta najlepsza oferta, powoduje, że zaczynamy
+ 2760.0 tworzenie tej oferty prawdopodobnie w poniedziałek rano, a kończymy ją na przykład
+ 2764.6 we wtorek pod koniec pracy, o ile wszystko dobrze pójdzie.
+ 2767.8 Ok, kolejny temat. Firma produkująca pamiątki w Kołobrzegu przyszła do mnie
+ 2781.2 z dość dużym problemem, bo cały proces obsługi w firmie funkcjonuje na karce.
+ 2790.5 Potrzebowali stworzyć i scentralizować dane do tego, aby po prostu mieć kontrolę
+ 2797.8 Aktualnie ta kontrola była, ale była bardzo w ograniczonym zakresie.
+ 2803.6 Kontrola była głównie od księgowych i od raportów miesięcznych, kwartalnych,
+ 2810.1 rocznych do tego jak firma pracuje i jak firma, w jakiej jest firma kondycji.
+ 2818.3 Tylko, że to już jest po fakcie, jeżeli chodzi o dane z księgowości.
+ 2825.1 My jako osoby, które prowadzą firmę potrzebujemy danych na zawołanie,
+ 2832.9 danych codziennie, tygodniowo, miesięcznie, kwartalnie.
+ 2837.4 Dzięki temu jesteśmy w stanie szybciej podejmować decyzje,
+ 2841.7 szybciej rozwiązywać problemy w naszej firmie, bo wiemy gdzie one się pojawiają.
+ 2847.0 I sama centralizacja danych, gdzie nawet AI nie jest tutaj jeszcze w tym wszystkim
+ 2851.0 potrzebne, powoduje, że dane mamy w jednym miejscu i to jest ta rzecz,
+ 2855.1 na której często zaczynamy, czyli scentralizowanie danych w jedno miejsce tak,
+ 2861.4 aby zbudować fundament pod sztuczną inteligencję. Dlaczego fundament pod sztuczną
+ 2866.8 inteligencję? Bo jeżeli będziemy mieć w firmie bardzo rozproszone dane na kilku
+ 2871.5 Excelach, w kilku systemach, to uwierz mi, ale AI sobie z tym nie poradzi.
+ 2877.2 Nie będzie wiedziało, które dane są prawidłowo, nie będzie się mogło z niektórymi
+ 2881.2 systemami połączyć, bo duża część systemów typu klasy ERP, CRM są systemami
+ 2888.7 zamkniętymi. Masa klientów ma jeszcze systemy, które są instalowane na Windowsie,
+ 2895.9 nie są w chmurze i nie ma do nich dostępu. I to jest realny problem, który często
+ 2901.3 i głównie, może nawet nie często, ale bardzo w większości przypadków rozwiązujemy.
+ 2908.1 I tak samo było w przypadku tej firmy. Zrobiliśmy integrację z systemem PC Business,
+ 2916.0 który jest systemem księgowym, sprzedażowym, po to, żeby mieć jedno źródło prawdy
+ 2921.6 i synchronizujemy go codziennie, po to, aby wszyscy pracownicy, nie tylko szef i osoby,
+ 2927.3 które są księgowymi miały do tych danych dostęp. Pobieramy dane typu cenę,
+ 2933.3 zamówienia, ileś rzeczy na magazynie. One się aktualizują raz dziennie.
+ 2938.5 Dzięki temu handlowcy, firmy, osoby z produkcji mają na bieżąco do nich dostęp.
+ 2945.8 I już teraz widzimy, jak dużo czasu to zaoszczędziło. Jak sposób pracy
+ 2951.4 handlowca będzie się w takiej branży zmieniał. Dlaczego sposób pracy w firmie,
+ 2956.2 która była oparta na tym, aby jeździć pomiędzy punktami, czyli typowy handlowiec
+ 2963.3 pracującej w branży pamiątkarskiej sezonowej musiał wejść, wsiąść w samochód
+ 2969.5 i objechać z towarem już wyprodukowanym całe wybrzeże albo w okresie zimowym
+ 2976.5 całe tutaj południe Polski. Schemat pracy się zmienia. Koszty firmy się zwiększają,
+ 2986.6 koszty produkcji się zwiększają. Liczba nadprodukcji, która nie jest wykorzystywana
+ 2990.8 również powoduje straty w firmie, ale wiemy dopiero o tym bardzo późno.
+ 2997.0 I teraz co ten system pozwolił zmienić w sposobie pracy i jak na ten proces wpłynął?
+ 3003.0 A zmienił to tak mocno na tyle, że handlowiec teraz będzie zamawiał takie ilości
+ 3011.3 i tyle po prostu będą to robione na zamówienie produkty, czyli oczywiście mając
+ 3018.1 flagowe produkty na tak zwanej, na pace, czyli na naszym dostawczaku,
+ 3031.7 na naszym dostawczaku, będziemy mieć te flagowe produkty, które możemy dać
+ 3035.8 od ręki, ale często pojawiało się problem taki, że nagle wydawało nam się,
+ 3040.6 że jakaś rzecz siądzie, pójdzie zwał jak zwał i nagle produkujemy tego
+ 3046.0 dziesiątki tysięcy sztuk, a finalnie okazuje się, że one się nie sprzedały.
+ 3052.9 Ta braża też jest tutaj specyficzna, że dla każdej nadmorskiej miejscowości
+ 3057.9 albo południowo tutaj, albo na każdej nadmorskiej miejscowości każdy,
+ 3064.7 jak dobrze wiecie, każdy wzór, każda miejscowość ma swój napis, ma swoją jakby
+ 3070.6 jakby taką indywidualne dostosowanie do potrzeb danej miejscowości.
+ 3077.1 To powoduje, że jeżeli wyprodukowaliśmy tysiące sztuk na miejscowość,
+ 3083.4 przypuśćmy ustka, nie zrobisz tego samego na tych samych półproduktach
+ 3088.5 do rowów albo do łeby na przykład, bo już zostały wykorzystane.
+ 3094.1 Dzięki temu możemy zmienić sposób pracy na to, żeby firma
+ 3100.6 mogła, handlowiec jeżdżący z tabletem po prostu prezentował nam te produkty
+ 3107.5 i w momencie, kiedy klient się zdecyduje składać je na zamówienie
+ 3112.8 i przyspieszyć sposób dostawy.
+ 3116.5 Co tu jeszcze zmieniliśmy w sposobie pracy?
+ 3119.8 Zmieniliśmy to, że klient przestaje zamawiać mailowo przez jakieś formularze,
+ 3125.3 które są bardzo nieczytelne, na jakichś karteczkach odręcznie napisanych
+ 3130.6 które były bardzo trudne do zrozumienia, często powodowały błędy,
+ 3136.4 często powodowały nadprodukcje, często powodowały złą relację z klientem
+ 3142.8 i nieporozumienia. Dzięki wprowadzeniu systemu i panelu klienta,
+ 3150.0 który właśnie został zrobiony w oparciu o Open Mercato, klient sam się loguje,
+ 3155.4 sam może złożyć zamówienie, sam widzi statusy, w których to zamówienie jest
+ 3160.6 Dzięki temu mamy zaoszczędzone bardzo dużo czasu, bo nasz pracownik w biurze,
+ 3166.7 na produkcji dostaje powiadomienie, że wpadło nowe zamówienie i dzięki temu
+ 3171.5 może już przystąpić do realizacji. Oczywiście nie zawsze jest tak,
+ 3175.9 że klient musi to zrobić sam, bo powiedzmy nie każdy klient sobie poradzi
+ 3181.5 z takim systemem. Dzięki temu wiemy, że na przykład daliśmy możliwości
+ 3185.1 handlowcowi składania zamówień za klienta, tak? To jest rzecz normalna,
+ 3193.0 to się zawsze odbywało, jednak dajemy dwie drogi. Jeśli klient sobie nie radzi,
+ 3198.1 handlowiec przejmuje tą rolę, którą zawsze miał i wprowadza za klienta
+ 3203.0 zamówienie i oczywiście handlowiec ma swój do tego panel, handlowiec widzi
+ 3207.0 zamówienia swoich klientów, a klient dalej widzi tylko swoje zamówienie.
+ 3211.9 Więc to jest ten przypadek, jeżeli chodzi o zastosowanie Open Mercato i jak to zastosowanie jest dla firmy i handlu B2B w branży pamiątkarskiej.
+ 3227.3 No dobra, kolejny odcinek.
+ 3238.5 Kolejny odcinek z serii tego jak AI, jak zastosować, bardzo dużo,
+ 3249.0 dobra kolejny odcinek, bardzo dużo czytam i widzę, że takie cudowne to całe AI jest,
+ 3255.9 ale cały czas brakuje nam realnych przypadków, gdzie to AI zostało zastosowane
+ 3262.5 i gdzie realnie to AI zwróciło się i powodowało, że firma jest w lepszej kondycji
+ 3269.2 niż jeszcze na przykład miesiąc temu.
+ 3272.9 No ja mam takich przykładów już kilkanaście, które mogę się pochwalić
+ 3277.0 i chciałbym Wam dzisiaj przytoczyć jeden z nich.
+ 3279.7 Jednym z nich jest firma handlowa, która handluje paszą dla zwierząt i miała dosyć poważny problem z tym, że systemy typu Apilo, Baselinker, które dają możliwość zarządzania e-commercem i zarządzania różnymi marketplacesami, mają o tyle utrudnioną sytuację, że standardowe paczki są do 25 kg.
+ 3307.4 i nie było za bardzo rozwiązania, które powodowało, żeby te paczki po prostu
+ 3313.6 lepiej pakować, lepiej oznaczać, bo jedno zamówienie składało się na przykład
+ 3320.1 z czterech paczek. Klient zamawiał cztery worki paszy po 25 kilo,
+ 3324.9 więc nie mogliśmy wsadzić tego w jedno zamówienie, nie dawało rady
+ 3329.0 wydrukować jednej etykiety, bo to musiały być cztery różne etykiety,
+ 3333.2 zgłosił się do mnie klient ze Słupska, który zgłosiła się do mnie klientka ze Słupska,
+ 3339.3 która z takim problemem i jak sytuacja ma się teraz, teraz i jak wcześniej ta sytuacja
+ 3346.2 miała, wyglądała. Klient wchodził wcześniej w Apillo i po to, żeby wydrukować na przykład
+ 3352.0 cztery różne etykiety dla tego samego produktu, bo tak musiał to zrobić, jeżeli na przykład
+ 3356.4 było wysłane to in postem, musiał wchodzić w apillo, system, o którym tutaj
+ 3363.3 możecie sobie zobaczyć, link do niego podeślę, bo to jest całkiem fajny system
+ 3366.9 do zarządzania e-commerce'em i do zarządzania marketplacesami,
+ 3372.1 ale już wracając tutaj do sedna sprawy, musiał klient, musiał wejść w komentarzu,
+ 3380.0 żeby wiedzieć, do którego zamówienia dana etykieta jest, musiał w komentarzu
+ 3383.9 usunąć jedną część, zostawić tylko ten produkt, który będzie dla tego drukowany,
+ 3388.7 to sobie gdzieś przeklejał z boku do Excela i klient drukował etykietę.
+ 3394.6 Później z tego Excela wklejał całą resztę, brał drugi człon, trzeci, czwarty
+ 3400.8 i tak po kolei. Ten proces wykonywał dla każdego zamówienia.
+ 3406.0 Jak ja to widziałem, to zajmowało jedno zamówienie około 10 minut do 15
+ 3413.9 że to zamówienie było, a do tego jeszcze na końcu klient zapisywał sobie informację
+ 3419.8 z którego kanału, od którego kuriera to dane zamówienie idzie.
+ 3428.7 Po to, aby oczywiście w momencie, kiedy przyjeżdża kurier i wydają na przykład
+ 3432.3 100-200 paczek dziennie, wiedzieć, że te 100 paczek zostało odebranych,
+ 3438.1 żeby tutaj nic czego nie zgubić. I o tyle to teraz się zmieniło,
+ 3443.9 kliknięcie. Teraz klient
+ 3446.0 widzi, dostał system,
+ 3448.0 w którym opiera się też
+ 3449.7 o tutaj, o AI
+ 3451.9 i
+ 3453.5 pomaga znajdywać
+ 3455.5 podobne,
+ 3456.4 podobne zamówienia.
+ 3459.9 Łączy to wszystko w jeden koszyk
+ 3462.0 i klikasz
+ 3463.7 wygeneruj etykiety. Wszystkie
+ 3465.6 etykiety generują się
+ 3467.3 w ciągu kilku minut
+ 3469.6 i masz je od razu do wydrukowania.
+ 3473.9 idą do drukarki etykiet, etykiety są drukowane i zaoszczędził klient z tego,
+ 3482.3 co tutaj jakby od informacji i mierzyliśmy około 100 godzin miesięcznie.
+ 3490.1 Wyobraź sobie, że ściąga ktoś z Ciebie 100 godzin miesięcznie ręcznej, frustrującej,
+ 3498.8 wkurzającej pracy, która jest niechętnie robiona przez nikogo.
+ 3504.5 Nikt nie chce takiej pracy robić, bo to jest po prostu praca,
+ 3507.4 która jest też energetycznie bardzo, bardzo obciążająca,
+ 3511.8 bardzo monotonna, łatwą pomyłkę i tak naprawdę to są rzeczy,
+ 3517.9 które klienci powodują dużo nerwów i dużo gaszenia pożarów, tak?
+ 3524.9 Tak, więc zaostrzegliśmy bardzo dużo czasu i dzięki temu pojawiła się przestrzeń na to,
+ 3530.9 żeby osobę, która wcześniej to robiła, dać ją do innych zadań, dać ją do rzeczy,
+ 3535.5 gdzie bardziej potrzebujemy w tym wszystkim człowieka, do rzeczy, które nie są po prostu
+ 3541.2 łatwe do zautomatyzowania albo to, co zawsze dla firmy było ważne, ale nigdy nie było czasu na to.
+ 3547.7 Więc tak to zostało tutaj w tej firmie zaprojektowane i kolejny przykład z tej firmy,
+ 3555.4 tak już idąc dalej, to też jest katalog AI. Katalog AI, jak to wygląda?
+ 3562.9 Wcześniej klient musiał dane z faktury przekopiować ręcznie do na przykład programu Nexo.
+ 3573.6 do programu Nexo i ten program Nexo trzeba było wszystkie te dane uzupełnić,
+ 3580.1 przekleić, do tego trzeba było wejść w chat GPT albo Gmini, stworzyć opis jeden
+ 3586.2 dla Allegro, opis dla swojego sklepu na WordPressie, opis dla Erli na przykład
+ 3591.8 i jeszcze dla innych Marketplace'ów, do tego trzeba było znaleźć zdjęcia,
+ 3595.8 naprawdę dużo, dużo pracy ręcznej i tutaj z informacji, jakie widziałem,
+ 3602.6 jakie klientka do mnie tutaj przyszła z tymi informacjami, wprowadzenie 5-10 produktów
+ 3610.3 i oczywiście robienie jeszcze przy tym innych rzeczy i gaszenie pożarów,
+ 3615.0 bo co chwilę ktoś puka i co chwilę ktoś wchodzi, generowało to, że kilkanaście produktów
+ 3620.3 potrafiło być wprowadzanych na przykład cały dzień. Nieraz, jeżeli na przykład to była faktura
+ 3625.8 to te wszystkie pozycje nawet nie były wprowadzone, nie było na to po prostu czasu,
+ 3632.1 bo ktoś zachorował, bo były ważniejsze rzeczy i przez to nasz asortyment
+ 3637.7 nie rósł w żaden sposób, więc tutaj znowu wchodzi AI, które pozwala po pierwsze
+ 3645.0 odczytać te dokumenty w bardzo prosty sposób, zbudować listę produktów,
+ 3650.8 jakie chcemy dodać w naszego katalogu, przygotować nam opisy pod każdą platformę,
+ 3656.6 sprawdzić to z naszymi magazynami i czy ten produkt już istnieje i dosłownie
+ 3661.1 jednym kliknięciem dodać wszystko do naszego magazynu i do naszych programów
+ 3667.1 księgowych, magazynowych, fakturowych, jakkolwiek, gdzie tego niekolwiek
+ 3670.7 byśmy nie potrzebowali. Więc to są takie dwa zastosowania, że tak powiem,
+ 3675.6 z pola bitwy, jeżeli chodzi o firmę handlową i naprawdę widzimy
+ 3682.3 mocno korzyści, tutaj już też mam informację od tego klienta,
+ 3685.8 że no już przebiera nogami, żeby robić kolejne rzeczy i próbować
+ 3691.0 to zautomatyzować, bo też czuje spokój, większy spokój po wprowadzeniu
+ 3696.4 takich rzeczy. I teraz pytanie, czy to działa idealnie? No nie,
+ 3701.5 pamiętajmy, że systemy oparte o AI potrzebują czasu, żeby się
+ 3706.9 potrzebują doślifowania tych rzeczy. Ja to tak nazywam, to są takie dokręcanie śrubek w tym wszystkim.
+ 3712.7 I te śrubki po prostu przez jakiś czas trzeba podokręcać, tak żeby po kilku miesiącach
+ 3717.0 po prostu ten proces zostawić i o nim zapomnieć. A jeżeli chciałbyś zobaczyć,
+ 3722.0 jak o takim procesie zapomnieć i jak te śrubki ja dokręcam, to zapraszam Cię na flowbiz.pl,
+ 3728.1 a porozmawiamy i pokażę Ci, jak można to zrobić u Ciebie w firmie i jak rozwiązać Twoje problemy
+ 3735.6 nowych technologii.

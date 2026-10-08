@@ -18,9 +18,13 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 - [Opis do rolki: krótko i na luzie](memory/opis-do-rolki-pisz-krotko-i-na-luzie.md) — zaczynaj od dwóch zdań; pointa potrzebuje własnej linii; żadnej listy tego, co widać w materiale; zdanie o niedoskonałości zostaje zawsze
 - [Prośby o głośność tłumacz na decybele](memory/prosby-o-glosnosc-tlumacz-na-decybele.md) — „ścisz o 2 %" to −0,18 dB, czyli poniżej progu słyszalności; procent = kierunek, nie mnożnik; raportuj w dB
 - [Nigdy nie rozciągaj kadru](memory/nigdy-nie-rozciagaj-kadru.md) — `scale=W:H` na innych proporcjach deformuje; blur-fill albo czysty crop
+- [Whisper zapętla się na długim pliku](memory/whisper-dlugi-plik-petla.md) — > 20 min: `--condition-on-previous-text False --hallucination-silence-threshold 2` od razu; pętla nie zmienia kodu wyjścia
+- [Nagranie z promptera nie trzyma się tekstu](memory/nagranie-z-promptera-nie-trzyma-sie-tekstu.md) — dubel z transkrypcji, scenariusz tylko identyfikuje; poprawki liczb na nagraniu są celowe
+- [Whisper gubi falstarty](memory/whisper-gubi-falstarty.md) — przy powtórkach dubla czasy słów kłamią; sklejka po ciszy w sygnale, kontrola transkrypcją gotowego klipu
 
 ## Decyzje (ADR)
 
 - [Ekran produktu z HTML zamiast nagrań i generacji](decisions/2026-07-30-ekran-produktu-z-html.md) — 2026-07-30
 - [Oznaczanie treści AI — trzy warstwy, znak tylko na starcie](decisions/2026-08-02-oznaczanie-tresci-ai.md) — 2026-08-02
 - [Pipeline shortów z telefonu (ADR projektowy)](../projects/shorts%20IG/ai/decisions/2026-08-19-pipeline-shortow-z-telefonu.md) — 2026-08-19
+- [Baza klipów z sesji nagraniowej (ADR projektowy)](../projects/recording-library/ai/decisions/2026-10-08-baza-klipow-z-sesji-nagraniowej.md) — 2026-10-08

@@ -15,6 +15,7 @@ video-mentions/
 └── projects/
     ├── adresflow/            ← JEDEN PROJEKT
     ├── shorts IG/            ← shorty z telefonu; własny pipeline, patrz jego README
+    ├── recording-library/    ← baza klipów z sesji nagraniowych; patrz jego README
     └── granit/
         ├── ai/               decyzje i plany TEGO projektu
         ├── assets/           ŹRÓDŁA — nieodtwarzalne
@@ -74,6 +75,7 @@ w `tools/story.py`.
 | `adresflow` | AdresFlow | wizualizacje nieruchomości — rzut 3D z kartki, home staging |
 | `granit` | Granit Kończewo × FlowBiz AI | kampania sponsorska klubu; sponsor dostaje bezpłatny audyt AI |
 | `shorts IG` | FlowBiz (kanał Mateusza) | pionowe shorty z nagrań telefonem — gadana głowa, przebitki, filmowany ekran |
+| `recording-library` | FlowBiz + AI Słupsk | baza klipów z sesji nagraniowych: reklamy z promptera, case studies, ranking hooków |
 
 ## Powiązane repo
 
