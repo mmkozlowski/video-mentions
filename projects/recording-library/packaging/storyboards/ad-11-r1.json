@@ -130,9 +130,9 @@
    "type": "broll",
    "at": "budujemy",
    "until": "+2.6",
-   "src": "../youtube/Animation flowbiz youtube/assets/veo/18-hala-timelapse.mp4",
-   "from": 1.0,
-   "label": "Systemy dla firm produkcyjnych"
+   "src": "assets/broll/stills/s11-hala-sprzet-sportowy.jpg",
+   "label": "Systemy dla firm produkcyjnych",
+   "ai": true
   },
   {
    "type": "broll",

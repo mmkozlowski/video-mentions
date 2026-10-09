@@ -216,3 +216,19 @@ na hasła 12–20 znaków.
 
 **Logo z bursztynowym „w”** (`flowbiz-ai.png`; biały oryginał to `flowbiz-ai-white.png`).
 Litera ma kolumny 447–744 px w PNG i jest przemalowana na `#F5A623`.
+
+**Przebitki muszą wyglądać na polskie** (Mateusz: „b-rolle nie mogą być azjatyckie, muszą
+być polskie, podobne do naszych klimatów”). Z ujęć Veo z `projects/youtube` wypadły:
+07-warsztat-stol, 18-hala-timelapse, 10-kod-okulary, 01-biuro-excele i 16-tablica-rysunek.
+Zamiast nich weszły ujęcia Mateusza z `~/Youtube Projects/b-rolle`, opisane w
+`real_broll.py`:
+- stock (prawdziwe, bez znaku AI): chaos w biurze, zmęczona szefowa, przy biurku, kod na
+  laptopie, zespół;
+- Veo („AI”, znak wodny w rogu obcięty): stres przy Excelu, stos dokumentów, szwalnia;
+- kadr s11 (warsztat spawalniczy) zamiast azjatyckiej linii produkcyjnej.
+
+**Okładka dla klipów wyrwanych z odcinka** (Mateusz: „dobrze się słucha, ale musi być nadany
+kontekst na pierwszym ekranie”). Pole `cover` w storyboardzie daje pełnoekranową planszę od
+pierwszej klatki, ok. 2,2 s, z głosem pod spodem: jedno zdanie, kto i jaki problem. Hook
+wchodzi po okładce i trwa co najmniej 2,5 s. Mają ją cztery klipy `ch-*`, a jej klatka nadaje
+się na okładkę rolki.

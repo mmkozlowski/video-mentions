@@ -78,9 +78,9 @@
    "type": "broll",
    "at": "prototyp",
    "until": "+2.0",
-   "src": "../youtube/Animation flowbiz youtube/assets/veo/10-kod-okulary.mp4",
-   "from": 1.0,
-   "label": "Prototyp w 3 dni"
+   "src": "build/broll-real/stock-kod-laptop.mp4",
+   "label": "Prototyp w 3 dni",
+   "ai": false
   },
   {
    "type": "logos",

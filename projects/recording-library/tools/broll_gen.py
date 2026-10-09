@@ -39,7 +39,7 @@ COST = {"still": 0.134, "video_per_s": 0.15}
 
 # Wspólny styl z 18 ujęciami Veo z projects/youtube — ta sama estetyka w całej bibliotece.
 STYLE = ("cinematic documentary still, dark interior, warm practical lighting, shallow depth of field, "
-         "muted amber and deep green tones, 35mm film look, realistic Polish small-business setting, "
+         "muted amber and deep green tones, 35mm film look, realistic Polish small-business setting, Central European (Polish) people only, "
          "main subject in the CENTER third of the frame (the frame will be cropped to vertical), "
          "absolutely no readable text, no letters, no logos, no watermarks, 16:9")
 

@@ -42,8 +42,8 @@
    "type": "broll",
    "at": "hala",
    "until": "W",
-   "src": "../youtube/Animation flowbiz youtube/assets/veo/18-hala-timelapse.mp4",
-   "from": 3.0
+   "src": "assets/broll/stills/s11-hala-sprzet-sportowy.jpg",
+   "ai": true
   },
   {
    "type": "compare",

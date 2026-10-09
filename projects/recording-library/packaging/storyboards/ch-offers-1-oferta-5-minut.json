@@ -135,5 +135,9 @@
    "from": 2.0,
    "label": "Szukanie starych ofert"
   }
- ]
+ ],
+ "cover": {
+  "kicker": "Case study · producent maszyn sportowych",
+  "text": "Oferta zaczynana w poniedziałek, *kończona we wtorek."
+ }
 }

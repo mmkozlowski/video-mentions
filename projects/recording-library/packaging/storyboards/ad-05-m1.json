@@ -74,9 +74,9 @@
    "type": "broll",
    "at": "Bez",
    "until": "+2.6",
-   "src": "../youtube/Animation flowbiz youtube/assets/veo/07-warsztat-stol.mp4",
-   "from": 1.0,
-   "label": "Przy Twoim biurku, nie przez ekran"
+   "src": "build/broll-real/stock-przy-biurku.mp4",
+   "label": "Przy Twoim biurku, nie przez ekran",
+   "ai": false
   },
   {
    "type": "title",

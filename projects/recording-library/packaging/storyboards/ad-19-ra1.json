@@ -76,9 +76,9 @@
    "type": "broll",
    "at": "produkcyjnych",
    "until": "Siedzi",
-   "src": "../youtube/Animation flowbiz youtube/assets/veo/18-hala-timelapse.mp4",
-   "from": 2.0,
-   "label": "Agent AI dla zarządu"
+   "src": "assets/broll/stills/s11-hala-sprzet-sportowy.jpg",
+   "label": "Agent AI dla zarządu",
+   "ai": true
   },
   {
    "type": "logos",

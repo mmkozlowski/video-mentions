@@ -71,14 +71,15 @@
    "type": "broll",
    "at": "meble",
    "until": "+3.2",
-   "src": "assets/broll/stills/s08-szwalnia-meble-ogrodowe.jpg"
+   "src": "build/broll-real/veo-szwalnia.mp4",
+   "ai": true
   },
   {
    "type": "broll",
    "at": "Excelu",
    "until": "+3.0",
-   "src": "../youtube/Animation flowbiz youtube/assets/veo/01-biuro-excele.mp4",
-   "from": 0.5
+   "src": "build/broll-real/veo-excel-stres.mp4",
+   "ai": true
   },
   {
    "type": "list",
@@ -99,6 +100,20 @@
      "at": "rozszyfrowanie"
     }
    ]
+  },
+  {
+   "type": "broll",
+   "at": "setką",
+   "until": "+3.0",
+   "src": "build/broll-real/veo-stos-dokumentow.mp4",
+   "ai": true
+  },
+  {
+   "type": "broll",
+   "at": "frustrująca",
+   "until": "+2.8",
+   "src": "build/broll-real/stock-chaos-biuro.mp4",
+   "ai": false
   },
   {
    "type": "compare",

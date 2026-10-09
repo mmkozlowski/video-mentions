@@ -68,9 +68,9 @@
    "type": "broll",
    "at": "boją",
    "until": "+2.4",
-   "src": "../youtube/Animation flowbiz youtube/assets/veo/07-warsztat-stol.mp4",
-   "from": 1.0,
-   "label": "Zapytaj zespół, zanim kupisz"
+   "src": "build/broll-real/stock-zmeczona-szefowa.mp4",
+   "label": "Zapytaj zespół, zanim kupisz",
+   "ai": false
   },
   {
    "type": "title",

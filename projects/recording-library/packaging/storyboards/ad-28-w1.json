@@ -95,9 +95,9 @@
    "type": "broll",
    "at": "warsztatach",
    "until": "+2.6",
-   "src": "../youtube/Animation flowbiz youtube/assets/veo/16-tablica-rysunek.mp4",
-   "from": 0.5,
-   "label": "Warsztaty AI Słupsk"
+   "src": "build/broll-real/stock-zespol-laptop.mp4",
+   "label": "Warsztaty AI Słupsk",
+   "ai": false
   },
   {
    "type": "title",

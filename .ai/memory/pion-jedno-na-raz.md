@@ -27,6 +27,12 @@ słowie wygląda na pocięty.
   jedna składnia, jeden rozmiar fontu dla całej listy, nie słowo w słowo z mowy.
   `package.py` ostrzega przy > 22 znakach. Logo flowbiz AI ma bursztynowe „w”.
 
+- Klip wycięty z odcinka (ch-*) dostaje **okładkę**: jedno zdanie kontekstu na pierwszym
+  ekranie (pole `cover`). Bez niej „dobrze się słucha, ale nie wiadomo, o czym mowa”.
+- **Przebitki mają wyglądać na polskie.** Żadnych azjatyckich postaci ani hal, bo Mateusz to
+  odrzucił. Najpierw jego własne b-rolle (`~/Youtube Projects/b-rolle`, `real_broll.py`).
+  W promptach generatora: polskie małe firmy, europejscy ludzie.
+
 **Why:** odbiorca w pionie ma jedną rzecz do przeczytania naraz. Duplikat tekstu i ścisk
 zabijają czytelność, a w podglądzie na komputerze tego nie widać.
 

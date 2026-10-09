@@ -377,6 +377,20 @@ class Composition:
             tiles.append(f'<div class="logo-tile{" wide" if wide else ""}">{mark}{name}</div>')
         return "".join(sorted(tiles, key=lambda t: ' wide"' in t))
 
+    def cover(self):
+        """Okładka: klip wyrwany z odcinka dostaje na pierwszym ekranie jedno zdanie kontekstu
+        (Mateusz 9.10: „dobrze się słucha, ale musi być nadany kontekst na pierwszym ekranie”).
+        Głos leci pod spodem, hook wchodzi po okładce. Ta klatka nadaje się też na okładkę rolki."""
+        cover = self.board.get("cover")
+        if not cover:
+            return
+        self.cover_end = cover.get("dur", 2.2)
+        sid = self.slate(0.0, self.cover_end,
+                         (f'<div class="kicker">{esc(cover["kicker"])}</div>' if cover.get("kicker") else "")
+                         + f'<div class="slate-text" style="font-size:{fit(cover["text"], 900 if self.vertical else 1500, 104 if self.vertical else 110, 4)}px">{self.words_html(cover["text"])}</div>',
+                         instant=True)
+        self.js.append(f'tl.fromTo("#{sid} .slate-text .w",{{opacity:0.3}},{{opacity:1,duration:0.2,stagger:0.05}},0.05);')
+
     def card_slate(self, ev, start, end):
         """Plansza: jedno zdanie na pełnym ekranie, głos leci pod spodem."""
         sid = self.slate(start, end, (f'<div class="kicker">{esc(ev["kicker"])}</div>' if ev.get("kicker") else "")
@@ -384,14 +398,15 @@ class Composition:
                          + (f'<div class="sub">{esc(ev["sub"])}</div>' if ev.get("sub") else ""))
         self.stagger(f"#{sid} .slate-text .w", start + 0.12, 0.06, 18)
 
-    def slate(self, start, end, inner):
+    def slate(self, start, end, inner, instant=False):
         sid = self.uid("s")
         start, end = self.q(start), self.q(end)
         self.slates.append((start, end))
         self.panel_busy.append((start, end))   # plansza zakrywa panel — bez karty tematu pod spodem
         self.html.append(f'<div class="slate clip" id="{sid}" style="opacity:0" data-start="{start}" data-duration="{round(end - start, 4)}" '
                          f'data-track-index="8"><div class="end-grid"></div><div class="slate-body">{inner}</div></div>')
-        self.js.append(f'tl.fromTo("#{sid}",{{opacity:0}},{{opacity:1,duration:0.22}},{start});')
+        self.js.append(f'tl.set("#{sid}",{{opacity:1}},{start});' if instant else
+                       f'tl.fromTo("#{sid}",{{opacity:0}},{{opacity:1,duration:0.22}},{start});')
         self.js.append(f'tl.fromTo("#{sid} .slate-body",{{scale:0.94}},{{scale:1,duration:0.5,ease:"power3.out"}},{start});')
         self.js.append(f'tl.to("#{sid}",{{opacity:0,duration:0.22}},{round(end - 0.22, 4)});')
         return sid
@@ -514,10 +529,10 @@ class Composition:
         hook = self.board.get("hook")
         if not hook or self.fmt == "youtube":
             return
-        end = self.clock.at(hook.get("until", 3.0), floor=0)
+        end = max(self.clock.at(hook.get("until", 3.0), floor=0), self.cover_end + 2.5)
         self.hook_end = end
         parts = sentences(hook["text"])
-        times = self.sentence_times(parts, 0.0, end)
+        times = self.sentence_times(parts, self.cover_end, end)
         # jeden rozmiar dla wszystkich zdań — bez przeskoku fontu przy zmianie
         size = min(fit(p, 830, 76, 3, 52) for p in parts)
         accent = hook.get("accent", [])
@@ -526,16 +541,16 @@ class Composition:
         text = "".join(f'<div class="hook-sent">{self.words_html(p, accent=accent)}</div>' for p in parts)
         self.hook_words = {norm(w) for w in hook["text"].replace("*", "").split() if len(norm(w)) >= 4}
         visual = self.hook_visual(hook.get("visual"))
-        self.html.append(f'<div class="hook clip" id="{cid}" data-start="0" data-duration="{self.q(end)}" data-track-index="4">'
+        self.html.append(f'<div class="hook clip" id="{cid}" data-start="{self.q(self.cover_end)}" data-duration="{self.q(end - self.cover_end)}" data-track-index="4">'
                          f'<div class="hook-in">{visual}<div class="hook-text" style="font-size:{size}px">{text}</div></div></div>')
-        self.js.append(f'tl.fromTo("#{cid} .hook-in",{{opacity:0,y:40}},{{opacity:1,y:0,duration:0.4,ease:"power3.out"}},0.05);')
+        self.js.append(f'tl.fromTo("#{cid} .hook-in",{{opacity:0,y:40}},{{opacity:1,y:0,duration:0.4,ease:"power3.out"}},{self.q(self.cover_end + 0.05)});')
         if visual:
-            self.js.append(f'tl.fromTo("#{cid} .hv-pop",{{opacity:0,scale:0.6}},{{opacity:1,scale:1,duration:0.45,ease:"back.out(1.8)",stagger:0.22}},0.2);')
+            self.js.append(f'tl.fromTo("#{cid} .hv-pop",{{opacity:0,scale:0.6}},{{opacity:1,scale:1,duration:0.45,ease:"back.out(1.8)",stagger:0.22}},{self.q(self.cover_end + 0.2)});')
             self.js.extend(js.replace("#ID", f"#{cid}") for js in self.hook_visual_js(hook.get("visual"), end))
         for i, start in enumerate(times[:-1]):
             sel = f"#{cid} .hook-sent:nth-child({i + 1})"
             if i:
-                self.js.append(f'tl.set("{sel}",{{opacity:0}},0);')
+                self.js.append(f'tl.set("{sel}",{{opacity:0}},{self.q(self.cover_end)});')
                 self.js.append(f'tl.to("#{cid} .hook-sent:nth-child({i})",{{opacity:0,duration:0.15}},{self.q(start - 0.15)});')
                 self.js.append(f'tl.set("{sel}",{{opacity:1}},{self.q(start)});')
             self.js.append(f'tl.fromTo("{sel} .w",{{opacity:0.25}},{{opacity:1,duration:0.2,stagger:0.07}},{self.q(start + 0.15)});')
@@ -795,13 +810,15 @@ class Composition:
     # ── składanie ───────────────────────────────────────────────────────────
     def build(self):
         hook = self.board.get("hook")
+        self.cover_end = self.board.get("cover", {}).get("dur", 2.2) if self.board.get("cover") else 0.0
         if hook and self.fmt != "youtube":
-            self.hook_end = self.clock.at(hook.get("until", 3.0), floor=0)
+            self.hook_end = max(self.clock.at(hook.get("until", 3.0), floor=0), self.cover_end + 2.5)
             if self.hook_end > 4.0 * max(2, len(sentences(hook["text"]))):   # ~4 s na zdanie
                 print(f"  ⚠ hook trwa {self.hook_end:.1f} s — skróć `until`")
             elif self.hook_end < 2.5:   # po wycięciu „yyy” kotwica potrafi wypaść za wcześnie
                 print(f"  ⚠ hook trwa tylko {self.hook_end:.1f} s — przesuń `until`")
         self.base()
+        self.cover()
         for ev in self.board["events"]:
             if self.fmt in ev.get("skip", []):
                 continue

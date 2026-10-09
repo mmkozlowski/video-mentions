@@ -43,9 +43,9 @@
    "type": "broll",
    "at": "dany",
    "until": "+2.3",
-   "src": "../youtube/Animation flowbiz youtube/assets/veo/01-biuro-excele.mp4",
-   "from": 2.0,
-   "label": "Zamówienie w Excelu od kontrahenta"
+   "src": "build/broll-real/veo-excel-stres.mp4",
+   "label": "Zamówienie w Excelu od kontrahenta",
+   "ai": true
   },
   {
    "type": "logos",
@@ -132,5 +132,9 @@
    "text": "Zostają marginalne przypadki",
    "sub": "a człowiek tylko sprawdza"
   }
- ]
+ ],
+ "cover": {
+  "kicker": "Case study · producent mebli ogrodowych",
+  "text": "Zamówienia od niemieckich kontrahentów. *AI uczy się je czytać."
+ }
 }
