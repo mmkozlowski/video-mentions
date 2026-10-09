@@ -53,3 +53,53 @@ zawsze z **oryginalnymi znakami narzędzi**, a paleta jest nierozstrzygnięta: k
   Na hasło „tylko jeden kadr” potrafi oddać tryptyk z ramkami — kadry ocenia się arkuszem
   przed ożywieniem.
 - **Węzeł 22+**: `hyperframes` nie wstaje na domyślnym Node 20 z nvm.
+
+## Korekta po pierwszym przeglądzie (9.10, rano)
+
+Mateusz obejrzał 90 próbek. Wersja YouTube (panel boczny) się obroniła, w pionie było
+**za dużo naraz**: hook w kafelkach słowo po słowie, pod nim napisy powtarzające to samo,
+karta w panelu z tym samym tekstem, znak AI, chip i logo w rogu, wszystko w pierwszych
+sekundach. Do tego wiszące „yyy” i pauzy z nagrania z promptera.
+
+Decyzje (wszystkie w silniku, więc dotyczą każdego klipu):
+
+1. **Jedno zdanie = jedno tło.** Hook to jeden blok na dole kadru, na piersi, nie na twarzy.
+   Pełnoekranowa plansza z hookiem odpada, bo zdaniem Mateusza zabiera wiarygodność.
+   Można ją potem przetestować jako wariant A/B.
+2. **Kolejność wejść.** Pod hookiem twarz na całym ekranie i sam hook. Po hooku kadr
+   odjeżdża i wjeżdża dolny panel. Karty w panelu startują dopiero po nim.
+3. **Napisy znikają**, gdy na ekranie jest hook, plansza albo karta powtarzająca wypowiedź
+   (wspólne słowo ≥ 4 litery). Wtedy zostaje sam pasek.
+4. **Ikony narzędzi w pionie na osobnej planszy** (pełny ekran, głos pod spodem).
+   W 16:9 zostają w panelu bocznym. Nowy typ zdarzenia `slate` to plansza z jednym zdaniem.
+5. **Logo tylko na ostatnim ekranie**, duże, w nowej wersji „flowbiz AI”
+   (`brand/logos/flowbiz-ai.png`). Znak w rogu usunięty. YouTube dostał planszę 2,5 s.
+6. **Chip CTA w dwóch oknach** (po hooku i na finiszu) zamiast przez cały klip. Końcówka
+   przewija miejscowości: Słupsk → Pomorze → Gdańsk → Koszalin → strona.
+7. **Wycięte pauzy.** `build_clips.py` tnie każdą lukę między słowami > 0,55 s (Whisper nie
+   zapisuje „yyy”, więc w transkrypcji to dziura). Zostaje 0,20 s po słowie i 0,12 s przed
+   następnym. Z 63 klipów zeszło 272 s.
+8. **Zoom na twarzy** zmienia plan skokiem na każdej sklejce (`splices.json` z `cut.py`)
+   i co kilka zdań, z wolnym dryfem pomiędzy. Maskuje cięcia po pauzach.
+9. **Tekst dopasowany do strefy** (`fit()`): rozmiar liczony z szerokości strefy i najdłuższego
+   słowa. Porównanie w 16:9 układa się w pionie. Strefy przycinają zawartość, a
+   `tools/layout_audit.py` przepuszcza wszystkie warianty przez `hyperframes check`
+   i zbiera każde wyjście tekstu poza ramkę.
+
+Pułapka: **hook dłuższy niż ~6 s** (W11 miał 10 s) robił z pierwszego ekranu ścianę tekstu.
+`package.py` ostrzega. Kotwica `until` ma kończyć pierwszą frazę, nie drugą.
+Liczbowe `until` w hooku psują się po wycięciu pauz, dlatego tylko kotwice słowne.
+
+### Do testu (pomysły Mateusza, jeszcze niezrobione)
+
+- **Pierwszy ekran z segmentem odbiorcy:** „AI w firmie produkcyjnej” / „AI w firmie
+  handlowej” jako jeden z wariantów reklamy (plansza 1–1,5 s albo pasek nad hookiem)
+  i jako miniaturka/okładka rolki. Mierzymy CTR i koszt kliknięcia per segment.
+- **Pełnoekranowy hook-plansza** jako wariant B wobec hooka na twarzy (hipoteza Mateusza:
+  plansza traci wiarygodność).
+- **Czytelność wg referencji (rolka BRAVE / AI Tech Leaders, pokazana przez Mateusza):**
+  twarz na pełnym ekranie przez cały czas; jedna zaokrąglona, prawie czarna karta pływa
+  nisko i pojawia się tylko, gdy ma treść (liczba + krótki podpis, jedna makieta); napisy
+  to 1–2 słowa wersalikami ze świeceniem, na wysokości piersi nad kartą. Mateusz: „nie
+  musisz tego teraz stosować, chodzi o czytelność”. Kandydat na wariant `float` obok
+  obecnego panelu, do porównania w galerii.

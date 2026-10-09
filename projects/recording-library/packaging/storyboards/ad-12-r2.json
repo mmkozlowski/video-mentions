@@ -3,7 +3,7 @@
  "brand": "flowbiz",
  "hook": {
   "text": "Co, jak *jedyna osoba, która wie, pójdzie na *emeryturę?",
-  "until": "Na"
+  "until": "Na produkcji"
  },
  "topic": {
   "kicker": "Wiedza produkcji",
@@ -50,7 +50,7 @@
   },
   {
    "type": "stat",
-   "at": "wiedza",
+   "at": "wiedza o",
    "until": "Właściciel",
    "kicker": "Wyroby specjalne",
    "from": 5,

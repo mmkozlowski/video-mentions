@@ -65,9 +65,9 @@ LOGO_COLORS = {
 
 BRANDS = {
     "flowbiz": dict(mark="flowbiz", tagline="systemy AI-first dla firm", web="flowbiz.pl",
-                    phone="536 507 701"),
+                    phone="536 507 701", places=["Słupsk", "Pomorze", "Gdańsk", "Koszalin"]),
     "aislupsk": dict(mark="AI Słupsk", tagline="warsztaty AI dla firm z regionu", web="aislupsk.pl",
-                     phone="536 507 701"),
+                     phone="536 507 701", places=["Słupsk", "Lębork", "Ustka", "Koszalin"]),
 }
 
 FORMATS = {
@@ -135,6 +135,16 @@ def logos_css():
     return "\n".join(rows)
 
 
+def logo_ratio(name):
+    box = re.search(r'viewBox="\s*[\d.-]+\s+[\d.-]+\s+([\d.]+)\s+([\d.]+)', (BRAND / "logos" / f"{name}.svg").read_text())
+    return float(box.group(1)) / float(box.group(2)) if box else 1.0
+
+
+def logo_in_tile(name, size, tile_w):
+    """Szeroki znak słowny (Open Mercato) nie może wyjść poza kafelek — liczymy wysokość z proporcji."""
+    return logo(name, int(min(size, tile_w / logo_ratio(name))))
+
+
 def logo(name, size=None, color=None):
     style = []
     if size:
@@ -142,6 +152,16 @@ def logo(name, size=None, color=None):
     if color:
         style.append(f"color:{color}")
     return f'<i class="logo logo-{name}" style="{";".join(style)}"></i>'
+
+
+def fit(text, width, largest, lines=1, smallest=34):
+    """Rozmiar fontu, przy którym tekst mieści się w strefie: najdłuższe słowo w jednej
+    linii i całość w `lines` liniach. Szacunek z szerokości znaku (0,62 em dla 800),
+    bo w kompozycji nie ma pomiaru przed renderem — sprawdza to potem hyperframes check."""
+    clean = text.replace("*", "")
+    longest = max((len(w) for w in clean.split()), default=1)
+    size = min(largest, width / (0.62 * longest), width * lines / (0.6 * max(len(clean), 1)))
+    return max(smallest, int(size))
 
 
 def esc(text):
@@ -158,11 +178,12 @@ class Composition:
         self.vertical = fmt != "youtube"
         self.brand = BRANDS[board.get("brand", clip["brand"])]
         words = json.load(open(LIBRARY / clip["id"] / "words.json"))
+        self.splices_file = LIBRARY / clip["id"] / "splices.json"
         fixes = json.load(open(DATA / "caption-fixes.json"))
         self.words = [dict(w, word=self.fix(w["word"], fixes)) for w in words]
         self.clock = Clock(self.words, fixes)
         self.clip_len = round(clip["duration"], 3)
-        self.end_len = board.get("endcard", {}).get(fmt, 3.5 if fmt == "ad" else 2.6 if fmt == "reels" else 0)
+        self.end_len = board.get("endcard", {}).get(fmt, {"ad": 3.5, "reels": 2.6, "youtube": 2.5}[fmt])
         self.total = round(self.clip_len + self.end_len, 3)
         self.html, self.js, self.media = [], [], {}
         self.n = 0
@@ -170,6 +191,11 @@ class Composition:
         self.panel_busy = []
         self.side_windows = []
         self.hook_end = 0.0
+        self.card_w = 888 if self.vertical else 700
+        self.broll_html = []
+        self.cards = []
+        self.slates = []
+        self.ai_until = 0.0
 
     @staticmethod
     def fix(word, fixes):
@@ -195,29 +221,25 @@ class Composition:
         if self.vertical:
             self.html.append(
                 f'<div id="video-wrap" style="left:0;top:0;width:{g["w"]}px;height:{g["face_h"]}px">'
+                f'<div id="face-zoom" style="transform-origin:50% 40%">'
                 f'<video id="face" src="media/face.mp4" playsinline data-has-audio="true" data-start="0" '
-                f'data-duration="{self.clip_len}" data-track-index="0" style="object-position:{face_x:.1f}% 50%"></video>'
-                f'<div class="face-fade"></div></div>'
+                f'data-duration="{self.clip_len}" data-track-index="0" style="object-position:{face_x:.1f}% 50%"></video></div>'
+                f'<!--BROLL--><div class="face-fade"></div></div>'
                 f'<div id="panel" style="top:{g["face_h"]}px;height:{g["h"] - g["face_h"]}px">'
                 f'<div class="panel-grid"></div><div class="panel-rule"></div>'
                 f'</div>')
         else:
             self.html.append(
                 f'<div id="video-wrap" style="left:0;top:0;width:{g["w"]}px;height:{g["h"]}px">'
+                f'<div id="face-zoom" style="transform-origin:{face_x:.1f}% 40%">'
                 f'<video id="face" src="media/face.mp4" playsinline data-has-audio="true" data-start="0" '
                 f'data-duration="{self.clip_len}" data-track-index="0" style="object-position:{face_x:.1f}% 50%"></video></div>'
+                f'<!--BROLL--></div>'
                 f'<div id="side-plate"></div>')
-
-    def brand_corner(self):
-        if not self.vertical:
-            return
-        start = self.q(self.hook_end + 0.2) if self.hook_end else 0
-        self.html.append(f'<div class="brand-mark clip" id="{self.uid("mark")}" data-start="{start}" '
-                         f'data-duration="{self.q(self.clip_len - start)}" data-track-index="5">{self.brand_mark()}</div>')
 
     def brand_mark(self):
         if self.brand["mark"] == "flowbiz":
-            return '<img src="media/flowbiz.png" alt="flowbiz" class="mark-img">'
+            return '<img src="media/flowbiz-ai.png" alt="flowbiz AI" class="mark-img">'
         return f'<span class="mark-text"><b>AI</b> Słupsk</span>'
 
     # ── karty ───────────────────────────────────────────────────────────────
@@ -227,6 +249,7 @@ class Composition:
         start, end = self.q(start), self.q(min(end, self.total))
         if zone == "panel":
             self.panel_busy.append((start, end))
+        self.cards.append((start, end, re.sub(r"<[^>]+>", " ", inner)))
         self.html.append(f'<div class="card-host clip zone-{zone}" id="{cid}" data-start="{start}" '
                          f'data-duration="{round(end - start, 4)}" data-track-index="{track}">'
                          f'<div class="card" id="{cid}-in">{inner}</div></div>')
@@ -264,25 +287,68 @@ class Composition:
 
     def card_title(self, ev, start, end):
         cid = self.host(start, end, f'<div class="kicker">{esc(ev.get("kicker", ""))}</div>'
-                                    f'<div class="title">{self.words_html(ev["text"])}</div>'
+                                    f'<div class="title" style="font-size:{fit(ev["text"], self.card_w, 92 if self.vertical else 76, 3)}px">{self.words_html(ev["text"])}</div>'
                                     + (f'<div class="sub">{esc(ev["sub"])}</div>' if ev.get("sub") else ""),
                         ev.get("zone", self.default_zone()))
         self.stagger(f"#{cid} .title .w", start + 0.15, 0.06, 18)
 
     def card_logos(self, ev, start, end):
-        items = "".join(f'<div class="logo-tile">{logo(i["logo"], 96 if self.vertical else 84)}'
-                        f'<span>{esc(i.get("name", ""))}</span></div>' for i in ev["items"])
-        cid = self.host(start, end, (f'<div class="kicker">{esc(ev["kicker"])}</div>' if ev.get("kicker") else "")
-                        + f'<div class="logo-row">{items}</div>'
-                        + (f'<div class="sub">{esc(ev["sub"])}</div>' if ev.get("sub") else ""),
-                        ev.get("zone", self.default_zone()))
-        self.stagger(f"#{cid} .logo-tile", start + 0.2, 0.14)
+        """Pion: ikony narzędzi na osobnej planszy — w panelu pod twarzą giną.
+        16:9: zostają w panelu bocznym (tam mają miejsce i się sprawdzają)."""
+        if not self.vertical:
+            items = self.logo_tiles(ev["items"], 84, 150, 600)
+            cid = self.host(start, end, (f'<div class="kicker">{esc(ev["kicker"])}</div>' if ev.get("kicker") else "")
+                            + f'<div class="logo-row">{items}</div>'
+                            + (f'<div class="sub">{esc(ev["sub"])}</div>' if ev.get("sub") else ""),
+                            ev.get("zone", self.default_zone()))
+            self.stagger(f"#{cid} .logo-tile", start + 0.2, 0.14)
+            return
+        items = self.logo_tiles(ev["items"], 140, 240, 760)
+        sid = self.slate(start, end, (f'<div class="kicker">{esc(ev["kicker"])}</div>' if ev.get("kicker") else "")
+                         + f'<div class="logo-row">{items}</div>'
+                         + (f'<div class="sub">{esc(ev["sub"])}</div>' if ev.get("sub") else ""))
+        self.stagger(f"#{sid} .logo-tile", start + 0.2, 0.14)
+
+    @staticmethod
+    def logo_tiles(items, size, tile_w, row_w):
+        """Kafelki logo; znak słowny (napis zamiast symbolu, np. Open Mercato) dostaje
+        własny rząd na całą szerokość — w kwadratowym kafelku wychodzi nieczytelnie mały."""
+        tiles = []
+        for i in items:
+            wide = logo_ratio(i["logo"]) > 2.5
+            mark = logo_in_tile(i["logo"], size, row_w if wide else tile_w)
+            name = "" if wide or not i.get("name") else f'<span>{esc(i["name"])}</span>'
+            tiles.append(f'<div class="logo-tile{" wide" if wide else ""}">{mark}{name}</div>')
+        return "".join(sorted(tiles, key=lambda t: ' wide"' in t))
+
+    def card_slate(self, ev, start, end):
+        """Plansza: jedno zdanie na pełnym ekranie, głos leci pod spodem."""
+        sid = self.slate(start, end, (f'<div class="kicker">{esc(ev["kicker"])}</div>' if ev.get("kicker") else "")
+                         + f'<div class="slate-text" style="font-size:{fit(ev["text"], 900 if self.vertical else 1500, 110 if self.vertical else 120, 4)}px">{self.words_html(ev["text"])}</div>'
+                         + (f'<div class="sub">{esc(ev["sub"])}</div>' if ev.get("sub") else ""))
+        self.stagger(f"#{sid} .slate-text .w", start + 0.12, 0.06, 18)
+
+    def slate(self, start, end, inner):
+        sid = self.uid("s")
+        start, end = self.q(start), self.q(end)
+        self.slates.append((start, end))
+        self.panel_busy.append((start, end))   # plansza zakrywa panel — bez karty tematu pod spodem
+        self.html.append(f'<div class="slate clip" id="{sid}" style="opacity:0" data-start="{start}" data-duration="{round(end - start, 4)}" '
+                         f'data-track-index="8"><div class="end-grid"></div><div class="slate-body">{inner}</div></div>')
+        self.js.append(f'tl.fromTo("#{sid}",{{opacity:0}},{{opacity:1,duration:0.22}},{start});')
+        self.js.append(f'tl.fromTo("#{sid} .slate-body",{{scale:0.94}},{{scale:1,duration:0.5,ease:"power3.out"}},{start});')
+        self.js.append(f'tl.to("#{sid}",{{opacity:0,duration:0.22}},{round(end - 0.22, 4)});')
+        return sid
 
     def card_stat(self, ev, start, end):
+        shown = f'{ev.get("prefix", "")}{ev["to"]}{ev.get("suffix", "")}'
+        k = fit(shown, self.card_w, 260, 1, 120) / 260
+        side = f'style="font-size:{int(84 * k)}px"'
         cid = self.host(start, end,
                         f'<div class="kicker">{esc(ev.get("kicker", ""))}</div>'
-                        f'<div class="stat"><span class="pre">{esc(ev.get("prefix", ""))}</span>'
-                        f'<span class="num" id="SID">{ev["from"]}</span><span class="suf">{esc(ev.get("suffix", ""))}</span></div>'
+                        f'<div class="stat"><span class="pre" {side}>{esc(ev.get("prefix", ""))}</span>'
+                        f'<span class="num" id="SID" style="font-size:{int(260 * k)}px">{ev["from"]}</span>'
+                        f'<span class="suf" {side}>{esc(ev.get("suffix", ""))}</span></div>'
                         f'<div class="sub">{esc(ev.get("label", ""))}</div>', ev.get("zone", self.default_zone()))
         self.html[-1] = self.html[-1].replace('id="SID"', f'id="{cid}-num"')
         self.js.append(f'(function(){{var o={{v:{ev["from"]}}};tl.to(o,{{v:{ev["to"]},duration:{ev.get("dur", 1.2)},'
@@ -293,9 +359,9 @@ class Composition:
         left, right = ev["before"], ev["after"]
         cid = self.host(start, end,
                         f'<div class="kicker">{esc(ev.get("kicker", ""))}</div><div class="compare">'
-                        f'<div class="side before"><span class="tag">PRZED</span><b>{esc(left["value"])}</b><span>{esc(left["label"])}</span></div>'
-                        f'<div class="arrow">→</div>'
-                        f'<div class="side after"><span class="tag">PO</span><b>{esc(right["value"])}</b><span>{esc(right["label"])}</span></div></div>',
+                        f'<div class="side before"><span class="tag">PRZED</span><b style="font-size:{self.compare_px(left["value"])}px">{esc(left["value"])}</b><span>{esc(left["label"])}</span></div>'
+                        f'<div class="arrow">{"→" if self.vertical else "↓"}</div>'
+                        f'<div class="side after"><span class="tag">PO</span><b style="font-size:{self.compare_px(right["value"])}px">{esc(right["value"])}</b><span>{esc(right["label"])}</span></div></div>',
                         ev.get("zone", self.default_zone()))
         self.js.append(f'tl.fromTo("#{cid} .before",{{opacity:0,x:-40}},{{opacity:1,x:0,duration:0.4}},{self.q(start + 0.15)});')
         self.js.append(f'tl.fromTo("#{cid} .after",{{opacity:0,x:40}},{{opacity:1,x:0,duration:0.4}},'
@@ -303,9 +369,13 @@ class Composition:
         self.js.append(f'tl.fromTo("#{cid} .before b",{{color:"{self.pal["text"]}"}},{{color:"{self.pal["danger"]}",'
                        f'textDecorationColor:"{self.pal["danger"]}",duration:0.3}},{self.q(start + 1.2)});')
 
+    def compare_px(self, value):
+        # pion: dwie kolumny po ~340 px; 16:9: karty jedna pod drugą, ~640 px
+        return fit(value, 340 if self.vertical else 640, 74 if self.vertical else 90, 2 if self.vertical else 1, 40)
+
     def card_list(self, ev, start, end):
         rows = "".join(f'<div class="li" data-i="{i}"><span class="n">{i + 1}</span>'
-                       f'{logo(it["logo"], 40) if it.get("logo") else ""}<span class="t">{esc(it["text"])}</span></div>'
+                       f'{logo(it["logo"], 40) if it.get("logo") else ""}<span class="t" style="font-size:{fit(it["text"], self.card_w - (200 if it.get("logo") else 140), 44 if self.vertical else 38, 1, 28)}px">{esc(it["text"])}</span></div>'
                        for i, it in enumerate(ev["items"]))
         cid = self.host(start, end, f'<div class="kicker">{esc(ev.get("kicker", ""))}</div><div class="list">{rows}</div>',
                         ev.get("zone", self.default_zone()))
@@ -329,7 +399,7 @@ class Composition:
                            f'{{opacity:1,y:0,scale:1,duration:0.35,ease:"back.out(1.7)"}},{self.q(t)});')
 
     def card_quote(self, ev, start, end):
-        cid = self.host(start, end, f'<div class="quote">„{self.words_html(ev["text"])}”</div>'
+        cid = self.host(start, end, f'<div class="quote" style="font-size:{fit(ev["text"] + "„”", self.card_w, 74, 4)}px">„{self.words_html(ev["text"])}”</div>'
                                     + (f'<div class="sub">{esc(ev["sub"])}</div>' if ev.get("sub") else ""),
                         ev.get("zone", self.default_zone()))
         self.stagger(f"#{cid} .quote .w", start + 0.1, 0.05, 14)
@@ -340,28 +410,28 @@ class Composition:
         self.media[name] = (PROJECT / ev["src"]).resolve() if not Path(ev["src"]).is_absolute() else Path(ev["src"])
         bid = self.uid("b")
         start, end = self.q(start), self.q(end)
-        h = self.geo["face_h"] if self.vertical else self.geo["h"]
-        self.html.append(f'<div class="broll" id="{bid}" style="height:{h}px">'
+        # w ramce wideo: w pionie kurczy się razem z twarzą po hooku, w 16:9 odjeżdża pod panel boczny
+        self.broll_html.append(f'<div class="broll" id="{bid}">'
                          f'<video id="{bid}-v" class="clip" src="media/{name}" muted playsinline data-start="{start}" '
                          f'data-duration="{round(end - start, 4)}" data-media-start="{ev.get("from", 0)}" data-track-index="1"></video>'
                          + (f'<div class="broll-label">{esc(ev["label"])}</div>' if ev.get("label") else "") + '</div>')
         self.js.append(f'tl.set("#{bid}",{{opacity:1}},{start});tl.set("#{bid}",{{opacity:0}},{end});')
         zoom = (1.0, 1.1) if ev.get("ken", "in") == "in" else (1.1, 1.0)
         self.js.append(f'tl.fromTo("#{bid}",{{scale:{zoom[0]}}},{{scale:{zoom[1]},duration:{round(end - start, 3)},ease:"none"}},{start});')
+        if ev.get("ai", True) and not self.ai_shown:
+            self.ai_shown = True
+            self.ai_until = start + min(3.2, max(2.0, end - start))
+            self.ai_label(start, self.ai_until - start)
         if ev.get("label"):
-            shown = max(start + 0.2, self.hook_end + 0.15)
+            # podpis dopiero po znaku AI — dwa napisy u góry naraz to już natłok
+            shown = max(start + 0.2, self.hook_end + 0.15, self.ai_until + 0.1)
             self.js.append(f'tl.set("#{bid} .broll-label",{{opacity:0}},0);')
             if end - shown > 0.8:
                 self.js.append(f'tl.fromTo("#{bid} .broll-label",{{opacity:0,y:16}},{{opacity:1,y:0,duration:0.35}},{self.q(shown)});')
-        if ev.get("ai", True) and not self.ai_shown:
-            self.ai_shown = True
-            self.ai_label(start, min(3.2, max(2.0, end - start)))
 
     def ai_label(self, start, dur):
         # art. 50 ust. 4 AI Act: przy pierwszej ekspozycji, u góry kadru (dół zasłania UI)
-        # pod hookiem znak AI zjeżdża nad napisy — u góry stoi wtedy tytuł
-        top = 318 if start >= self.hook_end else 930
-        place = f"left:40px;top:{top}px" if self.vertical else "right:40px;top:40px"
+        place = "left:40px;top:318px" if self.vertical else "right:40px;top:40px"
         self.html.append(f'<div class="ai-label clip" id="{self.uid('ai')}" style="{place}" data-start="{start}" data-duration="{round(dur, 3)}" data-track-index="5">'
                          f'<span class="ai-dot">AI</span>Ujęcie wygenerowane przez AI</div>')
 
@@ -374,8 +444,10 @@ class Composition:
         self.hook_end = end
         cid = self.uid("h")
         self.html.append(f'<div class="hook clip" id="{cid}" data-start="0" data-duration="{self.q(end)}" data-track-index="4">'
-                         f'<div class="hook-in">{self.words_html(hook["text"], accent=hook.get("accent", []))}</div></div>')
-        self.stagger(f"#{cid} .w", 0.05, 0.07, 30)
+                         f'<div class="hook-in" style="font-size:{fit(hook["text"], 820, 76, 3, 52)}px">{self.words_html(hook["text"], accent=hook.get("accent", []))}</div></div>')
+        # jedno zdanie = jedno tło: wjeżdża cały blok, słowa tylko się dopalają
+        self.js.append(f'tl.fromTo("#{cid} .hook-in",{{opacity:0,y:40}},{{opacity:1,y:0,duration:0.4,ease:"power3.out"}},0.05);')
+        self.js.append(f'tl.fromTo("#{cid} .w",{{opacity:0.25}},{{opacity:1,duration:0.2,stagger:0.07}},0.15);')
         self.js.append(f'tl.to("#{cid} .hook-in",{{opacity:0,duration:0.25}},{self.q(end - 0.25)});')
 
     def captions(self):
@@ -393,11 +465,17 @@ class Composition:
                 cur = []
         if cur:
             lines.append(cur)
+        blocked = self.caption_blocks(lines)
         for i, line in enumerate(lines):
             start = self.q(line[0]["start"] - 0.05)
             end = self.q(lines[i + 1][0]["start"] - 0.05) if i + 1 < len(lines) else self.q(min(line[-1]["end"] + 0.6, self.clip_len))
             end = min(end, self.q(line[-1]["end"] + 1.2))
-            if end <= start:
+            for a, b in blocked:
+                if a - 0.05 <= start < b:
+                    start = b
+                elif start < a < end:
+                    end = a
+            if end - start < 0.3:
                 continue
             cid = self.uid("cap")
             spans = "".join(f'<span class="cw" id="{cid}-{k}">{esc(w["word"])}</span> ' for k, w in enumerate(line))
@@ -406,15 +484,44 @@ class Composition:
             for k, w in enumerate(line):
                 self.js.append(f'tl.set("#{cid}-{k}",{{color:"{self.pal["accent"]}"}},{self.q(w["start"])});')
 
+    def caption_blocks(self, lines):
+        """Kiedy napisów nie ma: pod hookiem, pod planszą i pod kartą, która powtarza wypowiedź."""
+        blocked = [(0.0, self.hook_end)] if self.hook_end else []
+        blocked += self.slates
+        for a, b, text in self.cards:
+            said = {norm(w["word"]) for line in lines for w in line if a <= w["start"] < b}
+            shown = {norm(w) for w in text.split()}
+            if {w for w in said & shown if len(w) >= 4}:
+                blocked.append((a, b))
+        return sorted(blocked)
+
     def cta_chip(self):
         if self.fmt != "ad":
             return
         cta = self.board.get("cta", {})
         text = cta.get("chip", self.brand["web"])
-        start = self.q(max(3.2, self.hook_end + 0.2))
-        self.html.append(f'<div class="cta-chip clip" id="{self.uid("chip")}" data-start="{start}" '
-                         f'data-duration="{self.q(self.clip_len - start)}" data-track-index="5">'
-                         f'<span class="chip-dot"></span>{esc(text)}</div>')
+        # dwa okna zamiast stałej obecności: po hooku i na finiszu
+        first = self.q(max(5.0, self.hook_end + 3.0))
+        last = self.q(max(first + 5.5, self.clip_len - 6.0))
+        windows = [(first, min(first + 5.0, last)), (last, self.clip_len)] if last - first > 6 else [(first, self.clip_len)]
+        # końcówka po „·” przewija miejscowości i kończy na adresie strony
+        prefix = text.split(" · ")[0]
+        cycle = cta.get("chip_cycle", self.brand["places"] + [self.brand["web"]])
+        for a, b in windows:
+            if b - a < 1.0:
+                continue
+            cid = self.uid("chip")
+            words = "".join(f'<span class="chip-w" data-i="{i}">{esc(w)}</span>' for i, w in enumerate(cycle))
+            self.html.append(f'<div class="cta-chip clip" id="{cid}" data-start="{a}" '
+                             f'data-duration="{self.q(b - a)}" data-track-index="5">'
+                             f'<span class="chip-dot"></span>{esc(prefix)} ·<span class="chip-cycle">{words}</span></div>')
+            self.js.append(f'tl.fromTo("#{cid}",{{opacity:0,x:-30}},{{opacity:1,x:0,duration:0.35,ease:"power3.out"}},{a});')
+            step = min(1.1, (b - a - 0.4) / len(cycle))
+            for i in range(len(cycle)):
+                t = self.q(a + 0.2 + i * step)
+                self.js.append(f'tl.fromTo("#{cid} .chip-w[data-i=\'{i}\']",{{opacity:0,y:18}},{{opacity:1,y:0,duration:0.22,ease:"power2.out"}},{t});')
+                if i < len(cycle) - 1:
+                    self.js.append(f'tl.to("#{cid} .chip-w[data-i=\'{i}\']",{{opacity:0,y:-18,duration:0.2,ease:"power2.in"}},{self.q(t + step - 0.2)});')
 
     def endcard(self):
         if not self.end_len:
@@ -422,7 +529,9 @@ class Composition:
         cta = self.board.get("cta", {})
         start = self.clip_len
         cid = self.uid("end")
-        if self.fmt == "ad":
+        if self.fmt == "youtube":
+            body = f'<div class="end-sub end-tag">{esc(self.brand["tagline"])} · {esc(self.brand["web"])}</div>'
+        elif self.fmt == "ad":
             lines = cta.get("ad", {})
             body = (f'<div class="end-kicker">{esc(lines.get("kicker", "Bezpłatna konsultacja"))}</div>'
                     f'<div class="end-title">{self.words_html(lines.get("title", "Przyjadę do Twojej firmy"))}</div>'
@@ -435,8 +544,9 @@ class Composition:
                     f'<div class="end-title">{self.words_html(lines.get("title", "Napisz „AGENT” w komentarzu"))}</div>'
                     f'<div class="end-sub">{esc(lines.get("sub", "Wyślę Ci materiał, jak zacząć"))}</div>')
         self.html.append(f'<div class="endcard clip" id="{cid}" data-start="{self.q(start)}" data-duration="{self.q(self.end_len)}" '
-                         f'data-track-index="7"><div class="end-grid"></div><div class="end-mark">{self.brand_mark()}</div>'
-                         f'<div class="end-body">{body}</div></div>')
+                         f'data-track-index="7"><div class="end-grid"></div><div class="end-stack">'
+                         f'<div class="end-mark">{self.brand_mark()}</div><div class="end-body">{body}</div></div></div>')
+        self.js.append(f'tl.fromTo("#{cid} .end-mark",{{opacity:0,scale:0.9}},{{opacity:1,scale:1,duration:0.6,ease:"power3.out"}},{self.q(start)});')
         self.js.append(f'tl.fromTo("#{cid} .end-body > *",{{opacity:0,y:30}},{{opacity:1,y:0,duration:0.45,stagger:0.12,ease:"power3.out"}},{self.q(start + 0.1)});')
         if self.fmt == "ad":
             self.js.append(f'tl.fromTo("#{cid} .end-btn",{{scale:1}},{{scale:1.05,duration:0.5,yoyo:true,repeat:3,ease:"sine.inOut"}},{self.q(start + 0.9)});')
@@ -450,19 +560,71 @@ class Composition:
         self.js.append(f'tl.fromTo("#{cid}",{{opacity:0,x:-40}},{{opacity:1,x:0,duration:0.5,ease:"power3.out"}},0.6);')
         self.js.append(f'tl.to("#{cid}",{{opacity:0,duration:0.3}},4.5);')
 
+    def intro(self):
+        """Pion: pod hookiem twarz na całym ekranie, potem odjazd i wjazd dolnego panelu."""
+        if not (self.vertical and self.hook_end):
+            return
+        g, t = self.geo, self.q(self.hook_end - 0.1)
+        self.js.insert(0, f'tl.set("#video-wrap",{{height:{g["h"]}}},0);tl.set("#panel",{{y:{g["h"] - g["face_h"]}}},0);')
+        self.js.append(f'tl.to("#video-wrap",{{height:{g["face_h"]},duration:0.7,ease:"power3.inOut"}},{t});')
+        self.js.append(f'tl.to("#panel",{{y:0,duration:0.7,ease:"power3.inOut"}},{t});')
+
+    def zooms(self):
+        """Ruch kamery na twarzy: plan zmienia się skokiem na każdej sklejce (maskuje
+        wycięte pauzy) i co kilka zdań, a między cięciami obraz powoli dryfuje.
+        Pod hookiem mniejsze skoki — twarz na pełnym ekranie jest już mocno powiększona."""
+        splices = json.load(open(self.splices_file)) if self.splices_file.exists() else []
+        marks = [(t, "cut") for t in splices if 0.3 < t < self.clip_len - 0.3]
+        last = 0.0
+        for prev, w in zip(self.words, self.words[1:]):
+            if w["start"] - last >= 3.0 and re.search(r"[.?!]$", prev["word"]):
+                marks.append((w["start"] - 0.04, "sentence"))
+                last = w["start"]
+        if self.hook_end:
+            marks.append((self.hook_end - 0.1, "hook"))
+        marks.sort()
+        bounds = [(0.0, "start")]
+        for t, kind in marks:
+            if t - bounds[-1][0] < 0.9:
+                if kind in ("cut", "hook"):        # sklejka i koniec hooka mają pierwszeństwo
+                    bounds[-1] = (max(t, bounds[-1][0]), kind) if bounds[-1][1] != "start" else bounds[-1]
+                continue
+            bounds.append((t, kind))
+        bounds.append((self.clip_len, "end"))
+        close = False
+        for (t0, kind), (t1, _) in zip(bounds, bounds[1:]):
+            t0, t1 = self.q(t0), self.q(t1)
+            in_hook = self.hook_end and t0 < self.hook_end - 0.2
+            close = not close if kind != "start" else False
+            near = 1.06 if in_hook else 1.13
+            scale = near if close else 1.0
+            span = round(t1 - t0 - 0.04, 3)
+            if span <= 0.1:
+                continue
+            if kind == "hook":   # odjazd razem z wjazdem panelu, potem dryf
+                scale, close = 1.0, False
+                self.js.append(f'tl.to("#face-zoom",{{scale:1,duration:0.7,ease:"power3.inOut"}},{t0});')
+                if span > 0.8:
+                    self.js.append(f'tl.to("#face-zoom",{{scale:1.03,duration:{round(span - 0.72, 3)},ease:"none"}},{self.q(t0 + 0.72)});')
+                continue
+            self.js.append(f'tl.fromTo("#face-zoom",{{scale:{scale}}},{{scale:{round(scale + 0.03, 3)},duration:{span},ease:"none"}},{t0});')
+
     def fill_panel_gaps(self):
         """Pion: w lukach między kartami panel nie stoi pusty — wraca karta tematu."""
         topic = self.board.get("topic")
         if not self.vertical or not topic:
             return
         busy = sorted(self.panel_busy)
-        cursor, gaps = 0.0, []
+        cursor, gaps = self.panel_from(), []
         for a, b in busy + [(self.clip_len, self.clip_len)]:
             if a - cursor >= 1.5:
                 gaps.append((cursor, a))
             cursor = max(cursor, b)
         for a, b in gaps:
             self.card_title(dict(topic, zone="panel"), a + (0.05 if a else 0.0), b)
+
+    def panel_from(self):
+        return self.hook_end + 0.5 if self.vertical and self.hook_end else 0.0
 
     def default_zone(self):
         return "panel" if self.vertical else "side"
@@ -479,6 +641,8 @@ class Composition:
         hook = self.board.get("hook")
         if hook and self.fmt != "youtube":
             self.hook_end = self.clock.at(hook.get("until", 3.0), floor=0)
+            if self.hook_end > 6.0:
+                print(f"  ⚠ hook trwa {self.hook_end:.1f} s — skróć `until`")
         self.base()
         for ev in self.board["events"]:
             if self.fmt in ev.get("skip", []):
@@ -489,11 +653,16 @@ class Composition:
             end = min(end, self.clip_len)
             if end - start < 0.5:
                 raise SystemExit(f"zdarzenie {ev['type']} @ {ev['at']}: {start:.2f}–{end:.2f} — za krótkie")
+            if ev["type"] not in ("broll", "logos", "slate") and ev.get("zone", self.default_zone()) == "panel":
+                start = max(start, self.panel_from())   # panel wjeżdża dopiero po hooku
+                if end - start < 0.8:
+                    continue
             getattr(self, "broll" if ev["type"] == "broll" else f"card_{ev['type']}")(ev, start, end)
         self.fill_panel_gaps()
         self.emit_side_windows()
+        self.intro()
+        self.zooms()
         self.hook()
-        self.brand_corner()
         self.captions()
         self.cta_chip()
         self.lower_third()
@@ -503,13 +672,13 @@ class Composition:
     def document(self):
         g, p = self.geo, self.pal
         css = (BRAND / "fonts" / "fonts.css").read_text() + logos_css() + STYLE.format(
-            W=g["w"], H=g["h"], FH=g["face_h"], LBL=404 if self.vertical else 60, PH=g["h"] - g["face_h"], **p,
+            W=g["w"], H=g["h"], FH=g["face_h"], SW=900 if self.vertical else 1500, EL=640 if self.vertical else 1000, ST=282 if self.vertical else 330, SF=110 if self.vertical else 120, LBL=404 if self.vertical else 60, PH=g["h"] - g["face_h"], **p,
             V="1" if self.vertical else "0")
         cls = "fmt-v" if self.vertical else "fmt-h"
         return (f'<!doctype html><html lang="pl"><head><meta charset="utf-8">'
                 f'<meta name="viewport" content="width={g["w"]}, height={g["h"]}"><style>{css}</style></head>'
                 f'<body><div id="root" class="{cls}" data-composition-id="pack" data-start="0" data-width="{g["w"]}" '
-                f'data-height="{g["h"]}" data-duration="{self.total}">{"".join(self.html)}</div>'
+                f'data-height="{g["h"]}" data-duration="{self.total}">{"".join(self.html).replace("<!--BROLL-->", "".join(self.broll_html))}</div>'
                 f'<script src="vendor/gsap.min.js"></script><script>'
                 f'var tl=gsap.timeline({{paused:true}});{"".join(self.js)}window.__timelines["pack"]=tl;</script></body></html>')
 
@@ -518,20 +687,21 @@ STYLE = """
 *{{box-sizing:border-box;margin:0;padding:0}}
 html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};font-family:'{font}',sans-serif;-webkit-font-smoothing:antialiased}}
 #root{{position:relative;width:100%;height:100%;overflow:hidden;background:{bg}}}
-#video-wrap{{position:absolute;overflow:hidden;background:#000}}
+#video-wrap{{position:absolute;overflow:hidden;background:#000;z-index:1}}
+#face-zoom{{position:absolute;inset:0}}
 #video-wrap video{{width:100%;height:100%;object-fit:cover;display:block}}
 .face-fade{{position:absolute;left:0;right:0;bottom:0;height:260px;background:linear-gradient(180deg,rgba(0,0,0,0),{bg})}}
-#panel{{position:absolute;left:0;width:{W}px;background:{bg};overflow:hidden}}
+#panel{{position:absolute;left:0;width:{W}px;background:{bg};overflow:hidden;z-index:2}}
 .panel-grid{{position:absolute;inset:0;background-image:linear-gradient({grid} 1px,transparent 1px),linear-gradient(90deg,{grid} 1px,transparent 1px);background-size:54px 54px}}
 .panel-rule{{position:absolute;left:0;top:0;height:6px;width:100%;background:{accent}}}
 .brand-mark{{position:absolute;right:40px;top:236px;padding:10px 16px;border-radius:14px;background:rgba(0,0,0,.6)}}
 .mark-img{{height:44px;display:block}}
 .mark-text{{font-size:30px;font-weight:700;letter-spacing:.02em;color:{text}}}
 .mark-text b{{color:{accent}}}
-#side-plate{{position:absolute;right:0;top:0;width:800px;height:{H}px;background:{bg};border-left:6px solid {accent}}}
+#side-plate{{position:absolute;right:0;top:0;width:800px;height:{H}px;background:{bg};border-left:6px solid {accent};z-index:2}}
 
-.card-host{{position:absolute;pointer-events:none;z-index:3}}
-.broll{{z-index:2}} .brand-mark,.cta-chip,.lower-third{{z-index:5}} .cap,.hook,.ai-label{{z-index:6}} .endcard{{z-index:9}}
+.card-host{{position:absolute;pointer-events:none;z-index:3;overflow:hidden}}
+.brand-mark,.cta-chip,.lower-third{{z-index:5}} .cap,.hook,.ai-label{{z-index:6}} .endcard{{z-index:9}}
 .zone-panel{{left:44px;right:132px;top:{FH}px;height:500px;padding-top:46px}}
 .zone-side{{right:40px;top:90px;width:700px;height:900px;display:flex;align-items:center}}
 .zone-full{{inset:0}}
@@ -548,7 +718,8 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .sub{{font-size:38px;color:{muted};margin-top:20px;line-height:1.3;font-weight:500}}
 
 .logo-row{{display:flex;gap:22px;flex-wrap:wrap}}
-.logo-tile{{background:{panel};border:2px solid {line};border-radius:30px;padding:30px 26px 22px;display:flex;flex-direction:column;align-items:center;gap:16px;min-width:262px}}
+.logo-tile{{overflow:hidden;background:{panel};border:2px solid {line};border-radius:30px;padding:30px 26px 22px;display:flex;flex-direction:column;align-items:center;gap:16px;min-width:262px}}
+.logo-tile.wide{{flex-basis:100%;width:auto;justify-content:center}}
 .logo-tile span{{font-size:32px;font-weight:700;color:{text}}}
 .fmt-h .logo-tile{{min-width:190px}}
 
@@ -557,11 +728,13 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .stat .pre,.stat .suf{{font-size:84px}}
 
 .compare{{display:flex;align-items:center;gap:22px}}
-.compare .side{{flex:1;background:{panel};border:2px solid {line};border-radius:28px;padding:26px;display:flex;flex-direction:column;gap:6px}}
+.fmt-h .compare{{flex-direction:column;align-items:stretch;gap:12px}}
+.fmt-h .compare .arrow{{text-align:center;line-height:1}}
+.compare .side{{flex:1;min-width:0;background:{panel};border:2px solid {line};border-radius:28px;padding:26px;display:flex;flex-direction:column;gap:6px}}
 .compare .after{{border-color:{accent}}}
 .compare .tag{{font-size:22px;font-weight:800;letter-spacing:.14em;color:{muted}}}
 .compare .after .tag{{color:{accent}}}
-.compare b{{font-size:74px;line-height:1;font-weight:800}}
+.compare b{{font-size:74px;line-height:1.02;font-weight:800;overflow-wrap:normal}}
 .compare .before b{{text-decoration:line-through;text-decoration-thickness:6px;text-decoration-color:transparent}}
 .compare span{{font-size:26px;color:{muted}}}
 .compare .arrow{{font-size:60px;color:{accent};font-weight:800}}
@@ -581,24 +754,44 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .btns span{{font-size:32px;font-weight:700;padding:10px 22px;border-radius:14px;border:2px solid {accent};color:{accent}}}
 .btns span:first-child{{background:{accent};color:{on_accent}}}
 
+/* pion: panel ma 500 px — lista i czat w wersji zwartej */
+.fmt-v .list{{gap:10px}}
+.fmt-v .li{{padding:13px 22px;gap:18px}}
+.fmt-v .li .n{{width:54px;height:54px;font-size:28px}}
+.fmt-v .phone-head{{padding:14px 24px;font-size:30px}}
+.fmt-v .chat{{padding:16px 20px;gap:12px}}
+.fmt-v .msg{{font-size:33px;padding:14px 20px;max-width:92%}}
+.fmt-v .btns span{{font-size:28px;padding:8px 18px}}
+.fmt-h .card{{padding-right:12px}}
 .quote{{font-size:74px;font-weight:800;line-height:1.08;letter-spacing:-.01em}}
 
-.broll{{position:absolute;left:0;top:0;width:{W}px;overflow:hidden;opacity:0;transform-origin:50% 50%}}
+.broll{{position:absolute;inset:0;overflow:hidden;opacity:0;transform-origin:50% 50%}}
 .broll video{{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}}
 .broll-label{{position:absolute;left:40px;top:{LBL}px;font-size:34px;font-weight:700;padding:10px 18px;border-radius:12px;background:{bg};color:{text};border-left:6px solid {accent}}}
 
 .ai-label{{position:absolute;display:flex;align-items:center;gap:12px;font-size:24px;font-weight:600;padding:10px 18px 10px 10px;border-radius:40px;background:rgba(0,0,0,.62);color:#fff}}
 .ai-dot{{background:#fff;color:#000;font-weight:800;font-size:20px;padding:4px 10px;border-radius:20px}}
 
-.hook{{position:absolute;left:40px;right:40px;top:250px}}
-.hook-in{{font-size:84px;font-weight:800;line-height:1.02;letter-spacing:-.02em;color:#fff;text-shadow:0 4px 24px rgba(0,0,0,.65)}}
-.hook-in .w{{background:{bg};padding:2px 14px;margin:4px 0;border-radius:10px}}
-.hook-in .acc{{background:{accent};color:{on_accent}}}
+.hook{{position:absolute;left:44px;right:132px;top:1160px}}
+.hook-in{{display:inline-block;font-size:76px;font-weight:800;line-height:1.06;letter-spacing:-.02em;color:{text};background:{bg}F0;padding:26px 34px 30px;border-radius:26px;border-left:8px solid {accent};box-shadow:0 18px 50px rgba(0,0,0,.45)}}
+.hook-in .acc{{color:{accent}}}
+.slate{{position:absolute;inset:0;background:{bg};display:flex;align-items:center;justify-content:center;z-index:7}}
+.slate-body{{position:relative;width:{SW}px;display:flex;flex-direction:column;gap:10px}}
+.slate-text{{font-size:{SF}px;font-weight:800;line-height:1.04;letter-spacing:-.02em}}
+.slate-text .w{{display:inline-block}}
+.slate-body{{align-items:center;text-align:center}}
+.slate .kicker{{font-size:40px;margin-bottom:34px}}
+.slate .logo-row{{gap:26px;justify-content:center;flex-wrap:wrap}}
+.slate .logo-tile{{min-width:0;width:{ST}px;padding:46px 20px 32px;gap:24px}}
+.slate .logo-tile span{{font-size:38px}}
+.slate .sub{{margin-top:40px}}
 
 .cap{{position:absolute;left:40px;right:40px;top:{FH}px;transform:translateY(-150px);display:flex;justify-content:center}}
 .cap-in{{font-size:52px;font-weight:800;text-align:center;line-height:1.12;color:#fff;background:rgba(0,0,0,.72);padding:10px 22px;border-radius:16px}}
 
 .cta-chip{{position:absolute;left:40px;top:236px;display:flex;align-items:center;gap:14px;font-size:30px;font-weight:700;padding:14px 24px;border-radius:40px;background:{accent};color:{on_accent}}}
+.chip-cycle{{display:inline-grid;overflow:hidden;padding:8px 0;margin:-8px 0}}
+.chip-w{{grid-area:1/1;opacity:0}}
 .chip-dot{{width:14px;height:14px;border-radius:50%;background:{on_accent}}}
 
 .lower-third{{position:absolute;left:70px;bottom:80px;display:flex;flex-direction:column;gap:4px;padding:18px 28px;background:{bg};border-left:8px solid {accent};border-radius:6px}}
@@ -607,10 +800,12 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 
 .endcard{{position:absolute;inset:0;background:{bg};display:flex;align-items:center;justify-content:center}}
 .end-grid{{position:absolute;inset:0;background-image:linear-gradient({grid} 1px,transparent 1px),linear-gradient(90deg,{grid} 1px,transparent 1px);background-size:60px 60px}}
-.end-mark{{position:absolute;left:60px;top:250px}}
-.end-mark .mark-img{{height:92px}}
-.end-mark .mark-text{{font-size:52px}}
-.end-body{{position:relative;width:86%;display:flex;flex-direction:column;gap:34px;margin-top:80px}}
+.end-stack{{position:relative;width:86%;display:flex;flex-direction:column;gap:70px}}
+.fmt-h .end-stack{{align-items:center;gap:40px}}
+.end-mark .mark-img{{width:{EL}px;height:auto;display:block}}
+.end-mark .mark-text{{font-size:130px;font-weight:800}}
+.end-body{{position:relative;display:flex;flex-direction:column;gap:34px}}
+.end-tag{{font-size:40px;text-align:center}}
 .end-kicker{{font-size:34px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:{accent}}}
 .end-title{{font-size:124px;font-weight:800;line-height:1.02;letter-spacing:-.02em}}
 .end-sub{{font-size:44px;color:{muted};line-height:1.3}}
@@ -627,7 +822,7 @@ def stage(comp, folder):
     shutil.copy(GSAP, folder / "vendor" / "gsap.min.js")
     for font in (BRAND / "fonts").glob("*.woff2"):
         shutil.copy(font, folder / "fonts" / font.name)
-    shutil.copy(BRAND / "logos" / "flowbiz.png", folder / "media" / "flowbiz.png")
+    shutil.copy(BRAND / "logos" / "flowbiz-ai.png", folder / "media" / "flowbiz-ai.png")
     (folder / "index.html").write_text(comp.build())
     for name, src in comp.media.items():
         link = folder / "media" / name

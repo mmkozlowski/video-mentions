@@ -3,7 +3,7 @@
  "brand": "aislupsk",
  "hook": {
   "text": "*Pizza, szefowie firm ze Słupska i jeden temat: *agent AI",
-  "until": "Bez"
+  "until": "Jak"
  },
  "topic": {
   "kicker": "Warsztaty AI Słupsk",

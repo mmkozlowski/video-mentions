@@ -106,6 +106,9 @@ def main(argv):
             words_cache[clip["source"]] = load_words(clip["source"])
         json.dump(words_in(words_cache[clip["source"]], clip["ranges"]),
                   open(folder / "words.json", "w"), ensure_ascii=False, indent=0)
+        # sklejki na osi klipu — package.py maskuje na nich skok obrazu zoomem
+        joins = [round(sum(b - a for a, b in clip["ranges"][:i]), 3) for i in range(1, len(clip["ranges"]))]
+        json.dump(joins, open(folder / "splices.json", "w"))
         subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", "0.6", "-i", str(master),
                         "-frames:v", "1", "-vf", "scale=640:-1", str(folder / "thumb.jpg")],
                        check=True)

@@ -24,6 +24,7 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 
 - [Veo i Nano Banana przez Gemini API](memory/veo-gemini-api.md) — kadr → ożywienie; klucz `GEMINI_API=`, JPEG zamiast PNG, „jeden kadr” bywa tryptykiem, image-to-video 4–5 min
 - [Pion: strefy zakazane Reels](memory/pion-strefy-zakazane-reels.md) — góra ~230, prawa ~130, dół ~260 px; wszystko u góry wchodzi po hooku
+- [Pion: jedno na raz](memory/pion-jedno-na-raz.md) — jedno zdanie = jedno tło, bez duplikatu tekstu, ikony na planszy, logo na końcu, wycinaj „yyy”
 - [HyperFrames wymaga Node 22](memory/hyperframes-wymaga-node-22.md) — domyślny nvm to 20; PATH na v22.22.2 w skrypcie, nie globalnie
 
 ## Decyzje (ADR)

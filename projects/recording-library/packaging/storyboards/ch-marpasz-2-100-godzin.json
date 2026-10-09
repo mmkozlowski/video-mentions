@@ -1,6 +1,6 @@
 {
  "clip": "ch-marpasz-2-100-godzin", "brand": "flowbiz",
- "hook": {"text": "*100 godzin miesięcznie mniej ręcznej pracy", "until": "pomaga"},
+ "hook": {"text": "*100 godzin miesięcznie mniej ręcznej pracy", "until": "w którym"},
  "topic": {"kicker": "Case study · sklep z paszą", "text": "Etykiety jednym *kliknięciem", "sub": "worki po 25 kg, cztery paczki na zamówienie"},
  "cta": {
   "chip": "Automatyzacje e-commerce · flowbiz.pl",
