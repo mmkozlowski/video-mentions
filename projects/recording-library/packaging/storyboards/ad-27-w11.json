@@ -96,6 +96,15 @@
    "kicker": "Lista zapisów",
    "text": "Zapisz się na *aislupsk.pl",
    "sub": "Termin i miejsce ogłoszę zapisanym"
+  },
+  {
+   "type": "broll",
+   "at": "Słupska",
+   "floor": 0,
+   "until": "+2.4",
+   "src": "build/broll-real/slupsk-ratusz.mp4",
+   "ai": false,
+   "label": "Słupsk"
   }
  ]
 }

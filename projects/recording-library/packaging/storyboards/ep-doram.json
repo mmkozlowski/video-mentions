@@ -1,0 +1,299 @@
+{
+ "clip": "ep-doram",
+ "brand": "flowbiz",
+ "formats": [
+  "youtube"
+ ],
+ "topic": {
+  "kicker": "Case study · meble ogrodowe",
+  "text": "Zamówienia od kontrahentów z *Niemiec",
+  "sub": "producent z okolic Słupska"
+ },
+ "cta": {
+  "chip": "Case study · flowbiz.pl"
+ },
+ "chapters": [
+  [
+   "Teraz",
+   "Kolejny przypadek z firmy"
+  ],
+  [
+   "Klient dostawał",
+   "Zamówienia w Excelu od kontrahentów z Niemiec"
+  ],
+  [
+   "kilka dni",
+   "Kilka dni klepania → 10 minut"
+  ],
+  [
+   "dlaczego ten proces",
+   "Dlaczego to tak długo trwało"
+  ],
+  [
+   "kodów kreskowych",
+   "Kody kreskowe: przeklej, drukuj"
+  ],
+  [
+   "scentralizować",
+   "Najpierw jedna baza"
+  ],
+  [
+   "pamięć dla",
+   "Pamięć dla AI"
+  ],
+  [
+   "czatem",
+   "Jak uczy się zwykły czat"
+  ],
+  [
+   "poziomie",
+   "70% → 94% → 95%"
+  ],
+  [
+   "żadnej magii",
+   "Kody bez AI: 15 minut"
+  ],
+  [
+   "W tej firmie",
+   "Co dalej"
+  ]
+ ],
+ "events": [
+  {
+   "type": "title",
+   "at": "Teraz",
+   "until": "Klient",
+   "kicker": "Case study · meble ogrodowe",
+   "text": "Zamówienia od kontrahentów z *Niemiec",
+   "sub": "producent z okolic Słupska"
+  },
+  {
+   "type": "broll",
+   "at": "meble",
+   "until": "+3.2",
+   "src": "assets/broll/stills/s08-szwalnia-meble-ogrodowe.jpg"
+  },
+  {
+   "type": "broll",
+   "at": "Excelu",
+   "until": "+3.0",
+   "src": "../youtube/Animation flowbiz youtube/assets/veo/01-biuro-excele.mp4",
+   "from": 0.5
+  },
+  {
+   "type": "list",
+   "at": "diabeł",
+   "until": "+14",
+   "kicker": "Jedna pozycja, różne nazwy",
+   "items": [
+    {
+     "text": "Gartenstuhl Alu, grau",
+     "at": "nazwać"
+    },
+    {
+     "text": "Garden chair, aluminium",
+     "at": "angielsku"
+    },
+    {
+     "text": "Stuhl Alu grau",
+     "at": "rozszyfrowanie"
+    }
+   ]
+  },
+  {
+   "type": "compare",
+   "at": "radości",
+   "until": "dlaczego ten proces",
+   "kicker": "Zamówienie ze 100 pozycjami",
+   "before": {
+    "value": "kilka dni",
+    "label": "ręczne szukanie nazw"
+   },
+   "after": {
+    "value": "10 min",
+    "label": "system z nakładką AI"
+   },
+   "after_at": "10"
+  },
+  {
+   "type": "list",
+   "at": "dopasować",
+   "until": "+12",
+   "kicker": "Dlaczego to tyle trwało",
+   "items": [
+    {
+     "text": "Różne nazwy produktów",
+     "at": "nazwy"
+    },
+    {
+     "text": "Ceny z rozproszonych Exceli",
+     "at": "ceny"
+    },
+    {
+     "text": "Własne kolumny",
+     "at": "kolumny"
+    }
+   ]
+  },
+  {
+   "type": "title",
+   "at": "trzech",
+   "until": "+10",
+   "kicker": "Trzech kontrahentów",
+   "text": "Każdy Excel *inny.",
+   "sub": "i żaden nie chciał się dostosować"
+  },
+  {
+   "type": "broll",
+   "at": "kodów kreskowych",
+   "until": "+3.4",
+   "src": "assets/broll/stills/s12-etykiety-kody-kreskowe.jpg"
+  },
+  {
+   "type": "slate",
+   "at": "przeklejała",
+   "until": "setce",
+   "kicker": "Przy każdej pozycji",
+   "text": "Przeklej. Drukuj. *Przeklej. Drukuj."
+  },
+  {
+   "type": "broll",
+   "at": "awarię",
+   "until": "+3.0",
+   "src": "../youtube/Animation flowbiz youtube/assets/veo/02-drukarka-zamowienie.mp4"
+  },
+  {
+   "type": "logos",
+   "at": "scentralizować",
+   "until": "+12",
+   "kicker": "Najpierw jedna baza",
+   "items": [
+    {
+     "logo": "excel",
+     "name": "Excele"
+    },
+    {
+     "logo": "openmercato",
+     "name": ""
+    }
+   ]
+  },
+  {
+   "type": "quote",
+   "at": "Bez tych",
+   "until": "I przez",
+   "text": "Bez fundamentów AI nie wie, jak firma pracuje"
+  },
+  {
+   "type": "title",
+   "at": "pamięć dla",
+   "until": "+12",
+   "kicker": "Pamięć dla AI",
+   "text": "Jeden produkt, *pięć nazw",
+   "sub": "każdy kontrahent pisze inaczej"
+  },
+  {
+   "type": "mockup",
+   "name": "match",
+   "at": "kolorach",
+   "until": "+14"
+  },
+  {
+   "type": "logos",
+   "at": "czatem",
+   "until": "+12",
+   "kicker": "Jak uczy się zwykły czat",
+   "items": [
+    {
+     "logo": "openai",
+     "name": "ChatGPT"
+    },
+    {
+     "logo": "googlegemini",
+     "name": "Gemini"
+    }
+   ],
+   "sub": "poprawiasz → zapamiętuje"
+  },
+  {
+   "type": "broll",
+   "at": "maila",
+   "until": "+3.0",
+   "src": "../youtube/Animation flowbiz youtube/assets/veo/03-palce-klawiatura.mp4"
+  },
+  {
+   "type": "stat",
+   "at": "poziomie",
+   "until": "+9",
+   "kicker": "Trafność dopasowania",
+   "from": 70,
+   "to": 94,
+   "suffix": "%",
+   "label": "po miesiącu, bez zmiany pracy biura",
+   "dur": 2.0
+  },
+  {
+   "type": "title",
+   "at": "dopasowuje to",
+   "until": "Zostają",
+   "kicker": "Kolejne zamówienie",
+   "text": "AI dopasowuje *95% samo"
+  },
+  {
+   "type": "quote",
+   "at": "Zostają",
+   "until": "Jeżeli chodzi",
+   "text": "Zostają marginalne przypadki"
+  },
+  {
+   "type": "title",
+   "at": "żadnej magii",
+   "until": "system bierze",
+   "kicker": "Bez magii",
+   "text": "Żadnego AI. *Zwykły program."
+  },
+  {
+   "type": "list",
+   "at": "system bierze",
+   "until": "kilku dni",
+   "kicker": "Po jednym kliknięciu",
+   "items": [
+    {
+     "text": "4 numery z zamówienia",
+     "at": "cztery"
+    },
+    {
+     "text": "Gotowy PDF po minucie",
+     "at": "minucie"
+    },
+    {
+     "text": "40 stron etykiet",
+     "logo": "adobeacrobatreader",
+     "at": "40"
+    }
+   ]
+  },
+  {
+   "type": "compare",
+   "at": "kilku dni",
+   "until": "W tej firmie",
+   "kicker": "Etykiety do zamówienia",
+   "before": {
+    "value": "kilka dni",
+    "label": "przeklejanie i drukowanie"
+   },
+   "after": {
+    "value": "15 min",
+    "label": "PDF i drukarka"
+   },
+   "after_at": "15"
+  },
+  {
+   "type": "title",
+   "at": "komentarza",
+   "until": "+7",
+   "kicker": "Napisz w komentarzu",
+   "text": "Co *Ty chcesz zautomatyzować?"
+  }
+ ]
+}

@@ -103,6 +103,15 @@
    "kicker": "Bezpłatna konsultacja",
    "text": "Do zobaczenia *u Ciebie w firmie",
    "sub": "flowbiz.pl"
+  },
+  {
+   "type": "broll",
+   "at": "Słupska",
+   "floor": 0,
+   "until": "+2.2",
+   "src": "build/broll-real/slupsk-ratusz-2.mp4",
+   "ai": false,
+   "label": "Słupsk"
   }
  ]
 }

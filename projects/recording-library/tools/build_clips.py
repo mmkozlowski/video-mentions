@@ -17,9 +17,6 @@ PAD_HEAD = 0.35      # oddech przed pierwszym słowem klipu
 PAD_SPLICE = 0.18    # na sklejce między dublami
 PAD_TAIL = 0.80      # wybrzmienie po ostatnim słowie klipu
 GUARD = 0.04         # minimalny odstęp od słowa, które ma NIE wejść
-MAX_PAUSE = 0.55     # dłuższa luka między słowami = „yyy” albo milczenie → wycinamy
-KEEP_AFTER = 0.20    # po słowie przed wyciętą luką (wybrzmienie)
-KEEP_BEFORE = 0.12   # przed słowem po luce (nabranie powietrza)
 
 
 def snap(words, ranges, source):
@@ -46,29 +43,15 @@ def snap(words, ranges, source):
             end = min(end, words[last + 1]["start"] - GUARD)
         start = exact_start if exact_start is not None else start
         end = exact_end if exact_end is not None else end
-        parts = tighten(words, first, last, max(0.0, start), end)
-        # „yyy” i cisza doklejone przez Whispera do słowa — widać je dopiero w audio;
-        # ostatnie wybrzmienie klipu zostaje (pod nim wchodzi plansza końcowa)
-        spans = [s for s in filler_spans(source, parts[0][0], parts[-1][1]) if s[1] < end - 0.3]
+        # „yyy” i milczenie wycinamy po SYGNALE, nie po lukach między słowami: czasy
+        # Whispera bywają przesunięte o pół sekundy, a cięcie po nich urywało słowa.
+        # Słowa służą tylko jako ochrona (fillers.cuts_into_word). Ostatnie wybrzmienie
+        # klipu zostaje — pod nim wchodzi plansza końcowa.
+        parts = [[round(max(0.0, start), 3), round(end, 3)]]
+        spans = [s for s in filler_spans(source, parts[0][0], parts[-1][1], words[first:last + 1]) if s[1] < end - 0.3]
         resolved.extend(subtract(parts, spans))
         text.append(" ".join(w["word"].strip() for w in words[first:last + 1]))
     return resolved, text
-
-
-def tighten(words, first, last, start, end):
-    """Przedział dzielony na lukach dłuższych niż MAX_PAUSE.
-
-    Whisper nie zapisuje „yyy” ani milczenia — w transkrypcji to po prostu dziura
-    między słowami. Wycięcie jej skraca klip i zabiera to, co nagranie z promptera
-    ma najgorszego; skok obrazu na sklejce maskuje zoom w package.py."""
-    parts, cursor = [], start
-    for i in range(first, last):
-        gap_from, gap_to = words[i]["end"], words[i + 1]["start"]
-        if gap_to - gap_from > MAX_PAUSE:
-            parts.append([round(cursor, 3), round(gap_from + KEEP_AFTER, 3)])
-            cursor = gap_to - KEEP_BEFORE
-    parts.append([round(cursor, 3), round(end, 3)])
-    return parts
 
 
 def placement(kind, brand, block, duration):

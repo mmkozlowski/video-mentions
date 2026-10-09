@@ -154,3 +154,57 @@ Drobne pułapki z tej rundy:
   (1,2–1,8 s), więc znak zostawał na twarzy. Teraz kończy się razem z przebitką.
 - Licznik w grafice hooka i ta sama liczba w zdaniu to dubel. Gdy jest licznik 70 → 94 %,
   zdanie mówi co innego („AI nauczyło się zamówień. Bez programowania od nowa.”).
+
+## Trzecia korekta (9.10, wieczór): cięcia, AI Słupsk, grafiki, odcinki
+
+**Cięcia urywały słowa** (ad-14, 15. s: „…wdrożeniem na [rok]”). Były dwie przyczyny.
+Detektor „yyy” wziął przeciągnięte „roook, Ja” (0,5 s głosu bez granicy sylaby) za
+„yyy”, a stare cięcie po lukach między słowami wierzyło czasom Whispera, które bywają
+przesunięte o pół sekundy. Decyzja: **wycinamy wyłącznie po sygnale** (cisza albo „yyy”
+w `fillers.py`), a słowa z transkrypcji tylko chronią. „Yyy” nie może zjeść więcej niż
+30% słowa krótszego niż 0,8 s (`cuts_into_word`). Funkcja `build_clips.tighten`
+została usunięta.
+
+**Za mocno wycięte pauzy** (Mateusz po odsłuchu). Cisza jest wycinana dopiero powyżej
+0,7 s, a zostaje po 0,2 s oddechu z każdej strony (ok. 0,4 s pauzy). Próg ciszy to
+−40 dB, z oddechem włącznie. Klipy są ok. 2 s dłuższe niż w poprzedniej serii.
+
+**AI Słupsk w kierunku strony aislupsk.pl.** Paleta `S`: granat-fiolet `#160A2E`, róż
+`#FF3388`, gradient tła, nagłówki w kursywie Plus Jakarta Sans (dociągnięta 700/800
+italic, OFL) i `word-spacing` 0,1 em, bo kursywa z ujemnym trackingiem zlepiała słowa.
+Paletę wybiera marka (`BRANDS[...]["palette"]`, `palettes_for`), a flowbiz zostaje na A.
+Ekran końcowy AI Słupsk ma sylwetkę z ratuszem ze strony (`mateusz-cutout.png`,
+prawdziwe zdjęcie).
+
+**Prawdziwe przebitki Słupska** (telefon Mateusza, `~/Youtube Projects/b-rolle`,
+IMG_8634–8641): ratusz, ulice, deptak, park. Przepis jest w `tools/real_broll.py`,
+nagrania bez dźwięku (słychać dzieci), wynik w `build/broll-real/`. W storyboardzie mają
+`"ai": false`, więc bez znaku AI, i podpis „Słupsk”. Wchodzą tam, gdzie pada „Słupsk”,
+„stąd”, „ze Słupska”.
+
+**Grafiki statyczne pod sprzedaż** (`tools/static_ads.py`): 7 komunikatów × feed 4:5
+i story 9:16. Każda liczba pochodzi z nagranego wdrożenia (źródło w
+`final/static/sources.json`). Story zostawia górne 260 i dolne 360 px pod interfejs IG.
+
+**Odcinki: makiety i pilot ep-doram.**
+- `tools/mockups.py`, zdarzenie `mockup`: ekran dopasowania (doram), Telegram w trybach
+  `brief` i `order` (vacuactiv) oraz panel klienta B2B (rezon). Każda makieta pokazuje
+  mechanizm z nagrania, bez nazw klientów, w 16:9 i w pionie.
+- Przebitka może być nieożywionym kadrem (`.jpg`), wtedy ruch daje tylko Ken Burns.
+- `tools/chapters.py` liczy rozdziały YouTube z kotwic w storyboardzie, więc same się
+  przesuwają przy zmianie cięcia.
+- Pilot `ep-doram.json` (16:9) ma 16 kart (każda ≤ ~14 s), 2 plansze i 6 przebitek.
+  Odcinek renderuje się jako jedna kompozycja (11 min).
+
+Pułapka: w odcinkach zakresy EDL nie zawsze idą chronologicznie, więc „następny zakres”
+dla słowa-sieroty liczymy po czasie źródła, nie po kolejności listy (inaczej słowa
+lądowały kilkadziesiąt sekund dalej).
+
+Pułapka: **nagrania z iPhone'a są w HDR (HLG, bt2020)**. Jedna taka przebitka sprawiła, że
+`hyperframes@latest` przełączył cały klip na render HDR (rgb48, x265 slow, wynik HLG): kilka
+razy wolniej, a na zwykłym telefonie wyprane kolory. Dodatkowo `ffprobe` na takim pliku
+dopisywał przecinek („33.7,”) i wywracał `finalize`. Naprawa:
+- `real_broll.py` przepuszcza źródło przez systemowy `avconvert` (H.264 1920×1080 → bt709),
+  bo ten ffmpeg nie ma `zscale`;
+- `stage()` odrzuca media HDR (`reject_hdr`);
+- `probe_duration` bierze pierwszą liczbę z wyjścia `ffprobe`.

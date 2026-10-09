@@ -92,6 +92,15 @@
    "kicker": "Mateusz Kozłowski · Flowbiz",
    "text": "Zadzwoń: *536 507 701",
    "sub": "albo flowbiz.pl"
+  },
+  {
+   "type": "broll",
+   "at": "stąd",
+   "floor": 0,
+   "until": "+2.8",
+   "src": "build/broll-real/slupsk-ratusz.mp4",
+   "ai": false,
+   "label": "Słupsk"
   }
  ]
 }

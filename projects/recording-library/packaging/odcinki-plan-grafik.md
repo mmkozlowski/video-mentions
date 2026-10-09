@@ -1,7 +1,7 @@
 ---
 typ: plan
 etap: 3 — odcinki case study (YouTube 16:9)
-status: plan — do akceptacji przed budową makiet
+status: w toku — makiety wspólne gotowe (tools/mockups.py), pilot ep-doram wyrenderowany do oceny
 źródło czasów: data/transcripts/*.txt (czasy ≈, liczone od początku klipu ep-*)
 ---
 

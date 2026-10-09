@@ -122,6 +122,24 @@
    "kicker": "Słupsk · Lębork · Koszalin",
    "text": "Dla firm z *całego regionu",
    "sub": "Zapisy: aislupsk.pl"
+  },
+  {
+   "type": "broll",
+   "at": "Słupsk",
+   "floor": 0,
+   "until": "+2.2",
+   "src": "build/broll-real/slupsk-park.mp4",
+   "ai": false,
+   "label": "Słupsk"
+  },
+  {
+   "type": "broll",
+   "at": "Słupsku",
+   "floor": 0,
+   "until": "+2.4",
+   "src": "build/broll-real/slupsk-skrzyzowanie.mp4",
+   "ai": false,
+   "label": "Słupsk"
   }
  ]
 }

@@ -46,10 +46,15 @@ def words_in(words, ranges):
             continue
         # słowo w całości w wyciętej luce: przesunięte w ciszę („Na” 0,5 s przed głosem)
         # — jeśli luka jest krótka i ma najwyżej dwa takie słowa, dźwięk jest tuż za nią
-        nxt = next((j for j, (a, _) in enumerate(ranges) if a >= w["end"]), None)
-        if nxt is None or nxt == 0 or ranges[nxt][0] - ranges[nxt - 1][1] > 2.0:
+        # luka liczona po czasie ŹRÓDŁA — w odcinkach zakresy nie zawsze idą po kolei
+        after = [(a, j) for j, (a, _) in enumerate(ranges) if a >= w["end"]]
+        before = [b for _, b in ranges if b <= w["start"]]
+        if not after or not before:
             continue
-        gap_from, gap_to = ranges[nxt - 1][1], ranges[nxt][0]
+        gap_to, nxt = min(after)
+        gap_from = max(before)
+        if gap_to - gap_from > 2.0:
+            continue
         if sum(1 for x in words if x["start"] >= gap_from and x["end"] <= gap_to) > 2:
             continue
         at = round(offsets[nxt], 3)

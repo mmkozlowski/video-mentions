@@ -13,7 +13,7 @@ import re
 import sys
 from concurrent.futures import ThreadPoolExecutor
 
-from package import FORMATS, OUT, PACK, ACTIVE_PALETTES, Composition, hf, stage
+from package import FORMATS, OUT, PACK, palettes_for, Composition, hf, stage
 from sources import DATA
 
 # przebitka i twarz celowo wystają poza ramkę przy zoomie — to nie jest błąd tekstu
@@ -40,7 +40,7 @@ def main(argv):
     boards = [json.load(open(p)) for p in sorted(PACK.glob("storyboards/*.json"))
               if not argv or any(p.stem.startswith(a) for a in argv)]
     jobs = [(clips[b["clip"]], b, fmt, pal) for b in boards
-            for fmt in b.get("formats", FORMATS) for pal in ACTIVE_PALETTES]
+            for fmt in b.get("formats", FORMATS) for pal in palettes_for(b, clips[b["clip"]])]
     with ThreadPoolExecutor(4) as pool:
         results = list(pool.map(lambda job: (job, audit(*job)), jobs))
     bad = 0

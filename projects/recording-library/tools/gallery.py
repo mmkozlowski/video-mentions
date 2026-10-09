@@ -9,7 +9,7 @@ na żywym materiale, nie na opisie.
 import html
 import json
 
-from package import FINAL, PACK, PALETTES, ACTIVE_PALETTES
+from package import FINAL, PACK, PALETTES, palettes_for
 from sources import DATA
 
 FORMATS = [("reels", "Reels / TikTok 9:16 — organiczne, CTA w komentarzu"),
@@ -27,7 +27,7 @@ def main():
         cells = []
         for fmt, label in FORMATS:
             vids = []
-            for pal in ACTIVE_PALETTES:
+            for pal in palettes_for(board, clip):
                 f = FINAL / f"{clip['id']}__{fmt}-{pal}.mp4"
                 if f.exists():
                     vids.append(f'<figure><video src="{f.name}" controls preload="metadata" playsinline></video>'

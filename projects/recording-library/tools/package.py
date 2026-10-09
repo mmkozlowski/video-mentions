@@ -49,11 +49,28 @@ PALETTES = {
               line="#24413A", text="#F4FAF7", muted="#8FB0A6", accent="#1C9E7A",
               accent2="#F5A623", danger="#E5604A", on_accent="#FFFFFF",
               font="Plus Jakarta Sans", grid="rgba(28,158,122,0.08)"),
+    # AI Słupsk — tokeny ze strony aislupsk.pl (src/index.css): granat-fiolet, róż,
+    # nagłówki pochyłe (Mateusz 9.10: „pod aislupsk idź w tym kierunku wizualnym”).
+    "S": dict(name="AI Słupsk", bg="#160A2E", panel="#1A0D36", raised="#2C1F47",
+              line="#392D53", text="#FFFFFF", muted="#ADA3C2", accent="#FF3388",
+              accent2="#A219E6", danger="#FF5A5A", on_accent="#FFFFFF",
+              font="Plus Jakarta Sans", grid="rgba(255,51,136,0.07)", heading_style="italic", word_gap="0.1em",
+              bg_fill="linear-gradient(135deg,#160A2E 0%,#0F173D 50%,#261745 100%)"),
 }
+for palette in PALETTES.values():
+    palette.setdefault("heading_style", "normal")
+    palette.setdefault("bg_fill", palette["bg"])
+    palette.setdefault("word_gap", "normal")   # kursywa z ujemnym trackingiem zlepia słowa
 
 # Mateusz 9.10: zostajemy przy A (bursztyn) — zieleń B wygląda kiepsko na wideo.
 # B zostaje w słowniku do ręcznego --palette B, ale nie renderuje się domyślnie.
 ACTIVE_PALETTES = ["A"]
+
+
+def palettes_for(board, clip):
+    """Marka ma swoją paletę (AI Słupsk → S); flowbiz jedzie na ACTIVE_PALETTES."""
+    brand = BRANDS[board.get("brand", clip["brand"])]
+    return [brand["palette"]] if brand.get("palette") else ACTIVE_PALETTES
 
 # Kolor marki w wersji czytelnej na ciemnym tle (jak w projects/youtube).
 LOGO_COLORS = {
@@ -71,7 +88,8 @@ BRANDS = {
     "flowbiz": dict(mark="flowbiz", tagline="systemy AI-first dla firm", web="flowbiz.pl",
                     phone="536 507 701", places=["Słupsk", "Pomorze", "Gdańsk", "Koszalin"]),
     "aislupsk": dict(mark="AI Słupsk", tagline="warsztaty AI dla firm z regionu", web="aislupsk.pl",
-                     phone="536 507 701", places=["Słupsk", "Lębork", "Ustka", "Koszalin"]),
+                     phone="536 507 701", places=["Słupsk", "Lębork", "Ustka", "Koszalin"],
+                     palette="S", cutout="mateusz-cutout.png"),
 }
 
 FORMATS = {
@@ -378,6 +396,11 @@ class Composition:
         self.js.append(f'tl.to("#{sid}",{{opacity:0,duration:0.22}},{round(end - 0.22, 4)});')
         return sid
 
+    def card_mockup(self, ev, start, end):
+        """Makieta systemu na pełnym ekranie (tools/mockups.py), głos leci pod spodem."""
+        from mockups import MOCKUPS
+        MOCKUPS[ev["name"]](self, ev, start, end)
+
     def card_stat(self, ev, start, end):
         shown = f'{ev.get("prefix", "")}{ev["to"]}{ev.get("suffix", "")}'
         k = fit(shown, self.card_w, 260, 1, 120) / 260
@@ -449,9 +472,14 @@ class Composition:
         bid = self.uid("b")
         start, end = self.q(start), self.q(end)
         # w ramce wideo: w pionie kurczy się razem z twarzą po hooku, w 16:9 odjeżdża pod panel boczny
-        self.broll_html.append(f'<div class="broll" id="{bid}">'
-                         f'<video id="{bid}-v" class="clip" src="media/{name}" muted playsinline data-start="{start}" '
-                         f'data-duration="{round(end - start, 4)}" data-media-start="{ev.get("from", 0)}" data-track-index="1"></video>'
+        if name.lower().endswith((".jpg", ".jpeg", ".png")):
+            # nieożywiony kadr (np. s08, s12) — ruch daje sam najazd Ken Burns niżej
+            media = (f'<img id="{bid}-v" class="clip broll-still" src="media/{name}" alt="" data-start="{start}" '
+                     f'data-duration="{round(end - start, 4)}" data-track-index="1">')
+        else:
+            media = (f'<video id="{bid}-v" class="clip" src="media/{name}" muted playsinline data-start="{start}" '
+                     f'data-duration="{round(end - start, 4)}" data-media-start="{ev.get("from", 0)}" data-track-index="1"></video>')
+        self.broll_html.append(f'<div class="broll" id="{bid}">' + media
                          + (f'<div class="broll-label">{esc(ev["label"])}</div>' if ev.get("label") else "") + '</div>')
         self.js.append(f'tl.set("#{bid}",{{opacity:1}},{start});tl.set("#{bid}",{{opacity:0}},{end});')
         zoom = (1.0, 1.1) if ev.get("ken", "in") == "in" else (1.1, 1.0)
@@ -659,8 +687,13 @@ class Composition:
             body = (f'<div class="end-kicker">{esc(lines.get("kicker", "Chcesz to u siebie?"))}</div>'
                     + self.end_title(lines.get("title", "Napisz „AGENT” w komentarzu")) +
                     f'<div class="end-sub">{esc(lines.get("sub", "Wyślę Ci materiał, jak zacząć"))}</div>')
-        self.html.append(f'<div class="endcard clip" id="{cid}" data-start="{self.q(start)}" data-duration="{self.q(self.end_len)}" '
-                         f'data-track-index="7"><div class="end-grid"></div><div class="end-stack">'
+        cutout = ""
+        if self.brand.get("cutout"):
+            # sylwetka z ratuszem jak na aislupsk.pl — prawdziwe zdjęcie, nie AI
+            self.media[self.brand["cutout"]] = BRAND / "aislupsk" / self.brand["cutout"]
+            cutout = f'<img class="end-cutout" src="media/{self.brand["cutout"]}" alt="">'
+        self.html.append(f'<div class="endcard clip{" end-cut" if cutout else ""}" id="{cid}" data-start="{self.q(start)}" data-duration="{self.q(self.end_len)}" '
+                         f'data-track-index="7"><div class="end-grid"></div>{cutout}<div class="end-stack">'
                          f'<div class="end-mark">{self.brand_mark()}</div><div class="end-body">{body}</div></div></div>')
         self.js.append(f'tl.fromTo("#{cid} .end-mark",{{opacity:0,scale:0.9}},{{opacity:1,scale:1,duration:0.6,ease:"power3.out"}},{self.q(start)});')
         self.js.append(f'tl.fromTo("#{cid} .end-body > *",{{opacity:0,y:30}},{{opacity:1,y:0,duration:0.45,stagger:0.12,ease:"power3.out"}},{self.q(start + 0.1)});')
@@ -771,7 +804,7 @@ class Composition:
             end = min(end, self.clip_len)
             if end - start < 0.5:
                 raise SystemExit(f"zdarzenie {ev['type']} @ {ev['at']}: {start:.2f}–{end:.2f} — za krótkie")
-            if ev["type"] not in ("broll", "logos", "slate") and ev.get("zone", self.default_zone()) == "panel":
+            if ev["type"] not in ("broll", "logos", "slate", "mockup") and ev.get("zone", self.default_zone()) == "panel":
                 start = max(start, self.panel_from())   # panel wjeżdża dopiero po hooku
                 if end - start < 0.8:
                     continue
@@ -789,8 +822,9 @@ class Composition:
 
     def document(self):
         g, p = self.geo, self.pal
-        css = (BRAND / "fonts" / "fonts.css").read_text() + logos_css() + STYLE.format(
-            W=g["w"], H=g["h"], FH=g["face_h"], SW=900 if self.vertical else 1500, EL=640 if self.vertical else 1000, ST=282 if self.vertical else 330, SF=110 if self.vertical else 120, LBL=404 if self.vertical else 60, PH=g["h"] - g["face_h"], CHIP=g["face_h"] - 250, **p,
+        from mockups import MOCKUP_STYLE
+        css = (BRAND / "fonts" / "fonts.css").read_text() + logos_css() + (STYLE + MOCKUP_STYLE).format(
+            W=g["w"], H=g["h"], FH=g["face_h"], SW=900 if self.vertical else 1500, EL=640 if self.vertical else 1000, ST=282 if self.vertical else 330, SF=110 if self.vertical else 120, LBL=404 if self.vertical else 60, PH=g["h"] - g["face_h"], CHIP=g["face_h"] - 250, CUT=760 if self.vertical else 900, **p,
             V="1" if self.vertical else "0")
         cls = "fmt-v" if self.vertical else "fmt-h"
         return (f'<!doctype html><html lang="pl"><head><meta charset="utf-8">'
@@ -807,7 +841,7 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 #root{{position:relative;width:100%;height:100%;overflow:hidden;background:{bg}}}
 #video-wrap{{position:absolute;overflow:hidden;background:#000;z-index:1}}
 #face-zoom{{position:absolute;inset:0}}
-#video-wrap video{{width:100%;height:100%;object-fit:cover;display:block}}
+#video-wrap video,#video-wrap .broll-still{{width:100%;height:100%;object-fit:cover;display:block}}
 .face-fade{{position:absolute;left:0;right:0;bottom:0;height:260px;background:linear-gradient(180deg,rgba(0,0,0,0),{bg})}}
 #panel{{position:absolute;left:0;width:{W}px;background:{bg};overflow:hidden;z-index:2}}
 .panel-grid{{position:absolute;inset:0;background-image:linear-gradient({grid} 1px,transparent 1px),linear-gradient(90deg,{grid} 1px,transparent 1px);background-size:54px 54px}}
@@ -926,7 +960,11 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .lower-third b{{font-size:40px}}
 .lower-third span{{font-size:26px;color:{muted}}}
 
-.endcard{{position:absolute;inset:0;background:{bg};display:flex;align-items:center;justify-content:center}}
+.endcard{{position:absolute;inset:0;background:{bg_fill};display:flex;align-items:center;justify-content:center}}
+.end-cutout{{position:absolute;right:-30px;bottom:0;width:{CUT}px;height:auto}}
+.fmt-v .end-cut{{align-items:flex-start;padding-top:170px}}
+.fmt-h .end-cut .end-stack{{width:56%;margin-right:38%;align-items:flex-start}}
+.hook-in,.title,.end-title,.slate-text,.quote,.end-mark .mark-text{{font-style:{heading_style};word-spacing:{word_gap}}}
 .end-grid{{position:absolute;inset:0;background-image:linear-gradient({grid} 1px,transparent 1px),linear-gradient(90deg,{grid} 1px,transparent 1px);background-size:60px 60px}}
 .end-stack{{position:relative;width:86%;display:flex;flex-direction:column;gap:70px}}
 .fmt-h .end-stack{{align-items:center;gap:40px}}
@@ -942,6 +980,18 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 """
 
 
+def reject_hdr(path):
+    """Nagranie z iPhone'a w HLG przełącza HyperFrames na render HDR całego klipu (16 bit,
+    x265 slow, kolory HDR na zwykłym telefonie) — najpierw tools/real_broll.py (SDR)."""
+    if Path(path).suffix.lower() not in (".mp4", ".mov", ".m4v"):
+        return
+    transfer = subprocess.run(["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries",
+                               "stream=color_transfer", "-of", "csv=p=0", str(path)],
+                              capture_output=True, text=True).stdout
+    if "arib-std-b67" in transfer or "smpte2084" in transfer:
+        raise SystemExit(f"{Path(path).name}: źródło HDR ({transfer.split(',')[0].strip()}) — przekonwertuj do SDR bt709")
+
+
 def stage(comp, folder):
     folder.mkdir(parents=True, exist_ok=True)
     (folder / "media").mkdir(exist_ok=True)
@@ -953,6 +1003,7 @@ def stage(comp, folder):
     shutil.copy(BRAND / "logos" / "flowbiz-ai.png", folder / "media" / "flowbiz-ai.png")
     (folder / "index.html").write_text(comp.build())
     for name, src in comp.media.items():
+        reject_hdr(src)
         link = folder / "media" / name
         if link.is_symlink() or link.exists():
             link.unlink()
@@ -968,7 +1019,9 @@ def hf(args, cwd):
 def probe_duration(path, stream):
     out = subprocess.run(["ffprobe", "-v", "error", "-select_streams", stream, "-show_entries",
                           "stream=duration", "-of", "csv=p=0", str(path)], capture_output=True, text=True).stdout
-    return float(out.strip() or 0)
+    # ffprobe potrafi dopisać pusty drugi wiersz/kolumnę („33.7,”) — bierzemy pierwszą liczbę
+    found = re.search(r"\d+(?:\.\d+)?", out)
+    return float(found.group()) if found else 0.0
 
 
 def finalize(raw, out, target=-14.0):
@@ -1008,7 +1061,7 @@ def main():
     clip = next(c for c in json.load(open(DATA / "clips.json")) if c["id"].startswith(a.clip))
     board = json.load(open(PACK / "storyboards" / f"{clip['id']}.json"))
     for fmt in a.format or board.get("formats", ["reels", "ad", "youtube"]):
-        for pal in a.palette or ACTIVE_PALETTES:
+        for pal in a.palette or palettes_for(board, clip):
             folder = OUT / clip["id"] / f"{fmt}-{pal}"
             if a.finalize_only:
                 if (folder / "render.mp4").exists():

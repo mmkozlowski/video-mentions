@@ -2,7 +2,7 @@
 """„Yyyy” i milczenie w środku słowa — tego transkrypcja nie widzi.
 
 Whisper dokleja przeciągnięte „yyy” i pauzę do sąsiedniego słowa („wycen.” trwa 4,8 s),
-więc cięcie po lukach między słowami (build_clips.tighten) ich nie łapie. Tu czytamy
+więc cięcie po lukach między słowami ich nie łapie (i urywało słowa). Tu czytamy
 samo audio co 20 ms:
 
 - cisza: RMS poniżej SILENCE_DB przez co najmniej MIN_SILENCE,
@@ -17,13 +17,13 @@ import sys
 
 from sources import SOURCES
 
-SILENCE_DB = -42.0
+SILENCE_DB = -40.0   # poniżej tego cisza albo oddech
 VOICE_DB = -35.0
 SYLLABLE_DIP_DB = 5.0
-MIN_SILENCE = 0.55     # jak MAX_PAUSE w build_clips — krótsza cisza to naturalny oddech
+MIN_SILENCE = 0.70     # krótsza cisza to naturalny oddech
 MIN_FILLER = 0.5
 MARGIN = 0.08          # zostaje na brzegu wyciętego „yyy”, żeby nie uciąć spółgłoski
-SILENCE_KEEP = 0.15    # z wyciętej ciszy zostaje oddech z obu stron
+SILENCE_KEEP = 0.20    # z wyciętej ciszy zostaje oddech z obu stron (Mateusz: 0,12 to za ciasno)
 
 
 def levels(source, start, end):
@@ -60,26 +60,44 @@ def runs(rows, inside):
     return out
 
 
-def filler_spans(source, start, end):
-    """Fragmenty do wycięcia (czas źródła), już z marginesem na brzegach."""
+LONG_WORD = 0.8        # słowo dłuższe niż to = Whisper dokleił do niego „yyy” albo ciszę
+
+
+def filler_spans(source, start, end, words=()):
+    """Fragmenty do wycięcia (czas źródła), już z marginesem na brzegach.
+
+    Cisza jest bezpieczna zawsze. „Yyy” (głos bez granicy sylaby) tylko wtedy, gdy nie
+    wchodzi w słowo normalnej długości — przeciągnięte „roook” wygląda w sygnale tak samo
+    jak „yyy”, a wycięcie go urywa zdanie (ad-14: „…wdrożeniem na [rok]”)."""
     rows = levels(source, start, end)
     db = [r[1] for r in rows]
     spans = [(a + SILENCE_KEEP - MARGIN, b - SILENCE_KEEP + MARGIN)
              for a, b in runs(rows, lambda i: db[i] < SILENCE_DB) if b - a >= MIN_SILENCE]
     # głos bez granicy sylaby: od ostatniego spadku głośność nie zjechała o SYLLABLE_DIP_DB
-    begin, peak = None, None
+    voiced, begin, peak = [], None, None
     for i, (t, level) in enumerate(rows):
         if level < VOICE_DB or (peak is not None and level < peak - SYLLABLE_DIP_DB):
             if begin is not None and t - begin >= MIN_FILLER:
-                spans.append((begin, t))
+                voiced.append((begin, t))
             begin, peak = None, None
             continue
         if begin is None:
             begin, peak = t, level
         peak = max(peak, level)
     if begin is not None and rows and rows[-1][0] - begin >= MIN_FILLER:
-        spans.append((begin, rows[-1][0]))
+        voiced.append((begin, rows[-1][0]))
+    spans += [v for v in voiced if not cuts_into_word(v, words)]
     return sorted((round(a + MARGIN, 3), round(b - MARGIN, 3)) for a, b in spans if b - a > 2 * MARGIN)
+
+
+def cuts_into_word(span, words):
+    """Czy fragment zjada więcej niż 30% słowa normalnej długości."""
+    a, b = span
+    for w in words:
+        length = w["end"] - w["start"]
+        if length < LONG_WORD and min(b, w["end"]) - max(a, w["start"]) > 0.3 * length:
+            return True
+    return False
 
 
 MIN_PIECE = 0.3        # krótszy kawałek mowy między cięciami brzmi jak trzask — wtedy nie tniemy

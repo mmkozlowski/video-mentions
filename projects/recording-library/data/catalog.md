@@ -8,91 +8,91 @@ Ranking: `hook × 2 + delivery` (max 15). A ≥ 13, B ≥ 11. Oceny redakcyjne �
 
 | # | pkt | id | tytuł | marka | s | cta | sklejki | gdzie | hook (pierwsze słowa) |
 |---|---|---|---|---|---|---|---|---|---|
-| A | 15 | `ad-19-ra1` | Prezes na lotnisku | flowbiz | 34 | none | 3 | meta-ads, reels-organic | Prezes firmy siedzi na lotnisku i wie co się dzieje na produkcji z telefonu, |
-| A | 14 | `ad-28-w1` | Szefie, Twoi ludzie już używają AI | aislupsk | 29 | aislupsk | 7 | aislupsk-listopad, reels-organic | Szefie, Twoi ludzie już używają AI. Wiesz do czego? Wklejają maile klientów, umowy, cenniki |
-| A | 14 | `ad-11-r1` | Zamówienie na 11 stron | flowbiz | 36 | none | 6 | meta-ads, reels-organic | 11 stron zamówienia w Excelu. |
-| A | 14 | `ad-35-w9` | Umowa w ChatGPT | aislupsk | 39 | aislupsk | 10 | aislupsk-listopad, reels-organic | Twój pracownik właśnie wkleił umowę klienta do chat GPT. Czy zdawałeś sobie o tym |
-| A | 14 | `ad-25-e5` | 4 błędy przy wdrożeniu AI | flowbiz | 42 | comment | 12 | reels-organic | Wdrażasz AI w firmie i nie działa? Pewnie popełniasz jeden z tych czterech błędów. |
-| A | 14 | `ad-04-02-4` | AI skasuje mi pół bazy | flowbiz | 47 | youtube | 10 | reels-organic | A co, jak AI skasuje mi pół bazy? |
-| A | 14 | `ad-12-r2` | Zeszyt i emerytura | flowbiz | 49 | web | 7 | meta-ads, reels-organic | Co się stanie z Twoją produkcją, jak jedna osoba, która wie, jak to robić, |
-| A | 13 | `ad-34-e4` | Gdzie AI ma sens — 3 na tak, 3 na nie | flowbiz | 29 | none | 8 | reels-organic | Gdzie AI w firmie ma sens, a gdzie to wyrzucone pieniądze? 3 na tak, |
-| A | 13 | `ad-31-l9` | ChatGPT dla pracowników | flowbiz | 34 | web | 8 | reels-organic | Kupiłeś chat GPT dla pracowników i nic się nie zmieniło? Bo dostęp do narzędzia |
-| A | 13 | `ad-33-g1` | Programista kontra ChatGPT | flowbiz | 36 | web | 10 | reels-organic | Programista mówi 3 miesiące, chat GPT mówi 3 dni. Kto kłamie? Nikt. Mówią o |
-| A | 13 | `ad-14-r4` | ERP kontra hala | flowbiz | 40 | web | 8 | meta-ads, reels-organic | Twój ERP mówi jedną, hala robi drugie W systemie wszystko się zgadza |
-| A | 13 | `ad-02-01-1` | Kto zmienił cenę | flowbiz | 46 | youtube | 7 | reels-organic | Kto kurwa zmienił cenę tego produktu? kolokwializm, ale nieraz padały takie słowa od szefów |
-| A | 13 | `ad-01-01-3` | AI zobaczy wypłaty | flowbiz | 46 | youtube | 11 | reels-organic | Pracownik pyta AI ile zarabia jego szef na danym zleceniu i dostaje odpowiedź. To |
-| B | 12 | `ad-07-m3` | Lębork | flowbiz | 18 | none | 4 | meta-ads, reels-organic | Lemberg, szukasz firmy od AI i systemów? A wszystkie są z Warszawy albo z |
-| B | 12 | `ad-27-w11` | Pizza i networking | aislupsk | 27 | aislupsk | 6 | aislupsk-listopad, reels-organic | Pizza, kilku szefów firmy ze Słupska Jeden temat Jak zbudować swojego agenta AI, który |
-| B | 12 | `ad-36-w7` | Przynieś swój problem | aislupsk | 29 | aislupsk | 8 | aislupsk-listopad, reels-organic | Wdrażasz AI w firmie i nie wychodzi? Przyjdź na warsztaty i przynieś swój problem. |
-| B | 12 | `ad-05-m1` | Słupsk | flowbiz | 29 | phone | 6 | meta-ads, reels-organic | Prowadzisz firmę w Słupsku? To nie musisz szukać wdrożeniowca AI w Warszawie. Jestem stąd, |
-| B | 12 | `ad-30-l5` | Trzy wersje Excela | flowbiz | 32 | web | 7 | reels-organic | Masz trzy wersje tego samego Excela i nikt nie wie, która jest aktualna. Często |
-| B | 12 | `ad-16-r6` | Kontrahent z Niemiec | flowbiz | 36 | web | 7 | meta-ads, reels-organic | Twój kontrahent z Niemiec przesyła zamówienia, a u Ciebie ktoś przepisuje je do Excela? |
-| B | 12 | `ad-03-02-3` | AI nie zna Twojej firmy | flowbiz | 42 | youtube | 9 | reels-organic | Zapytaj chat GPT ile masz otwartych zamówień. |
-| B | 12 | `ad-24-e7` | Agent AI dla prezesa — co robi | aislupsk | 52 | aislupsk | 13 | aislupsk-listopad, reels-organic | Agent AI dla prezesa firmy, co naprawdę on może robić? Pokaże na tym, jak |
-| B | 12 | `ad-18-r8` | Każde zlecenie inne | flowbiz | 53 | none | 10 | meta-ads, reels-organic | Produkujesz na zamówienie i każde zlecenie jest inne? Excel tego nie udźwignie i doskonale |
+| A | 15 | `ad-19-ra1` | Prezes na lotnisku | flowbiz | 34 | none | 2 | meta-ads, reels-organic | Prezes firmy siedzi na lotnisku i wie co się dzieje na produkcji z telefonu, |
+| A | 14 | `ad-28-w1` | Szefie, Twoi ludzie już używają AI | aislupsk | 32 | aislupsk | 5 | aislupsk-listopad, reels-organic | Szefie, Twoi ludzie już używają AI. Wiesz do czego? Wklejają maile klientów, umowy, cenniki |
+| A | 14 | `ad-11-r1` | Zamówienie na 11 stron | flowbiz | 38 | none | 3 | meta-ads, reels-organic | 11 stron zamówienia w Excelu. |
+| A | 14 | `ad-35-w9` | Umowa w ChatGPT | aislupsk | 41 | aislupsk | 6 | aislupsk-listopad, reels-organic | Twój pracownik właśnie wkleił umowę klienta do chat GPT. Czy zdawałeś sobie o tym |
+| A | 14 | `ad-25-e5` | 4 błędy przy wdrożeniu AI | flowbiz | 43 | comment | 9 | reels-organic | Wdrażasz AI w firmie i nie działa? Pewnie popełniasz jeden z tych czterech błędów. |
+| A | 14 | `ad-04-02-4` | AI skasuje mi pół bazy | flowbiz | 49 | youtube | 4 | reels-organic | A co, jak AI skasuje mi pół bazy? |
+| A | 14 | `ad-12-r2` | Zeszyt i emerytura | flowbiz | 51 | web | 2 | meta-ads, reels-organic | Co się stanie z Twoją produkcją, jak jedna osoba, która wie, jak to robić, |
+| A | 13 | `ad-34-e4` | Gdzie AI ma sens — 3 na tak, 3 na nie | flowbiz | 31 | none | 5 | reels-organic | Gdzie AI w firmie ma sens, a gdzie to wyrzucone pieniądze? 3 na tak, |
+| A | 13 | `ad-31-l9` | ChatGPT dla pracowników | flowbiz | 35 | web | 6 | reels-organic | Kupiłeś chat GPT dla pracowników i nic się nie zmieniło? Bo dostęp do narzędzia |
+| A | 13 | `ad-33-g1` | Programista kontra ChatGPT | flowbiz | 40 | web | 7 | reels-organic | Programista mówi 3 miesiące, chat GPT mówi 3 dni. Kto kłamie? Nikt. Mówią o |
+| A | 13 | `ad-14-r4` | ERP kontra hala | flowbiz | 42 | web | 5 | meta-ads, reels-organic | Twój ERP mówi jedną, hala robi drugie W systemie wszystko się zgadza |
+| A | 13 | `ad-02-01-1` | Kto zmienił cenę | flowbiz | 48 | youtube | 3 | reels-organic | Kto kurwa zmienił cenę tego produktu? kolokwializm, ale nieraz padały takie słowa od szefów |
+| A | 13 | `ad-01-01-3` | AI zobaczy wypłaty | flowbiz | 48 | youtube | 6 | reels-organic | Pracownik pyta AI ile zarabia jego szef na danym zleceniu i dostaje odpowiedź. To |
+| B | 12 | `ad-07-m3` | Lębork | flowbiz | 19 | none | 3 | meta-ads, reels-organic | Lemberg, szukasz firmy od AI i systemów? A wszystkie są z Warszawy albo z |
+| B | 12 | `ad-27-w11` | Pizza i networking | aislupsk | 28 | aislupsk | 4 | aislupsk-listopad, reels-organic | Pizza, kilku szefów firmy ze Słupska Jeden temat Jak zbudować swojego agenta AI, który |
+| B | 12 | `ad-05-m1` | Słupsk | flowbiz | 31 | phone | 4 | meta-ads, reels-organic | Prowadzisz firmę w Słupsku? To nie musisz szukać wdrożeniowca AI w Warszawie. Jestem stąd, |
+| B | 12 | `ad-36-w7` | Przynieś swój problem | aislupsk | 31 | aislupsk | 4 | aislupsk-listopad, reels-organic | Wdrażasz AI w firmie i nie wychodzi? Przyjdź na warsztaty i przynieś swój problem. |
+| B | 12 | `ad-30-l5` | Trzy wersje Excela | flowbiz | 34 | web | 5 | reels-organic | Masz trzy wersje tego samego Excela i nikt nie wie, która jest aktualna. Często |
+| B | 12 | `ad-16-r6` | Kontrahent z Niemiec | flowbiz | 37 | web | 6 | meta-ads, reels-organic | Twój kontrahent z Niemiec przesyła zamówienia, a u Ciebie ktoś przepisuje je do Excela? |
+| B | 12 | `ad-03-02-3` | AI nie zna Twojej firmy | flowbiz | 45 | youtube | 5 | reels-organic | Zapytaj chat GPT ile masz otwartych zamówień. |
 | B | 12 | `ad-22-e2` | Co AI daje produkcji — 4 rzeczy | flowbiz | 54 | phone | 13 | reels-organic | Masz firmę produkcyjną? Cztery rzeczy, które AI już dziś robi u moich klientów. 1. |
-| B | 12 | `ad-23-e1` | 5 rzeczy bez licencji | flowbiz | 55 | web | 15 | reels-organic | 5 rzeczy, które AI może zrobić w systemie Twojej firmy, nie płacisz za nie |
-| B | 11 | `ad-09-m5` | Koszalin | flowbiz | 22 | none | 4 | meta-ads, reels-organic | Koszalin, myślisz o AI albo o nowym systemie dla Twojej firmy? Zanim zadzwonisz do |
-| B | 11 | `ad-10-m6` | Trójmiasto | flowbiz | 27 | none | 6 | meta-ads, reels-organic | Gdańsk, Gdynia, Sopot, wdrożeniowiec z Pomorza, nie z Mazowsza. Wiem, że w Trójmieście firm |
-| B | 11 | `ad-29-w4` | Śniadanie dla szefów | aislupsk | 31 | aislupsk | 6 | aislupsk-listopad, reels-organic | menadżerów ze Słupska i okolicy na śniadanie. Temat, dlaczego AI w Twojej firmie nie |
+| B | 12 | `ad-24-e7` | Agent AI dla prezesa — co robi | aislupsk | 55 | aislupsk | 9 | aislupsk-listopad, reels-organic | Agent AI dla prezesa firmy, co naprawdę on może robić? Pokaże na tym, jak |
+| B | 12 | `ad-18-r8` | Każde zlecenie inne | flowbiz | 55 | none | 6 | meta-ads, reels-organic | Produkujesz na zamówienie i każde zlecenie jest inne? Excel tego nie udźwignie i doskonale |
+| B | 12 | `ad-23-e1` | 5 rzeczy bez licencji | flowbiz | 60 | web | 8 | reels-organic | 5 rzeczy, które AI może zrobić w systemie Twojej firmy, nie płacisz za nie |
+| B | 11 | `ad-09-m5` | Koszalin | flowbiz | 23 | none | 1 | meta-ads, reels-organic | Koszalin, myślisz o AI albo o nowym systemie dla Twojej firmy? Zanim zadzwonisz do |
+| B | 11 | `ad-10-m6` | Trójmiasto | flowbiz | 29 | none | 4 | meta-ads, reels-organic | Gdańsk, Gdynia, Sopot, wdrożeniowiec z Pomorza, nie z Mazowsza. Wiem, że w Trójmieście firm |
 | B | 11 | `ad-32-l1` | Najlepsza osoba przepisuje maile | flowbiz | 31 | none | 4 | reels-organic | Prowadzisz firmę w subsku i Twoja najlepsza osoba w biurze przepisuje maile do systemu? |
-| B | 11 | `ad-08-m4` | Bytów | flowbiz | 32 | web | 5 | meta-ads, reels-organic | Prowadzisz firmę w Bytowie? Nie musisz ściągać konsultantów z drugiego końca Polski. Przyjadę do |
-| B | 11 | `ad-26-w10` | Agent w telefonie — warsztat | aislupsk | 42 | aislupsk | 6 | aislupsk-listopad, reels-organic | chcesz mieć w telefonie agenta AI wie co się dzieje w Twojej firmie? Jeżeli |
-| B | 11 | `ad-20-ra2` | Odpowiedź w pięć sekund | flowbiz | 43 | web | 8 | meta-ads, reels-organic | Pytasz w telefonie, co z zamówieniem dla klienta i dostajesz odpowiedź w 5 sekund. |
-| B | 11 | `ad-17-r7` | Nie rok wdrożenia | flowbiz | 45 | web | 9 | meta-ads, reels-organic | Myślisz, że system dla produkcji to rok wdrożenia i wymiana wszystkiego? |
-| B | 11 | `ad-13-r3` | Przepisy o opakowaniach (PPWR) | flowbiz | 73 | web | 12 | meta-ads, reels-organic, needs-cutdown | Nowe przepisy o opakowaniach i znowu kolejna papierologia. Marża znowu spada, bo musisz więcej |
+| B | 11 | `ad-29-w4` | Śniadanie dla szefów | aislupsk | 32 | aislupsk | 4 | aislupsk-listopad, reels-organic | menadżerów ze Słupska i okolicy na śniadanie. Temat, dlaczego AI w Twojej firmie nie |
+| B | 11 | `ad-08-m4` | Bytów | flowbiz | 34 | web | 3 | meta-ads, reels-organic | Prowadzisz firmę w Bytowie? Nie musisz ściągać konsultantów z drugiego końca Polski. Przyjadę do |
+| B | 11 | `ad-26-w10` | Agent w telefonie — warsztat | aislupsk | 43 | aislupsk | 5 | aislupsk-listopad, reels-organic | chcesz mieć w telefonie agenta AI wie co się dzieje w Twojej firmie? Jeżeli |
+| B | 11 | `ad-20-ra2` | Odpowiedź w pięć sekund | flowbiz | 44 | web | 7 | meta-ads, reels-organic | Pytasz w telefonie, co z zamówieniem dla klienta i dostajesz odpowiedź w 5 sekund. |
+| B | 11 | `ad-17-r7` | Nie rok wdrożenia | flowbiz | 48 | web | 7 | meta-ads, reels-organic | Myślisz, że system dla produkcji to rok wdrożenia i wymiana wszystkiego? |
+| B | 11 | `ad-13-r3` | Przepisy o opakowaniach (PPWR) | flowbiz | 76 | web | 11 | meta-ads, reels-organic, needs-cutdown | Nowe przepisy o opakowaniach i znowu kolejna papierologia. Marża znowu spada, bo musisz więcej |
 | C | 10 | `ad-21-ra3` | Asystent, który nie śpi | flowbiz | 12 | none | 3 | meta-ads, reels-organic | Twój asystent nie śpi, nie bierze urlopu i nie siedzi w Twoim telegramie. Nic |
-| C | 10 | `ad-06-m2` | Pomorze — 40 minut od Ciebie | flowbiz | 38 | phone | 6 | meta-ads, reels-organic | Masz firmę w zachodniopomorskim albo w pomorskim województwie? To jestem niecałe 40 minut od |
-| C | 8 | `ad-15-r5` | Produkcja z Pomorza | flowbiz | 42 | none | 8 | meta-ads, reels-organic | Prowadzisz firmę produkcyjną z Pomorza? Nie musisz szukać wdrożeniowca w Warszawie Zamówienie przychodzi mailem |
+| C | 10 | `ad-06-m2` | Pomorze — 40 minut od Ciebie | flowbiz | 40 | phone | 2 | meta-ads, reels-organic | Masz firmę w zachodniopomorskim albo w pomorskim województwie? To jestem niecałe 40 minut od |
+| C | 8 | `ad-15-r5` | Produkcja z Pomorza | flowbiz | 44 | none | 6 | meta-ads, reels-organic | Prowadzisz firmę produkcyjną z Pomorza? Nie musisz szukać wdrożeniowca w Warszawie Zamówienie przychodzi mailem |
 
 ## Kampania AI Słupsk (listopad) — materiał
 
 | # | pkt | id | tytuł | s |
 |---|---|---|---|---|
-| A | 14 | `ad-28-w1` | Szefie, Twoi ludzie już używają AI | 29 |
-| A | 14 | `ad-35-w9` | Umowa w ChatGPT | 39 |
-| B | 12 | `ad-27-w11` | Pizza i networking | 27 |
-| B | 12 | `ad-36-w7` | Przynieś swój problem | 29 |
-| B | 12 | `ad-24-e7` | Agent AI dla prezesa — co robi | 52 |
-| B | 11 | `ad-29-w4` | Śniadanie dla szefów | 31 |
-| B | 11 | `ad-26-w10` | Agent w telefonie — warsztat | 42 |
-| C | 8 | `raw-freestyle-workshop` | Freestyle: bańka AI i strach | 86 |
+| A | 14 | `ad-28-w1` | Szefie, Twoi ludzie już używają AI | 32 |
+| A | 14 | `ad-35-w9` | Umowa w ChatGPT | 41 |
+| B | 12 | `ad-27-w11` | Pizza i networking | 28 |
+| B | 12 | `ad-36-w7` | Przynieś swój problem | 31 |
+| B | 12 | `ad-24-e7` | Agent AI dla prezesa — co robi | 55 |
+| B | 11 | `ad-29-w4` | Śniadanie dla szefów | 32 |
+| B | 11 | `ad-26-w10` | Agent w telefonie — warsztat | 43 |
+| C | 8 | `raw-freestyle-workshop` | Freestyle: bańka AI i strach | 92 |
 
 ## Rozdziały case study — kandydaci na rolki
 
 | # | pkt | id | tytuł | odcinek | s | hook (pierwsze słowa) |
 |---|---|---|---|---|---|---|
-| A | 14 | `ch-doram-6-kody-15-minut` | Kody kreskowe: z kilku dni do 15 minut | ep-doram | 32 | Jeżeli chodzi o tą część taką jeszcze bardzo czasochłoną, czy generowanie samych kodów kreskowych, |
-| A | 14 | `ch-offers-1-oferta-5-minut` | Oferta w 5 minut zamiast kilkunastu godzin | ep-open-mercato-offers | 58 | A jak to działa w praktyce? U jednego producenta maszyn sportowych wdrożyliśmy asystenta AI, |
-| A | 14 | `ch-doram-3-przeklejala-drukowala` | Przeklejała, drukowała, przeklejała… | ep-doram | 71 | Dużo też czasu w tym wszystkim zajmowało przygotowanie dla osoby, która była w biurze, |
-| A | 13 | `ch-doram-5-70-94` | Pamięć dla AI: 70% → 94% w miesiąc | ep-doram | 74 | I w tym przypadku do tego klienta, już wracając znowu do brzegu, polegało to |
-| A | 13 | `ch-vacu-1-chatgpt-zapomina` | ChatGPT przestaje pamiętać Twoje wytyczne | ep-vacuactiv | 79 | Jaki był problem? Problem był taki, że właściciel tutaj korzystając z tych narzędzi najbardziej |
-| A | 13 | `ch-marpasz-2-100-godzin` | 100 godzin miesięcznie mniej | ep-marpasz | 89 | Teraz klient widzi, dostał system, w którym opiera się też o tutaj, o AI |
-| B | 12 | `ch-marpasz-4-srubki` | AI to dokręcanie śrubek | ep-marpasz | 35 | I teraz pytanie, czy to działa idealnie? No nie, pamiętajmy, że systemy oparte o |
-| B | 12 | `ch-doram-1-nazwy` | Ten sam produkt na kilkanaście sposobów | ep-doram | 41 | Klient dostawał od swoich kontrahentów niemieckich zamówienia w Excelu. Długoletni kontrahenci współpracowali już, jakieś |
-| B | 12 | `ch-vacu-3-mozg-firmy` | Mózg firmy ze 150 GB danych | ep-vacuactiv | 63 | I idąc tym tropem, no poszliśmy w tym kierunku, ok, tworzymy mózg firmy. Mózg |
-| B | 11 | `ch-vacu-7-narzedzie-to-nie-wdrozenie` | Licencja to nie wdrożenie | ep-vacuactiv | 33 | samo rozwiązanie techniczne często, jak widzimy po tych różnych wdrożeniach nieudanych, po prostu samo |
-| B | 11 | `ch-doram-2-kilka-dni-10-minut` | Kilka dni klepania → 10 minut | ep-doram | 57 | Tutaj od klienta z Podsłupska, który miał ten problem, była dość duża frustracja i |
-| B | 11 | `ch-rezon-2-ustka-rowy` | Tysiące sztuk z napisem „Ustka” | ep-rezon | 58 | Ta braża też jest tutaj specyficzna, że dla każdej nadmorskiej miejscowości albo południowo tutaj, |
-| B | 11 | `ch-rezon-1-ksiegowosc-po-fakcie` | Dane z księgowości to dane po fakcie | ep-rezon | 64 | Kontrola była głównie od księgowych i od raportów miesięcznych, kwartalnych, rocznych do tego jak |
-| B | 11 | `ch-vacu-2-dane-w-glowach` | Dane w głowach, na kartkach, w mailach | ep-vacuactiv | 70 | No więc pierwsze tutaj hasło agent AI dla tego właściciela. Jednak problem się stał |
-| B | 11 | `ch-vacu-4-duze-systemy` | Dlaczego duże systemy się nie wdrażają | ep-vacuactiv | 82 | A to dlatego, że ja mam takie odczucie, że często kupując gotowca system dla |
-| B | 11 | `ch-vacu-6-brief-telegram` | Zamówienie z Telegrama w trzy kliknięcia | ep-vacuactiv | 107 | a jak to wpłynęło dalej na tego właściciela, który temu wszystkiemu chciał, żeby te |
-| B | 11 | `ch-marpasz-3-katalog-ai` | Katalog AI: z faktury do Allegro | ep-marpasz | 111 | to też jest katalog AI. Katalog AI, jak to wygląda? Wcześniej klient musiał dane |
-| B | 11 | `ch-vacu-5-kierownik-w-godzine` | Kierownik produkcji nauczył się w godzinę | ep-vacuactiv | 113 | My wychodzimy z innego założenia, czyli Excel miał pewien plan produkcji, nie był to |
-| B | 11 | `ch-marpasz-1-cztery-worki` | Cztery worki paszy = cztery etykiety | ep-marpasz | 135 | Jednym z nich jest firma handlowa, która handluje paszą dla zwierząt i miała dosyć |
-| C | 10 | `ch-doram-4-fundamenty` | Bez fundamentów AI nie wie, jak pracujesz | ep-doram | 48 | I teraz jak to uprościliśmy, tak? No dzięki całej tutaj mocy AI, jakie nam |
-| C | 9 | `ch-rezon-3-panel-klienta` | Klient sam składa zamówienie | ep-rezon | 104 | Co tu jeszcze zmieniliśmy w sposobie pracy? Zmieniliśmy to, że klient przestaje zamawiać mailowo |
+| A | 14 | `ch-doram-6-kody-15-minut` | Kody kreskowe: z kilku dni do 15 minut | ep-doram | 33 | Jeżeli chodzi o tą część taką jeszcze bardzo czasochłoną, czy generowanie samych kodów kreskowych, |
+| A | 14 | `ch-offers-1-oferta-5-minut` | Oferta w 5 minut zamiast kilkunastu godzin | ep-open-mercato-offers | 61 | A jak to działa w praktyce? U jednego producenta maszyn sportowych wdrożyliśmy asystenta AI, |
+| A | 14 | `ch-doram-3-przeklejala-drukowala` | Przeklejała, drukowała, przeklejała… | ep-doram | 75 | Dużo też czasu w tym wszystkim zajmowało przygotowanie dla osoby, która była w biurze, |
+| A | 13 | `ch-doram-5-70-94` | Pamięć dla AI: 70% → 94% w miesiąc | ep-doram | 77 | I w tym przypadku do tego klienta, już wracając znowu do brzegu, polegało to |
+| A | 13 | `ch-vacu-1-chatgpt-zapomina` | ChatGPT przestaje pamiętać Twoje wytyczne | ep-vacuactiv | 83 | Jaki był problem? Problem był taki, że właściciel tutaj korzystając z tych narzędzi najbardziej |
+| A | 13 | `ch-marpasz-2-100-godzin` | 100 godzin miesięcznie mniej | ep-marpasz | 93 | Teraz klient widzi, dostał system, w którym opiera się też o tutaj, o AI |
+| B | 12 | `ch-marpasz-4-srubki` | AI to dokręcanie śrubek | ep-marpasz | 38 | I teraz pytanie, czy to działa idealnie? No nie, pamiętajmy, że systemy oparte o |
+| B | 12 | `ch-doram-1-nazwy` | Ten sam produkt na kilkanaście sposobów | ep-doram | 43 | Klient dostawał od swoich kontrahentów niemieckich zamówienia w Excelu. Długoletni kontrahenci współpracowali już, jakieś |
+| B | 12 | `ch-vacu-3-mozg-firmy` | Mózg firmy ze 150 GB danych | ep-vacuactiv | 68 | I idąc tym tropem, no poszliśmy w tym kierunku, ok, tworzymy mózg firmy. Mózg |
+| B | 11 | `ch-vacu-7-narzedzie-to-nie-wdrozenie` | Licencja to nie wdrożenie | ep-vacuactiv | 34 | samo rozwiązanie techniczne często, jak widzimy po tych różnych wdrożeniach nieudanych, po prostu samo |
+| B | 11 | `ch-doram-2-kilka-dni-10-minut` | Kilka dni klepania → 10 minut | ep-doram | 58 | Tutaj od klienta z Podsłupska, który miał ten problem, była dość duża frustracja i |
+| B | 11 | `ch-rezon-2-ustka-rowy` | Tysiące sztuk z napisem „Ustka” | ep-rezon | 60 | Ta braża też jest tutaj specyficzna, że dla każdej nadmorskiej miejscowości albo południowo tutaj, |
+| B | 11 | `ch-rezon-1-ksiegowosc-po-fakcie` | Dane z księgowości to dane po fakcie | ep-rezon | 68 | Kontrola była głównie od księgowych i od raportów miesięcznych, kwartalnych, rocznych do tego jak |
+| B | 11 | `ch-vacu-2-dane-w-glowach` | Dane w głowach, na kartkach, w mailach | ep-vacuactiv | 73 | No więc pierwsze tutaj hasło agent AI dla tego właściciela. Jednak problem się stał |
+| B | 11 | `ch-vacu-4-duze-systemy` | Dlaczego duże systemy się nie wdrażają | ep-vacuactiv | 85 | A to dlatego, że ja mam takie odczucie, że często kupując gotowca system dla |
+| B | 11 | `ch-vacu-6-brief-telegram` | Zamówienie z Telegrama w trzy kliknięcia | ep-vacuactiv | 110 | a jak to wpłynęło dalej na tego właściciela, który temu wszystkiemu chciał, żeby te |
+| B | 11 | `ch-marpasz-3-katalog-ai` | Katalog AI: z faktury do Allegro | ep-marpasz | 118 | to też jest katalog AI. Katalog AI, jak to wygląda? Wcześniej klient musiał dane |
+| B | 11 | `ch-vacu-5-kierownik-w-godzine` | Kierownik produkcji nauczył się w godzinę | ep-vacuactiv | 119 | My wychodzimy z innego założenia, czyli Excel miał pewien plan produkcji, nie był to |
+| B | 11 | `ch-marpasz-1-cztery-worki` | Cztery worki paszy = cztery etykiety | ep-marpasz | 143 | Jednym z nich jest firma handlowa, która handluje paszą dla zwierząt i miała dosyć |
+| C | 10 | `ch-doram-4-fundamenty` | Bez fundamentów AI nie wie, jak pracujesz | ep-doram | 49 | I teraz jak to uprościliśmy, tak? No dzięki całej tutaj mocy AI, jakie nam |
+| C | 9 | `ch-rezon-3-panel-klienta` | Klient sam składa zamówienie | ep-rezon | 107 | Co tu jeszcze zmieniliśmy w sposobie pracy? Zmieniliśmy to, że klient przestaje zamawiać mailowo |
 
 ## Pełne odcinki (YouTube 16:9)
 
 | id | klient (wewn.) | tytuł | min | o czym |
 |---|---|---|---|---|
-| `ep-open-mercato-offers` | (wiele) | 8 wdrożeń Open Mercato — oferty | 3.1 | Krótki odcinek: chaos w ofertach, konwersja handlowców, asystent czytający maile (producent sprzętu sportowego) — oferta w 5 min zamiast kilkunastu godzin. |
-| `ep-rezon` | Rezon | Pamiątki znad morza: system B2B | 6.8 | Firma z Kołobrzegu, proces na kartkach, integracja z PC Business, handlowiec z tabletem, produkcja na zamówienie, panel klienta na Open Mercato. |
-| `ep-marpasz` | Marpasz | Pasza dla zwierząt: etykiety i katalog AI | 7.3 | Sklep internetowy ze Słupska. Paczki po 25 kg = 4 etykiety na zamówienie w Apilo, teraz jedno kliknięcie — ok. 100 h/mies. Katalog AI z faktur do Nexo i opisy na Allegro/Erli/sklep. „Dokręcanie śrubek”. |
-| `ep-doram` | Doram | Meble ogrodowe: zamówienia z Niemiec | 10.3 | Zamówienia od niemieckich kontrahentów w Excelu, dopasowanie AI 70% → 94% po miesiącu, kody kreskowe z kilku dni do 15 minut. Restart zdania w 92 s. |
-| `ep-vacuactiv` | Vacuactiv | Agent AI dla właściciela firmy | 16.9 | Sprzęt sportowy z okolic Słupska. ChatGPT gubi kontekst → mózg firmy (100–150 GB danych), Open Mercato na produkcji, brief w Telegramie, Obsidian + Hermes + Codex. Najdłuższy, do skrócenia w montażu. |
+| `ep-open-mercato-offers` | (wiele) | 8 wdrożeń Open Mercato — oferty | 3.3 | Krótki odcinek: chaos w ofertach, konwersja handlowców, asystent czytający maile (producent sprzętu sportowego) — oferta w 5 min zamiast kilkunastu godzin. |
+| `ep-rezon` | Rezon | Pamiątki znad morza: system B2B | 7.0 | Firma z Kołobrzegu, proces na kartkach, integracja z PC Business, handlowiec z tabletem, produkcja na zamówienie, panel klienta na Open Mercato. |
+| `ep-marpasz` | Marpasz | Pasza dla zwierząt: etykiety i katalog AI | 7.7 | Sklep internetowy ze Słupska. Paczki po 25 kg = 4 etykiety na zamówienie w Apilo, teraz jedno kliknięcie — ok. 100 h/mies. Katalog AI z faktur do Nexo i opisy na Allegro/Erli/sklep. „Dokręcanie śrubek”. |
+| `ep-doram` | Doram | Meble ogrodowe: zamówienia z Niemiec | 10.7 | Zamówienia od niemieckich kontrahentów w Excelu, dopasowanie AI 70% → 94% po miesiącu, kody kreskowe z kilku dni do 15 minut. Restart zdania w 92 s. |
+| `ep-vacuactiv` | Vacuactiv | Agent AI dla właściciela firmy | 17.7 | Sprzęt sportowy z okolic Słupska. ChatGPT gubi kontekst → mózg firmy (100–150 GB danych), Open Mercato na produkcji, brief w Telegramie, Obsidian + Hermes + Codex. Najdłuższy, do skrócenia w montażu. |
 
 ## Uwagi do poszczególnych klipów
 

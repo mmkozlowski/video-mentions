@@ -133,6 +133,15 @@
    "src": "../youtube/Animation flowbiz youtube/assets/veo/18-hala-timelapse.mp4",
    "from": 1.0,
    "label": "Systemy dla firm produkcyjnych"
+  },
+  {
+   "type": "broll",
+   "at": "Słupska",
+   "floor": 0,
+   "until": "+2.2",
+   "src": "build/broll-real/slupsk-ulica-ratusz.mp4",
+   "ai": false,
+   "label": "Słupsk"
   }
  ]
 }

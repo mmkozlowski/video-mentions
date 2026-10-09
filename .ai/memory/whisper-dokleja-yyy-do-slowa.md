@@ -18,6 +18,12 @@ między słowami (`build_clips.tighten`) tego nie widzi i Mateusz dalej słysza�
   0,6 s przed głosem). Po wycięciu tej ciszy słowo liczone po początku znika z napisów
   i kotwic. Przypisuj słowa po największej części wspólnej z przedziałem (`cut.words_in`).
 
+- **Tnij wyłącznie po sygnale, słowami tylko chroń.** Przeciągnięte „roook” wygląda jak
+  „yyy” (ad-14 straciło „rok”), a cięcie po lukach Whispera urywało słowa. „Yyy” nie może
+  zjeść > 30% słowa krótszego niż 0,8 s.
+- **Pauz nie tnij do zera.** Mateusz po odsłuchu: „zbyt mocno te pauzy wyciąłeś”. Cisza
+  dopiero > 0,7 s, zostaje po 0,2 s z każdej strony.
+
 **Why:** bez tego „wycięte yyy” jest tylko w teorii, a naprawa ciszy gubi słowa i psuje
 kotwice storyboardów.
 
