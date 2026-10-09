@@ -51,6 +51,10 @@ PALETTES = {
               font="Plus Jakarta Sans", grid="rgba(28,158,122,0.08)"),
 }
 
+# Mateusz 9.10: zostajemy przy A (bursztyn) — zieleń B wygląda kiepsko na wideo.
+# B zostaje w słowniku do ręcznego --palette B, ale nie renderuje się domyślnie.
+ACTIVE_PALETTES = ["A"]
+
 # Kolor marki w wersji czytelnej na ciemnym tle (jak w projects/youtube).
 LOGO_COLORS = {
     "claude": "#D97757", "anthropic": "#D97757", "openmercato": "#F5A623", "github": "#FAF8F0",
@@ -154,13 +158,37 @@ def logo(name, size=None, color=None):
     return f'<i class="logo logo-{name}" style="{";".join(style)}"></i>'
 
 
+DIGIT_GROUP = re.compile(r"^\*?\+?\d[\d\u00a0]*%?$")
+
+
+def tokens(text):
+    """Słowa do złamania w linii — ciąg grup cyfr (numer telefonu „536 507 701”) i liczba
+    z jednostką („3 miesiące”) to jeden token: nie rozjeżdżają się na dwie linie, a akcent
+    z gwiazdki obejmuje całość."""
+    out = []
+    for word in text.split():
+        if out and (word == "→" or out[-1].endswith("→")):
+            # „70% → 94%” to jedna para — strzałka nie zaczyna ani nie kończy linii
+            out[-1] += "\u00a0" + word.lstrip("*")
+        elif out and DIGIT_GROUP.match(out[-1]) and (DIGIT_GROUP.match(word) or (word[:1].isalpha() and "\u00a0" not in out[-1])):
+            # „3 miesiące”, „15 minut” — liczba nie zostaje sama na końcu linii
+            out[-1] += "\u00a0" + word.lstrip("*")
+        else:
+            out.append(word)
+    return out
+
+
+def sentences(text):
+    return [p for p in re.split(r"(?<=[.?!])\s+", text.strip()) if p]
+
+
 def fit(text, width, largest, lines=1, smallest=34):
     """Rozmiar fontu, przy którym tekst mieści się w strefie: najdłuższe słowo w jednej
-    linii i całość w `lines` liniach. Szacunek z szerokości znaku (0,62 em dla 800),
+    linii i całość w `lines` liniach. Szacunek z szerokości znaku (0,68 em dla DM Sans 800),
     bo w kompozycji nie ma pomiaru przed renderem — sprawdza to potem hyperframes check."""
     clean = text.replace("*", "")
-    longest = max((len(w) for w in clean.split()), default=1)
-    size = min(largest, width / (0.62 * longest), width * lines / (0.6 * max(len(clean), 1)))
+    longest = max((len(w) for w in tokens(clean)), default=1)
+    size = min(largest, width / (0.68 * longest), width * lines / (0.64 * max(len(clean), 1)))
     return max(smallest, int(size))
 
 
@@ -286,11 +314,21 @@ class Composition:
                        f'duration:0.42,ease:"back.out(1.6)",stagger:{step}}},{self.q(start)});')
 
     def card_title(self, ev, start, end):
+        """Kilka zdań: każde w swojej linii, kolejne dochodzi, gdy je mówię — nie wszystko naraz."""
+        parts = sentences(ev["text"])
+        largest = 92 if self.vertical else 76
+        size = min([fit(ev["text"], self.card_w, largest, 3)] + [fit(p, self.card_w, largest, 2) for p in parts])
+        body = "".join(f'<div class="sent">{self.words_html(p)}</div>' for p in parts)
         cid = self.host(start, end, f'<div class="kicker">{esc(ev.get("kicker", ""))}</div>'
-                                    f'<div class="title" style="font-size:{fit(ev["text"], self.card_w, 92 if self.vertical else 76, 3)}px">{self.words_html(ev["text"])}</div>'
+                                    f'<div class="title" style="font-size:{size}px">{body}</div>'
                                     + (f'<div class="sub">{esc(ev["sub"])}</div>' if ev.get("sub") else ""),
                         ev.get("zone", self.default_zone()))
-        self.stagger(f"#{cid} .title .w", start + 0.15, 0.06, 18)
+        times = self.sentence_times(parts, start + 0.15, end)
+        for i, at in enumerate(times[:-1]):
+            sel = f"#{cid} .sent:nth-child({i + 1}) .w"
+            if i:
+                self.js.append(f'tl.set("{sel}",{{opacity:0}},{self.q(start)});')
+            self.stagger(sel, at, 0.06, 18)
 
     def card_logos(self, ev, start, end):
         """Pion: ikony narzędzi na osobnej planszy — w panelu pod twarzą giną.
@@ -420,7 +458,8 @@ class Composition:
         self.js.append(f'tl.fromTo("#{bid}",{{scale:{zoom[0]}}},{{scale:{zoom[1]},duration:{round(end - start, 3)},ease:"none"}},{start});')
         if ev.get("ai", True) and not self.ai_shown:
             self.ai_shown = True
-            self.ai_until = start + min(3.2, max(2.0, end - start))
+            # znak AI dotyczy przebitki — nie może zostać na twarzy po jej końcu
+            self.ai_until = start + min(3.2, end - start)
             self.ai_label(start, self.ai_until - start)
         if ev.get("label"):
             # podpis dopiero po znaku AI — dwa napisy u góry naraz to już natłok
@@ -442,13 +481,87 @@ class Composition:
             return
         end = self.clock.at(hook.get("until", 3.0), floor=0)
         self.hook_end = end
+        parts = sentences(hook["text"])
+        times = self.sentence_times(parts, 0.0, end)
+        # jeden rozmiar dla wszystkich zdań — bez przeskoku fontu przy zmianie
+        size = min(fit(p, 830, 76, 3, 52) for p in parts)
+        accent = hook.get("accent", [])
         cid = self.uid("h")
+        # zdania leżą w jednej komórce siatki: karta ma wysokość najdłuższego, nic nie skacze
+        text = "".join(f'<div class="hook-sent">{self.words_html(p, accent=accent)}</div>' for p in parts)
+        self.hook_words = {norm(w) for w in hook["text"].replace("*", "").split() if len(norm(w)) >= 4}
+        visual = self.hook_visual(hook.get("visual"))
         self.html.append(f'<div class="hook clip" id="{cid}" data-start="0" data-duration="{self.q(end)}" data-track-index="4">'
-                         f'<div class="hook-in" style="font-size:{fit(hook["text"], 820, 76, 3, 52)}px">{self.words_html(hook["text"], accent=hook.get("accent", []))}</div></div>')
-        # jedno zdanie = jedno tło: wjeżdża cały blok, słowa tylko się dopalają
+                         f'<div class="hook-in">{visual}<div class="hook-text" style="font-size:{size}px">{text}</div></div></div>')
         self.js.append(f'tl.fromTo("#{cid} .hook-in",{{opacity:0,y:40}},{{opacity:1,y:0,duration:0.4,ease:"power3.out"}},0.05);')
-        self.js.append(f'tl.fromTo("#{cid} .w",{{opacity:0.25}},{{opacity:1,duration:0.2,stagger:0.07}},0.15);')
+        if visual:
+            self.js.append(f'tl.fromTo("#{cid} .hv-pop",{{opacity:0,scale:0.6}},{{opacity:1,scale:1,duration:0.45,ease:"back.out(1.8)",stagger:0.22}},0.2);')
+            self.js.extend(js.replace("#ID", f"#{cid}") for js in self.hook_visual_js(hook.get("visual"), end))
+        for i, start in enumerate(times[:-1]):
+            sel = f"#{cid} .hook-sent:nth-child({i + 1})"
+            if i:
+                self.js.append(f'tl.set("{sel}",{{opacity:0}},0);')
+                self.js.append(f'tl.to("#{cid} .hook-sent:nth-child({i})",{{opacity:0,duration:0.15}},{self.q(start - 0.15)});')
+                self.js.append(f'tl.set("{sel}",{{opacity:1}},{self.q(start)});')
+            self.js.append(f'tl.fromTo("{sel} .w",{{opacity:0.25}},{{opacity:1,duration:0.2,stagger:0.07}},{self.q(start + 0.15)});')
         self.js.append(f'tl.to("#{cid} .hook-in",{{opacity:0,duration:0.25}},{self.q(end - 0.25)});')
+
+    def hook_visual(self, visual):
+        """Grafika nad zdaniem hooka: ikona, A vs B, przepływ, logo narzędzi albo licznik."""
+        if not visual:
+            return ""
+        kind = visual["kind"]
+        if kind == "icon":
+            return f'<div class="hv">{self.hook_item(visual)}</div>'
+        if kind == "logos":
+            return '<div class="hv">' + "".join(self.hook_item({"logo": name}) for name in visual["items"]) + '</div>'
+        if kind == "meter":
+            return (f'<div class="hv hv-meter hv-pop"><div class="hv-bar"><i style="width:{visual["from"]}%"></i></div>'
+                    f'<b class="hv-val">{visual["from"]}{esc(visual.get("suffix", ""))}</b></div>')
+        sign = visual.get("sign", "vs" if kind == "versus" else "→")
+        items = [visual["left"], visual["right"]] if kind == "versus" else visual["items"]
+        # etykieta, która powtarza słowo z hooka, to drugi raz ten sam tekst — wtedy
+        # wypadają wszystkie (pół schematu z podpisem, pół bez wygląda na błąd)
+        if any({norm(w) for w in it.get("label", "").split()} & self.hook_words for it in items):
+            items = [dict(it, label="") for it in items]
+        joiner = f'<span class="hv-sign hv-pop">{esc(sign)}</span>'
+        return '<div class="hv">' + joiner.join(self.hook_item(it) for it in items) + '</div>'
+
+    def hook_item(self, item):
+        if item.get("art"):
+            self.media[f'{item["art"]}.png'] = PROJECT / "assets" / "hook-art" / f'{item["art"]}.png'
+            pic = f'<img class="hv-img" src="media/{item["art"]}.png" alt="">'
+        else:
+            pic = f'<span class="hv-logo">{logo(item["logo"], 150, LOGO_COLORS.get(item["logo"]))}</span>'
+        label = (f'<span class="hv-label{" acc" if item.get("accent") else ""}{" strike" if item.get("strike") else ""}">'
+                 f'{esc(item["label"])}</span>') if item.get("label") else ""
+        return f'<div class="hv-item hv-pop">{pic}{label}</div>'
+
+    def hook_visual_js(self, visual, end):
+        """Licznik dobiega do wartości docelowej w pierwszej połowie hooka."""
+        if not visual or visual["kind"] != "meter":
+            return []
+        a, b, suffix = visual["from"], visual["to"], visual.get("suffix", "")
+        run = self.q(min(2.0, end / 2))
+        return [f'tl.to("#ID .hv-bar i",{{width:"{b}%",duration:{run},ease:"power2.inOut"}},0.6);',
+                f'(function(){{var o={{v:{a}}},el=document.querySelector("#ID .hv-val");'
+                f'tl.to(o,{{v:{b},duration:{run},ease:"power2.inOut",onUpdate:function(){{el.textContent=Math.round(o.v)+"{suffix}";}}}},0.6);}})();']
+
+    def sentence_times(self, parts, start, end):
+        """Kiedy pokazać kolejne zdanie: gdy pada jego pierwsze słowo; gdy go nie słychać
+        (tekst przepisany inaczej niż mowa), podział proporcjonalny do długości."""
+        total = sum(len(p) for p in parts)
+        times, done = [start], 0
+        for prev, part in zip(parts, parts[1:]):
+            done += len(prev)
+            guess = start + (end - start) * done / total
+            try:
+                spoken = self.clock.at(norm(part.split()[0].lstrip("*")), floor=times[-1] + 0.6)
+            except SystemExit:
+                spoken = None
+            ok = spoken is not None and times[-1] + 0.8 <= spoken <= end - 0.8
+            times.append(spoken - 0.05 if ok else guess)
+        return times + [end]
 
     def captions(self):
         if not self.vertical:
@@ -523,6 +636,9 @@ class Composition:
                 if i < len(cycle) - 1:
                     self.js.append(f'tl.to("#{cid} .chip-w[data-i=\'{i}\']",{{opacity:0,y:-18,duration:0.2,ease:"power2.in"}},{self.q(t + step - 0.2)});')
 
+    def end_title(self, text):
+        return f'<div class="end-title" style="font-size:{fit(text, 900, 124, 3, 72)}px">{self.words_html(text)}</div>'
+
     def endcard(self):
         if not self.end_len:
             return
@@ -534,14 +650,14 @@ class Composition:
         elif self.fmt == "ad":
             lines = cta.get("ad", {})
             body = (f'<div class="end-kicker">{esc(lines.get("kicker", "Bezpłatna konsultacja"))}</div>'
-                    f'<div class="end-title">{self.words_html(lines.get("title", "Przyjadę do Twojej firmy"))}</div>'
+                    + self.end_title(lines.get("title", "Przyjadę do Twojej firmy")) +
                     f'<div class="end-sub">{esc(lines.get("sub", "Słupsk · Pomorze · Zachodniopomorskie"))}</div>'
                     f'<div class="end-btn">{esc(lines.get("button", self.brand["web"]))}</div>'
                     f'<div class="end-phone">tel. {esc(self.brand["phone"])}</div>')
         else:
             lines = cta.get("reels", {})
             body = (f'<div class="end-kicker">{esc(lines.get("kicker", "Chcesz to u siebie?"))}</div>'
-                    f'<div class="end-title">{self.words_html(lines.get("title", "Napisz „AGENT” w komentarzu"))}</div>'
+                    + self.end_title(lines.get("title", "Napisz „AGENT” w komentarzu")) +
                     f'<div class="end-sub">{esc(lines.get("sub", "Wyślę Ci materiał, jak zacząć"))}</div>')
         self.html.append(f'<div class="endcard clip" id="{cid}" data-start="{self.q(start)}" data-duration="{self.q(self.end_len)}" '
                          f'data-track-index="7"><div class="end-grid"></div><div class="end-stack">'
@@ -631,7 +747,7 @@ class Composition:
 
     def words_html(self, text, accent=()):
         out = []
-        for word in text.split():
+        for word in tokens(text):
             cls = "w acc" if norm(word) in [norm(a) for a in accent] or word.startswith("*") else "w"
             out.append(f'<span class="{cls}">{esc(word.lstrip("*"))}</span>')
         return " ".join(out)
@@ -641,8 +757,10 @@ class Composition:
         hook = self.board.get("hook")
         if hook and self.fmt != "youtube":
             self.hook_end = self.clock.at(hook.get("until", 3.0), floor=0)
-            if self.hook_end > 6.0:
+            if self.hook_end > 4.0 * max(2, len(sentences(hook["text"]))):   # ~4 s na zdanie
                 print(f"  ⚠ hook trwa {self.hook_end:.1f} s — skróć `until`")
+            elif self.hook_end < 2.5:   # po wycięciu „yyy” kotwica potrafi wypaść za wcześnie
+                print(f"  ⚠ hook trwa tylko {self.hook_end:.1f} s — przesuń `until`")
         self.base()
         for ev in self.board["events"]:
             if self.fmt in ev.get("skip", []):
@@ -672,7 +790,7 @@ class Composition:
     def document(self):
         g, p = self.geo, self.pal
         css = (BRAND / "fonts" / "fonts.css").read_text() + logos_css() + STYLE.format(
-            W=g["w"], H=g["h"], FH=g["face_h"], SW=900 if self.vertical else 1500, EL=640 if self.vertical else 1000, ST=282 if self.vertical else 330, SF=110 if self.vertical else 120, LBL=404 if self.vertical else 60, PH=g["h"] - g["face_h"], **p,
+            W=g["w"], H=g["h"], FH=g["face_h"], SW=900 if self.vertical else 1500, EL=640 if self.vertical else 1000, ST=282 if self.vertical else 330, SF=110 if self.vertical else 120, LBL=404 if self.vertical else 60, PH=g["h"] - g["face_h"], CHIP=g["face_h"] - 250, **p,
             V="1" if self.vertical else "0")
         cls = "fmt-v" if self.vertical else "fmt-h"
         return (f'<!doctype html><html lang="pl"><head><meta charset="utf-8">'
@@ -772,8 +890,18 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .ai-label{{position:absolute;display:flex;align-items:center;gap:12px;font-size:24px;font-weight:600;padding:10px 18px 10px 10px;border-radius:40px;background:rgba(0,0,0,.62);color:#fff}}
 .ai-dot{{background:#fff;color:#000;font-weight:800;font-size:20px;padding:4px 10px;border-radius:20px}}
 
-.hook{{position:absolute;left:44px;right:132px;top:1160px}}
-.hook-in{{display:inline-block;font-size:76px;font-weight:800;line-height:1.06;letter-spacing:-.02em;color:{text};background:{bg}F0;padding:26px 34px 30px;border-radius:26px;border-left:8px solid {accent};box-shadow:0 18px 50px rgba(0,0,0,.45)}}
+.hook{{position:absolute;left:44px;right:132px;bottom:430px}}
+.hook-in{{display:flex;flex-direction:column;gap:22px;font-weight:800;line-height:1.06;letter-spacing:-.02em;color:{text};background:{bg}F2;padding:30px 34px 32px;border-radius:30px;border-left:8px solid {accent};box-shadow:0 18px 50px rgba(0,0,0,.45)}}
+.hook-text{{display:grid}} .hook-sent{{grid-area:1/1}}
+.hv{{display:flex;align-items:center;justify-content:center;gap:26px;min-height:230px}}
+.hv-item{{display:flex;flex-direction:column;align-items:center;gap:10px}}
+.hv-img{{width:220px;height:220px;object-fit:contain;mix-blend-mode:lighten;-webkit-mask-image:radial-gradient(circle,#000 52%,transparent 71%);mask-image:radial-gradient(circle,#000 52%,transparent 71%)}}
+.hv-logo{{display:flex;align-items:center;justify-content:center;width:220px;height:220px;border-radius:48px;background:{raised}}}
+.hv-label{{font-size:38px;font-weight:800;color:{muted}}} .hv-label.acc{{color:{accent}}} .hv-label.strike{{text-decoration:line-through;text-decoration-thickness:5px}}
+.hv-sign{{font-size:64px;font-weight:800;color:{accent}}}
+.hv-meter{{flex-direction:column;gap:14px;align-items:stretch;width:100%}}
+.hv-bar{{height:44px;border-radius:22px;background:{raised};overflow:hidden}} .hv-bar i{{display:block;height:100%;background:{accent};border-radius:22px}}
+.hv-val{{font-size:120px;line-height:1;color:{accent};text-align:center}}
 .hook-in .acc{{color:{accent}}}
 .slate{{position:absolute;inset:0;background:{bg};display:flex;align-items:center;justify-content:center;z-index:7}}
 .slate-body{{position:relative;width:{SW}px;display:flex;flex-direction:column;gap:10px}}
@@ -789,7 +917,7 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .cap{{position:absolute;left:40px;right:40px;top:{FH}px;transform:translateY(-150px);display:flex;justify-content:center}}
 .cap-in{{font-size:52px;font-weight:800;text-align:center;line-height:1.12;color:#fff;background:rgba(0,0,0,.72);padding:10px 22px;border-radius:16px}}
 
-.cta-chip{{position:absolute;left:40px;top:236px;display:flex;align-items:center;gap:14px;font-size:30px;font-weight:700;padding:14px 24px;border-radius:40px;background:{accent};color:{on_accent}}}
+.cta-chip{{position:absolute;left:40px;top:{CHIP}px;display:flex;align-items:center;gap:14px;font-size:30px;font-weight:700;padding:14px 24px;border-radius:40px;background:{accent};color:{on_accent}}}
 .chip-cycle{{display:inline-grid;overflow:hidden;padding:8px 0;margin:-8px 0}}
 .chip-w{{grid-area:1/1;opacity:0}}
 .chip-dot{{width:14px;height:14px;border-radius:50%;background:{on_accent}}}
@@ -880,7 +1008,7 @@ def main():
     clip = next(c for c in json.load(open(DATA / "clips.json")) if c["id"].startswith(a.clip))
     board = json.load(open(PACK / "storyboards" / f"{clip['id']}.json"))
     for fmt in a.format or board.get("formats", ["reels", "ad", "youtube"]):
-        for pal in a.palette or ["A", "B"]:
+        for pal in a.palette or ACTIVE_PALETTES:
             folder = OUT / clip["id"] / f"{fmt}-{pal}"
             if a.finalize_only:
                 if (folder / "render.mp4").exists():

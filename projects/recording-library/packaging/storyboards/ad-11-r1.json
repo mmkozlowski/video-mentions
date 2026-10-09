@@ -3,7 +3,20 @@
  "brand": "flowbiz",
  "hook": {
   "text": "*11 stron zamówienia. *6 godzin przepisywania",
-  "until": "u"
+  "until": "u",
+  "visual": {
+   "kind": "versus",
+   "sign": "→",
+   "left": {
+    "art": "h-paper-stack",
+    "label": "11 stron"
+   },
+   "right": {
+    "art": "h-hourglass",
+    "label": "6 godzin",
+    "accent": true
+   }
+  }
  },
  "topic": {
   "kicker": "Producent mebli ogrodowych",

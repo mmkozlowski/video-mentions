@@ -3,7 +3,20 @@
  "brand": "flowbiz",
  "hook": {
   "text": "Gdzie AI ma sens, a gdzie to *wyrzucone pieniądze?",
-  "until": "3#1"
+  "until": "3#1",
+  "visual": {
+   "kind": "versus",
+   "left": {
+    "art": "h-robot",
+    "label": "ma sens",
+    "accent": true
+   },
+   "right": {
+    "art": "h-money-bin",
+    "label": "strata",
+    "strike": true
+   }
+  }
  },
  "cta": {
   "chip": "Wdrożenia AI · flowbiz.pl",

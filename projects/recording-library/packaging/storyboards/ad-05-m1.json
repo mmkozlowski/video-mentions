@@ -1,18 +1,97 @@
 {
- "clip": "ad-05-m1", "brand": "flowbiz",
- "hook": {"text": "Firma w *Słupsku? Nie szukaj wdrożeniowca w *Warszawie", "until": "Jestem"},
- "topic": {"kicker": "Flowbiz · Słupsk", "text": "Wdrożenia AI *na miejscu", "sub": "przyjadę do Twojej firmy"},
+ "clip": "ad-05-m1",
+ "brand": "flowbiz",
+ "hook": {
+  "text": "Firma w *Słupsku? Nie szukaj wdrożeniowca w *Warszawie",
+  "until": "Jestem",
+  "visual": {
+   "kind": "versus",
+   "sign": "→",
+   "left": {
+    "art": "h-skyscraper",
+    "label": "Warszawa",
+    "strike": true
+   },
+   "right": {
+    "art": "h-pin",
+    "label": "Słupsk",
+    "accent": true
+   }
+  }
+ },
+ "topic": {
+  "kicker": "Flowbiz · Słupsk",
+  "text": "Wdrożenia AI *na miejscu",
+  "sub": "przyjadę do Twojej firmy"
+ },
  "cta": {
   "chip": "Wdrożenia AI · flowbiz.pl",
-  "ad": {"kicker": "Bezpłatna konsultacja w Słupsku", "title": "Przyjadę do *Twojej firmy", "sub": "Zobaczę, jak pracuje zespół, i powiem, co warto zautomatyzować", "button": "flowbiz.pl"},
-  "reels": {"kicker": "Jesteś ze Słupska?", "title": "Napisz *SŁUPSK w komentarzu", "sub": "Odezwę się i umówimy kawę u Ciebie w firmie"}
+  "ad": {
+   "kicker": "Bezpłatna konsultacja w Słupsku",
+   "title": "Przyjadę do *Twojej firmy",
+   "sub": "Zobaczę, jak pracuje zespół, i powiem, co warto zautomatyzować",
+   "button": "flowbiz.pl"
+  },
+  "reels": {
+   "kicker": "Jesteś ze Słupska?",
+   "title": "Napisz *SŁUPSK w komentarzu",
+   "sub": "Odezwę się i umówimy kawę u Ciebie w firmie"
+  }
  },
- "endcard": {"reels": 2.6, "ad": 3.5},
+ "endcard": {
+  "reels": 2.6,
+  "ad": 3.5
+ },
  "events": [
-  {"type": "title", "at": "Jestem", "until": "Przyjdę", "kicker": "Nie z Warszawy", "text": "Jestem *stąd. Ze Słupska."},
-  {"type": "list", "at": "Przyjdę", "until": "Bez", "kicker": "Konsultacja na miejscu", "items": [{"text": "Przyjadę do Ciebie", "at": "Przyjdę"}, {"text": "Zobaczę, jak pracuje zespół", "at": "zobaczę"}, {"text": "Co zautomatyzować, czego nie ruszać", "at": "warto"}]},
-  {"type": "broll", "at": "Bez", "until": "+2.6", "src": "../youtube/Animation flowbiz youtube/assets/veo/07-warsztat-stol.mp4", "from": 1.0, "label": "Przy Twoim biurku, nie przez ekran"},
-  {"type": "title", "at": "Bez", "until": "Zapraszam", "kicker": "Zamiast wideorozmowy", "text": "Rozmowa *przy Twoim biurku"},
-  {"type": "title", "at": "Zapraszam", "until": 33.4, "kicker": "Mateusz Kozłowski · Flowbiz", "text": "Zadzwoń: *536 507 701", "sub": "albo flowbiz.pl"}
+  {
+   "type": "title",
+   "at": "Jestem",
+   "until": "Przyjdę",
+   "kicker": "Nie z Warszawy",
+   "text": "Jestem *stąd. Ze Słupska."
+  },
+  {
+   "type": "list",
+   "at": "Przyjdę",
+   "until": "Bez",
+   "kicker": "Konsultacja na miejscu",
+   "items": [
+    {
+     "text": "Przyjadę do Ciebie",
+     "at": "Przyjdę"
+    },
+    {
+     "text": "Zobaczę, jak pracuje zespół",
+     "at": "zobaczę"
+    },
+    {
+     "text": "Co zautomatyzować, czego nie ruszać",
+     "at": "warto"
+    }
+   ]
+  },
+  {
+   "type": "broll",
+   "at": "Bez",
+   "until": "+2.6",
+   "src": "../youtube/Animation flowbiz youtube/assets/veo/07-warsztat-stol.mp4",
+   "from": 1.0,
+   "label": "Przy Twoim biurku, nie przez ekran"
+  },
+  {
+   "type": "title",
+   "at": "Bez",
+   "until": "Zapraszam",
+   "kicker": "Zamiast wideorozmowy",
+   "text": "Rozmowa *przy Twoim biurku"
+  },
+  {
+   "type": "title",
+   "at": "Zapraszam",
+   "until": 33.4,
+   "kicker": "Mateusz Kozłowski · Flowbiz",
+   "text": "Zadzwoń: *536 507 701",
+   "sub": "albo flowbiz.pl"
+  }
  ]
 }

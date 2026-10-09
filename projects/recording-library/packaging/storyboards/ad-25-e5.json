@@ -3,7 +3,11 @@
  "brand": "flowbiz",
  "hook": {
   "text": "Wdrażasz AI i *nie *działa?",
-  "until": "Pewnie"
+  "until": "Pewnie",
+  "visual": {
+   "kind": "icon",
+   "art": "h-warning-gear"
+  }
  },
  "cta": {
   "chip": "Wdrożenia AI · flowbiz.pl",

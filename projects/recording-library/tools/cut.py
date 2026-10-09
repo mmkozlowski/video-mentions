@@ -15,6 +15,7 @@ klatkach kluczowych), obraz i dźwięk z tego samego punktu jednym przebiegiem,
   python3 tools/cut.py --force        # od nowa
   python3 tools/cut.py ad-m1 ep-doram # tylko wskazane id (prefiks wystarczy)
   python3 tools/cut.py --no-vertical  # same mastery (szybciej)
+  python3 tools/cut.py --words-only   # tylko words.json i splices.json (bez kodowania)
 """
 import json
 import subprocess
@@ -24,14 +25,35 @@ from sources import DATA, FACE_CENTER_X, LIBRARY, SOURCE_W, SOURCES, VERTICAL, l
 
 
 def words_in(words, ranges):
-    """Słowa z przedziałów źródła przeliczone na oś sklejonego klipu."""
-    out, offset = [], 0.0
+    """Słowa z przedziałów źródła przeliczone na oś sklejonego klipu.
+
+    Słowo trafia do przedziału, z którym ma największą część wspólną, i jest do niego
+    przycinane. Czasy Whispera bywają przesunięte w ciszę („Jestem” zaczyna się 0,6 s
+    przed głosem) — gdy tę ciszę wycina fillers.py, słowo liczone po samym początku
+    wypadało z napisów i z kotwic storyboardu, choć jego dźwięk w klipie został."""
+    offsets, total = [], 0.0
     for a, b in ranges:
-        for w in words:
-            if w["start"] >= a and w["end"] <= b + 0.05:
-                out.append({"word": w["word"].strip(), "start": round(w["start"] - a + offset, 3),
-                            "end": round(min(w["end"], b) - a + offset, 3)})
-        offset += b - a
+        offsets.append(total)
+        total += b - a
+    out = []
+    for w in words:
+        overlaps = [(min(w["end"], b) - max(w["start"], a), i) for i, (a, b) in enumerate(ranges)]
+        best, i = max(overlaps)
+        if best > 0:
+            a, b = ranges[i]
+            out.append({"word": w["word"].strip(), "start": round(max(w["start"], a) - a + offsets[i], 3),
+                        "end": round(min(w["end"], b) - a + offsets[i], 3)})
+            continue
+        # słowo w całości w wyciętej luce: przesunięte w ciszę („Na” 0,5 s przed głosem)
+        # — jeśli luka jest krótka i ma najwyżej dwa takie słowa, dźwięk jest tuż za nią
+        nxt = next((j for j, (a, _) in enumerate(ranges) if a >= w["end"]), None)
+        if nxt is None or nxt == 0 or ranges[nxt][0] - ranges[nxt - 1][1] > 2.0:
+            continue
+        gap_from, gap_to = ranges[nxt - 1][1], ranges[nxt][0]
+        if sum(1 for x in words if x["start"] >= gap_from and x["end"] <= gap_to) > 2:
+            continue
+        at = round(offsets[nxt], 3)
+        out.append({"word": w["word"].strip(), "start": at, "end": round(at + 0.1, 3)})
     return out
 
 
@@ -78,6 +100,7 @@ def render(clip, kind, out):
 def main(argv):
     force = "--force" in argv
     vertical = "--no-vertical" not in argv
+    words_only = "--words-only" in argv
     wanted = [a for a in argv if not a.startswith("--")]
     clips = json.load(open(DATA / "clips.json"))
     words_cache = {}
@@ -93,14 +116,16 @@ def main(argv):
         fresh = recipe_file.exists() and json.load(open(recipe_file)) == recipe
         wants_vertical = vertical and clip["kind"] != "episode"
         complete = master.exists() and (not wants_vertical or (folder / "vertical.mp4").exists())
-        if fresh and complete and not force:
+        if fresh and complete and not force and not words_only:
             continue
 
         print(f"✂  {clip['id']:<40} {clip['source']:<9} {clip['start']:8.2f}  "
               f"{clip['duration']:6.1f} s  sklejek {clip['splices']}", flush=True)
-        if not (fresh and master.exists()) or force:
+        if words_only:
+            pass
+        elif not (fresh and master.exists()) or force:
             render(clip, "master", master)
-        if wants_vertical:
+        if wants_vertical and not words_only:
             render(clip, "vertical", folder / "vertical.mp4")
         if clip["source"] not in words_cache:
             words_cache[clip["source"]] = load_words(clip["source"])
@@ -112,7 +137,8 @@ def main(argv):
         subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", "0.6", "-i", str(master),
                         "-frames:v", "1", "-vf", "scale=640:-1", str(folder / "thumb.jpg")],
                        check=True)
-        json.dump(recipe, open(recipe_file, "w"))
+        if not words_only:   # bez kodowania przepis nie jest jeszcze wykonany
+            json.dump(recipe, open(recipe_file, "w"))
 
 
 if __name__ == "__main__":

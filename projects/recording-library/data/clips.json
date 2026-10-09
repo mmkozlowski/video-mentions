@@ -13,21 +13,57 @@
   "ranges": [
    [
     121.25,
+    128.2
+   ],
+   [
+    128.7,
+    137.72
+   ],
+   [
+    137.98,
+    141.18
+   ],
+   [
+    142.28,
     145.72
    ],
    [
     157.24,
+    162.29
+   ],
+   [
+    162.85,
+    165.71
+   ],
+   [
+    166.07,
+    168.03
+   ],
+   [
+    168.29,
+    170.37
+   ],
+   [
+    170.65,
     175.32
    ],
    [
     175.64,
+    178.41
+   ],
+   [
+    178.89,
+    181.77
+   ],
+   [
+    182.43,
     183.96
    ]
   ],
   "start": 121.25,
   "end": 183.96,
-  "duration": 50.87,
-  "splices": 2,
+  "duration": 46.41,
+  "splices": 11,
   "hook_line": "Pracownik pyta AI ile zarabia jego szef na danym zleceniu i dostaje odpowiedź. To",
   "transcript": "Pracownik pyta AI ile zarabia jego szef na danym zleceniu i dostaje odpowiedź. To nie jest problem AI, to jest problem uprawnień, których w firmie nigdy nie było. W Open Mercato systemie ERP AI każda funkcja ma swoje uprawnienia w roli. Technik nie widzi cen, handlowiec nie widzi wypłat, oddział widzi tylko swoje dane. U mnie przy przenoszeniu klienta z narzędzi low -code, Excela lub czegokolwiek innego i samo zarządzanie ludźmi i dostępami poszło jakieś kilkukrotnie, cztery razy szybciej, bo już tego się nie buduje, to już jest. Więcej o tym jak buduje się takie systemy znajdziesz na moim odcinku na YouTubie. jak zbudować system, który pozwoli Ci zachować granice i rolę całkowicie za darmo.",
   "scores": {
@@ -60,25 +96,37 @@
    ],
    [
     235.72,
+    240.68
+   ],
+   [
+    241.32,
     248.88
    ],
    [
     263.56,
+    264.07
+   ],
+   [
+    264.35,
     272.04
    ],
    [
     282.7,
+    290.65
+   ],
+   [
+    291.01,
     294.9
    ],
    [
-    295.28,
+    295.49,
     305.36
    ]
   ],
   "start": 231.45,
   "end": 305.36,
-  "duration": 47.09,
-  "splices": 4,
+  "duration": 45.6,
+  "splices": 7,
   "hook_line": "Kto kurwa zmienił cenę tego produktu? kolokwializm, ale nieraz padały takie słowa od szefów",
   "transcript": "Kto kurwa zmienił cenę tego produktu? kolokwializm, ale nieraz padały takie słowa od szefów firm, z którymi współpracuję. I najgorsze, że nikt nie wie. Szukasz w mailach, w Excelach, dzwonisz do swoich pracowników w nerwach, a teraz chcesz, żeby w tym systemie dane zmieniały jeszcze AI? Jeśli nie wiesz tego o ludziach, nie będziesz tego wiedział o AI. Dlatego w systemach, które buduje na Open Mercato każda zmiana zostawia ślad. Kto, kiedy, co było przed, co jest po, a jak ktoś się pomyli, człowiek czy AI, jedno kliknięcie, cofni i wszystko wraca. To nie jest dodatek, to nie jest warunek, żeby w ogóle wpuścić AI do firmy. Więcej o tym, jak buduję takie systemy znajdziesz na moim kanale na YouTube, więc zapraszam Cię do tego, aby zobaczyć jak budować takie systemy całkowicie za darmo.",
   "scores": {
@@ -114,11 +162,11 @@
     337.92
    ],
    [
-    338.16,
+    338.41,
     353.02
    ],
    [
-    353.28,
+    353.51,
     356.26
    ],
    [
@@ -126,18 +174,30 @@
     359.88
    ],
    [
-    360.16,
+    360.77,
+    364.31
+   ],
+   [
+    364.73,
     365.4
    ],
    [
     368.06,
+    368.61
+   ],
+   [
+    368.99,
+    372.11
+   ],
+   [
+    373.29,
     376.74
    ]
   ],
   "start": 309.07,
   "end": 376.74,
-  "duration": 45.17,
-  "splices": 6,
+  "duration": 42.1,
+  "splices": 9,
   "hook_line": "Zapytaj chat GPT ile masz otwartych zamówień.",
   "transcript": "Zapytaj chat GPT ile masz otwartych zamówień. No właśnie, nie wie, bo AI zna cały internet, ale nie zna kontekstu, nie zna Twojej firmy. Open Mercato ma takie gniazdko, przez które podłączysz AI na przykład Clouda prosto do danych firmy i wtedy pytasz, ile mam otwartych zamówień, które zamówienia czekają na wysyłkę, a ono odpowiada z Twojego systemu, nie z internetu. Widzi tylko tyle, na ile pozwalają mu uprawnienia, a samo podłączenie nic nie kosztuje. Ale więcej o tym, jak się buduje takie systemy znajdziesz na moim kanale YouTube, gdzie merytorycznie opowiadam o tym, jak wdrożyć systemy ERP, CRM do swoich firm.",
   "scores": {
@@ -170,21 +230,49 @@
    ],
    [
     420.66,
+    423.25
+   ],
+   [
+    423.53,
     442.04
    ],
    [
-    442.32,
+    442.59,
+    445.55
+   ],
+   [
+    445.89,
+    446.95
+   ],
+   [
+    447.21,
+    453.23
+   ],
+   [
+    453.57,
+    457.41
+   ],
+   [
+    458.23,
+    458.91
+   ],
+   [
+    459.29,
     460.4
    ],
    [
-    461.26,
+    462.09,
+    463.55
+   ],
+   [
+    464.17,
     468.72
    ]
   ],
   "start": 394.27,
   "end": 468.72,
-  "duration": 50.75,
-  "splices": 3,
+  "duration": 46.61,
+  "splices": 10,
   "hook_line": "A co, jak AI skasuje mi pół bazy?",
   "transcript": "A co, jak AI skasuje mi pół bazy? Jeśli tak pytasz, to bardzo dobrze, bo AI w systemie firmowym to nie jest czat do pisania maili. W Open Mercato asystent AI siedzi w panelu systemu. Pisze po polsku, zmień numer telefonu u tego klienta i on to robi. Ale każde jego działanie jest sprawdzane wobec Twoich uprawnień, nie zrobi niczego, czego Ty sam nie możesz. AI ma dokładnie te same klucze, co Ty, ani jednego więcej. Więc o tym, jak buduję takie systemy, znajdziesz na moim kanale na YouTube. Więc zapraszam serdecznie, gdzie opowiadam więcej o systemach ERP, cerem AI dla Twojej firmy. Tak, aby oszczędzać czas i wyeliminować ręczną pracę w Twojej firmie.",
   "scores": {
@@ -216,22 +304,34 @@
     475.52
    ],
    [
-    475.98,
+    476.58,
     478.18
    ],
    [
-    478.5,
+    478.74,
+    482.66
+   ],
+   [
+    483.06,
+    485.96
+   ],
+   [
+    486.64,
     491.68
    ],
    [
-    492.22,
+    492.78,
+    495.98
+   ],
+   [
+    496.86,
     504.16
    ]
   ],
   "start": 470.15,
   "end": 504.16,
-  "duration": 32.69,
-  "splices": 3,
+  "duration": 29.33,
+  "splices": 6,
   "hook_line": "Prowadzisz firmę w Słupsku? To nie musisz szukać wdrożeniowca AI w Warszawie. Jestem stąd,",
   "transcript": "Prowadzisz firmę w Słupsku? To nie musisz szukać wdrożeniowca AI w Warszawie. Jestem stąd, ze Słupska. Przyjdę do Ciebie, zobaczę jak pracuje Twój zespół i powiem co warto zautomatyzować, a czego nie ruszać. Tak zwane quickqueeny. Bez wideorozmów z kimś, kto nawet nie wie, gdzie jest Twoja firma. Zapraszam. Mateusz Kozłowski, firma Flowbiz. Zadzwoń 536 507 701 albo wejdź na flowbiz .pl i zostaw swój kontakt do siebie.",
   "scores": {
@@ -261,25 +361,37 @@
   "ranges": [
    [
     518.35,
+    526.38
+   ],
+   [
+    526.7,
     531.26
    ],
    [
-    531.54,
+    531.84,
     542.36
    ],
    [
-    545.44,
+    546.02,
+    548.56
+   ],
+   [
+    548.82,
     550.86
    ],
    [
-    551.62,
+    552.28,
+    558.32
+   ],
+   [
+    558.58,
     562.84
    ]
   ],
   "start": 518.35,
   "end": 562.84,
-  "duration": 40.37,
-  "splices": 3,
+  "duration": 37.99,
+  "splices": 6,
   "hook_line": "Masz firmę w zachodniopomorskim albo w pomorskim województwie? To jestem niecałe 40 minut od",
   "transcript": "Masz firmę w zachodniopomorskim albo w pomorskim województwie? To jestem niecałe 40 minut od Ciebie. Wdrożenie AI albo nowy system nie musi przyjeżdżać z drugiego końca Polski. Usiądziemy przy Twoim biurku z Twoimi Excelami i z Twoimi ludźmi i pokażę Ci, co da się uprościć, gdzie da radę zmniejszyć liczbę ręcznego klikania. Pokażę Ci, gdzie można zaoszczędzić kilkadziesiąt godzin tygodniowo. Zapraszam Cię do kontaktu. Mateusz Kozowski, firma Flowbiz 536 507 701. Albo wejdź na flowbiz .pl i zostaw do siebie kontakt.",
   "scores": {
@@ -309,6 +421,14 @@
   "ranges": [
    [
     573.99,
+    580.2
+   ],
+   [
+    580.62,
+    584.1
+   ],
+   [
+    584.92,
     585.44
    ],
    [
@@ -316,14 +436,14 @@
     591.24
    ],
    [
-    591.86,
+    592.38,
     595.08
    ]
   ],
   "start": 573.99,
   "end": 595.08,
-  "duration": 20.21,
-  "splices": 2,
+  "duration": 18.45,
+  "splices": 4,
   "hook_line": "Lemberg, szukasz firmy od AI i systemów? A wszystkie są z Warszawy albo z",
   "transcript": "Lemberg, szukasz firmy od AI i systemów? A wszystkie są z Warszawy albo z Krakowa? Ja jestem ze Słupska i na konsultacje przyjadę do Ciebie na miejsce, a nie na wideorozmowę. Zobaczę, gdzie w Twojej firmie ucieka czas i powiem, co z tym zrobić. Mateusz Kozowski, firma Flobis.",
   "scores": {
@@ -356,7 +476,7 @@
     611.58
    ],
    [
-    613.84,
+    614.38,
     624.82
    ],
    [
@@ -364,18 +484,22 @@
     627.38
    ],
    [
-    627.74,
+    627.9,
+    632.76
+   ],
+   [
+    633.36,
     636.2
    ],
    [
-    636.72,
+    636.88,
     644.28
    ]
   ],
   "start": 606.89,
   "end": 644.28,
-  "duration": 33.85,
-  "splices": 4,
+  "duration": 32.39,
+  "splices": 5,
   "hook_line": "Prowadzisz firmę w Bytowie? Nie musisz ściągać konsultantów z drugiego końca Polski. Przyjadę do",
   "transcript": "Prowadzisz firmę w Bytowie? Nie musisz ściągać konsultantów z drugiego końca Polski. Przyjadę do Ciebie ze Słupska, czyli dosyć niedaleko, gdzie wdrażam AI i buduję systemy dla firm z Pomorza. Przyjadę porozmawianym przy Twoim biurku, a nie przez ekran. jak naprawdę pracuje Twoja firma. Zapraszam do kontaktu, wejdź na moją stronę flowbiz .pl i zostaw do siebie kontakt z krótką notką, gdzie najwięcej widzisz możliwości, a jeśli nawet nie widzisz tych możliwości, to umów się ze mną, a pokażę Ci, gdzie możemy usprawnić Twoją pracę.",
   "scores": {
@@ -405,6 +529,14 @@
   "ranges": [
    [
     644.41,
+    645.3
+   ],
+   [
+    645.66,
+    648.44
+   ],
+   [
+    648.78,
     650.36
    ],
    [
@@ -412,14 +544,14 @@
     664.58
    ],
    [
-    664.86,
+    665.26,
     668.24
    ]
   ],
   "start": 644.41,
   "end": 668.24,
-  "duration": 23.19,
-  "splices": 2,
+  "duration": 22.09,
+  "splices": 4,
   "hook_line": "Koszalin, myślisz o AI albo o nowym systemie dla Twojej firmy? Zanim zadzwonisz do",
   "transcript": "Koszalin, myślisz o AI albo o nowym systemie dla Twojej firmy? Zanim zadzwonisz do Warszawy, zadzwoń niedaleko, po sąsiedzku, do Słupska. Jestem godzinę drogi, a już teraz przy naszej S6 -20 w dniu drogi, gdzie przyjadę na konsultację, zobaczę jak Twój zespół pracuje i powiem wprost co ma sens, a co jest stratą pieniędzy. Zapraszam, Mateusz Kozowski, firma Flowbiz.",
   "scores": {
@@ -452,18 +584,34 @@
     685.9
    ],
    [
-    686.58,
+    686.74,
+    689.4
+   ],
+   [
+    689.76,
+    700.36
+   ],
+   [
+    700.88,
     705.12
    ],
    [
-    705.62,
+    706.1,
+    707.5
+   ],
+   [
+    707.86,
+    711.6
+   ],
+   [
+    712.54,
     715.28
    ]
   ],
   "start": 683.91,
   "end": 715.28,
-  "duration": 30.19,
-  "splices": 2,
+  "duration": 27.37,
+  "splices": 6,
   "hook_line": "Gdańsk, Gdynia, Sopot, wdrożeniowiec z Pomorza, nie z Mazowsza. Wiem, że w Trójmieście firm",
   "transcript": "Gdańsk, Gdynia, Sopot, wdrożeniowiec z Pomorza, nie z Mazowsza. Wiem, że w Trójmieście firm IT nie brakuje, ale jeśli chcesz kogoś, kto przyjedzie, usiądzie z Twoim zespołem i zrobi system pod Wasz sposób pracy, a nie sprzedać Ci gotowca, zapraszam Cię do kontaktu. Porozmawiajmy, jak można zmniejszyć liczbę ręcznej pracy do tego, aby przyspieszyć Twoją firmę w tym samym zespole, a być bardziej po prostu efektywnym.",
   "scores": {
@@ -501,10 +649,18 @@
    ],
    [
     740.94,
+    744.09
+   ],
+   [
+    744.37,
+    751.71
+   ],
+   [
+    752.01,
     761.94
    ],
    [
-    765.08,
+    765.21,
     769.52
    ],
    [
@@ -514,8 +670,8 @@
   ],
   "start": 730.45,
   "end": 775.12,
-  "duration": 36.47,
-  "splices": 4,
+  "duration": 35.76,
+  "splices": 6,
   "hook_line": "11 stron zamówienia w Excelu.",
   "transcript": "11 stron zamówienia w Excelu. 6 godzin ręcznego przepisywania. u producenta mebli ogrodowych, z którym pracuję. Dziś system wczytuje takie zamówienie sam. Nie zaczynaliśmy od wielkiego systemu ERP. Zaczęliśmy od jednego bólu zamówień. Kolejne moduły dokładamy etapami w tempie firmy, tak aby pracownicy też mieli czas się tego uczyć. Jestem Mateusz Kozowski i prowadzę firmę Flobi ze Słupska, gdzie budujemy systemy i automatyzacje dla firm produkcyjnych. Ciebie na konsultacje i porozmawiamy o Twoich największych bolączkach.",
   "scores": {
@@ -548,18 +704,38 @@
     791.36
    ],
    [
-    792.18,
+    792.84,
     799.58
    ],
    [
-    800.14,
+    800.2,
+    811.16
+   ],
+   [
+    811.48,
+    813.52
+   ],
+   [
+    813.8,
+    818.32
+   ],
+   [
+    818.64,
+    826.32
+   ],
+   [
+    826.62,
+    831.54
+   ],
+   [
+    831.96,
     836.5
    ]
   ],
   "start": 783.87,
   "end": 836.5,
-  "duration": 51.25,
-  "splices": 2,
+  "duration": 48.89,
+  "splices": 7,
   "hook_line": "Co się stanie z Twoją produkcją, jak jedna osoba, która wie, jak to robić,",
   "transcript": "Co się stanie z Twoją produkcją, jak jedna osoba, która wie, jak to robić, pójdzie na emeryturę? Na produkcji wiedza siedzi w głowach i w zeszytach. u procenta mebli ogrodowych, z którym współpracuję, wiedza o wyrobach specjalnych jest w zeszytach jednej osoby. Wasil powiedział mi wprost, jak ona odejdzie na emeryturę, nie będziemy wiedzieli, jak to robić. To jest realne zagrożenie dla firmy. I to jest moment, w którym system przestaje być wygodą, a staje się zabezpieczeniem firmy. A i potrafi gdzieś odczytać nawet odręczne notatki, ale najpierw wiedza musi mieć swoje miejsce w systemie. Wiedza musi być scentralizowana. Jestem ze Słupska i przyjadę do Ciebie na konsultacje. Wejdź na stronę flowbiz .pl i zarezerwuj bezpłatną konsultację na miejscu u Ciebie w firmie.",
   "scores": {
@@ -589,10 +765,18 @@
   "ranges": [
    [
     839.73,
+    847.76
+   ],
+   [
+    848.96,
     850.94
    ],
    [
-    853.08,
+    853.66,
+    861.86
+   ],
+   [
+    862.36,
     865.9
    ],
    [
@@ -605,6 +789,14 @@
    ],
    [
     890.24,
+    890.69
+   ],
+   [
+    892.95,
+    896.91
+   ],
+   [
+    897.19,
     903.12
    ],
    [
@@ -612,18 +804,22 @@
     934.78
    ],
    [
-    939.04,
+    939.91,
+    944.33
+   ],
+   [
+    944.77,
     947.78
    ],
    [
-    948.64,
+    949.07,
     953.4
    ]
   ],
   "start": 839.73,
   "end": 953.4,
-  "duration": 79.15,
-  "splices": 7,
+  "duration": 72.59,
+  "splices": 12,
   "hook_line": "Nowe przepisy o opakowaniach i znowu kolejna papierologia. Marża znowu spada, bo musisz więcej",
   "transcript": "Nowe przepisy o opakowaniach i znowu kolejna papierologia. Marża znowu spada, bo musisz więcej czasu poświęcać na dokumentację, na dokumentację, której i tak nie rozumie, nikt nie rozumie, kolejna papierologia. Pracuję z producentem opakowań tekturowych spod Gdańska z 30 -letnią historią. Nowe unijne przepisy wymagają dokumentów do produktów, tak zwane PPWR. Kiedy zaczynaliśmy firma jeszcze ich w ogóle nie robiła A termin kiedy wchodziła możliwość kar się bardzo mocno zbliżał Zbudowaliśmy generator, biuro wybiera produkt, system sam uzupełnia dane z bazy surowców I wystawia gotowy dokument PDF A wystawiony dokument trafia do panelu klienta, gdzie klient sam może wejść, pobrać go, zobaczyć jego historię i nie musi zawracać Ci już głowy mailowo ani telefonicznie, co oczywiście powoduje, że tracimy na to dużo czasu. Niestety komunikacja w dzisiejszych czasach jest utrudniona. Mamy dużo możliwości tej komunikacji, a to powoduje duży chaos w firmie. I co najlepsze, nie wymienialiśmy im całego systemu. Kilka modułów wokół jednego dokumentu. Jeżeli chcesz zobaczyć ten przykład, wejdź na flowbiz .pl, zakładka realizacje i zobaczysz, jak to zrobiliśmy.",
   "scores": {
@@ -657,22 +853,42 @@
     960.72
    ],
    [
-    961.36,
+    962.36,
     964.85
    ],
    [
     970.55,
+    978.83
+   ],
+   [
+    979.19,
+    983.78
+   ],
+   [
+    984.14,
+    989.72
+   ],
+   [
+    990.06,
+    993.3
+   ],
+   [
+    994.6,
+    997.66
+   ],
+   [
+    998.26,
     1004.46
    ],
    [
-    1004.78,
+    1005.54,
     1007.98
    ]
   ],
   "start": 956.95,
   "end": 1007.98,
-  "duration": 44.37,
-  "splices": 3,
+  "duration": 39.65,
+  "splices": 8,
   "hook_line": "Twój ERP mówi jedną, hala robi drugie W systemie wszystko się zgadza",
   "transcript": "Twój ERP mówi jedną, hala robi drugie W systemie wszystko się zgadza Zrzutu więcej materiału niż zakładano Zrobiono inaczej i nikt tego nie zapisał Nie naprawiasz tego wielkim wdrożeniem na rok Ja zaczynam od jednego bólu i dokładamy moduły etapami w tempie firmy, tak aby ludzie też się nie przestraszyli całego wzrożenia. Jestem ze Słupska i przyjadę do Twojej firmy porozmawiać o tym procesach, od zamówienia do wysyłki i powiem od czego warto zacząć i gdzie jest największa dźwignia dla Twojego biznesu. Wejdź na flowbiz .pl i umów bezpłatną konsultację. Do zobaczenia u Ciebie w firmie.",
   "scores": {
@@ -702,10 +918,18 @@
   "ranges": [
    [
     1009.59,
+    1012.5
+   ],
+   [
+    1012.86,
     1014.86
    ],
    [
-    1015.36,
+    1015.8,
+    1017.56
+   ],
+   [
+    1017.86,
     1025.9
    ],
    [
@@ -714,6 +938,10 @@
    ],
    [
     1046.08,
+    1052.73
+   ],
+   [
+    1053.23,
     1056.12
    ],
    [
@@ -721,14 +949,14 @@
     1065.28
    ],
    [
-    1065.78,
+    1066.27,
     1076.04
    ]
   ],
   "start": 1009.59,
   "end": 1076.04,
-  "duration": 44.31,
-  "splices": 5,
+  "duration": 42.22,
+  "splices": 8,
   "hook_line": "Prowadzisz firmę produkcyjną z Pomorza? Nie musisz szukać wdrożeniowca w Warszawie Zamówienie przychodzi mailem",
   "transcript": "Prowadzisz firmę produkcyjną z Pomorza? Nie musisz szukać wdrożeniowca w Warszawie Zamówienie przychodzi mailem Ktoś przypisuje je do Excela, potem robi kartkę do hali potem naklejki, każde przypisanie to miejsce na błąd każde przypisanie to miejsce na błąd i dziesiątki godzin miesięcznie straconych U jednego z procentów mebli ogrodowych z Podsłupska, z którym pracuję, jedno zamówienie było 11 stron i kilka godzin, nawet i 6 godzin przepisywania. Często nawet to przedłużało się do 3 dni, jeżeli były błędy. Dziś system robi to sam. Jestem ze Słupska i przywadzę do Twojej firmy i powiem od czego warto zacząć.",
   "scores": {
@@ -758,25 +986,41 @@
   "ranges": [
    [
     1096.23,
+    1096.92
+   ],
+   [
+    1097.34,
     1102.4
    ],
    [
-    1102.84,
+    1103.5,
     1114.84
    ],
    [
-    1115.08,
+    1115.46,
     1116.62
    ],
    [
     1131.04,
+    1140.63
+   ],
+   [
+    1141.03,
+    1146.19
+   ],
+   [
+    1147.07,
+    1148.07
+   ],
+   [
+    1148.37,
     1150.38
    ]
   ],
   "start": 1096.23,
   "end": 1150.38,
-  "duration": 39.05,
-  "splices": 3,
+  "duration": 36.01,
+  "splices": 7,
   "hook_line": "Twój kontrahent z Niemiec przesyła zamówienia, a u Ciebie ktoś przepisuje je do Excela?",
   "transcript": "Twój kontrahent z Niemiec przesyła zamówienia, a u Ciebie ktoś przepisuje je do Excela? U jednego z producentów mebli ogrodowych z Podsłupska, z którym współpracuję, AI doposowuje pozycję zamówień do produktów w systemie i przygotowuje karty dla produkcji. Człowiek tylko to sprawdza. Nie mam zamiaru sprzedawać Ci AI do wszystkiego. AI dokładam tam, gdzie trzeba czytać zamówienia, dokumenty, trzeba zrobić tam, gdzie jest ta praca ręczna, a całą resztą zajmuje się system. Wejdź na flowbiz .pl i zamów konsultację na miejscu u Ciebie w biurze.",
   "scores": {
@@ -806,6 +1050,14 @@
   "ranges": [
    [
     1152.61,
+    1153.95
+   ],
+   [
+    1154.33,
+    1156.64
+   ],
+   [
+    1157.12,
     1158.98
    ],
    [
@@ -813,11 +1065,15 @@
     1179.02
    ],
    [
-    1179.46,
+    1179.69,
     1186.78
    ],
    [
     1188.14,
+    1188.87
+   ],
+   [
+    1189.41,
     1194.56
    ],
    [
@@ -825,7 +1081,7 @@
     1199.84
    ],
    [
-    1202.26,
+    1203.01,
     1208.14
    ],
    [
@@ -835,8 +1091,8 @@
   ],
   "start": 1152.61,
   "end": 1217.76,
-  "duration": 47.65,
-  "splices": 6,
+  "duration": 45.27,
+  "splices": 9,
   "hook_line": "Myślisz, że system dla produkcji to rok wdrożenia i wymiana wszystkiego?",
   "transcript": "Myślisz, że system dla produkcji to rok wdrożenia i wymiana wszystkiego? U producenta opakowań, z którym pracuję, nie wymieniliśmy całego systemu. Kilka modułów wokół jednego dokumentu. Reszta firmy pracuje tak jak tak wcześniej. Bardzo gładkie wdrożenie. U procenta mebli ogrodowych zaczynaliśmy od jednego bólu, zamówień. Kolejne moduły dokładamy etapami. Wszystko oparte jest na platformie Open Mercato. Gotowy fundament w 80 % już zdrobiony. co najlepsze za darmo? A na nim tylko to, co jest specyficzne dla Twojej firmy, tak zwane 20%, już masz za darmo, więc warto wejść na openmercato .com i sprawdzić, jak system może pomóc Twojej firmie.",
   "scores": {
@@ -866,6 +1122,10 @@
   "ranges": [
    [
     1220.73,
+    1237.98
+   ],
+   [
+    1238.24,
     1239.98
    ],
    [
@@ -874,21 +1134,41 @@
    ],
    [
     1256.52,
+    1260.67
+   ],
+   [
+    1260.99,
+    1263.77
+   ],
+   [
+    1264.13,
+    1268.39
+   ],
+   [
+    1268.69,
     1273.32
    ],
    [
-    1273.92,
+    1274.23,
+    1284.07
+   ],
+   [
+    1285.03,
+    1286.89
+   ],
+   [
+    1287.53,
     1288.28
    ],
    [
-    1288.68,
+    1289.41,
     1294.0
    ]
   ],
   "start": 1220.73,
   "end": 1294.0,
-  "duration": 57.37,
-  "splices": 4,
+  "duration": 53.49,
+  "splices": 10,
   "hook_line": "Produkujesz na zamówienie i każde zlecenie jest inne? Excel tego nie udźwignie i doskonale",
   "transcript": "Produkujesz na zamówienie i każde zlecenie jest inne? Excel tego nie udźwignie i doskonale o tym wiemy. Znam to z autopcji. A gotowy ERP każe Ci pracować tak, jak on chce. Twoja produkcja ma swoje wyjątki i finalnie używasz 20 % systemu, za którego płacisz rocznie dziesiątki tysięcy złotych. Kompletnie bez sensu. Duże systemy pod indywidualne zamówienie w erze AI stały się realne dla małych firm. U 1 % opakowania, z którym pracuję zbudowaliśmy generator dokumentów. Biuro wybiera produkt, system sam uzupełnia dane z bazy surowców i wystawia gotowe PDF -y. Jestem Mateusz Kozowski z Flobby, z Słupska, gdzie buduję systemy dla firm produkcyjnych, handlowych, etapami tak, aby po kilku tygodniach firma już mogła mieć zaoszczędzony czas w swojej firmie. Tak, aby zwrot inwestycji był już po kilku tygodniach pracy.",
   "scores": {
@@ -918,6 +1198,14 @@
   "ranges": [
    [
     1321.69,
+    1325.98
+   ],
+   [
+    1326.74,
+    1332.14
+   ],
+   [
+    1332.44,
     1338.92
    ],
    [
@@ -927,8 +1215,8 @@
   ],
   "start": 1321.69,
   "end": 1359.16,
-  "duration": 34.85,
-  "splices": 1,
+  "duration": 33.79,
+  "splices": 3,
   "hook_line": "Prezes firmy siedzi na lotnisku i wie co się dzieje na produkcji z telefonu,",
   "transcript": "Prezes firmy siedzi na lotnisku i wie co się dzieje na produkcji z telefonu, czyli narzędzia, które ma codziennie pod ręką, 24 godziny na dobę. Budujemy dla firm produkcyjnych agentów AI dla zarządu. Siedzi na przykład na telegramie lub innym komunikatorze. Ma dostęp do dokumentów, statusów firmy i całej wiedzy tzw. mózgu firmowego. Rano wysyła krótki raport, co wpadło, co się opóźnia, co wymaga decyzji. I najważniejsze, agent nic nie wysyła sam. Proponuje, a Ty jednym kliknięciem zatwierdzasz.",
   "scores": {
@@ -958,17 +1246,45 @@
   "ranges": [
    [
     1377.79,
+    1378.66
+   ],
+   [
+    1379.44,
+    1383.26
+   ],
+   [
+    1383.96,
+    1385.56
+   ],
+   [
+    1385.9,
+    1394.82
+   ],
+   [
+    1395.3,
+    1398.48
+   ],
+   [
+    1398.86,
     1401.7
    ],
    [
     1408.14,
+    1412.39
+   ],
+   [
+    1412.89,
+    1418.31
+   ],
+   [
+    1418.99,
     1431.18
    ]
   ],
   "start": 1377.79,
   "end": 1431.18,
-  "duration": 46.95,
-  "splices": 1,
+  "duration": 43.09,
+  "splices": 8,
   "hook_line": "Pytasz w telefonie, co z zamówieniem dla klienta i dostajesz odpowiedź w 5 sekund.",
   "transcript": "Pytasz w telefonie, co z zamówieniem dla klienta i dostajesz odpowiedź w 5 sekund. Takiego agenta AI budujemy dla firm produkcyjnych. Siedzi na telegramie lub innym komunikatorze i ma dostęp do Twoich dokumentów i statusów firmy. Ale powie Ci uczciwie, agent bez danych odpowie nie wiem. No więc najpierw porządkujemy dane, centralizujemy je, a dopiero później tworzymy drugi mózg firmy. I nie wypuszczamy AI wszędzie, ustalamy do czego ten agent ma dostęp, a czego nigdy nie zobaczy. Jeżeli interesują Cię takie rozwiązania, wejdź na flowbiz .pl i umów bezpośrednio spotkanie u Ciebie w firmie, a na pewno pokażę Ci, jak to wszystko może działać dla Twojej",
   "scores": {
@@ -998,17 +1314,25 @@
   "ranges": [
    [
     1431.81,
+    1436.2
+   ],
+   [
+    1436.74,
+    1437.48
+   ],
+   [
+    1437.88,
     1441.04
    ],
    [
-    1441.42,
+    1441.72,
     1445.22
    ]
   ],
   "start": 1431.81,
   "end": 1445.22,
-  "duration": 13.03,
-  "splices": 1,
+  "duration": 11.79,
+  "splices": 3,
   "hook_line": "Twój asystent nie śpi, nie bierze urlopu i nie siedzi w Twoim telegramie. Nic",
   "transcript": "Twój asystent nie śpi, nie bierze urlopu i nie siedzi w Twoim telegramie. Nic się wysyła sam, proponuje, a Ty jednym kliknięciem zatwierdzasz. Jestem ze Słupska, przyjadę na konsultacje.",
   "scores": {
@@ -1038,14 +1362,22 @@
   "ranges": [
    [
     1481.01,
-    1487.12
+    1481.58
+   ],
+   [
+    1481.92,
+    1487.1
    ],
    [
     1487.4,
     1488.32
    ],
    [
-    1488.86,
+    1489.14,
+    1491.18
+   ],
+   [
+    1491.6,
     1497.04
    ],
    [
@@ -1053,30 +1385,42 @@
     1498.56
    ],
    [
-    1498.9,
+    1499.18,
     1503.74
    ],
    [
-    1507.04,
+    1508.08,
     1514.32
    ],
    [
-    1515.1,
+    1516.24,
+    1517.8
+   ],
+   [
+    1518.3,
+    1524.16
+   ],
+   [
+    1524.8,
+    1527.42
+   ],
+   [
+    1527.88,
     1529.88
    ],
    [
-    1537.34,
+    1538.16,
     1541.38
    ],
    [
-    1541.94,
+    1542.68,
     1555.56
    ]
   ],
   "start": 1481.01,
   "end": 1555.56,
-  "duration": 60.77,
-  "splices": 8,
+  "duration": 54.09,
+  "splices": 13,
   "hook_line": "Masz firmę produkcyjną? Cztery rzeczy, które AI już dziś robi u moich klientów. 1.",
   "transcript": "Masz firmę produkcyjną? Cztery rzeczy, które AI już dziś robi u moich klientów. 1. Czyta zamówienia od klientów, nawet te na 11 stron i wrzuca je do systemu. Wcześniej ktoś przepisywał je ręcznie, nawet 6 godzin. 2. Dopasowuje pozycję z zamówienia do produktów i przygotowuje karty dla produkcji. 3. Wystawia dokumenty, wymagane przepisy z danymi z bazy surowców zamiast ręcznego klepania 4. I to jest najciekawsze Pomaga przenieść do systemu wiedzę z odręcznych zeszytów zanim odejdzie osoba, która je prowadzi AI genialnie sobie radzi z odczytem skanów i ręcznych notatek i żadna z tych rzeczy nie wymagała wymiany całego systemu. Jeżeli to jest dla Ciebie ciekawe i chciałbyś zobaczyć jak u Ciebie w firmie to działa, zadzwoń, a przyjadę na terenie Pomorza i Zachodniopomorskiego do Ciebie i zobaczę jak to może pomóc Twojej firmie.",
   "scores": {
@@ -1087,8 +1431,7 @@
   "priority": "B",
   "cta": "phone",
   "uses": [
-   "reels-organic",
-   "needs-cutdown"
+   "reels-organic"
   ],
   "notes": "Pauzy po punktach = miejsce na wstawki. Telefon wspomniany, numer nie pada."
  },
@@ -1110,14 +1453,34 @@
    ],
    [
     1563.46,
+    1563.92
+   ],
+   [
+    1564.2,
+    1566.17
+   ],
+   [
+    1566.55,
     1570.76
    ],
    [
-    1571.2,
+    1571.78,
     1578.7
    ],
    [
-    1579.08,
+    1579.7,
+    1582.48
+   ],
+   [
+    1583.04,
+    1588.06
+   ],
+   [
+    1588.34,
+    1589.66
+   ],
+   [
+    1589.94,
     1592.74
    ],
    [
@@ -1125,26 +1488,34 @@
     1596.54
    ],
    [
-    1598.84,
+    1599.6,
     1605.02
    ],
    [
-    1606.18,
+    1606.88,
+    1610.64
+   ],
+   [
+    1610.9,
     1611.56
    ],
    [
-    1612.12,
+    1612.34,
     1614.26
    ],
    [
-    1614.54,
+    1614.78,
+    1618.42
+   ],
+   [
+    1619.72,
     1624.12
    ]
   ],
   "start": 1555.59,
   "end": 1624.12,
-  "duration": 61.81,
-  "splices": 8,
+  "duration": 55.35,
+  "splices": 15,
   "hook_line": "5 rzeczy, które AI może zrobić w systemie Twojej firmy, nie płacisz za nie",
   "transcript": "5 rzeczy, które AI może zrobić w systemie Twojej firmy, nie płacisz za nie licencji. Czyta maile od klientów i przygotowuje z nich zamówienie albo ofertę. Ty tylko klikasz, akceptuje. 2. Odpowiada na pytania o Twoją firmę. Ile mamy otwartych zamówień, co czeka na wysyłkę, gdzie mamy opóźnienia. Taki project manager na zawołanie, który się nie męczy. 3. Robi rzeczy w systemie na Twoje polecenia, ale tylko te, do których ma uprawnienia. 4. Szuka po znaczeniu, a nie po słowach. który narzekał na dostawę i system go znajduje. 5. Czyta zeskanowane dokumenty, więc fakturę znajdziesz po jej treści. Kod jest w pakiecie, płacisz tylko za to, ile AI pracuje, jak za prąd. Więcej jest zobaczyć na flowbiz .pl, tam opisuję, jak korzystam z systemu Open Mercato, który dostarcza 80 % rzeczy dla Twojej firmy za darmo.",
   "scores": {
@@ -1155,8 +1526,7 @@
   "priority": "B",
   "cta": "web",
   "uses": [
-   "reels-organic",
-   "needs-cutdown"
+   "reels-organic"
   ],
   "notes": ""
  },
@@ -1174,22 +1544,46 @@
   "ranges": [
    [
     1632.37,
+    1640.0
+   ],
+   [
+    1640.32,
     1641.0
    ],
    [
-    1641.9,
+    1642.52,
     1642.86
    ],
    [
-    1643.24,
+    1643.86,
+    1648.88
+   ],
+   [
+    1649.4,
+    1650.64
+   ],
+   [
+    1651.24,
+    1651.66
+   ],
+   [
+    1652.22,
+    1652.9
+   ],
+   [
+    1653.18,
     1654.64
    ],
    [
-    1656.6,
+    1656.82,
     1662.28
    ],
    [
-    1662.58,
+    1663.38,
+    1671.56
+   ],
+   [
+    1671.86,
     1673.28
    ],
    [
@@ -1197,14 +1591,18 @@
     1679.22
    ],
    [
-    1682.44,
+    1682.62,
+    1692.84
+   ],
+   [
+    1693.1,
     1697.16
    ]
   ],
   "start": 1632.37,
   "end": 1697.16,
-  "duration": 57.73,
-  "splices": 6,
+  "duration": 52.45,
+  "splices": 13,
   "hook_line": "Agent AI dla prezesa firmy, co naprawdę on może robić? Pokaże na tym, jak",
   "transcript": "Agent AI dla prezesa firmy, co naprawdę on może robić? Pokaże na tym, jak budujemy dla firm produkcyjnej. Jeden. Siedzi w telegramie, więc masz go w telefonie. Nie musisz logować się do żadnego systemu. Rozumie Twój język, a nie konkretne polecenia w systemie. 2. Pytasz o status zamówienia albo dokument i dostajesz odpowiedź od razu. 3. Rano wysyła krótki raport, co wymaga Twojej decyzji, gdzie są opóźnienia i z jakimi problemami firma się aktualnie boryka. 4. Nic nie robi sam. Proponuje, a Ty zatwierdzasz. Taki project manager, który się nie męczy. Jeżeli chcesz zobaczyć, jak się takiego agenta buduje, robię o tym warsztaty w subsku. Wejdź na stronę ai .subs .pl i dowiesz się więcej, zapisz się na listę, a na pewno niedługo z Tobą się skontaktuję.",
   "scores": {
@@ -1234,14 +1632,30 @@
   "ranges": [
    [
     1697.49,
+    1700.38
+   ],
+   [
+    1700.78,
+    1704.08
+   ],
+   [
+    1705.24,
     1712.0
    ],
    [
-    1712.38,
+    1712.92,
+    1713.5
+   ],
+   [
+    1713.76,
     1721.62
    ],
    [
-    1721.94,
+    1722.26,
+    1726.9
+   ],
+   [
+    1727.54,
     1727.96
    ],
    [
@@ -1250,13 +1664,29 @@
    ],
    [
     1730.44,
+    1731.9
+   ],
+   [
+    1732.36,
+    1738.74
+   ],
+   [
+    1739.16,
+    1739.92
+   ],
+   [
+    1740.66,
+    1742.26
+   ],
+   [
+    1742.54,
     1747.0
    ]
   ],
   "start": 1697.49,
   "end": 1747.0,
-  "duration": 47.31,
-  "splices": 4,
+  "duration": 42.09,
+  "splices": 12,
   "hook_line": "Wdrażasz AI w firmie i nie działa? Pewnie popełniasz jeden z tych czterech błędów.",
   "transcript": "Wdrażasz AI w firmie i nie działa? Pewnie popełniasz jeden z tych czterech błędów. 1. Kupujesz licencję, ale nie zmieniasz procesu. AI siedzi w okienku obok pracy. 2. Nikt nie ustalił jakie dane wolno dawać AI i ludzie wklejają umowy klientów i inne poufne dane. 3. Zaczynasz od wielkiej transformacji zamiast od jednej rzeczy, która wkurza wszystkich w biurze. 4. Nie pytasz ludzi a oni boją się, że AI zabierze im pracę więc po cichu go nie używają i się jego boją który z nich jest u Ciebie? napisz koniecznie w komentarzu a z chęcią wymienię się z Tobą doświadczeniami",
   "scores": {
@@ -1288,22 +1718,34 @@
     1849.5
    ],
    [
-    1851.52,
+    1852.23,
+    1856.83
+   ],
+   [
+    1857.13,
     1873.7
    ],
    [
-    1880.4,
+    1881.11,
     1885.62
    ],
    [
     1890.76,
+    1900.07
+   ],
+   [
+    1900.49,
+    1901.83
+   ],
+   [
+    1902.29,
     1903.52
    ]
   ],
   "start": 1844.82,
   "end": 1903.52,
-  "duration": 44.84,
-  "splices": 3,
+  "duration": 42.24,
+  "splices": 6,
   "hook_line": "chcesz mieć w telefonie agenta AI wie co się dzieje w Twojej firmie? Jeżeli",
   "transcript": "chcesz mieć w telefonie agenta AI wie co się dzieje w Twojej firmie? Jeżeli tak, to robię warsztaty w Słupsku dla prezesów i menadżerów. Pokażę krok po kroku jak budować takiego agenta. Na telegramie, na danych firmy bezpiecze, jak wykorzystać clouda w Twojej firmie, jak wykorzystać grog bota w Twojej firmie lub innych narzędzi, które naprawdę mogą wpłynąć na sposób Twojej codziennej pracy. Zapraszam Cię, bo będzie też smacznie, będzie pizza i ludzie z firm z regionu. Termin i miejsce ogłoszę wszystkim chętnym, którzy się zapiszą. Wejdź na AI Subsk i zapisz siebie i swoją firmę na szkolenia.",
   "scores": {
@@ -1333,21 +1775,37 @@
   "ranges": [
    [
     1908.04,
+    1908.45
+   ],
+   [
+    1909.07,
+    1914.25
+   ],
+   [
+    1914.57,
     1918.12
    ],
    [
     1924.64,
+    1930.69
+   ],
+   [
+    1930.99,
     1935.86
    ],
    [
-    1938.8,
+    1939.37,
+    1941.4
+   ],
+   [
+    1941.74,
     1946.2
    ]
   ],
   "start": 1908.04,
   "end": 1946.2,
-  "duration": 28.7,
-  "splices": 2,
+  "duration": 26.55,
+  "splices": 6,
   "hook_line": "Pizza, kilku szefów firmy ze Słupska Jeden temat Jak zbudować swojego agenta AI, który",
   "transcript": "Pizza, kilku szefów firmy ze Słupska Jeden temat Jak zbudować swojego agenta AI, który pomoże mi ogarnąć moją firmę Bez bennej teorii Pokazuję na prawdziwym przykładzie, jak budujemy dla firmy produkcyjnej A potem porozmawiamy, co z tego ma sens i co można wykorzystać u Ciebie. Termin i miejsce ogłoszę zapisanym osobom. Wejdź na AI .subsk i zapisz się na listę.",
   "scores": {
@@ -1380,26 +1838,38 @@
     1958.76
    ],
    [
-    1960.16,
+    1960.22,
     1961.32
    ],
    [
-    1962.18,
+    1962.68,
+    1968.52
+   ],
+   [
+    1968.9,
     1977.38
    ],
    [
-    1977.64,
+    1978.06,
     1981.0
    ],
    [
-    1982.46,
+    1982.52,
+    1988.28
+   ],
+   [
+    1989.0,
+    1990.24
+   ],
+   [
+    1990.56,
     1991.44
    ]
   ],
   "start": 1955.63,
   "end": 1991.44,
-  "duration": 31.83,
-  "splices": 4,
+  "duration": 29.37,
+  "splices": 7,
   "hook_line": "Szefie, Twoi ludzie już używają AI. Wiesz do czego? Wklejają maile klientów, umowy, cenniki",
   "transcript": "Szefie, Twoi ludzie już używają AI. Wiesz do czego? Wklejają maile klientów, umowy, cenniki i nikt nie ustalił co wolno, a czego nie wolno robić. Na warsztatach AI Słupsk pokazuje menadżerom i właścicielom firm, kiedy AI naprawdę pomaga, kiedy szkodzi i jak chroni dane Twoje firmy. Zapisz się na listę, damy znać o najbliższych terminach. Warsztaty są w Słupsku dla firm ze Słupska, Lęborka, Koszalina i całego regionu. Wejdź na aiajsłupsk .pl",
   "scores": {
@@ -1429,17 +1899,37 @@
   "ranges": [
    [
     2006.6,
+    2011.37
+   ],
+   [
+    2011.73,
+    2015.05
+   ],
+   [
+    2015.61,
+    2029.39
+   ],
+   [
+    2029.75,
+    2033.13
+   ],
+   [
+    2033.53,
     2034.5
    ],
    [
-    2035.44,
+    2035.95,
+    2036.77
+   ],
+   [
+    2037.07,
     2041.12
    ]
   ],
   "start": 2006.6,
   "end": 2041.12,
-  "duration": 33.58,
-  "splices": 1,
+  "duration": 31.09,
+  "splices": 6,
   "hook_line": "menadżerów ze Słupska i okolicy na śniadanie. Temat, dlaczego AI w Twojej firmie nie",
   "transcript": "menadżerów ze Słupska i okolicy na śniadanie. Temat, dlaczego AI w Twojej firmie nie działa. bez prezentacji sprzedażowej przy kawie opowiem, gdzie firmy wykładają się na AI i od czego zacząć, a Ty opowiesz co nie działa u Ciebie i jak ludzie u Ciebie korzystają z AI spotkanie jest bezpłatne ale liczba miejsc jest ograniczona więc wejdź na stronę AI Słupsk i zapisz z siebie i zapisz się na te warsztaty",
   "scores": {
@@ -1472,26 +1962,38 @@
     2071.68
    ],
    [
-    2074.26,
+    2074.84,
     2081.92
    ],
    [
-    2082.24,
+    2082.74,
+    2088.94
+   ],
+   [
+    2089.3,
     2090.86
    ],
    [
-    2094.46,
+    2095.0,
+    2096.78
+   ],
+   [
+    2097.3,
     2100.84
    ],
    [
     2101.36,
+    2104.66
+   ],
+   [
+    2105.1,
     2108.06
    ]
   ],
   "start": 2066.25,
   "end": 2108.06,
-  "duration": 34.79,
-  "splices": 4,
+  "duration": 31.85,
+  "splices": 7,
   "hook_line": "Masz trzy wersje tego samego Excela i nikt nie wie, która jest aktualna. Często",
   "transcript": "Masz trzy wersje tego samego Excela i nikt nie wie, która jest aktualna. Często to spotykam, dane rozrzucane po Excelach, mailach, telefonach i z tego bierze się chaos i gaszenie pożarów Budujemy systemy, w których dane są w jednym miejscu Każdy widzi tylko swoje, a każda zmiana zostawia swój ślad Bez kupowania wielkiego ERP Wejdź na stronę flowbiz .pl Zostaw do siebie kontakt, a przyjadę do Ciebie i porozmawiamy o tym jak możesz zmienić sposób pracy w dzisiejszych czasach z AI dla swojej firmy.",
   "scores": {
@@ -1523,26 +2025,42 @@
     2113.66
    ],
    [
-    2114.9,
+    2115.76,
+    2117.91
+   ],
+   [
+    2118.29,
     2119.68
    ],
    [
-    2120.45,
+    2120.92,
     2125.76
    ],
    [
     2137.76,
+    2140.15
+   ],
+   [
+    2140.63,
+    2141.99
+   ],
+   [
+    2142.37,
     2145.7
    ],
    [
-    2146.48,
+    2147.11,
+    2153.35
+   ],
+   [
+    2153.61,
     2161.18
    ]
   ],
   "start": 2109.23,
   "end": 2161.18,
-  "duration": 37.16,
-  "splices": 4,
+  "duration": 33.7,
+  "splices": 8,
   "hook_line": "Kupiłeś chat GPT dla pracowników i nic się nie zmieniło? Bo dostęp do narzędzia",
   "transcript": "Kupiłeś chat GPT dla pracowników i nic się nie zmieniło? Bo dostęp do narzędzia to nie jest wdrożenie. Ludzie muszą zobaczyć AI na swoich zadaniach, na swoich mailach, ofertach, dokumentach. wdrażam AI w zespołach w firmach z całej Polski. Pracujemy na Waszych procesach, nie na przykładach z internetu. Jestem ze Słupskiej i przyjadę Ciebie na konsultacje. Jeżeli zostawisz, wejdziesz na flowbiz .pl i zostawisz do siebie kontakt, a ja zobaczę, gdzie traci Twoja firma najwięcej czasu i gdzie będzie miała największy zwrot z inwestycji.",
   "scores": {
@@ -1574,18 +2092,26 @@
     2168.54
    ],
    [
-    2170.4,
+    2171.02,
     2182.42
    ],
    [
     2189.32,
+    2192.45
+   ],
+   [
+    2193.17,
+    2198.91
+   ],
+   [
+    2199.35,
     2204.0
    ]
   ],
   "start": 2162.37,
   "end": 2204.0,
-  "duration": 32.87,
-  "splices": 2,
+  "duration": 31.09,
+  "splices": 4,
   "hook_line": "Prowadzisz firmę w subsku i Twoja najlepsza osoba w biurze przepisuje maile do systemu?",
   "transcript": "Prowadzisz firmę w subsku i Twoja najlepsza osoba w biurze przepisuje maile do systemu? Szkoda jej na to, szkoda jej na to. Takie rzeczy da się dziś zautomatyzować z AI. Oferta z mailem klienta, dodatka po rozmowie, dane z faktury prosto do systemu. i jest to do zrobienia w kilka tygodni bez większego chaosu. Ja nazywam się Mateusz Kozowski, jestem ze Słupska i robię takie automatyzacje dla firm. Zacznę od jednej rzeczy, która zjada Wam najwięcej czasu i najwięcej frustracji.",
   "scores": {
@@ -1621,11 +2147,23 @@
     2231.56
    ],
    [
-    2232.5,
+    2233.24,
+    2233.72
+   ],
+   [
+    2234.38,
+    2240.94
+   ],
+   [
+    2241.28,
     2244.42
    ],
    [
     2245.82,
+    2247.84
+   ],
+   [
+    2248.38,
     2249.62
    ],
    [
@@ -1633,18 +2171,22 @@
     2260.82
    ],
    [
-    2262.52,
+    2263.21,
     2267.1
    ],
    [
     2269.22,
+    2272.79
+   ],
+   [
+    2273.23,
     2276.8
    ]
   ],
   "start": 2225.79,
   "end": 2276.8,
-  "duration": 39.47,
-  "splices": 6,
+  "duration": 36.06,
+  "splices": 10,
   "hook_line": "Programista mówi 3 miesiące, chat GPT mówi 3 dni. Kto kłamie? Nikt. Mówią o",
   "transcript": "Programista mówi 3 miesiące, chat GPT mówi 3 dni. Kto kłamie? Nikt. Mówią o dwóch różnych rzeczach. 3 dni AI zrobi Ci prototyp, coś co wygląda jak system, ale uprawnienia daje dane klientów, historia zmian, To jest długi czas pracy. To jest kilka miesięcy pracy. Ja robię to drugie, tylko z AI w ręku, więc szybciej niż tradycyjny software house. Jeżeli chcesz zobaczyć, co można uzyskać w swojej firmie po kilku tygodniach pracy, co można uzyskać po kilku tygodniach z nami, daj znać, wejdź na flobis .pl i zostaw do siebie kontakt.",
   "scores": {
@@ -1673,21 +2215,45 @@
   "ranges": [
    [
     2282.61,
+    2287.54
+   ],
+   [
+    2288.06,
     2289.7
    ],
    [
-    2290.32,
+    2290.9,
+    2291.48
+   ],
+   [
+    2291.84,
+    2294.6
+   ],
+   [
+    2294.94,
     2297.7
    ],
    [
-    2298.42,
+    2299.26,
+    2300.02
+   ],
+   [
+    2300.44,
+    2307.7
+   ],
+   [
+    2308.02,
+    2313.08
+   ],
+   [
+    2313.62,
     2316.92
    ]
   ],
   "start": 2282.61,
   "end": 2316.92,
-  "duration": 32.97,
-  "splices": 2,
+  "duration": 29.05,
+  "splices": 8,
   "hook_line": "Gdzie AI w firmie ma sens, a gdzie to wyrzucone pieniądze? 3 na tak,",
   "transcript": "Gdzie AI w firmie ma sens, a gdzie to wyrzucone pieniądze? 3 na tak, 3 na nie. No tak, czytanie maili i dokumentów, pierwsze szkice, ofert i odpowiedzi, szukanie informacji w firmie. Na nie rzeczy, które załatwia prosta reguła. Tu AI to modny, drogi dodatek. Decyzje o cenach bez człowieka i licencja dla wszystkich, zanim ktokolwiek wie, do czego całe to AI użyć. Zasada jest prosta. AI przygotowuje, człowiek decyduje.",
   "scores": {
@@ -1716,17 +2282,53 @@
   "ranges": [
    [
     2324.12,
+    2324.43
+   ],
+   [
+    2324.79,
     2327.64
    ],
    [
-    2328.08,
+    2328.55,
+    2331.05
+   ],
+   [
+    2331.45,
+    2342.63
+   ],
+   [
+    2342.93,
+    2348.75
+   ],
+   [
+    2351.61,
+    2354.69
+   ],
+   [
+    2355.03,
+    2355.79
+   ],
+   [
+    2356.33,
+    2357.51
+   ],
+   [
+    2358.35,
+    2363.29
+   ],
+   [
+    2364.21,
+    2365.69
+   ],
+   [
+    2366.03,
     2370.64
    ]
   ],
   "start": 2324.12,
   "end": 2370.64,
-  "duration": 46.08,
-  "splices": 1,
+  "duration": 38.71,
+  "splices": 10,
   "hook_line": "Twój pracownik właśnie wkleił umowę klienta do chat GPT. Czy zdawałeś sobie o tym",
   "transcript": "Twój pracownik właśnie wkleił umowę klienta do chat GPT. Czy zdawałeś sobie o tym sprawę? Czy wiesz o tym? Na warsztatach AI subsk uczy menadżerów i szefów firm, jak korzystać z AI bezpiecznie, jakie dane wolno dać AI, a jak ich nie, jak ustawić zasady w zespole, plus konkretne zastosowania, które oszczędzają czas w Twojej firmie. Najbliższy termin wejdź na AI subsk i zapisz się na listę, a skontaktuj się z osobami, a skontaktuj się z Wami do dokładnym miejscem i terminem. Liczba miejsc jest ograniczona.",
   "scores": {
@@ -1756,6 +2358,22 @@
   "ranges": [
    [
     2377.27,
+    2380.24
+   ],
+   [
+    2380.74,
+    2383.36
+   ],
+   [
+    2384.26,
+    2387.96
+   ],
+   [
+    2388.24,
+    2390.1
+   ],
+   [
+    2390.42,
     2391.14
    ],
    [
@@ -1763,18 +2381,22 @@
     2398.76
    ],
    [
-    2399.68,
+    2400.1,
+    2405.5
+   ],
+   [
+    2405.8,
     2408.26
    ],
    [
-    2409.04,
+    2409.42,
     2411.34
    ]
   ],
   "start": 2377.27,
   "end": 2411.34,
-  "duration": 32.09,
-  "splices": 3,
+  "duration": 28.99,
+  "splices": 8,
   "hook_line": "Wdrażasz AI w firmie i nie wychodzi? Przyjdź na warsztaty i przynieś swój problem.",
   "transcript": "Wdrażasz AI w firmie i nie wychodzi? Przyjdź na warsztaty i przynieś swój problem. Na warsztatach AI Słupsk nie oglądamy slajdów. Pracujemy na prawdziwych zadaniach z Waszych firm. Maile, oferty, dokumenty, notatki ze spotkań. Wychodzisz z rozwiązaniem sprawdzonym na swoim przykładzie. Wejdź na AI Słupsk i zapisz się na listę, a na długo, niedługo się z Tobą skontaktuję. Warsztaty są dla firm ze Słupska, Gdańska i okolic.",
   "scores": {
@@ -1804,21 +2426,45 @@
   "ranges": [
    [
     33.13,
+    37.98
+   ],
+   [
+    38.32,
     44.06
    ],
    [
-    44.3,
+    44.46,
+    50.4
+   ],
+   [
+    50.76,
+    59.4
+   ],
+   [
+    60.2,
+    60.94
+   ],
+   [
+    61.96,
     68.54
    ],
    [
-    68.92,
+    69.18,
+    69.85
+   ],
+   [
+    70.33,
+    73.64
+   ],
+   [
+    74.34,
     79.32
    ]
   ],
   "start": 33.13,
   "end": 79.32,
-  "duration": 45.57,
-  "splices": 2,
+  "duration": 41.45,
+  "splices": 8,
   "hook_line": "Klient dostawał od swoich kontrahentów niemieckich zamówienia w Excelu. Długoletni kontrahenci współpracowali już, jakieś",
   "transcript": "Klient dostawał od swoich kontrahentów niemieckich zamówienia w Excelu. Długoletni kontrahenci współpracowali już, jakieś Excele mieli dopracowane, jakiś szablon, jakieś kolumny, wyglądało to nie tak źle. Jednak diabeł tutaj tkwi w szczegółach, bo klient, kontrahent, który zamawiał, potrafił tą samą rzecz nazwać na kilkanaście różnych sposobów. Potrafił raz napisać po niemiecku, raz po angielsku. I rozszyfrowanie tych rzeczy było bardzo czasochłonne.",
   "scores": {
@@ -1847,17 +2493,53 @@
   "ranges": [
    [
     79.26,
+    88.67
+   ],
+   [
+    89.23,
     92.12
    ],
    [
     96.72,
+    99.71
+   ],
+   [
+    100.55,
+    103.15
+   ],
+   [
+    103.71,
+    104.23
+   ],
+   [
+    104.61,
+    111.63
+   ],
+   [
+    112.07,
+    114.51
+   ],
+   [
+    114.99,
+    120.27
+   ],
+   [
+    120.63,
+    133.65
+   ],
+   [
+    133.95,
+    141.71
+   ],
+   [
+    142.43,
     145.22
    ]
   ],
   "start": 79.26,
   "end": 145.22,
-  "duration": 61.36,
-  "splices": 1,
+  "duration": 56.72,
+  "splices": 10,
   "hook_line": "Tutaj od klienta z Podsłupska, który miał ten problem, była dość duża frustracja i",
   "transcript": "Tutaj od klienta z Podsłupska, który miał ten problem, była dość duża frustracja i co najważniejsze, to nie była tylko samego właściciela frustracja, ale też osób, które to wykonywały. Dlaczego? Bo robiły rzeczy niewłaściwe. Niewłaściwe dlatego, bo takie klepanie potrafiło im zająć nawet kilka dni, żeby takie zamówienie z setką pozycji po prostu obrobić, znaleźć. A dlaczego teraz nazwał tak? A dlaczego nazwał tak? Ten dany kontrahent, a kogoś nie było na przykład w firmie, kto miałem na ten temat wiedzę i cała praca na tych Excelach naprawdę była bardzo mocno frustrująca i przyznam szczerze, że dawno też nie widziałem takiej radości i w głosi właściciela i osób, które to robiły, takiego entuzjazmu do tego, jak system, który wdrożyliśmy właśnie z tą nakładką AI spowodował, że ten czas skrócił się do dosłownie 10 minut.",
   "scores": {
@@ -1868,8 +2550,7 @@
   "priority": "B",
   "cta": null,
   "uses": [
-   "reels-organic",
-   "needs-cutdown"
+   "reels-organic"
   ],
   "notes": ""
  },
@@ -1887,21 +2568,61 @@
   "ranges": [
    [
     215.19,
+    224.38
+   ],
+   [
+    224.7,
+    237.9
+   ],
+   [
+    238.38,
     246.28
    ],
    [
-    246.76,
+    246.88,
+    250.78
+   ],
+   [
+    251.1,
+    256.62
+   ],
+   [
+    256.96,
+    258.6
+   ],
+   [
+    259.1,
+    261.54
+   ],
+   [
+    261.8,
+    264.61
+   ],
+   [
+    264.95,
+    270.06
+   ],
+   [
+    270.84,
     281.5
    ],
    [
     283.14,
+    288.32
+   ],
+   [
+    288.6,
+    290.6
+   ],
+   [
+    291.0,
     292.24
    ]
   ],
   "start": 215.19,
   "end": 292.24,
-  "duration": 74.93,
-  "splices": 2,
+  "duration": 70.79,
+  "splices": 12,
   "hook_line": "Dużo też czasu w tym wszystkim zajmowało przygotowanie dla osoby, która była w biurze,",
   "transcript": "Dużo też czasu w tym wszystkim zajmowało przygotowanie dla osoby, która była w biurze, w tych pracach administracyjnych, generowanie kodów kreskowych. Trzeba było wygenerować kod całego zamówienia, trzeba było wygenerować kod konkretnego produktu i jeszcze części konkretnych do tego, aby te paczki popakować. To powodowało, że to było moje też bardzo ciekawe doświadczenie, a już coraz mniej zaskakujące, że ta osoba, która to robiła, brała te wszystkie numery, które przychodziły w tych Excelach, wklejała do innego specjalnego Excela, w którym generował się kod kreskowy i ten kod kreskowy drukowała i przechodziła do kolejnej pozycji, przeklejała, drukowała, przeklejała, drukowała, przeklejała, drukowała. No przy setce zamówień ciężko tutaj się dziwić, że to trwało na przykład trzy dni, no bo jak wiadomo, robimy to jedno zamówienie, a jeszcze ktoś nas odciąga od tych zadań, chce, żebyśmy robili coś innego, awarię, gaszenie pożarów, więc no to była dla tej osoby też bardzo czasochłonna, frustrująca, frustrujący proces.",
   "scores": {
@@ -1935,6 +2656,14 @@
    ],
    [
     309.36,
+    315.39
+   ],
+   [
+    315.73,
+    316.1
+   ],
+   [
+    316.5,
     323.72
    ],
    [
@@ -1942,14 +2671,14 @@
     328.12
    ],
    [
-    328.4,
+    328.56,
     341.94
    ]
   ],
   "start": 291.93,
   "end": 341.94,
-  "duration": 48.91,
-  "splices": 3,
+  "duration": 48.01,
+  "splices": 5,
   "hook_line": "I teraz jak to uprościliśmy, tak? No dzięki całej tutaj mocy AI, jakie nam",
   "transcript": "I teraz jak to uprościliśmy, tak? No dzięki całej tutaj mocy AI, jakie nam daje, pozwoliliśmy sobie na to, żeby po pierwsze trzeba było tą bazę scentralizować, trzeba było wszystkie Excel wgrać do jednej bazy, do jednego systemu. To zajęło dość długo czasu, to tutaj to nie ukrywam, ale to po prostu bolało, ale to trzeba było zrobić. Bez tych fundamentów AI nie będzie wiedziało, jak się po tym poruszać, nie będzie wiedziało, jaka jest struktura, jak dana firma po prostu pracuje i w jakich schematach. I przez to też, no te początki nie były łatwe, żeby to wszystko zrobić, ale finałem tego było naprawdę praca na jedno tak zwane kliknięcie, no może na dwa kliknięcia.",
   "scores": {
@@ -1982,17 +2711,61 @@
    ],
    [
     526.36,
+    541.47
+   ],
+   [
+    541.75,
+    548.53
+   ],
+   [
+    548.95,
     551.78
    ],
    [
-    553.2,
+    553.25,
+    557.45
+   ],
+   [
+    557.71,
+    558.29
+   ],
+   [
+    558.65,
+    564.01
+   ],
+   [
+    564.35,
+    566.59
+   ],
+   [
+    566.89,
+    568.41
+   ],
+   [
+    568.91,
+    581.02
+   ],
+   [
+    581.38,
+    591.23
+   ],
+   [
+    591.55,
+    594.29
+   ],
+   [
+    594.79,
+    597.11
+   ],
+   [
+    597.67,
     602.1
    ]
   ],
   "start": 521.62,
   "end": 602.1,
-  "duration": 78.0,
-  "splices": 2,
+  "duration": 73.75,
+  "splices": 13,
   "hook_line": "I w tym przypadku do tego klienta, już wracając znowu do brzegu, polegało to",
   "transcript": "I w tym przypadku do tego klienta, już wracając znowu do brzegu, polegało to na tym, żeby AI się nauczyło tego wszystkiego, że dany produkt może być nazwany w różnych momentach, więc nawet jeżeli zrobiliśmy miernik i wyliczaliśmy tutaj też, żeby mieć te dane, jak AI wpłynęło na pracę tej firmy, to powodowało, że z początku prawdopodobieństwo znajdywania i dopasowywania zamówień do tego, co mamy, było na poziomie 70%. Po miesiącu osiągnęliśmy 94%, czyli jeżeli zamówienie wcześniej, musieliśmy po prostu ręcznie jeszcze, dlatego mówiłem też o tych kilkunastu kliknięciach, powiedzieć mu, hej, ten produkt, to tak naprawdę to jest ten produkt i z taką i z taką tkaniną, tak, bo tam dużo też rzeczy było o samej tkaninie, więc dopasowaliśmy go, zapisaliśmy, AI to zapamiętało, system baza danych też to zapamiętała i nagle później dostajemy kolejne zamówienie do tego kontrahenta w podobnym po prostu tutaj jakby nazwach i lekko się różniącym i nagle AI dopasowuje to w 95%. Zostają nam jakieś bardzo marginalne przypadki tego wszystkiego.",
   "scores": {
@@ -2022,17 +2795,37 @@
   "ranges": [
    [
     601.97,
+    603.57
+   ],
+   [
+    603.95,
+    609.8
+   ],
+   [
+    610.22,
+    614.58
+   ],
+   [
+    615.84,
     619.36
    ],
    [
     619.66,
+    628.22
+   ],
+   [
+    628.82,
+    632.56
+   ],
+   [
+    632.86,
     637.38
    ]
   ],
   "start": 601.97,
   "end": 637.38,
-  "duration": 35.11,
-  "splices": 1,
+  "duration": 32.15,
+  "splices": 6,
   "hook_line": "Jeżeli chodzi o tą część taką jeszcze bardzo czasochłoną, czy generowanie samych kodów kreskowych,",
   "transcript": "Jeżeli chodzi o tą część taką jeszcze bardzo czasochłoną, czy generowanie samych kodów kreskowych, no to tutaj to nie było tutaj żadnej magii, żadnego AI, po prostu program, system bierze cztery numery, które potrzebujemy, generuje z nich po prostu PDF -a od razu gotowego, po kliknięciu, po minucie, masz gotowego PDF -a z 40 stronami, etykiet, który po prostu trzeba tylko wydrukować, przykleić i nagle z kilku dni pracy dostajemy 15 minut pracy, więc",
   "scores": {
@@ -2061,21 +2854,77 @@
   "ranges": [
    [
     38.4,
+    43.17
+   ],
+   [
+    43.51,
+    49.75
+   ],
+   [
+    50.17,
+    50.83
+   ],
+   [
+    51.39,
+    61.81
+   ],
+   [
+    62.13,
+    72.55
+   ],
+   [
+    72.85,
+    77.32
+   ],
+   [
+    77.72,
+    80.01
+   ],
+   [
+    80.55,
+    88.51
+   ],
+   [
+    88.81,
+    90.21
+   ],
+   [
+    90.53,
+    91.14
+   ],
+   [
+    91.76,
     96.08
    ],
    [
     97.44,
+    100.87
+   ],
+   [
+    101.25,
+    109.45
+   ],
+   [
+    109.75,
     112.9
    ],
    [
     113.64,
+    115.49
+   ],
+   [
+    115.85,
+    120.03
+   ],
+   [
+    120.43,
     124.66
    ]
   ],
   "start": 38.4,
   "end": 124.66,
-  "duration": 84.16,
-  "splices": 2,
+  "duration": 78.6,
+  "splices": 16,
   "hook_line": "Jaki był problem? Problem był taki, że właściciel tutaj korzystając z tych narzędzi najbardziej",
   "transcript": "Jaki był problem? Problem był taki, że właściciel tutaj korzystając z tych narzędzi najbardziej popularnych jak ChatGPT po prostu miał dosyć dużo frustracji do tego, że ten Chat w pewnym momencie przestaje pamiętać moje wcześniej się wytyczne. Ten Chat przestaje rozumieć i zaczyna haucynować i to jest bardzo frustrujące, zdaję sobie z tego sprawę i powodował, że często to AI było naszym wrogiem, a nie sprzymierzęcym w tym wszystkim i żeby nam pomagało w pracy, a nie utrudniało. I niestety to jest ten syndrom tego, że te narzędzia mają po prostu ograniczony kontekst. Kontekst to możemy powiedzieć w takim mniej więcej języku potocznym, że to jest po prostu pamięć, która po prostu się kończy. I przypuśćmy narzędzia, część narzędzi, duża część narzędzi ma to powiedzmy milion kontekstu samego w sobie albo duże liczby, które wydają się wręcz nieosiągalne, żeby to wypełnić to wszystko. Jednak siedząc nad danym czatem powiedzmy kilkanaście miesięcy, ten czat zaczyna nam się zacinać, ten czat zaczyna nam halucynować, ten czat zaczyna wymyślać i powoduje jeszcze większą frustrację.",
   "scores": {
@@ -2105,17 +2954,73 @@
   "ranges": [
    [
     131.56,
-    155.66
+    144.41
+   ],
+   [
+    145.01,
+    148.67
+   ],
+   [
+    149.37,
+    151.63
+   ],
+   [
+    152.39,
+    155.65
    ],
    [
     156.54,
+    162.53
+   ],
+   [
+    162.83,
+    168.41
+   ],
+   [
+    168.95,
+    170.08
+   ],
+   [
+    170.8,
+    174.21
+   ],
+   [
+    174.59,
+    175.49
+   ],
+   [
+    175.99,
+    180.01
+   ],
+   [
+    180.57,
+    184.03
+   ],
+   [
+    184.33,
+    188.89
+   ],
+   [
+    189.21,
+    194.73
+   ],
+   [
+    195.05,
+    196.19
+   ],
+   [
+    196.57,
+    197.55
+   ],
+   [
+    198.07,
     209.74
    ]
   ],
   "start": 131.56,
   "end": 209.74,
-  "duration": 77.3,
-  "splices": 1,
+  "duration": 70.39,
+  "splices": 15,
   "hook_line": "No więc pierwsze tutaj hasło agent AI dla tego właściciela. Jednak problem się stał",
   "transcript": "No więc pierwsze tutaj hasło agent AI dla tego właściciela. Jednak problem się stał o wiele bardziej złożony, bo w momencie kiedy weszliśmy do tej firmy okazało się, że dane są w głowach, na kartkach, na mailach i niestety agent AI nie ma skąd tych danych pobierać. I oczywiście mogliśmy częściowo ten problem rozwiązać i tylko po ten jeden problem, po ten jeden prompt, który na przykład dany właściciel powtarzał, ale wiedzieliśmy razem tutaj z Marcinem, którym tutaj tworzymy ten projekt, że to nie da takiego przełożenia i takiej siły we wdrożeniu i trzeba to zrobić po prostu całościowo i porządnie. A porządnie to oznacza tyle, że trzeba zbudować fundamenty. Fundamenty pod AI, czyli AI musi mieć skąd te dane pobierać, musi mieć możliwość tych danych po prostu, żeby one były w jakimś konkretnym miejscu, cyfrowym miejscu, a nie w głowach, no bo tam nam AI jeszcze, na razie jeszcze, nie zajrzy, kto wie jak to dalej, w jakim kierunku to dalej pójdzie.",
   "scores": {
@@ -2145,6 +3050,34 @@
   "ranges": [
    [
     209.81,
+    210.28
+   ],
+   [
+    211.16,
+    217.86
+   ],
+   [
+    218.24,
+    220.78
+   ],
+   [
+    221.12,
+    221.82
+   ],
+   [
+    222.82,
+    227.72
+   ],
+   [
+    228.08,
+    228.92
+   ],
+   [
+    229.36,
+    237.5
+   ],
+   [
+    237.88,
     239.2
    ],
    [
@@ -2153,21 +3086,49 @@
    ],
    [
     241.4,
-    261.22
+    246.6
+   ],
+   [
+    247.04,
+    253.2
+   ],
+   [
+    254.54,
+    258.86
+   ],
+   [
+    259.22,
+    260.67
    ],
    [
     261.72,
+    263.8
+   ],
+   [
+    264.3,
     266.72
    ],
    [
-    267.16,
+    267.52,
+    273.28
+   ],
+   [
+    273.6,
+    277.48
+   ],
+   [
+    277.86,
+    279.24
+   ],
+   [
+    280.1,
     284.32
    ]
   ],
   "start": 209.81,
   "end": 284.32,
-  "duration": 72.37,
-  "splices": 4,
+  "duration": 63.48,
+  "splices": 18,
   "hook_line": "I idąc tym tropem, no poszliśmy w tym kierunku, ok, tworzymy mózg firmy. Mózg",
   "transcript": "I idąc tym tropem, no poszliśmy w tym kierunku, ok, tworzymy mózg firmy. Mózg firmy polega na tym, że po prostu dostaliśmy dostęp do dysku, dostaliśmy dostęp do danych około, wydaje mi się, że tam było między 100 a 150 giga różnych danych, manuali, procedur, filmów instruktażowych, ofert, wycen, po prostu wielki, gigantyczny miszmasz, jeżeli chodzi o te dane. No i zaczęliśmy je z nich budować po prostu wiedzę dla tej firmy. I efekt był o tyle imponujący, że nagle dowolne zadanie pytania właściciela do tego agenta AI powodował, że dostawał bardzo konkretną odpowiedź. I to o tyle rozpaliło ciekawość i chęć dalszych wdrożeń u tego właściciela do tego, że ja chcę wiedzieć, co się dzisiaj dzieje w firmie. Ja chcę mieć codzienny brief tego, co się w firmie wydarzyło rano, po południu, chcę wiedzieć po tygodniu.",
   "scores": {
@@ -2197,6 +3158,14 @@
   "ranges": [
    [
     344.48,
+    345.99
+   ],
+   [
+    346.43,
+    350.62
+   ],
+   [
+    351.58,
     353.48
    ],
    [
@@ -2205,10 +3174,50 @@
    ],
    [
     360.68,
+    364.37
+   ],
+   [
+    364.95,
+    367.61
+   ],
+   [
+    367.89,
+    371.49
+   ],
+   [
+    371.87,
+    374.17
+   ],
+   [
+    374.63,
+    380.01
+   ],
+   [
+    380.31,
+    383.83
+   ],
+   [
+    384.15,
+    388.01
+   ],
+   [
+    388.35,
+    396.94
+   ],
+   [
+    397.32,
+    398.75
+   ],
+   [
+    404.47,
+    405.39
+   ],
+   [
+    405.67,
     409.46
    ],
    [
-    409.72,
+    409.81,
     419.26
    ],
    [
@@ -2218,8 +3227,8 @@
   ],
   "start": 344.48,
   "end": 438.42,
-  "duration": 92.32,
-  "splices": 4,
+  "duration": 81.79,
+  "splices": 16,
   "hook_line": "A to dlatego, że ja mam takie odczucie, że często kupując gotowca system dla",
   "transcript": "A to dlatego, że ja mam takie odczucie, że często kupując gotowca system dla produkcji, bierzemy coś, co do czegoś musimy dostosować i nagle z pewnego układu, nawet w Excelu, jaki mieliśmy, musimy się kompletnie przestawić na to, jak to używać, bo nagle jakaś firma sobie wymyśliła w ten sposób, a nie inny, a my, kurde, chcieliśmy tylko mieć system, który dużo będzie się nie różnił od tego, co na co dzień robimy i to powoduje, że jest duża niechęć do dużych wdrożeń, dużych systemów, bo widzę to i to jest powtarzający się problem, że duże systemy nie udaje się wdrożyć. Duże systemy wdrażają, wdraża się kilka miesięcy i te wdrożenia też nie są, nie kończą się sukcesem i nie kończą się sukcesem dlatego, że te systemy są oderwane od rzeczywistości. One wymagają od nas, żeby się dostosować do tych systemów, a nie dostosowują się do nas, a jeżeli w ogóle chcemy, żeby system się dostosował do nas i chcemy jakiejś customowej, niestandardowej integracji, no to firmy tutaj jakby powodują, że nasze budżety po prostu wykraczają na rozwiązania IT bardzo mocno poza planowane budżety i to jest też częsta blokada dla firm, które by chciały takie rozwiązania.",
   "scores": {
@@ -2253,14 +3262,82 @@
    ],
    [
     450.52,
+    456.81
+   ],
+   [
+    457.17,
+    457.85
+   ],
+   [
+    458.41,
+    464.31
+   ],
+   [
+    464.79,
+    470.01
+   ],
+   [
+    470.29,
+    476.95
+   ],
+   [
+    477.41,
     483.3
    ],
    [
     483.55,
+    485.09
+   ],
+   [
+    485.77,
+    486.69
+   ],
+   [
+    487.21,
     493.69
    ],
    [
     493.94,
+    494.79
+   ],
+   [
+    495.43,
+    498.69
+   ],
+   [
+    498.95,
+    506.03
+   ],
+   [
+    506.47,
+    509.78
+   ],
+   [
+    510.62,
+    511.55
+   ],
+   [
+    511.89,
+    517.15
+   ],
+   [
+    517.71,
+    520.17
+   ],
+   [
+    520.45,
+    522.02
+   ],
+   [
+    522.4,
+    525.29
+   ],
+   [
+    525.69,
+    526.47
+   ],
+   [
+    526.93,
     527.3
    ],
    [
@@ -2273,17 +3350,25 @@
    ],
    [
     542.38,
+    546.51
+   ],
+   [
+    547.01,
     550.04
    ],
    [
-    550.34,
+    550.53,
+    556.27
+   ],
+   [
+    556.57,
     563.9
    ]
   ],
   "start": 438.2,
   "end": 563.9,
-  "duration": 121.74,
-  "splices": 7,
+  "duration": 112.81,
+  "splices": 26,
   "hook_line": "My wychodzimy z innego założenia, czyli Excel miał pewien plan produkcji, nie był to",
   "transcript": "My wychodzimy z innego założenia, czyli Excel miał pewien plan produkcji, nie był to może idealny sposób planowania, nie był to taki, że tak powiem, książkowy planowanie produkcji, ale miał swój sposób. Kierownik produkcji miał swój sposób, a miał go na tyle ten sposób, że miał na tyle ten sposób ułożony, że mi zależało na tym, żeby odzwierciedlić jak najbliżej tego, co on ma. I finalnie widoki, które udało się ułożyć były bardzo bliskie temu Excelowi, były o wiele bardziej oczywiście funkcjonalne, tak, zapisywały historię każdego z etapów, dawały gigantyczne możliwości, i, ale nauka i wdrożenie tego, u tego kierownika produkcji naprawdę, uwierzcie mi, że zajęła godzinę i ewentualnie później jakieś tam uwagi, czy możemy jeszcze ten przycisk tak zrobić, a czy tu może się inaczej wyświetlać, a jakieś drobne tutaj jakby poprawki, ale to możliwości dało naprawdę potężne Open Mercato, które dawało gigantyczne podstawy gotowych modułów, z których tak naprawdę trzeba było złożyć jeden konkretny moduł, jedną konkretną tutaj dla danego kierownika produkcji konkretny proces, do tego, żeby tutaj to wdrożenie zajęło dosłownie kilka godzin, tak, kilka godzin też mówię o takich godzinach też gdzieś tam na wymianie na Whatsappie i zapytaniu się jak coś, dlaczego tak działa, a czy mogę tak, żeby tak działało i na takiej zasadzie wymiany, wymiany zdań. I najlepsze było to, że efektem był wydrukowany bardzo, że tak powiem, jeden do jednego Excel, który, przepraszam, nie Excel, tylko PDF, który przypominał tego Excela wyjściowego, więc kierownik produkcji naprawdę tutaj dużo, dużo z tego wszystkiego miał radości, że to wdrożenie poszło bardzo sprawnie,",
   "scores": {
@@ -2316,26 +3401,78 @@
     572.64
    ],
    [
-    572.98,
+    573.25,
+    583.13
+   ],
+   [
+    583.51,
+    585.32
+   ],
+   [
+    585.86,
     586.78
    ],
    [
     587.16,
+    597.45
+   ],
+   [
+    597.73,
+    598.6
+   ],
+   [
+    599.1,
+    600.75
+   ],
+   [
+    601.19,
+    610.61
+   ],
+   [
+    610.93,
+    611.93
+   ],
+   [
+    612.21,
     618.38
    ],
    [
-    618.78,
+    618.83,
+    638.46
+   ],
+   [
+    638.9,
+    639.89
+   ],
+   [
+    640.47,
+    645.19
+   ],
+   [
+    645.53,
+    661.59
+   ],
+   [
+    661.87,
+    668.12
+   ],
+   [
+    668.64,
     673.84
    ],
    [
-    674.2,
+    674.67,
+    675.54
+   ],
+   [
+    675.92,
     678.14
    ]
   ],
   "start": 563.74,
   "end": 678.14,
-  "duration": 112.92,
-  "splices": 4,
+  "duration": 106.85,
+  "splices": 17,
   "hook_line": "a jak to wpłynęło dalej na tego właściciela, który temu wszystkiemu chciał, żeby te",
   "transcript": "a jak to wpłynęło dalej na tego właściciela, który temu wszystkiemu chciał, żeby te dane wszystkie mieć w jednym miejscu, no tak, że jeżeli kierownik produkcji uzupełnia te dane i je robi, bo może je łatwo uzupełniać, nie ma strachu przed nowym systemem, przed dużym systemem, przed dużym wdrożeniem, zaczyna z niego korzystać, to nagle się okazało, że codzienny briefing właściciela firmy staje się przyjemnością. Właściciel dostaje codziennie powiadomienie na temat etapów, na temat postępów produkcji, na temat opóźnie produkcji, na temat tego danego zamówienia, czyli jak wygląda zamówienie dla kluczowych klientów i dostaje listę tych kluczowych klientów, dostaje możliwość generowania oferty z samego komunikatora, czy to będzie Whatsapp, czy Slack, nie ma to dużego znaczenia, jeżeli chodzi o konfigurację. Dostaje też możliwość tworzenia w ogóle dla fajnych... Sam właściciel w ogóle nie jest potrzebny do tego, żeby w tym systemie do niego wchodzić, bo jeżeli wiemy, jak praca właściciela często wygląda tak, że siedzimy na telefonie, to ten asystent AI w połączeniu z mózgiem spowodował, że właściciel wpisuje, chce, utwórz mi zamówienie dla tego klienta i dostajesz informację, że takie i takie zamówienie było w niedawnym czasie stworzone, czy chcesz które zduplikować, czy chcesz całkowicie nowe stworzyć dla tego klienta i nie wychodząc z żadnego komunikatora i robiąc to w bardzo przystępny i banalny wręcz sposób, w zasadzie tylko klikania w menu, na przykład w Telegramie, powoduje, że w trzech kliknięcia masz gotowe nowe zamówienie, masz gotową nową ofertę w tym wszystkim, więc tutaj to też powoduje,",
   "scores": {
@@ -2365,17 +3502,33 @@
   "ranges": [
    [
     1064.0,
+    1068.47
+   ],
+   [
+    1068.79,
     1070.92
    ],
    [
     1071.96,
+    1074.37
+   ],
+   [
+    1074.83,
+    1075.29
+   ],
+   [
+    1075.93,
+    1091.74
+   ],
+   [
+    1092.6,
     1100.18
    ]
   ],
   "start": 1064.0,
   "end": 1100.18,
-  "duration": 35.14,
-  "splices": 1,
+  "duration": 32.86,
+  "splices": 5,
   "hook_line": "samo rozwiązanie techniczne często, jak widzimy po tych różnych wdrożeniach nieudanych, po prostu samo",
   "transcript": "samo rozwiązanie techniczne często, jak widzimy po tych różnych wdrożeniach nieudanych, po prostu samo narzędzie nie rozwiązuje problemu. Posiadanie narzędzia jakiegokolwiek, wykupienia go na niego licencji nie oznacza, że będziemy z niego korzystać, więc my tutaj mocno na to stawiamy, żeby było rozwiązanie to naszyte na miarę, żeby to było rozwiązanie, które będzie efektywne i które będzie łatwe do wdrożenia, które nie będzie rozwiązaniem, które po prostu powoduje ścisk żołądka, niechęć pracowników i tak dalej, tak, więc tutaj każdy jako właściciel",
   "scores": {
@@ -2404,14 +3557,54 @@
   "ranges": [
    [
     2702.96,
+    2703.33
+   ],
+   [
+    2703.79,
     2708.48
    ],
    [
     2709.36,
+    2714.99
+   ],
+   [
+    2715.31,
+    2718.27
+   ],
+   [
+    2719.31,
+    2723.17
+   ],
+   [
+    2723.49,
+    2727.19
+   ],
+   [
+    2727.61,
+    2729.31
+   ],
+   [
+    2729.59,
+    2735.17
+   ],
+   [
+    2735.45,
     2739.08
    ],
    [
-    2739.42,
+    2740.07,
+    2744.55
+   ],
+   [
+    2744.87,
+    2746.33
+   ],
+   [
+    2746.67,
+    2747.27
+   ],
+   [
+    2747.69,
     2750.44
    ],
    [
@@ -2420,13 +3613,21 @@
    ],
    [
     2755.9,
+    2760.43
+   ],
+   [
+    2760.79,
+    2765.03
+   ],
+   [
+    2765.29,
     2767.8
    ]
   ],
   "start": 2702.96,
   "end": 2767.8,
-  "duration": 63.12,
-  "splices": 4,
+  "duration": 57.65,
+  "splices": 16,
   "hook_line": "A jak to działa w praktyce? U jednego producenta maszyn sportowych wdrożyliśmy asystenta AI,",
   "transcript": "A jak to działa w praktyce? U jednego producenta maszyn sportowych wdrożyliśmy asystenta AI, który po prostu na bieżąco czyta maile. Czyta maile i zbiera z nich informacje na temat wycen. Sprawdza, które dotyczą wycen i w locie przygotowuje Ci szkic takiej oferty. Dostajesz powiadomienia na Telegrama przykładowo albo na inny komunikator i możesz je zaakceptować albo poprosić o drobną korektę, zmianę. Wszystko w ciągu 5 minut. Wcześniej ta sama oferta zajmowała nawet kilkanaście godzin. Czemu kilkanaście godzin? no bo zanim się do niej zabraliśmy, zanim odkopaliśmy stare oferty, jak one wyglądały, która to była ta najlepsza oferta, powoduje, że zaczynamy tworzenie tej oferty prawdopodobnie w poniedziałek rano, a kończymy ją na przykład we wtorek pod koniec pracy, o ile wszystko dobrze pójdzie.",
   "scores": {
@@ -2437,8 +3638,7 @@
   "priority": "A",
   "cta": null,
   "uses": [
-   "reels-organic",
-   "needs-cutdown"
+   "reels-organic"
   ],
   "notes": ""
  },
@@ -2456,29 +3656,65 @@
   "ranges": [
    [
     2803.27,
+    2812.18
+   ],
+   [
+    2813.14,
     2816.58
    ],
    [
-    2818.22,
+    2819.06,
+    2825.4
+   ],
+   [
+    2825.84,
+    2830.4
+   ],
+   [
+    2831.56,
+    2833.56
+   ],
+   [
+    2834.14,
     2837.0
    ],
    [
-    2837.24,
+    2837.94,
     2840.4
    ],
    [
     2841.6,
+    2842.03
+   ],
+   [
+    2842.45,
+    2847.06
+   ],
+   [
+    2847.32,
     2860.92
    ],
    [
-    2861.16,
+    2861.48,
+    2864.94
+   ],
+   [
+    2865.54,
+    2873.4
+   ],
+   [
+    2873.76,
+    2874.38
+   ],
+   [
+    2874.68,
     2877.18
    ]
   ],
   "start": 2803.27,
   "end": 2877.18,
-  "duration": 70.59,
-  "splices": 4,
+  "duration": 63.65,
+  "splices": 13,
   "hook_line": "Kontrola była głównie od księgowych i od raportów miesięcznych, kwartalnych, rocznych do tego jak",
   "transcript": "Kontrola była głównie od księgowych i od raportów miesięcznych, kwartalnych, rocznych do tego jak firma pracuje i jak firma, w jakiej jest firma kondycji. Tylko, że to już jest po fakcie, jeżeli chodzi o dane z księgowości. My jako osoby, które prowadzą firmę potrzebujemy danych na zawołanie, danych codziennie, tygodniowo, miesięcznie, kwartalnie. Dzięki temu jesteśmy w stanie szybciej podejmować decyzje, szybciej rozwiązywać problemy w naszej firmie, bo wiemy gdzie one się pojawiają. I sama centralizacja danych, gdzie nawet AI nie jest tutaj jeszcze w tym wszystkim potrzebne, powoduje, że dane mamy w jednym miejscu i to jest ta rzecz, na której często zaczynamy, czyli scentralizowanie danych w jedno miejsce tak, aby zbudować fundament pod sztuczną inteligencję. Dlaczego fundament pod sztuczną inteligencję? Bo jeżeli będziemy mieć w firmie bardzo rozproszone dane na kilku Excelach, w kilku systemach, to uwierz mi, ale AI sobie z tym nie poradzi.",
   "scores": {
@@ -2508,10 +3744,54 @@
   "ranges": [
    [
     3052.57,
+    3061.19
+   ],
+   [
+    3061.53,
+    3064.04
+   ],
+   [
+    3064.36,
+    3073.68
+   ],
+   [
+    3073.94,
+    3077.18
+   ],
+   [
+    3077.72,
+    3081.47
+   ],
+   [
+    3081.91,
+    3083.52
+   ],
+   [
+    3084.06,
+    3085.48
+   ],
+   [
+    3085.8,
+    3089.32
+   ],
+   [
+    3089.86,
+    3097.82
+   ],
+   [
+    3098.82,
     3101.62
    ],
    [
     3102.0,
+    3102.72
+   ],
+   [
+    3103.4,
+    3109.4
+   ],
+   [
+    3109.68,
     3115.38
    ],
    [
@@ -2521,8 +3801,8 @@
   ],
   "start": 3052.57,
   "end": 3116.58,
-  "duration": 62.89,
-  "splices": 2,
+  "duration": 57.63,
+  "splices": 13,
   "hook_line": "Ta braża też jest tutaj specyficzna, że dla każdej nadmorskiej miejscowości albo południowo tutaj,",
   "transcript": "Ta braża też jest tutaj specyficzna, że dla każdej nadmorskiej miejscowości albo południowo tutaj, albo na każdej nadmorskiej miejscowości każdy, jak dobrze wiecie, każdy wzór, każda miejscowość ma swój napis, ma swoją jakby jakby taką indywidualne dostosowanie do potrzeb danej miejscowości. To powoduje, że jeżeli wyprodukowaliśmy tysiące sztuk na miejscowość, przypuśćmy ustka, nie zrobisz tego samego na tych samych półproduktach do rowów albo do łeby na przykład, bo już zostały wykorzystane. Dzięki temu możemy zmienić sposób pracy na to, żeby firma mogła, handlowiec jeżdżący z tabletem po prostu prezentował nam te produkty i w momencie, kiedy klient się zdecyduje składać je na zamówienie i przyspieszyć sposób dostawy. Co",
   "scores": {
@@ -2533,8 +3813,7 @@
   "priority": "B",
   "cta": null,
   "uses": [
-   "reels-organic",
-   "needs-cutdown"
+   "reels-organic"
   ],
   "notes": ""
  },
@@ -2556,6 +3835,22 @@
    ],
    [
     3130.46,
+    3140.0
+   ],
+   [
+    3140.74,
+    3144.4
+   ],
+   [
+    3144.68,
+    3147.35
+   ],
+   [
+    3147.95,
+    3153.24
+   ],
+   [
+    3153.58,
     3160.08
    ],
    [
@@ -2563,14 +3858,38 @@
     3173.76
    ],
    [
-    3174.0,
+    3174.56,
+    3178.28
+   ],
+   [
+    3178.6,
+    3188.04
+   ],
+   [
+    3188.4,
+    3191.52
+   ],
+   [
+    3191.78,
+    3201.2
+   ],
+   [
+    3201.48,
+    3212.34
+   ],
+   [
+    3212.8,
+    3223.24
+   ],
+   [
+    3223.62,
     3225.96
    ]
   ],
   "start": 3115.89,
   "end": 3225.96,
-  "duration": 109.01,
-  "splices": 3,
+  "duration": 104.43,
+  "splices": 13,
   "hook_line": "Co tu jeszcze zmieniliśmy w sposobie pracy? Zmieniliśmy to, że klient przestaje zamawiać mailowo",
   "transcript": "Co tu jeszcze zmieniliśmy w sposobie pracy? Zmieniliśmy to, że klient przestaje zamawiać mailowo przez jakieś formularze, które są bardzo nieczytelne, na jakichś karteczkach odręcznie napisanych które były bardzo trudne do zrozumienia, często powodowały błędy, często powodowały nadprodukcje, często powodowały złą relację z klientem i nieporozumienia. Dzięki wprowadzeniu systemu i panelu klienta, który właśnie został zrobiony w oparciu o Open Mercato, klient sam się loguje, sam może złożyć zamówienie, sam widzi statusy, w których to zamówienie jest Dzięki temu mamy zaoszczędzone bardzo dużo czasu, bo nasz pracownik w biurze, na produkcji dostaje powiadomienie, że wpadło nowe zamówienie i dzięki temu może już przystąpić do realizacji. Oczywiście nie zawsze jest tak, że klient musi to zrobić sam, bo powiedzmy nie każdy klient sobie poradzi z takim systemem. Dzięki temu wiemy, że na przykład daliśmy możliwości handlowcowi składania zamówień za klienta, tak? To jest rzecz normalna, to się zawsze odbywało, jednak dajemy dwie drogi. Jeśli klient sobie nie radzi, handlowiec przejmuje tą rolę, którą zawsze miał i wprowadza za klienta zamówienie i oczywiście handlowiec ma swój do tego panel, handlowiec widzi zamówienia swoich klientów, a klient dalej widzi tylko swoje zamówienie. Więc to jest ten przypadek, jeżeli chodzi o zastosowanie Open Mercato i jak to zastosowanie jest dla firmy i handlu B2B w branży pamiątkarskiej.",
   "scores": {
@@ -2600,30 +3919,94 @@
   "ranges": [
    [
     3279.74,
+    3284.83
+   ],
+   [
+    3285.09,
     3293.16
    ],
    [
     3293.66,
+    3307.83
+   ],
+   [
+    3308.55,
+    3315.77
+   ],
+   [
+    3316.77,
+    3321.41
+   ],
+   [
+    3321.73,
     3332.42
    ],
    [
     3333.1,
+    3336.86
+   ],
+   [
+    3337.24,
+    3340.93
+   ],
+   [
+    3341.49,
+    3345.01
+   ],
+   [
+    3345.33,
+    3359.81
+   ],
+   [
+    3360.15,
+    3369.33
+   ],
+   [
+    3369.63,
     3371.42
    ],
    [
-    3371.71,
+    3372.21,
     3375.44
    ],
    [
     3375.68,
+    3378.49
+   ],
+   [
+    3379.47,
     3385.42
    ],
    [
-    3385.74,
+    3385.99,
+    3388.91
+   ],
+   [
+    3389.29,
+    3391.67
+   ],
+   [
+    3391.99,
+    3393.33
+   ],
+   [
+    3393.65,
+    3403.45
+   ],
+   [
+    3403.99,
     3405.62
    ],
    [
-    3405.88,
+    3406.55,
+    3407.93
+   ],
+   [
+    3408.23,
+    3411.49
+   ],
+   [
+    3411.75,
     3412.58
    ],
    [
@@ -2631,14 +4014,22 @@
     3421.86
    ],
    [
-    3422.18,
+    3422.49,
+    3424.85
+   ],
+   [
+    3425.17,
+    3425.97
+   ],
+   [
+    3426.49,
     3428.66
    ]
   ],
   "start": 3279.74,
   "end": 3428.66,
-  "duration": 145.13,
-  "splices": 8,
+  "duration": 135.26,
+  "splices": 26,
   "hook_line": "Jednym z nich jest firma handlowa, która handluje paszą dla zwierząt i miała dosyć",
   "transcript": "Jednym z nich jest firma handlowa, która handluje paszą dla zwierząt i miała dosyć poważny problem z tym, że systemy typu Apilo, Baselinker, które dają możliwość zarządzania e -commercem i zarządzania różnymi marketplacesami, mają o tyle utrudnioną sytuację, że standardowe paczki są do 25 kg. i nie było za bardzo rozwiązania, które powodowało, żeby te paczki po prostu lepiej pakować, lepiej oznaczać, bo jedno zamówienie składało się na przykład z czterech paczek. Klient zamawiał cztery worki paszy po 25 kilo, więc nie mogliśmy wsadzić tego w jedno zamówienie, nie dawało rady wydrukować jednej etykiety, bo to musiały być cztery różne etykiety, zgłosił się do mnie klient ze Słupska, który zgłosiła się do mnie klientka ze Słupska, która z takim problemem i jak sytuacja ma się teraz, teraz i jak wcześniej ta sytuacja miała, wyglądała. Klient wchodził wcześniej w Apillo i po to, żeby wydrukować na przykład cztery różne etykiety dla tego samego produktu, bo tak musiał to zrobić, jeżeli na przykład było wysłane to in postem, musiał wchodzić w apillo, system, o którym tutaj możecie sobie zobaczyć, link do niego podeślę, bo to jest całkiem fajny system do zarządzania e -commerce 'em i do zarządzania marketplacesami, ale już wracając tutaj do sedna sprawy, musiał klient, musiał wejść w komentarzu, żeby wiedzieć, do którego zamówienia dana etykieta jest, musiał w komentarzu usunąć jedną część, zostawić tylko ten produkt, który będzie dla tego drukowany, to sobie gdzieś przeklejał z boku do Excela i klient drukował etykietę. Później z tego Excela wklejał całą resztę, brał drugi człon, trzeci, czwarty i tak po kolei. Ten proces wykonywał dla każdego zamówienia. Jak ja to widziałem, to zajmowało jedno zamówienie około 10 minut do 15 że to zamówienie było, a do tego jeszcze na końcu klient zapisywał sobie informację z którego kanału, od którego kuriera to dane zamówienie idzie.",
   "scores": {
@@ -2668,6 +4059,38 @@
   "ranges": [
    [
     3444.4,
+    3444.77
+   ],
+   [
+    3445.33,
+    3448.85
+   ],
+   [
+    3449.17,
+    3450.2
+   ],
+   [
+    3450.74,
+    3452.55
+   ],
+   [
+    3453.27,
+    3456.77
+   ],
+   [
+    3457.19,
+    3462.35
+   ],
+   [
+    3463.27,
+    3467.91
+   ],
+   [
+    3468.29,
+    3470.07
+   ],
+   [
+    3470.69,
     3472.14
    ],
    [
@@ -2675,11 +4098,43 @@
     3475.84
    ],
    [
-    3476.16,
+    3476.39,
+    3477.87
+   ],
+   [
+    3478.65,
+    3479.17
+   ],
+   [
+    3479.79,
+    3481.79
+   ],
+   [
+    3482.19,
+    3486.71
+   ],
+   [
+    3487.35,
+    3489.73
+   ],
+   [
+    3490.17,
+    3491.47
+   ],
+   [
+    3491.95,
     3497.82
    ],
    [
-    3498.68,
+    3499.03,
+    3518.83
+   ],
+   [
+    3519.25,
+    3520.11
+   ],
+   [
+    3521.15,
     3524.14
    ],
    [
@@ -2687,14 +4142,18 @@
     3525.12
    ],
    [
-    3525.62,
+    3525.92,
+    3534.43
+   ],
+   [
+    3534.69,
     3547.62
    ]
   ],
   "start": 3444.4,
   "end": 3547.62,
-  "duration": 99.46,
-  "splices": 5,
+  "duration": 89.02,
+  "splices": 22,
   "hook_line": "Teraz klient widzi, dostał system, w którym opiera się też o tutaj, o AI",
   "transcript": "Teraz klient widzi, dostał system, w którym opiera się też o tutaj, o AI i pomaga znajdywać podobne, podobne zamówienia. Łączy to wszystko w jeden koszyk i klikasz wygeneruj etykiety. Wszystkie etykiety generują się w ciągu kilku minut i masz je od razu do wydrukowania. idą do drukarki etykiet, etykiety są drukowane i zaoszczędził klient z tego, co tutaj jakby od informacji i mierzyliśmy około 100 godzin miesięcznie. Wyobraź sobie, że ściąga ktoś z Ciebie 100 godzin miesięcznie ręcznej, frustrującej, wkurzającej pracy, która jest niechętnie robiona przez nikogo. Nikt nie chce takiej pracy robić, bo to jest po prostu praca, która jest też energetycznie bardzo, bardzo obciążająca, bardzo monotonna, łatwą pomyłkę i tak naprawdę to są rzeczy, które klienci powodują dużo nerwów i dużo gaszenia pożarów, tak? Tak, więc zaostrzegliśmy bardzo dużo czasu i dzięki temu pojawiła się przestrzeń na to, żeby osobę, która wcześniej to robiła, dać ją do innych zadań, dać ją do rzeczy, gdzie bardziej potrzebujemy w tym wszystkim człowieka, do rzeczy, które nie są po prostu łatwe do zautomatyzowania albo to, co zawsze dla firmy było ważne, ale nigdy nie było czasu na to.",
   "scores": {
@@ -2727,23 +4186,79 @@
     3562.5
    ],
    [
-    3562.82,
+    3563.07,
+    3565.35
+   ],
+   [
+    3566.27,
+    3567.73
+   ],
+   [
+    3568.15,
     3572.6
    ],
    [
-    3573.44,
+    3574.31,
+    3581.03
+   ],
+   [
+    3581.31,
+    3599.91
+   ],
+   [
+    3600.35,
     3606.52
    ],
    [
-    3607.54,
+    3607.77,
+    3610.61
+   ],
+   [
+    3611.05,
+    3612.81
+   ],
+   [
+    3613.61,
+    3617.35
+   ],
+   [
+    3617.63,
     3622.76
    ],
    [
     3623.56,
+    3626.61
+   ],
+   [
+    3626.91,
+    3627.49
+   ],
+   [
+    3627.75,
+    3632.21
+   ],
+   [
+    3632.55,
+    3639.91
+   ],
+   [
+    3640.17,
+    3643.13
+   ],
+   [
+    3643.49,
+    3656.71
+   ],
+   [
+    3657.09,
     3665.72
    ],
    [
-    3666.98,
+    3667.22,
+    3672.05
+   ],
+   [
+    3672.69,
     3674.2
    ],
    [
@@ -2753,8 +4268,8 @@
   ],
   "start": 3557.06,
   "end": 3680.8,
-  "duration": 118.62,
-  "splices": 6,
+  "duration": 110.91,
+  "splices": 20,
   "hook_line": "to też jest katalog AI. Katalog AI, jak to wygląda? Wcześniej klient musiał dane",
   "transcript": "to też jest katalog AI. Katalog AI, jak to wygląda? Wcześniej klient musiał dane z faktury przekopiować ręcznie do na przykład programu Nexo. do programu Nexo i ten program Nexo trzeba było wszystkie te dane uzupełnić, przekleić, do tego trzeba było wejść w chat GPT albo Gmini, stworzyć opis jeden dla Allegro, opis dla swojego sklepu na WordPressie, opis dla Erli na przykład i jeszcze dla innych Marketplace 'ów, do tego trzeba było znaleźć zdjęcia, naprawdę dużo, dużo pracy ręcznej i tutaj z informacji, jakie widziałem, jakie klientka do mnie tutaj przyszła z tymi informacjami, wprowadzenie 5 -10 produktów i oczywiście robienie jeszcze przy tym innych rzeczy i gaszenie pożarów, bo co chwilę ktoś puka i co chwilę ktoś wchodzi, generowało to, że kilkanaście produktów potrafiło być wprowadzanych na przykład cały dzień. Nieraz, jeżeli na przykład to była faktura to te wszystkie pozycje nawet nie były wprowadzone, nie było na to po prostu czasu, bo ktoś zachorował, bo były ważniejsze rzeczy i przez to nasz asortyment nie rósł w żaden sposób, więc tutaj znowu wchodzi AI, które pozwala po pierwsze odczytać te dokumenty w bardzo prosty sposób, zbudować listę produktów, jakie chcemy dodać w naszego katalogu, przygotować nam opisy pod każdą platformę, sprawdzić to z naszymi magazynami i czy ten produkt już istnieje i dosłownie jednym kliknięciem dodać wszystko do naszego magazynu i do naszych programów księgowych, magazynowych, fakturowych, jakkolwiek, gdzie tego niekolwiek byśmy nie potrzebowali. Więc to są takie dwa zastosowania, że tak powiem, z pola bitwy, jeżeli chodzi o firmę handlową i",
   "scores": {
@@ -2792,6 +4307,18 @@
    ],
    [
     3706.82,
+    3712.78
+   ],
+   [
+    3713.24,
+    3717.3
+   ],
+   [
+    3717.8,
+    3720.2
+   ],
+   [
+    3720.66,
     3734.68
    ],
    [
@@ -2801,8 +4328,8 @@
   ],
   "start": 3697.29,
   "end": 3737.16,
-  "duration": 36.77,
-  "splices": 3,
+  "duration": 35.35,
+  "splices": 6,
   "hook_line": "I teraz pytanie, czy to działa idealnie? No nie, pamiętajmy, że systemy oparte o",
   "transcript": "I teraz pytanie, czy to działa idealnie? No nie, pamiętajmy, że systemy oparte o AI potrzebują czasu, żeby się potrzebują doślifowania tych rzeczy. Ja to tak nazywam, to są takie dokręcanie śrubek w tym wszystkim. I te śrubki po prostu przez jakiś czas trzeba podokręcać, tak żeby po kilku miesiącach po prostu ten proces zostawić i o nim zapomnieć. A jeżeli chciałbyś zobaczyć, jak o takim procesie zapomnieć i jak te śrubki ja dokręcam, to zapraszam Cię na flowbiz .pl, a porozmawiamy i pokażę Ci, jak można to zrobić u Ciebie w firmie i jak rozwiązać Twoje problemy nowych technologii.",
   "scores": {
@@ -2831,30 +4358,114 @@
   "ranges": [
    [
     6.05,
+    9.43
+   ],
+   [
+    9.77,
+    10.31
+   ],
+   [
+    10.69,
     13.86
    ],
    [
-    14.14,
+    15.02,
+    17.78
+   ],
+   [
+    18.52,
+    19.8
+   ],
+   [
+    20.84,
     32.98
    ],
    [
-    33.36,
+    33.58,
+    37.98
+   ],
+   [
+    38.32,
     44.06
    ],
    [
-    44.3,
+    44.46,
+    50.4
+   ],
+   [
+    50.76,
+    59.4
+   ],
+   [
+    60.2,
+    60.94
+   ],
+   [
+    61.96,
     68.54
    ],
    [
-    68.92,
+    69.18,
+    69.85
+   ],
+   [
+    70.33,
+    73.64
+   ],
+   [
+    74.34,
+    88.66
+   ],
+   [
+    89.22,
+    92.54
+   ],
+   [
+    92.8,
     95.72
    ],
    [
-    96.78,
+    97.28,
+    99.7
+   ],
+   [
+    100.54,
+    103.14
+   ],
+   [
+    103.72,
+    104.24
+   ],
+   [
+    104.6,
+    111.62
+   ],
+   [
+    112.08,
+    114.52
+   ],
+   [
+    114.98,
+    120.26
+   ],
+   [
+    120.62,
+    133.64
+   ],
+   [
+    133.96,
+    141.72
+   ],
+   [
+    142.42,
     144.62
    ],
    [
     145.7,
+    146.4
+   ],
+   [
+    146.84,
     153.06
    ],
    [
@@ -2870,11 +4481,15 @@
     170.74
    ],
    [
-    171.26,
+    171.4,
     179.18
    ],
    [
     179.42,
+    197.7
+   ],
+   [
+    197.98,
     198.98
    ],
    [
@@ -2882,19 +4497,67 @@
     214.72
    ],
    [
-    215.42,
+    215.44,
+    224.38
+   ],
+   [
+    224.7,
+    237.9
+   ],
+   [
+    238.38,
     246.28
    ],
    [
-    246.76,
+    246.88,
+    250.78
+   ],
+   [
+    251.1,
+    256.62
+   ],
+   [
+    256.96,
+    258.6
+   ],
+   [
+    259.1,
+    261.54
+   ],
+   [
+    261.8,
+    264.61
+   ],
+   [
+    264.95,
+    270.06
+   ],
+   [
+    270.84,
     281.5
    ],
    [
     283.14,
+    288.32
+   ],
+   [
+    288.6,
+    290.6
+   ],
+   [
+    291.0,
     308.82
    ],
    [
     309.36,
+    315.39
+   ],
+   [
+    315.73,
+    316.1
+   ],
+   [
+    316.5,
     323.72
    ],
    [
@@ -2902,27 +4565,95 @@
     328.12
    ],
    [
-    328.4,
+    328.56,
     341.34
    ],
    [
     342.16,
+    356.75
+   ],
+   [
+    357.11,
     357.76
    ],
    [
-    358.1,
+    358.28,
     366.0
    ],
    [
     367.28,
+    367.7
+   ],
+   [
+    368.16,
+    369.48
+   ],
+   [
+    370.12,
     374.94
    ],
    [
-    375.42,
+    375.82,
+    378.0
+   ],
+   [
+    378.68,
+    381.5
+   ],
+   [
+    381.8,
+    383.9
+   ],
+   [
+    384.36,
+    387.02
+   ],
+   [
+    387.56,
+    393.72
+   ],
+   [
+    394.68,
+    398.68
+   ],
+   [
+    399.04,
+    399.68
+   ],
+   [
+    399.96,
+    408.9
+   ],
+   [
+    409.24,
+    410.44
+   ],
+   [
+    410.82,
+    415.18
+   ],
+   [
+    415.6,
     426.94
    ],
    [
     427.78,
+    432.32
+   ],
+   [
+    432.64,
+    451.22
+   ],
+   [
+    451.82,
+    452.22
+   ],
+   [
+    453.18,
+    485.08
+   ],
+   [
+    485.62,
     486.3
    ],
    [
@@ -2930,31 +4661,99 @@
     499.62
    ],
    [
-    500.14,
+    500.26,
     507.62
    ],
    [
-    508.02,
+    508.32,
     512.52
    ],
    [
     513.06,
+    514.63
+   ],
+   [
+    515.45,
+    517.62
+   ],
+   [
+    517.9,
     525.3
    ],
    [
     526.36,
+    541.46
+   ],
+   [
+    541.74,
+    548.54
+   ],
+   [
+    548.96,
     551.78
    ],
    [
-    553.2,
+    553.26,
+    558.3
+   ],
+   [
+    558.66,
+    564.0
+   ],
+   [
+    564.34,
+    566.58
+   ],
+   [
+    566.9,
+    568.42
+   ],
+   [
+    568.92,
+    581.03
+   ],
+   [
+    581.37,
+    591.22
+   ],
+   [
+    591.56,
+    594.3
+   ],
+   [
+    594.8,
+    597.1
+   ],
+   [
+    597.68,
     601.5
    ],
    [
-    602.2,
+    602.9,
+    603.57
+   ],
+   [
+    603.95,
+    609.8
+   ],
+   [
+    610.22,
+    614.58
+   ],
+   [
+    615.84,
     619.36
    ],
    [
     619.66,
+    628.22
+   ],
+   [
+    628.82,
+    632.56
+   ],
+   [
+    632.86,
     639.08
    ],
    [
@@ -2967,13 +4766,21 @@
    ],
    [
     662.38,
+    667.06
+   ],
+   [
+    667.78,
+    675.38
+   ],
+   [
+    676.5,
     683.96
    ]
   ],
   "start": 6.05,
   "end": 683.96,
-  "duration": 656.21,
-  "splices": 34,
+  "duration": 616.93,
+  "splices": 104,
   "hook_line": "No dobra, lecimy z kolejnymi praktycznymi użyciami AI w firmach. Teraz na warsztat możemy",
   "transcript": "No dobra, lecimy z kolejnymi praktycznymi użyciami AI w firmach. Teraz na warsztat możemy wziąć firmę produkcyjną meble ogrodowe i opowiem Wam trochę, gdzie był problem, jak go rozwiązaliśmy, jak on wyglądał przed i jak wygląda teraz. Klient dostawał od swoich kontrahentów niemieckich zamówienia w Excelu. Długoletni kontrahenci współpracowali już, jakieś Excele mieli dopracowane, jakiś szablon, jakieś kolumny, wyglądało to nie tak źle. Jednak diabeł tutaj tkwi w szczegółach, bo klient, kontrahent, który zamawiał, potrafił tą samą rzecz nazwać na kilkanaście różnych sposobów. Potrafił raz napisać po niemiecku, raz po angielsku. I rozszyfrowanie tych rzeczy było bardzo czasochłonne. Tutaj od klienta z Podsłupska, który miał ten problem, była dość duża frustracja i co najważniejsze, to nie była tylko samego właściciela frustracja, ale też osób, które to wykonywały. Dlaczego? Bo robiły rzeczy, których... Dlaczego? Bo robiły rzeczy niewłaściwe. Niewłaściwe dlatego, bo takie klepanie potrafiło im zająć nawet kilka dni, żeby takie zamówienie z setką pozycji po prostu obrobić, znaleźć. A dlaczego teraz nazwał tak? A dlaczego nazwał tak? Ten dany kontrahent, a kogoś nie było na przykład w firmie, kto miałem na ten temat wiedzę i cała praca na tych Excelach naprawdę była bardzo mocno frustrująca i przyznam szczerze, że dawno też nie widziałem takiej radości i w głosi właściciela i osób, które to robiły, takiego entuzjazmu do tego, jak system, który wdrożyliśmy właśnie z tą nakładką AI spowodował, że ten czas skrócił się do dosłownie 10 minut. A teraz dlaczego ten proces tak długo trwał? Ten proces trwał, tak jak wcześniej powiedziałem, dlatego, że musieliśmy dopasować różne nazwy. Musieliśmy też sprawdzić, czy te ceny się zgadzają z cenami w naszym katalogu, który był też rozproszony na różne Excel. Musieliśmy dopisać swoje kolumny, które były po prostu takim procesem, gdzie zawsze to robiliśmy. Okazało się, że klient ma trzech różnych kontrahentów głównych i każdy z tych kontrahentów jednak trochę inaczej te Excel przygotowywał. Nie wiadomo, ale nie chciał się dostosować. No wiadomo, długoletnia współpraca i po prostu pewne utarte schematy i ciężko to zmienić u siebie w firmie, a co dopiero u zewnętrznej firmy, która jest naszym kontrahentem. Więc po prostu braliśmy jak było. Tak, żeby nie odkładać dodatkowych problemów. I wiem, że były próby tego, żeby te Excel ujednolicić, ale one po prostu kończyły się po tygodniu. Były drobne zmiany, ale to nie były na tyle znaczące zmiany, żeby faktycznie coś się zmieniło w sposobie pracy między firmą, a produkcyjną, a tymi kontrahentami. Dużo też czasu w tym wszystkim zajmowało przygotowanie dla osoby, która była w biurze, w tych pracach administracyjnych, generowanie kodów kreskowych. Trzeba było wygenerować kod całego zamówienia, trzeba było wygenerować kod konkretnego produktu i jeszcze części konkretnych do tego, aby te paczki popakować. To powodowało, że to było moje też bardzo ciekawe doświadczenie, a już coraz mniej zaskakujące, że ta osoba, która to robiła, brała te wszystkie numery, które przychodziły w tych Excelach, wklejała do innego specjalnego Excela, w którym generował się kod kreskowy i ten kod kreskowy drukowała i przechodziła do kolejnej pozycji, przeklejała, drukowała, przeklejała, drukowała, przeklejała, drukowała. No przy setce zamówień ciężko tutaj się dziwić, że to trwało na przykład trzy dni, no bo jak wiadomo, robimy to jedno zamówienie, a jeszcze ktoś nas odciąga od tych zadań, chce, żebyśmy robili coś innego, awarię, gaszenie pożarów, więc no to była dla tej osoby też bardzo czasochłonna, frustrująca, frustrujący proces. I teraz jak to uprościliśmy, tak? No dzięki całej tutaj mocy AI, jakie nam daje, pozwoliliśmy sobie na to, żeby po pierwsze trzeba było tą bazę scentralizować, trzeba było wszystkie Excel wgrać do jednej bazy, do jednego systemu. To zajęło dość długo czasu, to tutaj to nie ukrywam, ale to po prostu bolało, ale to trzeba było zrobić. Bez tych fundamentów AI nie będzie wiedziało, jak się po tym poruszać, nie będzie wiedziało, jaka jest struktura, jak dana firma po prostu pracuje i w jakich schematach. I przez to też, no te początki nie były łatwe, żeby to wszystko zrobić, ale finałem tego było naprawdę praca na jedno tak zwane kliknięcie, no może na dwa kliknięcia. Z początku może też to było trochę więcej niż dwa kliknięcia, może pięć, dziesięć, ciężko mi to też tutaj ocenić, ale już Wam mówię, dlaczego to mogło być nawet dziesięć kliknięć. O tym to było ciekawe, że w momencie, kiedy wprowadziliśmy te wszystkie produkty już do bazy, klient zaciągał tego Excela wyjściowego, przepraszam, tego Excela wyjściowego od kontrahenta, klient to zaciągał i musiał zbudować tak zwaną pamięć dla sztucznej inteligencji. Pamięć dla sztucznej inteligencji to jest coś, co powoduje, że na przykład ten sam produkt, uczymy naszą sztuczną inteligencję za pomocą wkładania tutaj jakby pamięci, to, że ten produkt może i dla tego kontrahenta może się nazywać w trzech różnych wariantach, w pięciu różnych wariantach, bo my nie do końca wiemy, który wariant będzie tutaj dopasowany, a sztuczna inteligencja dzięki tutaj swojej tutaj jakby możliwości analizowania tekstu danych powodowało, że przy wgraniu takiego dokumentu mieliśmy możliwość zobaczenia, że prawdopodobieństwa, że ten produkt, który tutaj ten klient tak nazwał, to jest prawdopodobnie to i na przykład to mogło być pokazywane w kilku różnych kolorach, tak, czyli nie wiem, nie dopasowałem, na 80 % wydaje mi się, że to jest ten produkt albo na 100%, że to jest ten produkt i oczywiście pierwsze zamówienia były takie, że trochę klient był nie do końca, czuł ten efekt, a to dlatego też jest często tak we wdrożeniach AI, że oczekujemy, no taka ta inteligencja AI jest takie mądre, to to powinno od razu wejść w naszą firmę i powinniśmy to wszystko robić i trochę tak to też działa, że no znowu to powtórzę, AI po prostu wymaga chwilę czasu, nad nim trzeba iteracyjnie, czyli co jakiś czas uczyć go jak ten proces ma działać, tak, nawet jak sobie zobaczycie jak działacie na przykład z jakimś czatem GPT albo Gmini i poprawiacie go błędy, to nawet jak to jest zwykły czat i te okno jest dosyć tutaj krótkie, jeżeli chodzi o pamięć, jeżeli chodzi, mówimy o tych popularnych narzędziach, to z czasem czat GPT już wie jak my chcemy, żeby te odpowiedzi wyglądały, jak nie chcemy, żeby te odpowiedzi wyglądały, dzięki temu po wrzuceniu danego polecenia albo danego wycinku na przykład maila, dostajemy od razu to, co byśmy chcieli, tak, no bo się nauczył, potrzebował ileś tygodni na przykład czasu i naszych prób do tego, żeby ta wiedza po prostu mu się ustrukturyzowała, tak, że chcemy, żeby to było robione w ten sposób, ale nie w ten, albo taki układ zdań jest dobry, a taki nie jest dobry, tak, taki jakby nastrój, taka jakby forma maila jest okej, a ta inna nie jest okej, dzięki temu to uczymy. I w tym przypadku do tego klienta, już wracając znowu do brzegu, polegało to na tym, żeby AI się nauczyło tego wszystkiego, że dany produkt może być nazwany w różnych momentach, więc nawet jeżeli zrobiliśmy miernik i wyliczaliśmy tutaj też, żeby mieć te dane, jak AI wpłynęło na pracę tej firmy, to powodowało, że z początku prawdopodobieństwo znajdywania i dopasowywania zamówień do tego, co mamy, było na poziomie 70%. Po miesiącu osiągnęliśmy 94%, czyli jeżeli zamówienie wcześniej, musieliśmy po prostu ręcznie jeszcze, dlatego mówiłem też o tych kilkunastu kliknięciach, powiedzieć mu, hej, ten produkt, to tak naprawdę to jest ten produkt i z taką i z taką tkaniną, tak, bo tam dużo też rzeczy było o samej tkaninie, więc dopasowaliśmy go, zapisaliśmy, AI to zapamiętało, system baza danych też to zapamiętała i nagle później dostajemy kolejne zamówienie do tego kontrahenta w podobnym po prostu tutaj jakby nazwach i lekko się różniącym i nagle AI dopasowuje to w 95%. Zostają nam jakieś bardzo marginalne przypadki tego wszystkiego. Jeżeli chodzi o tą część taką jeszcze bardzo czasochłoną, czy generowanie samych kodów kreskowych, no to tutaj to nie było tutaj żadnej magii, żadnego AI, po prostu program, system bierze cztery numery, które potrzebujemy, generuje z nich po prostu PDF -a od razu gotowego, po kliknięciu, po minucie, masz gotowego PDF -a z 40 stronami, etykiet, który po prostu trzeba tylko wydrukować, przykleić i nagle z kilku dni pracy dostajemy 15 minut pracy, więc to by było na razie na tyle. W tej firmie dalej automatyzujemy, dalej wdrażamy AI. Będą pewnie kolejne przypadki, jak to, do czego doszliśmy i jakie tutaj kolejne oszczędności wyszły w tym wszystkim, więc mam nadzieję, że będziecie to śledzić, a ja na pewno wrócę do Was z informacjami, jak to wyglądało przed, po i jak to może wyglądać też w Waszej firmie, więc dziękuję Wam na dzisiaj i zapraszam do oglądania i subskrybowania kanału i zostawienia też komentarza, z jakimi problemami Wy się borykacie, jakie Wy rzeczy byście chcieli zautomazować w swojej firmie albo zadajcie jakiekolwiek pytanie związane z tą tematyką, a z chęcią na nie odpowiem. Dzięki i do usłyszenia.",
   "scores": {
@@ -3002,22 +4809,186 @@
   "ranges": [
    [
     6.97,
+    10.8
+   ],
+   [
+    11.08,
+    16.79
+   ],
+   [
+    17.13,
+    18.38
+   ],
+   [
+    18.88,
+    35.88
+   ],
+   [
+    36.16,
+    43.18
+   ],
+   [
+    43.52,
+    49.74
+   ],
+   [
+    50.18,
+    50.82
+   ],
+   [
+    51.38,
+    61.82
+   ],
+   [
+    62.14,
+    72.54
+   ],
+   [
+    72.86,
+    77.31
+   ],
+   [
+    77.73,
+    80.0
+   ],
+   [
+    80.56,
+    88.5
+   ],
+   [
+    88.8,
+    90.22
+   ],
+   [
+    90.54,
+    91.13
+   ],
+   [
+    91.77,
     96.08
    ],
    [
     97.44,
+    100.88
+   ],
+   [
+    101.24,
+    109.44
+   ],
+   [
+    109.74,
     112.9
    ],
    [
     113.64,
+    115.5
+   ],
+   [
+    115.84,
+    120.02
+   ],
+   [
+    120.42,
+    131.62
+   ],
+   [
+    131.9,
+    136.28
+   ],
+   [
+    136.54,
+    142.68
+   ],
+   [
+    142.98,
+    144.42
+   ],
+   [
+    145.0,
+    148.68
+   ],
+   [
+    149.36,
+    151.62
+   ],
+   [
+    152.38,
     155.66
    ],
    [
     156.54,
+    162.52
+   ],
+   [
+    162.82,
+    168.42
+   ],
+   [
+    168.94,
+    170.09
+   ],
+   [
+    170.81,
+    174.2
+   ],
+   [
+    174.6,
+    175.5
+   ],
+   [
+    176.0,
+    180.0
+   ],
+   [
+    180.58,
+    184.02
+   ],
+   [
+    184.32,
+    188.9
+   ],
+   [
+    189.2,
+    194.72
+   ],
+   [
+    195.04,
+    196.18
+   ],
+   [
+    196.56,
+    197.56
+   ],
+   [
+    198.08,
     209.14
    ],
    [
     210.04,
+    217.86
+   ],
+   [
+    218.24,
+    220.78
+   ],
+   [
+    221.12,
+    221.82
+   ],
+   [
+    222.82,
+    227.72
+   ],
+   [
+    228.08,
+    228.92
+   ],
+   [
+    229.36,
+    237.5
+   ],
+   [
+    237.88,
     239.2
    ],
    [
@@ -3026,14 +4997,46 @@
    ],
    [
     241.4,
-    261.22
+    246.6
+   ],
+   [
+    247.04,
+    253.2
+   ],
+   [
+    254.54,
+    258.86
+   ],
+   [
+    259.22,
+    260.67
    ],
    [
     261.72,
+    263.8
+   ],
+   [
+    264.3,
     266.72
    ],
    [
-    267.16,
+    267.52,
+    273.28
+   ],
+   [
+    273.6,
+    277.48
+   ],
+   [
+    277.86,
+    279.24
+   ],
+   [
+    280.1,
+    284.08
+   ],
+   [
+    284.56,
     297.86
    ],
    [
@@ -3041,7 +5044,11 @@
     301.48
    ],
    [
-    306.48,
+    306.94,
+    312.4
+   ],
+   [
+    312.68,
     316.18
    ],
    [
@@ -3050,6 +5057,22 @@
    ],
    [
     324.86,
+    339.86
+   ],
+   [
+    340.18,
+    344.56
+   ],
+   [
+    344.88,
+    345.98
+   ],
+   [
+    346.44,
+    350.63
+   ],
+   [
+    351.59,
     353.48
    ],
    [
@@ -3058,10 +5081,54 @@
    ],
    [
     360.68,
-    409.46
+    364.38
    ],
    [
-    409.72,
+    364.96,
+    371.48
+   ],
+   [
+    371.86,
+    374.16
+   ],
+   [
+    374.6,
+    380.02
+   ],
+   [
+    380.3,
+    383.84
+   ],
+   [
+    384.24,
+    388.02
+   ],
+   [
+    388.34,
+    390.74
+   ],
+   [
+    391.0,
+    396.95
+   ],
+   [
+    397.33,
+    398.76
+   ],
+   [
+    404.46,
+    405.38
+   ],
+   [
+    405.68,
+    409.42
+   ],
+   [
+    409.82,
+    414.64
+   ],
+   [
+    414.9,
     419.26
    ],
    [
@@ -3070,14 +5137,82 @@
    ],
    [
     450.52,
+    456.82
+   ],
+   [
+    457.18,
+    457.84
+   ],
+   [
+    458.4,
+    464.32
+   ],
+   [
+    464.78,
+    470.02
+   ],
+   [
+    470.28,
+    476.96
+   ],
+   [
+    477.4,
     483.3
    ],
    [
     483.55,
+    485.1
+   ],
+   [
+    485.76,
+    486.68
+   ],
+   [
+    487.2,
     493.69
    ],
    [
     493.94,
+    494.8
+   ],
+   [
+    495.44,
+    498.7
+   ],
+   [
+    498.96,
+    506.02
+   ],
+   [
+    506.46,
+    509.79
+   ],
+   [
+    510.63,
+    511.56
+   ],
+   [
+    511.88,
+    516.55
+   ],
+   [
+    516.89,
+    520.16
+   ],
+   [
+    520.44,
+    522.01
+   ],
+   [
+    522.39,
+    525.3
+   ],
+   [
+    525.7,
+    526.48
+   ],
+   [
+    526.92,
     527.3
    ],
    [
@@ -3086,66 +5221,350 @@
    ],
    [
     533.1,
+    539.61
+   ],
+   [
+    540.01,
     541.2
    ],
    [
     542.38,
+    546.52
+   ],
+   [
+    547.02,
     550.04
    ],
    [
-    550.34,
+    550.52,
+    556.28
+   ],
+   [
+    556.58,
     572.64
    ],
    [
-    572.98,
+    573.26,
+    583.14
+   ],
+   [
+    583.52,
+    585.33
+   ],
+   [
+    585.87,
     586.78
    ],
    [
     587.16,
+    597.46
+   ],
+   [
+    597.72,
+    598.59
+   ],
+   [
+    599.11,
+    600.76
+   ],
+   [
+    601.2,
+    610.6
+   ],
+   [
+    610.92,
+    611.92
+   ],
+   [
+    612.22,
     618.38
    ],
    [
-    618.78,
+    618.84,
+    632.7
+   ],
+   [
+    632.96,
+    638.47
+   ],
+   [
+    638.91,
+    639.9
+   ],
+   [
+    640.46,
+    645.2
+   ],
+   [
+    645.54,
+    668.13
+   ],
+   [
+    668.65,
     673.84
    ],
    [
-    674.2,
+    674.84,
+    675.53
+   ],
+   [
+    675.93,
+    682.16
+   ],
+   [
+    682.48,
+    684.28
+   ],
+   [
+    684.56,
+    686.44
+   ],
+   [
+    686.82,
+    704.79
+   ],
+   [
+    705.13,
+    718.72
+   ],
+   [
+    719.4,
+    721.86
+   ],
+   [
+    722.26,
+    722.8
+   ],
+   [
+    723.06,
     728.06
    ],
    [
     728.56,
+    731.14
+   ],
+   [
+    731.44,
+    734.32
+   ],
+   [
+    734.64,
+    740.14
+   ],
+   [
+    740.62,
+    747.88
+   ],
+   [
+    748.24,
+    750.74
+   ],
+   [
+    751.16,
+    766.06
+   ],
+   [
+    766.32,
+    769.36
+   ],
+   [
+    769.66,
+    775.38
+   ],
+   [
+    775.64,
     789.28
    ],
    [
-    789.84,
+    790.15,
     812.44
    ],
    [
     812.7,
+    817.04
+   ],
+   [
+    817.3,
+    819.94
+   ],
+   [
+    820.22,
+    823.24
+   ],
+   [
+    823.5,
+    827.47
+   ],
+   [
+    827.95,
+    829.03
+   ],
+   [
+    829.75,
+    831.86
+   ],
+   [
+    832.16,
+    838.92
+   ],
+   [
+    839.7,
+    868.58
+   ],
+   [
+    868.94,
+    883.74
+   ],
+   [
+    884.02,
+    896.26
+   ],
+   [
+    896.6,
+    897.5
+   ],
+   [
+    897.92,
+    899.1
+   ],
+   [
+    899.54,
+    908.94
+   ],
+   [
+    909.56,
+    914.33
+   ],
+   [
+    914.83,
+    915.17
+   ],
+   [
+    915.59,
+    944.92
+   ],
+   [
+    945.44,
+    951.11
+   ],
+   [
+    951.99,
+    953.58
+   ],
+   [
+    954.06,
     958.18
    ],
    [
     959.06,
+    962.86
+   ],
+   [
+    963.26,
+    973.34
+   ],
+   [
+    973.64,
+    975.93
+   ],
+   [
+    976.35,
+    983.08
+   ],
+   [
+    983.62,
     990.5
    ],
    [
-    990.9,
+    991.02,
+    1000.16
+   ],
+   [
+    1000.48,
     1006.78
    ],
    [
     1007.34,
+    1021.92
+   ],
+   [
+    1022.22,
+    1025.88
+   ],
+   [
+    1026.18,
+    1033.94
+   ],
+   [
+    1034.36,
+    1035.64
+   ],
+   [
+    1036.24,
     1037.46
    ],
    [
-    1037.74,
+    1037.84,
+    1044.59
+   ],
+   [
+    1044.95,
+    1048.24
+   ],
+   [
+    1048.52,
+    1050.62
+   ],
+   [
+    1051.38,
+    1060.84
+   ],
+   [
+    1061.1,
+    1068.46
+   ],
+   [
+    1068.78,
     1070.92
    ],
    [
     1071.96,
+    1074.38
+   ],
+   [
+    1074.82,
+    1075.28
+   ],
+   [
+    1075.92,
+    1091.73
+   ],
+   [
+    1092.59,
+    1103.67
+   ],
+   [
+    1104.15,
+    1105.6
+   ],
+   [
+    1105.98,
+    1108.04
+   ],
+   [
+    1108.32,
+    1110.2
+   ],
+   [
+    1110.56,
+    1112.49
+   ],
+   [
+    1113.07,
     1114.54
    ],
    [
-    1114.84,
+    1115.12,
     1116.02
    ],
    [
@@ -3159,8 +5578,8 @@
   ],
   "start": 6.97,
   "end": 1122.18,
-  "duration": 1089.97,
-  "splices": 38,
+  "duration": 1015.17,
+  "splices": 191,
   "hook_line": "Klient zgłosił się do nas z takim problemem, żebyśmy pomogli mu zbudować asystenta AI",
   "transcript": "Klient zgłosił się do nas z takim problemem, żebyśmy pomogli mu zbudować asystenta AI do zarządzania jego firmą. Jest to firma z Podsłupska, która produkuje sprzęt sportowy bardzo wysokiej jakości i wysyła go na cały świat, więc jestem bardzo dumny z tego, że mogę z taką firmą współpracować i że takie produkty dzieją się i są produkowane u nas lokalnie, ale do rzeczy. Jaki był problem? Problem był taki, że właściciel tutaj korzystając z tych narzędzi najbardziej popularnych jak ChatGPT po prostu miał dosyć dużo frustracji do tego, że ten Chat w pewnym momencie przestaje pamiętać moje wcześniej się wytyczne. Ten Chat przestaje rozumieć i zaczyna haucynować i to jest bardzo frustrujące, zdaję sobie z tego sprawę i powodował, że często to AI było naszym wrogiem, a nie sprzymierzęcym w tym wszystkim i żeby nam pomagało w pracy, a nie utrudniało. I niestety to jest ten syndrom tego, że te narzędzia mają po prostu ograniczony kontekst. Kontekst to możemy powiedzieć w takim mniej więcej języku potocznym, że to jest po prostu pamięć, która po prostu się kończy. I przypuśćmy narzędzia, część narzędzi, duża część narzędzi ma to powiedzmy milion kontekstu samego w sobie albo duże liczby, które wydają się wręcz nieosiągalne, żeby to wypełnić to wszystko. Jednak siedząc nad danym czatem powiedzmy kilkanaście miesięcy, ten czat zaczyna nam się zacinać, ten czat zaczyna nam halucynować, ten czat zaczyna wymyślać i powoduje jeszcze większą frustrację. Więc ten klient do nas się zgłosił z takim dosyć dużym problemem i zaczęliśmy myśleć jak mu to uprościć. No więc pierwsze tutaj hasło agent AI dla tego właściciela. Jednak problem się stał o wiele bardziej złożony, bo w momencie kiedy weszliśmy do tej firmy okazało się, że dane są w głowach, na kartkach, na mailach i niestety agent AI nie ma skąd tych danych pobierać. I oczywiście mogliśmy częściowo ten problem rozwiązać i tylko po ten jeden problem, po ten jeden prompt, który na przykład dany właściciel powtarzał, ale wiedzieliśmy razem tutaj z Marcinem, którym tutaj tworzymy ten projekt, że to nie da takiego przełożenia i takiej siły we wdrożeniu i trzeba to zrobić po prostu całościowo i porządnie. A porządnie to oznacza tyle, że trzeba zbudować fundamenty. Fundamenty pod AI, czyli AI musi mieć skąd te dane pobierać, musi mieć możliwość tych danych po prostu, żeby one były w jakimś konkretnym miejscu, cyfrowym miejscu, a nie w głowach, no bo tam nam AI jeszcze, na razie jeszcze, nie zajrzy, kto wie jak to dalej, w jakim kierunku to dalej pójdzie. I idąc tym tropem, no poszliśmy w tym kierunku, ok, tworzymy mózg firmy. Mózg firmy polega na tym, że po prostu dostaliśmy dostęp do dysku, dostaliśmy dostęp do danych około, wydaje mi się, że tam było między 100 a 150 giga różnych danych, manuali, procedur, filmów instruktażowych, ofert, wycen, po prostu wielki, gigantyczny miszmasz, jeżeli chodzi o te dane. No i zaczęliśmy je z nich budować po prostu wiedzę dla tej firmy. I efekt był o tyle imponujący, że nagle dowolne zadanie pytania właściciela do tego agenta AI powodował, że dostawał bardzo konkretną odpowiedź. I to o tyle rozpaliło ciekawość i chęć dalszych wdrożeń u tego właściciela do tego, że ja chcę wiedzieć, co się dzisiaj dzieje w firmie. Ja chcę mieć codzienny brief tego, co się w firmie wydarzyło rano, po południu, chcę wiedzieć po tygodniu. No więc zakasaliśmy rękawy i zaczęliśmy drążyć ten temat dalej, zaczęliśmy wdrażać kolejne rozwiązania, kolejne rozwiązania dla produkcji, kolejne statu, tak żeby produkcja mogła zostawiać status i ślad, w jakim jest dana produkcja. Nagle trzeba było scyfryzować wszystkie dane, scentralizować, wrzucić wszystkie produkty do jednego systemu, całą tablicę produkcyjną, etapy zamówienia też do jednego systemu. Tutaj naszymi podstawami genialnie się sprawdził system Open Mercato, który naprawdę dał dużo rzeczy z pudełka i pozwolił nam zbudować, co najciekawsze, system, który niedużo się różnił od samego sposobu pracy osoby, która jest kierownikiem produkcji. A to dlatego, że ja mam takie odczucie, że często kupując gotowca system dla produkcji, bierzemy coś, co do czegoś musimy dostosować i nagle z pewnego układu, nawet w Excelu, jaki mieliśmy, musimy się kompletnie przestawić na to, jak to używać, bo nagle jakaś firma sobie wymyśliła w ten sposób, a nie inny, a my, kurde, chcieliśmy tylko mieć system, który dużo będzie się nie różnił od tego, co na co dzień robimy i to powoduje, że jest duża niechęć do dużych wdrożeń, dużych systemów, bo widzę to i to jest powtarzający się problem, że duże systemy nie udaje się wdrożyć. Duże systemy wdrażają, wdraża się kilka miesięcy i te wdrożenia też nie są, nie kończą się sukcesem i nie kończą się sukcesem dlatego, że te systemy są oderwane od rzeczywistości. One wymagają od nas, żeby się dostosować do tych systemów, a nie dostosowują się do nas, a jeżeli w ogóle chcemy, żeby system się dostosował do nas i chcemy jakiejś customowej, niestandardowej integracji, no to firmy tutaj jakby powodują, że nasze budżety po prostu wykraczają na rozwiązania IT bardzo mocno poza planowane budżety i to jest też częsta blokada dla firm, które by chciały takie rozwiązania. My wychodzimy z innego założenia, czyli Excel miał pewien plan produkcji, nie był to może idealny sposób planowania, nie był to taki, że tak powiem, książkowy planowanie produkcji, ale miał swój sposób. Kierownik produkcji miał swój sposób, a miał go na tyle ten sposób, że miał na tyle ten sposób ułożony, że mi zależało na tym, żeby odzwierciedlić jak najbliżej tego, co on ma. I finalnie widoki, które udało się ułożyć były bardzo bliskie temu Excelowi, były o wiele bardziej oczywiście funkcjonalne, tak, zapisywały historię każdego z etapów, dawały gigantyczne możliwości, i, ale nauka i wdrożenie tego, u tego kierownika produkcji naprawdę, uwierzcie mi, że zajęła godzinę i ewentualnie później jakieś tam uwagi, czy możemy jeszcze ten przycisk tak zrobić, a czy tu może się inaczej wyświetlać, a jakieś drobne tutaj jakby poprawki, ale to możliwości dało naprawdę potężne Open Mercato, które dawało gigantyczne podstawy gotowych modułów, z których tak naprawdę trzeba było złożyć jeden konkretny moduł, jedną konkretną tutaj dla danego kierownika produkcji konkretny proces, do tego, żeby tutaj to wdrożenie zajęło dosłownie kilka godzin, tak, kilka godzin też mówię o takich godzinach też gdzieś tam na wymianie na Whatsappie i zapytaniu się jak coś, dlaczego tak działa, a czy mogę tak, żeby tak działało i na takiej zasadzie wymiany, wymiany zdań. I najlepsze było to, że efektem był wydrukowany bardzo, że tak powiem, jeden do jednego Excel, który, przepraszam, nie Excel, tylko PDF, który przypominał tego Excela wyjściowego, więc kierownik produkcji naprawdę tutaj dużo, dużo z tego wszystkiego miał radości, że to wdrożenie poszło bardzo sprawnie, a jak to wpłynęło dalej na tego właściciela, który temu wszystkiemu chciał, żeby te dane wszystkie mieć w jednym miejscu, no tak, że jeżeli kierownik produkcji uzupełnia te dane i je robi, bo może je łatwo uzupełniać, nie ma strachu przed nowym systemem, przed dużym systemem, przed dużym wdrożeniem, zaczyna z niego korzystać, to nagle się okazało, że codzienny briefing właściciela firmy staje się przyjemnością. Właściciel dostaje codziennie powiadomienie na temat etapów, na temat postępów produkcji, na temat opóźnie produkcji, na temat tego danego zamówienia, czyli jak wygląda zamówienie dla kluczowych klientów i dostaje listę tych kluczowych klientów, dostaje możliwość generowania oferty z samego komunikatora, czy to będzie Whatsapp, czy Slack, nie ma to dużego znaczenia, jeżeli chodzi o konfigurację. Dostaje też możliwość tworzenia w ogóle dla fajnych... Sam właściciel w ogóle nie jest potrzebny do tego, żeby w tym systemie do niego wchodzić, bo jeżeli wiemy, jak praca właściciela często wygląda tak, że siedzimy na telefonie, to ten asystent AI w połączeniu z mózgiem spowodował, że właściciel wpisuje, chce, utwórz mi zamówienie dla tego klienta i dostajesz informację, że takie i takie zamówienie było w niedawnym czasie stworzone, czy chcesz które zduplikować, czy chcesz całkowicie nowe stworzyć dla tego klienta i nie wychodząc z żadnego komunikatora i robiąc to w bardzo przystępny i banalny wręcz sposób, w zasadzie tylko klikania w menu, na przykład w Telegramie, powoduje, że w trzech kliknięcia masz gotowe nowe zamówienie, masz gotową nową ofertę w tym wszystkim, więc tutaj to też powoduje, że wybranie na przykład do tego wszystkiego jako bazy narzędzia, jakim jest Obsidian i narzędzia, jakim jest Hermes i połączenie tego jeszcze z kodeksem, czyli te trzy narzędzia łączymy w jedno, powoduje, że dostajesz naprawdę gigantyczne fundamenty pod agenta AI, który wymaga fundamentów, ale daje też tą możliwość zarządzania naprawdę wszechstronnego firmą i dostajesz project managera, który przypomina Ci o ważnych sprawach, przypomina Ci o tym, jakie są opóźnienia na produkcji i co najciekawsze w tym wszystkim, ten kontekst jest cały czas odświeżany. On, dlatego, że pamięć w Hermesie, w Obsidianie jest na bieżąco zapisywana. Hermes też uczy się i buduje skille na podstawie tego, jak Ty pracujesz i nie ma tam możliwości takiej, że on straci kontekst albo za mocno go wypełni, bo na bieżąco on ma dostęp do najnowszej pamięci, ma dostęp do najnowszych plików, najnowszych zmian i za każdym razem je pobiera na świeżo. Nie musi wracać, tak jak to właśnie w czacie GPT na zasadzie, jeżeli mamy okno tutaj rozmowy sprzed miesiąca i my byśmy chcieli wrócić do tego, co było pół roku wcześniej, to system, system typu czat GPT, narzędzie, bardziej niż system, musi odnieść się i znaleźć na przykład coś, co było rok temu. A jak wiemy, no dla takiego czata GPT to są gigantyczne koszty, żeby tak mocno się cofnąć, nawet nie chodzi też może o koszty, to źle tutaj powiedziałem, ale jakby bardzo technicznie nie jest to możliwe, żeby tu się cofnąć, bo czat GPT nie zapisuje tych plików. Nasza rozmowa jest po prostu jednym wielkim plikiem, a ten plik po prostu kiedyś tą pamięć kończy, tak, ta pamięć się kończy i ona po prostu nadpisuje te dane i dlatego też zaczyna halucynować. A w przypadku, kiedy te dane są na bieżąco zapisywane i co najciekawsze, możesz do tych wszystkich całej pamięci mieć wgląd i to nie wgląd do 0 i 1, jak to myślimy o pamięci na przykład RAM, gdzie system się, typowe, że tak powiem pamięci tak nam się kojarzą w tym wszystkim, gdzie nie wiemy co ten ciąg znaków znaczy. Tak, w przypadku Obsidiana Hermesa wchodzisz nawet na taki serwer, wchodzisz na ten profil Obsidiana i ty widzisz po prostu pliki tak zwane markdown, pliki o tej samej strukturze powtarzające się z historią tego, jak to jest zapisywane i łącząc to właśnie w taki mózg. Jak sobie zobaczysz za chwilę, to ja też w świetle właśnie Obsidian potrafi łączyć bardzo dobrze, jest genialnym narzędziem, które bardzo dobrze nadaje się na mózg firmowy, na mózg nie tylko firmowy, ale też nawet pod jakieś mniejsze projekty, ale ma bardzo dobry kontekst, ma masę wiedzy do tego, która się zapisuje do tego, żeby bardzo trafnie dawać to, jak daną decyzję mamy podjąć. On nie wymyśla, on bierze je na bieżąco, on ma wszystkie powiązania między sobą, dzięki temu dostajemy naprawdę wysokiej jakości dane, na podstawie których możemy podjąć decyzje. Więc tak to pokrótce o agentach AI miało być krótko, miało być szybko, ale jakby bez tego kontekstu, bez tych fundamentów chciałem Wam tylko pokazać, że zrobienie dużego kroku dla firmy nie jest po prostu możliwe, a dużym krokiem oczywiście w tych czasach, gdzie ciągle dostajemy komunikaty, że musisz wdrożyć AI, musi być AI, bo cała firma Ci ucieka, no po prostu musimy być świadomi do tego, że jeżeli nie mamy tych fundamentów, jeżeli nie mamy danych w jednym miejscu, w jakimś systemie, który też jest otwarty na integrację, bo nie mówię o systemach, które na przykład są jak subiekt, albo systemy bardzo zamknięte, które nie są otwarte na integrację albo bardzo ograniczone, to powoduje, że nie możemy się podłączyć z różnych stron do tych systemów, nie możemy ich automatyzować, nie możemy wdrożyć do nich AI i tego wszystkiego, więc tutaj dochodzimy do takiego momentu, że trzeba dobre fundamenty pod to wszystko wylać, tak i dzięki temu możemy dostać po kilku miesiącach, no wydaje mi się po trzech miesiącach pracy, wszystko zależy od złożoności danego problemu, rozwiązanie, które jest rozwiązaniem, które daje dużą ulgę, bo ostatnie rozmowy, którą nawet mieliśmy dzisiaj, właściciel i osoby zarządzające tutaj dyrektorzy, mają ogromną ulgę i chęć korzystania z tych rozwiązań, a to dlatego, że te rozwiązania po prostu realnie wpłynęły na ich pracę i oczywiście trzeba pamiętać, żeby z tych rozwiązań też korzystać, bo to też jest tak, wiemy, możesz mieć narzędzia, ale te narzędzie po prostu odłożysz na bok i nie zapomnisz o nim, nie, ale musisz oczywiście mieć też nawyk tego, żeby wyrobić sobie to, żeby, nie wiem, nie uruchamiać czata GPT, nie wrzucać tam informacji, tylko korzystać z tego agenta, który został przygotowany typowo pod naszą firmę, no bo znowu, jeżeli będziemy wrzucać dane do czata GPT, no to ten nasz agent główny będzie tracił ten kontekst, więc tutaj trzeba też się przestawić i nigdy przesiadka z jednego narzędzia do drugiego albo z jednego systemu do drugiego nie jest prosta i często nie jest to najłatwiejsze zadanie, ale jest to realne. My też podchodzimy tutaj w tym wszystkim jako flowbiz do tego, żeby najpierw stawiamy na konsultacje, najpierw stawiamy na doradztwo, no to dlatego, że duża część systemów, duża część technicznej rzeczy po prostu już jest, daje nieograniczone możliwości, tak, a pomoc AI w tworzeniu oprogramowania daje ogromne korzyści dlatego, żeby skupić się na tym, na ludziach, na tym, żeby razem szkolić, żeby doradzać, konsultować dane rozwiązania i skupić się na tym w dużej mierze, bo samo rozwiązanie techniczne często, jak widzimy po tych różnych wdrożeniach nieudanych, po prostu samo narzędzie nie rozwiązuje problemu. Posiadanie narzędzia jakiegokolwiek, wykupienia go na niego licencji nie oznacza, że będziemy z niego korzystać, więc my tutaj mocno na to stawiamy, żeby było rozwiązanie to naszyte na miarę, żeby to było rozwiązanie, które będzie efektywne i które będzie łatwe do wdrożenia, które nie będzie rozwiązaniem, które po prostu powoduje ścisk żołądka, niechęć pracowników i tak dalej, tak, więc tutaj każdy jako właściciel wstawi sobie odpowiedni przymiotnik do tego, jakie emocje z tym są związane, tak, pytanie czy to przymiotnik. No dobra, dziękuję Wam na dzisiaj i do usłyszenia.",
   "scores": {
@@ -3189,66 +5608,174 @@
   "ranges": [
    [
     2556.97,
+    2558.32
+   ],
+   [
+    2558.88,
+    2559.76
+   ],
+   [
+    2560.44,
+    2565.64
+   ],
+   [
+    2565.9,
     2567.66
    ],
    [
-    2568.85,
+    2569.26,
+    2570.98
+   ],
+   [
+    2571.5,
     2574.96
    ],
    [
-    2575.55,
+    2575.86,
+    2579.88
+   ],
+   [
+    2580.14,
     2586.32
    ],
    [
     2587.42,
+    2594.4
+   ],
+   [
+    2594.66,
     2611.68
    ],
    [
-    2612.24,
+    2612.36,
+    2612.68
+   ],
+   [
+    2612.96,
+    2616.72
+   ],
+   [
+    2617.0,
     2627.28
    ],
    [
-    2627.71,
+    2628.08,
+    2628.72
+   ],
+   [
+    2629.12,
+    2632.86
+   ],
+   [
+    2633.16,
+    2637.66
+   ],
+   [
+    2638.04,
     2643.98
    ],
    [
-    2644.4,
+    2644.6,
     2646.14
    ],
    [
-    2646.66,
+    2646.7,
+    2652.9
+   ],
+   [
+    2653.22,
     2654.12
    ],
    [
-    2654.72,
+    2655.14,
     2658.26
    ],
    [
-    2658.76,
+    2659.38,
+    2661.24
+   ],
+   [
+    2661.72,
+    2663.72
+   ],
+   [
+    2664.18,
+    2669.02
+   ],
+   [
+    2669.42,
     2671.44
    ],
    [
-    2671.8,
+    2672.24,
     2685.54
    ],
    [
-    2686.04,
+    2686.74,
     2690.58
    ],
    [
-    2690.92,
+    2691.38,
     2692.6
    ],
    [
     2693.06,
+    2694.34
+   ],
+   [
+    2694.68,
+    2701.92
+   ],
+   [
+    2702.22,
+    2703.34
+   ],
+   [
+    2703.78,
     2708.48
    ],
    [
     2709.36,
+    2714.98
+   ],
+   [
+    2715.34,
+    2718.26
+   ],
+   [
+    2719.32,
+    2723.16
+   ],
+   [
+    2723.48,
+    2727.2
+   ],
+   [
+    2727.62,
+    2729.32
+   ],
+   [
+    2729.58,
+    2735.16
+   ],
+   [
+    2735.44,
     2739.08
    ],
    [
-    2739.42,
+    2740.06,
+    2744.56
+   ],
+   [
+    2744.88,
+    2746.32
+   ],
+   [
+    2746.66,
+    2747.26
+   ],
+   [
+    2747.66,
     2750.44
    ],
    [
@@ -3257,13 +5784,21 @@
    ],
    [
     2755.9,
+    2760.44
+   ],
+   [
+    2760.8,
+    2765.04
+   ],
+   [
+    2765.3,
     2767.8
    ]
   ],
   "start": 2556.97,
   "end": 2767.8,
-  "duration": 201.54,
-  "splices": 17,
+  "duration": 185.51,
+  "splices": 46,
   "hook_line": "Cześć. Zrobiłem już 8 wdrożeń z Open Mercato i chciałbym Ci powiedzieć pokrótce, jak",
   "transcript": "Cześć. Zrobiłem już 8 wdrożeń z Open Mercato i chciałbym Ci powiedzieć pokrótce, jak to wyglądało w praktyce. Mam na swoim koncie już firmy handlowe i produkcyjne, które korzystałem na co dzień z Open Mercato. Gdzie one tego najwięcej widzą korzyści? Już Wam o tym mówię. Pierwsza rzecz to jest tworzenie ofert. To jest jeden z najczęściej powtarzających się problemów, tą ofertę z tysiąca indeksów często móc tworzyć szybkie oferty, czyli dostajemy maila i nie czeka klient na niego kilka dni, żeby w ogóle tą ofertę przygotować, do tego też nie ma osoby, która tą ofertę z miłą chęcią przygotuje, bo wiemy jak to jest trudne w firmie. Każdy w tej firmie ma swoją wersję jakiegoś PDF -a, niektórzy z takim logiem, niektórzy z jakimś nowym logotypem, bo wiemy, że te szaty graficzne się różnią, każdy ma jakiś system wyceny, wszystko jest bardzo rozmyte i rozbite na kilkanaście różnych sposobów pracy, nie ma jednego systemu, a wprowadzenie tego systemu i ograniczenie go do bardzo wąskiej liczby reguł i ułożenie tego procesu powoduje, że zaczynamy pracować w jednolity i ten sam sposób. To powoduje przejrzystość danych, lepsze zrozumienie klienta, wiedzę o tym, dlaczego te oferty są odrzucane albo dlaczego te oferty nie zwracają się. I to też wszystko powoduje, że oferty często, oferty, które są różne i różnie pisane nie do końca wiemy, dlaczego na przykład tylko na 20 wystawionych ofert 3 oferty stały się zamówieniem. Dzięki zbieraniu tym danym, powiedzmy po pół roku i mając te dane w systemie, wiesz jaka jest konwersja Twoich handlowców na to, żeby te oferty jeszcze lepiej sprzedawały. Obłożenie je na pewno w jakimś jednym procesie, layoutie, sekcjach, oferta ma mieć w produktach, które są dostępne aktualnie w magazynie, powoduje, że możemy tą ofertę wygenerować dosłownie w ciągu chwili. A jak to działa w praktyce? U jednego producenta maszyn sportowych wdrożyliśmy asystenta AI, który po prostu na bieżąco czyta maile. Czyta maile i zbiera z nich informacje na temat wycen. Sprawdza, które dotyczą wycen i w locie przygotowuje Ci szkic takiej oferty. Dostajesz powiadomienia na Telegrama przykładowo albo na inny komunikator i możesz je zaakceptować albo poprosić o drobną korektę, zmianę. Wszystko w ciągu 5 minut. Wcześniej ta sama oferta zajmowała nawet kilkanaście godzin. Czemu kilkanaście godzin? no bo zanim się do niej zabraliśmy, zanim odkopaliśmy stare oferty, jak one wyglądały, która to była ta najlepsza oferta, powoduje, że zaczynamy tworzenie tej oferty prawdopodobnie w poniedziałek rano, a kończymy ją na przykład we wtorek pod koniec pracy, o ile wszystko dobrze pójdzie.",
   "scores": {
@@ -3295,15 +5830,43 @@
     2770.44
    ],
    [
-    2770.9,
+    2771.71,
+    2772.57
+   ],
+   [
+    2772.95,
     2774.14
    ],
    [
-    2774.6,
+    2775.51,
+    2777.41
+   ],
+   [
+    2777.67,
+    2778.63
+   ],
+   [
+    2779.37,
+    2780.35
+   ],
+   [
+    2780.83,
+    2784.97
+   ],
+   [
+    2785.37,
     2788.5
    ],
    [
     2790.34,
+    2790.89
+   ],
+   [
+    2791.25,
+    2795.83
+   ],
+   [
+    2796.53,
     2797.04
    ],
    [
@@ -3311,63 +5874,271 @@
     2803.2
    ],
    [
-    2803.5,
+    2804.23,
+    2812.19
+   ],
+   [
+    2813.15,
     2816.58
    ],
    [
-    2818.22,
+    2819.07,
+    2825.39
+   ],
+   [
+    2825.83,
+    2830.41
+   ],
+   [
+    2831.57,
+    2833.57
+   ],
+   [
+    2834.13,
     2837.0
    ],
    [
-    2837.24,
+    2837.95,
     2840.4
    ],
    [
     2841.6,
+    2842.04
+   ],
+   [
+    2842.44,
+    2847.07
+   ],
+   [
+    2847.33,
     2860.92
    ],
    [
-    2861.16,
+    2861.47,
+    2864.95
+   ],
+   [
+    2865.53,
+    2873.39
+   ],
+   [
+    2873.77,
+    2874.39
+   ],
+   [
+    2874.67,
+    2877.23
+   ],
+   [
+    2877.69,
+    2884.09
+   ],
+   [
+    2884.37,
+    2885.76
+   ],
+   [
+    2886.2,
+    2898.43
+   ],
+   [
+    2899.27,
+    2901.91
+   ],
+   [
+    2902.33,
+    2905.57
+   ],
+   [
+    2906.25,
     2910.34
    ],
    [
     2910.96,
+    2918.73
+   ],
+   [
+    2919.19,
+    2930.49
+   ],
+   [
+    2930.79,
+    2936.41
+   ],
+   [
+    2936.97,
     2944.02
    ],
    [
-    2945.45,
+    2945.89,
+    2954.15
+   ],
+   [
+    2954.45,
     2962.3
    ],
    [
     2963.2,
+    2970.63
+   ],
+   [
+    2970.95,
+    2978.23
+   ],
+   [
+    2978.57,
     2980.38
    ],
    [
-    2980.84,
+    2981.45,
+    2984.47
+   ],
+   [
+    2984.93,
+    2985.57
+   ],
+   [
+    2985.83,
+    2988.21
+   ],
+   [
+    2988.55,
+    2993.47
+   ],
+   [
+    2993.83,
     2996.44
    ],
    [
-    2996.84,
+    2997.01,
+    3000.37
+   ],
+   [
+    3000.81,
+    3003.17
+   ],
+   [
+    3003.49,
+    3006.45
+   ],
+   [
+    3006.89,
+    3007.59
+   ],
+   [
+    3007.99,
+    3011.83
+   ],
+   [
+    3012.37,
+    3016.11
+   ],
+   [
+    3016.47,
+    3020.46
+   ],
+   [
+    3020.82,
+    3022.35
+   ],
+   [
+    3022.99,
     3029.32
    ],
    [
-    3031.56,
+    3032.41,
+    3039.47
+   ],
+   [
+    3039.89,
+    3042.05
+   ],
+   [
+    3042.47,
+    3048.25
+   ],
+   [
+    3048.59,
+    3050.67
+   ],
+   [
+    3051.03,
     3052.48
    ],
    [
-    3052.8,
+    3053.55,
+    3061.18
+   ],
+   [
+    3061.52,
+    3064.05
+   ],
+   [
+    3064.35,
+    3073.67
+   ],
+   [
+    3073.93,
+    3077.17
+   ],
+   [
+    3077.73,
+    3081.46
+   ],
+   [
+    3081.9,
+    3083.55
+   ],
+   [
+    3084.05,
+    3085.47
+   ],
+   [
+    3085.79,
+    3089.31
+   ],
+   [
+    3089.85,
+    3097.81
+   ],
+   [
+    3098.83,
     3101.62
    ],
    [
     3102.0,
+    3102.73
+   ],
+   [
+    3103.39,
+    3109.39
+   ],
+   [
+    3109.67,
     3115.38
    ],
    [
-    3116.12,
+    3116.65,
     3130.02
    ],
    [
     3130.46,
+    3140.01
+   ],
+   [
+    3140.73,
+    3144.39
+   ],
+   [
+    3144.69,
+    3147.36
+   ],
+   [
+    3147.94,
+    3153.25
+   ],
+   [
+    3153.59,
     3160.08
    ],
    [
@@ -3375,14 +6146,34 @@
     3173.76
    ],
    [
-    3174.0,
+    3174.57,
+    3178.27
+   ],
+   [
+    3178.59,
+    3188.05
+   ],
+   [
+    3188.39,
+    3201.19
+   ],
+   [
+    3201.49,
+    3212.33
+   ],
+   [
+    3212.79,
+    3223.23
+   ],
+   [
+    3223.63,
     3225.96
    ]
   ],
   "start": 2767.88,
   "end": 3225.96,
-  "duration": 442.47,
-  "splices": 21,
+  "duration": 405.05,
+  "splices": 85,
   "hook_line": "Ok, kolejny temat. Firma produkująca pamiątki w Kołobrzegu przyszła do mnie z dość dużym",
   "transcript": "Ok, kolejny temat. Firma produkująca pamiątki w Kołobrzegu przyszła do mnie z dość dużym problemem, bo cały proces obsługi w firmie funkcjonuje na karce. Potrzebowali stworzyć i scentralizować dane do tego, aby po prostu mieć kontrolę Aktualnie ta kontrola była, ale była bardzo w ograniczonym zakresie. Kontrola była głównie od księgowych i od raportów miesięcznych, kwartalnych, rocznych do tego jak firma pracuje i jak firma, w jakiej jest firma kondycji. Tylko, że to już jest po fakcie, jeżeli chodzi o dane z księgowości. My jako osoby, które prowadzą firmę potrzebujemy danych na zawołanie, danych codziennie, tygodniowo, miesięcznie, kwartalnie. Dzięki temu jesteśmy w stanie szybciej podejmować decyzje, szybciej rozwiązywać problemy w naszej firmie, bo wiemy gdzie one się pojawiają. I sama centralizacja danych, gdzie nawet AI nie jest tutaj jeszcze w tym wszystkim potrzebne, powoduje, że dane mamy w jednym miejscu i to jest ta rzecz, na której często zaczynamy, czyli scentralizowanie danych w jedno miejsce tak, aby zbudować fundament pod sztuczną inteligencję. Dlaczego fundament pod sztuczną inteligencję? Bo jeżeli będziemy mieć w firmie bardzo rozproszone dane na kilku Excelach, w kilku systemach, to uwierz mi, ale AI sobie z tym nie poradzi. Nie będzie wiedziało, które dane są prawidłowo, nie będzie się mogło z niektórymi systemami połączyć, bo duża część systemów typu klasy ERP, CRM są systemami zamkniętymi. Masa klientów ma jeszcze systemy, które są instalowane na Windowsie, nie są w chmurze i nie ma do nich dostępu. I to jest realny problem, który często i głównie, może nawet nie często, ale bardzo w większości przypadków rozwiązujemy. I tak samo było w przypadku tej firmy. Zrobiliśmy integrację z systemem PC Business, który jest systemem księgowym, sprzedażowym, po to, żeby mieć jedno źródło prawdy i synchronizujemy go codziennie, po to, aby wszyscy pracownicy, nie tylko szef i osoby, które są księgowymi miały do tych danych dostęp. Pobieramy dane typu cenę, zamówienia, ileś rzeczy na magazynie. One się aktualizują raz dziennie. Dzięki temu handlowcy, firmy, osoby z produkcji mają na bieżąco do nich dostęp. I już teraz widzimy, jak dużo czasu to zaoszczędziło. Jak sposób pracy handlowca będzie się w takiej branży zmieniał. Dlaczego sposób pracy w firmie, która była oparta na tym, aby jeździć pomiędzy punktami, czyli typowy handlowiec pracującej w branży pamiątkarskiej sezonowej musiał wejść, wsiąść w samochód i objechać z towarem już wyprodukowanym całe wybrzeże albo w okresie zimowym całe tutaj południe Polski. Schemat pracy się zmienia. Koszty firmy się zwiększają, koszty produkcji się zwiększają. Liczba nadprodukcji, która nie jest wykorzystywana również powoduje straty w firmie, ale wiemy dopiero o tym bardzo późno. I teraz co ten system pozwolił zmienić w sposobie pracy i jak na ten proces wpłynął? A zmienił to tak mocno na tyle, że handlowiec teraz będzie zamawiał takie ilości i tyle po prostu będą to robione na zamówienie produkty, czyli oczywiście mając flagowe produkty na tak zwanej, na pace, czyli na naszym dostawczaku, na naszym dostawczaku, będziemy mieć te flagowe produkty, które możemy dać od ręki, ale często pojawiało się problem taki, że nagle wydawało nam się, że jakaś rzecz siądzie, pójdzie zwał jak zwał i nagle produkujemy tego dziesiątki tysięcy sztuk, a finalnie okazuje się, że one się nie sprzedały. Ta braża też jest tutaj specyficzna, że dla każdej nadmorskiej miejscowości albo południowo tutaj, albo na każdej nadmorskiej miejscowości każdy, jak dobrze wiecie, każdy wzór, każda miejscowość ma swój napis, ma swoją jakby jakby taką indywidualne dostosowanie do potrzeb danej miejscowości. To powoduje, że jeżeli wyprodukowaliśmy tysiące sztuk na miejscowość, przypuśćmy ustka, nie zrobisz tego samego na tych samych półproduktach do rowów albo do łeby na przykład, bo już zostały wykorzystane. Dzięki temu możemy zmienić sposób pracy na to, żeby firma mogła, handlowiec jeżdżący z tabletem po prostu prezentował nam te produkty i w momencie, kiedy klient się zdecyduje składać je na zamówienie i przyspieszyć sposób dostawy. Co tu jeszcze zmieniliśmy w sposobie pracy? Zmieniliśmy to, że klient przestaje zamawiać mailowo przez jakieś formularze, które są bardzo nieczytelne, na jakichś karteczkach odręcznie napisanych które były bardzo trudne do zrozumienia, często powodowały błędy, często powodowały nadprodukcje, często powodowały złą relację z klientem i nieporozumienia. Dzięki wprowadzeniu systemu i panelu klienta, który właśnie został zrobiony w oparciu o Open Mercato, klient sam się loguje, sam może złożyć zamówienie, sam widzi statusy, w których to zamówienie jest Dzięki temu mamy zaoszczędzone bardzo dużo czasu, bo nasz pracownik w biurze, na produkcji dostaje powiadomienie, że wpadło nowe zamówienie i dzięki temu może już przystąpić do realizacji. Oczywiście nie zawsze jest tak, że klient musi to zrobić sam, bo powiedzmy nie każdy klient sobie poradzi z takim systemem. Dzięki temu wiemy, że na przykład daliśmy możliwości handlowcowi składania zamówień za klienta, tak? To jest rzecz normalna, to się zawsze odbywało, jednak dajemy dwie drogi. Jeśli klient sobie nie radzi, handlowiec przejmuje tą rolę, którą zawsze miał i wprowadza za klienta zamówienie i oczywiście handlowiec ma swój do tego panel, handlowiec widzi zamówienia swoich klientów, a klient dalej widzi tylko swoje zamówienie. Więc to jest ten przypadek, jeżeli chodzi o zastosowanie Open Mercato i jak to zastosowanie jest dla firmy i handlu B2B w branży pamiątkarskiej.",
   "scores": {
@@ -3411,34 +6202,114 @@
   "ranges": [
    [
     3248.86,
+    3249.91
+   ],
+   [
+    3250.47,
+    3253.47
+   ],
+   [
+    3254.09,
+    3260.47
+   ],
+   [
+    3261.07,
+    3264.91
+   ],
+   [
+    3265.27,
     3271.44
    ],
    [
     3272.54,
+    3284.83
+   ],
+   [
+    3285.09,
     3293.16
    ],
    [
     3293.66,
+    3307.83
+   ],
+   [
+    3308.55,
+    3315.77
+   ],
+   [
+    3316.77,
+    3321.41
+   ],
+   [
+    3321.73,
     3332.42
    ],
    [
     3333.1,
+    3336.86
+   ],
+   [
+    3337.24,
+    3340.93
+   ],
+   [
+    3341.49,
+    3345.01
+   ],
+   [
+    3345.33,
+    3359.81
+   ],
+   [
+    3360.15,
+    3369.33
+   ],
+   [
+    3369.63,
     3371.42
    ],
    [
-    3371.71,
+    3372.21,
     3375.44
    ],
    [
     3375.68,
+    3378.49
+   ],
+   [
+    3379.47,
     3385.42
    ],
    [
-    3385.74,
+    3385.99,
+    3388.91
+   ],
+   [
+    3389.29,
+    3391.67
+   ],
+   [
+    3391.99,
+    3393.33
+   ],
+   [
+    3393.65,
+    3403.45
+   ],
+   [
+    3403.99,
     3405.62
    ],
    [
-    3405.88,
+    3406.55,
+    3407.93
+   ],
+   [
+    3408.23,
+    3411.49
+   ],
+   [
+    3411.75,
     3412.58
    ],
    [
@@ -3446,11 +6317,55 @@
     3421.86
    ],
    [
-    3422.18,
+    3422.49,
+    3424.85
+   ],
+   [
+    3425.17,
+    3425.97
+   ],
+   [
+    3426.49,
+    3440.45
+   ],
+   [
+    3440.89,
     3442.74
    ],
    [
     3443.76,
+    3444.77
+   ],
+   [
+    3445.33,
+    3448.85
+   ],
+   [
+    3449.17,
+    3450.2
+   ],
+   [
+    3450.74,
+    3452.55
+   ],
+   [
+    3453.27,
+    3456.77
+   ],
+   [
+    3457.19,
+    3462.35
+   ],
+   [
+    3463.27,
+    3467.91
+   ],
+   [
+    3468.29,
+    3470.07
+   ],
+   [
+    3470.69,
     3472.14
    ],
    [
@@ -3458,11 +6373,43 @@
     3475.84
    ],
    [
-    3476.16,
+    3476.39,
+    3477.87
+   ],
+   [
+    3478.65,
+    3479.17
+   ],
+   [
+    3479.79,
+    3481.79
+   ],
+   [
+    3482.19,
+    3486.71
+   ],
+   [
+    3487.35,
+    3489.73
+   ],
+   [
+    3490.17,
+    3491.47
+   ],
+   [
+    3491.95,
     3497.82
    ],
    [
-    3498.68,
+    3499.03,
+    3518.83
+   ],
+   [
+    3519.25,
+    3520.11
+   ],
+   [
+    3521.15,
     3524.14
    ],
    [
@@ -3470,35 +6417,111 @@
     3525.12
    ],
    [
-    3525.62,
+    3525.92,
+    3534.43
+   ],
+   [
+    3534.69,
+    3553.77
+   ],
+   [
+    3554.17,
     3562.5
    ],
    [
-    3562.82,
+    3563.07,
+    3565.35
+   ],
+   [
+    3566.27,
+    3567.73
+   ],
+   [
+    3568.15,
     3572.6
    ],
    [
-    3573.44,
+    3574.31,
+    3581.03
+   ],
+   [
+    3581.31,
+    3599.91
+   ],
+   [
+    3600.35,
     3606.52
    ],
    [
-    3607.54,
+    3607.77,
+    3610.61
+   ],
+   [
+    3611.05,
+    3612.81
+   ],
+   [
+    3613.61,
+    3617.35
+   ],
+   [
+    3617.63,
     3622.76
    ],
    [
     3623.56,
+    3626.61
+   ],
+   [
+    3626.91,
+    3627.49
+   ],
+   [
+    3627.75,
+    3632.21
+   ],
+   [
+    3632.55,
+    3639.91
+   ],
+   [
+    3640.17,
+    3643.13
+   ],
+   [
+    3643.49,
+    3656.71
+   ],
+   [
+    3657.09,
     3665.72
    ],
    [
-    3666.98,
+    3667.22,
+    3672.05
+   ],
+   [
+    3672.69,
     3674.2
    ],
    [
     3675.08,
+    3679.98
+   ],
+   [
+    3680.78,
+    3686.41
+   ],
+   [
+    3686.85,
+    3694.39
+   ],
+   [
+    3695.11,
     3697.28
    ],
    [
-    3697.52,
+    3698.17,
     3700.16
    ],
    [
@@ -3507,6 +6530,18 @@
    ],
    [
     3706.82,
+    3712.77
+   ],
+   [
+    3713.25,
+    3717.29
+   ],
+   [
+    3717.79,
+    3720.19
+   ],
+   [
+    3720.65,
     3734.68
    ],
    [
@@ -3516,8 +6551,8 @@
   ],
   "start": 3248.86,
   "end": 3737.16,
-  "duration": 470.17,
-  "splices": 25,
+  "duration": 435.12,
+  "splices": 86,
   "hook_line": "dobra kolejny odcinek, bardzo dużo czytam i widzę, że takie cudowne to całe AI",
   "transcript": "dobra kolejny odcinek, bardzo dużo czytam i widzę, że takie cudowne to całe AI jest, ale cały czas brakuje nam realnych przypadków, gdzie to AI zostało zastosowane i gdzie realnie to AI zwróciło się i powodowało, że firma jest w lepszej kondycji niż jeszcze na przykład miesiąc temu. No ja mam takich przykładów już kilkanaście, które mogę się pochwalić i chciałbym Wam dzisiaj przytoczyć jeden z nich. Jednym z nich jest firma handlowa, która handluje paszą dla zwierząt i miała dosyć poważny problem z tym, że systemy typu Apilo, Baselinker, które dają możliwość zarządzania e -commercem i zarządzania różnymi marketplacesami, mają o tyle utrudnioną sytuację, że standardowe paczki są do 25 kg. i nie było za bardzo rozwiązania, które powodowało, żeby te paczki po prostu lepiej pakować, lepiej oznaczać, bo jedno zamówienie składało się na przykład z czterech paczek. Klient zamawiał cztery worki paszy po 25 kilo, więc nie mogliśmy wsadzić tego w jedno zamówienie, nie dawało rady wydrukować jednej etykiety, bo to musiały być cztery różne etykiety, zgłosił się do mnie klient ze Słupska, który zgłosiła się do mnie klientka ze Słupska, która z takim problemem i jak sytuacja ma się teraz, teraz i jak wcześniej ta sytuacja miała, wyglądała. Klient wchodził wcześniej w Apillo i po to, żeby wydrukować na przykład cztery różne etykiety dla tego samego produktu, bo tak musiał to zrobić, jeżeli na przykład było wysłane to in postem, musiał wchodzić w apillo, system, o którym tutaj możecie sobie zobaczyć, link do niego podeślę, bo to jest całkiem fajny system do zarządzania e -commerce 'em i do zarządzania marketplacesami, ale już wracając tutaj do sedna sprawy, musiał klient, musiał wejść w komentarzu, żeby wiedzieć, do którego zamówienia dana etykieta jest, musiał w komentarzu usunąć jedną część, zostawić tylko ten produkt, który będzie dla tego drukowany, to sobie gdzieś przeklejał z boku do Excela i klient drukował etykietę. Później z tego Excela wklejał całą resztę, brał drugi człon, trzeci, czwarty i tak po kolei. Ten proces wykonywał dla każdego zamówienia. Jak ja to widziałem, to zajmowało jedno zamówienie około 10 minut do 15 że to zamówienie było, a do tego jeszcze na końcu klient zapisywał sobie informację z którego kanału, od którego kuriera to dane zamówienie idzie. Po to, aby oczywiście w momencie, kiedy przyjeżdża kurier i wydają na przykład 100 -200 paczek dziennie, wiedzieć, że te 100 paczek zostało odebranych, żeby tutaj nic czego nie zgubić. I o tyle to teraz się zmieniło, kliknięcie. Teraz klient widzi, dostał system, w którym opiera się też o tutaj, o AI i pomaga znajdywać podobne, podobne zamówienia. Łączy to wszystko w jeden koszyk i klikasz wygeneruj etykiety. Wszystkie etykiety generują się w ciągu kilku minut i masz je od razu do wydrukowania. idą do drukarki etykiet, etykiety są drukowane i zaoszczędził klient z tego, co tutaj jakby od informacji i mierzyliśmy około 100 godzin miesięcznie. Wyobraź sobie, że ściąga ktoś z Ciebie 100 godzin miesięcznie ręcznej, frustrującej, wkurzającej pracy, która jest niechętnie robiona przez nikogo. Nikt nie chce takiej pracy robić, bo to jest po prostu praca, która jest też energetycznie bardzo, bardzo obciążająca, bardzo monotonna, łatwą pomyłkę i tak naprawdę to są rzeczy, które klienci powodują dużo nerwów i dużo gaszenia pożarów, tak? Tak, więc zaostrzegliśmy bardzo dużo czasu i dzięki temu pojawiła się przestrzeń na to, żeby osobę, która wcześniej to robiła, dać ją do innych zadań, dać ją do rzeczy, gdzie bardziej potrzebujemy w tym wszystkim człowieka, do rzeczy, które nie są po prostu łatwe do zautomatyzowania albo to, co zawsze dla firmy było ważne, ale nigdy nie było czasu na to. Więc tak to zostało tutaj w tej firmie zaprojektowane i kolejny przykład z tej firmy, tak już idąc dalej, to też jest katalog AI. Katalog AI, jak to wygląda? Wcześniej klient musiał dane z faktury przekopiować ręcznie do na przykład programu Nexo. do programu Nexo i ten program Nexo trzeba było wszystkie te dane uzupełnić, przekleić, do tego trzeba było wejść w chat GPT albo Gmini, stworzyć opis jeden dla Allegro, opis dla swojego sklepu na WordPressie, opis dla Erli na przykład i jeszcze dla innych Marketplace 'ów, do tego trzeba było znaleźć zdjęcia, naprawdę dużo, dużo pracy ręcznej i tutaj z informacji, jakie widziałem, jakie klientka do mnie tutaj przyszła z tymi informacjami, wprowadzenie 5 -10 produktów i oczywiście robienie jeszcze przy tym innych rzeczy i gaszenie pożarów, bo co chwilę ktoś puka i co chwilę ktoś wchodzi, generowało to, że kilkanaście produktów potrafiło być wprowadzanych na przykład cały dzień. Nieraz, jeżeli na przykład to była faktura to te wszystkie pozycje nawet nie były wprowadzone, nie było na to po prostu czasu, bo ktoś zachorował, bo były ważniejsze rzeczy i przez to nasz asortyment nie rósł w żaden sposób, więc tutaj znowu wchodzi AI, które pozwala po pierwsze odczytać te dokumenty w bardzo prosty sposób, zbudować listę produktów, jakie chcemy dodać w naszego katalogu, przygotować nam opisy pod każdą platformę, sprawdzić to z naszymi magazynami i czy ten produkt już istnieje i dosłownie jednym kliknięciem dodać wszystko do naszego magazynu i do naszych programów księgowych, magazynowych, fakturowych, jakkolwiek, gdzie tego niekolwiek byśmy nie potrzebowali. Więc to są takie dwa zastosowania, że tak powiem, z pola bitwy, jeżeli chodzi o firmę handlową i naprawdę widzimy mocno korzyści, tutaj już też mam informację od tego klienta, że no już przebiera nogami, żeby robić kolejne rzeczy i próbować to zautomatyzować, bo też czuje spokój, większy spokój po wprowadzeniu takich rzeczy. I teraz pytanie, czy to działa idealnie? No nie, pamiętajmy, że systemy oparte o AI potrzebują czasu, żeby się potrzebują doślifowania tych rzeczy. Ja to tak nazywam, to są takie dokręcanie śrubek w tym wszystkim. I te śrubki po prostu przez jakiś czas trzeba podokręcać, tak żeby po kilku miesiącach po prostu ten proces zostawić i o nim zapomnieć. A jeżeli chciałbyś zobaczyć, jak o takim procesie zapomnieć i jak te śrubki ja dokręcam, to zapraszam Cię na flowbiz .pl, a porozmawiamy i pokażę Ci, jak można to zrobić u Ciebie w firmie i jak rozwiązać Twoje problemy nowych technologii.",
   "scores": {
@@ -3546,53 +6581,101 @@
   "ranges": [
    [
     2424.41,
+    2427.68
+   ],
+   [
+    2428.22,
+    2429.7
+   ],
+   [
+    2432.04,
+    2434.16
+   ],
+   [
+    2434.42,
+    2437.44
+   ],
+   [
+    2437.72,
+    2441.2
+   ],
+   [
+    2442.18,
     2446.06
    ],
    [
-    2446.68,
+    2447.62,
+    2449.74
+   ],
+   [
+    2450.44,
     2454.62
    ],
    [
-    2455.32,
+    2456.16,
     2464.52
    ],
    [
-    2464.92,
+    2465.44,
+    2467.06
+   ],
+   [
+    2467.38,
     2476.28
    ],
    [
-    2476.62,
+    2477.22,
+    2486.38
+   ],
+   [
+    2486.94,
+    2488.32
+   ],
+   [
+    2488.62,
     2490.74
    ],
    [
-    2492.2,
+    2492.54,
+    2498.3
+   ],
+   [
+    2499.02,
+    2501.52
+   ],
+   [
+    2502.2,
     2505.2
    ],
    [
-    2505.98,
+    2506.46,
     2510.68
    ],
    [
-    2510.94,
+    2511.6,
     2512.96
    ],
    [
-    2517.56,
+    2518.24,
     2521.62
    ],
    [
-    2522.06,
+    2522.3,
     2527.74
    ],
    [
     2537.36,
+    2538.21
+   ],
+   [
+    2538.73,
     2543.36
    ]
   ],
   "start": 2424.41,
   "end": 2543.36,
-  "duration": 99.73,
-  "splices": 10,
+  "duration": 86.23,
+  "splices": 22,
   "hook_line": "Cześć, czy masz wrażenie, że cała bańka AI -owa powoduje strach w Twojej firmie?",
   "transcript": "Cześć, czy masz wrażenie, że cała bańka AI -owa powoduje strach w Twojej firmie? Czy cały czas masz poczucie, że wszystkie nowinki techniczne uciekają Ci, a Ty dalej masz problem z tym, żeby dobrze nawet wykorzystać czat GPT w Twojej firmie. To jest normalne uczucie i zagubienie w tych gościu informacji jest czymś zupełnie normalnym. Ja zapraszam Cię na warsztaty, na których będę pokazywał jak mądrze i jak etapami wdrażać AI w Twojej firmie. Po co AI w Twojej firmie? A po to, aby zlikwidować pracę ręczną, tak zwane klikanie i przenoszenie rzeczy z jednego miejsca w drugie. Niestety jest to jedna z pierwszych pozycji na raportach od firmy Antropi, która jest właścicielem narzędzia Cloud, od tego, że ta praca będzie likwidowana jako pierwsza. Rzeczy, które przenosimy ręcznie będą najszybciej automatyzowane. Generują teraz bardzo dużo zawsze problemów, błędów i kosztów dla firmy. Jakie to są problemy? Jakie to są rzeczy, które można wdrożyć? Ręczne wystawianie ofert. Ręczne wystawianie ofert, raportowanie danych, przenoszenie z jednego Excel do drugiego, aby druga osoba miała na przykład dostęp. Zautomatyczne, zautomatyzowane wystawianie faktur dla firmie.",
   "scores": {

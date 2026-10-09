@@ -2,8 +2,20 @@
  "clip": "ad-33-g1",
  "brand": "flowbiz",
  "hook": {
-  "text": "Programista: *3 miesiące. ChatGPT: *3 dni. Kto kłamie?",
-  "until": "Nikt"
+  "text": "Programista: *3 miesiące. ChatGPT: *3 dni. Kto *kłamie?",
+  "until": "Nikt",
+  "visual": {
+   "kind": "versus",
+   "left": {
+    "art": "h-developer",
+    "label": "3 miesiące"
+   },
+   "right": {
+    "logo": "openai",
+    "label": "3 dni",
+    "accent": true
+   }
+  }
  },
  "cta": {
   "chip": "Systemy z AI · flowbiz.pl",
@@ -39,7 +51,7 @@
    "type": "title",
    "at": "Nikt",
    "until": "3",
-   "kicker": "Nikt",
+   "kicker": "Nikt nie kłamie",
    "text": "Mówią o *dwóch różnych rzeczach"
   },
   {

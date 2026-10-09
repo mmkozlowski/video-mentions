@@ -3,7 +3,25 @@
  "brand": "flowbiz",
  "hook": {
   "text": "Prezes na *lotnisku wie, co się dzieje na *produkcji",
-  "until": "telefonu"
+  "until": "telefonu",
+  "visual": {
+   "kind": "flow",
+   "items": [
+    {
+     "art": "h-plane",
+     "label": "lotnisko"
+    },
+    {
+     "logo": "telegram",
+     "label": "agent"
+    },
+    {
+     "art": "h-factory",
+     "label": "produkcja",
+     "accent": true
+    }
+   ]
+  }
  },
  "cta": {
   "chip": "Agent AI dla zarządu · flowbiz.pl",

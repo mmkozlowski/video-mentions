@@ -2,8 +2,21 @@
  "clip": "ad-12-r2",
  "brand": "flowbiz",
  "hook": {
-  "text": "Co, jak *jedyna osoba, która wie, pójdzie na *emeryturę?",
-  "until": "Na produkcji"
+  "text": "Cała wiedza w jednym *zeszycie. Co, gdy przyjdzie *emerytura?",
+  "until": "Na produkcji",
+  "visual": {
+   "kind": "versus",
+   "sign": "→",
+   "left": {
+    "art": "h-notebook",
+    "label": "jeden zeszyt"
+   },
+   "right": {
+    "art": "h-calendar",
+    "label": "emerytura",
+    "accent": true
+   }
+  }
  },
  "topic": {
   "kicker": "Wiedza produkcji",
@@ -56,7 +69,7 @@
    "from": 5,
    "to": 1,
    "suffix": "osoba",
-   "label": "wie, jak je robić — z zeszytu",
+   "label": "wie, jak je zrobić",
    "dur": 1.0
   },
   {

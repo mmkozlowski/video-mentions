@@ -10,6 +10,7 @@ słowo (to byłby kawałek wyciętej powtórki).
 import json
 
 import edl
+from fillers import filler_spans, subtract
 from sources import DATA, load_words
 
 PAD_HEAD = 0.35      # oddech przed pierwszym słowem klipu
@@ -21,7 +22,7 @@ KEEP_AFTER = 0.20    # po słowie przed wyciętą luką (wybrzmienie)
 KEEP_BEFORE = 0.12   # przed słowem po luce (nabranie powietrza)
 
 
-def snap(words, ranges):
+def snap(words, ranges, source):
     """Przedziały [od, do) → przedziały dociągnięte do słów + tekst."""
     resolved, text = [], []
     for index, entry in enumerate(ranges):
@@ -45,7 +46,11 @@ def snap(words, ranges):
             end = min(end, words[last + 1]["start"] - GUARD)
         start = exact_start if exact_start is not None else start
         end = exact_end if exact_end is not None else end
-        resolved.extend(tighten(words, first, last, max(0.0, start), end))
+        parts = tighten(words, first, last, max(0.0, start), end)
+        # „yyy” i cisza doklejone przez Whispera do słowa — widać je dopiero w audio;
+        # ostatnie wybrzmienie klipu zostaje (pod nim wchodzi plansza końcowa)
+        spans = [s for s in filler_spans(source, parts[0][0], parts[-1][1]) if s[1] < end - 0.3]
+        resolved.extend(subtract(parts, spans))
         text.append(" ".join(w["word"].strip() for w in words[first:last + 1]))
     return resolved, text
 
@@ -92,7 +97,7 @@ def main():
     clips = []
 
     def add(entry, kind, source, clip_id):
-        ranges, text = snap(words[source], entry["ranges"])
+        ranges, text = snap(words[source], entry["ranges"], source)
         duration = round(sum(b - a for a, b in ranges), 2)
         score, prio = priority(entry["hook"], entry["delivery"])
         brand = entry.get("brand", "flowbiz")

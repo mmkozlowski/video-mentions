@@ -18,6 +18,10 @@ słowie wygląda na pocięty.
 - Hook na dole, na twarzy, a nie pełnoekranowy tekst na start („traci wiarygodność”, do testu).
 - Zawsze wycinać „yyy” i dłuższe milczenie. Zoom in/out na twarzy jest obowiązkowy.
 - Wersja YouTube z panelem bocznym jest dobra, nie przebudowywać jej bez powodu.
+- (9.10 po południu) Kilka zdań pokazuj po kolei, nie na jednym slajdzie. Hook ma grafikę
+  (ikona albo schemat z oryginalnymi logo), a nie sam tekst. Hook pisz jak nagłówek, nie
+  przepisuj 1:1 tego, co mówię. Numer i liczba z jednostką się nie łamią, a font jest
+  stały, bez przeskoków. Nic nie zasłania głowy (chip zjechał na pierś). Tylko paleta A.
 
 **Why:** odbiorca w pionie ma jedną rzecz do przeczytania naraz. Duplikat tekstu i ścisk
 zabijają czytelność, a w podglądzie na komputerze tego nie widać.

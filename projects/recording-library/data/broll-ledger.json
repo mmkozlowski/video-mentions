@@ -236,5 +236,175 @@
   "motion": "steam rises from the cup, he scrolls and smiles, slow push-in",
   "at": "2026-10-08 23:58",
   "ai_generated": true
+ },
+ {
+  "id": "h-skyscraper",
+  "kind": "hook-icon",
+  "model": "gemini-3-pro-image",
+  "file": "assets/hook-art/h-skyscraper.png",
+  "est_usd": 0.134,
+  "prompt": "a tall glass corporate skyscraper, far away and cold",
+  "at": "2026-10-09 10:52",
+  "ai_generated": true
+ },
+ {
+  "id": "h-pin",
+  "kind": "hook-icon",
+  "model": "gemini-3-pro-image",
+  "file": "assets/hook-art/h-pin.png",
+  "est_usd": 0.134,
+  "prompt": "a map location pin standing on a small cozy town with a lighthouse by the sea",
+  "at": "2026-10-09 10:52",
+  "ai_generated": true
+ },
+ {
+  "id": "h-paper-stack",
+  "kind": "hook-icon",
+  "model": "gemini-3-pro-image",
+  "file": "assets/hook-art/h-paper-stack.png",
+  "est_usd": 0.134,
+  "prompt": "a tall messy stack of printed paper order sheets with a paperclip",
+  "at": "2026-10-09 10:53",
+  "ai_generated": true
+ },
+ {
+  "id": "h-notebook",
+  "kind": "hook-icon",
+  "model": "gemini-3-pro-image",
+  "file": "assets/hook-art/h-notebook.png",
+  "est_usd": 0.134,
+  "prompt": "an old worn handwritten notebook, open, with a pencil lying on it",
+  "at": "2026-10-09 10:53",
+  "ai_generated": true
+ },
+ {
+  "id": "h-dashboard",
+  "kind": "hook-icon",
+  "model": "gemini-3-pro-image",
+  "file": "assets/hook-art/h-dashboard.png",
+  "est_usd": 0.134,
+  "prompt": "a computer monitor showing an abstract business dashboard with bar charts, everything green and tidy",
+  "at": "2026-10-09 10:53",
+  "ai_generated": true
+ },
+ {
+  "id": "h-factory",
+  "kind": "hook-icon",
+  "model": "gemini-3-pro-image",
+  "file": "assets/hook-art/h-factory.png",
+  "est_usd": 0.134,
+  "prompt": "a small factory hall building with a sawtooth roof and a chimney",
+  "at": "2026-10-09 10:54",
+  "ai_generated": true
+ },
+ {
+  "id": "h-plane",
+  "kind": "hook-icon",
+  "model": "gemini-3-pro-image",
+  "file": "assets/hook-art/h-plane.png",
+  "est_usd": 0.134,
+  "prompt": "a passenger airplane taking off, seen from the side",
+  "at": "2026-10-09 10:54",
+  "ai_generated": true
+ },
+ {
+  "id": "h-warning-gear",
+  "kind": "hook-icon",
+  "model": "gemini-3-pro-image",
+  "file": "assets/hook-art/h-warning-gear.png",
+  "est_usd": 0.134,
+  "prompt": "a cog wheel with a cracked tooth and a small warning triangle leaning on it",
+  "at": "2026-10-09 10:54",
+  "ai_generated": true
+ },
+ {
+  "id": "h-pizza",
+  "kind": "hook-icon",
+  "model": "gemini-3-pro-image",
+  "file": "assets/hook-art/h-pizza.png",
+  "est_usd": 0.134,
+  "prompt": "a pizza in an open cardboard box",
+  "at": "2026-10-09 10:54",
+  "ai_generated": true
+ },
+ {
+  "id": "h-robot",
+  "kind": "hook-icon",
+  "model": "gemini-3-pro-image",
+  "file": "assets/hook-art/h-robot.png",
+  "est_usd": 0.134,
+  "prompt": "a friendly small AI assistant robot head with glowing amber eyes",
+  "at": "2026-10-09 10:55",
+  "ai_generated": true
+ },
+ {
+  "id": "h-developer",
+  "kind": "hook-icon",
+  "model": "gemini-3-pro-image",
+  "file": "assets/hook-art/h-developer.png",
+  "est_usd": 0.134,
+  "prompt": "a programmer at a laptop seen from behind, wearing headphones, stylized figurine",
+  "at": "2026-10-09 10:55",
+  "ai_generated": true
+ },
+ {
+  "id": "h-money-bin",
+  "kind": "hook-icon",
+  "model": "gemini-3-pro-image",
+  "file": "assets/hook-art/h-money-bin.png",
+  "est_usd": 0.134,
+  "prompt": "banknotes falling into a waste bin",
+  "at": "2026-10-09 10:55",
+  "ai_generated": true
+ },
+ {
+  "id": "h-contract",
+  "kind": "hook-icon",
+  "model": "gemini-3-pro-image",
+  "file": "assets/hook-art/h-contract.png",
+  "est_usd": 0.134,
+  "prompt": "a signed paper contract with a fountain pen and a wax seal",
+  "at": "2026-10-09 10:56",
+  "ai_generated": true
+ },
+ {
+  "id": "h-calendar",
+  "kind": "hook-icon",
+  "model": "gemini-3-pro-image",
+  "file": "assets/hook-art/h-calendar.png",
+  "est_usd": 0.134,
+  "prompt": "a desk calendar with many pages torn off and flying away",
+  "at": "2026-10-09 10:56",
+  "ai_generated": true
+ },
+ {
+  "id": "h-stopwatch",
+  "kind": "hook-icon",
+  "model": "gemini-3-pro-image",
+  "file": "assets/hook-art/h-stopwatch.png",
+  "est_usd": 0.134,
+  "prompt": "a stopwatch with the hand near the start",
+  "at": "2026-10-09 10:56",
+  "ai_generated": true
+ },
+ {
+  "id": "h-hourglass",
+  "kind": "hook-icon",
+  "model": "gemini-3-pro-image",
+  "file": "assets/hook-art/h-hourglass.png",
+  "est_usd": 0.134,
+  "prompt": "an hourglass with sand running",
+  "at": "2026-10-09 10:56",
+  "ai_generated": true
+ },
+ {
+  "id": "h-skyscraper",
+  "kind": "hook-icon",
+  "model": "gemini-3-pro-image",
+  "file": "assets/hook-art/h-skyscraper.png",
+  "est_usd": 0.134,
+  "prompt": "one single tall corporate skyscraper tower, same clay material as the rest, no second building",
+  "at": "2026-10-09 10:57",
+  "ai_generated": true
  }
 ]

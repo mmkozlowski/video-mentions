@@ -1,16 +1,95 @@
 {
- "clip": "ch-doram-6-kody-15-minut", "brand": "flowbiz",
- "hook": {"text": "Kody kreskowe: z *kilku dni do *15 minut", "until": "czy"},
- "topic": {"kicker": "Case study · meble ogrodowe", "text": "Etykiety do *paczek", "sub": "kod zamówienia, produktu i części"},
+ "clip": "ch-doram-6-kody-15-minut",
+ "brand": "flowbiz",
+ "hook": {
+  "text": "Kody kreskowe: z *kilku dni do *15 minut",
+  "until": "czy",
+  "visual": {
+   "kind": "versus",
+   "sign": "→",
+   "left": {
+    "art": "h-calendar",
+    "label": "kilka dni",
+    "strike": true
+   },
+   "right": {
+    "art": "h-stopwatch",
+    "label": "15 minut",
+    "accent": true
+   }
+  }
+ },
+ "topic": {
+  "kicker": "Case study · meble ogrodowe",
+  "text": "Etykiety do *paczek",
+  "sub": "kod zamówienia, produktu i części"
+ },
  "cta": {
   "chip": "Automatyzacje · flowbiz.pl",
-  "ad": {"kicker": "Bezpłatna konsultacja", "title": "Znajdę Twoje *kilka dni klepania", "sub": "Przyjadę do Twojej firmy — Słupsk i Pomorze", "button": "flowbiz.pl"},
-  "reels": {"kicker": "Też tak macie?", "title": "Napisz *ETYKIETY w komentarzu", "sub": "Pokażę Ci, jak to wygląda w systemie"}
+  "ad": {
+   "kicker": "Bezpłatna konsultacja",
+   "title": "Znajdę Twoje *kilka dni klepania",
+   "sub": "Przyjadę do Twojej firmy — Słupsk i Pomorze",
+   "button": "flowbiz.pl"
+  },
+  "reels": {
+   "kicker": "Też tak macie?",
+   "title": "Napisz *ETYKIETY w komentarzu",
+   "sub": "Pokażę Ci, jak to wygląda w systemie"
+  }
  },
  "events": [
-  {"type": "broll", "at": "kodów", "until": "+2.2", "src": "../youtube/Animation flowbiz youtube/assets/veo/02-drukarka-zamowienie.mp4", "from": 1.0, "label": "Kody kreskowe do każdej paczki"},
-  {"type": "title", "at": "nie", "until": "system", "kicker": "Bez magii", "text": "Żadnego AI. *Zwykły program.", "sub": "nie wszystko wymaga sztucznej inteligencji"},
-  {"type": "list", "at": "system", "until": "nagle", "kicker": "Po jednym kliknięciu", "items": [{"text": "4 numery z zamówienia", "at": "cztery"}, {"text": "Gotowy PDF po minucie", "at": "minucie"}, {"text": "40 stron etykiet", "logo": "adobeacrobatreader", "at": "40"}]},
-  {"type": "compare", "at": "nagle", "until": 35.6, "kicker": "Etykiety do zamówienia", "before": {"value": "kilka dni", "label": "przeklejanie i drukowanie"}, "after": {"value": "15 min", "label": "PDF i drukarka"}, "after_at": "15"}
+  {
+   "type": "broll",
+   "at": "kodów",
+   "until": "+2.2",
+   "src": "../youtube/Animation flowbiz youtube/assets/veo/02-drukarka-zamowienie.mp4",
+   "from": 1.0,
+   "label": "Kody kreskowe do każdej paczki"
+  },
+  {
+   "type": "title",
+   "at": "nie",
+   "until": "system",
+   "kicker": "Bez magii",
+   "text": "Żadnego AI. *Zwykły program.",
+   "sub": "nie wszystko wymaga sztucznej inteligencji"
+  },
+  {
+   "type": "list",
+   "at": "system",
+   "until": "nagle",
+   "kicker": "Po jednym kliknięciu",
+   "items": [
+    {
+     "text": "4 numery z zamówienia",
+     "at": "cztery"
+    },
+    {
+     "text": "Gotowy PDF po minucie",
+     "at": "minucie"
+    },
+    {
+     "text": "40 stron etykiet",
+     "logo": "adobeacrobatreader",
+     "at": "40"
+    }
+   ]
+  },
+  {
+   "type": "compare",
+   "at": "nagle",
+   "until": 35.6,
+   "kicker": "Etykiety do zamówienia",
+   "before": {
+    "value": "kilka dni",
+    "label": "przeklejanie i drukowanie"
+   },
+   "after": {
+    "value": "15 min",
+    "label": "PDF i drukarka"
+   },
+   "after_at": "15"
+  }
  ]
 }

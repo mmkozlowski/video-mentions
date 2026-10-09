@@ -3,7 +3,15 @@
  "brand": "aislupsk",
  "hook": {
   "text": "Szefie, Twoi ludzie już używają *AI",
-  "until": "Wiesz"
+  "until": "Wiesz",
+  "visual": {
+   "kind": "logos",
+   "items": [
+    "openai",
+    "claude",
+    "googlegemini"
+   ]
+  }
  },
  "topic": {
   "kicker": "Warsztaty AI Słupsk",

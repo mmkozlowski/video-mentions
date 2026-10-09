@@ -3,7 +3,21 @@
  "brand": "aislupsk",
  "hook": {
   "text": "Twój pracownik właśnie wkleił *umowę klienta do *ChatGPT",
-  "until": "Czy#1"
+  "until": "Czy#1",
+  "visual": {
+   "kind": "flow",
+   "items": [
+    {
+     "art": "h-contract",
+     "label": "umowa klienta"
+    },
+    {
+     "logo": "openai",
+     "label": "ChatGPT",
+     "accent": true
+    }
+   ]
+  }
  },
  "topic": {
   "kicker": "Warsztaty AI Słupsk",

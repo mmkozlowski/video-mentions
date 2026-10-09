@@ -9,7 +9,7 @@ na żywym materiale, nie na opisie.
 import html
 import json
 
-from package import FINAL, PACK, PALETTES
+from package import FINAL, PACK, PALETTES, ACTIVE_PALETTES
 from sources import DATA
 
 FORMATS = [("reels", "Reels / TikTok 9:16 — organiczne, CTA w komentarzu"),
@@ -27,7 +27,7 @@ def main():
         cells = []
         for fmt, label in FORMATS:
             vids = []
-            for pal in PALETTES:
+            for pal in ACTIVE_PALETTES:
                 f = FINAL / f"{clip['id']}__{fmt}-{pal}.mp4"
                 if f.exists():
                     vids.append(f'<figure><video src="{f.name}" controls preload="metadata" playsinline></video>'
@@ -58,7 +58,7 @@ code{{color:var(--mut)}} .brand{{border:1px solid var(--line);border-radius:20px
 .fmt-youtube video{{width:min(620px,100%);aspect-ratio:16/9;background:#000;border-radius:10px}}
 .none{{color:var(--mut)}}
 </style></head><body><main><h1>Próbki opakowania klipów</h1>
-<p class="lead">Sesja 8.10.2026 · paleta A = kanał YouTube, B = strona flowbiz.pl · ujęcia oznaczone „AI” są generowane (art. 50 AI Act — przy publikacji włącz też przełącznik na platformie).</p>
+<p class="lead">Sesja 8.10.2026 · paleta A (bursztyn) · ujęcia oznaczone „AI” są generowane (art. 50 AI Act — przy publikacji włącz też przełącznik na platformie).</p>
 {"".join(rows)}</main></body></html>'''
     FINAL.mkdir(parents=True, exist_ok=True)
     (FINAL / "index.html").write_text(page)

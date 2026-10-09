@@ -103,3 +103,54 @@ Liczbowe `until` w hooku psują się po wycięciu pauz, dlatego tylko kotwice s�
   to 1–2 słowa wersalikami ze świeceniem, na wysokości piersi nad kartą. Mateusz: „nie
   musisz tego teraz stosować, chodzi o czytelność”. Kandydat na wariant `float` obok
   obecnego panelu, do porównania w galerii.
+
+## Druga korekta (9.10, popołudnie)
+
+Uwagi Mateusza do drugiej serii i co z nimi zrobiliśmy:
+
+1. **Tylko paleta A (bursztyn).** „Zieleń kiepsko wygląda.” `ACTIVE_PALETTES = ["A"]`
+   w `package.py`. Render, galeria i audyt robią tylko A, a B zostaje w słowniku pod
+   ręczne `--palette B`. Liczba wariantów spada z 90 do 45.
+2. **Hook to nie sam tekst.** Nad zdaniem stoi grafika: ikona 3D albo schemat (A vs B,
+   przepływ, logo narzędzi, licznik 70 → 94 %). Ikony robi `tools/hook_art.py` (Gemini,
+   Nano Banana Pro, 17 sztuk, ok. 2,3 USD), a logo narzędzi są zawsze oryginalne
+   z `logos.css` i nigdy nie są generowane. Schemat opisuje `hook.visual` w storyboardzie.
+   Ikona ma tło karty i `mix-blend-mode:lighten` z maską radialną, więc nie widać
+   kwadratu. Docelowo GPT w Higgsfield. Logowanie czeka na Mateusza.
+3. **Zdania po kolei, nie wszystko na jednym slajdzie.** Hook i karta tytułowa dzielą
+   tekst na zdania. Kolejne pojawia się, gdy pada jego pierwsze słowo, a gdy tekst jest
+   przepisany inaczej niż mowa, czas dzieli się proporcjonalnie do długości. W hooku
+   zdania leżą w jednej komórce siatki: karta ma wysokość najdłuższego, font jest jeden
+   dla wszystkich, więc nic nie skacze.
+4. **Hook to nagłówek, nie transkrypcja.** „Co, jak jedyna osoba, która wie, pójdzie
+   na emeryturę?” → „Cała wiedza w jednym zeszycie. Co, gdy przyjdzie emerytura?”.
+   Etykieta schematu, która powtarza słowo z hooka, wypada (razem z pozostałymi, dla
+   symetrii).
+5. **Numer telefonu i liczba z jednostką się nie łamią.** `tokens()` skleja grupy cyfr
+   („536 507 701”) i liczbę z następnym słowem („3 miesiące”) twardą spacją. `fit()`
+   liczy na tych tokenach i szacuje znak na 0,68 em (DM Sans 800 jest szerszy, niż
+   zakładaliśmy). Tytuł planszy końcowej też przechodzi przez `fit()`.
+6. **Chip nie wchodzi na głowę.** Zjechał z `top:236` na `face_h − 250` (pierś, nad
+   napisami).
+7. **„Yyyy” nadal było słychać** (ch-offers-1). Whisper dokleja przeciągnięte „yyy”
+   i ciszę do sąsiedniego słowa („wycen.” trwało 4,8 s), więc cięcie po lukach między
+   słowami tego nie widzi. `tools/fillers.py` czyta audio co 20 ms i wycina ciszę
+   (< −42 dB, ≥ 0,55 s, zostaje 0,15 s oddechu) oraz głos bez granicy sylaby przez
+   ≥ 0,5 s (przeciągnięta samogłoska). Cięcie, które zostawiłoby kawałek mowy < 0,3 s,
+   jest pomijane. Z biblioteki zeszło kolejne 455 s.
+
+Pułapka przy 7: **czasy słów Whispera bywają przesunięte w ciszę** („Jestem” 0,6 s
+przed głosem). Gdy tę ciszę wycinamy, słowo liczone po samym początku wypadało
+z `words.json`, a za nim napisy i kotwice storyboardu („nie ma słowa „Jestem””, albo
+kotwica łapała późniejsze „na”). `cut.words_in` przypisuje teraz słowo do przedziału
+o największej części wspólnej, a słowo w całości w krótkiej wyciętej luce stawia na
+początku następnego. `cut.py --words-only` przelicza słowa bez kodowania wideo.
+
+Drobne pułapki z tej rundy:
+- Po wycięciu „yyy” mówię szybciej, więc kotwica hooka potrafi wypaść za wcześnie
+  (ch-offers-1: hook 1,5 s). `package.py` ostrzega, gdy hook trwa < 2,5 s albo dłużej niż
+  ~4 s na zdanie.
+- Znak „Ujęcie wygenerowane przez AI” trwał co najmniej 2 s, a przebitka bywa krótsza
+  (1,2–1,8 s), więc znak zostawał na twarzy. Teraz kończy się razem z przebitką.
+- Licznik w grafice hooka i ta sama liczba w zdaniu to dubel. Gdy jest licznik 70 → 94 %,
+  zdanie mówi co innego („AI nauczyło się zamówień. Bez programowania od nowa.”).

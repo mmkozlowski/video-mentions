@@ -2,8 +2,23 @@
  "clip": "ad-27-w11",
  "brand": "aislupsk",
  "hook": {
-  "text": "*Pizza, szefowie firm ze Słupska i jeden temat: *agent AI",
-  "until": "Jak"
+  "text": "*Pizza i *agent AI. Spotkanie szefów firm ze Słupska.",
+  "until": "Jak",
+  "visual": {
+   "kind": "flow",
+   "sign": "+",
+   "items": [
+    {
+     "art": "h-pizza",
+     "label": "pizza"
+    },
+    {
+     "art": "h-robot",
+     "label": "agent AI",
+     "accent": true
+    }
+   ]
+  }
  },
  "topic": {
   "kicker": "Warsztaty AI Słupsk",

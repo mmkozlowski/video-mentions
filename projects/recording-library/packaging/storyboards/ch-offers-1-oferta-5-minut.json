@@ -3,7 +3,21 @@
  "brand": "flowbiz",
  "hook": {
   "text": "Oferta w *5 minut zamiast *kilkunastu godzin",
-  "until": "U"
+  "until": "sportowych",
+  "visual": {
+   "kind": "versus",
+   "sign": "→",
+   "left": {
+    "art": "h-calendar",
+    "label": "kilkanaście h",
+    "strike": true
+   },
+   "right": {
+    "logo": "telegram",
+    "label": "5 minut",
+    "accent": true
+   }
+  }
  },
  "topic": {
   "kicker": "Case study · producent sprzętu sportowego",
