@@ -40,16 +40,16 @@
    "kicker": "3 na TAK",
    "items": [
     {
-     "text": "Czytanie maili i dokumentów",
+     "text": "Czytanie maili",
      "logo": "gmail",
      "at": "czytanie"
     },
     {
-     "text": "Pierwsze szkice ofert",
+     "text": "Szkice ofert",
      "at": "szkice"
     },
     {
-     "text": "Szukanie informacji w firmie",
+     "text": "Szukanie w firmie",
      "at": "szukanie"
     }
    ]
@@ -61,7 +61,7 @@
    "kicker": "3 na NIE",
    "items": [
     {
-     "text": "Rzeczy dla prostej reguły",
+     "text": "Proste reguły",
      "at": "reguła"
     },
     {
@@ -69,7 +69,7 @@
      "at": "Decyzje"
     },
     {
-     "text": "Licencje dla wszystkich",
+     "text": "Licencje dla każdego",
      "at": "licencja"
     }
    ],

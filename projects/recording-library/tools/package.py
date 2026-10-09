@@ -435,8 +435,15 @@ class Composition:
         return fit(value, 340 if self.vertical else 640, 74 if self.vertical else 90, 2 if self.vertical else 1, 40)
 
     def card_list(self, ev, start, end):
+        # jeden rozmiar dla całej listy — punkty mają wyglądać tak samo (Mateusz 9.10);
+        # długie zdanie to sygnał, że punkt trzeba skrócić do hasła
+        for it in ev["items"]:
+            if len(it["text"]) > 22:
+                print(f"  ⚠ punkt listy „{it['text']}” ({len(it['text'])} zn.) — skróć do hasła")
+        size = min(fit(it["text"], self.card_w - (200 if it.get("logo") else 140), 44 if self.vertical else 38, 1, 28)
+                   for it in ev["items"])
         rows = "".join(f'<div class="li" data-i="{i}"><span class="n">{i + 1}</span>'
-                       f'{logo(it["logo"], 40) if it.get("logo") else ""}<span class="t" style="font-size:{fit(it["text"], self.card_w - (200 if it.get("logo") else 140), 44 if self.vertical else 38, 1, 28)}px">{esc(it["text"])}</span></div>'
+                       f'{logo(it["logo"], 40) if it.get("logo") else ""}<span class="t" style="font-size:{size}px">{esc(it["text"])}</span></div>'
                        for i, it in enumerate(ev["items"]))
         cid = self.host(start, end, f'<div class="kicker">{esc(ev.get("kicker", ""))}</div><div class="list">{rows}</div>',
                         ev.get("zone", self.default_zone()))

@@ -208,3 +208,11 @@ dopisywał przecinek („33.7,”) i wywracał `finalize`. Naprawa:
   bo ten ffmpeg nie ma `zscale`;
 - `stage()` odrzuca media HDR (`reject_hdr`);
 - `probe_duration` bierze pierwszą liczbę z wyjścia `ffprobe`.
+
+**Listy to hasła** (Mateusz: „skracać nawet do haseł, żeby wyglądały tak samo i były
+czytelne — ten sam font i długość, nie słowo w słowo”). Lista ma jeden rozmiar fontu, czyli
+minimum z punktów, a punkt dłuższy niż 22 znaki daje ostrzeżenie. 21 punktów przepisanych
+na hasła 12–20 znaków.
+
+**Logo z bursztynowym „w”** (`flowbiz-ai.png`; biały oryginał to `flowbiz-ai-white.png`).
+Litera ma kolumny 447–744 px w PNG i jest przemalowana na `#F5A623`.

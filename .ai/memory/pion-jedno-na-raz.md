@@ -23,6 +23,10 @@ słowie wygląda na pocięty.
   przepisuj 1:1 tego, co mówię. Numer i liczba z jednostką się nie łamią, a font jest
   stały, bez przeskoków. Nic nie zasłania głowy (chip zjechał na pierś). Tylko paleta A.
 
+- (9.10 wieczór) Punkty listy to **hasła**, nie zdania: podobna długość (12–20 znaków),
+  jedna składnia, jeden rozmiar fontu dla całej listy, nie słowo w słowo z mowy.
+  `package.py` ostrzega przy > 22 znakach. Logo flowbiz AI ma bursztynowe „w”.
+
 **Why:** odbiorca w pionie ma jedną rzecz do przeczytania naraz. Duplikat tekstu i ścisk
 zabijają czytelność, a w podglądzie na komputerze tego nie widać.
 
