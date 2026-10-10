@@ -232,3 +232,33 @@ kontekst na pierwszym ekranie”). Pole `cover` w storyboardzie daje pełnoekran
 pierwszej klatki, ok. 2,2 s, z głosem pod spodem: jedno zdanie, kto i jaki problem. Hook
 wchodzi po okładce i trwa co najmniej 2,5 s. Mają ją cztery klipy `ch-*`, a jej klatka nadaje
 się na okładkę rolki.
+
+## Czwarta korekta (10.10): odcinek dynamiczny i różnorodny
+
+Mateusz o pilocie ep-doram: „czemu wybierasz tylko jeden wariant tekstu po prawej stronie,
+masz tyle różnych opcji”, a potem: „dodawać tak, żeby pasowały do kontekstu, nie raz losowo,
+żeby było dynamicznie i różnorodnie”. Odcinek 16:9 ma teraz sześć układów:
+
+1. **Panel boczny** (dotychczasowy): listy, porównania, logo.
+2. **Pasek dolny na twarzy** (`zone: "lower"`): twarz zostaje na pełnym ekranie.
+3. **Nagłówek na przebitce** (`broll.title`, `kicker`, `center`): gradient u dołu albo
+   duże hasło na środku.
+4. **Uderzenie** (`type: "beat"`), efekty przeniesione z systemu wstawek YouTube
+   (`design_handoff_flowbiz_animation`):
+   - `strike` (s02): liczba z przekreśleniem po skosie, na stan „przed”;
+   - `burst` (s08): liczba z poświatą i cząstkami, na wynik;
+   - `slam` (s10): trzy linie z belką i wstrząsem, na puentę.
+   Wejście przez błysk bieli (0,2 s).
+5. **Twarz w okienku** (`pip`): przy makietach i planszach twarz nie znika, tylko zjeżdża
+   do zaokrąglonego okienka w prawym dolnym rogu.
+6. **Plansza i makieta na pełnym ekranie.**
+
+Zasada doboru: efekt wynika z treści (liczba, puenta, makieta). Tytuły i cytaty bez
+wskazanej strefy losują panel albo pasek, powtarzalnie (ziarno = id klipu) i nigdy trzy razy
+z rzędu tak samo.
+
+Nowe prototypy systemu, które pokazują to, o czym mowa: `excels` (trzy Excele kontrahentów
+z innymi kolumnami, ep-doram 2:30) i `labels` (klik → PDF 40 stron etykiet, 9:40).
+
+Do zrobienia: grafiki z Higgsfield (GPT Image), ożywiane potem w Higgsfield/Veo, dobrane
+do kontekstu odcinków. Czeka na logowanie Mateusza; zastępczo Gemini + Veo jak s01–s12.

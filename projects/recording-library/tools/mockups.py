@@ -49,7 +49,7 @@ def match(comp, ev, start, end):
              f'<div class="mk-head"><span>Pozycja od kontrahenta</span><span>Produkt w systemie</span><span>Pewność</span></div>'
              f'{"".join(rows)}'
              f'<div class="mk-foot"><b>4 z 5</b> dopasowane automatycznie · <b class="mk-foot-fix">1 poprawka → zapamiętana</b></div></div>')
-    sid = comp.slate(start, end, inner)
+    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
     q = comp.q
     comp.js.append(f'tl.fromTo("#{sid} .mk-row",{{opacity:0,x:-30}},{{opacity:1,x:0,duration:0.35,stagger:0.18,ease:"power2.out"}},{q(start + 0.3)});')
     comp.js.append(f'tl.fromTo("#{sid} .mk-badge",{{scale:0}},{{scale:1,duration:0.3,stagger:0.18,ease:"back.out(2)"}},{q(start + 0.6)});')
@@ -100,7 +100,7 @@ def telegram(comp, ev, start, end):
     inner = (f'<div class="tg-phone"><div class="tg-top">{logo("telegram", 46, "#26A5E4")}'
              f'<div><b>Asystent firmy</b><span>bot · online</span></div></div>'
              f'<div class="tg-chat">{"".join(bubbles)}</div></div>')
-    sid = comp.slate(start, end, inner)
+    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
     step = min(1.1, max(0.45, (end - start - 1.2) / len(lines)))
     for i in range(len(lines)):
         comp.js.append(f'tl.fromTo("#{sid} .tg-msg[data-i=\'{i}\']",{{opacity:0,y:24,scale:0.96}},'
@@ -126,7 +126,7 @@ def b2b(comp, ev, start, end):
              f'<div class="b2b-side"><div class="b2b-h">Moje zamówienia</div>'
              f'<div class="b2b-order b2b-new"><b>#1049</b><span class="mk-badge no b2b-new-badge">Nowe</span></div>{orders}</div></div>'
              f'<div class="b2b-toast">🔔 Biuro: wpadło nowe zamówienie #1049</div></div>')
-    sid = comp.slate(start, end, inner)
+    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
     q, span = comp.q, end - start
     if span < 4.0:
         raise SystemExit(f"makieta b2b @ {start:.1f}: {span:.1f} s — za krótko na zamówienie i zmianę statusu (min. 4 s)")
@@ -141,7 +141,53 @@ def b2b(comp, ev, start, end):
     comp.js.append(f'tl.call(function(){{var b=document.querySelector("#{sid} .b2b-new-badge");if(b){{b.textContent="W produkcji";b.className="mk-badge mid b2b-new-badge";}}}},null,{q(max(click + 0.8, min(end - 0.8, click + 2.2)))});')
 
 
-MOCKUPS = {"match": match, "telegram": telegram, "b2b": b2b}
+# Trzy Excele z ep-doram (~2:30): „klient ma trzech kontrahentów głównych i każdy z nich
+# trochę inaczej te Excele przygotowywał” — ta sama pozycja, inne kolumny i nazwy.
+EXCELS = [
+    ("kontrahent_A.xlsx", ["Art.-Nr.", "Bezeichnung", "Menge"], ["GS-114", "Gartenstuhl Alu, grau", "40"]),
+    ("kontrahent_B.xlsx", ["Item", "Description", "Qty", "Price"], ["114", "Garden chair alu", "40", "€38"]),
+    ("kontrahent_C.xlsx", ["Pos.", "Menge", "Artikel"], ["7", "40", "Stuhl Alu grau"]),
+]
+
+
+def excels(comp, ev, start, end):
+    sheets = []
+    for i, (name, head, row) in enumerate(EXCELS):
+        cols = "".join(f"<span>{esc(h)}</span>" for h in head)
+        cells = "".join(f"<span>{esc(c)}</span>" for c in row)
+        # kolumna z nazwą produktu szersza — to ją porównujemy między kontrahentami
+        grid = " ".join("2.2fr" if len(c) > 8 else "1fr" for c in row)
+        sheets.append(f'<div class="xl" data-i="{i}" style="--grid:{grid}"><div class="xl-name">{esc(name)}</div>'
+                      f'<div class="xl-row xl-head">{cols}</div><div class="xl-row xl-hit">{cells}</div>'
+                      f'<div class="xl-row"><span></span></div><div class="xl-row"><span></span></div></div>')
+    inner = f'<div class="xl-wrap">{"".join(sheets)}</div><div class="xl-foot">ta sama pozycja · <b>3 układy kolumn</b> · 3 nazwy</div>'
+    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    q = comp.q
+    comp.js.append(f'tl.fromTo("#{sid} .xl",{{opacity:0,y:50,rotation:-2}},{{opacity:1,y:0,rotation:0,duration:0.45,stagger:0.25,ease:"back.out(1.5)"}},{q(start + 0.3)});')
+    comp.js.append(f'tl.fromTo("#{sid} .xl-hit",{{backgroundColor:"rgba(245,166,35,0)"}},{{backgroundColor:"rgba(245,166,35,0.22)",duration:0.3,stagger:0.25}},{q(start + 1.4)});')
+    comp.js.append(f'tl.fromTo("#{sid} .xl-foot",{{opacity:0}},{{opacity:1,duration:0.3}},{q(start + 2.2)});')
+
+
+# Etykiety z ep-doram (~9:40): „system bierze cztery numery, generuje PDF od razu gotowy,
+# po minucie masz PDF z 40 stronami etykiet”.
+def labels(comp, ev, start, end):
+    bars = "".join(f'<i style="width:{w}px"></i>' for w in (4, 2, 6, 2, 3, 5, 2, 4, 2, 6, 3, 2, 5, 2, 4, 3, 6, 2, 3, 2, 5, 4, 2, 6))
+    pages = "".join(f'<div class="lb-page" data-i="{i}"><b>ZAM-2026-0{418 + i}</b><div class="lb-bars">{bars}</div>'
+                    f'<span>Paczka {i + 1}/40</span></div>' for i in range(5))
+    inner = (f'<div class="lb-wrap"><div class="lb-panel"><div class="b2b-h">Zamówienie · 4 numery</div>'
+             f'<div class="lb-nums"><span>ZAM 0418</span><span>PROD 114</span><span>CZ 07</span><span>PACZ 40</span></div>'
+             f'<div class="b2b-btn lb-btn">Generuj etykiety</div><div class="lb-done">✓ PDF gotowy · 40 stron</div></div>'
+             f'<div class="lb-stack">{pages}</div></div>')
+    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    q, click = comp.q, start + 1.2
+    comp.js.append(f'tl.set("#{sid} .lb-page, #{sid} .lb-done",{{opacity:0}},{q(start)});')
+    comp.js.append(f'tl.to("#{sid} .lb-btn",{{scale:0.94,duration:0.12,yoyo:true,repeat:1}},{q(click)});')
+    comp.js.append(f'tl.fromTo("#{sid} .lb-page",{{opacity:0,x:-160,rotation:-8}},{{opacity:1,x:function(i){{return i*26}},y:function(i){{return i*-18}},rotation:function(i){{return -4+i*2}},'
+                   f'duration:0.4,stagger:0.18,ease:"power3.out"}},{q(click + 0.3)});')
+    comp.js.append(f'tl.fromTo("#{sid} .lb-done",{{opacity:0,y:20}},{{opacity:1,y:0,duration:0.35}},{q(click + 1.5)});')
+
+
+MOCKUPS = {"match": match, "telegram": telegram, "b2b": b2b, "excels": excels, "labels": labels}
 
 MOCKUP_STYLE = """
 .mk-window{{width:100%;background:{panel};border:2px solid {line};border-radius:28px;overflow:hidden;text-align:left;box-shadow:0 30px 80px rgba(0,0,0,.5)}}
@@ -169,6 +215,23 @@ MOCKUP_STYLE = """
 .b2b-order{{display:flex;justify-content:space-between;align-items:center;padding:18px 22px;border-radius:16px;background:{raised};font-size:28px}}
 .b2b-toast{{margin:0 34px 30px;padding:18px 24px;border-radius:16px;border:2px solid {accent};color:{text};font-size:26px;font-weight:600}}
 .fmt-v .b2b-body{{grid-template-columns:1fr}} .fmt-v .b2b-cat{{border-right:0;border-bottom:2px solid {line}}}
+.xl-wrap{{display:flex;gap:22px;justify-content:center;align-items:flex-start}}
+.xl{{width:380px;background:#F4F6F4;border-radius:14px;overflow:hidden;color:#1D1D1D;text-align:left;box-shadow:0 24px 60px rgba(0,0,0,.5)}}
+.xl-name{{background:#21A366;color:#fff;font-size:22px;font-weight:700;padding:12px 18px}}
+.xl-row{{display:grid;grid-template-columns:var(--grid);border-bottom:1px solid #D5DAD5;min-height:52px}}
+.xl-row span{{padding:10px 10px;font-size:21px;border-right:1px solid #D5DAD5;overflow-wrap:anywhere;line-height:1.2}}
+.xl-head span{{font-weight:800;background:#E3E8E3;font-size:20px}}
+.xl-foot{{margin-top:34px;font-size:32px;color:{muted};text-align:center}} .xl-foot b{{color:{accent}}}
+.fmt-v .xl-wrap{{flex-direction:column;align-items:center;gap:18px}} .fmt-v .xl{{width:820px}}
+.lb-wrap{{display:flex;gap:70px;align-items:center;justify-content:center}}
+.lb-panel{{background:{panel};border:2px solid {line};border-radius:24px;padding:30px;display:flex;flex-direction:column;gap:20px;width:440px;text-align:left}}
+.lb-nums{{display:grid;grid-template-columns:1fr 1fr;gap:10px}} .lb-nums span{{background:{raised};border-radius:12px;padding:12px;font-size:24px;font-weight:700}}
+.lb-done{{font-size:28px;font-weight:700;color:{accent2}}}
+.lb-stack{{position:relative;width:420px;height:520px}}
+.lb-page{{position:absolute;left:0;top:40px;width:340px;height:440px;background:#fff;border-radius:10px;color:#111;padding:26px;display:flex;flex-direction:column;gap:18px;box-shadow:0 20px 50px rgba(0,0,0,.45);text-align:left}}
+.lb-page b{{font-size:26px}} .lb-page span{{font-size:22px;color:#555}}
+.lb-bars{{display:flex;gap:3px;height:150px;align-items:stretch}} .lb-bars i{{background:#111;display:block}}
+.fmt-v .lb-wrap{{flex-direction:column;gap:40px}}
 .tg-phone{{width:760px;margin:0 auto;border-radius:56px;border:10px solid #23232A;background:#0E1621;overflow:hidden;text-align:left;box-shadow:0 30px 90px rgba(0,0,0,.6)}}
 .fmt-v .tg-phone{{width:820px}}
 .tg-top{{display:flex;align-items:center;gap:20px;padding:30px 30px 22px;background:#17212B;color:#fff;font-size:30px}}

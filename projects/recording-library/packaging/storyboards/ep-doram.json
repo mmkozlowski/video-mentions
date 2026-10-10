@@ -63,6 +63,7 @@
    "type": "title",
    "at": "Teraz",
    "until": "Klient",
+   "zone": "lower",
    "kicker": "Case study · meble ogrodowe",
    "text": "Zamówienia od kontrahentów z *Niemiec",
    "sub": "producent z okolic Słupska"
@@ -70,9 +71,11 @@
   {
    "type": "broll",
    "at": "meble",
-   "until": "+3.2",
+   "until": "+3.4",
    "src": "build/broll-real/veo-szwalnia.mp4",
-   "ai": true
+   "ai": true,
+   "kicker": "Producent z Pomorza",
+   "title": "Meble ogrodowe i *szwalnia"
   },
   {
    "type": "broll",
@@ -102,6 +105,19 @@
    ]
   },
   {
+   "type": "beat",
+   "style": "strike",
+   "at": "kilka dni",
+   "until": "+3.2",
+   "label": "Zamówienie ze 100 pozycjami",
+   "main": "KILKA DNI",
+   "sub": [
+    "Nazwy.",
+    "Ceny.",
+    "Kolumny."
+   ]
+  },
+  {
    "type": "broll",
    "at": "setką",
    "until": "+3.0",
@@ -111,24 +127,20 @@
   {
    "type": "broll",
    "at": "frustrująca",
-   "until": "+2.8",
+   "until": "+3.0",
    "src": "build/broll-real/stock-chaos-biuro.mp4",
-   "ai": false
+   "ai": false,
+   "center": true,
+   "title": "Frustracja *całego biura"
   },
   {
-   "type": "compare",
-   "at": "radości",
-   "until": "dlaczego ten proces",
-   "kicker": "Zamówienie ze 100 pozycjami",
-   "before": {
-    "value": "kilka dni",
-    "label": "ręczne szukanie nazw"
-   },
-   "after": {
-    "value": "10 min",
-    "label": "system z nakładką AI"
-   },
-   "after_at": "10"
+   "type": "beat",
+   "style": "burst",
+   "at": "10",
+   "until": "+3.2",
+   "label": "System z nakładką AI",
+   "num": "10 MIN",
+   "bottom": "zamiast kilku dni"
   },
   {
    "type": "list",
@@ -151,25 +163,26 @@
    ]
   },
   {
-   "type": "title",
+   "type": "mockup",
+   "name": "excels",
    "at": "trzech",
-   "until": "+10",
-   "kicker": "Trzech kontrahentów",
-   "text": "Każdy Excel *inny.",
-   "sub": "i żaden nie chciał się dostosować"
+   "until": "+9"
   },
   {
    "type": "broll",
    "at": "kodów kreskowych",
    "until": "+3.4",
-   "src": "assets/broll/stills/s12-etykiety-kody-kreskowe.jpg"
+   "src": "assets/broll/stills/s12-etykiety-kody-kreskowe.jpg",
+   "kicker": "Biuro",
+   "title": "Kody kreskowe do *każdej paczki"
   },
   {
    "type": "slate",
    "at": "przeklejała",
    "until": "setce",
    "kicker": "Przy każdej pozycji",
-   "text": "Przeklej. Drukuj. *Przeklej. Drukuj."
+   "text": "Przeklej. Drukuj. *Przeklej. Drukuj.",
+   "pip": true
   },
   {
    "type": "broll",
@@ -234,18 +247,27 @@
    "type": "broll",
    "at": "maila",
    "until": "+3.0",
-   "src": "../youtube/Animation flowbiz youtube/assets/veo/03-palce-klawiatura.mp4"
+   "src": "../youtube/Animation flowbiz youtube/assets/veo/03-palce-klawiatura.mp4",
+   "center": true,
+   "title": "Poprawiasz. *Zapamiętuje."
   },
   {
-   "type": "stat",
+   "type": "beat",
+   "style": "burst",
    "at": "poziomie",
-   "until": "+9",
-   "kicker": "Trafność dopasowania",
-   "from": 70,
-   "to": 94,
-   "suffix": "%",
-   "label": "po miesiącu, bez zmiany pracy biura",
-   "dur": 2.0
+   "until": "+3.4",
+   "label": "Trafność dopasowania na start",
+   "num": "70%"
+  },
+  {
+   "type": "beat",
+   "style": "burst",
+   "at": "miesiącu",
+   "until": "+3.4",
+   "label": "Po miesiącu",
+   "num": "94%",
+   "bottom": "bez zmiany pracy biura",
+   "pip": true
   },
   {
    "type": "title",
@@ -261,52 +283,37 @@
    "text": "Zostają marginalne przypadki"
   },
   {
-   "type": "title",
+   "type": "beat",
+   "style": "slam",
    "at": "żadnej magii",
-   "until": "system bierze",
-   "kicker": "Bez magii",
-   "text": "Żadnego AI. *Zwykły program."
-  },
-  {
-   "type": "list",
-   "at": "system bierze",
-   "until": "kilku dni",
-   "kicker": "Po jednym kliknięciu",
-   "items": [
-    {
-     "text": "Cztery numery",
-     "at": "cztery"
-    },
-    {
-     "text": "PDF po minucie",
-     "at": "minucie"
-    },
-    {
-     "text": "40 stron etykiet",
-     "logo": "adobeacrobatreader",
-     "at": "40"
-    }
+   "until": "+3.4",
+   "label": "Kody kreskowe",
+   "lines": [
+    "ŻADNEGO AI.",
+    "tylko",
+    "PROGRAM."
    ]
   },
   {
-   "type": "compare",
-   "at": "kilku dni",
-   "until": "W tej firmie",
-   "kicker": "Etykiety do zamówienia",
-   "before": {
-    "value": "kilka dni",
-    "label": "przeklejanie i drukowanie"
-   },
-   "after": {
-    "value": "15 min",
-    "label": "PDF i drukarka"
-   },
-   "after_at": "15"
+   "type": "mockup",
+   "name": "labels",
+   "at": "system bierze",
+   "until": "kilku dni"
+  },
+  {
+   "type": "beat",
+   "style": "burst",
+   "at": "15",
+   "until": "+3.2",
+   "label": "Etykiety do zamówienia",
+   "num": "15 MIN",
+   "bottom": "zamiast kilku dni"
   },
   {
    "type": "title",
    "at": "komentarza",
    "until": "+7",
+   "zone": "lower",
    "kicker": "Napisz w komentarzu",
    "text": "Co *Ty chcesz zautomatyzować?"
   }

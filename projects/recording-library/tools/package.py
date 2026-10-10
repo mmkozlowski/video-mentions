@@ -23,6 +23,7 @@ import base64
 import html
 import json
 import os
+import random
 import re
 import shutil
 import subprocess
@@ -299,7 +300,8 @@ class Composition:
         self.html.append(f'<div class="card-host clip zone-{zone}" id="{cid}" data-start="{start}" '
                          f'data-duration="{round(end - start, 4)}" data-track-index="{track}">'
                          f'<div class="card" id="{cid}-in">{inner}</div></div>')
-        self.js.append(f'tl.fromTo("#{cid}-in",{{opacity:0,y:{30 if self.vertical else 0},x:{0 if self.vertical else 60}}},'
+        rise = self.vertical or zone == "lower"
+        self.js.append(f'tl.fromTo("#{cid}-in",{{opacity:0,y:{30 if rise else 0},x:{0 if rise else 60}}},'
                        f'{{opacity:1,y:0,x:0,duration:0.45,ease:"power3.out"}},{start});')
         self.js.append(f'tl.to("#{cid}-in",{{opacity:0,duration:0.3,ease:"power2.in"}},{round(end - 0.3, 4)});')
         if not self.vertical and zone == "side":
@@ -395,15 +397,23 @@ class Composition:
         """Plansza: jedno zdanie na pełnym ekranie, głos leci pod spodem."""
         sid = self.slate(start, end, (f'<div class="kicker">{esc(ev["kicker"])}</div>' if ev.get("kicker") else "")
                          + f'<div class="slate-text" style="font-size:{fit(ev["text"], 900 if self.vertical else 1500, 110 if self.vertical else 120, 4)}px">{self.words_html(ev["text"])}</div>'
-                         + (f'<div class="sub">{esc(ev["sub"])}</div>' if ev.get("sub") else ""))
+                         + (f'<div class="sub">{esc(ev["sub"])}</div>' if ev.get("sub") else ""), pip=ev.get("pip", False))
         self.stagger(f"#{sid} .slate-text .w", start + 0.12, 0.06, 18)
 
-    def slate(self, start, end, inner, instant=False):
+    def slate(self, start, end, inner, instant=False, pip=False):
         sid = self.uid("s")
         start, end = self.q(start), self.q(end)
         self.slates.append((start, end))
         self.panel_busy.append((start, end))   # plansza zakrywa panel — bez karty tematu pod spodem
-        self.html.append(f'<div class="slate clip" id="{sid}" style="opacity:0" data-start="{start}" data-duration="{round(end - start, 4)}" '
+        pip = pip and not self.vertical and end - start >= 2.5
+        if pip:
+            # 16:9: twarz nie znika pod makietą — zjeżdża do okienka w prawym dolnym rogu
+            self.js.append(f'tl.set("#video-wrap",{{zIndex:8}},{start});')
+            self.js.append(f'tl.fromTo("#video-wrap",{{scale:1,x:0,y:0,borderRadius:0}},{{scale:0.27,x:-48,y:-48,borderRadius:110,'
+                           f'duration:0.5,ease:"power3.inOut"}},{start});')
+            self.js.append(f'tl.to("#video-wrap",{{scale:1,x:0,y:0,borderRadius:0,duration:0.5,ease:"power3.inOut"}},{round(end - 0.5, 4)});')
+            self.js.append(f'tl.set("#video-wrap",{{zIndex:1}},{end});')
+        self.html.append(f'<div class="slate clip{" pip" if pip else ""}" id="{sid}" style="opacity:0" data-start="{start}" data-duration="{round(end - start, 4)}" '
                          f'data-track-index="8"><div class="end-grid"></div><div class="slate-body">{inner}</div></div>')
         self.js.append(f'tl.set("#{sid}",{{opacity:1}},{start});' if instant else
                        f'tl.fromTo("#{sid}",{{opacity:0}},{{opacity:1,duration:0.22}},{start});')
@@ -415,6 +425,70 @@ class Composition:
         """Makieta systemu na pełnym ekranie (tools/mockups.py), głos leci pod spodem."""
         from mockups import MOCKUPS
         MOCKUPS[ev["name"]](self, ev, start, end)
+
+    def card_beat(self, ev, start, end):
+        """Uderzenie na pełnym ekranie — efekty z systemu wstawek YouTube
+        (projects/youtube/…/design_handoff_flowbiz_animation): strike = s02 (liczba +
+        przekreślenie po skosie), burst = s08 (liczba z poświatą + cząstki), slam = s10
+        (trzy linie + belka z wstrząsem). Wejście przez błysk bieli jak w tamtym montażu."""
+        style, q = ev["style"], self.q
+        width = 900 if self.vertical else 1600
+        label = f'<div class="bt-label">{esc(ev.get("label", ""))}</div>' if ev.get("label") else ""
+        if style == "strike":
+            big = fit(ev["main"], width, 280 if not self.vertical else 200, 1, 90)
+            inner = (label + f'<div class="bt-main bt-acc" style="font-size:{big}px">{esc(ev["main"])}</div>'
+                     + '<div class="bt-sub">' + "".join(f'<span class="w">{esc(w)}</span>' for w in ev.get("sub", [])) + '</div>'
+                     + '<svg class="bt-strike" viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="8" y1="64" x2="92" y2="36" '
+                       'pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" vector-effect="non-scaling-stroke"/></svg>')
+        elif style == "burst":
+            big = fit(ev["num"], width, 420 if not self.vertical else 300, 1, 120)
+            inner = (label + f'<div class="bt-num" style="font-size:{big}px">{esc(ev["num"])}<div class="bt-burst">'
+                     + "".join('<i></i>' for _ in range(10)) + '</div></div>'
+                     + (f'<div class="bt-bottom">{esc(ev["bottom"])}</div>' if ev.get("bottom") else ""))
+        else:   # slam
+            l1, l2, l3 = ev["lines"]
+            sizes = [fit(l1, width, 230, 1, 80), fit(l2, width, 110, 1, 50), fit(l3, width, 230, 1, 80)]
+            inner = (label + f'<div class="bt-l1" style="font-size:{sizes[0]}px">{esc(l1)}</div>'
+                     f'<div class="bt-l2" style="font-size:{sizes[1]}px">{esc(l2)}</div><div class="bt-slam"></div>'
+                     f'<div class="bt-l3" style="font-size:{sizes[2]}px">{esc(l3)}</div>')
+        sid = self.slate(start, end, f'<div class="beat beat-{style}">{inner}</div>', pip=ev.get("pip", False))
+        t = start + 0.1
+        self.js.append(f'tl.fromTo("#{sid} .bt-label",{{opacity:0}},{{opacity:1,duration:0.3}},{q(t)});')
+        if style == "strike":
+            self.js.append(f'tl.fromTo("#{sid} .bt-main",{{opacity:0,x:120}},{{opacity:1,x:0,duration:0.45,ease:"back.out(1.7)"}},{q(t + 0.2)});')
+            self.js.append(f'tl.fromTo("#{sid} .bt-sub .w",{{opacity:0,y:15}},{{opacity:1,y:0,duration:0.35,stagger:0.08}},{q(t + 0.7)});')
+            self.js.append(f'tl.to("#{sid} .bt-strike line",{{strokeDashoffset:0,duration:0.25,ease:"power2.out"}},{q(t + 1.4)});')
+        elif style == "burst":
+            self.js.append(f'tl.fromTo("#{sid} .bt-num",{{opacity:0,scale:0}},{{opacity:1,scale:1.08,duration:0.55,ease:"power3.out"}},{q(t + 0.15)});')
+            self.js.append(f'tl.to("#{sid} .bt-num",{{scale:1,duration:0.15}},{q(t + 0.7)});')
+            self.js.append(f'tl.fromTo("#{sid} .bt-bottom",{{opacity:0,y:25}},{{opacity:1,y:0,duration:0.4}},{q(t + 0.85)});')
+            for i in range(10):
+                angle = i * 36
+                self.js.append(f'tl.fromTo("#{sid} .bt-burst i:nth-child({i + 1})",{{opacity:1,x:0,y:0}},'
+                               f'{{opacity:0,x:Math.cos({angle}*Math.PI/180)*260,y:Math.sin({angle}*Math.PI/180)*260,duration:0.6,ease:"power2.out"}},{q(t + 0.75 + i * 0.03)});')
+        else:
+            for k, line in enumerate(("l1", "l2", "l3")):
+                self.js.append(f'tl.fromTo("#{sid} .bt-{line}",{{opacity:0,x:-100}},{{opacity:1,x:0,duration:0.42,ease:"back.out(1.6)"}},{q(t + 0.15 + k * 0.2)});')
+            self.js.append(f'tl.fromTo("#{sid} .bt-slam",{{opacity:0,scaleX:0}},{{opacity:1,scaleX:1,duration:0.2,ease:"power4.out"}},{q(t + 0.95)});')
+            for k, dx in enumerate((-6, 6, -3, 0)):
+                self.js.append(f'tl.to("#{sid} .beat",{{x:{dx},duration:0.05,ease:"none"}},{q(t + 0.95 + k * 0.05)});')
+        self.flash(start)
+
+    def pick_zone(self):
+        if not hasattr(self, "zone_rng"):
+            self.zone_rng, self.zone_history = random.Random(self.clip["id"]), []
+        options = ["side", "lower"]
+        if self.zone_history[-2:] in (["side", "side"], ["lower", "lower"]):
+            options.remove(self.zone_history[-1])   # nie trzy razy z rzędu
+        zone = self.zone_rng.choice(options)
+        self.zone_history.append(zone)
+        return zone
+
+    def flash(self, at):
+        """Przejście przez błysk bieli (0,2 s) — jak w montażu wstawek YouTube."""
+        fid = self.uid("f")
+        self.html.append(f'<div class="flash clip" id="{fid}" data-start="{self.q(max(0, at - 0.1))}" data-duration="0.3" data-track-index="9"></div>')
+        self.js.append(f'tl.fromTo("#{fid}",{{opacity:0}},{{opacity:0.85,duration:0.1,ease:"power2.in",yoyo:true,repeat:1}},{self.q(max(0, at - 0.1))});')
 
     def card_stat(self, ev, start, end):
         shown = f'{ev.get("prefix", "")}{ev["to"]}{ev.get("suffix", "")}'
@@ -501,8 +575,18 @@ class Composition:
         else:
             media = (f'<video id="{bid}-v" class="clip" src="media/{name}" muted playsinline data-start="{start}" '
                      f'data-duration="{round(end - start, 4)}" data-media-start="{ev.get("from", 0)}" data-track-index="1"></video>')
-        self.broll_html.append(f'<div class="broll" id="{bid}">' + media
-                         + (f'<div class="broll-label">{esc(ev["label"])}</div>' if ev.get("label") else "") + '</div>')
+        head = ""
+        if ev.get("title"):
+            # przebitka z nagłówkiem: dół z gradientem albo duże hasło na środku (center)
+            cls = "broll-center" if ev.get("center") else "broll-head"
+            size = fit(ev["title"], 1500 if not self.vertical else 900, 150 if ev.get("center") else 96, 2, 48)
+            head = (f'<div class="{cls}">' + (f'<div class="kicker">{esc(ev["kicker"])}</div>' if ev.get("kicker") else "")
+                    + f'<div class="broll-title" style="font-size:{size}px">{self.words_html(ev["title"])}</div></div>')
+        self.broll_html.append(f'<div class="broll" id="{bid}">' + media + head
+                         + (f'<div class="broll-label">{esc(ev["label"])}</div>' if ev.get("label") and not head else "") + '</div>')
+        if head:
+            self.js.append(f'tl.fromTo("#{bid} .broll-title .w",{{opacity:0,y:30}},{{opacity:1,y:0,duration:0.35,stagger:0.08,ease:"power3.out"}},{self.q(start + 0.25)});')
+            self.cards.append((start, end, ev["title"]))   # napisy nie dublują nagłówka
         self.js.append(f'tl.set("#{bid}",{{opacity:1}},{start});tl.set("#{bid}",{{opacity:0}},{end});')
         zoom = (1.0, 1.1) if ev.get("ken", "in") == "in" else (1.1, 1.0)
         self.js.append(f'tl.fromTo("#{bid}",{{scale:{zoom[0]}}},{{scale:{zoom[1]},duration:{round(end - start, 3)},ease:"none"}},{start});')
@@ -828,10 +912,16 @@ class Composition:
             end = min(end, self.clip_len)
             if end - start < 0.5:
                 raise SystemExit(f"zdarzenie {ev['type']} @ {ev['at']}: {start:.2f}–{end:.2f} — za krótkie")
-            if ev["type"] not in ("broll", "logos", "slate", "mockup") and ev.get("zone", self.default_zone()) == "panel":
+            if ev["type"] not in ("broll", "logos", "slate", "mockup", "beat") and ev.get("zone", self.default_zone()) == "panel":
                 start = max(start, self.panel_from())   # panel wjeżdża dopiero po hooku
                 if end - start < 0.8:
                     continue
+            # 16:9 ma kilka układów: panel boczny (700 px), pasek dolny na twarzy (1000 px).
+            # Tytuł/cytat bez wskazanej strefy losuje układ (powtarzalnie, ziarno = klip),
+            # żeby odcinek nie jechał w kółko tym samym (Mateusz 10.10: „nie raz losowo”)
+            if not self.vertical and ev["type"] in ("title", "quote") and "zone" not in ev:
+                ev = dict(ev, zone=self.pick_zone())
+            self.card_w = 1000 if ev.get("zone") == "lower" else (888 if self.vertical else 700)
             getattr(self, "broll" if ev["type"] == "broll" else f"card_{ev['type']}")(ev, start, end)
         self.fill_panel_gaps()
         self.emit_side_windows()
@@ -881,6 +971,26 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .zone-panel{{left:44px;right:132px;top:{FH}px;height:500px;padding-top:46px}}
 .zone-side{{right:40px;top:90px;width:700px;height:900px;display:flex;align-items:center}}
 .zone-full{{inset:0}}
+.flash{{position:absolute;inset:0;background:#fff;opacity:0;z-index:10;pointer-events:none}}
+.beat{{position:relative;width:100%;text-align:center;display:flex;flex-direction:column;align-items:center;gap:26px}}
+.bt-label{{font-size:30px;font-weight:700;letter-spacing:.34em;text-transform:uppercase;color:{accent}}}
+.bt-main,.bt-num,.bt-l1,.bt-l3{{font-weight:900;line-height:1;letter-spacing:-.03em}}
+.bt-acc,.bt-num{{color:{accent}}} .bt-l1{{color:{text}}} .bt-l2{{font-weight:700;color:{muted}}} .bt-l3{{color:{danger}}}
+.bt-sub{{font-size:48px;font-weight:600;color:{muted};display:flex;gap:18px}} .bt-sub .w{{display:inline-block}}
+.bt-strike{{position:absolute;inset:0;width:100%;height:100%;overflow:visible}} .bt-strike line{{stroke:{danger};stroke-width:10;stroke-linecap:round}}
+.bt-num{{position:relative;filter:drop-shadow(0 0 70px {accent}55)}}
+.bt-burst{{position:absolute;left:50%;top:50%;width:0;height:0}} .bt-burst i{{position:absolute;left:-7px;top:-7px;width:14px;height:14px;border-radius:50%;background:{accent};opacity:0}}
+.bt-bottom{{font-size:46px;font-weight:600;color:{text}}}
+.beat-slam{{align-items:flex-start;text-align:left;gap:10px}}
+.bt-slam{{width:100%;height:8px;background:{danger};transform-origin:left center}}
+.zone-lower{{left:70px;bottom:70px;width:1140px}}
+.zone-lower .card{{background:{bg}F0;padding:30px 40px 34px;border-radius:26px;border-left:8px solid {accent};box-shadow:0 18px 50px rgba(0,0,0,.45)}}
+.broll-head{{position:absolute;left:0;right:0;bottom:0;padding:180px 80px 70px;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.82))}}
+.broll-center{{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 120px;background:radial-gradient(circle,rgba(0,0,0,.55),rgba(0,0,0,.25))}}
+.broll-title{{font-weight:800;line-height:1.04;letter-spacing:-.02em;color:#fff;text-shadow:0 4px 30px rgba(0,0,0,.6)}}
+.broll-title .w{{display:inline-block}} .broll-title .acc{{color:{accent}}}
+#video-wrap{{transform-origin:100% 100%}}
+.slate.pip .slate-body{{width:1240px;margin-right:560px}}
 .card{{width:100%;color:{text}}}
 .fmt-v .card{{padding:0 8px}}
 .kicker{{font-size:30px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:{accent};margin-bottom:18px}}
