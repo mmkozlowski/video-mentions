@@ -290,3 +290,21 @@ Pułapki Higgsfield:
 - Kling czasem zwraca rekomendację presetu („IN THE DARK”) zamiast zadania. Trzeba
   ponowić z `declined_preset_id`.
 - Wynik ma 1924×1076 px i 24 kl./s, więc normalizujemy do 1920×1080 bt709.
+
+## Pięć odcinków opakowanych (10.10)
+
+Według wzoru z pilota ep-doram powstały storyboardy ep-rezon, ep-marpasz,
+ep-open-mercato-offers i ep-vacuactiv: rozdziały YouTube z `chapters.py`, rotacja sześciu
+układów, uderzenia dobrane do treści, przebitki z Higgsfield i polskie b-rolle oraz
+prototypy systemu pokazujące to, o czym akurat mowa. `tools/mockups.py` ma ich teraz 14:
+
+| makieta | odcinek | mechanizm z nagrania |
+|---|---|---|
+| match, excels, labels | doram | dopasowanie z kolorami pewności, trzy Excele kontrahentów, PDF 40 stron etykiet |
+| sync, coast, b2b (+rep) | rezon | PC Business ⇄ Open Mercato raz na dobę, trasa handlowca, panel klienta i handlowca |
+| parcels (+after), catalog | marpasz | 4 worki = 4 etykiety → koszyk i jedno kliknięcie, faktura → opisy → magazyn |
+| pdfs, funnel, telegram offer | offers | każdy ma swój PDF, 20 ofert → 3 zamówienia, szkic oferty z maila |
+| context, sources, board, telegram brief/order | vacuactiv | pamięć czatu się kończy, dane w głowach, Excel ≈ tablica produkcji, brief i zamówienie |
+
+Vacuactiv jest renderowany w całości, a dygresja 12:15–14:40 czeka na decyzję Mateusza
+(ma rozdział „Obsidian + Hermes + Codex”, więc łatwo ją znaleźć i wyciąć).
