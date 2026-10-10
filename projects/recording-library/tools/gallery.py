@@ -42,7 +42,8 @@ from sources import load_clips, DATA
 
 FORMATS = [("reels", "Reels / TikTok 9:16 — organiczne, CTA w komentarzu"),
            ("ad", "Reklama Meta 9:16 — chip CTA + plansza końcowa"),
-           ("youtube", "YouTube 16:9 — panel boczny, bez napisów")]
+           ("youtube", "YouTube 16:9 — panel boczny, bez napisów"),
+           ("feed", "Zajawka 4:5 — LinkedIn / Facebook, link do pełnego odcinka")]
 
 
 def main():
@@ -85,6 +86,7 @@ code{{color:var(--mut)}} .brand{{border:1px solid var(--line);border-radius:20px
 .fmt{{margin:14px 0}} h4{{margin:0 0 8px;font-size:14px;color:var(--acc);font-weight:600}}
 .pair{{display:flex;gap:14px;flex-wrap:wrap}} figure{{margin:0}} figcaption{{color:var(--mut);font-size:13px;margin-top:4px}}
 .fmt-reels video,.fmt-ad video{{width:300px;aspect-ratio:9/16;background:#000;border-radius:10px}}
+.fmt-feed video{{width:340px;aspect-ratio:4/5;background:#000;border-radius:10px}}
 .fmt-youtube video{{width:min(620px,100%);aspect-ratio:16/9;background:#000;border-radius:10px}}
 .none{{color:var(--mut)}}
 </style></head><body><main><h1>Próbki opakowania klipów</h1>
