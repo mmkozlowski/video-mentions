@@ -1,5 +1,27 @@
 [
  {
+  "id": "zaj-8-wdrozen",
+  "title": "Zajawka: 8 wdrożeń Open Mercato",
+  "brand": "flowbiz",
+  "kind": "episode",
+  "source": "session",
+  "duration": 71.8,
+  "priority": "A",
+  "scores": {
+   "total": 0
+  },
+  "parts": [
+   {
+    "clip": "ch-doram-6-kody-15-minut",
+    "start": 0.0
+   },
+   {
+    "clip": "ch-marpasz-4-srubki",
+    "start": 33.417
+   }
+  ]
+ },
+ {
   "id": "ep-8-wdrozen",
   "title": "8 wdrożeń Open Mercato — co dały firmom",
   "brand": "flowbiz",

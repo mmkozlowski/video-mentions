@@ -1,0 +1,62 @@
+{
+ "clip": "ch-rezon-2-ustka-rowy",
+ "brand": "flowbiz",
+ "variant": "zajawka",
+ "formats": [
+  "feed"
+ ],
+ "episode_title": "Producent pamiątek znad morza: system B2B zamiast karteczek",
+ "cover": {
+  "kicker": "Case study · producent pamiątek, Kołobrzeg",
+  "text": "Tysiące magnesów *„Ustka”. Nie pójdą do Rowów."
+ },
+ "hook": {
+  "text": "Każda miejscowość ma *swój napis.",
+  "until": "To powoduje",
+  "visual": {
+   "kind": "icon",
+   "art": "h-pin"
+  }
+ },
+ "topic": {
+  "kicker": "Case study · pamiątki znad morza",
+  "text": "Produkcja *na zamówienie",
+  "sub": "handlowiec z tabletem, zamiast towaru na zapas"
+ },
+ "cta": {
+  "chip": "Case study · flowbiz.pl"
+ },
+ "events": [
+  {
+   "type": "broll",
+   "at": "tysiące",
+   "until": "+3.4",
+   "src": "assets/broll/hf/video/h09-nadprodukcja-ustka.mp4"
+  },
+  {
+   "type": "beat",
+   "style": "strike",
+   "at": "wykorzystane",
+   "until": "+3.2",
+   "label": "Produkcja na zapas",
+   "main": "TYSIĄCE SZTUK",
+   "sub": [
+    "Wyprodukowane.",
+    "Niesprzedane."
+   ]
+  },
+  {
+   "type": "broll",
+   "at": "tabletem",
+   "until": "+3.4",
+   "src": "assets/broll/hf/video/h10-sklep-pamiatki-tablet.mp4"
+  },
+  {
+   "type": "title",
+   "at": "zamówienie",
+   "until": "+6",
+   "kicker": "Teraz",
+   "text": "Produkcja *na zamówienie"
+  }
+ ]
+}

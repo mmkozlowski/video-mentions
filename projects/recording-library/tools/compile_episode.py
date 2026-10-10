@@ -17,6 +17,12 @@ import subprocess
 from sources import DATA, LIBRARY
 
 COMPILATIONS = {
+    # zajawka przeglądu na LinkedIn/Facebook (4:5) — dwa krótkie, mocne fragmenty
+    "zaj-8-wdrozen": dict(
+        title="Zajawka: 8 wdrożeń Open Mercato",
+        brand="flowbiz",
+        parts=["ch-doram-6-kody-15-minut", "ch-marpasz-4-srubki"],
+    ),
     "ep-8-wdrozen": dict(
         title="8 wdrożeń Open Mercato — co dały firmom",
         brand="flowbiz",

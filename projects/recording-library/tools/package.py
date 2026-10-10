@@ -85,7 +85,7 @@ LOGO_COLORS = {
     "zapier": "#FF4F00", "openai": "#FAF8F0", "excel": "#21A366", "googlesheets": "#34A853",
     "googledrive": "#4285F4", "shopify": "#7AB55C", "woocommerce": "#C285D6", "slack": "#FAF8F0",
     "notion": "#FAF8F0", "airtable": "#18BFFF", "retool": "#5B8AF5", "gmail": "#EA4335",
-    "wordpress": "#5A9FC4", "telegram": "#26A5E4", "whatsapp": "#25D366", "obsidian": "#A88BFA",
+    "youtube": "#FF0000", "wordpress": "#5A9FC4", "telegram": "#26A5E4", "whatsapp": "#25D366", "obsidian": "#A88BFA",
     "googlegemini": "#8E9BFF", "allegro": "#FF5A00", "adobeacrobatreader": "#EC1C24",
     "googlecalendar": "#4285F4", "dropbox": "#0061FF",
 }
@@ -102,6 +102,8 @@ FORMATS = {
     "reels": dict(w=1080, h=1920, face_h=1215),
     "ad": dict(w=1080, h=1920, face_h=1215),
     "youtube": dict(w=1920, h=1080, face_h=1080),
+    # zajawka odcinka na LinkedIn / Facebook: pion 4:5 zajmuje feed, a nie jest ucinany jak 9:16
+    "feed": dict(w=1080, h=1350, face_h=810),
 }
 
 
@@ -235,7 +237,7 @@ class Composition:
         self.words = [dict(w, word=self.fix(w["word"], fixes)) for w in words]
         self.clock = Clock(self.words, fixes)
         self.clip_len = round(clip["duration"], 3)
-        self.end_len = board.get("endcard", {}).get(fmt, {"ad": 3.5, "reels": 2.6, "youtube": 2.5}[fmt])
+        self.end_len = board.get("endcard", {}).get(fmt, {"ad": 3.5, "reels": 2.6, "youtube": 2.5, "feed": 3.5}[fmt])
         self.total = round(self.clip_len + self.end_len, 3)
         self.html, self.js, self.media = [], [], {}
         self.n = 0
@@ -821,6 +823,11 @@ class Composition:
         cid = self.uid("end")
         if self.fmt == "youtube":
             body = f'<div class="end-sub end-tag">{esc(self.brand["tagline"])} · {esc(self.brand["web"])}</div>'
+        elif self.fmt == "feed":
+            # zajawka: zaproszenie do pełnego odcinka z oryginalnym logo YouTube
+            body = (f'<div class="end-yt">{logo("youtube", 120, "#FF0000")}<span>Cały odcinek na YouTube</span></div>'
+                    + self.end_title(self.board.get("episode_title", "Obejrzyj cały odcinek")) +
+                    f'<div class="end-sub">kanał flowbiz · Mateusz Kozłowski</div>')
         elif self.fmt == "ad":
             lines = cta.get("ad", {})
             body = (f'<div class="end-kicker">{esc(lines.get("kicker", "Bezpłatna konsultacja"))}</div>'
@@ -845,6 +852,16 @@ class Composition:
         self.js.append(f'tl.fromTo("#{cid} .end-body > *",{{opacity:0,y:30}},{{opacity:1,y:0,duration:0.45,stagger:0.12,ease:"power3.out"}},{self.q(start + 0.1)});')
         if self.fmt == "ad":
             self.js.append(f'tl.fromTo("#{cid} .end-btn",{{scale:1}},{{scale:1.05,duration:0.5,yoyo:true,repeat:3,ease:"sine.inOut"}},{self.q(start + 0.9)});')
+
+    def yt_badge(self):
+        """Zajawka: znaczek „Cały odcinek na YouTube” od końca hooka do planszy końcowej."""
+        if self.fmt != "feed":
+            return
+        start = self.q(max(self.hook_end or 0, 1.0) + 0.3)
+        cid = self.uid("yt")
+        self.html.append(f'<div class="yt-badge clip" id="{cid}" data-start="{start}" data-duration="{self.q(self.clip_len - start)}" data-track-index="5">'
+                         f'{logo("youtube", 34, "#FF0000")}<span>Cały odcinek na YouTube</span></div>')
+        self.js.append(f'tl.fromTo("#{cid}",{{opacity:0,y:-14}},{{opacity:1,y:0,duration:0.4,ease:"power3.out"}},{start});')
 
     def lower_third(self):
         if self.fmt != "youtube" or self.board.get("lower_third") is False:
@@ -974,6 +991,7 @@ class Composition:
         self.hook()
         self.captions()
         self.cta_chip()
+        self.yt_badge()
         self.lower_third()
         self.endcard()
         return self.document()
@@ -984,7 +1002,7 @@ class Composition:
         css = (BRAND / "fonts" / "fonts.css").read_text() + logos_css() + (STYLE + MOCKUP_STYLE).format(
             W=g["w"], H=g["h"], FH=g["face_h"], SW=900 if self.vertical else 1500, EL=640 if self.vertical else 1000, ST=282 if self.vertical else 330, SF=110 if self.vertical else 120, LBL=404 if self.vertical else 60, PH=g["h"] - g["face_h"], CHIP=g["face_h"] - 250, CUT=760 if self.vertical else 900, **p,
             V="1" if self.vertical else "0")
-        cls = "fmt-v" if self.vertical else "fmt-h"
+        cls = ("fmt-v" if self.vertical else "fmt-h") + f" fmt-{self.fmt}"
         return (f'<!doctype html><html lang="pl"><head><meta charset="utf-8">'
                 f'<meta name="viewport" content="width={g["w"]}, height={g["h"]}"><style>{css}</style></head>'
                 f'<body><div id="root" class="{cls}" data-composition-id="pack" data-start="0" data-width="{g["w"]}" '
@@ -1017,6 +1035,9 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .zone-full{{inset:0}}
 .callout{{font-weight:900;line-height:.92;letter-spacing:-.03em;text-transform:uppercase;color:{text};text-align:center;font-style:{heading_style}}}
 .callout .w{{display:block}} .callout .acc{{color:{accent}}}
+.fmt-feed .hook{{bottom:90px}} .fmt-feed .hv{{min-height:170px}} .fmt-feed .hv-img,.fmt-feed .hv-logo{{width:170px;height:170px}}
+.yt-badge{{position:absolute;left:32px;top:32px;display:flex;align-items:center;gap:12px;padding:10px 18px 10px 14px;border-radius:40px;background:rgba(0,0,0,.72);color:#fff;font-size:26px;font-weight:700;z-index:6}}
+.end-yt{{display:flex;align-items:center;gap:22px;font-size:40px;font-weight:800;color:{text}}}
 .flash{{position:absolute;inset:0;background:#fff;opacity:0;z-index:10;pointer-events:none}}
 .broll-full{{position:absolute;inset:0;z-index:7;background:#000}} .broll-full video{{width:100%;height:100%;object-fit:cover}}
 .beat{{position:relative;width:100%;text-align:center;display:flex;flex-direction:column;align-items:center;gap:26px}}

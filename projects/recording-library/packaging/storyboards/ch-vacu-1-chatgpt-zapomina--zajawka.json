@@ -1,0 +1,64 @@
+{
+ "clip": "ch-vacu-1-chatgpt-zapomina",
+ "brand": "flowbiz",
+ "variant": "zajawka",
+ "formats": [
+  "feed"
+ ],
+ "episode_title": "Agent AI dla właściciela firmy produkcyjnej",
+ "cover": {
+  "kicker": "Case study · producent sprzętu sportowego",
+  "text": "Szef firmy miał dość ChatGPT. *Zbudowaliśmy mu agenta."
+ },
+ "hook": {
+  "text": "ChatGPT zapomina *Twoje wytyczne.",
+  "until": "Ten Chat przestaje",
+  "visual": {
+   "kind": "logos",
+   "items": [
+    "openai"
+   ]
+  }
+ },
+ "topic": {
+  "kicker": "Case study · agent AI",
+  "text": "Pamięć, która *się nie kończy",
+  "sub": "mózg firmy zamiast jednego czatu"
+ },
+ "cta": {
+  "chip": "Case study · flowbiz.pl"
+ },
+ "events": [
+  {
+   "type": "mockup",
+   "name": "context",
+   "at": "haucynować",
+   "until": "+11"
+  },
+  {
+   "type": "beat",
+   "style": "slam",
+   "at": "ograniczony kontekst",
+   "until": "+3.6",
+   "label": "Ograniczony kontekst",
+   "lines": [
+    "PAMIĘĆ CZATU",
+    "się",
+    "KOŃCZY."
+   ]
+  },
+  {
+   "type": "broll",
+   "at": "kilkanaście miesięcy",
+   "until": "+3.4",
+   "src": "assets/broll/hf/video/h01-biuro-przeciazenie.mp4"
+  },
+  {
+   "type": "title",
+   "at": "frustrację",
+   "until": "+4",
+   "kicker": "W odcinku",
+   "text": "Jak zbudowaliśmy *mózg firmy"
+  }
+ ]
+}
