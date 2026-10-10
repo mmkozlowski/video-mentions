@@ -60,11 +60,54 @@ code{{color:var(--mut)}} .brand{{border:1px solid var(--line);border-radius:20px
 .fmt-youtube video{{width:min(620px,100%);aspect-ratio:16/9;background:#000;border-radius:10px}}
 .none{{color:var(--mut)}}
 </style></head><body><main><h1>Próbki opakowania klipów</h1>
-<p class="lead">Sesja 8.10.2026 · paleta A (bursztyn) · ujęcia oznaczone „AI” są generowane (art. 50 AI Act — przy publikacji włącz też przełącznik na platformie).</p>
+<p class="lead"><a href="odcinki-i-grafiki.html" style="color:#F5A623">→ odcinki YouTube i grafiki statyczne</a><br>Sesja 8.10.2026 · paleta A (bursztyn) · ujęcia oznaczone „AI” są generowane (art. 50 AI Act — przy publikacji włącz też przełącznik na platformie).</p>
 {"".join(rows)}</main></body></html>'''
     FINAL.mkdir(parents=True, exist_ok=True)
     (FINAL / "index.html").write_text(page)
     print(f"{len(rows)} klipów → {FINAL / 'index.html'}")
+    print("odcinki i grafiki →", episodes_and_static(clips))
+
+
+def episodes_and_static(clips):
+    """Druga strona: długie odcinki YouTube (z rozdziałami) + wszystkie grafiki statyczne."""
+    eps = []
+    for path in sorted(PACK.glob("storyboards/ep-*.json")):
+        clip = clips[json.load(open(path))["clip"]]
+        f = FINAL / f"{clip['id']}__youtube-A.mp4"
+        if not f.exists():
+            continue
+        chapters = FINAL / f"{clip['id']}__chapters.txt"
+        chap = html.escape(chapters.read_text()) if chapters.exists() else ""
+        eps.append(f'<section><h2>{html.escape(clip["title"])}</h2><code>{clip["id"]} · {int(clip["duration"] // 60)}:{int(clip["duration"] % 60):02d}</code>'
+                   f'<div class="ep"><video src="{f.name}?v={int(f.stat().st_mtime)}" controls preload="metadata"></video>'
+                   f'<pre>{chap}</pre></div></section>')
+    static = FINAL.parent / "static"
+    shots = []
+    for feed in sorted(static.glob("*__feed.png")):
+        slug = feed.name.split("__")[0]
+        story = static / f"{slug}__story.png"
+        shots.append(f'<figure><a href="../static/{feed.name}"><img src="../static/{feed.name}?v={int(feed.stat().st_mtime)}" class="feed"></a>'
+                     + (f'<a href="../static/{story.name}"><img src="../static/{story.name}?v={int(story.stat().st_mtime)}" class="story"></a>' if story.exists() else "")
+                     + f'<figcaption>{html.escape(slug)}</figcaption></figure>')
+    page = f'''<!doctype html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Odcinki i grafiki</title><style>
+:root{{--bg:#0A0A08;--fg:#FAF8F0;--mut:#9A938A;--acc:#F5A623;--line:#2E2C28}}
+body{{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,sans-serif}}
+main{{max-width:1500px;margin:0 auto;padding:24px 16px 80px}} h1{{font-size:28px;margin:0 0 4px}} .lead{{color:var(--mut)}}
+section{{border-top:1px solid var(--line);padding:24px 0}} h2{{margin:0 0 4px;font-size:22px}} code{{color:var(--mut)}}
+.ep{{display:flex;gap:20px;flex-wrap:wrap;margin-top:12px}} .ep video{{width:min(900px,100%);aspect-ratio:16/9;background:#000;border-radius:10px}}
+pre{{margin:0;color:var(--mut);font-size:14px;white-space:pre-wrap}}
+.grid{{display:flex;flex-wrap:wrap;gap:24px}} figure{{margin:0;display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap}}
+img.feed{{width:280px;border-radius:8px}} img.story{{width:180px;border-radius:8px}} figcaption{{width:100%;color:var(--mut);font-size:13px}}
+nav a{{color:var(--acc)}}
+</style></head><body><main><h1>Odcinki YouTube i grafiki statyczne</h1>
+<p class="lead"><nav><a href="index.html">← krótkie klipy i reklamy wideo</a></nav></p>
+<h2 style="margin-top:28px">Odcinki YouTube 16:9</h2>{"".join(eps) or "<p>jeszcze bez renderu</p>"}
+<section><h2>Grafiki statyczne — feed 4:5 i story 9:16</h2><div class="grid">{"".join(shots)}</div></section>
+</main></body></html>'''
+    out = FINAL / "odcinki-i-grafiki.html"
+    out.write_text(page)
+    return out
 
 
 if __name__ == "__main__":

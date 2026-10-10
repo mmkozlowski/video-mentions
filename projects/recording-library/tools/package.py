@@ -886,21 +886,25 @@ class Composition:
                 continue
             bounds.append((t, kind))
         bounds.append((self.clip_len, "end"))
+        # 16:9: pełny kadr źródła pokazuje brzeg monitora i kable z lewej (Mateusz 10.10:
+        # „nie może tego być w ogóle”) — baza +10%, środek przybliżenia na twarzy
+        base = 1.0 if self.vertical else 1.10
+        self.js.append(f'tl.set("#face-zoom",{{scale:{base}}},0);')
         close = False
         for (t0, kind), (t1, _) in zip(bounds, bounds[1:]):
             t0, t1 = self.q(t0), self.q(t1)
             in_hook = self.hook_end and t0 < self.hook_end - 0.2
             close = not close if kind != "start" else False
             near = 1.06 if in_hook else 1.13
-            scale = near if close else 1.0
+            scale = round(base * (near if close else 1.0), 3)
             span = round(t1 - t0 - 0.04, 3)
             if span <= 0.1:
                 continue
             if kind == "hook":   # odjazd razem z wjazdem panelu, potem dryf
-                scale, close = 1.0, False
-                self.js.append(f'tl.to("#face-zoom",{{scale:1,duration:0.7,ease:"power3.inOut"}},{t0});')
+                scale, close = base, False
+                self.js.append(f'tl.to("#face-zoom",{{scale:{base},duration:0.7,ease:"power3.inOut"}},{t0});')
                 if span > 0.8:
-                    self.js.append(f'tl.to("#face-zoom",{{scale:1.03,duration:{round(span - 0.72, 3)},ease:"none"}},{self.q(t0 + 0.72)});')
+                    self.js.append(f'tl.to("#face-zoom",{{scale:{round(base * 1.03, 3)},duration:{round(span - 0.72, 3)},ease:"none"}},{self.q(t0 + 0.72)});')
                 continue
             self.js.append(f'tl.fromTo("#face-zoom",{{scale:{scale}}},{{scale:{round(scale + 0.03, 3)},duration:{span},ease:"none"}},{t0});')
 
