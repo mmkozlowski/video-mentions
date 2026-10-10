@@ -9,6 +9,34 @@ na żywym materiale, nie na opisie.
 import html
 import json
 
+NOTES = r'''<div id="notesbar" style="position:fixed;right:16px;bottom:16px;z-index:9;display:flex;gap:8px;align-items:center;background:#1A1916;border:1px solid #2E2C28;border-radius:12px;padding:10px 12px">
+<span id="ncount" style="color:#9A938A;font-size:13px">0 uwag</span>
+<button id="ncopy" style="font:600 13px system-ui;padding:8px 12px;border-radius:8px;border:0;background:#F5A623;color:#000;cursor:pointer">Kopiuj uwagi</button>
+<button id="nclear" style="font:600 13px system-ui;padding:8px 12px;border-radius:8px;border:1px solid #2E2C28;background:none;color:#FAF8F0;cursor:pointer">Wyczyść</button></div>
+<script>
+const KEY="uwagi-montaz";
+const load=()=>{try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch{return[]}};
+const save=n=>{try{localStorage.setItem(KEY,JSON.stringify(n))}catch{}; draw()};
+const fmt=t=>Math.floor(t/60)+":"+String(Math.floor(t%60)).padStart(2,"0");
+function draw(){const n=load();document.getElementById("ncount").textContent=n.length+" uwag";
+ document.querySelectorAll(".nlist").forEach(ul=>{const f=ul.dataset.file;ul.innerHTML="";
+  n.map((x,i)=>[x,i]).filter(([x])=>x.file===f).forEach(([x,i])=>{const li=document.createElement("li");
+   li.textContent=fmt(x.t)+" — "+x.text+" ";const b=document.createElement("button");b.textContent="×";b.style.cssText="background:none;border:0;color:#9A938A;cursor:pointer";
+   b.onclick=()=>{const m=load();m.splice(i,1);save(m)};li.append(b);ul.append(li);});});}
+document.querySelectorAll("figure").forEach(fig=>{const v=fig.querySelector("video");if(!v)return;const file=v.getAttribute("src").split("?")[0];
+ const row=document.createElement("div");row.style.cssText="display:flex;gap:6px;margin-top:6px";
+ const inp=document.createElement("input");inp.placeholder="co zmienić?";inp.style.cssText="flex:1;min-width:0;font:13px system-ui;padding:6px 8px;border-radius:6px;border:1px solid #2E2C28;background:#0A0A08;color:#FAF8F0";
+ const btn=document.createElement("button");btn.textContent="Uwaga tutaj";btn.style.cssText="font:600 12px system-ui;padding:6px 10px;border-radius:6px;border:0;background:#F5A623;color:#000;cursor:pointer;white-space:nowrap";
+ const add=()=>{if(!inp.value.trim())return inp.focus();const n=load();n.push({file,t:v.currentTime,text:inp.value.trim()});inp.value="";save(n)};
+ btn.onclick=add;inp.onkeydown=e=>{if(e.key==="Enter")add()};
+ const ul=document.createElement("ul");ul.className="nlist";ul.dataset.file=file;ul.style.cssText="margin:6px 0 0;padding-left:18px;color:#FAF8F0;font-size:13px;max-width:620px";
+ row.append(inp,btn);fig.append(row,ul);});
+document.getElementById("ncopy").onclick=async()=>{const n=load();const txt=n.map(x=>x.file.replace(".mp4","")+" "+fmt(x.t)+" — "+x.text).join("\n");
+ try{await navigator.clipboard.writeText(txt);document.getElementById("ncount").textContent="skopiowano"}catch{prompt("Skopiuj:",txt)}};
+document.getElementById("nclear").onclick=()=>{if(confirm("Usunąć wszystkie uwagi?"))save([])};
+draw();
+</script>'''
+
 from package import FINAL, PACK, PALETTES, output_name, palettes_for
 from sources import load_clips, DATA
 
@@ -61,7 +89,7 @@ code{{color:var(--mut)}} .brand{{border:1px solid var(--line);border-radius:20px
 .none{{color:var(--mut)}}
 </style></head><body><main><h1>Próbki opakowania klipów</h1>
 <p class="lead"><a href="odcinki-i-grafiki.html" style="color:#F5A623">→ odcinki YouTube i grafiki statyczne</a><br>Sesja 8.10.2026 · paleta A (bursztyn) · ujęcia oznaczone „AI” są generowane (art. 50 AI Act — przy publikacji włącz też przełącznik na platformie).</p>
-{"".join(rows)}</main></body></html>'''
+{"".join(rows)}</main>'''+NOTES+'''</body></html>'''
     FINAL.mkdir(parents=True, exist_ok=True)
     (FINAL / "index.html").write_text(page)
     print(f"{len(rows)} klipów → {FINAL / 'index.html'}")
@@ -79,7 +107,7 @@ def episodes_and_static(clips):
         chapters = FINAL / f"{clip['id']}__chapters.txt"
         chap = html.escape(chapters.read_text()) if chapters.exists() else ""
         eps.append(f'<section><h2>{html.escape(clip["title"])}</h2><code>{clip["id"]} · {int(clip["duration"] // 60)}:{int(clip["duration"] % 60):02d}</code>'
-                   f'<div class="ep"><video src="{f.name}?v={int(f.stat().st_mtime)}" controls preload="metadata"></video>'
+                   f'<div class="ep"><figure style="margin:0;width:min(900px,100%)"><video src="{f.name}?v={int(f.stat().st_mtime)}" controls preload="metadata" style="width:100%"></video></figure>'
                    f'<pre>{chap}</pre></div></section>')
     static = FINAL.parent / "static"
     shots = []
@@ -104,7 +132,7 @@ nav a{{color:var(--acc)}}
 <p class="lead"><nav><a href="index.html">← krótkie klipy i reklamy wideo</a></nav></p>
 <h2 style="margin-top:28px">Odcinki YouTube 16:9</h2>{"".join(eps) or "<p>jeszcze bez renderu</p>"}
 <section><h2>Grafiki statyczne — feed 4:5 i story 9:16</h2><div class="grid">{"".join(shots)}</div></section>
-</main></body></html>'''
+</main>'''+NOTES+'''</body></html>'''
     out = FINAL / "odcinki-i-grafiki.html"
     out.write_text(page)
     return out
