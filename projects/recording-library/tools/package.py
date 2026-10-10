@@ -395,10 +395,12 @@ class Composition:
         if cover.get("style") == "callout":
             # duże hasło na start (Mateusz 10.10: „AI W PRODUKCJI”, „AI SŁUPSK”) — 1,2 s,
             # potem od razu twarz z hookiem; test A/B wobec wersji bez hasła
-            size = fit(cover["text"], 960 if self.vertical else 1600, 200 if self.vertical else 230, 2, 90)
+            # hasło ma uderzać od krawędzi do krawędzi: rozmiar z najdłuższego słowa, każde w swojej linii
+            longest = max(len(w.strip("*")) for w in cover["text"].split())
+            size = int(min(300 if self.vertical else 260, (1000 if self.vertical else 1700) / (0.66 * longest)))
             sid = self.slate(0.0, self.cover_end,
                              (f'<div class="bt-label">{esc(cover["kicker"])}</div>' if cover.get("kicker") else "")
-                             + f'<div class="callout" style="font-size:{size}px">{self.words_html(cover["text"])}</div>', instant=True)
+                             + f'<div class="callout" style="font-size:{size}px">{self.callout_lines(cover["text"])}</div>', instant=True)
             self.js.append(f'tl.fromTo("#{sid} .callout",{{scale:1.25,opacity:0}},{{scale:1,opacity:1,duration:0.35,ease:"power4.out"}},0);')
             self.flash(self.cover_end)
             return
@@ -407,6 +409,17 @@ class Composition:
                          + f'<div class="slate-text" style="font-size:{fit(cover["text"], 900 if self.vertical else 1500, 104 if self.vertical else 110, 4)}px">{self.words_html(cover["text"])}</div>',
                          instant=True)
         self.js.append(f'tl.fromTo("#{sid} .slate-text .w",{{opacity:0.3}},{{opacity:1,duration:0.2,stagger:0.05}},0.05);')
+
+    def callout_lines(self, text):
+        """Każde słowo w swojej linii, ale krótkie (do 2 liter: „W”, „I”) dołącza do poprzedniego —
+        samotne „W” w linii wygląda jak błąd."""
+        lines = []
+        for word in text.split():
+            if lines and len(word.strip("*?")) <= 2:
+                lines[-1] += " " + word
+            else:
+                lines.append(word)
+        return "".join(f'<span class="w{" acc" if "*" in line else ""}">{esc(line.replace("*", ""))}</span>' for line in lines)
 
     def card_slate(self, ev, start, end):
         """Plansza: jedno zdanie na pełnym ekranie, głos leci pod spodem."""
@@ -998,7 +1011,8 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .zone-panel{{left:44px;right:132px;top:{FH}px;height:500px;padding-top:46px}}
 .zone-side{{right:40px;top:90px;width:700px;height:900px;display:flex;align-items:center}}
 .zone-full{{inset:0}}
-.callout{{font-weight:900;line-height:.95;letter-spacing:-.03em;text-transform:uppercase;color:{text};text-align:center}} .callout .acc{{color:{accent}}}
+.callout{{font-weight:900;line-height:.92;letter-spacing:-.03em;text-transform:uppercase;color:{text};text-align:center;font-style:{heading_style}}}
+.callout .w{{display:block}} .callout .acc{{color:{accent}}}
 .flash{{position:absolute;inset:0;background:#fff;opacity:0;z-index:10;pointer-events:none}}
 .broll-full{{position:absolute;inset:0;z-index:7;background:#000}} .broll-full video{{width:100%;height:100%;object-fit:cover}}
 .beat{{position:relative;width:100%;text-align:center;display:flex;flex-direction:column;align-items:center;gap:26px}}
