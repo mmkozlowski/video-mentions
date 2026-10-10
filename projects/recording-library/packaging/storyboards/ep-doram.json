@@ -192,20 +192,12 @@
    "src": "../youtube/Animation flowbiz youtube/assets/veo/02-drukarka-zamowienie.mp4"
   },
   {
-   "type": "logos",
+   "type": "broll",
    "at": "scentralizować",
-   "until": "+12",
-   "kicker": "Najpierw jedna baza",
-   "items": [
-    {
-     "logo": "excel",
-     "name": "Excele"
-    },
-    {
-     "logo": "openmercato",
-     "name": ""
-    }
-   ]
+   "until": "+9",
+   "src": "build/klocki/integracje-w-jeden-system-16x9.mp4",
+   "ai": false,
+   "from": 0.5
   },
   {
    "type": "quote",

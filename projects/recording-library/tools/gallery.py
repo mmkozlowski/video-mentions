@@ -30,7 +30,9 @@ def main():
             for pal in palettes_for(board, clip):
                 f = FINAL / f"{clip['id']}__{fmt}-{pal}.mp4"
                 if f.exists():
-                    vids.append(f'<figure><video src="{f.name}" controls preload="metadata" playsinline></video>'
+                    # ?v=czas zmiany: przeglądarka trzyma wideo w cache'u i po nowym renderze
+                    # pokazywała starą wersję (ten sam błąd co cache edytora z ADR e01)
+                    vids.append(f'<figure><video src="{f.name}?v={int(f.stat().st_mtime)}" controls preload="metadata" playsinline></video>'
                                 f'<figcaption>{pal} · {html.escape(PALETTES[pal]["name"])}</figcaption></figure>')
             if vids:
                 cells.append(f'<div class="fmt fmt-{fmt}"><h4>{label}</h4><div class="pair">{"".join(vids)}</div></div>')

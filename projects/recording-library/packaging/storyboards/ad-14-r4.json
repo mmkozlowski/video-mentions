@@ -89,12 +89,14 @@
    ]
   },
   {
-   "type": "title",
-   "at": "Jestem",
-   "until": "Wejdź",
-   "kicker": "Flowbiz · Słupsk",
-   "text": "Od zamówienia *do wysyłki",
-   "sub": "powiem, gdzie jest największa dźwignia"
+   "type": "broll",
+   "at": "od zamówienia",
+   "until": "+5",
+   "src": "build/klocki/system-moduly-przelot-16x9.mp4",
+   "src_v": "build/klocki/system-moduly-przelot-9x16.mp4",
+   "full": true,
+   "ai": false,
+   "from": 1.0
   },
   {
    "type": "title",

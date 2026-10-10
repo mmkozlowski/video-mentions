@@ -161,17 +161,12 @@
    "title": "„Chcę wiedzieć, *co się dziś dzieje”"
   },
   {
-   "type": "logos",
+   "type": "broll",
    "at": "Open Mercato",
-   "until": "+11",
-   "kicker": "Fundament",
-   "items": [
-    {
-     "logo": "openmercato",
-     "name": ""
-    }
-   ],
-   "sub": "moduły z pudełka, dopasowane do ludzi"
+   "until": "+10",
+   "src": "build/klocki/system-moduly-przelot-16x9.mp4",
+   "ai": false,
+   "from": 1.0
   },
   {
    "type": "beat",

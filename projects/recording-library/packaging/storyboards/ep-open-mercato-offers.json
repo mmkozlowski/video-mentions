@@ -63,12 +63,12 @@
    "until": "+12"
   },
   {
-   "type": "title",
+   "type": "broll",
    "at": "jednolity",
-   "until": "+9",
-   "kicker": "Jeden system",
-   "text": "Jeden sposób *pracy",
-   "sub": "wąska liczba reguł, jeden proces"
+   "until": "+4.5",
+   "src": "build/klocki/oferta-chaos-do-systemu-16x9.mp4",
+   "ai": false,
+   "from": 5.6
   },
   {
    "type": "mockup",

@@ -562,9 +562,21 @@ class Composition:
         self.stagger(f"#{cid} .quote .w", start + 0.1, 0.05, 14)
 
     def broll(self, ev, start, end):
-        """Przebitka: w pionie zastępuje twarz (panel z kartami zostaje), w 16:9 pełny kadr."""
-        name = Path(ev["src"]).name
-        self.media[name] = (PROJECT / ev["src"]).resolve() if not Path(ev["src"]).is_absolute() else Path(ev["src"])
+        """Przebitka: w pionie zastępuje twarz (panel z kartami zostaje), w 16:9 pełny kadr.
+        `full` + `src_v`: klocek animacji na cały ekran pionu (np. 9:16 z projects/flowbiz) —
+        w ramce twarzy (1080×1215) zostałby obcięty."""
+        src = ev.get("src_v", ev["src"]) if self.vertical else ev["src"]
+        name = Path(src).name
+        self.media[name] = (PROJECT / src).resolve() if not Path(src).is_absolute() else Path(src)
+        if ev.get("full") and self.vertical:
+            bid, start, end = self.uid("b"), self.q(start), self.q(end)
+            self.slates.append((start, end))
+            self.panel_busy.append((start, end))
+            self.html.append(f'<div class="broll-full clip" id="{bid}" data-start="{start}" data-duration="{round(end - start, 4)}" data-track-index="8">'
+                             f'<video id="{bid}-v" class="clip" src="media/{name}" muted playsinline data-start="{start}" '
+                             f'data-duration="{round(end - start, 4)}" data-media-start="{ev.get("from", 0)}" data-track-index="10"></video></div>')
+            self.flash(start)
+            return
         bid = self.uid("b")
         start, end = self.q(start), self.q(end)
         # w ramce wideo: w pionie kurczy się razem z twarzą po hooku, w 16:9 odjeżdża pod panel boczny
@@ -972,6 +984,7 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .zone-side{{right:40px;top:90px;width:700px;height:900px;display:flex;align-items:center}}
 .zone-full{{inset:0}}
 .flash{{position:absolute;inset:0;background:#fff;opacity:0;z-index:10;pointer-events:none}}
+.broll-full{{position:absolute;inset:0;z-index:7;background:#000}} .broll-full video{{width:100%;height:100%;object-fit:cover}}
 .beat{{position:relative;width:100%;text-align:center;display:flex;flex-direction:column;align-items:center;gap:26px}}
 .bt-label{{font-size:34px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:{accent}}}
 .bt-main,.bt-num,.bt-l1,.bt-l3{{font-weight:900;line-height:1;letter-spacing:-.03em}}

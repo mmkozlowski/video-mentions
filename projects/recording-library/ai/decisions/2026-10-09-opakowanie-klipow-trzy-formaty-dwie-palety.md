@@ -308,3 +308,31 @@ prototypy systemu pokazujące to, o czym akurat mowa. `tools/mockups.py` ma ich 
 
 Vacuactiv jest renderowany w całości, a dygresja 12:15–14:40 czeka na decyzję Mateusza
 (ma rozdział „Obsidian + Hermes + Codex”, więc łatwo ją znaleźć i wyciąć).
+
+## Zmiany z drugiego komputera zastosowane tutaj (10.10, wieczór)
+
+Mateusz: „chodzi mi głównie o nowe animacje, sposoby pracy i błędy”. Z `main` (31 commitów)
+przeniesione tutaj:
+
+- **Klocki animacji flowbiz** (`projects/flowbiz/screens`, HyperFrames, czerń + pomarańcz)
+  wchodzą do odcinków jako przebitki tam, gdzie pasują do treści:
+  - integracje w jeden system → rezon i doram, „najpierw jedna baza”;
+  - przelot przez moduły → vacuactiv („Open Mercato jako fundament”) i ad-14 („od
+    zamówienia do wysyłki”);
+  - oferta z chaosu do systemu → offers, tylko końcówka od 5,6 s, bo środek pokazuje
+    stoper „5–10 min” z innego wdrożenia.
+
+  Klocki to HTML, nie AI, więc bez znaku AI. Kopie leżą w `build/klocki/`; źródło
+  odtwarza się przez `projects/flowbiz/screens/render.sh`.
+- **Przebitka pełnoekranowa w pionie** (`full` + `src_v`): klocek 9:16 idzie na cały ekran,
+  bo w ramce twarzy 1080×1215 byłby obcięty. Wchodzi z błyskiem bieli.
+- **Błędy z odcinka e01 sprawdzone na naszych materiałach:**
+  - ocena po kompresji h.264 i na prawdziwym materiale: OK;
+  - karta w dolnej tercji i lewy układ na twarzy: OK;
+  - dryf kart: brak;
+  - mały bursztyn prosto na wideo: poprawiony (pigułka pod etykietą na przebitce);
+  - stopnie pisma: etykieta 34 px, rozstrzelenie ≤ 0,18 em.
+- **Cache przeglądarki to ten sam błąd co cache edytora.** Galeria podaje wideo z `?v=czas
+  zmiany`, żeby po renderze nie oglądać starej wersji pod tą samą nazwą.
+- **MP4/MOV poza gitem** (decyzja z 10.10): klipy Higgsfield zdjęte z gita, manifest
+  z id zadań zostaje.
