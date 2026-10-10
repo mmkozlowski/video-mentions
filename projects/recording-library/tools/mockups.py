@@ -69,6 +69,15 @@ def match(comp, ev, start, end):
 # na temat etapów, postępów produkcji, opóźnień, kluczowych klientów” oraz „utwórz mi
 # zamówienie dla tego klienta → zduplikować czy nowe? → w trzech kliknięciach gotowe”.
 TELEGRAM = {
+    # ep-open-mercato-offers (~2:20): „asystent czyta maile… w locie przygotowuje szkic oferty…
+    # powiadomienie na Telegrama, możesz zaakceptować albo poprosić o korektę”
+    "offer": [
+        ("bot", "📩 Nowe zapytanie z maila: <b>3 bieżnie, 2 atlasy</b>"),
+        ("bot", "📝 Szkic oferty gotowy · <b>5 pozycji</b>, ceny z magazynu"),
+        ("buttons", ["Zatwierdź", "Popraw"]),
+        ("me", "Zatwierdź"),
+        ("bot", "✅ <b>Oferta wysłana.</b> Czas: 5 minut."),
+    ],
     "brief": [
         ("bot", "<b>Raport poranny · 7:00</b>"),
         ("bot", "🏭 Produkcja: <b>14 zleceń</b> w toku, 3 na etapie montażu"),
@@ -246,8 +255,85 @@ def coast(comp, ev, start, end):
     comp.js.append(f'tl.fromTo("#{sid} .co-note",{{opacity:0,y:20}},{{opacity:1,y:0,duration:0.4}},{q(start + run * 0.6)});')
 
 
-MOCKUPS = {"match": match, "telegram": telegram, "b2b": b2b, "excels": excels, "labels": labels,
-           "sync": sync, "coast": coast}
+# Paczki z ep-marpasz (~1:35 i ~3:10): wcześniej komentarz → Excel → etykieta po kolei dla
+# każdego z czterech worków; teraz AI łączy podobne zamówienia w koszyk i „wygeneruj etykiety”.
+def parcels(comp, ev, start, end):
+    after = ev.get("mode") == "after"
+    sacks = "".join(f'<div class="pc-sack" data-i="{i}"><b>25 kg</b><span class="pc-label">etykieta {i + 1}</span></div>' for i in range(4))
+    if after:
+        side = ('<div class="pc-flow"><div class="pc-step pc-on">AI łączy podobne zamówienia</div>'
+                '<div class="pc-step pc-on">1 koszyk · 4 paczki</div><div class="b2b-btn pc-btn">Wygeneruj etykiety</div></div>')
+        title = "Teraz · jedno kliknięcie"
+    else:
+        side = ('<div class="pc-flow"><div class="pc-step">Komentarz w zamówieniu</div><div class="pc-step">Przeklej do Excela</div>'
+                '<div class="pc-step">Drukuj etykietę</div><div class="pc-loop">↻ × 4 na jedno zamówienie</div></div>')
+        title = "Wcześniej · ręcznie"
+    inner = (f'<div class="pc"><div class="co-kicker">{title}</div><div class="pc-row"><div class="pc-sacks">{sacks}</div>{side}</div></div>')
+    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    q = comp.q
+    comp.js.append(f'tl.fromTo("#{sid} .pc-sack",{{opacity:0,y:40}},{{opacity:1,y:0,duration:0.35,stagger:0.15}},{q(start + 0.2)});')
+    comp.js.append(f'tl.set("#{sid} .pc-label",{{opacity:0}},{q(start)});')
+    if after:
+        comp.js.append(f'tl.fromTo("#{sid} .pc-step",{{opacity:0,x:40}},{{opacity:1,x:0,duration:0.35,stagger:0.3}},{q(start + 0.8)});')
+        click = start + 2.0
+        comp.js.append(f'tl.to("#{sid} .pc-btn",{{scale:0.94,duration:0.12,yoyo:true,repeat:1}},{q(click)});')
+        comp.js.append(f'tl.to("#{sid} .pc-label",{{opacity:1,duration:0.25,stagger:0.08}},{q(click + 0.3)});')
+    else:
+        comp.js.append(f'tl.fromTo("#{sid} .pc-step",{{opacity:0,x:40}},{{opacity:1,x:0,duration:0.3,stagger:0.35}},{q(start + 0.8)});')
+        step = max(0.6, (end - start - 3.0) / 4)
+        comp.js.append(f'tl.to("#{sid} .pc-label",{{opacity:1,duration:0.2,stagger:{step}}},{q(start + 2.2)});')
+        comp.js.append(f'tl.fromTo("#{sid} .pc-loop",{{opacity:0}},{{opacity:1,duration:0.3}},{q(start + 2.0)});')
+
+
+# Katalog AI z ep-marpasz (~6:00): „AI odczytuje faktury, buduje listę produktów, przygotowuje
+# opisy pod każdą platformę, sprawdza magazyn i jednym kliknięciem dodaje wszystko”.
+def catalog(comp, ev, start, end):
+    from package import logo, LOGO_COLORS
+    items = "".join(f'<div class="ct-item" data-i="{i}">{esc(n)}</div>'
+                    for i, n in enumerate(["Karma dla psa 15 kg", "Pasza dla kur 25 kg", "Przysmaki dla kota"]))
+    chans = "".join(f'<div class="ct-chan" data-i="{i}">{logo(l, 40, LOGO_COLORS.get(l)) if l else "<b>E</b>"}<span>{esc(n)}</span></div>'
+                    for i, (l, n) in enumerate([("allegro", "Allegro"), ("wordpress", "Sklep"), ("", "Erli")]))
+    inner = (f'<div class="ct"><div class="ct-col"><div class="b2b-h">Faktura od dostawcy</div><div class="ct-doc"><i></i><i></i><i></i><i></i></div></div>'
+             f'<div class="sy-line ct-arrow"></div>'
+             f'<div class="ct-col"><div class="b2b-h">AI · lista produktów</div>{items}</div>'
+             f'<div class="sy-line ct-arrow"></div>'
+             f'<div class="ct-col"><div class="b2b-h">Opisy pod platformy</div>{chans}<div class="b2b-btn ct-btn">Dodaj do magazynu</div></div></div>')
+    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    q = comp.q
+    comp.js.append(f'tl.fromTo("#{sid} .ct-doc",{{opacity:0,y:30}},{{opacity:1,y:0,duration:0.4}},{q(start + 0.2)});')
+    comp.js.append(f'tl.fromTo("#{sid} .ct-arrow",{{scaleX:0}},{{scaleX:1,duration:0.4,stagger:1.4}},{q(start + 0.7)});')
+    comp.js.append(f'tl.fromTo("#{sid} .ct-item",{{opacity:0,x:-30}},{{opacity:1,x:0,duration:0.3,stagger:0.25}},{q(start + 1.0)});')
+    comp.js.append(f'tl.fromTo("#{sid} .ct-chan",{{opacity:0,x:-30}},{{opacity:1,x:0,duration:0.3,stagger:0.25}},{q(start + 2.4)});')
+    comp.js.append(f'tl.fromTo("#{sid} .ct-btn",{{opacity:0,scale:0.8}},{{opacity:1,scale:1,duration:0.35,ease:"back.out(2)"}},{q(start + 3.4)});')
+
+
+# Oferty z ep-open-mercato-offers (~0:45): „każdy ma swoją wersję PDF-a, z takim logiem,
+# z innym logotypem… każdy ma jakiś system wyceny, wszystko rozmyte”.
+def pdfs(comp, ev, start, end):
+    looks = [("#2B6CB0", "OFERTA", -9), ("#C05621", "Wycena", 6), ("#2F855A", "Oferta handlowa", -3), ("#6B46C1", "PROPOZYCJA", 10), ("#B7791F", "oferta_v3_final", -6)]
+    docs = "".join(f'<div class="pf" data-i="{i}" style="--c:{c};--r:{r}deg;left:{80 + i * 200}px;top:{60 + (i % 2) * 70}px">'
+                   f'<div class="pf-head"><i></i><b>{esc(t)}</b></div><div class="pf-lines"><i></i><i></i><i></i><i></i><i></i></div></div>'
+                   for i, (c, t, r) in enumerate(looks))
+    inner = f'<div class="pfs"><div class="co-kicker">Każdy ma swoją wersję oferty</div><div class="pf-table">{docs}</div><div class="xl-foot">5 handlowców · <b>5 szablonów</b> · 5 sposobów wyceny</div></div>'
+    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    comp.js.append(f'tl.fromTo("#{sid} .pf",{{opacity:0,y:-200,rotation:0}},{{opacity:1,y:0,rotation:function(i,el){{return getComputedStyle(el).getPropertyValue("--r")}},duration:0.45,stagger:0.22,ease:"back.out(1.4)"}},{comp.q(start + 0.3)});')
+    comp.js.append(f'tl.fromTo("#{sid} .xl-foot",{{opacity:0}},{{opacity:1,duration:0.3}},{comp.q(start + 1.8)});')
+
+
+# Lejek z ep-open-mercato-offers (~1:35): „na 20 wystawionych ofert 3 stały się zamówieniem”.
+def funnel(comp, ev, start, end):
+    dots = "".join(f'<i class="fn-dot{" fn-win" if i in (3, 11, 17) else ""}" data-i="{i}"></i>' for i in range(20))
+    inner = (f'<div class="fn"><div class="co-kicker">Wystawione oferty</div><div class="fn-dots">{dots}</div>'
+             f'<div class="fn-result"><b class="fn-num">3</b><span>zamówienia z 20 ofert — <b>dlaczego?</b></span></div></div>')
+    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    q = comp.q
+    comp.js.append(f'tl.fromTo("#{sid} .fn-dot",{{opacity:0,scale:0}},{{opacity:1,scale:1,duration:0.2,stagger:0.05}},{q(start + 0.3)});')
+    comp.js.append(f'tl.to("#{sid} .fn-dot:not(.fn-win)",{{opacity:0.18,duration:0.4}},{q(start + 1.8)});')
+    comp.js.append(f'tl.fromTo("#{sid} .fn-result",{{opacity:0,y:20}},{{opacity:1,y:0,duration:0.4}},{q(start + 2.2)});')
+
+
+MOCKUPS = {"pdfs": pdfs, "funnel": funnel, "match": match, "telegram": telegram, "b2b": b2b, "excels": excels, "labels": labels,
+           "sync": sync, "coast": coast, "parcels": parcels, "catalog": catalog}
 
 MOCKUP_STYLE = """
 .mk-window{{width:100%;background:{panel};border:2px solid {line};border-radius:28px;overflow:hidden;text-align:left;box-shadow:0 30px 80px rgba(0,0,0,.5)}}
@@ -294,6 +380,29 @@ MOCKUP_STYLE = """
 .co-van rect{{fill:{accent}}}
 .co-note{{font-size:32px;color:{muted}}} .co-note b{{color:{text}}}
 .b2b-rep .b2b-order{{display:grid;grid-template-columns:1fr 120px 200px;gap:20px}}
+.pc{{display:flex;flex-direction:column;align-items:center;gap:40px}}
+.pc-row{{display:flex;align-items:center;gap:70px}}
+.pc-sacks{{display:grid;grid-template-columns:repeat(2,190px);gap:24px}}
+.pc-sack{{height:210px;border-radius:30px 30px 20px 20px;background:linear-gradient(180deg,#C9A66B,#9C7B45);color:#2A1F10;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;font-size:36px}}
+.pc-label{{background:#fff;color:#111;font-size:20px;font-weight:700;padding:8px 14px;border-radius:8px}}
+.pc-flow{{display:flex;flex-direction:column;gap:16px;width:470px}}
+.pc-step{{padding:20px 26px;border-radius:18px;background:{raised};font-size:30px;font-weight:700}} .pc-on{{border:2px solid {accent}}}
+.pc-loop{{font-size:30px;font-weight:800;color:{danger}}}
+.ct{{display:flex;align-items:flex-start;gap:26px}} .ct-col{{display:flex;flex-direction:column;gap:14px;width:330px}}
+.ct-doc{{height:300px;border-radius:12px;background:#fff;padding:30px 24px;display:flex;flex-direction:column;gap:22px}} .ct-doc i{{height:14px;border-radius:7px;background:#D5D5D5}}
+.ct-item,.ct-chan{{padding:16px 20px;border-radius:14px;background:{raised};font-size:26px;font-weight:700;display:flex;align-items:center;gap:14px}}
+.ct-chan b{{width:40px;text-align:center;color:{accent}}}
+.ct-arrow{{position:relative;width:70px;margin-top:170px}}
+.fmt-v .pc-row,.fmt-v .ct{{flex-direction:column;align-items:center}}
+.pfs{{display:flex;flex-direction:column;align-items:center;gap:20px;width:100%}}
+.pf-table{{position:relative;width:1240px;height:560px}}
+.pf{{position:absolute;width:300px;height:400px;background:#fff;border-radius:8px;box-shadow:0 20px 50px rgba(0,0,0,.5);transform:rotate(var(--r));overflow:hidden}}
+.pf-head{{height:90px;background:var(--c);display:flex;align-items:center;gap:14px;padding:0 20px;color:#fff;font-size:26px}} .pf-head i{{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.6)}}
+.pf-lines{{padding:26px 22px;display:flex;flex-direction:column;gap:18px}} .pf-lines i{{height:14px;border-radius:7px;background:#DDD}} .pf-lines i:nth-child(odd){{width:70%}}
+.fn{{display:flex;flex-direction:column;align-items:center;gap:40px}}
+.fn-dots{{display:grid;grid-template-columns:repeat(10,70px);gap:22px}}
+.fn-dot{{width:70px;height:90px;border-radius:10px;background:{text};display:block}} .fn-win{{background:{accent}}}
+.fn-result{{display:flex;align-items:center;gap:30px;font-size:40px;color:{muted}}} .fn-result b{{color:{text}}} .fn-num{{font-size:150px;font-weight:900;color:{accent} !important;line-height:1}}
 .xl-wrap{{display:flex;gap:22px;justify-content:center;align-items:flex-start}}
 .xl{{width:380px;background:#F4F6F4;border-radius:14px;overflow:hidden;color:#1D1D1D;text-align:left;box-shadow:0 24px 60px rgba(0,0,0,.5)}}
 .xl-name{{background:#21A366;color:#fff;font-size:22px;font-weight:700;padding:12px 18px}}

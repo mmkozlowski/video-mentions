@@ -1,0 +1,140 @@
+{
+ "clip": "ep-open-mercato-offers",
+ "brand": "flowbiz",
+ "formats": [
+  "youtube"
+ ],
+ "topic": {
+  "kicker": "8 wdrożeń Open Mercato",
+  "text": "Oferty w *5 minut",
+  "sub": "firmy handlowe i produkcyjne"
+ },
+ "cta": {
+  "chip": "Case study · flowbiz.pl"
+ },
+ "chapters": [
+  [
+   "Cześć",
+   "8 wdrożeń Open Mercato"
+  ],
+  [
+   "tworzenie ofert",
+   "Każdy ma swoją wersję oferty"
+  ],
+  [
+   "20",
+   "20 ofert → 3 zamówienia"
+  ],
+  [
+   "praktyce",
+   "Asystent czyta maile → szkic w 5 minut"
+  ]
+ ],
+ "events": [
+  {
+   "type": "beat",
+   "style": "burst",
+   "at": "Zrobiłem",
+   "until": "+3.4",
+   "label": "Wdrożenia Open Mercato",
+   "num": "8",
+   "bottom": "firmy handlowe i produkcyjne"
+  },
+  {
+   "type": "title",
+   "at": "tworzenie ofert",
+   "until": "+8",
+   "zone": "lower",
+   "kicker": "Najczęstszy problem",
+   "text": "Oferta z *tysiąca indeksów"
+  },
+  {
+   "type": "broll",
+   "at": "kilka dni",
+   "until": "+3.0",
+   "src": "assets/broll/hf/video/h01-biuro-przeciazenie.mp4",
+   "center": true,
+   "title": "Klient czeka *kilka dni"
+  },
+  {
+   "type": "mockup",
+   "name": "pdfs",
+   "at": "wersję",
+   "until": "+12"
+  },
+  {
+   "type": "title",
+   "at": "jednolity",
+   "until": "+9",
+   "kicker": "Jeden system",
+   "text": "Jeden sposób *pracy",
+   "sub": "wąska liczba reguł, jeden proces"
+  },
+  {
+   "type": "mockup",
+   "name": "funnel",
+   "at": "20",
+   "until": "+8"
+  },
+  {
+   "type": "beat",
+   "style": "burst",
+   "at": "konwersja",
+   "until": "+3.4",
+   "label": "Po pół roku danych",
+   "num": "KONWERSJA",
+   "bottom": "każdego handlowca"
+  },
+  {
+   "type": "broll",
+   "at": "producenta",
+   "until": "+3.2",
+   "src": "assets/broll/hf/video/h15-kierownik-produkcji-tablet.mp4",
+   "kicker": "Producent maszyn sportowych",
+   "title": "Asystent AI *czyta maile"
+  },
+  {
+   "type": "mockup",
+   "name": "telegram",
+   "mode": "offer",
+   "at": "Sprawdza",
+   "until": "+12"
+  },
+  {
+   "type": "beat",
+   "style": "burst",
+   "at": "5 minut",
+   "until": "+3.2",
+   "label": "Szkic oferty",
+   "num": "5 MIN"
+  },
+  {
+   "type": "beat",
+   "style": "strike",
+   "at": "kilkanaście godzin",
+   "until": "+3.4",
+   "label": "Wcześniej ta sama oferta",
+   "main": "KILKANAŚCIE H",
+   "sub": [
+    "Zabieranie się.",
+    "Stare oferty.",
+    "Wybór najlepszej."
+   ]
+  },
+  {
+   "type": "broll",
+   "at": "odkopaliśmy",
+   "until": "+3.2",
+   "src": "build/broll-real/veo-stos-dokumentow.mp4",
+   "ai": true
+  },
+  {
+   "type": "title",
+   "at": "poniedziałek",
+   "until": "+8",
+   "zone": "lower",
+   "kicker": "Bez systemu",
+   "text": "Od poniedziałku *do wtorku"
+  }
+ ]
+}
