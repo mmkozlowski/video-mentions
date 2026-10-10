@@ -33,6 +33,11 @@ słowie wygląda na pocięty.
   odrzucił. Najpierw jego własne b-rolle (`~/Youtube Projects/b-rolle`, `real_broll.py`).
   W promptach generatora: polskie małe firmy, europejscy ludzie.
 
+- (10.10) **Wzorzec odcinka, który Mateusz pochwalił („świetne animacje!”): ep-open-mercato-offers.**
+  Na każde 15–30 s inna forma: uderzenie (burst/strike/slam z błyskiem), makieta pokazująca
+  mechanizm z nagrania, klocek flowbiz, pasek dolny, twarz w okienku przy planszach.
+  Kolejne odcinki składaj według niego.
+
 **Why:** odbiorca w pionie ma jedną rzecz do przeczytania naraz. Duplikat tekstu i ścisk
 zabijają czytelność, a w podglądzie na komputerze tego nie widać.
 
