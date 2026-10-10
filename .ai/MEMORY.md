@@ -27,6 +27,7 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 - [Pion: jedno na raz](memory/pion-jedno-na-raz.md) — jedno zdanie = jedno tło, zdania po kolei, hook z grafiką i jako nagłówek, nic na głowie, tylko paleta A
 - [Whisper dokleja „yyy” do słowa](memory/whisper-dokleja-yyy-do-slowa.md) — „yyy” i cisza w środku słowa: wykrywaj w audio (fillers.py); tnij tylko po sygnale, słowa chronią; pauzy zostawiaj ~0,4 s (za mocne cięcie = skarga)
 - [iPhone HDR psuje render](memory/iphone-hdr-psuje-render.md) — HLG z telefonu przełącza HyperFrames na HDR całego klipu (wolno, wyprane kolory); avconvert → SDR
+- [Grafiki reklamowe z twarzą Mateusza (do zrobienia)](memory/grafiki-reklamowe-z-twarza-mateusza.md) — zdjęcia z miniatur YT, różne nagłówki pod konwersję na kontakt w automatyzacjach, nie tylko treść nagrań
 - [HyperFrames wymaga Node 22](memory/hyperframes-wymaga-node-22.md) — domyślny nvm to 20; PATH na v22.22.2 w skrypcie, nie globalnie
 
 ## Decyzje (ADR)
