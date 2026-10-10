@@ -332,7 +332,62 @@ def funnel(comp, ev, start, end):
     comp.js.append(f'tl.fromTo("#{sid} .fn-result",{{opacity:0,y:20}},{{opacity:1,y:0,duration:0.4}},{q(start + 2.2)});')
 
 
-MOCKUPS = {"pdfs": pdfs, "funnel": funnel, "match": match, "telegram": telegram, "b2b": b2b, "excels": excels, "labels": labels,
+# Okno kontekstu z ep-vacuactiv (~1:05): „ten Chat przestaje pamiętać moje wytyczne…
+# kontekst to pamięć, która się kończy… zaczyna halucynować”.
+def context(comp, ev, start, end):
+    msgs = ["Wytyczne firmy: ceny netto, rabat max 8%", "Klient A — warunki specjalne", "Oferta dla hali B",
+            "Poprawka: dostawa 14 dni", "Nowe zamówienie — 6 pozycji", "Pytanie o termin produkcji",
+            "Raport tygodniowy", "Zestawienie kosztów"]
+    rows = "".join(f'<div class="cx-msg{" cx-rule" if i == 0 else ""}" data-i="{i}">{esc(m)}</div>' for i, m in enumerate(msgs))
+    inner = (f'<div class="cx"><div class="cx-win"><div class="mk-bar"><i></i><i></i><i></i><span>Czat AI · ta sama rozmowa od miesięcy</span></div>'
+             f'<div class="cx-feed"><div class="cx-track">{rows}</div></div>'
+             f'<div class="cx-meter"><span>Pamięć rozmowy</span><div class="hv-bar"><i></i></div></div></div>'
+             f'<div class="cx-warn">⚠ „Rabat 15%? Oczywiście!” — wytyczne wypadły z pamięci</div></div>')
+    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    q, span = comp.q, end - start
+    comp.js.append(f'tl.fromTo("#{sid} .cx-msg",{{opacity:0,y:20}},{{opacity:1,y:0,duration:0.25,stagger:{min(0.5, span / 14)}}},{q(start + 0.3)});')
+    comp.js.append(f'tl.fromTo("#{sid} .cx-meter i",{{width:"20%"}},{{width:"100%",duration:{q(span * 0.55)},ease:"none"}},{q(start + 0.3)});')
+    comp.js.append(f'tl.to("#{sid} .cx-track",{{y:-230,duration:{q(span * 0.35)},ease:"power1.in"}},{q(start + span * 0.35)});')
+    comp.js.append(f'tl.to("#{sid} .cx-meter i",{{backgroundColor:"{comp.pal["danger"]}",duration:0.3}},{q(start + span * 0.55)});')
+    comp.js.append(f'tl.fromTo("#{sid} .cx-warn",{{opacity:0,y:20}},{{opacity:1,y:0,duration:0.4}},{q(start + span * 0.62)});')
+
+
+# Źródła danych z ep-vacuactiv (~2:05): „dane są w głowach, na kartkach, na mailach i agent AI
+# nie ma skąd tych danych pobierać”.
+def sources(comp, ev, start, end):
+    srcs = "".join(f'<div class="sr-src" data-i="{i}"><b>{icon}</b>{esc(t)}</div>' for i, (icon, t) in enumerate([("🧠", "w głowach"), ("📝", "na kartkach"), ("✉️", "w mailach")]))
+    inner = (f'<div class="sr"><div class="sr-srcs">{srcs}</div><div class="sr-gap">✕ brak połączenia</div>'
+             f'<div class="sr-agent"><div class="tg-msg tg-me">Ile mamy opóźnionych zleceń?</div><div class="tg-msg tg-bot">Nie wiem. Nie mam dostępu do tych danych.</div></div></div>')
+    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    q = comp.q
+    comp.js.append(f'tl.fromTo("#{sid} .sr-src",{{opacity:0,y:30}},{{opacity:1,y:0,duration:0.35,stagger:0.25}},{q(start + 0.2)});')
+    comp.js.append(f'tl.fromTo("#{sid} .sr-gap",{{opacity:0,scale:0.6}},{{opacity:1,scale:1,duration:0.35,ease:"back.out(2)"}},{q(start + 1.2)});')
+    comp.js.append(f'tl.fromTo("#{sid} .sr-agent .tg-msg",{{opacity:0,y:20}},{{opacity:1,y:0,duration:0.3,stagger:0.8}},{q(start + 1.7)});')
+
+
+# Excel kierownika vs widok w systemie z ep-vacuactiv (~7:10): „widoki były bardzo bliskie temu
+# Excelowi… zapisywały historię etapów… nauka zajęła godzinę”.
+BOARD_ROWS = [("ZL-231", "Bieżnia X2", "Spawanie", "ok"), ("ZL-232", "Atlas Pro", "Malowanie", "mid"), ("ZL-233", "Ławka 3D", "Montaż", "ok"), ("ZL-234", "Bieżnia X2", "Opóźnione", "no")]
+
+
+def board(comp, ev, start, end):
+    xl = "".join(f'<div class="xl-row"><span>{a}</span><span>{b}</span><span>{c}</span></div>' for a, b, c, _ in BOARD_ROWS)
+    sysr = "".join(f'<div class="bd-row" data-i="{i}"><span>{a}</span><span>{b}</span><span class="mk-badge {cls}">{esc(c)}</span></div>'
+                   for i, (a, b, c, cls) in enumerate(BOARD_ROWS))
+    inner = (f'<div class="bd"><div class="xl" style="--grid:1fr 1.6fr 1.3fr;width:440px"><div class="xl-name">plan_produkcji.xlsx</div>'
+             f'<div class="xl-row xl-head"><span>Zlecenie</span><span>Produkt</span><span>Etap</span></div>{xl}</div>'
+             f'<div class="bd-arrow">→</div>'
+             f'<div class="mk-window bd-sys"><div class="mk-bar"><i></i><i></i><i></i><span>Tablica produkcji</span></div>{sysr}'
+             f'<div class="bd-foot">✓ historia każdego etapu · nauka: <b>1 godzina</b></div></div></div>')
+    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    q = comp.q
+    comp.js.append(f'tl.fromTo("#{sid} .xl",{{opacity:0,x:-40}},{{opacity:1,x:0,duration:0.4}},{q(start + 0.2)});')
+    comp.js.append(f'tl.fromTo("#{sid} .bd-arrow",{{opacity:0}},{{opacity:1,duration:0.3}},{q(start + 0.9)});')
+    comp.js.append(f'tl.fromTo("#{sid} .bd-row",{{opacity:0,x:40}},{{opacity:1,x:0,duration:0.3,stagger:0.2}},{q(start + 1.2)});')
+    comp.js.append(f'tl.fromTo("#{sid} .bd-foot",{{opacity:0}},{{opacity:1,duration:0.3}},{q(start + 2.3)});')
+
+
+MOCKUPS = {"context": context, "sources": sources, "board": board, "pdfs": pdfs, "funnel": funnel, "match": match, "telegram": telegram, "b2b": b2b, "excels": excels, "labels": labels,
            "sync": sync, "coast": coast, "parcels": parcels, "catalog": catalog}
 
 MOCKUP_STYLE = """
@@ -403,6 +458,20 @@ MOCKUP_STYLE = """
 .fn-dots{{display:grid;grid-template-columns:repeat(10,70px);gap:22px}}
 .fn-dot{{width:70px;height:90px;border-radius:10px;background:{text};display:block}} .fn-win{{background:{accent}}}
 .fn-result{{display:flex;align-items:center;gap:30px;font-size:40px;color:{muted}}} .fn-result b{{color:{text}}} .fn-num{{font-size:150px;font-weight:900;color:{accent} !important;line-height:1}}
+.cx{{display:flex;flex-direction:column;align-items:center;gap:26px}}
+.cx-win{{width:900px;background:{panel};border:2px solid {line};border-radius:24px;overflow:hidden}}
+.cx-feed{{height:420px;overflow:hidden;padding:20px 26px}} .cx-track{{display:flex;flex-direction:column;gap:12px}}
+.cx-msg{{padding:14px 20px;border-radius:16px;background:{raised};font-size:26px;text-align:left}} .cx-rule{{border:2px solid {accent};color:{accent};font-weight:700}}
+.cx-meter{{display:flex;align-items:center;gap:20px;padding:18px 26px;border-top:2px solid {line};font-size:22px;color:{muted}}} .cx-meter .hv-bar{{flex:1;height:22px}}
+.cx-warn{{font-size:34px;font-weight:800;color:{danger}}}
+.sr{{display:flex;flex-direction:column;align-items:center;gap:40px}}
+.sr-srcs{{display:flex;gap:30px}} .sr-src{{width:260px;padding:30px;border-radius:24px;background:{raised};display:flex;flex-direction:column;align-items:center;gap:14px;font-size:32px;font-weight:700}} .sr-src b{{font-size:70px}}
+.sr-gap{{font-size:36px;font-weight:800;color:{danger}}}
+.sr-agent{{width:760px;display:flex;flex-direction:column;gap:14px}}
+.bd{{display:flex;align-items:center;gap:22px}} .bd-arrow{{font-size:80px;color:{accent};font-weight:800}}
+.bd-sys{{width:560px}} .bd-row{{display:grid;grid-template-columns:120px 1fr 190px;gap:16px;align-items:center;padding:16px 26px;border-bottom:1px solid {line};font-size:26px;text-align:left}}
+.bd-foot{{padding:20px 26px;font-size:24px;color:{muted};text-align:left}} .bd-foot b{{color:{accent}}}
+.fmt-v .bd{{flex-direction:column}}
 .xl-wrap{{display:flex;gap:22px;justify-content:center;align-items:flex-start}}
 .xl{{width:380px;background:#F4F6F4;border-radius:14px;overflow:hidden;color:#1D1D1D;text-align:left;box-shadow:0 24px 60px rgba(0,0,0,.5)}}
 .xl-name{{background:#21A366;color:#fff;font-size:22px;font-weight:700;padding:12px 18px}}

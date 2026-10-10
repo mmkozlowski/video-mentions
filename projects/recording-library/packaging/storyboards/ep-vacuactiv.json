@@ -1,0 +1,343 @@
+{
+ "clip": "ep-vacuactiv",
+ "brand": "flowbiz",
+ "formats": [
+  "youtube"
+ ],
+ "topic": {
+  "kicker": "Case study · producent sprzętu sportowego",
+  "text": "Agent AI dla *właściciela firmy",
+  "sub": "fundamenty, mózg firmy, codzienny brief"
+ },
+ "cta": {
+  "chip": "Case study · flowbiz.pl"
+ },
+ "chapters": [
+  [
+   "Klient",
+   "Asystent AI do zarządzania firmą"
+  ],
+  [
+   "Jaki był problem",
+   "ChatGPT zapomina i halucynuje"
+  ],
+  [
+   "pierwsze tutaj hasło",
+   "Dane w głowach, na kartkach, w mailach"
+  ],
+  [
+   "mózg firmy",
+   "Mózg firmy: 100–150 GB danych"
+  ],
+  [
+   "codzienny brief",
+   "„Chcę codzienny brief”"
+  ],
+  [
+   "Open Mercato",
+   "Open Mercato jako fundament"
+  ],
+  [
+   "gotowca",
+   "Dlaczego gotowce się nie wdrażają"
+  ],
+  [
+   "Excel miał pewien plan",
+   "Excel kierownika → widoki w systemie"
+  ],
+  [
+   "codzienny briefing",
+   "Codzienny briefing przyjemnością"
+  ],
+  [
+   "utwórz mi zamówienie",
+   "Zamówienie z Telegrama w trzech kliknięciach"
+  ],
+  [
+   "Obsidian",
+   "Obsidian + Hermes + Codex"
+  ],
+  [
+   "zamknięte",
+   "Fundamenty i systemy zamknięte"
+  ],
+  [
+   "konsultacje",
+   "Najpierw konsultacje, ludzie, nawyk"
+  ]
+ ],
+ "events": [
+  {
+   "type": "broll",
+   "at": "produkuje",
+   "until": "+3.6",
+   "src": "assets/broll/hf/video/h15-kierownik-produkcji-tablet.mp4",
+   "kicker": "Case study",
+   "title": "Sprzęt sportowy *spod Słupska"
+  },
+  {
+   "type": "title",
+   "at": "dumny",
+   "until": "+8",
+   "zone": "lower",
+   "kicker": "Produkcja lokalna",
+   "text": "Wysyłka *na cały świat"
+  },
+  {
+   "type": "mockup",
+   "name": "context",
+   "at": "przestaje pamiętać",
+   "until": "+12"
+  },
+  {
+   "type": "beat",
+   "style": "slam",
+   "at": "ograniczony kontekst",
+   "until": "+3.6",
+   "label": "Ograniczony kontekst",
+   "lines": [
+    "PAMIĘĆ CZATU",
+    "się",
+    "KOŃCZY."
+   ]
+  },
+  {
+   "type": "broll",
+   "at": "kilkanaście miesięcy",
+   "until": "+3.2",
+   "src": "assets/broll/hf/video/h01-biuro-przeciazenie.mp4",
+   "center": true,
+   "title": "Więcej frustracji *niż pomocy"
+  },
+  {
+   "type": "title",
+   "at": "agent AI dla",
+   "until": "+7",
+   "zone": "lower",
+   "kicker": "Pierwszy pomysł",
+   "text": "Agent AI *dla właściciela"
+  },
+  {
+   "type": "mockup",
+   "name": "sources",
+   "at": "głowach",
+   "until": "+11"
+  },
+  {
+   "type": "quote",
+   "at": "porządnie to oznacza",
+   "until": "+8",
+   "text": "Porządnie znaczy: najpierw fundamenty"
+  },
+  {
+   "type": "broll",
+   "at": "mózg firmy",
+   "until": "+3.6",
+   "src": "assets/broll/hf/video/h17-mozg-firmy.mp4",
+   "title": "Mózg *firmy"
+  },
+  {
+   "type": "beat",
+   "style": "burst",
+   "at": "150",
+   "until": "+3.4",
+   "label": "Dysk firmy",
+   "num": "150 GB",
+   "bottom": "manuale, procedury, filmy, oferty"
+  },
+  {
+   "type": "title",
+   "at": "efekt był",
+   "until": "+9",
+   "kicker": "Efekt",
+   "text": "Konkretna odpowiedź *na każde pytanie"
+  },
+  {
+   "type": "broll",
+   "at": "codzienny brief",
+   "until": "+3.4",
+   "src": "assets/broll/hf/video/h03-szef-raport-kawa.mp4",
+   "center": true,
+   "title": "„Chcę wiedzieć, *co się dziś dzieje”"
+  },
+  {
+   "type": "logos",
+   "at": "Open Mercato",
+   "until": "+11",
+   "kicker": "Fundament",
+   "items": [
+    {
+     "logo": "openmercato",
+     "name": ""
+    }
+   ],
+   "sub": "moduły z pudełka, dopasowane do ludzi"
+  },
+  {
+   "type": "beat",
+   "style": "strike",
+   "at": "nie udaje się wdrożyć",
+   "until": "+3.4",
+   "label": "Duże systemy",
+   "main": "MIESIĄCE WDROŻENIA",
+   "sub": [
+    "Oderwane.",
+    "Drogie.",
+    "Porzucone."
+   ]
+  },
+  {
+   "type": "title",
+   "at": "dostosowują się do nas",
+   "until": "+9",
+   "zone": "lower",
+   "kicker": "Nasze założenie",
+   "text": "System dopasowany *do ludzi"
+  },
+  {
+   "type": "mockup",
+   "name": "board",
+   "at": "widoki",
+   "until": "+12"
+  },
+  {
+   "type": "beat",
+   "style": "burst",
+   "at": "godzinę",
+   "until": "+3.2",
+   "label": "Nauka kierownika produkcji",
+   "num": "1 H"
+  },
+  {
+   "type": "title",
+   "at": "PDF",
+   "until": "+8",
+   "kicker": "Wydruk",
+   "text": "PDF 1:1 *jak dawny Excel"
+  },
+  {
+   "type": "mockup",
+   "name": "telegram",
+   "mode": "brief",
+   "at": "przyjemnością",
+   "until": "+12"
+  },
+  {
+   "type": "broll",
+   "at": "na telefonie",
+   "until": "+3.4",
+   "src": "assets/broll/hf/video/h04-prezes-lotnisko-gdansk.mp4"
+  },
+  {
+   "type": "mockup",
+   "name": "telegram",
+   "mode": "order",
+   "at": "utwórz mi zamówienie",
+   "until": "+12"
+  },
+  {
+   "type": "broll",
+   "at": "trzech kliknięcia",
+   "until": "+3.2",
+   "src": "assets/broll/hf/video/h16-szef-auto-zamowienie.mp4",
+   "center": true,
+   "title": "Nowe zamówienie *w trzech kliknięciach"
+  },
+  {
+   "type": "logos",
+   "at": "Obsidian",
+   "until": "+11",
+   "kicker": "Trzy narzędzia w jedno",
+   "items": [
+    {
+     "logo": "obsidian",
+     "name": "Obsidian"
+    },
+    {
+     "logo": "openai",
+     "name": "Codex"
+    }
+   ],
+   "sub": "+ Hermes · pamięć zapisywana na bieżąco"
+  },
+  {
+   "type": "title",
+   "at": "odświeżany",
+   "until": "+9",
+   "zone": "lower",
+   "kicker": "Bez utraty kontekstu",
+   "text": "Pamięć *zawsze świeża"
+  },
+  {
+   "type": "beat",
+   "style": "slam",
+   "at": "jednym wielkim plikiem",
+   "until": "+3.6",
+   "label": "Czat GPT",
+   "lines": [
+    "JEDEN PLIK.",
+    "aż",
+    "PAMIĘĆ SIĘ SKOŃCZY."
+   ]
+  },
+  {
+   "type": "broll",
+   "at": "markdown",
+   "until": "+3.4",
+   "src": "assets/broll/hf/video/h17-mozg-firmy.mp4",
+   "title": "Pliki, które *możesz przeczytać"
+  },
+  {
+   "type": "quote",
+   "at": "nie wymyśla",
+   "until": "+8",
+   "text": "On nie wymyśla — bierze dane na bieżąco"
+  },
+  {
+   "type": "beat",
+   "style": "slam",
+   "at": "zamknięte",
+   "until": "+3.6",
+   "label": "Systemy zamknięte",
+   "lines": [
+    "BEZ INTEGRACJI",
+    "=",
+    "BEZ AI."
+   ]
+  },
+  {
+   "type": "beat",
+   "style": "burst",
+   "at": "trzech miesiącach",
+   "until": "+3.4",
+   "label": "Do realnej ulgi",
+   "num": "3 MIESIĄCE",
+   "bottom": "zależnie od złożoności",
+   "pip": true
+  },
+  {
+   "type": "title",
+   "at": "nawyk",
+   "until": "+9",
+   "kicker": "Warunek",
+   "text": "Narzędzie *plus nawyk",
+   "sub": "agent firmy zamiast wrzucania do czatu"
+  },
+  {
+   "type": "broll",
+   "at": "konsultacje",
+   "until": "+3.6",
+   "src": "assets/broll/hf/video/h12-konsultacja-na-hali.mp4",
+   "kicker": "flowbiz",
+   "title": "Najpierw *konsultacja"
+  },
+  {
+   "type": "title",
+   "at": "naszyte na miarę",
+   "until": "+9",
+   "zone": "lower",
+   "kicker": "Zasada",
+   "text": "Rozwiązanie *szyte na miarę"
+  }
+ ]
+}
