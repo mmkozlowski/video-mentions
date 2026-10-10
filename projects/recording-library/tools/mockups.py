@@ -114,7 +114,25 @@ B2B_PRODUCTS = [("Magnes", "Ustka", 120), ("Kubek", "Ustka", 36), ("Brelok", "Us
 B2B_ORDERS = [("#1042", "W produkcji", "mid"), ("#1037", "Wysłane", "ok")]
 
 
+B2B_REP = [("Sklep z pamiątkami, Ustka", "#1049", "W produkcji", "mid"), ("Pamiątki, Łeba", "#1050", "Nowe", "no"),
+           ("Kiosk przy plaży, Rowy", "#1044", "Wysłane", "ok")]
+
+
+def b2b_rep(comp, ev, start, end):
+    """Panel handlowca z ep-rezon (~6:40): „handlowiec widzi zamówienia swoich klientów,
+    a klient dalej widzi tylko swoje” + „wprowadza za klienta zamówienie”."""
+    rows = "".join(f'<div class="b2b-order" data-i="{i}"><span>{esc(c)}</span><b>{n}</b><span class="mk-badge {cls}">{esc(st)}</span></div>'
+                   for i, (c, n, st, cls) in enumerate(B2B_REP))
+    inner = (f'<div class="mk-window b2b"><div class="mk-bar"><i></i><i></i><i></i><span>Panel handlowca · moi klienci</span></div>'
+             f'<div class="b2b-side b2b-rep">{rows}<div class="b2b-btn">+ Zamów za klienta</div></div></div>')
+    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    comp.js.append(f'tl.fromTo("#{sid} .b2b-order",{{opacity:0,x:-40}},{{opacity:1,x:0,duration:0.35,stagger:0.25}},{comp.q(start + 0.3)});')
+    comp.js.append(f'tl.fromTo("#{sid} .b2b-btn",{{opacity:0,scale:0.8}},{{opacity:1,scale:1,duration:0.35,ease:"back.out(2)"}},{comp.q(start + 1.4)});')
+
+
 def b2b(comp, ev, start, end):
+    if ev.get("mode") == "rep":
+        return b2b_rep(comp, ev, start, end)
     tiles = "".join(f'<div class="b2b-tile" data-i="{i}"><div class="b2b-pic">{esc(name[0])}</div>'
                     f'<b>{esc(name)} · {esc(town)}</b><span class="b2b-qty">{qty} szt.</span></div>'
                     for i, (name, town, qty) in enumerate(B2B_PRODUCTS))
@@ -187,7 +205,49 @@ def labels(comp, ev, start, end):
     comp.js.append(f'tl.fromTo("#{sid} .lb-done",{{opacity:0,y:20}},{{opacity:1,y:0,duration:0.35}},{q(click + 1.5)});')
 
 
-MOCKUPS = {"match": match, "telegram": telegram, "b2b": b2b, "excels": excels, "labels": labels}
+# Synchronizacja z ep-rezon (~2:05): „integracja z PC Business… synchronizujemy codziennie…
+# ceny, zamówienia, ile rzeczy na magazynie… handlowcy, osoby z produkcji mają dostęp”.
+def sync(comp, ev, start, end):
+    from package import logo
+    chips = "".join(f'<span class="sy-chip" data-i="{i}">{esc(c)}</span>' for i, c in enumerate(["Ceny", "Zamówienia", "Stany magazynu"]))
+    users = "".join(f'<div class="sy-user" data-i="{i}"><i>{esc(u[0])}</i>{esc(u)}</div>' for i, u in enumerate(["Handlowcy", "Produkcja", "Biuro"]))
+    inner = (f'<div class="sy"><div class="sy-row"><div class="sy-box"><b>PC Business</b><span>księgowość i sprzedaż</span></div>'
+             f'<div class="sy-pipe"><div class="sy-line"></div>{chips}<div class="sy-clock">↻ raz na dobę</div></div>'
+             f'<div class="sy-box sy-om">{logo("openmercato", 64)}<span>jedno źródło prawdy</span></div></div>'
+             f'<div class="sy-users">{users}</div></div>')
+    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    q = comp.q
+    comp.js.append(f'tl.fromTo("#{sid} .sy-box",{{opacity:0,y:30}},{{opacity:1,y:0,duration:0.4,stagger:0.2}},{q(start + 0.2)});')
+    comp.js.append(f'tl.fromTo("#{sid} .sy-line",{{scaleX:0}},{{scaleX:1,duration:0.5,ease:"power2.out"}},{q(start + 0.8)});')
+    comp.js.append(f'tl.fromTo("#{sid} .sy-chip",{{opacity:0,x:-160}},{{opacity:1,x:0,duration:0.5,stagger:0.3,ease:"power2.out"}},{q(start + 1.1)});')
+    comp.js.append(f'tl.fromTo("#{sid} .sy-clock",{{opacity:0}},{{opacity:1,duration:0.3}},{q(start + 2.0)});')
+    comp.js.append(f'tl.fromTo("#{sid} .sy-user",{{opacity:0,y:30}},{{opacity:1,y:0,duration:0.35,stagger:0.15}},{q(start + max(2.6, (end - start) * 0.5))});')
+
+
+# Trasa handlowca z ep-rezon (~2:45): „objechać z towarem całe wybrzeże albo zimą południe
+# Polski” — stylizowane wybrzeże Bałtyku, bus jedzie od miasta do miasta.
+COAST_TOWNS = [("Kołobrzeg", 120, 300), ("Ustka", 560, 200), ("Rowy", 700, 175), ("Łeba", 900, 150)]
+
+
+def coast(comp, ev, start, end):
+    path = "M 40 330 C 200 300, 380 230, 560 200 S 820 160, 1000 135 L 1180 120"
+    towns = "".join(f'<g class="co-town" data-i="{i}"><circle cx="{x}" cy="{y}" r="12"/><text x="{x}" y="{y + 52}">{esc(n)}</text></g>'
+                    for i, (n, x, y) in enumerate(COAST_TOWNS))
+    inner = (f'<div class="co"><div class="co-kicker">Sezon w trasie</div><svg viewBox="0 0 1220 420" class="co-map">'
+             f'<path class="co-sea" d="{path} L 1220 0 L 0 0 Z"/><path class="co-shore" d="{path}"/>'
+             f'<path class="co-route" d="M 120 300 C 300 260, 430 225, 560 200 S 820 160, 900 150" pathLength="1"/>{towns}'
+             f'<g class="co-van"><rect x="-26" y="-16" width="52" height="30" rx="6"/></g></svg>'
+             f'<div class="co-note">Towar wyprodukowany „na zapas” — <b>dowiadujesz się o nadwyżce na końcu sezonu</b></div></div>')
+    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    q, run = comp.q, max(2.0, (end - start) - 2.0)
+    comp.js.append(f'tl.fromTo("#{sid} .co-route",{{strokeDashoffset:1}},{{strokeDashoffset:0,duration:{run},ease:"none"}},{q(start + 0.4)});')
+    comp.js.append(f'tl.fromTo("#{sid} .co-town",{{opacity:0,scale:0.4,transformOrigin:"50% 50%"}},{{opacity:1,scale:1,duration:0.3,stagger:{run / 4}}},{q(start + 0.4)});')
+    comp.js.append(f'tl.fromTo("#{sid} .co-van",{{x:120,y:300}},{{keyframes:[{{x:560,y:200}},{{x:700,y:175}},{{x:900,y:150}}],duration:{run},ease:"none"}},{q(start + 0.4)});')
+    comp.js.append(f'tl.fromTo("#{sid} .co-note",{{opacity:0,y:20}},{{opacity:1,y:0,duration:0.4}},{q(start + run * 0.6)});')
+
+
+MOCKUPS = {"match": match, "telegram": telegram, "b2b": b2b, "excels": excels, "labels": labels,
+           "sync": sync, "coast": coast}
 
 MOCKUP_STYLE = """
 .mk-window{{width:100%;background:{panel};border:2px solid {line};border-radius:28px;overflow:hidden;text-align:left;box-shadow:0 30px 80px rgba(0,0,0,.5)}}
@@ -215,6 +275,25 @@ MOCKUP_STYLE = """
 .b2b-order{{display:flex;justify-content:space-between;align-items:center;padding:18px 22px;border-radius:16px;background:{raised};font-size:28px}}
 .b2b-toast{{margin:0 34px 30px;padding:18px 24px;border-radius:16px;border:2px solid {accent};color:{text};font-size:26px;font-weight:600}}
 .fmt-v .b2b-body{{grid-template-columns:1fr}} .fmt-v .b2b-cat{{border-right:0;border-bottom:2px solid {line}}}
+.sy{{display:flex;flex-direction:column;gap:60px;align-items:center}}
+.sy-row{{display:flex;align-items:center;gap:30px}}
+.sy-box{{width:330px;height:210px;border-radius:24px;background:{panel};border:2px solid {line};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;font-size:42px;font-weight:700}}
+.sy-box span{{font-size:22px;color:{muted}}} .sy-om{{border-color:{accent}}}
+.sy-pipe{{position:relative;width:520px;height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}}
+.sy-line{{position:absolute;left:0;right:0;top:50%;height:4px;background:{accent};transform-origin:left center}}
+.sy-chip{{position:relative;padding:10px 24px;border-radius:22px;background:{raised};border:2px solid {accent};font-size:30px;font-weight:700}}
+.sy-clock{{position:absolute;bottom:-46px;font-size:26px;color:{accent};font-weight:700}}
+.sy-users{{display:flex;gap:40px}} .sy-user{{display:flex;align-items:center;gap:14px;font-size:36px;font-weight:700}}
+.sy-user i{{width:56px;height:56px;border-radius:50%;background:{accent};color:{on_accent};display:flex;align-items:center;justify-content:center;font-style:normal}}
+.co{{width:100%;display:flex;flex-direction:column;align-items:center;gap:20px}}
+.co-kicker{{font-size:30px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:{accent}}}
+.co-map{{width:100%;max-width:1200px;overflow:visible}}
+.co-sea{{fill:#16324A}} .co-shore{{fill:none;stroke:#7FA8C9;stroke-width:4}}
+.co-route{{fill:none;stroke:{accent};stroke-width:8;stroke-dasharray:1;stroke-linecap:round}}
+.co-town circle{{fill:{text}}} .co-town text{{fill:{text};font-size:34px;font-weight:700;text-anchor:middle}}
+.co-van rect{{fill:{accent}}}
+.co-note{{font-size:32px;color:{muted}}} .co-note b{{color:{text}}}
+.b2b-rep .b2b-order{{display:grid;grid-template-columns:1fr 120px 200px;gap:20px}}
 .xl-wrap{{display:flex;gap:22px;justify-content:center;align-items:flex-start}}
 .xl{{width:380px;background:#F4F6F4;border-radius:14px;overflow:hidden;color:#1D1D1D;text-align:left;box-shadow:0 24px 60px rgba(0,0,0,.5)}}
 .xl-name{{background:#21A366;color:#fff;font-size:22px;font-weight:700;padding:12px 18px}}

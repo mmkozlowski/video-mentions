@@ -1,0 +1,248 @@
+{
+ "clip": "ep-rezon",
+ "brand": "flowbiz",
+ "formats": [
+  "youtube"
+ ],
+ "topic": {
+  "kicker": "Case study · pamiątki znad morza",
+  "text": "System B2B dla *producenta pamiątek",
+  "sub": "Kołobrzeg · handel sezonowy"
+ },
+ "cta": {
+  "chip": "Case study · flowbiz.pl"
+ },
+ "chapters": [
+  [
+   "Firma",
+   "Pamiątki z Kołobrzegu i proces na kartkach"
+  ],
+  [
+   "Kontrola",
+   "Kontrola po fakcie"
+  ],
+  [
+   "centralizacja",
+   "Najpierw jedna baza"
+  ],
+  [
+   "integrację",
+   "Integracja z PC Business"
+  ],
+  [
+   "sposób pracy handlowca",
+   "Handlowiec w trasie"
+  ],
+  [
+   "dziesiątki",
+   "Nadprodukcja"
+  ],
+  [
+   "panelu klienta",
+   "Panel klienta B2B"
+  ],
+  [
+   "za klienta",
+   "Handlowiec zamawia za klienta"
+  ]
+ ],
+ "events": [
+  {
+   "type": "broll",
+   "at": "Firma",
+   "until": "+3.6",
+   "src": "assets/broll/hf/video/h07-magnesy-kolobrzeg.mp4",
+   "kicker": "Case study",
+   "title": "Pamiątki z *Kołobrzegu"
+  },
+  {
+   "type": "broll",
+   "at": "karce",
+   "until": "+3.2",
+   "src": "assets/broll/hf/video/h18-karteczki-zamowienia.mp4",
+   "center": true,
+   "title": "Cały proces *na kartkach"
+  },
+  {
+   "type": "beat",
+   "style": "strike",
+   "at": "raportów",
+   "until": "+3.4",
+   "label": "Dane z księgowości",
+   "main": "PO FAKCIE",
+   "sub": [
+    "Miesiąc.",
+    "Kwartał.",
+    "Rok."
+   ]
+  },
+  {
+   "type": "title",
+   "at": "zawołanie",
+   "until": "+8",
+   "zone": "lower",
+   "kicker": "Szef potrzebuje",
+   "text": "Danych *na zawołanie",
+   "sub": "codziennie, nie po kwartale"
+  },
+  {
+   "type": "logos",
+   "at": "centralizacja",
+   "until": "+12",
+   "kicker": "Najpierw jedna baza",
+   "items": [
+    {
+     "logo": "excel",
+     "name": "Excele"
+    },
+    {
+     "logo": "openmercato",
+     "name": ""
+    }
+   ],
+   "sub": "fundament pod AI"
+  },
+  {
+   "type": "beat",
+   "style": "slam",
+   "at": "rozproszone",
+   "until": "+3.4",
+   "label": "Rozproszone dane",
+   "lines": [
+    "KILKA EXCELI.",
+    "a",
+    "AI NIE PORADZI."
+   ]
+  },
+  {
+   "type": "title",
+   "at": "zamkniętymi",
+   "until": "+9",
+   "kicker": "Systemy zamknięte",
+   "text": "ERP i CRM *bez dostępu",
+   "sub": "instalowane na Windowsie, nie w chmurze"
+  },
+  {
+   "type": "mockup",
+   "name": "sync",
+   "at": "integrację",
+   "until": "+12"
+  },
+  {
+   "type": "broll",
+   "at": "handlowcy",
+   "until": "+3.0",
+   "src": "build/broll-real/stock-zespol-laptop.mp4",
+   "ai": false
+  },
+  {
+   "type": "mockup",
+   "name": "coast",
+   "at": "jeździć",
+   "until": "+11"
+  },
+  {
+   "type": "broll",
+   "at": "samochód",
+   "until": "+3.4",
+   "src": "assets/broll/hf/video/h08-handlowiec-bus-wybrzeze.mp4"
+  },
+  {
+   "type": "broll",
+   "at": "nadprodukcji",
+   "until": "+3.6",
+   "src": "assets/broll/hf/video/h09-nadprodukcja-ustka.mp4",
+   "title": "Straty widać *za późno"
+  },
+  {
+   "type": "title",
+   "at": "zamówienie",
+   "until": "+9",
+   "kicker": "Teraz",
+   "text": "Produkcja *na zamówienie",
+   "sub": "na pace tylko flagowe produkty"
+  },
+  {
+   "type": "beat",
+   "style": "strike",
+   "at": "dziesiątki",
+   "until": "+3.4",
+   "label": "Produkcja na zapas",
+   "main": "TYSIĄCE SZTUK",
+   "sub": [
+    "Wyprodukowane.",
+    "Niesprzedane."
+   ]
+  },
+  {
+   "type": "title",
+   "at": "miejscowość",
+   "until": "+10",
+   "zone": "lower",
+   "kicker": "Specyfika branży",
+   "text": "Każda miejscowość, *inny wzór",
+   "sub": "„Ustka” nie pójdzie do Rowów"
+  },
+  {
+   "type": "broll",
+   "at": "tabletem",
+   "until": "+3.4",
+   "src": "assets/broll/stills/s07-pamiatki-tablet.jpg",
+   "title": "Handlowiec z *tabletem"
+  },
+  {
+   "type": "list",
+   "at": "mailowo",
+   "until": "+10",
+   "kicker": "Zamówienia przed systemem",
+   "items": [
+    {
+     "text": "Maile",
+     "at": "mailowo"
+    },
+    {
+     "text": "Formularze",
+     "at": "formularze"
+    },
+    {
+     "text": "Karteczki",
+     "at": "karteczkach"
+    }
+   ]
+  },
+  {
+   "type": "mockup",
+   "name": "b2b",
+   "at": "loguje",
+   "until": "+12"
+  },
+  {
+   "type": "broll",
+   "at": "powiadomienie",
+   "until": "+3.2",
+   "src": "assets/broll/hf/video/h10-sklep-pamiatki-tablet.mp4"
+  },
+  {
+   "type": "mockup",
+   "name": "b2b",
+   "mode": "rep",
+   "at": "za klienta",
+   "until": "+10"
+  },
+  {
+   "type": "title",
+   "at": "dwie drogi",
+   "until": "+8",
+   "zone": "lower",
+   "kicker": "Dwie drogi",
+   "text": "Klient sam *albo handlowiec za niego"
+  },
+  {
+   "type": "title",
+   "at": "Więc to jest",
+   "until": "+8",
+   "kicker": "Open Mercato · B2B",
+   "text": "Branża pamiątkarska *na jednym systemie"
+  }
+ ]
+}

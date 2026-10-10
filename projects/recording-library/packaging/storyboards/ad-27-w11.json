@@ -44,8 +44,8 @@
    "type": "broll",
    "at": "kilku",
    "until": "Jak",
-   "src": "assets/broll/video/s09-warsztat-pizza.mp4",
-   "from": 0.0
+   "src": "assets/broll/hf/video/h13-warsztaty-slupsk-pizza.mp4",
+   "ai": true
   },
   {
    "type": "logos",

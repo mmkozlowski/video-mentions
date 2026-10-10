@@ -262,3 +262,31 @@ z innymi kolumnami, ep-doram 2:30) i `labels` (klik → PDF 40 stron etykiet, 9:
 
 Do zrobienia: grafiki z Higgsfield (GPT Image), ożywiane potem w Higgsfield/Veo, dobrane
 do kontekstu odcinków. Czeka na logowanie Mateusza; zastępczo Gemini + Veo jak s01–s12.
+
+## Higgsfield (10.10): przebitki biznesowe pod polski rynek
+
+Mateusz się zalogował: „bądź kreatywny, stawiaj na biznes, żeby robiło wrażenie i
+konwertowało w kontekście sprzedaży AI i automatyzacji, dostosowane do rynku polskiego”.
+
+- **18 kadrów w GPT Image 2.5** (0,25 kr./szt.), wszystkie ożywione w **Kling 3.0 Pro**
+  (5 s, bez dźwięku, 8,75 kr./szt.). Razem **162 kredyty** z limitu 400 (saldo 1142 → 980).
+- **Tematy:**
+  - przed/po: biuro zasypane zamówieniami → czysty dashboard;
+  - szef w kontroli: raport o 7:00, lotnisko w Gdańsku, zamówienie z auta;
+  - branże z odcinków: szwalnia, etykiety, magnesy „Kołobrzeg”, bus nad Bałtykiem,
+    kubki „USTKA”, sklep z tabletem, worki paszy, kierownik produkcji, karteczki;
+  - sprzedaż usługi: konsultacja na hali, warsztaty w Słupsku, umowa w czacie, mózg firmy.
+- W każdym prompcie wprost „white Central European (Polish) people”, polskie realia,
+  paleta bursztyn/zieleń.
+- **Pliki:** kadry w `assets/broll/hf/stills/`, wideo w `assets/broll/hf/video/` (po
+  kompresji do 1080p 49 MB z 179 MB). Manifest z id zadań i kosztem w `data/hf-broll.json`.
+- Przebitki weszły do 11 storyboardów i do ep-rezon.
+- Nowe prototypy do ep-rezon: `sync` (PC Business ⇄ Open Mercato), `coast` (trasa
+  handlowca po wybrzeżu) i `b2b` w trybie `rep` (panel handlowca).
+
+Pułapki Higgsfield:
+- `gpt_image_2_5` odrzuca część partii (429, rate limit), więc wysyłaj po 4. Odrzucone
+  zadanie nie kosztuje, wystarczy ponowić.
+- Kling czasem zwraca rekomendację presetu („IN THE DARK”) zamiast zadania. Trzeba
+  ponowić z `declined_preset_id`.
+- Wynik ma 1924×1076 px i 24 kl./s, więc normalizujemy do 1920×1080 bt709.

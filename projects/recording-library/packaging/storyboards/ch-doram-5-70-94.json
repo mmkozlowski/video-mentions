@@ -43,7 +43,7 @@
    "type": "broll",
    "at": "dany",
    "until": "+2.3",
-   "src": "build/broll-real/veo-excel-stres.mp4",
+   "src": "assets/broll/hf/video/h01-biuro-przeciazenie.mp4",
    "label": "Zamówienie w Excelu od kontrahenta",
    "ai": true
   },

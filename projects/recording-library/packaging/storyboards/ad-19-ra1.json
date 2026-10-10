@@ -42,8 +42,8 @@
    "type": "broll",
    "at": "lotnisku",
    "until": "telefonu",
-   "src": "assets/broll/video/s01-prezes-lotnisko.mp4",
-   "from": 0.0
+   "src": "assets/broll/hf/video/h04-prezes-lotnisko-gdansk.mp4",
+   "ai": true
   },
   {
    "type": "broll",
@@ -127,9 +127,9 @@
    "type": "broll",
    "at": "Rano",
    "until": "+2.3",
-   "src": "assets/broll/video/s10-poranny-raport-kawa.mp4",
-   "from": 0.5,
-   "label": "Raport o 7:00"
+   "src": "assets/broll/hf/video/h03-szef-raport-kawa.mp4",
+   "label": "Raport o 7:00",
+   "ai": true
   },
   {
    "type": "chat",

@@ -72,7 +72,7 @@
    "type": "broll",
    "at": "meble",
    "until": "+3.4",
-   "src": "build/broll-real/veo-szwalnia.mp4",
+   "src": "assets/broll/hf/video/h05-szwalnia-meble-ogrodowe.mp4",
    "ai": true,
    "kicker": "Producent z Pomorza",
    "title": "Meble ogrodowe i *szwalnia"
@@ -81,7 +81,7 @@
    "type": "broll",
    "at": "Excelu",
    "until": "+3.0",
-   "src": "build/broll-real/veo-excel-stres.mp4",
+   "src": "assets/broll/hf/video/h01-biuro-przeciazenie.mp4",
    "ai": true
   },
   {
@@ -172,9 +172,10 @@
    "type": "broll",
    "at": "kodów kreskowych",
    "until": "+3.4",
-   "src": "assets/broll/stills/s12-etykiety-kody-kreskowe.jpg",
+   "src": "assets/broll/hf/video/h06-etykiety-kody.mp4",
    "kicker": "Biuro",
-   "title": "Kody kreskowe do *każdej paczki"
+   "title": "Kody kreskowe do *każdej paczki",
+   "ai": true
   },
   {
    "type": "slate",

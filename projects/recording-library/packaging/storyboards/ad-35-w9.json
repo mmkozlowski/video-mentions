@@ -43,8 +43,8 @@
    "type": "broll",
    "at": "Twój",
    "until": "Czy#1",
-   "src": "assets/broll/video/s03-umowa-do-czatu.mp4",
-   "from": 0.0
+   "src": "assets/broll/hf/video/h14-umowa-do-czatu.mp4",
+   "ai": true
   },
   {
    "type": "logos",
@@ -93,9 +93,9 @@
    "type": "broll",
    "at": "konkretne",
    "until": "+2.6",
-   "src": "assets/broll/video/s09-warsztat-pizza.mp4",
-   "from": 0.5,
-   "label": "Warsztaty AI Słupsk"
+   "src": "assets/broll/hf/video/h13-warsztaty-slupsk-pizza.mp4",
+   "label": "Warsztaty AI Słupsk",
+   "ai": true
   },
   {
    "type": "title",

@@ -34,8 +34,8 @@
    "type": "broll",
    "at": "Teraz",
    "until": "dostał",
-   "src": "assets/broll/video/s06-worki-paszy-etykiety.mp4",
-   "from": 0.5
+   "src": "assets/broll/hf/video/h11-worki-paszy-etykiety.mp4",
+   "ai": true
   },
   {
    "type": "list",

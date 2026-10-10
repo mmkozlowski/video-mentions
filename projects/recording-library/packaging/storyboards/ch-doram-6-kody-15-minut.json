@@ -43,9 +43,9 @@
    "type": "broll",
    "at": "kodów",
    "until": "+2.2",
-   "src": "../youtube/Animation flowbiz youtube/assets/veo/02-drukarka-zamowienie.mp4",
-   "from": 1.0,
-   "label": "Kody kreskowe do każdej paczki"
+   "src": "assets/broll/hf/video/h06-etykiety-kody.mp4",
+   "label": "Kody kreskowe do każdej paczki",
+   "ai": true
   },
   {
    "type": "title",

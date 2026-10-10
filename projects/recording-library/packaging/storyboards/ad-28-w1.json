@@ -57,9 +57,9 @@
    "type": "broll",
    "at": "Wklejają",
    "until": "+2.4",
-   "src": "assets/broll/video/s03-umowa-do-czatu.mp4",
-   "from": 0.5,
-   "label": "Dane firmy lądują w czacie"
+   "src": "assets/broll/hf/video/h14-umowa-do-czatu.mp4",
+   "label": "Dane firmy lądują w czacie",
+   "ai": true
   },
   {
    "type": "list",
@@ -95,9 +95,9 @@
    "type": "broll",
    "at": "warsztatach",
    "until": "+2.6",
-   "src": "build/broll-real/stock-zespol-laptop.mp4",
+   "src": "assets/broll/hf/video/h13-warsztaty-slupsk-pizza.mp4",
    "label": "Warsztaty AI Słupsk",
-   "ai": false
+   "ai": true
   },
   {
    "type": "title",

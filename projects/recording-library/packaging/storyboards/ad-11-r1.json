@@ -74,9 +74,9 @@
    "type": "broll",
    "at": "przepisywania",
    "until": "+1.9",
-   "src": "assets/broll/video/s04-wydruk-zamowienia.mp4",
-   "from": 0.5,
-   "label": "Ręczne przepisywanie do Excela"
+   "src": "assets/broll/hf/video/h01-biuro-przeciazenie.mp4",
+   "label": "Ręczne przepisywanie do Excela",
+   "ai": true
   },
   {
    "type": "logos",

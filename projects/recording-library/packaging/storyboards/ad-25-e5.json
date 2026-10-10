@@ -60,9 +60,9 @@
    "type": "broll",
    "at": "wklejają",
    "until": "+2.2",
-   "src": "assets/broll/video/s03-umowa-do-czatu.mp4",
-   "from": 2.0,
-   "label": "Umowy klientów w czacie"
+   "src": "assets/broll/hf/video/h14-umowa-do-czatu.mp4",
+   "label": "Umowy klientów w czacie",
+   "ai": true
   },
   {
    "type": "broll",

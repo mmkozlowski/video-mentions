@@ -74,9 +74,9 @@
    "type": "broll",
    "at": "Bez",
    "until": "+2.6",
-   "src": "build/broll-real/stock-przy-biurku.mp4",
+   "src": "assets/broll/hf/video/h12-konsultacja-na-hali.mp4",
    "label": "Przy Twoim biurku, nie przez ekran",
-   "ai": false
+   "ai": true
   },
   {
    "type": "title",
