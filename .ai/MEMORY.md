@@ -26,6 +26,7 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 - [Wstawki: rozdzielczość pod projekt montażowy](memory/wstawki-rozdzielczosc-pod-projekt.md) — 1920x1080 na płótnie 720p pokazuje środkowe 66 %; renderuj W/H pod projekt
 
 - [Nasycony kolor tekstu na materiale](memory/tekst-nasycony-kolor-na-materiale.md) — h.264 4:2:0 zabija krawędź bursztynu; mały kolorowy tekst na ciemną pigułkę, weryfikuj PO kompresji nie na PNG
+- [HyperFrames check: zasłanianie](memory/hyperframes-check-zaslanianie.md) — `data-layout-allow-occlusion` tylko na zasłanianym tekście, nie na nakładce i bez dziedziczenia; scrim ≥ 0,6 krycia to zasłonięcie
 
 ## Decyzje (ADR)
 
