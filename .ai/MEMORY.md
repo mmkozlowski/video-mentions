@@ -28,6 +28,7 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 - [Whisper dokleja „yyy” do słowa](memory/whisper-dokleja-yyy-do-slowa.md) — „yyy” i cisza w środku słowa: wykrywaj w audio (fillers.py); tnij tylko po sygnale, słowa chronią; pauzy zostawiaj ~0,4 s (za mocne cięcie = skarga)
 - [iPhone HDR psuje render](memory/iphone-hdr-psuje-render.md) — HLG z telefonu przełącza HyperFrames na HDR całego klipu (wolno, wyprane kolory); avconvert → SDR
 - [Grafiki reklamowe z twarzą Mateusza (do zrobienia)](memory/grafiki-reklamowe-z-twarza-mateusza.md) — zdjęcia z miniatur YT, różne nagłówki pod konwersję na kontakt w automatyzacjach, nie tylko treść nagrań
+- [Reklamy graficzne: wzór SellWise](memory/reklamy-graficzne-wzor-sellwise.md) — jedna myśl, nagłówek 2 grubości z frazą w ramce, prawdziwy człowiek z rolą, jeden przycisk; seria z ikonami była „chaotyczna”
 - [Higgsfield: generacja przebitek](memory/higgsfield-generacja-przebitek.md) — GPT Image 2.5 + Kling 3.0 Pro 5 s (8,75 kr.); partie po 4 (429), declined_preset_id, normalizacja 1920×1080
 - [HyperFrames wymaga Node 22](memory/hyperframes-wymaga-node-22.md) — domyślny nvm to 20; PATH na v22.22.2 w skrypcie, nie globalnie
 

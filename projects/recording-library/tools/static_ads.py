@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
-"""Grafiki statyczne pod sprzedaż automatyzacji i AI (flowbiz): feed 4:5 i story 9:16.
+"""Grafiki reklamowe (Meta): feed 4:5 i story 9:16 — wzór SellWise, twarz Mateusza.
 
-Każda grafika = jeden wynik z prawdziwego wdrożenia (liczby z nagrań, nie z głowy):
-duża liczba albo przed → po, ikona/schemat (ikony z hook_art.py, logo narzędzi
-oryginalne z logos.css), jedno zdanie, stopka z logo i CTA. Składane w HTML tymi
-samymi fontami i paletą co wideo, zrzucane do PNG przez HyperFrames (snapshot).
+Pierwsza seria (7 komunikatów z liczbami, ikony 3D) była „mocno chaotyczna”: etykieta,
+liczba, przekreślenie, ikony, tytuł i stopka naraz. Wzór z biblioteki reklam SellWise /
+WiseGroup (10.10.2026): jedna myśl na grafikę, nagłówek w dwóch grubościach z kluczową
+frazą w ramce, jeden mocny obraz (prawdziwy człowiek z imieniem i rolą), jeden wyraźny
+przycisk, logo u góry, dużo powietrza.
+
+Zdjęcia prawdziwe, nie AI: marynarka (ppwrsmart, tło wycięte w Higgsfield) dla flowbiz,
+wycięcie z ratuszem (aislupsk.pl) dla AI Słupsk.
 
   python3 tools/static_ads.py          # → final/static/<slug>__feed.png, __story.png
 """
@@ -12,134 +16,104 @@ import json
 import shutil
 import sys
 
-from package import (BRAND, FINAL, GSAP, LOGO_COLORS, OUT, PALETTES, PROJECT, esc, fit, hf,
-                     logo, logos_css, tokens)
+from package import BRAND, FINAL, GSAP, OUT, PALETTES, PROJECT, esc, hf
 
 STATIC = FINAL.parent / "static"
 FORMATS = {"feed": (1080, 1350), "story": (1080, 1920)}
+PHOTOS = {"A": PROJECT / "packaging" / "brand" / "mateusz-marynarka.png",
+          "S": BRAND / "aislupsk" / "mateusz-cutout.png"}
 
-# Źródło każdej liczby: rozdział z biblioteki klipów (data/catalog.md).
+# Jedna myśl na grafikę. `light` + `bold` = nagłówek w dwóch grubościach; `mark` = fraza
+# w ramce (fragment `bold`, albo `light` gdy mark_in="light"). Dowód tylko z nagranych wdrożeń.
 ADS = [
-    dict(slug="zamowienia-10-minut", source="ep-doram (2:02)",
-         kicker="Producent mebli ogrodowych", before="kilka dni", after="10 min",
-         visual=[{"art": "h-paper-stack"}, {"art": "h-stopwatch"}],
-         title="Zamówienie z Excela kontrahenta wczytuje *system. Człowiek tylko sprawdza."),
-    dict(slug="trafnosc-94", source="ch-doram-5-70-94",
-         kicker="AI uczy się na Twoich poprawkach", meter=(70, 94),
-         title="Po miesiącu AI sama dopasowuje *94% *pozycji zamówień."),
-    dict(slug="100-godzin", source="ch-marpasz-2-100-godzin",
-         kicker="Sklep internetowy z paszą", big="100 h", big_sub="miesięcznie mniej ręcznej pracy",
-         visual=[{"art": "h-hourglass"}],
-         title="Cztery worki to nie cztery etykiety. AI łączy zamówienia w *jeden *koszyk."),
-    dict(slug="oferta-5-minut", source="ch-offers-1-oferta-5-minut",
-         kicker="Producent maszyn sportowych", before="kilkanaście h", after="5 min",
-         visual=[{"logo": "gmail"}, {"logo": "telegram"}],
-         title="Asystent AI czyta maile i przygotowuje *szkic *oferty."),
-    dict(slug="kody-15-minut", source="ch-doram-6-kody-15-minut",
-         kicker="Bez AI. Zwykły program.", before="kilka dni", after="15 min",
-         visual=[{"art": "h-calendar"}, {"logo": "adobeacrobatreader"}],
-         title="Etykiety z kodami do całego zamówienia: *PDF *jednym *kliknięciem."),
-    dict(slug="raport-7-00", source="ad-19-ra1",
-         kicker="Agent AI dla zarządu", big="7:00", big_sub="raport z firmy na Telegramie",
-         visual=[{"logo": "telegram"}, {"art": "h-factory"}],
-         title="Wiesz, co dzieje się na produkcji, *zanim *dojedziesz do firmy."),
-    dict(slug="konsultacja", source="ad-05-m1",
-         kicker="Bezpłatna konsultacja", portrait=True,
-         title="Przyjadę do *Twojej firmy.",
-         sub="Zobaczę, jak pracuje zespół, i powiem, co warto zautomatyzować. Słupsk · Pomorze · Gdańsk · Koszalin."),
+    dict(slug="zamowienia-same", kicker="Firmy produkcyjne", light="Zamówienia z Excela",
+         bold="wczytują się same.", mark="same.", sub="Człowiek tylko sprawdza.",
+         proof="Producent mebli ogrodowych: z kilku dni do 10 minut", source="ep-doram"),
+    dict(slug="wiedza-w-zeszycie", kicker="Firmy produkcyjne", light="Cała wiedza o produkcji",
+         bold="w jednym zeszycie?", mark="jednym zeszycie?",
+         sub="Przeniesiemy ją do systemu, zanim ta osoba odejdzie.", proof="", source="ad-12-r2"),
+    dict(slug="plan-a-hala", kicker="Firmy produkcyjne", light="Plan w Excelu,",
+         bold="a hala robi swoje.", mark="hala robi swoje.",
+         sub="Widok produkcji, który kierownik opanował w godzinę.",
+         proof="Producent sprzętu sportowego spod Słupska", source="ep-vacuactiv"),
+    dict(slug="raport-zanim-dojedziesz", kicker="Właściciele firm", light="Wiesz, co dzieje się w firmie,",
+         bold="zanim do niej dojedziesz.", mark="zanim",
+         sub="Raport z produkcji co rano na telefonie.", proof="Agent AI dla właściciela firmy produkcyjnej",
+         source="ep-vacuactiv"),
+    dict(slug="etykiety-jednym-kliknieciem", kicker="Sklepy internetowe", light="Etykiety do wszystkich paczek",
+         bold="jednym kliknięciem.", mark="jednym kliknięciem.",
+         sub="Bez przeklejania zamówień do Excela.", proof="Sklep z paszą: ok. 100 godzin miesięcznie mniej",
+         source="ch-marpasz-2"),
+    dict(slug="oferta-5-minut", kicker="Firmy handlowe", light="Oferta w 5 minut,",
+         bold="nie w dwa dni.", mark="5 minut,", mark_in="light",
+         sub="Asystent czyta maila klienta i przygotowuje szkic.", proof="Producent maszyn sportowych",
+         source="ch-offers-1"),
+    dict(slug="aislupsk-twoi-ludzie", kicker="Warsztaty AI Słupsk · listopad", light="Twoi ludzie już używają AI.",
+         bold="Wiesz, do czego?", mark="do czego?", sub="Zasady pracy z danymi i przykłady z firm z regionu.",
+         proof="", cta="Zapisz się", web="aislupsk.pl", palette="S", source="ad-28-w1"),
 ]
 
 
-def words(text):
-    return " ".join(f'<span class="{"acc" if w.startswith("*") else ""}">{esc(w.lstrip("*"))}</span>' for w in tokens(text))
+def marked(text, mark):
+    if not mark or mark not in text:
+        return esc(text)
+    a, b = text.split(mark, 1)
+    return f'{esc(a)}<span class="mk">{esc(mark)}</span>{esc(b)}'
 
 
-def item(it, size):
-    if it.get("art"):
-        return f'<img class="art" style="width:{size}px;height:{size}px" src="media/{it["art"]}.png" alt="">'
-    return f'<span class="tile" style="width:{size}px;height:{size}px">{logo(it["logo"], int(size * 0.55), LOGO_COLORS.get(it["logo"]))}</span>'
+def card(ad):
+    in_light = ad.get("mark_in") == "light"
+    light = marked(ad["light"], ad["mark"]) if in_light else esc(ad["light"])
+    bold = esc(ad["bold"]) if in_light else marked(ad["bold"], ad["mark"])
+    proof = f'<div class="proof"><i></i>{esc(ad["proof"])}</div>' if ad.get("proof") else ""
+    logo = ('<div class="brand-ai"><b>AI</b> Słupsk</div>' if ad.get("palette") == "S"
+            else '<img class="logo" src="media/flowbiz-ai.png" alt="flowbiz AI">')
+    return (f'<div class="glow"></div><img class="photo" src="media/photo.png" alt="">'
+            f'<div class="top">{logo}</div>'
+            f'<div class="copy"><div class="kicker">{esc(ad["kicker"])}</div>'
+            f'<h1><span class="l">{light}</span> <span class="b">{bold}</span></h1>'
+            f'<div class="sub">{esc(ad["sub"])}</div>{proof}</div>'
+            f'<div class="who"><b>Mateusz Kozłowski</b><span>wdrożenia AI i automatyzacji · Pomorze</span></div>'
+            f'<div class="cta"><span class="btn">{esc(ad.get("cta", "Umów rozmowę"))} →</span>'
+            f'<span class="web">{esc(ad.get("web", "flowbiz.pl"))} · 536 507 701</span></div>')
 
 
-def card(ad, fmt, w, h):
-    story = fmt == "story"
-    icon = 230 if story else 190
-    parts = [f'<div class="kicker">{esc(ad["kicker"])}</div>']
-    if ad.get("before"):
-        parts.append(f'<div class="ba"><span class="before">{esc(ad["before"])}</span>'
-                     f'<span class="arrow">→</span><span class="after">{esc(ad["after"])}</span></div>')
-    if ad.get("big"):
-        parts.append(f'<div class="big">{esc(ad["big"])}</div><div class="big-sub">{esc(ad["big_sub"])}</div>')
-    if ad.get("meter"):
-        a, b = ad["meter"]
-        parts.append(f'<div class="meter"><div class="bar"><i style="width:{b}%"></i><em style="left:{a}%"></em></div>'
-                     f'<div class="scale"><span>start: {a}%</span><b>{b}%</b></div></div>')
-    if ad.get("visual"):
-        parts.append('<div class="row">' + '<span class="sign">→</span>'.join(item(i, icon) for i in ad["visual"]) + '</div>')
-    if ad.get("portrait"):   # tekst obok sylwetki — węższa kolumna, większy tytuł
-        size = fit(ad["title"], 600 if not story else 900, 110, 3, 60)
-    else:
-        size = fit(ad["title"], w - 160, 84 if story else 70, 4 if story else 3, 44)
-    parts.append(f'<div class="title" style="font-size:{size}px">{words(ad["title"])}</div>')
-    if ad.get("sub"):
-        parts.append(f'<div class="sub">{esc(ad["sub"])}</div>')
-    if ad.get("portrait"):
-        parts.append('<img class="portrait" src="media/mateusz-cutout.png" alt="">')
-    cta = ('<span class="btn">flowbiz.pl</span>' if ad.get("portrait")
-           else '<span class="cta">Bezpłatna konsultacja · <b>flowbiz.pl</b></span>')
-    foot = f'<div class="foot"><img class="mark" src="media/flowbiz-ai.png" alt="flowbiz AI">{cta}</div>'
-    if ad.get("portrait"):
-        parts.append(f'<div class="phone">tel. 536 507 701</div>')
-    return f'<div class="ad{" has-portrait" if ad.get("portrait") else ""}">{"".join(parts)}</div>{foot}'
-
-
-def document(fmt):
-    w, h = FORMATS[fmt]
-    p = PALETTES["A"]
-    story = fmt == "story"
-    # story: górne 250 px i dolne 340 px zasłania interfejs Instagrama
-    pad_top, pad_bottom = (260, 360) if story else (90, 70)
-    css = (BRAND / "fonts" / "fonts.css").read_text() + logos_css() + f"""
+def css(p, w, h, story):
+    # story: górne ~250 px i dolne ~330 px zasłania interfejs Instagrama
+    top, bottom = (250, 330) if story else (64, 64)
+    return f"""
 html,body{{margin:0;width:100%;height:100%;overflow:hidden;background:{p['bg']};color:{p['text']};font-family:'{p['font']}',sans-serif;-webkit-font-smoothing:antialiased}}
 #root{{position:relative;width:{w}px;height:{h}px;overflow:hidden}}
-.slide{{position:absolute;inset:0;background:{p['bg']};background-image:linear-gradient({p['grid']} 1px,transparent 1px),linear-gradient(90deg,{p['grid']} 1px,transparent 1px);background-size:60px 60px}}
-.ad{{position:absolute;left:80px;right:80px;top:{pad_top}px;bottom:{pad_bottom + 130}px;display:flex;flex-direction:column;justify-content:center;gap:{40 if story else 30}px}}
-.kicker{{font-size:{36 if story else 32}px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:{p['accent']}}}
-.ba{{display:flex;align-items:baseline;gap:30px;flex-wrap:wrap}}
-.before{{font-size:{70 if story else 60}px;font-weight:800;color:{p['muted']};text-decoration:line-through;text-decoration-thickness:6px}}
-.arrow{{font-size:70px;font-weight:800;color:{p['accent']}}}
-.after{{font-size:{190 if story else 160}px;font-weight:800;line-height:.95;letter-spacing:-.03em;color:{p['accent']}}}
-.big{{font-size:{260 if story else 220}px;font-weight:800;line-height:.9;letter-spacing:-.04em;color:{p['accent']}}}
-.big-sub{{font-size:{50 if story else 44}px;font-weight:700;color:{p['text']};margin-top:-10px}}
-.meter{{display:flex;flex-direction:column;gap:18px}}
-.bar{{position:relative;height:56px;border-radius:28px;background:{p['raised']};overflow:hidden}}
-.bar i{{display:block;height:100%;background:{p['accent']};border-radius:28px}}
-.bar em{{position:absolute;top:0;bottom:0;width:6px;background:{p['bg']}}}
-.scale{{display:flex;justify-content:space-between;align-items:baseline;font-size:40px;font-weight:700;color:{p['muted']}}}
-.scale b{{font-size:{200 if story else 170}px;line-height:.9;color:{p['accent']};letter-spacing:-.04em}}
-.row{{display:flex;align-items:center;gap:26px}}
-.art{{object-fit:contain;mix-blend-mode:lighten;-webkit-mask-image:radial-gradient(circle,#000 52%,transparent 71%);mask-image:radial-gradient(circle,#000 52%,transparent 71%)}}
-.tile{{display:flex;align-items:center;justify-content:center;border-radius:48px;background:{p['raised']}}}
-.sign{{font-size:64px;font-weight:800;color:{p['accent']}}}
-.title{{font-weight:800;line-height:1.08;letter-spacing:-.02em}}
-.title span{{display:inline-block}} .title .acc{{color:{p['accent']}}}
-.sub{{font-size:{42 if story else 36}px;line-height:1.35;color:{p['muted']}}}
-.has-portrait{{justify-content:flex-start;padding-top:{40 if story else 0}px}}
-.has-portrait .title,.has-portrait .sub{{max-width:{620 if not story else 920}px}}
-.portrait{{position:absolute;right:-90px;bottom:{-pad_bottom - 130}px;width:{640 if story else 600}px;height:auto;z-index:0}}
-.has-portrait > *:not(.portrait){{position:relative;z-index:1}}
-.has-portrait ~ .foot{{right:auto;border-top:0;gap:40px}}
-.btn{{font-size:36px;font-weight:800;padding:18px 34px;border-radius:20px;background:{p['accent']};color:{p['on_accent']}}}
-.phone{{font-size:40px;font-weight:700}}
-.foot{{position:absolute;left:80px;right:80px;bottom:{pad_bottom}px;height:100px;display:flex;align-items:center;justify-content:space-between;border-top:2px solid {p['line']};padding-top:26px}}
-.mark{{height:62px;width:auto}}
-.cta{{font-size:{34 if story else 30}px;font-weight:600;color:{p['muted']}}} .cta b{{color:{p['accent']}}}
+.slide{{position:absolute;inset:0;background:{p['bg_fill']};overflow:hidden}}
+.glow{{position:absolute;right:-260px;bottom:-200px;width:1100px;height:1100px;border-radius:50%;background:radial-gradient(circle,{p['accent']}38,transparent 62%)}}
+.photo{{position:absolute;right:{(-150 if p['heading_style'] == 'italic' else -120) if not story else (-110 if p['heading_style'] == 'italic' else -60)}px;bottom:0;height:{h * (0.74 if not story else 0.5):.0f}px;width:auto;filter:drop-shadow(0 30px 60px rgba(0,0,0,.55))}}
+.top{{position:absolute;left:72px;top:{top}px}} .logo{{height:58px}}
+.brand-ai{{font-size:44px;font-weight:800;font-style:italic}} .brand-ai b{{color:{p['accent']}}}
+.copy{{position:absolute;left:72px;top:{top + 120}px;width:{590 if not story else 936}px;display:flex;flex-direction:column;gap:26px}}
+.kicker{{font-size:30px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:{p['accent']}}}
+h1{{margin:0;font-size:{78 if not story else 92}px;line-height:1.1;letter-spacing:-.02em;font-style:{p['heading_style']}}}
+h1 .l{{font-weight:400}} h1 .b{{font-weight:800}}
+.mk{{white-space:nowrap;display:inline-block;line-height:1.05;margin:4px 0;background:{p['accent']};color:{p['on_accent']};padding:0 14px;border-radius:12px;box-decoration-break:clone;-webkit-box-decoration-break:clone;font-weight:800}}
+.sub{{font-size:{34 if not story else 40}px;line-height:1.35;color:{p['muted']};max-width:{520 if not story else 900}px;text-shadow:0 2px 12px {p['bg']}}}
+.proof{{align-self:flex-start;display:flex;align-items:center;gap:14px;font-size:26px;font-weight:700;padding:14px 22px;border-radius:14px;background:{p['raised']};max-width:{560 if not story else 900}px}}
+.proof i{{flex:none;width:12px;height:12px;border-radius:50%;background:{p['accent']}}}
+.who{{position:absolute;right:56px;bottom:{bottom + (150 if story else 120)}px;display:flex;flex-direction:column;align-items:flex-end;gap:2px;text-align:right;padding:14px 20px;border-radius:14px;background:{p['bg']}E6}}
+.who b{{font-size:28px}} .who span{{font-size:20px;color:{p['muted']}}}
+.cta{{position:absolute;left:72px;bottom:{bottom}px;display:flex;flex-direction:column;gap:14px}}
+.btn{{align-self:flex-start;font-size:{38 if not story else 44}px;font-weight:800;padding:24px 40px;border-radius:18px;background:{p['accent']};color:{p['on_accent']};box-shadow:0 16px 40px rgba(0,0,0,.4)}}
+.web{{font-size:24px;font-weight:600;color:{p['muted']}}}
 """
-    slides = "".join(f'<div class="slide clip" id="s{i}" data-start="{i}" data-duration="1" data-track-index="0">{card(ad, fmt, w, h)}</div>'
-                     for i, ad in enumerate(ADS))
+
+
+def document(fmt, ads, palette):
+    w, h = FORMATS[fmt]
+    slides = "".join(f'<div class="slide clip" id="s{i}" data-start="{i}" data-duration="1" data-track-index="0">{card(ad)}</div>'
+                     for i, ad in enumerate(ads))
+    style = (BRAND / "fonts" / "fonts.css").read_text() + css(PALETTES[palette], w, h, fmt == "story")
     return (f'<!doctype html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width={w}, height={h}">'
-            f'<style>{css}</style><script src="vendor/gsap.min.js"></script></head><body>'
-            f'<div id="root" data-composition-id="static" data-start="0" data-width="{w}" data-height="{h}" data-duration="{len(ADS)}">{slides}</div>'
-            f'<script>window.__timelines=window.__timelines||{{}};var tl=gsap.timeline({{paused:true}});tl.set({{}},{{}},{len(ADS)});'
+            f'<style>{style}</style><script src="vendor/gsap.min.js"></script></head><body>'
+            f'<div id="root" data-composition-id="static" data-start="0" data-width="{w}" data-height="{h}" data-duration="{len(ads)}">{slides}</div>'
+            f'<script>window.__timelines=window.__timelines||{{}};var tl=gsap.timeline({{paused:true}});tl.set({{}},{{}},{len(ads)});'
             f'window.__timelines["static"]=tl;</script></body></html>')
 
 
@@ -147,30 +121,31 @@ def main(fmts):
     STATIC.mkdir(parents=True, exist_ok=True)
     failed = []
     for fmt in fmts or FORMATS:
-        folder = OUT / "_static" / fmt
-        if folder.exists():
-            shutil.rmtree(folder)
-        for sub in ("media", "vendor", "fonts"):
-            (folder / sub).mkdir(parents=True, exist_ok=True)
-        shutil.copy(GSAP, folder / "vendor" / "gsap.min.js")
-        for font in (BRAND / "fonts").glob("*.woff2"):
-            shutil.copy(font, folder / "fonts" / font.name)
-        shutil.copy(BRAND / "logos" / "flowbiz-ai.png", folder / "media")
-        shutil.copy(BRAND / "aislupsk" / "mateusz-cutout.png", folder / "media")
-        for art in (PROJECT / "assets" / "hook-art").glob("*.png"):
-            shutil.copy(art, folder / "media")
-        (folder / "index.html").write_text(document(fmt))
-        r = hf(["snapshot", ".", "--at", ",".join(f"{i + 0.5}" for i in range(len(ADS)))], folder)
-        shots = sorted((folder / "snapshots").glob("frame-*.png"))
-        if len(shots) < len(ADS):
-            print((r.stdout + r.stderr)[-800:])
-            failed.append(fmt)
-            continue
-        for ad, shot in zip(ADS, shots):
-            out = STATIC / f"{ad['slug']}__{fmt}.png"
-            shutil.copy(shot, out)
-            print("→", out.relative_to(PROJECT))
-    json.dump([{k: ad[k] for k in ("slug", "source", "kicker", "title")} for ad in ADS],
+        # jedna paleta na projekt — AI Słupsk ma inne kolory, kursywę i zdjęcie
+        for palette in sorted({ad.get("palette", "A") for ad in ADS}):
+            ads = [ad for ad in ADS if ad.get("palette", "A") == palette]
+            folder = OUT / "_static" / f"{fmt}-{palette}"
+            if folder.exists():
+                shutil.rmtree(folder)
+            for sub in ("media", "vendor", "fonts"):
+                (folder / sub).mkdir(parents=True, exist_ok=True)
+            shutil.copy(GSAP, folder / "vendor" / "gsap.min.js")
+            for font in (BRAND / "fonts").glob("*.woff2"):
+                shutil.copy(font, folder / "fonts" / font.name)
+            shutil.copy(BRAND / "logos" / "flowbiz-ai.png", folder / "media")
+            shutil.copy(PHOTOS[palette], folder / "media" / "photo.png")
+            (folder / "index.html").write_text(document(fmt, ads, palette))
+            r = hf(["snapshot", ".", "--at", ",".join(f"{i + 0.5}" for i in range(len(ads)))], folder)
+            shots = sorted((folder / "snapshots").glob("frame-*.png"))
+            if len(shots) < len(ads):
+                print((r.stdout + r.stderr)[-800:])
+                failed.append(f"{fmt}-{palette}")
+                continue
+            for ad, shot in zip(ads, shots):
+                out = STATIC / f"{ad['slug']}__{fmt}.png"
+                shutil.copy(shot, out)
+                print("→", out.relative_to(PROJECT))
+    json.dump([{k: ad.get(k, "") for k in ("slug", "source", "kicker", "light", "bold", "proof")} for ad in ADS],
               open(STATIC / "sources.json", "w"), ensure_ascii=False, indent=1)
     if failed:
         raise SystemExit(f"snapshot nie zwrócił wszystkich grafik: {', '.join(failed)}")
