@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="pl" class="__HTMLCLASS__">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=__W__, height=__H__" />
+    <title>flowbiz — oferta: chaos do systemu</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="assets/flowbiz.css" />
+    <style>
+      /* ── Klocek 1: arkusze, karteczki i telefon wsiąkają w konfigurator wyceny ──
+         Układ: poziom = chaos po lewej, okno po prawej; pion = chaos u góry, okno na dole.
+         Pozycje elementów chaosu siedzą w JS (CHAOS), bo z nich liczony jest też lot do okna. */
+
+      .pill-state {
+        top: 72px;
+        left: 96px;
+      }
+      .fmt-port .pill-state {
+        top: 110px;
+        left: 60px;
+      }
+      .pill-state .dot.red {
+        background: var(--red);
+        box-shadow: 0 0 14px var(--red);
+      }
+
+      .chaos {
+        position: absolute;
+      }
+      .sheet {
+        width: 362px;
+        height: 206px;
+        border-radius: 16px;
+        background: #1a1718;
+        border: 1px solid rgba(184, 68, 60, 0.55);
+        box-shadow:
+          0 18px 40px rgba(0, 0, 0, 0.55),
+          0 0 34px rgba(184, 68, 60, 0.22);
+        padding: 16px 18px;
+        overflow: hidden;
+      }
+      .sheet .head {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: var(--mono);
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--tx);
+        white-space: nowrap;
+      }
+      .xls {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        background: #1f6b44;
+        color: #eafff2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        flex: none;
+      }
+      .cells {
+        margin-top: 16px;
+        display: grid;
+        grid-template-columns: 24px 1fr 1fr 1fr;
+        gap: 9px 10px;
+        align-items: center;
+      }
+      .cells .n {
+        font-family: var(--mono);
+        font-size: 14px;
+        color: var(--tx3);
+      }
+      .cells i {
+        display: block;
+        height: 12px;
+        border-radius: 4px;
+        background: #3a3436;
+      }
+      .cells .err {
+        font-family: var(--mono);
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--red-tx);
+        background: var(--red-tint);
+        border-radius: 5px;
+        padding: 0 6px;
+      }
+      .note {
+        width: 250px;
+        min-height: 150px;
+        padding: 20px 22px;
+        border-radius: 6px 6px 18px 6px;
+        background: linear-gradient(170deg, #ffb27a, #f28a3e);
+        color: #2a1203;
+        font-size: 25px;
+        font-weight: 700;
+        line-height: 1.25;
+        box-shadow: 0 18px 36px rgba(0, 0, 0, 0.5);
+      }
+      .phone {
+        width: 300px;
+        height: 124px;
+        border-radius: 22px;
+        background: #221312;
+        border: 1px solid rgba(184, 68, 60, 0.7);
+        box-shadow: 0 0 46px rgba(184, 68, 60, 0.4);
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        padding: 0 22px;
+      }
+      .phone .ring {
+        width: 66px;
+        height: 66px;
+        border-radius: 50%;
+        background: var(--red);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        flex: none;
+      }
+      .phone b {
+        display: block;
+        font-size: 24px;
+      }
+      .phone small {
+        display: block;
+        font-size: 20px;
+        color: var(--red-tx);
+        margin-top: 4px;
+      }
+
+      /* ── Okno konfiguratora ── */
+      #q-win {
+        left: 800px;
+        top: 150px;
+        width: 1020px;
+        height: 800px;
+      }
+      .fmt-port #q-win {
+        left: 60px;
+        top: 890px;
+        width: 960px;
+        height: 990px;
+      }
+      #q-winglow {
+        position: absolute;
+        border-radius: 40px;
+        box-shadow: 0 0 120px 20px rgba(255, 106, 26, 0.45);
+        left: 800px;
+        top: 150px;
+        width: 1020px;
+        height: 800px;
+      }
+      .fmt-port #q-winglow {
+        left: 60px;
+        top: 890px;
+        width: 960px;
+        height: 990px;
+      }
+      .q-body {
+        display: flex;
+        height: calc(100% - 64px);
+      }
+      .q-main {
+        flex: 1;
+        padding: 34px 38px;
+        position: relative;
+      }
+      .fields {
+        margin-top: 30px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 22px 22px;
+      }
+      .fmt-port .fields {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .fld .lab {
+        font-size: 17px;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: var(--tx3);
+        margin-bottom: 9px;
+      }
+      .fld .box {
+        position: relative;
+        height: 70px;
+        border-radius: 14px;
+        border: 1px solid var(--line2);
+        background: var(--card2);
+      }
+      .fld .box .ph,
+      .fld .box .val {
+        position: absolute;
+        left: 20px;
+        right: 52px;
+        top: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        font-size: 23px;
+        white-space: nowrap;
+      }
+      .fld .box .ph {
+        color: var(--tx3);
+      }
+      .fld .box .val {
+        color: var(--tx);
+        font-weight: 600;
+        opacity: 0;
+      }
+      .fld .box .chev {
+        position: absolute;
+        right: 18px;
+        top: 23px;
+        font-size: 24px;
+        color: var(--tx3);
+      }
+      .fld .flash {
+        position: absolute;
+        inset: -1px;
+        border-radius: 14px;
+        border: 2px solid var(--acc);
+        box-shadow: 0 0 26px rgba(255, 106, 26, 0.55);
+        opacity: 0;
+      }
+      .price {
+        margin-top: 30px;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        padding: 22px 26px;
+        border-radius: 18px;
+        background: linear-gradient(180deg, #1f1a17, #19171a);
+        border: 1px solid rgba(255, 138, 61, 0.35);
+      }
+      .fmt-port .price {
+        margin-top: 22px;
+      }
+      .price .tagi {
+        font-size: 30px;
+        color: var(--acc2);
+      }
+      .price .pl {
+        flex: 1;
+        font-size: 24px;
+        font-weight: 700;
+      }
+      .price .pl small {
+        display: block;
+        font-size: 19px;
+        font-weight: 500;
+        color: var(--tx2);
+        margin-top: 2px;
+      }
+      .price .pv {
+        font-family: var(--mono);
+        font-variant-numeric: tabular-nums;
+        font-size: 46px;
+        font-weight: 700;
+        color: var(--acc2);
+        white-space: nowrap;
+      }
+      #q-toast {
+        left: 130px;
+        bottom: 34px;
+      }
+
+      /* ── Stoper ── */
+      .sw {
+        position: absolute;
+        width: 460px;
+        height: 460px;
+        left: 190px;
+        top: 330px;
+      }
+      .fmt-port .sw {
+        width: 560px;
+        height: 560px;
+        left: 260px;
+        top: 250px;
+      }
+      .sw svg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        transform: rotate(-90deg);
+      }
+      .sw .bgc {
+        fill: none;
+        stroke: #26262c;
+        stroke-width: 5;
+      }
+      .sw .arc {
+        fill: none;
+        stroke-width: 5;
+        stroke-linecap: round;
+        stroke-dasharray: 100;
+      }
+      .sw .halo {
+        position: absolute;
+        inset: 8%;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255, 106, 26, 0.18), transparent 70%);
+      }
+      .sw .read {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .sw .digits {
+        position: relative;
+        width: 100%;
+        height: 120px;
+      }
+      .fmt-port .sw .digits {
+        height: 140px;
+      }
+      .sw .digits span {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--mono);
+        font-variant-numeric: tabular-nums;
+        font-weight: 700;
+        font-size: 104px;
+        letter-spacing: -0.02em;
+        white-space: nowrap;
+      }
+      .fmt-port .sw .digits span {
+        font-size: 124px;
+      }
+      #q-count {
+        color: var(--tx);
+      }
+      #q-final {
+        color: var(--acc2);
+        opacity: 0;
+      }
+      #q-final small {
+        font-size: 0.42em;
+        margin-left: 12px;
+        color: var(--tx);
+      }
+      .sw .cap {
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--tx2);
+        margin-top: 6px;
+      }
+      .fmt-port .sw .cap {
+        font-size: 28px;
+      }
+      .sw .crown {
+        position: absolute;
+        left: 50%;
+        top: -26px;
+        width: 64px;
+        height: 26px;
+        margin-left: -32px;
+        border-radius: 8px 8px 3px 3px;
+        background: #2a2a31;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" class="fmt-__FMT__" data-composition-id="__ID__" data-start="0" data-duration="10" data-width="__W__" data-height="__H__" data-fps="30" style="width: __W__px; height: __H__px">
+      <div class="stage" data-layout-ignore></div>
+      <div class="grid" data-layout-ignore></div>
+      <div id="q-blob" class="glow-blob bg-only" data-layout-ignore></div>
+
+      <section id="q-clip" class="clip" data-start="0" data-duration="10" data-track-index="1" style="position: absolute; inset: 0">
+        <div id="q-scene" style="position: absolute; inset: 0">
+          <div id="q-pill-before" class="eyebrow pill-state"><span class="dot red"></span>Przed</div>
+          <div id="q-pill-after" class="eyebrow pill-state" style="opacity: 0"><span class="dot"></span>Po wdrożeniu</div>
+
+          <div id="q-winglow" style="opacity: 0" data-layout-ignore></div>
+          <div id="q-win" class="win">
+            <div class="win-top">
+              <span class="dots"><i></i><i></i><i></i></span>
+              <span class="om-logo">PB</span>
+              <span class="org">Pracownia Bałtyk</span>
+              <span class="sp"></span>
+              <span class="chip-ai"><i data-ico="sparkles"></i>AI</span>
+            </div>
+            <div class="q-body">
+              <ul class="rail">
+                <li><i data-ico="house"></i></li>
+                <li class="on"><i data-ico="cart"></i></li>
+                <li><i data-ico="building"></i></li>
+                <li><i data-ico="package"></i></li>
+                <li><i data-ico="sparkles"></i></li>
+              </ul>
+              <div class="q-main">
+                <h3 class="h1"><span style="color: var(--acc2); font-size: 32px; display: flex"><i data-ico="sparkles"></i></span>Konfigurator wyceny</h3>
+                <p class="lead">OF/2026/10/042 · Nordtex Sp. z o.o.</p>
+                <div class="fields" id="q-fields"></div>
+                <div class="price">
+                  <span class="tagi"><i data-ico="tag"></i></span>
+                  <span class="pl">Cena<small>500 szt. · netto</small></span>
+                  <span class="pv"><span id="q-price">0,00</span> zł</span>
+                </div>
+                <div id="q-toast" class="toast" style="opacity: 0">
+                  <span class="tick"><i data-ico="check" data-sw="3"></i></span>
+                  Oferta OF/2026/10/042 gotowa
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="q-chaos"></div>
+
+          <div id="q-sw" class="sw" style="opacity: 0">
+            <div class="crown"></div>
+            <div class="halo" id="q-halo" style="opacity: 0"></div>
+            <svg viewBox="0 0 100 100">
+              <circle class="bgc" cx="50" cy="50" r="44" />
+              <circle id="q-arc" class="arc" cx="50" cy="50" r="44" pathLength="100" stroke="#b8443c" />
+            </svg>
+            <div class="read">
+              <div class="digits">
+                <span id="q-count">40:00</span>
+                <span id="q-final">5–10<small>min</small></span>
+              </div>
+              <div class="cap">przygotowanie oferty</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="grain" data-layout-ignore></div>
+      <div class="vignette" data-layout-ignore></div>
+    </div>
+
+    <script src="assets/kit.js"></script>
+    <script>
+      const { port, pln, countTo, icon } = window.FB;
+      const W = port ? 1080 : 1920;
+      const H = port ? 1920 : 1080;
+
+      // ── Pola konfiguratora ──
+      const FIELDS = [
+        ["Produkt", "Torba na zakupy 38×42"],
+        ["Tkanina", "Bawełna 220 g"],
+        ["Wykrój", "Ucho długie, dno płaskie"],
+        ["Dodatki", "Nadruk 1 kolor"],
+      ];
+      document.getElementById("q-fields").innerHTML = FIELDS.map(
+        ([lab, val], i) => `<div class="fld"><div class="lab">${lab}</div><div class="box">
+          <span class="ph" id="q-ph${i}">Wybierz…</span><span class="val" id="q-val${i}">${val}</span>
+          <span class="chev">${icon("chevron")}</span><span class="flash" id="q-fl${i}"></span></div></div>`,
+      ).join("");
+
+      // ── Chaos: [typ, treść, left, top, obrót] w poziomie i w pionie; w/h karty do liczenia środka ──
+      const SIZE = { sheet: [362, 206], note: [250, 150], phone: [300, 124] };
+      const CHAOS = [
+        ["sheet", "cennik_tkaniny_v7_FINAL.xlsx", [90, 170, -7], [50, 230, -6]],
+        ["note", "dopłata za nadruk — zapytaj Basię?", [470, 110, 7], [400, 200, 6]],
+        ["sheet", "wyceny_2026.xlsx", [400, 330, 5], [660, 300, 5]],
+        ["note", "rabat od 500 szt.?", [300, 470, -6], [390, 430, -5]],
+        ["sheet", "dodatki_nadruk.xlsx", [110, 620, -4], [40, 560, -3]],
+        ["phone", "", [460, 880, -3], [690, 752, -4]],
+        ["sheet", "wykroje_torby_STARE.xlsx", [400, 640, 6], [610, 516, 6]],
+        ["note", "len — dopłata? sprawdzić", [90, 860, 4], [330, 700, 4]],
+      ];
+      const sheetHtml = (file, idx) => {
+        const W8 = [[70, 40, 55], [85, 30, 60], [60, 45, 0]];
+        const rows = W8.map(
+          (r, ri) =>
+            `<span class="n">${ri + 1}</span>` +
+            r.map((w, c) => (idx === 0 && ri === 2 && c === 2 ? `<span class="err">#ADR!</span>` : `<i style="width:${((w + idx * 7 + c * 3) % 80) + 20}%"></i>`)).join(""),
+        ).join("");
+        return `<div class="head"><span class="xls">${icon("sheet")}</span>${file}</div><div class="cells">${rows}</div>`;
+      };
+      const chaosRoot = document.getElementById("q-chaos");
+      chaosRoot.innerHTML = CHAOS.map(([type, txt, land, prt], i) => {
+        const [x, y] = port ? prt : land;
+        const inner =
+          type === "sheet"
+            ? sheetHtml(txt, i)
+            : type === "note"
+              ? txt
+              : `<span class="ring" id="q-ring">${icon("phone")}</span><span><b>Nordtex dzwoni</b><small>„Gdzie ta oferta?”</small></span>`;
+        return `<div id="q-c${i}" class="chaos ${type}" data-layout-allow-overlap data-layout-allow-occlusion style="left:${x}px;top:${y}px">${inner}</div>`;
+      }).join("");
+
+      // Glow-blob za oknem
+      const blob = document.getElementById("q-blob");
+      const BLOB = port ? [40, 900, 1000, 1000] : [700, 60, 1200, 1000];
+      Object.assign(blob.style, { left: BLOB[0] + "px", top: BLOB[1] + "px", width: BLOB[2] + "px", height: BLOB[3] + "px" });
+
+      // Cel lotu: środek siatki pól w oknie
+      const TARGET = port ? [540, 1290] : [1356, 480];
+
+      // Chaos z założenia leży na sobie — waiver musi być na zakrywanym tekście (nie dziedziczy się).
+      chaosRoot.querySelectorAll("*").forEach((el) => el.setAttribute("data-layout-allow-occlusion", ""));
+
+      const tl = gsap.timeline({ paused: true });
+
+      // 0. Tło i stan „przed"
+      tl.fromTo("#q-blob", { opacity: 0 }, { opacity: 0.6, duration: 1.2, ease: "power2.out" }, 0);
+      tl.fromTo("#q-pill-before", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.15);
+
+      // 1. Chaos wpada (pop z obrotem)
+      CHAOS.forEach((c, i) => {
+        const r = (port ? c[3] : c[2])[2];
+        tl.set(`#q-c${i}`, { rotation: r }, 0);
+        tl.fromTo(`#q-c${i}`, { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.55, ease: "back.out(1.8)" }, 0.25 + i * 0.14);
+      });
+      // Telefon dzwoni — skończona liczba drgań
+      tl.to("#q-ring", { rotation: 14, duration: 0.07, repeat: 19, yoyo: true, ease: "sine.inOut" }, 1.0);
+      tl.to("#q-c5", { x: 5, duration: 0.05, repeat: 23, yoyo: true, ease: "none" }, 1.0);
+
+      // 2. Okno systemu wchodzi
+      tl.fromTo("#q-win", { opacity: 0, x: port ? 0 : 120, y: port ? 100 : 0, scale: 0.96 }, { opacity: 1, x: 0, y: 0, scale: 1, duration: 0.85, ease: "expo.out" }, 1.35);
+
+      // 3. Wszystko wsiąka w okno — każda para elementów wypełnia jedno pole
+      const FLY0 = 2.45, STEP = 0.22, FLY = 0.6;
+      CHAOS.forEach((c, i) => {
+        const [x, y, r] = port ? c[3] : c[2];
+        const [w, h] = SIZE[c[0]];
+        tl.to(`#q-c${i}`, { x: TARGET[0] - (x + w / 2), y: TARGET[1] - (y + h / 2), scale: 0.12, rotation: r * -2, opacity: 0, duration: FLY, ease: "power3.in" }, FLY0 + i * STEP);
+      });
+      FIELDS.forEach((_, f) => {
+        const at = FLY0 + (2 * f + 1) * STEP + FLY - 0.05;
+        tl.to(`#q-ph${f}`, { opacity: 0, duration: 0.12 }, at);
+        tl.fromTo(`#q-val${f}`, { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.3, ease: "power2.out" }, at);
+        tl.fromTo(`#q-fl${f}`, { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "none" }, at);
+        tl.to(`#q-fl${f}`, { opacity: 0, duration: 0.6, ease: "power2.out" }, at + 0.14);
+      });
+      tl.to("#q-winglow", { opacity: 0.55, duration: 0.6, ease: "power2.out" }, 2.6);
+      tl.to("#q-winglow", { opacity: 0.25, duration: 1.2, ease: "power2.inOut" }, 3.4);
+
+      // 4. Stan „po": stoper w miejscu chaosu
+      tl.to("#q-pill-before", { opacity: 0, y: -10, duration: 0.3 }, 4.4);
+      tl.fromTo("#q-pill-after", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 4.5);
+      tl.fromTo("#q-sw", { opacity: 0, scale: 0.82 }, { opacity: 1, scale: 1, duration: 0.7, ease: "expo.out" }, 4.45);
+      tl.set("#q-arc", { strokeDashoffset: 0 }, 0);
+      countTo(tl, document.getElementById("q-count"), 40, 5, 5.0, 1.4, (v) => String(Math.round(v)).padStart(2, "0") + ":00", "power2.inOut");
+      tl.to("#q-arc", { strokeDashoffset: 75, stroke: "#FF6A1A", duration: 1.4, ease: "power2.inOut" }, 5.0);
+      tl.to("#q-count", { opacity: 0, scale: 0.85, duration: 0.25, ease: "power2.in" }, 6.4);
+      tl.fromTo("#q-final", { opacity: 0, scale: 1.25 }, { opacity: 1, scale: 1, duration: 0.55, ease: "back.out(2)" }, 6.5);
+      tl.to("#q-halo", { opacity: 1, duration: 0.6, ease: "power2.out" }, 6.5);
+
+      // Cena nalicza się razem z zegarem
+      countTo(tl, document.getElementById("q-price"), 0, 6450, 5.0, 1.5, (v) => pln(v, 2), "power3.out");
+
+      // 5. Jedyny mocny moment: oferta gotowa
+      tl.fromTo("#q-toast", { opacity: 0, y: 40, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "back.out(1.6)" }, 7.0);
+      tl.to("#q-winglow", { opacity: 1, duration: 0.25, ease: "power2.out" }, 7.0);
+      tl.to("#q-winglow", { opacity: 0.4, duration: 1.6, ease: "power2.inOut" }, 7.3);
+
+      // Dojazd kamery do końca — powolny, żeby ucięcie w montażu nic nie zabrało
+      tl.fromTo("#q-scene", { scale: 1 }, { scale: 1.035, duration: 10, ease: "none" }, 0);
+      tl.to("#q-blob", { opacity: 0.85, duration: 2.5, ease: "sine.inOut" }, 7.2);
+
+      window.__timelines["__ID__"] = tl;
+    </script>
+  </body>
+</html>
