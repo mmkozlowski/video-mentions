@@ -1,0 +1,119 @@
+{
+ "clip": "ad-35-w9",
+ "brand": "aislupsk",
+ "hook": {
+  "text": "Twój pracownik właśnie wkleił *umowę klienta do *ChatGPT",
+  "until": "Czy#1",
+  "visual": {
+   "kind": "flow",
+   "items": [
+    {
+     "art": "h-contract",
+     "label": "umowa klienta"
+    },
+    {
+     "logo": "openai",
+     "label": "ChatGPT",
+     "accent": true
+    }
+   ]
+  }
+ },
+ "topic": {
+  "kicker": "Warsztaty AI Słupsk",
+  "text": "AI *bezpiecznie w Twojej firmie",
+  "sub": "dla menedżerów i szefów firm"
+ },
+ "cta": {
+  "chip": "Warsztaty AI · aislupsk.pl",
+  "ad": {
+   "kicker": "Listopad 2026 · Słupsk",
+   "title": "Ustal *zasady AI, zanim będzie za późno",
+   "sub": "Warsztaty dla szefów i menedżerów. Liczba miejsc ograniczona",
+   "button": "aislupsk.pl"
+  },
+  "reels": {
+   "kicker": "Darmowa checklista",
+   "title": "Napisz *UMOWA w komentarzu",
+   "sub": "Wyślę Ci 7 zasad: jakie dane wolno dawać AI"
+  }
+ },
+ "events": [
+  {
+   "type": "broll",
+   "at": "Twój",
+   "until": "Czy#1",
+   "src": "assets/broll/hf/video/h14-umowa-do-czatu.mp4",
+   "ai": true
+  },
+  {
+   "type": "logos",
+   "at": "Czy#1",
+   "until": "Na",
+   "kicker": "Wiesz o tym?",
+   "items": [
+    {
+     "logo": "openai",
+     "name": "ChatGPT"
+    },
+    {
+     "logo": "adobeacrobatreader",
+     "name": "Umowa.pdf"
+    }
+   ]
+  },
+  {
+   "type": "list",
+   "at": "Na",
+   "until": "plus",
+   "kicker": "Na warsztatach AI Słupsk",
+   "items": [
+    {
+     "text": "Bezpieczne użycie",
+     "at": "bezpiecznie"
+    },
+    {
+     "text": "Jakie dane wolno",
+     "at": "dane"
+    },
+    {
+     "text": "Zasady w zespole",
+     "at": "zasady"
+    }
+   ]
+  },
+  {
+   "type": "title",
+   "at": "plus",
+   "until": "Najbliższy",
+   "kicker": "I konkret",
+   "text": "Zastosowania, które *oszczędzają czas"
+  },
+  {
+   "type": "broll",
+   "at": "konkretne",
+   "until": "+2.6",
+   "src": "assets/broll/hf/video/h13-warsztaty-slupsk-pizza.mp4",
+   "label": "Warsztaty AI Słupsk",
+   "ai": true
+  },
+  {
+   "type": "title",
+   "at": "Najbliższy",
+   "until": 45.7,
+   "kicker": "Najbliższy termin",
+   "text": "Zapisz się na *aislupsk.pl",
+   "sub": "Liczba miejsc jest ograniczona"
+  }
+ ],
+ "variant": "ai-slupsk",
+ "formats": [
+  "ad"
+ ],
+ "cover": {
+  "text": "AI *SŁUPSK",
+  "kicker": "Warsztaty dla firm",
+  "style": "callout",
+  "dur": 1.2
+ }
+}

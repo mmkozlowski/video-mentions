@@ -68,6 +68,11 @@ for palette in PALETTES.values():
 ACTIVE_PALETTES = ["A"]
 
 
+def output_name(clip, board):
+    """Nazwa wyjścia: id klipu, a dla wariantu testu A/B id--wariant."""
+    return clip["id"] + (f"--{board['variant']}" if board.get("variant") else "")
+
+
 def palettes_for(board, clip):
     """Marka ma swoją paletę (AI Słupsk → S); flowbiz jedzie na ACTIVE_PALETTES."""
     brand = BRANDS[board.get("brand", clip["brand"])]
@@ -387,6 +392,16 @@ class Composition:
         if not cover:
             return
         self.cover_end = cover.get("dur", 2.2)
+        if cover.get("style") == "callout":
+            # duże hasło na start (Mateusz 10.10: „AI W PRODUKCJI”, „AI SŁUPSK”) — 1,2 s,
+            # potem od razu twarz z hookiem; test A/B wobec wersji bez hasła
+            size = fit(cover["text"], 960 if self.vertical else 1600, 200 if self.vertical else 230, 2, 90)
+            sid = self.slate(0.0, self.cover_end,
+                             (f'<div class="bt-label">{esc(cover["kicker"])}</div>' if cover.get("kicker") else "")
+                             + f'<div class="callout" style="font-size:{size}px">{self.words_html(cover["text"])}</div>', instant=True)
+            self.js.append(f'tl.fromTo("#{sid} .callout",{{scale:1.25,opacity:0}},{{scale:1,opacity:1,duration:0.35,ease:"power4.out"}},0);')
+            self.flash(self.cover_end)
+            return
         sid = self.slate(0.0, self.cover_end,
                          (f'<div class="kicker">{esc(cover["kicker"])}</div>' if cover.get("kicker") else "")
                          + f'<div class="slate-text" style="font-size:{fit(cover["text"], 900 if self.vertical else 1500, 104 if self.vertical else 110, 4)}px">{self.words_html(cover["text"])}</div>',
@@ -983,6 +998,7 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .zone-panel{{left:44px;right:132px;top:{FH}px;height:500px;padding-top:46px}}
 .zone-side{{right:40px;top:90px;width:700px;height:900px;display:flex;align-items:center}}
 .zone-full{{inset:0}}
+.callout{{font-weight:900;line-height:.95;letter-spacing:-.03em;text-transform:uppercase;color:{text};text-align:center}} .callout .acc{{color:{accent}}}
 .flash{{position:absolute;inset:0;background:#fff;opacity:0;z-index:10;pointer-events:none}}
 .broll-full{{position:absolute;inset:0;z-index:7;background:#000}} .broll-full video{{width:100%;height:100%;object-fit:cover}}
 .beat{{position:relative;width:100%;text-align:center;display:flex;flex-direction:column;align-items:center;gap:26px}}
@@ -1207,15 +1223,23 @@ def main():
     ap.add_argument("--snapshot", nargs="*", type=float)
     ap.add_argument("--finalize-only", action="store_true", help="tylko wykończ istniejące render.mp4")
     a = ap.parse_args()
-    clip = next(c for c in json.load(open(DATA / "clips.json")) if c["id"].startswith(a.clip))
-    board = json.load(open(PACK / "storyboards" / f"{clip['id']}.json"))
+    clips = json.load(open(DATA / "clips.json"))
+    variant_file = PACK / "storyboards" / f"{a.clip}.json"
+    if "--" in a.clip and variant_file.exists():
+        # wariant do testu A/B (np. ad-11-r1--ai-w-produkcji): osobny storyboard, ten sam klip
+        board = json.load(open(variant_file))
+        clip = next(c for c in clips if c["id"] == board["clip"])
+    else:
+        clip = next(c for c in clips if c["id"].startswith(a.clip))
+        board = json.load(open(PACK / "storyboards" / f"{clip['id']}.json"))
+    name = output_name(clip, board)
     for fmt in a.format or board.get("formats", ["reels", "ad", "youtube"]):
         for pal in a.palette or palettes_for(board, clip):
-            folder = OUT / clip["id"] / f"{fmt}-{pal}"
+            folder = OUT / name / f"{fmt}-{pal}"
             if a.finalize_only:
                 if (folder / "render.mp4").exists():
                     FINAL.mkdir(parents=True, exist_ok=True)
-                    print("  →", finalize(folder / "render.mp4", FINAL / f"{clip['id']}__{fmt}-{pal}.mp4"), flush=True)
+                    print("  →", finalize(folder / "render.mp4", FINAL / f"{name}__{fmt}-{pal}.mp4"), flush=True)
                 continue
             comp = Composition(clip, board, fmt, pal)
             stage(comp, folder)
@@ -1233,7 +1257,7 @@ def main():
                     print((r.stdout + r.stderr)[-800:])
                     continue
                 FINAL.mkdir(parents=True, exist_ok=True)
-                out = FINAL / f"{clip['id']}__{fmt}-{pal}.mp4"
+                out = FINAL / f"{name}__{fmt}-{pal}.mp4"
                 print("  →", finalize(raw, out), flush=True)
 
 

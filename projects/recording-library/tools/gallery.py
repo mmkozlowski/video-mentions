@@ -9,7 +9,7 @@ na żywym materiale, nie na opisie.
 import html
 import json
 
-from package import FINAL, PACK, PALETTES, palettes_for
+from package import FINAL, PACK, PALETTES, output_name, palettes_for
 from sources import DATA
 
 FORMATS = [("reels", "Reels / TikTok 9:16 — organiczne, CTA w komentarzu"),
@@ -28,7 +28,7 @@ def main():
         for fmt, label in FORMATS:
             vids = []
             for pal in palettes_for(board, clip):
-                f = FINAL / f"{clip['id']}__{fmt}-{pal}.mp4"
+                f = FINAL / f"{output_name(clip, board)}__{fmt}-{pal}.mp4"
                 if f.exists():
                     # ?v=czas zmiany: przeglądarka trzyma wideo w cache'u i po nowym renderze
                     # pokazywała starą wersję (ten sam błąd co cache edytora z ADR e01)
@@ -38,7 +38,7 @@ def main():
                 cells.append(f'<div class="fmt fmt-{fmt}"><h4>{label}</h4><div class="pair">{"".join(vids)}</div></div>')
         cta = board.get("cta", {})
         rows.append(f'''<section><header><span class="prio prio-{clip["priority"]}">{clip["priority"]} · {clip["scores"]["total"]}</span>
-<h2>{html.escape(clip["title"])}</h2><code>{clip["id"]}</code><span class="brand">{board.get("brand", clip["brand"])}</span></header>
+<h2>{html.escape(clip["title"])}</h2><code>{clip["id"]}</code>{f'<span class="brand">test A/B: hasło {html.escape(board["cover"]["text"].replace("*", ""))}</span>' if board.get("variant") else ""}<span class="brand">{board.get("brand", clip["brand"])}</span></header>
 <p class="hook">Hook: „{html.escape(board.get("hook", {}).get("text", "").replace("*", ""))}”</p>
 <p class="cta">CTA reels: {html.escape(cta.get("reels", {}).get("title", "—").replace("*", ""))} — {html.escape(cta.get("reels", {}).get("sub", ""))}<br>
 CTA reklama: {html.escape(cta.get("ad", {}).get("title", "—").replace("*", ""))} → {html.escape(cta.get("ad", {}).get("button", ""))}</p>

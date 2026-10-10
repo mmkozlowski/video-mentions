@@ -1,0 +1,128 @@
+{
+ "clip": "ad-14-r4",
+ "brand": "flowbiz",
+ "hook": {
+  "text": "Twój *ERP mówi jedno. *Hala robi drugie.",
+  "until": "W",
+  "visual": {
+   "kind": "versus",
+   "sign": "≠",
+   "left": {
+    "art": "h-dashboard",
+    "label": "ERP"
+   },
+   "right": {
+    "art": "h-factory",
+    "label": "hala",
+    "accent": true
+   }
+  }
+ },
+ "topic": {
+  "kicker": "Produkcja",
+  "text": "System, który *zgadza się z halą",
+  "sub": "etapami, w tempie firmy"
+ },
+ "cta": {
+  "chip": "Bezpłatna konsultacja · flowbiz.pl",
+  "ad": {
+   "kicker": "Bezpłatna konsultacja",
+   "title": "Przejdziemy proces *od zamówienia do wysyłki",
+   "sub": "Przyjadę do Twojej firmy — Słupsk i całe Pomorze",
+   "button": "flowbiz.pl"
+  },
+  "reels": {
+   "kicker": "Znasz to?",
+   "title": "Napisz *HALA w komentarzu",
+   "sub": "Powiem Ci, od czego bym zaczął u Ciebie"
+  }
+ },
+ "events": [
+  {
+   "type": "broll",
+   "at": "hala",
+   "until": "W",
+   "src": "assets/broll/stills/s11-hala-sprzet-sportowy.jpg",
+   "ai": true
+  },
+  {
+   "type": "compare",
+   "at": "W",
+   "until": "Nie",
+   "kicker": "Ten sam dzień",
+   "before": {
+    "value": "plan",
+    "label": "w systemie wszystko się zgadza"
+   },
+   "after": {
+    "value": "hala",
+    "label": "zużyto więcej, nikt nie zapisał"
+   },
+   "after_at": "Zużyto"
+  },
+  {
+   "type": "broll",
+   "at": "materiału",
+   "until": "+2.0",
+   "src": "../youtube/Animation flowbiz youtube/assets/veo/09-operator-karta.mp4",
+   "from": 2.0,
+   "label": "Zrobiono inaczej"
+  },
+  {
+   "type": "list",
+   "at": "Nie",
+   "until": "Jestem",
+   "kicker": "Zamiast wdrożenia na rok",
+   "items": [
+    {
+     "text": "Jeden ból na start",
+     "at": "bólu"
+    },
+    {
+     "text": "Moduły etapami",
+     "at": "moduły"
+    },
+    {
+     "text": "Zespół bez stresu",
+     "at": "ludzie"
+    }
+   ]
+  },
+  {
+   "type": "broll",
+   "at": "od zamówienia",
+   "until": "+5",
+   "src": "build/klocki/system-moduly-przelot-16x9.mp4",
+   "src_v": "build/klocki/system-moduly-przelot-9x16.mp4",
+   "full": true,
+   "ai": false,
+   "from": 1.0
+  },
+  {
+   "type": "title",
+   "at": "Wejdź",
+   "until": 45.0,
+   "kicker": "Bezpłatna konsultacja",
+   "text": "Do zobaczenia *u Ciebie w firmie",
+   "sub": "flowbiz.pl"
+  },
+  {
+   "type": "broll",
+   "at": "Słupska",
+   "floor": 0,
+   "until": "+2.2",
+   "src": "build/broll-real/slupsk-ratusz-2.mp4",
+   "ai": false,
+   "label": "Słupsk"
+  }
+ ],
+ "variant": "ai-w-produkcji",
+ "formats": [
+  "ad"
+ ],
+ "cover": {
+  "text": "AI W *PRODUKCJI",
+  "style": "callout",
+  "dur": 1.2
+ }
+}
