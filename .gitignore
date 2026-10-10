@@ -46,3 +46,12 @@ projects/youtube/final/**/*.mov
 !projects/youtube/final/**/referencje/*.mp4
 # zgrubne montaze — odtwarzalne z planu jednym poleceniem, po kilkaset MB
 projects/youtube/final/**/zgrubny/
+
+# MP4/MOV na razie POZA gitem (decyzja Mateusza 10.10.2026) — za duże do repo.
+# Pliki leżą lokalnie; 56 starszych plików wideo, które już były na serwerze,
+# zostaje śledzonych (ta reguła nie usuwa ich z gita, tylko blokuje nowe).
+# Animacje flowbiz odtworzysz: projects/flowbiz/screens/render.sh
+*.mp4
+*.MP4
+*.mov
+*.MOV
