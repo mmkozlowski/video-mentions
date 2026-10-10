@@ -42,3 +42,22 @@ projects/shorts IG/final/
 # a 30 wariantów × ~20 MB zablokowałoby klony. W gicie zostają storyboardy,
 # generator i płatne b-rolle (assets/broll/), tak jak ujęcia Veo w youtube/.
 projects/recording-library/final/
+
+# --- projects/youtube: wstawki POZA gitem, referencje w gicie (decyzja 22.08.2026)
+# Wstawki alfa (qtrle) waza po kilkadziesiat–kilkaset MB sztuka: komplet 40 scen
+# to ~1,8 GB, a kazda odtwarza sie jednym poleceniem z kompozycji, ktore SA w gicie.
+# W repo zostaja referencje — lekkie kompozyty h.264 pokazujace, jak wstawka
+# wyglada na materiale. To one niosa wiedze "jak ma wygladac", nie same pliki.
+projects/youtube/final/**/*.mov
+!projects/youtube/final/**/referencje/*.mp4
+# zgrubne montaze — odtwarzalne z planu jednym poleceniem, po kilkaset MB
+projects/youtube/final/**/zgrubny/
+
+# MP4/MOV na razie POZA gitem (decyzja Mateusza 10.10.2026) — za duże do repo.
+# Pliki leżą lokalnie; 56 starszych plików wideo, które już były na serwerze,
+# zostaje śledzonych (ta reguła nie usuwa ich z gita, tylko blokuje nowe).
+# Animacje flowbiz odtworzysz: projects/flowbiz/screens/render.sh
+*.mp4
+*.MP4
+*.mov
+*.MOV

@@ -133,3 +133,216 @@ body.chromakey .chroma-plate {
   position:absolute;left:0;right:0;text-align:center;z-index:9;
   font-weight:900;color:#F5A623;white-space:nowrap;opacity:0;
 }
+
+/* ─────────────────────────────────────────────────────────────────────────
+   CZYTELNOSC NA MATERIALE (dodane 19.08)
+
+   Wstawka lezy na gadanej glowie: jasna sciana, ksiazki, jasny sweter, dlonie.
+   Sam tekst — nawet bialy — gubi sie na takim tle. Dwa narzedzia, uzywane
+   ROZLACZNIE, nie razem:
+
+   .scrim  — pelnoekranowy gradient przyciemniajacy. Do momentow, w ktorych
+             wstawka przejmuje kadr (karta tytulowa, werdykt na pelnym ekranie).
+             Gradient, nie plaski prostokat: najciemniej tam, gdzie tekst,
+             przezroczysto przy krawedziach — dzieki temu nie czyta sie jak
+             czarna plansza doklejona na obraz.
+
+   .halo   — miekka ciemna poswiata wokol samych liter. Do krotkich podpisow
+             lezacych NA obrazie, gdzie scrim bylby za ciezki. Zastepuje
+             .chroma-plate wszedzie tam, gdzie renderujemy z alfa.
+   ───────────────────────────────────────────────────────────────────────── */
+
+.scrim{
+  position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;
+  background:
+    radial-gradient(120% 78% at 50% 46%, rgba(6,6,5,0.90) 0%,
+                                          rgba(6,6,5,0.80) 42%,
+                                          rgba(6,6,5,0.52) 72%,
+                                          rgba(6,6,5,0.24) 100%);
+}
+/* wariant pod pas tekstu u dolu kadru — gora zostaje odsloniena */
+.scrim.band{
+  background:linear-gradient(to bottom, rgba(6,6,5,0) 0%,
+                                        rgba(6,6,5,0.30) 38%,
+                                        rgba(6,6,5,0.82) 68%,
+                                        rgba(6,6,5,0.92) 100%);
+}
+/* wariant pod blok tekstu po lewej */
+.scrim.left{
+  background:linear-gradient(to right, rgba(6,6,5,0.92) 0%,
+                                       rgba(6,6,5,0.80) 34%,
+                                       rgba(6,6,5,0.34) 62%,
+                                       rgba(6,6,5,0) 84%);
+}
+
+/* Poswiata: trzy warstwy o roznym rozmyciu. Jedna warstwa daje twarda obwodke,
+   trzy daja miekkie przejscie, ktorego oko nie czyta jako obramowania. */
+.halo{
+  text-shadow:
+    0 0 14px rgba(6,6,5,0.92),
+    0 0 38px rgba(6,6,5,0.78),
+    0 3px 10px rgba(6,6,5,0.85);
+}
+/* mocniejszy wariant — tekst lezacy na jasnym swetrze albo na dloniach */
+.halo.strong{
+  text-shadow:
+    0 0 10px rgba(6,6,5,0.96),
+    0 0 26px rgba(6,6,5,0.92),
+    0 0 60px rgba(6,6,5,0.72),
+    0 3px 12px rgba(6,6,5,0.9);
+}
+
+/* W trybie chromakey poswiata musi zniknac — ciemne rozmycie wokol liter
+   zlewa sie z zielenia i po wycieciu zostawia brudna obwodke. */
+body.chromakey .halo{ text-shadow:none; }
+
+/* Scrim NIE MOZE trafic na green screen: polprzezroczysta ciemna warstwa na
+   zieleni daje ciemnozielony, ktorego key nie usunie — zostaje brudna plama
+   na calej klatce. Scrim jest narzedziem WYLACZNIE trybu alfa. */
+body.chromakey .scrim{ display:none; }
+
+/* ─────────────────────────────────────────────────────────────────────────
+   .pill — nadtytul / etykieta na WLASNYM ciemnym tle (dodane 20.08)
+
+   Powod jest kodekowy, nie estetyczny. H.264 w 4:2:0 trzyma luminancje w pelnej
+   rozdzielczosci, a chrominancje w cwiartkowej. Bialy tekst niesie krawedz
+   w luminancji i przezywa kompresje. NASYCONY BURSZTYN niesie ja glownie
+   w chrominancji — po podprobkowaniu krawedz sie rozsypuje i napis wyglada
+   na poszarpany. Widac to dopiero na materiale wideo, nie na klatce PNG.
+
+   Dlatego maly bursztynowy tekst NIE MOZE lezec bezposrednio na materiale.
+   Albo idzie na ciemna pigulke (kontrast wraca do luminancji), albo jest bialy.
+   ───────────────────────────────────────────────────────────────────────── */
+.pill{
+  display:inline-flex;align-items:center;gap:12px;
+  background:#0D0D0B;border:1.5px solid rgba(245,166,35,0.32);
+  padding:13px 30px;
+}
+body.chromakey .pill{ background:#0A0A08; }
+
+/* ═════════════════════════════════════════════════════════════════════════
+   TEKST NA MATERIALE — klasy przetestowane 20.08 przez h.264 4:2:0
+   Arkusz testowy: compositions/test-typografia-alfa.html (10 wariantow)
+
+   ZASADA: kodek zapisuje krawedz w LUMINANCJI (pelna rozdzielczosc),
+   a kolor w chrominancji (cwiartkowa). Krawedz przezywa tylko wtedy, gdy ma
+   kontrast JASNOSCI wzgledem tla. Kontrast samego koloru nie wystarczy.
+
+   Luminancja Rec.709 naszej palety wobec jasnej sciany (~200):
+     #FAF8F0  248  → Δ48  bezpieczne
+     #FFFFFF  255  → Δ55  bezpieczne
+     #F5A623  173  → Δ27  ZA MALO bez wsparcia
+     #FFD089  213  → Δ13  NAJGORSZE — nie uzywac na materiale
+
+   Nie dobieraj kolorow „na oko" — policz dystans jasnosci wzgledem tla.
+   ═════════════════════════════════════════════════════════════════════════ */
+
+/* ✅ DOMYSLNY tekst na materiale. Nic wiecej nie potrzebuje. */
+.tx-light{ color:#FAF8F0; font-weight:800; }
+
+/* ✅ BURSZTYN DUZY (teza, akapit, haslo — od ~50 px w gore): cien, bez obrysu.
+   Obrys na bursztynie wyglada jak naklejka — decyzja Mateusza 21.08.
+   Przy duzym stopniu pisma sam cien wystarcza, bo krawedz jest gruba. */
+.tx-amber{
+  color:#F5A623; font-weight:900;
+  text-shadow:0 3px 0 #0A0A08, 0 0 12px rgba(10,10,8,0.9);
+}
+
+/* ✅ Alternatywa dla bursztynu, gdy obrys nie pasuje stylistycznie. */
+.tx-plate{
+  color:#F5A623; font-weight:800;
+  background:rgba(10,10,8,0.78); padding:14px 28px;
+}
+
+/* ✅ Biel na bardzo jasnym tle (przeswietlone okno, biala sciana w sloncu). */
+.tx-light.shadow{ text-shadow:0 3px 0 #0A0A08, 0 0 8px rgba(10,10,8,0.9) }
+
+/* ✅ Gdy chcesz bursztyn jako AKCENT bez ryzyka: kolor idzie w ksztalt,
+   nie w krawedz glifu. Tekst zostaje bialy, bursztyn jest podkresleniem. */
+.tx-underline{ color:#FAF8F0; font-weight:800; border-bottom:7px solid #F5A623; padding-bottom:8px }
+
+/* W chromakey obrys i cien musza zniknac — ciemne krawedzie zlewaja sie
+   z zielenia i brudza wyciecie. Wersja zielona jest i tak awaryjna. */
+body.chromakey .tx-light.shadow{ text-shadow:none }
+
+/* ✅ WYBOR MATEUSZA 21.08 (arkusz test-typografia-biel, wariant 10).
+   Waga 900 + twardy cien + delikatna poswiata. Twardy cien buduje kontrast
+   luminancji przy krawedzi, poswiata dokleja zapas na jasniejszym tle.
+   To jest DOMYSLNY tekst na materiale — uzywaj go zamiast .tx-light,
+   chyba ze tekst lezy na wlasnej ciemnej karcie. */
+.tx-hero{
+  color:#FAF8F0; font-weight:900;
+  text-shadow:0 3px 0 #0A0A08, 0 0 10px rgba(10,10,8,0.85);
+}
+body.chromakey .tx-hero{ text-shadow:none }
+
+/* ═════════════════════════════════════════════════════════════════════════
+   TRYB ALFA — automatyczna migracja starszych scen (21.08)
+
+   Sceny e01-01..05, e03-* i e08-* powstaly przed testami typografii i opieraja
+   sie na .chroma-plate. W trybie alfa renderer zdejmuje podkladke (bo przy alfie
+   robi z siebie czarny prostokat), ale ZOSTAWIA kolor. Dla tekstu bialego to
+   juz jest docelowy standard. Dla bursztynu i czerwieni — nie, bo nasycony
+   kolor bez wsparcia przegrywa z podprobkowaniem chrominancji.
+
+   Ponizsze reguly dokladaja brakujace wsparcie automatycznie, wiec starsze
+   sceny nie wymagaja edycji jedna po drugiej.
+   ═════════════════════════════════════════════════════════════════════════ */
+
+/* DOMYSLNIE: tekst sceny dostaje cien przez dziedziczenie. Na ciemnych kartach
+   jest niewidoczny (ciemne na ciemnym), a ratuje tekst lezacy wprost na materiale.
+   WYJATEK ponizej: elementy o JASNYM wypelnieniu — tam ciemny cien pod ciemnym
+   tekstem jest widoczny i brzydki. Lista jest jawna, bo CSS nie umie zapytac
+   "czy moje tlo jest jasne". Dodajac nowy element z bursztynowym tlem, dopisz go. */
+body.alpha .scene{
+  text-shadow:0 3px 0 #0A0A08, 0 0 10px rgba(10,10,8,0.85);
+}
+body.alpha .s16-cta,
+body.alpha .s14-msg.user,
+body.alpha .pill,
+body.alpha .chroma-plate.amber{
+  text-shadow:none;
+}
+
+/* Karta tytulowa z titleCard(): duzy bursztyn → cien, nigdy ramka.
+   Uzywana przez 27 kompozycji, animowana od 96 px do 23 px. */
+.tx-title{
+  color:#F5A623;
+  text-shadow:0 3px 0 #0A0A08, 0 0 12px rgba(10,10,8,0.9);
+}
+body.chromakey .tx-title{ text-shadow:none }
+/* bialy plate → bez podkladki, sam cien (dziedziczony wyzej) */
+body.alpha .chroma-plate{
+  background:transparent;
+  box-shadow:none;
+}
+/* kolorowy plate ZOSTAJE ramka — bursztyn i czerwien maja za maly dystans
+   luminancji wzgledem jasnej sciany, a obrys na kolorze wyglada jak naklejka.
+   Dlatego w trybie alfa przywracamy im ciemna podkladke z halo. */
+body.alpha .chroma-plate.amber{
+  display:inline-block;
+  background:#0A0A08;
+  box-shadow:0 0 0 14px #0A0A08;
+  text-shadow:none;
+}
+/* Czerwieni #C0553A NIE uzywamy na materiale — decyzja Mateusza 22.08.
+   Za ciemna wobec jasnej sciany i wypada z palety. Zamiana na biel z cieniem. */
+body.alpha .chroma-plate.red{
+  color:#FAF8F0;   /* tlo i cien dziedziczy z .chroma-plate wyzej */
+}
+
+/* Nadtytuly w starszych scenach maja 22–24 px, a zmierzony prog czytelnosci
+   po kompresji to 34 px. Podnosimy je w trybie alfa jedna regula, zeby nie
+   edytowac kilkunastu scen po kolei. Waga i rozstrzelenie tez — cienka,
+   mocno rozstrzelona kreska jest najbardziej wrazliwa. */
+body.alpha .eyebrow,
+body.alpha .tpp-eyebrow{
+  font-size:34px !important;
+  font-weight:700 !important;
+  letter-spacing:0.18em !important;
+}
+
+/* Resety chromakey, ktorych brakowalo: ciemny cien i polprzezroczysta plyta
+   zlewaja sie z zieleni i zostawiaja brudna obwodke po wycieciu. */
+body.chromakey .tx-amber{ text-shadow:none }
+body.chromakey .tx-plate{ background:#0A0A08 }

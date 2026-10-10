@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>E01 · 07 — DOSTĘP DO INFRASTRUKTURY · flowbiz.pl</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" />
+<link rel="stylesheet" href="scene-shell.css" />
+<link rel="stylesheet" href="logos.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="recorder.js"></script>
+<script src="scene-shell.js"></script>
+<style>
+  .eyebrow{
+    position:absolute;left:0;right:0;top:96px;text-align:center;z-index:8;
+    font-size:34px;font-weight:700;letter-spacing:0.18em;opacity:0;color:#F5A623;
+  }
+
+  .panel{
+    position:absolute;top:196px;width:812px;background:#0D0D0B;
+    border:1.5px solid #2E2C28;box-shadow:0 34px 100px rgba(0,0,0,0.55);
+    opacity:0;z-index:5;
+  }
+  .panel.left{ left:96px }
+  .panel.right{ left:1012px;border-color:rgba(245,166,35,0.30) }
+
+  .p-bar{
+    display:flex;align-items:center;gap:12px;padding:16px 24px;
+    background:#13110D;border-bottom:1.5px solid #2E2C28;
+  }
+  .p-bar .nm{ font:700 21px/1 'DM Sans',sans-serif;color:#FAF8F0;letter-spacing:-0.01em }
+  .p-bar .lg{ font-size:26px;line-height:1;display:inline-flex }
+  .p-tag{
+    margin-left:auto;font:700 19px/1 'DM Sans',sans-serif;letter-spacing:0.10em;
+    padding:8px 14px;background:#0A0A08;border:1.5px solid #3A3630;color:#5A5450;
+  }
+  .p-body{ padding:26px 26px 30px;min-height:404px;position:relative }
+
+  /* --- lewa strona: zamknieta platforma --- */
+  .row{
+    display:flex;align-items:center;gap:16px;padding:19px 20px;
+    background:#0A0A08;border:1.5px solid #2E2C28;margin-bottom:13px;
+    font:600 24px/1 'DM Sans',sans-serif;color:#8A8378;
+  }
+  .row i{ font-size:26px;color:#5A5450 }
+  .row.locked{ border-color:#3A3630 }
+  .row.locked .pad{ margin-left:auto;font-size:27px;color:#5A5450 }
+
+  .denied{
+    position:absolute;left:26px;right:26px;top:176px;
+    background:#0D0D0B;border:2px solid #C0553A;
+    box-shadow:0 0 60px rgba(192,85,58,0.28);
+    padding:30px 28px;display:flex;align-items:center;gap:20px;
+    opacity:0;z-index:4;
+  }
+  .denied i{ font-size:46px;color:#C0553A;flex:none }
+  .denied .tx{ font:800 34px/1.18 'DM Sans',sans-serif;color:#C0553A;letter-spacing:-0.01em }
+  .denied .tx small{ display:block;font-size:21px;font-weight:600;color:#8A8378;margin-top:8px }
+
+  /* --- prawa strona: terminal --- */
+  .tline{
+    font:400 24px/42px 'JetBrains Mono',monospace;color:#8A8378;
+    white-space:pre;overflow:hidden;display:block;
+  }
+  .tline .pr{ color:#6BAA6B }
+  .tline .am{ color:#F5A623 }
+  .tline .dim{ color:#3A3630 }
+
+  .cur{
+    display:inline-block;width:12px;height:26px;vertical-align:-4px;
+    background:#F5A623;margin-left:2px;
+  }
+
+  /* --- kursor myszy, jedzie po lewej karcie --- */
+  .mouse{
+    position:absolute;left:0;top:0;z-index:20;font-size:34px;color:#FAF8F0;
+    text-shadow:0 3px 10px rgba(0,0,0,0.8);opacity:0;pointer-events:none;
+  }
+
+  /* Werdykt lezy na dloniach i swetrze — goly tekst tam przegrywa z tlem
+     niezaleznie od koloru. Dlatego karta z wlasnym ciemnym tlem, w tym samym
+     jezyku co panele wyzej: solid #0D0D0B, cienki bursztynowy akcent po lewej. */
+  .verdict{
+    position:absolute;left:50%;top:822px;transform:translateX(-50%) scale(0.94);
+    display:flex;align-items:center;gap:26px;
+    background:#0D0D0B;border:1.5px solid #2E2C28;
+    box-shadow:0 30px 90px rgba(0,0,0,0.72);
+    padding:30px 44px 30px 40px;z-index:8;opacity:0;
+  }
+  .verdict::before{
+    content:"";width:7px;align-self:stretch;background:#F5A623;flex:none;
+  }
+  .verdict .t{
+    font-size:50px;font-weight:800;letter-spacing:-0.015em;white-space:nowrap;
+  }
+  .verdict .a{ color:#F5A623 }
+  .verdict .r{ color:#E4795C }
+  .verdict .dot{ width:7px;height:7px;border-radius:50%;background:#3A3630;flex:none }
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <div class="stage" id="stage">
+    <svg class="grid" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+      <defs><pattern id="g100" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+        <path d="M100 0 L0 0 0 100" fill="none" stroke="rgba(245,166,35,0.04)" stroke-width="1"/>
+      </pattern></defs>
+      <rect width="1920" height="1080" fill="url(#g100)"/>
+    </svg>
+
+    <div class="scene">
+      <div class="eyebrow" id="eyebrow"><span class="pill">DOSTĘP DO INFRASTRUKTURY</span></div>
+
+      <!-- ZAMKNIETA PLATFORMA -->
+      <div class="panel left" id="pL">
+        <div class="p-bar">
+          <span class="lg"><i class="logo logo-retool"></i></span>
+          <span class="nm">Platforma no-code</span>
+          <span class="p-tag">HOSTOWANE</span>
+        </div>
+        <div class="p-body">
+          <div class="row"><i class="ti ti-layout-dashboard"></i> Interfejs</div>
+          <div class="row"><i class="ti ti-database"></i> Połączenia z danymi</div>
+          <div class="row locked" id="rowCode">
+            <i class="ti ti-code"></i> Kod źródłowy
+            <i class="ti ti-lock pad"></i>
+          </div>
+          <div class="row locked">
+            <i class="ti ti-server-2"></i> Serwer i baza
+            <i class="ti ti-lock pad"></i>
+          </div>
+
+          <div class="denied" id="denied">
+            <i class="ti ti-ban"></i>
+            <div class="tx">Brak dostępu
+              <small>Nie zajrzysz, jak to jest zrobione.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WLASNA INFRASTRUKTURA -->
+      <div class="panel right" id="pR">
+        <div class="p-bar">
+          <span class="lg"><i class="logo logo-openmercato"></i></span>
+          <span class="p-tag" style="border-color:rgba(245,166,35,0.4);color:#F5A623">TWÓJ SERWER</span>
+        </div>
+        <div class="p-body">
+          <span class="tline" id="t0"><span class="pr">~ $</span> ssh deploy@srv-prod-01</span>
+          <span class="tline" id="t1"><span class="dim">Last login: Wed Aug 19 21:14:02</span></span>
+          <span class="tline" id="t2"><span class="am">deploy@srv-prod-01:~$</span> docker ps</span>
+          <span class="tline" id="t3">mercato-app     <span class="pr">Up 6 days</span>   :3000</span>
+          <span class="tline" id="t4">mercato-worker  <span class="pr">Up 6 days</span></span>
+          <span class="tline" id="t5">postgres:16     <span class="pr">Up 6 days</span>   :5432</span>
+          <span class="tline" id="t6"><span class="am">deploy@srv-prod-01:~$</span><span class="cur" id="cur"></span></span>
+        </div>
+      </div>
+
+      <div class="mouse" id="mouse"><i class="ti ti-pointer-filled"></i></div>
+
+      <div class="verdict" id="verdict">
+        <span class="t r">Tam nie ma gdzie wejść.</span>
+        <span class="dot"></span>
+        <span class="t a">Tu wchodzisz.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const TLINES = ['#t0','#t1','#t2','#t3','#t4','#t5','#t6'];
+  const tw = TLINES.map(s => document.querySelector(s).offsetWidth);
+  TLINES.forEach((s,i) => gsap.set(s, { width:0, opacity:0 }));
+  gsap.set('#denied', { y:14, scale:0.96 });
+
+  const tl = gsap.timeline({ paused:true });
+
+  tl.to('#eyebrow', { opacity:1, duration:0.36, ease:"power2.out" }, 0.0);
+
+  // 0.28 — obie karty wjezdzaja z przeciwnych stron
+  tl.to('#pL', { opacity:1, duration:0.42, ease:"back.out(1.5)" }, 0.28);
+  tl.from('#pL', { x:-46, duration:0.42, ease:"back.out(1.5)" }, 0.28);
+  tl.to('#pR', { opacity:1, duration:0.42, ease:"back.out(1.5)" }, 0.44);
+  tl.from('#pR', { x:46, duration:0.42, ease:"back.out(1.5)" }, 0.44);
+
+  // 0.95 — kursor jedzie do zamknietego wiersza i klika
+  tl.set('#mouse', { x:640, y:420 }, 0.95);
+  tl.to('#mouse', { opacity:1, duration:0.18 }, 0.95);
+  tl.to('#mouse', { x:352, y:576, duration:0.62, ease:"power2.inOut" }, 1.02);
+  tl.to('#mouse', { scale:0.82, duration:0.09, yoyo:true, repeat:1, ease:"power2.out" }, 1.70);
+
+  // 1.80 — odbicie: wiersz drga i robi sie czerwony
+  tl.to('#rowCode', { borderColor:"#C0553A", duration:0.16, ease:"power2.out" }, 1.80);
+  tl.to('#rowCode', { x:-9, duration:0.055, repeat:5, yoyo:true, ease:"none" }, 1.80);
+  tl.to('#rowCode', { x:0, duration:0.05 }, 2.14);
+
+  // 2.02 — komunikat o braku dostepu
+  tl.to('#denied', { opacity:1, y:0, scale:1, duration:0.40, ease:"back.out(1.6)" }, 2.02);
+  tl.to('#mouse', { opacity:0, duration:0.24 }, 2.30);
+
+  // 2.55 — terminal po prawej: linie wpisuja sie po kolei
+  const START = 2.55, STEP = 0.30;
+  TLINES.forEach((s, i) => {
+    const t = START + i * STEP;
+    tl.to(s, { opacity:1, duration:0.10, ease:"none" }, t);
+    tl.to(s, { width:tw[i], duration:(i === 0 || i === 2) ? 0.30 : 0.16, ease:"none" }, t);
+  });
+
+  // 4.80 — werdykt
+  tl.to('#verdict', { opacity:1, scale:1, duration:0.46, ease:"back.out(1.6)" }, 4.80);
+  tl.from('#verdict', { y:22, duration:0.46, ease:"back.out(1.6)" }, 4.80);
+
+  const DURATION = 6.4;
+  tl.to({}, { duration:0.4 }, DURATION - 0.4);
+
+  flowbizScene.init({
+    id: "e01-07",
+    duration: DURATION,
+    tail: 0.4,
+    label: "E01 · 07 · DOSTĘP DO INFRASTRUKTURY · " + DURATION.toFixed(1) + "s",
+    timeline: tl
+  });
+</script>
+</body>
+</html>

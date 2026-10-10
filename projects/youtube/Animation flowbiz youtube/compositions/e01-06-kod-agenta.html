@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>E01 · 06 — CLAUDE WCHODZI W KOD · flowbiz.pl</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" />
+<link rel="stylesheet" href="scene-shell.css" />
+<link rel="stylesheet" href="logos.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="recorder.js"></script>
+<script src="scene-shell.js"></script>
+<style>
+  /* Cala tresc siedzi w jednym ciemnym oknie — wymog chromakey:
+     nic nie lezy bezposrednio na .stage poza jasnym/bursztynowym tekstem. */
+  .ide{
+    position:absolute;left:50%;top:150px;transform:translateX(-50%) scale(0.95);
+    width:1420px;background:#0D0D0B;
+    border:1.5px solid rgba(245,166,35,0.26);
+    box-shadow:0 44px 130px rgba(0,0,0,0.66);
+    z-index:5;opacity:0;
+  }
+  .ide-bar{
+    display:flex;align-items:center;gap:12px;
+    padding:17px 26px;background:#13110D;border-bottom:1.5px solid #2E2C28;
+  }
+  .dot{ width:13px;height:13px;border-radius:50%;background:#2E2C28 }
+  .ide-path{ margin-left:16px;font:600 21px/1 'JetBrains Mono',monospace;color:#5A5450 }
+  .ide-badge{
+    margin-left:auto;display:flex;align-items:center;gap:10px;
+    font:700 22px/1 'DM Sans',sans-serif;letter-spacing:0.09em;color:#F5A623;
+  }
+  .ide-main{ display:flex;min-height:520px }
+
+  /* --- drzewo plikow, zjezdza w trakcie sceny --- */
+  .tree{
+    width:326px;flex:none;background:#0A0A08;border-right:1.5px solid #2E2C28;
+    padding:22px 0;overflow:hidden;position:relative;
+  }
+  .tree-inner{ position:absolute;left:0;right:0;top:22px }
+  .tf{
+    display:flex;align-items:center;gap:12px;padding:9px 24px;
+    font:400 20px/1.4 'JetBrains Mono',monospace;color:#3A3630;white-space:nowrap;
+  }
+  .tf i{ font-size:20px;flex:none }
+  .tf.dir{ color:#5A5450 }
+  .tf.on{ color:#F5A623;background:#13110D }
+  .tf.new{ color:#6BAA6B }
+
+  /* --- edytor --- */
+  .ed{ flex:1;padding:26px 34px 0;position:relative }
+  .line{
+    display:flex;align-items:flex-start;gap:18px;
+    font:400 25px/44px 'JetBrains Mono',monospace;white-space:pre;
+  }
+  .gutter{ width:36px;flex:none;text-align:right;color:#3A3630;font-size:20px }
+  .code{ display:inline-block;overflow:hidden;white-space:pre;color:#8A8378 }
+  .code .k{ color:#F5A623 }
+  .code .s{ color:#6BAA6B }
+  .code .c{ color:#3A3630 }
+  .line.add{ background:rgba(107,170,107,0.10);margin-left:-34px;padding-left:34px;
+             margin-right:-34px;padding-right:34px }
+  .line.add .gutter{ color:#6BAA6B }
+
+  .caret{
+    position:absolute;left:0;top:0;width:13px;height:30px;
+    background:#F5A623;opacity:0;
+  }
+
+  /* --- pasek stanu na dole okna --- */
+  .ide-foot{
+    display:flex;align-items:center;gap:18px;
+    padding:15px 26px;background:#13110D;border-top:1.5px solid #2E2C28;
+    font:600 21px/1 'DM Sans',sans-serif;color:#8A8378;
+  }
+  .ide-foot .ok{ color:#6BAA6B;display:flex;align-items:center;gap:9px;opacity:0 }
+  .ide-foot .sp{ margin-left:auto;display:flex;align-items:center;gap:9px;color:#F5A623 }
+  .bar{ width:210px;height:7px;background:#2E2C28;position:relative;overflow:hidden }
+  .bar span{ position:absolute;inset:0 100% 0 0;background:#F5A623 }
+
+  /* --- podpis --- */
+  .kicker{
+    position:absolute;left:0;right:0;top:872px;text-align:center;z-index:6;
+    font-size:56px;font-weight:900;letter-spacing:-0.015em;color:#FAF8F0;opacity:0;
+    text-shadow:0 3px 0 #0A0A08, 0 0 10px rgba(10,10,8,0.85);
+  }
+  .sub{
+    position:absolute;left:0;right:0;top:958px;text-align:center;z-index:6;
+    font-size:30px;font-weight:700;opacity:0;color:#F5A623;
+  }
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <div class="stage" id="stage">
+    <svg class="grid" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+      <defs><pattern id="g100" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+        <path d="M100 0 L0 0 0 100" fill="none" stroke="rgba(245,166,35,0.04)" stroke-width="1"/>
+      </pattern></defs>
+      <rect width="1920" height="1080" fill="url(#g100)"/>
+    </svg>
+
+    <div class="scene">
+      <div class="ide" id="ide">
+        <div class="ide-bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="ide-path">modules/serwis/index.ts</span>
+          <span class="ide-badge"><i class="logo logo-claude"></i> AGENT PISZE</span>
+        </div>
+
+        <div class="ide-main">
+          <div class="tree">
+            <div class="tree-inner" id="tree"></div>
+          </div>
+          <div class="ed" id="ed">
+            <div class="caret" id="caret"></div>
+          </div>
+        </div>
+
+        <div class="ide-foot">
+          <span>TypeScript</span>
+          <span>UTF-8</span>
+          <span class="ok" id="ok"><i class="ti ti-circle-check-filled"></i> testy 24/24</span>
+          <span class="sp"><span class="bar"><span id="barfill"></span></span> build</span>
+        </div>
+      </div>
+
+      <div class="kicker" id="kicker">Claude i tak wchodzi w ten kod.</div>
+      <div class="sub" id="sub"><span class="pill">Pytanie brzmi — w jaki kod wchodzi.</span></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* ---------- drzewo plikow ---------- */
+  const TREE = [
+    { t:'dir',  i:'ti-folder',        n:'packages/' },
+    { t:'dir',  i:'ti-folder',        n:'  core/' },
+    { t:'file', i:'ti-file-type-ts',  n:'    auth.ts' },
+    { t:'file', i:'ti-file-type-ts',  n:'    roles.ts' },
+    { t:'file', i:'ti-file-type-ts',  n:'    audit.ts' },
+    { t:'dir',  i:'ti-folder',        n:'  modules/' },
+    { t:'file', i:'ti-file-type-ts',  n:'    magazyn.ts' },
+    { t:'file', i:'ti-file-type-ts',  n:'    crm.ts' },
+    { t:'on',   i:'ti-file-type-ts',  n:'    serwis.ts' },
+    { t:'new',  i:'ti-plus',          n:'    serwis.spec.ts' },
+    { t:'dir',  i:'ti-folder',        n:'  ui/' },
+    { t:'file', i:'ti-file-type-ts',  n:'    table.tsx' },
+    { t:'file', i:'ti-file-type-ts',  n:'    form.tsx' },
+    { t:'file', i:'ti-file-code',     n:'  AGENTS.md' },
+  ];
+  const tree = document.getElementById('tree');
+  TREE.forEach(f => {
+    const d = document.createElement('div');
+    d.className = 'tf ' + (f.t === 'dir' ? 'dir' : f.t === 'on' ? 'on' : f.t === 'new' ? 'new' : '');
+    d.innerHTML = '<i class="ti ' + f.i + '"></i>' + f.n;
+    tree.appendChild(d);
+  });
+
+  /* ---------- linie kodu ---------- */
+  const LINES = [
+    { n:14, html:'<span class="c">// moduł dopisujemy OBOK rdzenia</span>', add:false },
+    { n:15, html:'<span class="k">export const</span> serwis = defineModule({', add:false },
+    { n:16, html:'  entity: <span class="s">\'zgloszenie\'</span>,', add:true },
+    { n:17, html:'  statusy: [<span class="s">\'nowe\'</span>, <span class="s">\'w toku\'</span>, <span class="s">\'zamkniete\'</span>],', add:true },
+    { n:18, html:'  role: [<span class="s">\'serwisant\'</span>, <span class="s">\'kierownik\'</span>],', add:true },
+    { n:19, html:'  historia: <span class="k">true</span>,', add:true },
+    { n:20, html:'  uprawnienia: <span class="k">inherit</span>(core),', add:true },
+    { n:21, html:'})', add:false },
+  ];
+  const ed = document.getElementById('ed');
+  const caret = document.getElementById('caret');
+  LINES.forEach((L, i) => {
+    const row = document.createElement('div');
+    row.className = 'line' + (L.add ? ' add' : '');
+    row.id = 'ln' + i;
+    row.innerHTML = '<span class="gutter">' + L.n + '</span>'
+                  + '<span class="code" id="cd' + i + '">' + L.html + '</span>';
+    ed.appendChild(row);
+  });
+
+  const CODE_X0 = 34 + 36 + 18;          // padding + gutter + gap
+  const ROW_H   = 44;
+  const widths  = LINES.map((_, i) => document.getElementById('cd' + i).offsetWidth);
+  LINES.forEach((_, i) => {
+    gsap.set('#cd' + i, { width:0 });
+    gsap.set('#ln' + i, { opacity:0 });
+  });
+  gsap.set('#caret', { x:CODE_X0, y:26 });
+
+  /* ---------- timeline ---------- */
+  const tl = gsap.timeline({ paused:true });
+
+  // 0.15 — okno wjezdza, kamera dojezdza przez cala scene (zrodlo ruchu)
+  tl.to('#ide', { opacity:1, duration:0.44, ease:"power3.out" }, 0.15);
+  tl.to('#ide', { scale:1, duration:5.6, ease:"none" }, 0.15);
+  tl.from('#ide', { y:26, duration:0.44, ease:"power3.out" }, 0.15);
+
+  // drzewo plikow zjezdza powoli — drugi plan ruchu
+  tl.fromTo('#tree', { y:0 }, { y:-116, duration:5.4, ease:"power1.inOut" }, 0.4);
+
+  tl.to('#caret', { opacity:1, duration:0.16 }, 0.5);
+
+  // 0.62 — linie wpisuja sie kolejno, kursor idzie za tekstem
+  LINES.forEach((_, i) => {
+    const t = 0.62 + i * 0.33;
+    tl.to('#ln' + i, { opacity:1, duration:0.10, ease:"none" }, t);
+    tl.to('#cd' + i, { width:widths[i], duration:0.28, ease:"none" }, t);
+    tl.to('#caret', { x:CODE_X0 + widths[i], y:26 + i * ROW_H, duration:0.28, ease:"none" }, t);
+  });
+
+  // 3.34 — nowy plik testowy zapala sie w drzewie
+  tl.fromTo('.tf.new', { opacity:0.25 }, { opacity:1, duration:0.30, ease:"power2.out" }, 3.34);
+
+  // 3.40 — dopisane linie pulsuja
+  tl.to('.line.add', { backgroundColor:"rgba(107,170,107,0.22)", duration:0.24, ease:"power2.out" }, 3.40);
+  tl.to('.line.add', { backgroundColor:"rgba(107,170,107,0.10)", duration:0.40, ease:"power2.in" }, 3.64);
+
+  // 3.30 — pasek builda i zielone testy
+  tl.to('#barfill', { right:"0%", duration:1.15, ease:"power2.inOut" }, 3.30);
+  tl.to('#ok', { opacity:1, duration:0.28, ease:"back.out(1.7)" }, 4.45);
+
+  // 4.10 — podpis
+  tl.to('#kicker', { opacity:1, duration:0.40, ease:"power3.out" }, 4.10);
+  tl.from('#kicker', { y:26, duration:0.40, ease:"power3.out" }, 4.10);
+  tl.to('#sub', { opacity:1, duration:0.34, ease:"power2.out" }, 4.62);
+
+  const DURATION = 6.2;
+  tl.to({}, { duration:0.4 }, DURATION - 0.4);
+
+  flowbizScene.init({
+    id: "e01-06",
+    duration: DURATION,
+    tail: 0.4,
+    label: "E01 · 06 · CLAUDE WCHODZI W KOD · " + DURATION.toFixed(1) + "s",
+    timeline: tl
+  });
+</script>
+</body>
+</html>

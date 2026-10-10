@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="pl" class="__HTMLCLASS__">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=__W__, height=__H__" />
+    <title>flowbiz — integracje w jeden system</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="assets/flowbiz.css" />
+    <style>
+      /* ── Klocek 4: narzędzia → świecące linie → system firmy → wyjścia ──
+         Nazwy narzędzi wyłącznie tekstem + ogólne piktogramy lucide (BEZ logotypów firm).
+         Linie i impulsy: ścieżki SVG z pathLength=1000; impuls to kreska dasharray „70 1000"
+         przesuwana przez stroke-dashoffset — deterministyczne, bez mierzenia DOM. */
+
+      #i-svg {
+        position: absolute;
+        inset: 0;
+        overflow: visible;
+      }
+      .wire {
+        fill: none;
+        stroke: rgba(255, 138, 61, 0.42);
+        stroke-width: 3;
+        stroke-dasharray: 1000;
+      }
+      .pulse {
+        fill: none;
+        stroke: #ffb27a;
+        stroke-width: 5;
+        stroke-linecap: round;
+        stroke-dasharray: 70 1000;
+        stroke-dashoffset: 70;
+        filter: drop-shadow(0 0 8px #ff6a1a) drop-shadow(0 0 16px rgba(255, 106, 26, 0.7));
+      }
+      .tile {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        padding: 0 22px;
+        border-radius: 18px;
+        background: var(--card);
+        border: 1px solid var(--line2);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+      }
+      .tile .pic {
+        width: 56px;
+        height: 56px;
+        border-radius: 14px;
+        background: var(--card3);
+        border: 1px solid var(--line2);
+        color: #d4d4d8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        flex: none;
+      }
+      .tile b {
+        display: block;
+        font-size: 27px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+      .tile small {
+        display: block;
+        font-size: 19px;
+        color: var(--tx2);
+        margin-top: 2px;
+        white-space: nowrap;
+      }
+      .tile .lit {
+        position: absolute;
+        inset: -1px;
+        border-radius: 18px;
+        border: 1.5px solid rgba(255, 138, 61, 0.85);
+        box-shadow: 0 0 30px rgba(255, 106, 26, 0.35);
+        opacity: 0;
+      }
+      .tile.out .pic {
+        background: var(--acc-tint);
+        border-color: rgba(255, 138, 61, 0.45);
+        color: var(--acc2);
+      }
+      .bubble {
+        position: absolute;
+        right: -12px;
+        top: -26px;
+        padding: 7px 14px;
+        border-radius: 999px;
+        background: #1f1a17;
+        border: 1px solid rgba(255, 138, 61, 0.6);
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--tx);
+        white-space: nowrap;
+        opacity: 0;
+      }
+
+      #i-hub {
+        position: absolute;
+        border-radius: 30px;
+        background: linear-gradient(180deg, #1d1a19, #141317);
+        border: 1.5px solid rgba(255, 138, 61, 0.65);
+        box-shadow:
+          0 30px 80px rgba(0, 0, 0, 0.6),
+          0 0 80px rgba(255, 106, 26, 0.3);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+      #i-hubglow {
+        position: absolute;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255, 106, 26, 0.5), rgba(255, 106, 26, 0) 65%);
+        opacity: 0;
+      }
+      .core {
+        position: relative;
+        width: 104px;
+        height: 104px;
+        margin-bottom: 18px;
+      }
+      .core .ring {
+        position: absolute;
+        inset: 0;
+        width: 104px;
+        height: 104px;
+      }
+      .core .ring circle {
+        fill: none;
+        stroke: var(--acc);
+        stroke-width: 3;
+        stroke-dasharray: 18 10;
+      }
+      .core .mid {
+        position: absolute;
+        inset: 18px;
+        border-radius: 22px;
+        background: linear-gradient(160deg, var(--acc2), var(--acc));
+        color: var(--ink);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 36px;
+        box-shadow: 0 0 40px rgba(255, 106, 26, 0.6);
+      }
+      .hub-t {
+        font-size: 42px;
+        font-weight: 800;
+        letter-spacing: -0.01em;
+      }
+      .hub-s {
+        font-size: 22px;
+        color: var(--tx2);
+        margin-top: 6px;
+      }
+      .col-h {
+        position: absolute;
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--tx3);
+        white-space: nowrap;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" class="fmt-__FMT__" data-composition-id="__ID__" data-start="0" data-duration="10" data-width="__W__" data-height="__H__" data-fps="30" style="width: __W__px; height: __H__px">
+      <div class="stage" data-layout-ignore></div>
+      <div class="grid" data-layout-ignore></div>
+
+      <section id="i-clip" class="clip" data-start="0" data-duration="10" data-track-index="1" style="position: absolute; inset: 0">
+        <div id="i-scene" style="position: absolute; inset: 0">
+          <svg id="i-svg" data-layout-ignore></svg>
+          <div id="i-hubglow" data-layout-ignore></div>
+          <div id="i-tiles"></div>
+          <div id="i-hub">
+            <div class="core">
+              <svg class="ring" id="i-ring" viewBox="0 0 104 104"><circle cx="52" cy="52" r="49" /></svg>
+              <div class="mid"><i data-ico="database" data-sw="2.2"></i></div>
+            </div>
+            <div class="hub-t">System firmy</div>
+            <div class="hub-s">jedno miejsce na dane i procesy</div>
+          </div>
+          <div id="i-h-in" class="col-h">Narzędzia, które już masz</div>
+          <div id="i-h-out" class="col-h">Co z tego wychodzi</div>
+        </div>
+      </section>
+      <div class="grain" data-layout-ignore></div>
+      <div class="vignette" data-layout-ignore></div>
+    </div>
+
+    <script src="assets/kit.js"></script>
+    <script>
+      const { port, icon } = window.FB;
+      const W = port ? 1080 : 1920;
+      const H = port ? 1920 : 1080;
+
+      const INS = [
+        ["receipt", "wFirma", "księgowość"],
+        ["package", "BaseLinker", "zamówienia"],
+        ["store", "Allegro", "sprzedaż"],
+        ["mail", "Gmail", "poczta"],
+        ["sheet", "Excel", "arkusze"],
+        ["workflow", "Make / n8n", "automatyzacje"],
+      ];
+      const OUTS = [
+        ["clipboard", "Zlecenia", "produkcja i realizacja"],
+        ["globe", "Portal B2B", "zamówienia klientów"],
+        ["chart", "Raporty", "sprzedaż i marża"],
+        ["message", "Powiadomienia", "Telegram"],
+      ];
+
+      // ── Geometria (stałe, liczone raz) ──
+      let tilesIn, tilesOut, hub, wiresIn, wiresOut, headIn, headOut;
+      if (!port) {
+        tilesIn = INS.map((_, i) => ({ x: 110, y: 170 + i * 134, w: 340, h: 98 }));
+        tilesOut = OUTS.map((_, j) => ({ x: 1470, y: 250 + j * 160, w: 340, h: 112 }));
+        hub = { x: 740, y: 380, w: 440, h: 320 };
+        wiresIn = tilesIn.map((t, i) => {
+          const sx = t.x + t.w, sy = t.y + t.h / 2, ex = hub.x, ey = 540 + (i - 2.5) * 34;
+          return `M${sx},${sy} C${sx + 170},${sy} ${ex - 150},${ey} ${ex},${ey}`;
+        });
+        wiresOut = tilesOut.map((t, j) => {
+          const sx = hub.x + hub.w, sy = 540 + (j - 1.5) * 40, ex = t.x, ey = t.y + t.h / 2;
+          return `M${sx},${sy} C${sx + 150},${sy} ${ex - 150},${ey} ${ex},${ey}`;
+        });
+        headIn = [110, 110];
+        headOut = [1470, 190];
+      } else {
+        tilesIn = INS.map((_, i) => ({ x: i % 2 ? 620 : 60, y: 250 + Math.floor(i / 2) * 128, w: 400, h: 98 }));
+        tilesOut = OUTS.map((_, j) => ({ x: j % 2 ? 580 : 60, y: 1330 + Math.floor(j / 2) * 156, w: 440, h: 116 }));
+        hub = { x: 230, y: 760, w: 620, h: 340 };
+        wiresIn = tilesIn.map((t, i) => {
+          const left = i % 2 === 0;
+          const sx = left ? t.x + t.w : t.x, sy = t.y + t.h / 2;
+          const ex = 540 + (i - 2.5) * 38, ey = hub.y;
+          return `M${sx},${sy} C${540 + (left ? -10 : 10)},${sy} ${ex},${ey - 160} ${ex},${ey}`;
+        });
+        wiresOut = tilesOut.map((t, j) => {
+          const left = j % 2 === 0;
+          const sx = 540 + (j - 1.5) * 44, sy = hub.y + hub.h;
+          const ex = left ? t.x + t.w : t.x, ey = t.y + t.h / 2;
+          return `M${sx},${sy} C${sx},${sy + 140} ${540 + (left ? -10 : 10)},${ey} ${ex},${ey}`;
+        });
+        headIn = [60, 190];
+        headOut = [60, 1270];
+      }
+
+      // ── DOM ──
+      const tileHtml = ([ic, name, sub], t, id, out) =>
+        `<div id="${id}" class="tile${out ? " out" : ""}" style="left:${t.x}px;top:${t.y}px;width:${t.w}px;height:${t.h}px">
+           <span class="lit" id="${id}-lit"></span>
+           <span class="pic">${icon(ic)}</span><span><b>${name}</b><small>${sub}</small></span>
+           ${out && name === "Powiadomienia" ? `<span class="bubble" id="i-bubble">Nowe zamówienie · Nordtex</span>` : ""}
+         </div>`;
+      document.getElementById("i-tiles").innerHTML =
+        INS.map((d, i) => tileHtml(d, tilesIn[i], `i-in${i}`, false)).join("") + OUTS.map((d, j) => tileHtml(d, tilesOut[j], `i-out${j}`, true)).join("");
+      Object.assign(document.getElementById("i-hub").style, { left: hub.x + "px", top: hub.y + "px", width: hub.w + "px", height: hub.h + "px" });
+      const g = document.getElementById("i-hubglow");
+      const GR = port ? 900 : 760;
+      Object.assign(g.style, { left: hub.x + hub.w / 2 - GR / 2 + "px", top: hub.y + hub.h / 2 - GR / 2 + "px", width: GR + "px", height: GR + "px" });
+      const hIn = document.getElementById("i-h-in"), hOut = document.getElementById("i-h-out");
+      Object.assign(hIn.style, { left: headIn[0] + "px", top: headIn[1] + "px" });
+      Object.assign(hOut.style, { left: headOut[0] + "px", top: headOut[1] + "px" });
+
+      const svg = document.getElementById("i-svg");
+      svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+      svg.setAttribute("width", W);
+      svg.setAttribute("height", H);
+      const pathEl = (d, cls, id) => `<path id="${id}" class="${cls}" d="${d}" pathLength="1000"/>`;
+      svg.innerHTML =
+        wiresIn.map((d, i) => pathEl(d, "wire", `i-wi${i}`)).join("") +
+        wiresOut.map((d, j) => pathEl(d, "wire", `i-wo${j}`)).join("") +
+        wiresIn.map((d, i) => pathEl(d, "pulse", `i-pi${i}`)).join("") +
+        wiresOut.map((d, j) => pathEl(d, "pulse", `i-po${j}`)).join("");
+
+      // ── Timeline ──
+      const tl = gsap.timeline({ paused: true });
+
+      tl.fromTo("#i-h-in", { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.1);
+      INS.forEach((_, i) => {
+        tl.fromTo(`#i-in${i}`, { opacity: 0, x: port ? 0 : -40, y: port ? -20 : 0 }, { opacity: 1, x: 0, y: 0, duration: 0.55, ease: "expo.out" }, 0.2 + i * 0.1);
+      });
+      tl.fromTo("#i-hub", { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.8, ease: "expo.out" }, 0.9);
+      tl.fromTo("#i-hubglow", { opacity: 0 }, { opacity: 0.55, duration: 1.0, ease: "power2.out" }, 1.0);
+      tl.fromTo("#i-ring", { rotation: 0 }, { rotation: 540, duration: 9.0, ease: "none" }, 1.0);
+
+      // Linie wejściowe rysują się, kafelki „łapią" połączenie
+      INS.forEach((_, i) => {
+        tl.fromTo(`#i-wi${i}`, { strokeDashoffset: 1000 }, { strokeDashoffset: 0, duration: 0.8, ease: "power2.inOut" }, 1.5 + i * 0.08);
+        tl.fromTo(`#i-in${i}-lit`, { opacity: 0 }, { opacity: 1, duration: 0.3 }, 1.5 + i * 0.08);
+        tl.to(`#i-in${i}-lit`, { opacity: 0.35, duration: 0.8 }, 1.85 + i * 0.08);
+      });
+
+      // Impulsy danych płyną do systemu (skończona liczba powtórzeń)
+      const P_IN = 0.95;
+      INS.forEach((_, i) => {
+        const start = 2.3 + ((i * 0.37) % 0.95);
+        const reps = Math.max(0, Math.floor((9.8 - start) / (P_IN + 0.25)) - 1);
+        tl.fromTo(`#i-pi${i}`, { strokeDashoffset: 70 }, { strokeDashoffset: -1000, duration: P_IN, ease: "power1.in", repeat: reps, repeatDelay: 0.25 }, start);
+      });
+      tl.to("#i-hubglow", { opacity: 0.8, duration: 0.45, repeat: 9, yoyo: true, ease: "sine.inOut" }, 2.6);
+
+      // Mocny moment: system „wypuszcza" wyjścia
+      tl.fromTo("#i-h-out", { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 4.2);
+      OUTS.forEach((_, j) => {
+        tl.fromTo(`#i-wo${j}`, { strokeDashoffset: 1000 }, { strokeDashoffset: 0, duration: 0.7, ease: "power2.out" }, 4.3 + j * 0.1);
+        tl.fromTo(`#i-out${j}`, { opacity: 0, x: port ? 0 : 40, y: port ? 24 : 0, scale: 0.96 }, { opacity: 1, x: 0, y: 0, scale: 1, duration: 0.6, ease: "expo.out" }, 4.75 + j * 0.1);
+        tl.fromTo(`#i-out${j}-lit`, { opacity: 0 }, { opacity: 1, duration: 0.2 }, 4.95 + j * 0.1);
+        tl.to(`#i-out${j}-lit`, { opacity: 0.4, duration: 0.9 }, 5.2 + j * 0.1);
+        const start = 5.0 + j * 0.23;
+        const reps = Math.max(0, Math.floor((9.8 - start) / 1.15) - 1);
+        tl.fromTo(`#i-po${j}`, { strokeDashoffset: 70 }, { strokeDashoffset: -1000, duration: 0.9, ease: "power1.out", repeat: reps, repeatDelay: 0.25 }, start);
+      });
+      tl.fromTo("#i-hub", { scale: 1 }, { scale: 1.04, duration: 0.18, ease: "power2.out", immediateRender: false }, 4.3);
+      tl.to("#i-hub", { scale: 1, duration: 0.6, ease: "power2.inOut" }, 4.48);
+      tl.fromTo("#i-bubble", { opacity: 0, y: 10, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "back.out(2)" }, 6.4);
+
+      tl.fromTo("#i-scene", { scale: 1 }, { scale: 1.03, duration: 10, ease: "none" }, 0);
+
+      window.__timelines["__ID__"] = tl;
+    </script>
+  </body>
+</html>

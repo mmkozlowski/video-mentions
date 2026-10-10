@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="pl" class="__HTMLCLASS__">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=__W__, height=__H__" />
+    <title>flowbiz — agent AI duplikuje ofertę</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="assets/flowbiz.css" />
+    <style>
+      /* ── Klocek 2: ⌘K → polecenie w zwykłym języku → agent kopiuje pozycje do nowej oferty ──
+         Wpisywanie: font mono ma stałą szerokość znaku (JetBrains Mono = 0.6em), więc szerokość
+         tekstu i pozycja kursora to n × szerokość znaku — bez mierzenia DOM, deterministycznie. */
+
+      #a-win {
+        left: 150px;
+        top: 110px;
+        width: 1620px;
+        height: 860px;
+      }
+      .fmt-port #a-win {
+        left: 50px;
+        top: 580px;
+        width: 980px;
+        height: 760px;
+      }
+      .a-body {
+        display: flex;
+        height: calc(100% - 64px);
+        position: relative;
+      }
+      .a-main {
+        flex: 1;
+        padding: 34px 42px;
+        position: relative;
+      }
+      .fmt-port .a-main {
+        padding: 34px 32px;
+      }
+      .side .nav li.on {
+        background: var(--acc-tint);
+        color: var(--acc-soft);
+        box-shadow: inset 3px 0 0 var(--acc);
+      }
+      .fmt-land .rail,
+      .fmt-port .side {
+        display: none;
+      }
+      .search-k {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding: 8px 12px 8px 16px;
+        border-radius: 12px;
+        border: 1px solid var(--line2);
+        background: var(--card2);
+        color: var(--tx2);
+        font-size: 19px;
+        font-weight: 500;
+      }
+      .fmt-port .search-k .lbl {
+        display: none;
+      }
+      .eb {
+        font-size: 17px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--tx3);
+        margin-bottom: 8px;
+      }
+      .tblwrap {
+        margin-top: 34px;
+        position: relative;
+      }
+      .empty {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 62px;
+        height: 150px;
+        border: 1px dashed var(--line2);
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        color: var(--tx3);
+        font-size: 21px;
+      }
+      .tbl tr.row td {
+        opacity: 1;
+      }
+      .rowflash {
+        position: absolute;
+        left: -8px;
+        right: -8px;
+        border-radius: 12px;
+        background: rgba(255, 106, 26, 0.16);
+        box-shadow: inset 0 0 0 1px rgba(255, 106, 26, 0.55);
+        opacity: 0;
+      }
+      .sum {
+        position: absolute;
+        right: 42px;
+        bottom: 40px;
+        width: 520px;
+        border-radius: 16px;
+        border: 1px solid var(--line2);
+        background: var(--card2);
+        padding: 20px 24px;
+      }
+      .fmt-port .sum {
+        left: 32px;
+        right: 32px;
+        width: auto;
+        bottom: auto;
+        top: 410px;
+      }
+      .tbl .num {
+        white-space: nowrap;
+      }
+      /* Nakładka (alfa): okno mniejsze i przy prawej krawędzi, żeby nie zakryć całego kadru */
+      #a-fit {
+        position: absolute;
+        inset: 0;
+      }
+      .alpha-mode .fmt-land #a-fit {
+        transform: scale(0.75);
+        transform-origin: 1840px 540px;
+      }
+      .alpha-mode .fmt-port #a-fit {
+        transform: scale(0.88);
+        transform-origin: 540px 1500px;
+      }
+      #a-cam {
+        position: absolute;
+        inset: 0;
+        transform-origin: 960px 330px;
+      }
+      .fmt-port #a-cam {
+        transform-origin: 540px 880px;
+      }
+      .sum .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        font-size: 21px;
+        color: var(--tx2);
+      }
+      .sum .row + .row {
+        margin-top: 10px;
+      }
+      .sum .tot {
+        color: var(--tx);
+        font-weight: 700;
+      }
+      .sum .v {
+        font-family: var(--mono);
+        font-variant-numeric: tabular-nums;
+        font-weight: 700;
+        font-size: 30px;
+        color: var(--acc2);
+      }
+
+      /* Paleta poleceń */
+      .scrim {
+        position: absolute;
+        inset: 0;
+        background: rgba(5, 5, 7, 0.95);
+        opacity: 0;
+      }
+      #a-pal {
+        position: absolute;
+        left: 50%;
+        top: 120px;
+        width: 1060px;
+        margin-left: -530px;
+        border-radius: 22px;
+        background: #19191d;
+        border: 1px solid rgba(255, 138, 61, 0.55);
+        box-shadow:
+          0 40px 120px rgba(0, 0, 0, 0.7),
+          0 0 70px rgba(255, 106, 26, 0.28);
+        overflow: hidden;
+        opacity: 0;
+      }
+      .fmt-port #a-pal {
+        width: 920px;
+        margin-left: -460px;
+        top: 180px;
+      }
+      .pal-in {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 26px 28px;
+        border-bottom: 1px solid var(--line);
+      }
+      .pal-in .spk {
+        font-size: 30px;
+        color: var(--acc2);
+      }
+      .typed-box {
+        position: relative;
+        flex: 1;
+        height: 44px;
+      }
+      .typed {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 44px;
+        width: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        font-family: var(--mono);
+        font-size: 30px;
+        line-height: 44px;
+        font-weight: 500;
+        color: var(--tx);
+      }
+      .fmt-port .typed {
+        font-size: 25px;
+      }
+      .ph {
+        position: absolute;
+        left: 0;
+        top: 0;
+        line-height: 44px;
+        font-size: 26px;
+        color: var(--tx3);
+        white-space: nowrap;
+      }
+      .fmt-port .ph {
+        font-size: 23px;
+      }
+      .caret {
+        position: absolute;
+        left: 0;
+        top: 4px;
+        width: 3px;
+        height: 36px;
+        border-radius: 2px;
+        background: var(--acc);
+        box-shadow: 0 0 10px var(--acc);
+      }
+      .pal-out {
+        padding: 22px 30px 26px;
+        min-height: 210px;
+      }
+      .think {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-size: 23px;
+        font-weight: 600;
+        opacity: 0;
+      }
+      .think .orb {
+        position: relative;
+        width: 34px;
+        height: 34px;
+        flex: none;
+      }
+      .think .orb i {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        border-top-color: var(--acc);
+        border-right-color: var(--acc2);
+        display: block;
+      }
+      .think .orb b {
+        position: absolute;
+        inset: 9px;
+        border-radius: 50%;
+        background: var(--acc);
+        box-shadow: 0 0 16px var(--acc);
+        display: block;
+      }
+      .shim {
+        background: linear-gradient(90deg, var(--tx2) 0%, var(--tx2) 35%, #ffffff 50%, var(--tx2) 65%, var(--tx2) 100%);
+        background-size: 300% 100%;
+        background-position: 100% 0;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .steps {
+        margin-top: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .step {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-size: 22px;
+        color: var(--tx);
+        opacity: 0;
+      }
+      .step .ck {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: var(--acc-tint);
+        color: var(--acc2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        flex: none;
+      }
+      .step .m {
+        font-family: var(--mono);
+        color: var(--acc-soft);
+      }
+      .keyhint {
+        position: absolute;
+        right: 28px;
+        top: 30px;
+      }
+
+      #a-toast {
+        right: 600px;
+        bottom: 40px;
+      }
+      .fmt-port #a-toast {
+        right: auto;
+        left: 32px;
+        bottom: auto;
+        top: 540px;
+      }
+      #a-glow {
+        position: absolute;
+        border-radius: 40px;
+        box-shadow: 0 0 140px 30px rgba(255, 106, 26, 0.4);
+        left: 150px;
+        top: 110px;
+        width: 1620px;
+        height: 860px;
+        opacity: 0;
+      }
+      .fmt-port #a-glow {
+        left: 50px;
+        top: 580px;
+        width: 980px;
+        height: 760px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" class="fmt-__FMT__" data-composition-id="__ID__" data-start="0" data-duration="10" data-width="__W__" data-height="__H__" data-fps="30" style="width: __W__px; height: __H__px">
+      <div class="stage" data-layout-ignore></div>
+      <div class="grid" data-layout-ignore></div>
+
+      <section id="a-clip" class="clip" data-start="0" data-duration="10" data-track-index="1" style="position: absolute; inset: 0">
+        <div id="a-scene" style="position: absolute; inset: 0"><div id="a-fit"><div id="a-cam">
+          <div id="a-glow" data-layout-ignore></div>
+          <div id="a-win" class="win">
+            <div class="win-top">
+              <span class="dots"><i></i><i></i><i></i></span>
+              <span class="om-logo">PB</span>
+              <span class="org">Pracownia Bałtyk</span>
+              <span class="sp"></span>
+              <span id="a-k" class="search-k"><i data-ico="sparkles"></i><span class="lbl">Szukaj lub zapytaj AI…</span><span class="kbd">⌘K</span></span>
+            </div>
+            <div class="a-body">
+              <div class="side">
+                <div class="grp">Sprzedaż</div>
+                <ul class="nav">
+                  <li><i data-ico="building"></i>Klienci</li>
+                  <li class="on"><i data-ico="cart"></i>Oferty</li>
+                  <li><i data-ico="receipt"></i>Zamówienia</li>
+                </ul>
+                <div class="grp" style="margin-top: 12px">Operacje</div>
+                <ul class="nav">
+                  <li><i data-ico="package"></i>Magazyn</li>
+                  <li><i data-ico="globe"></i>Portal klienta</li>
+                  <li><i data-ico="sparkles"></i>Asystent AI</li>
+                </ul>
+              </div>
+              <ul class="rail">
+                <li><i data-ico="building"></i></li>
+                <li class="on"><i data-ico="cart"></i></li>
+                <li><i data-ico="receipt"></i></li>
+                <li><i data-ico="package"></i></li>
+                <li><i data-ico="sparkles"></i></li>
+              </ul>
+              <div class="a-main">
+                <div class="eb">Oferta</div>
+                <h3 class="h1">OF/2026/10/049 <span class="badge idle">szkic</span></h3>
+                <p class="lead">Nordtex Sp. z o.o. · nowa oferta</p>
+                <div class="tblwrap">
+                  <table class="tbl">
+                    <tr>
+                      <th style="width: 60%">Produkt</th>
+                      <th class="r" style="width: 18%">Ilość</th>
+                      <th class="r">Cena netto</th>
+                    </tr>
+                    <tr id="a-r1" class="row" style="opacity: 0">
+                      <td>Torba bawełniana 38×42, nadruk 1 kolor</td>
+                      <td class="r num">500 szt.</td>
+                      <td class="r num">6 450,00 zł</td>
+                    </tr>
+                    <tr id="a-r2" class="row" style="opacity: 0">
+                      <td>Woreczek lniany 20×25</td>
+                      <td class="r num">1 200 szt.</td>
+                      <td class="r num">5 280,00 zł</td>
+                    </tr>
+                  </table>
+                  <div id="a-f1" class="rowflash" data-layout-ignore></div>
+                  <div id="a-f2" class="rowflash" data-layout-ignore></div>
+                  <div id="a-empty" class="empty"><i data-ico="copy"></i>Brak pozycji — dodaj ręcznie albo poproś AI</div>
+                </div>
+                <div class="sum">
+                  <div class="row tot"><span>Razem netto</span><span class="v"><span id="a-sum">0,00</span> zł</span></div>
+                </div>
+                <div id="a-toast" class="toast" style="opacity: 0">
+                  <span class="tick"><i data-ico="copy" data-sw="2.4"></i></span>
+                  Skopiowano 2 pozycje z ZAM/2026/0917
+                </div>
+              </div>
+              <div id="a-scrim" class="scrim" data-layout-ignore></div>
+              <div id="a-pal" data-layout-allow-occlusion data-layout-allow-overlap>
+                <div class="pal-in">
+                  <span class="spk"><i data-ico="sparkles"></i></span>
+                  <div class="typed-box">
+                    <span id="a-ph" class="ph">Zapytaj o dane w systemie…</span>
+                    <span id="a-typed" class="typed">Duplikuj ofertę z poprzedniego zamówienia Nordtex</span>
+                    <span id="a-caret" class="caret"></span>
+                  </div>
+                  <span id="a-enter" class="kbd">↵</span>
+                </div>
+                <div class="pal-out">
+                  <div id="a-think" class="think">
+                    <span class="orb"><i id="a-orb"></i><b id="a-core"></b></span>
+                    <span id="a-shim" class="shim">Agent szuka ostatniego zamówienia Nordtex…</span>
+                  </div>
+                  <div class="steps">
+                    <div id="a-s1" class="step"><span class="ck"><i data-ico="check" data-sw="3"></i></span>Znaleziono <span class="m">ZAM/2026/0917</span></div>
+                    <div id="a-s2" class="step"><span class="ck"><i data-ico="check" data-sw="3"></i></span>Kopiuję 2 pozycje do <span class="m">OF/2026/10/049</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+          </div>
+        </div>
+      </section>
+      <div class="grain" data-layout-ignore></div>
+      <div class="vignette" data-layout-ignore></div>
+    </div>
+
+    <script src="assets/kit.js"></script>
+    <script>
+      const { port, pln, countTo } = window.FB;
+      const TEXT = "Duplikuj ofertę z poprzedniego zamówienia Nordtex";
+      const N = TEXT.length;
+      const CW = (port ? 25 : 30) * 0.6; // JetBrains Mono: zaawansowanie znaku 600/1000 em
+
+      // Wiersze tabeli: pozycja „błysku" kopiowania liczona ze stałych wysokości wierszy
+      const HEAD = 46, ROW = 64;
+      ["#a-f1", "#a-f2"].forEach((s, i) => {
+        const el = document.querySelector(s);
+        el.style.top = HEAD + i * ROW + "px";
+        el.style.height = ROW + "px";
+      });
+
+      // Paleta poleceń to modal: z założenia zakrywa treść okna pod sobą. Waiver bramki
+      // `text_occluded` musi siedzieć na zakrywanym tekście (nie dziedziczy się), więc
+      // nadajemy go treści okna tutaj, zamiast wyłączać audyt całej sceny.
+      document.querySelectorAll("#a-win .a-main *, #a-win .side *").forEach((el) => el.setAttribute("data-layout-allow-occlusion", ""));
+
+      const tl = gsap.timeline({ paused: true });
+
+      // 0. Okno systemu
+      tl.fromTo("#a-win", { opacity: 0, y: 40, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "expo.out" }, 0.1);
+
+      // 1. ⌘K — klawisz „wciśnięty", paleta wchodzi
+      tl.to("#a-k", { scale: 0.94, duration: 0.1, ease: "power2.in" }, 0.95);
+      tl.to("#a-k", { scale: 1, duration: 0.25, ease: "back.out(3)" }, 1.05);
+      tl.to("#a-scrim", { opacity: 0.55, duration: 0.35, ease: "power2.out" }, 1.1);
+      tl.fromTo("#a-pal", { opacity: 0, scale: 0.95, y: -16 }, { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: "expo.out" }, 1.15);
+      tl.set("#a-caret", { x: 0 }, 0);
+      tl.to("#a-caret", { opacity: 0, duration: 0.18, repeat: 1, yoyo: true, ease: "steps(1)" }, 1.4);
+
+      // 2. Wpisywanie polecenia — szerokość i kursor krokami po jednym znaku
+      const T0 = 1.75, TD = 1.75;
+      tl.to("#a-ph", { opacity: 0, duration: 0.05 }, T0);
+      tl.to("#a-typed", { width: N * CW + 4, duration: TD, ease: `steps(${N})` }, T0);
+      tl.to("#a-caret", { x: N * CW + 2, duration: TD, ease: `steps(${N})` }, T0);
+      tl.to("#a-caret", { opacity: 0, duration: 0.2, repeat: 1, yoyo: true, ease: "steps(1)" }, T0 + TD + 0.05);
+
+      // 3. Enter → agent myśli
+      tl.to("#a-enter", { scale: 0.85, backgroundColor: "#FF6A1A", color: "#160A03", duration: 0.1 }, 3.75);
+      tl.to("#a-enter", { scale: 1, backgroundColor: "#1D1D22", color: "#A1A1AA", duration: 0.3 }, 3.9);
+      tl.to("#a-caret", { opacity: 0, duration: 0.05 }, 3.96);
+      tl.fromTo("#a-think", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 3.85);
+      tl.to("#a-orb", { rotation: 900, duration: 2.0, ease: "power1.inOut" }, 3.85);
+      tl.to("#a-core", { scale: 0.55, duration: 0.3, repeat: 5, yoyo: true, ease: "sine.inOut" }, 3.85);
+      tl.to("#a-shim", { backgroundPosition: "0% 0", duration: 1.0, repeat: 1, ease: "none" }, 3.9);
+      tl.fromTo("#a-s1", { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.35, ease: "power3.out" }, 4.55);
+      tl.fromTo("#a-s2", { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.35, ease: "power3.out" }, 5.05);
+
+      // 4. Paleta znika, pozycje wpadają do nowej oferty
+      tl.to("#a-pal", { opacity: 0, scale: 0.97, y: -10, duration: 0.35, ease: "power2.in" }, 5.75);
+      tl.to("#a-scrim", { opacity: 0, duration: 0.4, ease: "power2.out" }, 5.8);
+      tl.to("#a-empty", { opacity: 0, duration: 0.25 }, 5.95);
+      [1, 2].forEach((n, i) => {
+        const at = 6.05 + i * 0.32;
+        tl.fromTo(`#a-r${n}`, { opacity: 0, y: -22 }, { opacity: 1, y: 0, duration: 0.45, ease: "back.out(1.6)" }, at);
+        tl.fromTo(`#a-f${n}`, { opacity: 0 }, { opacity: 1, duration: 0.15 }, at + 0.05);
+        tl.to(`#a-f${n}`, { opacity: 0, duration: 0.9, ease: "power2.out" }, at + 0.35);
+      });
+      countTo(tl, document.getElementById("a-sum"), 0, 11730, 6.2, 0.9, (v) => pln(v, 2), "power3.out");
+
+      // 5. Mocny moment: toast + poświata okna
+      tl.fromTo("#a-toast", { opacity: 0, y: 40, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "back.out(1.6)" }, 7.1);
+      tl.to("#a-glow", { opacity: 1, duration: 0.25, ease: "power2.out" }, 7.1);
+      tl.to("#a-glow", { opacity: 0.35, duration: 1.8, ease: "power2.inOut" }, 7.4);
+
+      tl.fromTo("#a-scene", { scale: 1 }, { scale: 1.03, duration: 10, ease: "none" }, 0);
+
+      // Kamera: najazd na paletę na czas polecenia, potem odjazd na tabelę i toast
+      const ALPHA = document.documentElement.classList.contains("alpha-mode");
+      const CAM = ALPHA && !port ? [1.25, 1.0] : ALPHA ? [1.1, 1.0] : port ? [1.12, 1.04] : [1.42, 1.14];
+      tl.fromTo("#a-cam", { scale: 1 }, { scale: CAM[0], duration: 0.9, ease: "power3.inOut" }, 1.05);
+      tl.to("#a-cam", { scale: CAM[1], duration: 0.9, ease: "power3.inOut" }, 5.65);
+
+      window.__timelines["__ID__"] = tl;
+    </script>
+  </body>
+</html>

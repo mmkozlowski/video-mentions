@@ -178,6 +178,297 @@ Naprzemiennie używaj amber i białego między scenami i w obrębie sceny — ż
 - **Tekst z animacją `translateX`/`translateY` z dużymi offsetami:** plate animuje się razem z tekstem — OK.
 - **SVG paths (linie łączące węzły):** zostają widoczne na green. Po keyu są floating amber liniami. Akceptowalne wizualnie.
 
+## ⚠️ ALFA ZAMIAST GREEN SCREENA — tryb preferowany od 19.08
+
+**Do montażu renderuj `ALPHA=1`, nie na zielonym.** Green screen zostaje wyłącznie dla narzędzi,
+które kanału alfa nie przyjmują.
+
+```bash
+ALPHA=1 node render.js e01-08-tytul      # → out/e01/e01-08-tytul_alpha.mov (qtrle + alfa)
+ALPHA_CODEC=prores ALPHA=1 node render.js e01-08-tytul   # ProRes 4444, gdy qtrle nie wchodzi
+```
+
+### Dlaczego — problem, którego keyowanie nie da się pozbyć
+
+Krawędzie liter są antyaliasowane: piksel brzegowy to **mieszanka koloru tekstu i tła**.
+Na zielonym tle biała litera ma obwódkę z pikseli biało-zielonych. Key usuwa czystą zieleń,
+a te mieszane piksele **zostają** — stąd zielony rant wokół każdej litery w CapCucie.
+Nie da się tego wyczyścić progiem keya: podniesiony próg zaczyna zjadać sam tekst.
+
+Przy renderze z alfą nie ma czego wycinać — półprzezroczysty piksel brzegowy zlewa się
+z materiałem pod spodem tak, jak powinien.
+
+### Konsekwencja: `.chroma-plate` w trybie alfa jest WYŁĄCZANY
+
+Renderer sam zdejmuje podkładki (`background:transparent; box-shadow:none`), zostawiając
+sam kolor tekstu. Plate'y istnieją wyłącznie po to, żeby ciemny tekst przetrwał wycinanie
+zieleni — przy alfie robią z siebie **czarne prostokąty na twarzy**.
+
+**Nie nadawaj `chroma-plate` tekstowi jasnemu ani bursztynowemu.** Drzewo decyzyjne wyżej
+mówi o tym wprost, a i tak łatwo je nadużyć: karta tytułowa `e01-08` miała plate'y na eyebrow
+(bursztyn) i na podpisie (biały), i oba wyszły czarnymi prostokątami na materiale.
+
+### Kodek: qtrle, nie ProRes
+
+Domyślnie `qtrle` (QuickTime Animation) — bezstratny, z alfą, czytany natywnie na macOS.
+Na płaskiej grafice pakuje **~9× lepiej niż ProRes 4444** przy identycznym obrazie:
+
+| Scena | ProRes 4444 | qtrle |
+|---|---|---|
+| `e01-08-tytul` (4,4 s) | 106 MB | **8,1 MB** |
+| `e01-07-serwer-i-dostep` (6,4 s) | 234 MB | **33,3 MB** |
+| `e01-06-kod-agenta` (6,2 s) | 225 MB | **89,5 MB** |
+
+Kompozyt sprawdzony klatka po klatce — różnica zerowa. `e01-06` jest cięższy, bo prawie każdy
+piksel zmienia się co klatkę (wpisywany kod), więc RLE nie ma na czym oszczędzić.
+
+---
+
+## ⚠️ CZYTELNOSC NA MATERIALE — scrim albo poswiata, nigdy nagi tekst
+
+Wstawka lezy na gadanej glowie: jasna sciana, ksiazki, **jasny sweter i dlonie**. Sam tekst —
+nawet bialy — gubi sie na takim tle. Bursztyn na jasnej scianie znika prawie calkiem,
+a ciemna czerwien `#C0553A` przegrywa z kazdym jasnym tlem.
+
+**Dwa narzedzia, uzywane rozlacznie. Nigdy oba naraz.**
+
+### `.scrim` — gdy wstawka przejmuje kadr
+
+Pelnoekranowy gradient przyciemniajacy, wbudowany w scene i animowany razem z trescia
+(wchodzi przed tekstem, schodzi po nim). **Gradient, nie plaski prostokat** — plaski czyta sie
+jak czarna plansza doklejona na obraz.
+
+| Wariant | Kiedy |
+|---|---|
+| `.scrim` | karta tytulowa, pelnoekranowy moment |
+| `.scrim.band` | pas u dolu — pod werdykt albo podpis w dolnej tercji |
+| `.scrim.left` | blok tekstu po lewej, prawa strona kadru zostaje odslonieta |
+
+### `.halo` — gdy tekst lezy NA obrazie
+
+Miekka ciemna poswiata wokol liter, trzy warstwy o roznym rozmyciu. Jedna warstwa daje twarda
+obwodke, trzy daja przejscie, ktorego oko nie czyta jako obramowania. `.halo.strong` pod tekst
+na jasnym swetrze albo na dloniach.
+
+W trybie chromakey poswiata jest **wylaczana** (`body.chromakey .halo{ text-shadow:none }`) —
+ciemne rozmycie zlewa sie z zielenia i po wycieciu zostawia brudna obwodke.
+
+### Wjazd tekstu: wysuniecie spod maski
+
+**Domyslne wejscie dla tekstu to wysuniecie spod maski od dolu** (`overflow:hidden` na rodzicu
++ `yPercent:120 → 0`, ease `power4.out`), a wyjscie tak samo w gore. Zatwierdzone przez Mateusza
+21.08 po eksporcie: *„fajny efekt z tego, jak z dolu wyjezdza tekst"*.
+
+Dwie zalety poza wygladem: wstawke mozna dociac w dowolnym miejscu bez twardego skoku,
+i nie ma pokusy dorabiania ruchu w bezruchu — cala dynamika siedzi w wejsciu i wyjsciu.
+Wzorzec: `txt-linia-lewy.html`.
+
+### 🟢 STANDARD: scena z tekstem powstaje w DWOCH wariantach
+
+**Kazda scena, w ktorej tekst jest trescia** — karta tytulowa, teza, cytat, werdykt na pelnym
+kadrze — dostaje dwa pliki:
+
+| Wariant | Plik | Rola |
+|---|---|---|
+| **lewy** | `<scena>-lewy.html` → `_alpha.mov` | **DOMYSLNY do montazu** |
+| wysrodkowany | `<scena>.html` → `_alpha.mov` | zapasowy, do momentow bez mowiacego w kadrze |
+
+Wariant lewy to: blok wyrownany do lewej (`left:132px`), stopien pisma o ~18 % mniejszy niz
+w wersji wysrodkowanej (86 px zamiast 104 px), `.scrim.left` zamiast pelnego, belka i znacznik
+rozjezdzajace sie od lewej krawedzi. Wzorzec referencyjny: `e01-08b-tytul-lewy.html` —
+kopiuj z niego, nie wymyslaj ukladu od nowa.
+
+**Dlaczego to jest standard, a nie preferencja:** wstawka wchodzi na gadana glowe, w ktorej
+mowiacy siedzi **posrodku kadru**. Wysrodkowany tekst laduje dokladnie na jego twarzy, a scrim
+radialny jest tam najciemniejszy — material wyglada wtedy jak plansza przyklejona na wideo
+i traci sie jedyna rzecz, ktora odcinek ma: czlowieka, ktory to mowi. Wariant lewy zostawia
+prawa polowe kadru odslonieta, wiec **tekst i mowiacy dzialaja rownoczesnie**.
+
+Zatwierdzone przez Mateusza 20.08 na kompozycie z realnym nagraniem 01.
+
+### Uklad: blok po lewej bije wysrodkowanie
+
+Sprawdzone na kompozycie z realnym nagraniem 19.08. Wysrodkowany tytul z radialnym scrimem
+**zakrywa twarz** — material wyglada jak plansza, ktora ktos przykleil na wideo. Ten sam tytul
+jako blok po lewej, mniejszym stopniem pisma, z `.scrim.left`: tekst w pelni czytelny,
+mowiacy dalej widoczny, calosc czyta sie redakcyjnie. Wariant referencyjny: `e01-08b-tytul-lewy`.
+
+**Weryfikuj kompozytem na prawdziwej klatce, nie na podgladzie sceny** — na ciemnym tle
+podgladu wszystko jest czytelne i problem nie istnieje:
+
+```bash
+ffmpeg -i klatka.png -ss 2.6 -i wstawka_alpha.mov \
+  -filter_complex "[0:v][1:v]overlay=0:0:format=auto" -frames:v 1 test.jpg
+```
+
+### Goly tekst na dloniach i swetrze — karta, nie gradient
+
+Werdykt e01-07 lezal jako goly tekst w dolnej tercji, czyli **na dloniach i jasnym swetrze**.
+Ani jasniejsza czerwien, ani poswiata, ani pas-scrim tego nie uratowaly — tlo jest tam ruchome
+i jasne, wiec kazde rozwiazanie polowiczne przegrywa.
+
+**Rozwiazanie: karta z wlasnym solidnym tlem**, w tym samym jezyku co panele wyzej —
+`background:#0D0D0B`, cienki bursztynowy pasek akcentu po lewej krawedzi, twardy cien pod spodem.
+Czyta sie jak zaprojektowany element, a nie jak napis walczacy z tlem. Przy okazji **znika
+potrzeba scrimu**, wiec plik chudnie z 140 MB do 20 MB.
+
+Reguła: **tekst w dolnej tercji kadru dostaje karte, nie gradient.** Gradient zostaw dla
+momentow, w ktorych wstawka przejmuje caly kadr.
+
+### 🔴 Scrim NIE dziala z chromakeyem
+
+Polprzezroczysta ciemna warstwa na zieleni daje **ciemnozielony**, ktorego key nie usunie —
+zostaje brudna plama na calej klatce. `scene-shell.css` chowa scrim w trybie chromakey
+(`body.chromakey .scrim{ display:none }`), ale to znaczy, ze **scena ze scrimem ma sens
+wylacznie w wersji `_alpha`**. Wersja `_chroma` tej samej sceny jest bez scrimu, czyli bez
+warstwy czytelnosci.
+
+To samo dotyczy `.halo` — w chromakey wylaczona, bo ciemne rozmycie brudzi krawedz po wycieciu.
+
+**Konsekwencja praktyczna: do montazu bierz `_alpha.mov`.** `_chroma.mp4` to wersja awaryjna
+dla narzedzi bez alfy i jest z zalozenia gorsza — nie ma ani scrimu, ani poswiaty.
+**Nie dokladaj do niej wlasnej blendy w edytorze** — blenda pod golym tekstem bez poswiaty
+niewiele daje, a przy alfie jest juz niepotrzebna, bo scrim siedzi w pliku.
+
+### 🔴 Rozdzielczosc: NIGDY ponizej plotna montazu
+
+**Renderuj 1920×1080 i pozwol edytorowi skalowac W DOL. Nigdy w gore.**
+
+Skalowanie w dol zachowuje jakosc — nadmiarowe piksele sa usredniane. Skalowanie w gore
+jej nie odtworzy: napis wyrenderowany jako 16 pikseli wysokosci i powiekszony 1,5× to
+poszarpana kaszana, bo antyaliasing nie ma z czego zbudowac gladkiej krawedzi.
+
+> **Blad popelniony 20.08, opisany tu, zeby sie nie powtorzyl.** Wstawka 1920×1080 wchodzila
+> do CapCuta przycieta, wiec wyrenderowalem wersje 1280×720 „pod projekt". To pogorszylo
+> sprawe: eyebrow o rozmiarze 24 px w projekcie 1920 zszedl do **16 px realnych**, a CapCut
+> i tak skalowal wstawke w gore, zeby wypelnila plotno. Panele wygladaly dobrze (duze plaskie
+> plamy), a sam tekst rozsypal sie na krawedziach. Wersje 720p zostaly skasowane.
+
+Przyciecie w edytorze **nie jest powodem do zmniejszania renderu** — to znak, ze edytor
+dopasowuje wstawke do plotna. Ustaw skale klipu recznie albo zrownaj plotno projektu
+z 1920×1080.
+
+`W`/`H` w rendererze zostaja jako furtka na nietypowe plotna (np. 9:16), ale **domyslnie
+ich nie ruszaj**.
+
+### 🔴 NASYCONY BURSZTYN NIE MOZE LEZEC NA MATERIALE
+
+**Maly bursztynowy tekst bezposrednio na obrazie zawsze wyjdzie poszarpany.** Nie da sie tego
+naprawic ani rozmiarem, ani rozdzielczoscia, ani antyaliasingiem — powod jest kodekowy.
+
+H.264 w 4:2:0 trzyma **luminancje w pelnej rozdzielczosci, a chrominancje w cwiartkowej**.
+Bialy tekst niesie krawedz w luminancji i przezywa kompresje. Nasycony bursztyn `#F5A623`
+na jasnej scianie ma niski kontrast luminancji — informacja o krawedzi siedzi glownie
+w chrominancji, ktora idzie do kosza przy podprobkowaniu.
+
+**Objaw myli**, bo wyglada jak zly render albo problem z alfa. Test rozstrzygajacy: bialy napis
+w tym samym ujeciu jest ostry, bursztynowy nie.
+
+**Zasady:**
+
+1. Maly bursztynowy tekst → na **ciemna pigulke** (`.pill`). Kontrast wraca do luminancji,
+   bursztyn zostaje marka.
+2. Tekst bezposrednio na materiale → **bialy** `#FAF8F0`, waga 700+.
+3. Bursztyn bez podkladki tylko **duzy** (50 px+) i najlepiej na ciemniejszej czesci kadru.
+4. Wewnatrz ciemnych kart bursztyn jest bezpieczny — tam kontrast luminancji juz jest.
+
+### Klasy tekstu przetestowane przez kodek — uzywaj ich zamiast wymyslac
+
+Arkusz `compositions/test-typografia-alfa.html` sprawdza 10 wariantow jednej linii przez pelny
+lancuch: alfa → kompozyt na realnym nagraniu → h.264 4:2:0. **Wyniki z 20.08:**
+
+| # | Wariant | Wynik |
+|---|---|---|
+| 01 | `#FAF8F0` waga 800, bez tla | ✅ ostry |
+| 02 | `#FFFFFF` waga 900 | ✅ ostry |
+| 03 | `#F5A623` goly | ❌ rozmyty (kontrola) |
+| 04 | `#F5A623` na pelnej pigulce | ✅ ostry |
+| 05 | **`#F5A623` + obrys 6 px** | ✅✅ **ostry bez tla — najlepszy** |
+| 06 | `#FFD089` goly | ❌ najgorszy z calej dziesiatki |
+| 07 | `#FAF8F0` + twardy cien | ✅ ostry |
+| 08 | `#F5A623` 60 px | ⚠️ lepiej, ale nie rozwiazuje |
+| 09 | `#FAF8F0` + bursztynowe podkreslenie | ✅ ostry |
+| 10 | `#F5A623` na plycie `rgba(10,10,8,0.78)` | ✅ ostry |
+
+Gotowe klasy w `scene-shell.css`: `.tx-light`, `.tx-amber` (+`.sm`/`.lg`), `.tx-plate`,
+`.tx-light.shadow`, `.tx-underline`. **Nie dobieraj parametrow od nowa** — te sa zmierzone.
+
+**Wariant 06 jest najwazniejszy dla intuicji:** jasniejszy bursztyn wyszedl GORZEJ niz ciemniejszy,
+bo zblizyl sie jasnoscia do sciany. To dowodzi, ze decyduje **dystans luminancji wzgledem tla**,
+a nie nasycenie czy „ladnosc" koloru. Przy nowym kolorze policz luminancje Rec.709
+(`0.2126·R + 0.7152·G + 0.0722·B`) i porownaj z tlem — nie oceniaj na oko.
+
+Po zmianie tla ujecia (inne wnetrze, przeswietlone okno) **przepusc arkusz jeszcze raz**
+na klatce z tego nagrania. To dwie minuty i zastepuje zgadywanie.
+
+### 📐 Waskim gardlem jest PLOTNO PROJEKTU, nie rozdzielczosc renderu
+
+Zmierzone 21.08 na arkuszu `test-typografia-biel`, metryka: odchylenie laplasjanu na tekscie
+(wiecej = ostrzejsza krawedz).
+
+| Scenariusz | Ostrosc | Zmiana |
+|---|---|---|
+| plotno 1080p, wstawka 1080p | **32,4** | odniesienie |
+| plotno 720p, wstawka 1080p | 25,0 | **−23 %** |
+| plotno 720p, wstawka 4K | 26,0 | +4 % wzgledem powyzszego |
+
+**Wniosek: renderowanie w 4K nie oplaca sie.** Zejscie na plotno 720p zjada 23 % ostrosci
+i nadprobkowanie tego nie odrabia — zyskuje sie 4 %, a plik puchnie kilkukrotnie.
+
+**Dzwignia jest jedna: plotno projektu montazowego ma byc 1920×1080.** Material 720p zostanie
+podniesiony i bedzie miekki (to wina zrodla, nie da sie inaczej), ale grafika renderuje sie 1:1
+i zostaje ostra. Widz ocenia ostrosc glownie po napisach, nie po tle.
+
+### 🔬 Weryfikuj po kompresji, nie na klatce PNG
+
+To jest metodologiczny blad, ktory kosztowal 20.08 kilka rund poprawek: sprawdzalem kompozyty
+jako PNG/JPEG, gdzie chrominancja jest pelna, wiec **problem byl niewidoczny**. Trzeba przepuscic
+material przez ten sam kodek co eksport:
+
+```bash
+ffmpeg -loop 1 -t 1 -i klatka.png -ss 3.0 -i wstawka_alpha.mov \
+  -filter_complex "[0:v][1:v]overlay=0:0:format=auto" \
+  -frames:v 30 -c:v libx264 -pix_fmt yuv420p -crf 20 test.mp4
+ffmpeg -ss 0.5 -i test.mp4 -frames:v 1 -vf "crop=900:120:520:70,scale=1800:240:flags=neighbor" z.jpg
+```
+
+Dopiero to pokazuje, co zobaczy widz.
+
+### Minimalne stopnie pisma — liczone na 1920×1080
+
+Tekst przezywa kompresje YouTube i oglad na telefonie tylko powyzej pewnego progu.
+Wartosci sprawdzone 20.08 po tym, jak eyebrow 24 px i etykiety 15 px wyszly nieczytelnie:
+
+| Element | Min. | Uwaga |
+|---|---|---|
+| eyebrow / nadtytul | **34 px**, waga 700 | `letter-spacing` max `0.18em` — szerszy rozrzedza kreske |
+| etykiety w paskach (pigulki) | **19 px**, waga 700 | |
+| podpisy i drugi plan | **21 px** | ponizej znika po kompresji |
+| tekst w kartach | 24 px+ | |
+| glowna teza / werdykt | 50 px+ | |
+
+Cienki, mocno rozstrzelony tekst jest najbardziej wrazliwy — przy `letter-spacing` powyzej
+`0.2em` podnies wage kroju, inaczej kreska robi sie za cienka na krawedzi.
+
+### FPS: 30, nie 60
+
+Nagrania Mateusza sa w **30 kl./s** (`ffprobe` na plikach z `~/Youtube Projects`). Wstawka
+w 60 kl./s nie doda plynnosci na osi 30-klatkowej, a wazy dwa razy tyle. Renderuj `FPS=30`:
+
+```bash
+FPS=30 ALPHA=1 node render.js <scena>
+```
+
+Karta tytulowa: 316 MB przy 60 kl./s, 163 MB przy 30. Zero roznicy na wyjsciu.
+
+### Koszt: scrim powieksza plik
+
+Gradient na calej klatce nie ma powtarzalnych ciagow, wiec bezstratny RLE nie ma czego skrocic.
+Karta tytulowa: 8 MB bez scrimu, 316 MB ze scrimem. ProRes tu nie pomaga (558 MB na tym samym
+materiale) — qtrle zostaje domyslny. Jesli rozmiar zacznie przeszkadzac, `FPS=30` polowi go.
+
+---
+
 ## Renderowanie
 
 ```bash

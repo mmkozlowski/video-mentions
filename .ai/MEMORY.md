@@ -31,6 +31,15 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 - [Higgsfield: generacja przebitek](memory/higgsfield-generacja-przebitek.md) — GPT Image 2.5 + Kling 3.0 Pro 5 s (8,75 kr.); partie po 4 (429), declined_preset_id, normalizacja 1920×1080
 - [HyperFrames wymaga Node 22](memory/hyperframes-wymaga-node-22.md) — domyślny nvm to 20; PATH na v22.22.2 w skrypcie, nie globalnie
 
+- [Wstawki: alfa zamiast green screena](memory/wstawki-alfa-nie-green-screen.md) — key zawsze zostawia zielony rant na krawędziach liter; `ALPHA=1`, kodek qtrle (~9× mniejszy od ProRes), podkładki chromakeya wtedy wyłączone
+
+- [Wstawki: układ lewy domyślny](memory/wstawki-uklad-lewy-domyslny.md) — scena tekstowa w dwóch wariantach; wyśrodkowany zakrywa twarz mówiącego, lewy idzie do montażu
+- [Wstawki: karta, scrim czy poświata](memory/wstawki-czytelnosc-scrim-halo-karta.md) — tekst w dolnej tercji zawsze dostaje kartę; poświata rozmywa krawędzie i przy karcie jest zbędna
+- [Wstawki: rozdzielczość pod projekt montażowy](memory/wstawki-rozdzielczosc-pod-projekt.md) — 1920x1080 na płótnie 720p pokazuje środkowe 66 %; renderuj W/H pod projekt
+
+- [Nasycony kolor tekstu na materiale](memory/tekst-nasycony-kolor-na-materiale.md) — h.264 4:2:0 zabija krawędź bursztynu; mały kolorowy tekst na ciemną pigułkę, weryfikuj PO kompresji nie na PNG
+- [HyperFrames check: zasłanianie](memory/hyperframes-check-zaslanianie.md) — `data-layout-allow-occlusion` tylko na zasłanianym tekście, nie na nakładce i bez dziedziczenia; scrim ≥ 0,6 krycia to zasłonięcie
+
 ## Decyzje (ADR)
 
 - [Ekran produktu z HTML zamiast nagrań i generacji](decisions/2026-07-30-ekran-produktu-z-html.md) — 2026-07-30

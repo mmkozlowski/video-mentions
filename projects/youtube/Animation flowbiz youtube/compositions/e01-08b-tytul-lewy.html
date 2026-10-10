@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>E01 · 08b — KARTA TYTUŁOWA (LEWA) · flowbiz.pl</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800;9..40,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" />
+<link rel="stylesheet" href="scene-shell.css" />
+<link rel="stylesheet" href="logos.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="recorder.js"></script>
+<script src="scene-shell.js"></script>
+<style>
+  .eyebrow{
+    position:absolute;left:132px;right:auto;top:236px;text-align:left;z-index:8;
+    font-size:33px;font-weight:700;letter-spacing:0.18em;opacity:0;color:#F5A623;
+  }
+
+  /* kazda linia ma wlasna maske — tekst wyjezdza spod krawedzi */
+  .ln{ position:absolute;left:132px;right:auto;text-align:left;overflow:hidden;z-index:7 }
+  .ln > span{
+    display:inline-block;
+    font-size:86px;font-weight:900;letter-spacing:-0.028em;line-height:1.06;
+    color:#FAF8F0;
+    text-shadow:0 3px 0 #0A0A08, 0 0 10px rgba(10,10,8,0.85);
+  }
+  #l1{ top:318px;height:106px }
+  #l2{ top:416px;height:106px }
+  #l3{ top:514px;height:112px }
+  #l3 > span{ color:#F5A623;text-shadow:0 3px 0 #0A0A08, 0 0 12px rgba(10,10,8,0.9) }
+
+  /* bursztynowa belka, ktora podjezdza pod ostatnia linie */
+  .rule{
+    position:absolute;left:132px;top:642px;height:8px;width:0;margin-left:0;
+    background:#F5A623;box-shadow:0 0 34px rgba(245,166,35,0.45), 0 0 26px rgba(6,6,5,0.8);z-index:6;
+  }
+
+  .sub{
+    position:absolute;left:132px;right:auto;top:688px;text-align:left;z-index:8;
+    font-size:30px;font-weight:700;opacity:0;color:#FAF8F0;text-shadow:0 2px 0 #0A0A08, 0 0 8px rgba(10,10,8,0.85);
+  }
+
+  /* znacznik odcinka w rogu — spina karte z reszta serii */
+  .badge{
+    position:absolute;left:132px;top:772px;transform:scale(0.9);transform-origin:left center;
+    display:flex;align-items:center;gap:16px;
+    background:#0D0D0B;border:1.5px solid rgba(245,166,35,0.34);
+    padding:17px 30px;z-index:8;opacity:0;
+  }
+  .badge .lg{ font-size:27px;line-height:1;display:inline-flex }
+  .badge .tx{
+    font:700 24px/1 'DM Sans',sans-serif;letter-spacing:0.12em;color:#F5A623;
+  }
+  .badge .sep{ width:1.5px;height:22px;background:#2E2C28 }
+  .badge .no{ font:600 24px/1 'DM Sans',sans-serif;letter-spacing:0.12em;color:#8A8378 }
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <div class="stage" id="stage">
+    <svg class="grid" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+      <defs><pattern id="g100" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+        <path d="M100 0 L0 0 0 100" fill="none" stroke="rgba(245,166,35,0.04)" stroke-width="1"/>
+      </pattern></defs>
+      <rect width="1920" height="1080" fill="url(#g100)"/>
+    </svg>
+
+    <div class="scene">
+      <div class="scrim left" id="scrim"></div>
+
+      <div class="eyebrow" id="eyebrow"><span class="pill">OBIETNICA TEGO ODCINKA</span></div>
+
+      <div class="ln" id="l1"><span class="halo">Czy da się przenieść</span></div>
+      <div class="ln" id="l2"><span class="halo">Twój proces</span></div>
+      <div class="ln" id="l3"><span class="halo">szybko i tanio?</span></div>
+
+      <div class="rule" id="rule"></div>
+
+      <div class="sub halo" id="sub">Albo uczciwie — czy nie.</div>
+
+      <div class="badge" id="badge">
+        <span class="lg"><i class="logo logo-openmercato"></i></span>
+        <span class="sep"></span>
+        <span class="no">ODCINEK 01</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const RULE_W = 470;
+  gsap.set('#rule', { width:0, marginLeft:0 });
+  gsap.set(['#l1 > span','#l2 > span','#l3 > span'], { yPercent:118 });
+
+  const tl = gsap.timeline({ paused:true });
+
+  // scrim wchodzi pierwszy i schodzi ostatni — tekst nigdy nie stoi na golym kadrze
+  tl.to('#scrim', { opacity:1, duration:0.34, ease:"power2.out" }, 0.0);
+  tl.to('#scrim', { opacity:0, duration:0.34, ease:"power2.in" }, 4.06);
+
+  tl.to('#eyebrow', { opacity:1, duration:0.34, ease:"power2.out" }, 0.10);
+  tl.from('#eyebrow', { y:-14, duration:0.34, ease:"power2.out" }, 0.10);
+
+  // 0.26 — trzy linie wyjezdzaja spod maski, jedna po drugiej
+  tl.to('#l1 > span', { yPercent:0, duration:0.52, ease:"power4.out" }, 0.26);
+  tl.to('#l2 > span', { yPercent:0, duration:0.52, ease:"power4.out" }, 0.42);
+  tl.to('#l3 > span', { yPercent:0, duration:0.56, ease:"power4.out" }, 0.60);
+
+  // 1.02 — belka rozjezdza sie od srodka
+  tl.to('#rule', { width:RULE_W, duration:0.46, ease:"power3.out" }, 1.02);
+
+  // 1.34 — dopisek i znacznik
+  tl.to('#sub', { opacity:1, duration:0.38, ease:"power2.out" }, 1.34);
+  tl.from('#sub', { y:16, duration:0.38, ease:"power2.out" }, 1.34);
+  tl.to('#badge', { opacity:1, scale:1, duration:0.44, ease:"back.out(1.7)" }, 1.62);
+
+  // Zaden dryf po ustawieniu sie karty. Powolny ruch bez przyczyny czyta sie
+  // na materiale jak usterka albo zjezdzajaca grafika — zgloszone 20.08.
+  // Ruch nalezy do wejscia, nie do bezruchu.
+
+  const DURATION = 4.4;
+  tl.to({}, { duration:0.4 }, DURATION - 0.4);
+
+  flowbizScene.init({
+    id: "e01-08b",
+    duration: DURATION,
+    tail: 0.4,
+    label: "E01 · 08b · KARTA TYTUŁOWA LEWA · " + DURATION.toFixed(1) + "s",
+    timeline: tl
+  });
+</script>
+</body>
+</html>

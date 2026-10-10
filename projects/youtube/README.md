@@ -34,6 +34,24 @@ assets/                        nagrania ekranu od Mateusza
 final/                         wstawki zaakceptowane, do montażu
 ```
 
+## Jak dostarczamy wstawki — skrót
+
+**`_alpha.mov` z `final/e01/`, nie `_chroma.mp4`.** Wersja zielona jest awaryjna i z założenia
+gorsza (bez scrimu, bez poświaty). Pliki w `final/` mają **wersję i datę w nazwie**, bo edytor
+trzyma zaimportowane media w cache'u i podmiana pliku o tej samej nazwie nie działa.
+
+Render: `FPS=30 ALPHA=1 node render.js <scena>` — 1920×1080, 30 kl./s (tyle mają nagrania).
+**Nie renderuj pod niższe płótno**; przycięcie w edytorze to znak, że dopasowuje klip do płótna,
+a nie powód do zmniejszania renderu.
+
+Scena, w której tekst jest treścią, powstaje w **dwóch wariantach — lewym i wyśrodkowanym.
+Lewy jest domyślny**: wyśrodkowany ląduje na twarzy mówiącego.
+
+Pełne uzasadnienie i pięć osobnych pułapek, które to kosztowało:
+[[ai/decisions/2026-08-20-wstawki-e01-czytelnosc-i-dostarczanie.md]].
+Reguły operacyjne (chromakey, scrim, pigułki, progi stopni pisma):
+`Animation flowbiz youtube/CLAUDE.md`.
+
 ## Znaki marek w scenach
 
 Kiedy Mateusz wymienia narzędzie z nazwy — Claude, Excel, HubSpot, n8n — na ekranie ma stać
