@@ -29,7 +29,7 @@ import shutil
 import subprocess
 from pathlib import Path
 
-from sources import BUILD, DATA, FACE_CENTER_X, LIBRARY, PROJECT, SOURCE_W
+from sources import load_clips, BUILD, DATA, FACE_CENTER_X, LIBRARY, PROJECT, SOURCE_W
 
 PACK = PROJECT / "packaging"
 BRAND = PACK / "brand"
@@ -1241,7 +1241,7 @@ def main():
     ap.add_argument("--snapshot", nargs="*", type=float)
     ap.add_argument("--finalize-only", action="store_true", help="tylko wykończ istniejące render.mp4")
     a = ap.parse_args()
-    clips = json.load(open(DATA / "clips.json"))
+    clips = load_clips()
     variant_file = PACK / "storyboards" / f"{a.clip}.json"
     if "--" in a.clip and variant_file.exists():
         # wariant do testu A/B (np. ad-11-r1--ai-w-produkcji): osobny storyboard, ten sam klip

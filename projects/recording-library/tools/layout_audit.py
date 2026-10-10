@@ -14,7 +14,7 @@ import sys
 from concurrent.futures import ThreadPoolExecutor
 
 from package import FORMATS, OUT, PACK, palettes_for, Composition, hf, stage
-from sources import DATA
+from sources import load_clips, DATA
 
 # przebitka i twarz celowo wystają poza ramkę przy zoomie — to nie jest błąd tekstu
 IGNORED = re.compile(r"#(face-zoom|b\d+)\b")
@@ -36,7 +36,7 @@ def audit(clip, board, fmt, pal):
 
 
 def main(argv):
-    clips = {c["id"]: c for c in json.load(open(DATA / "clips.json"))}
+    clips = {c["id"]: c for c in load_clips()}
     boards = [json.load(open(p)) for p in sorted(PACK.glob("storyboards/*.json"))
               if not argv or any(p.stem.startswith(a) for a in argv)]
     jobs = [(clips[b["clip"]], b, fmt, pal) for b in boards

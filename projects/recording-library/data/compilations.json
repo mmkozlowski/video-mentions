@@ -1,0 +1,48 @@
+[
+ {
+  "id": "ep-8-wdrozen",
+  "title": "8 wdrożeń Open Mercato — co dały firmom",
+  "brand": "flowbiz",
+  "kind": "episode",
+  "source": "session",
+  "duration": 783.03,
+  "priority": "A",
+  "scores": {
+   "total": 0
+  },
+  "parts": [
+   {
+    "clip": "ep-open-mercato-offers",
+    "start": 0.0
+   },
+   {
+    "clip": "ch-doram-5-70-94",
+    "start": 197.7
+   },
+   {
+    "clip": "ch-doram-6-kody-15-minut",
+    "start": 274.713
+   },
+   {
+    "clip": "ch-marpasz-2-100-godzin",
+    "start": 308.13
+   },
+   {
+    "clip": "ch-marpasz-3-katalog-ai",
+    "start": 400.963
+   },
+   {
+    "clip": "ch-rezon-3-panel-klienta",
+    "start": 518.597
+   },
+   {
+    "clip": "ch-vacu-5-kierownik-w-godzine",
+    "start": 625.763
+   },
+   {
+    "clip": "ch-marpasz-4-srubki",
+    "start": 744.63
+   }
+  ]
+ }
+]

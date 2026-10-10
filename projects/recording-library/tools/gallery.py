@@ -10,7 +10,7 @@ import html
 import json
 
 from package import FINAL, PACK, PALETTES, output_name, palettes_for
-from sources import DATA
+from sources import load_clips, DATA
 
 FORMATS = [("reels", "Reels / TikTok 9:16 — organiczne, CTA w komentarzu"),
            ("ad", "Reklama Meta 9:16 — chip CTA + plansza końcowa"),
@@ -18,7 +18,7 @@ FORMATS = [("reels", "Reels / TikTok 9:16 — organiczne, CTA w komentarzu"),
 
 
 def main():
-    clips = {c["id"]: c for c in json.load(open(DATA / "clips.json"))}
+    clips = {c["id"]: c for c in load_clips()}
     boards = sorted(PACK.glob("storyboards/*.json"))
     rows = []
     for path in boards:

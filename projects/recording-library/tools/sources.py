@@ -47,3 +47,11 @@ def load_words(source):
     """Płaska lista słów z transkrypcji Whispera danego źródła."""
     transcript = json.load(open(TRANSCRIPTS / f"{source}.json"))
     return [w for seg in transcript["segments"] for w in seg.get("words", [])]
+
+
+def load_clips():
+    """Baza klipów + składanki (compile_episode.py) — składanki żyją osobno, bo build_clips.py
+    nadpisuje clips.json przy każdym przebiegu."""
+    clips = json.load(open(DATA / "clips.json"))
+    extra = DATA / "compilations.json"
+    return clips + (json.load(open(extra)) if extra.exists() else [])
