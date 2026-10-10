@@ -973,7 +973,7 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .zone-full{{inset:0}}
 .flash{{position:absolute;inset:0;background:#fff;opacity:0;z-index:10;pointer-events:none}}
 .beat{{position:relative;width:100%;text-align:center;display:flex;flex-direction:column;align-items:center;gap:26px}}
-.bt-label{{font-size:30px;font-weight:700;letter-spacing:.34em;text-transform:uppercase;color:{accent}}}
+.bt-label{{font-size:34px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:{accent}}}
 .bt-main,.bt-num,.bt-l1,.bt-l3{{font-weight:900;line-height:1;letter-spacing:-.03em}}
 .bt-acc,.bt-num{{color:{accent}}} .bt-l1{{color:{text}}} .bt-l2{{font-weight:700;color:{muted}}} .bt-l3{{color:{danger}}}
 .bt-sub{{font-size:48px;font-weight:600;color:{muted};display:flex;gap:18px}} .bt-sub .w{{display:inline-block}}
@@ -987,6 +987,8 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .zone-lower .card{{background:{bg}F0;padding:30px 40px 34px;border-radius:26px;border-left:8px solid {accent};box-shadow:0 18px 50px rgba(0,0,0,.45)}}
 .broll-head{{position:absolute;left:0;right:0;bottom:0;padding:180px 80px 70px;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.82))}}
 .broll-center{{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 120px;background:radial-gradient(circle,rgba(0,0,0,.55),rgba(0,0,0,.25))}}
+.broll-head .kicker,.broll-center .kicker{{display:inline-block;background:{bg}E6;padding:8px 16px;border-radius:10px;letter-spacing:.12em}}
+.fmt-h .kicker{{font-size:34px;letter-spacing:.12em}}
 .broll-title{{font-weight:800;line-height:1.04;letter-spacing:-.02em;color:#fff;text-shadow:0 4px 30px rgba(0,0,0,.6)}}
 .broll-title .w{{display:inline-block}} .broll-title .acc{{color:{accent}}}
 #video-wrap{{transform-origin:100% 100%}}
