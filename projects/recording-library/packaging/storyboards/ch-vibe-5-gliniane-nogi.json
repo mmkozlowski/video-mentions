@@ -1,0 +1,71 @@
+{
+ "clip": "ch-vibe-5-gliniane-nogi",
+ "brand": "flowbiz",
+ "formats": [
+  "reels"
+ ],
+ "hook": {
+  "text": "Pierwszy zakręt każdego systemu z AI: *produkcja.",
+  "until": 8.0,
+  "visual": {
+   "kind": "versus",
+   "sign": "→",
+   "left": {
+    "art": "h-developer",
+    "label": "laptop"
+   },
+   "right": {
+    "art": "h-warning-gear",
+    "label": "serwer",
+    "accent": true
+   }
+  }
+ },
+ "topic": {
+  "kicker": "Vibe coding vs framework",
+  "text": "System z AI, *który wytrzyma",
+  "sub": "Claude, Codex i Open Mercato"
+ },
+ "cta": {
+  "chip": "Open Mercato · flowbiz.pl",
+  "reels": {
+   "kicker": "Chcesz pogadać o swoim systemie?",
+   "title": "Napisz *MERCATO w komentarzu",
+   "sub": "Powiem Ci, czy Twój system ma fundamenty"
+  }
+ },
+ "events": [
+  {
+   "type": "beat",
+   "style": "strike",
+   "at": "glinianych",
+   "until": "+3.2",
+   "label": "Bez fundamentów",
+   "main": "GLINIANE NOGI",
+   "sub": [
+    "Lokalnie działa.",
+    "Produkcja nie."
+   ]
+  },
+  {
+   "type": "broll",
+   "at": "mocne",
+   "until": "+4.2",
+   "src": "build/klocki/system-moduly-przelot-16x9.mp4",
+   "src_v": "build/klocki/system-moduly-przelot-9x16.mp4",
+   "full": true,
+   "ai": false
+  },
+  {
+   "type": "title",
+   "at": "stabilne",
+   "until": "+6",
+   "kicker": "Fundamenty Open Mercato",
+   "text": "Wiesz, *gdzie jest błąd"
+  }
+ ],
+ "cover": {
+  "kicker": "Claude vs Open Mercato",
+  "text": "Twój system z AI działa na laptopie. *A na produkcji?"
+ }
+}

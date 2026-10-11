@@ -336,3 +336,6 @@ przeniesione tutaj:
   zmiany`, żeby po renderze nie oglądać starej wersji pod tą samą nazwą.
 - **MP4/MOV poza gitem** (decyzja z 10.10): klipy Higgsfield zdjęte z gita, manifest
   z id zadań zostaje.
+
+
+Rozszerzenie (11.10): [Starsze odcinki kanału w bibliotece](2026-10-11-starsze-odcinki-kanalu.md) — 5 nowych źródeł, 12 makiet, składanka S12.

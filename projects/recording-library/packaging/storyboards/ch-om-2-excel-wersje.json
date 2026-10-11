@@ -1,0 +1,60 @@
+{
+ "clip": "ch-om-2-excel-wersje",
+ "brand": "flowbiz",
+ "formats": [
+  "reels"
+ ],
+ "hook": {
+  "text": "Ten sam Excel w *kilku wersjach. Każda inna.",
+  "until": 6.5,
+  "visual": {
+   "kind": "logos",
+   "items": [
+    "excel",
+    "excel",
+    "excel"
+   ]
+  }
+ },
+ "topic": {
+  "kicker": "Po co Open Mercato",
+  "text": "Własny system *zamiast narzędzi",
+  "sub": "kod, role i historia zmian"
+ },
+ "cta": {
+  "chip": "Open Mercato · flowbiz.pl",
+  "reels": {
+   "kicker": "Chcesz pogadać o swoim systemie?",
+   "title": "Napisz *EXCEL w komentarzu",
+   "sub": "Powiem Ci, co z tym zrobić u Ciebie"
+  }
+ },
+ "events": [
+  {
+   "type": "mockup",
+   "name": "copies",
+   "at": "plik",
+   "until": "Potem"
+  },
+  {
+   "type": "title",
+   "at": "Potem",
+   "until": "rzadko",
+   "kicker": "A kto wprowadza dane?",
+   "text": "Kolejna osoba, *kolejny proces"
+  },
+  {
+   "type": "broll",
+   "at": "rzadko",
+   "until": "+3.2",
+   "src": "build/broll-real/veo-excel-stres.mp4",
+   "label": "Excel bez blokad i zabezpieczeń"
+  },
+  {
+   "type": "quote",
+   "at": "wina",
+   "until": 64.6,
+   "text": "To nie wina ludzi. Proces nie ma gdzie mieszkać."
+  }
+ ]
+}

@@ -1,0 +1,65 @@
+{
+ "clip": "ch-om-11-spolecznosc",
+ "brand": "flowbiz",
+ "formats": [
+  "reels"
+ ],
+ "hook": {
+  "text": "Dwa tygodnie temu nie było modułu magazynu. *Dziś jest.",
+  "until": 6.5,
+  "visual": {
+   "kind": "icon",
+   "art": "h-calendar"
+  }
+ },
+ "topic": {
+  "kicker": "Po co Open Mercato",
+  "text": "Własny system *zamiast narzędzi",
+  "sub": "kod, role i historia zmian"
+ },
+ "cta": {
+  "chip": "Open Mercato · flowbiz.pl",
+  "reels": {
+   "kicker": "Chcesz pogadać o swoim systemie?",
+   "title": "Napisz *MERCATO w komentarzu",
+   "sub": "Pokażę Ci, co już jest gotowe"
+  }
+ },
+ "events": [
+  {
+   "type": "mockup",
+   "name": "modules",
+   "at": "kalendarzem",
+   "until": "ważna",
+   "title": "moduły od społeczności",
+   "fresh": [
+    "WMS",
+    "Kalendarz"
+   ]
+  },
+  {
+   "type": "compare",
+   "at": "zamkniętym",
+   "until": "klocki",
+   "kicker": "Kto rozwija Twój system",
+   "before": {
+    "value": "roadmapa",
+    "label": "czekasz na dostawcę"
+   },
+   "after": {
+    "value": "społeczność",
+    "label": "dokłada klocki"
+   },
+   "after_at": "społeczność"
+  },
+  {
+   "type": "broll",
+   "at": "klocki",
+   "until": 53.6,
+   "src": "build/klocki/system-moduly-przelot-16x9.mp4",
+   "src_v": "build/klocki/system-moduly-przelot-9x16.mp4",
+   "full": true,
+   "ai": false
+  }
+ ]
+}

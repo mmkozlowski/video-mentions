@@ -1,0 +1,53 @@
+{
+ "clip": "ch-vibe-1-baza-danych",
+ "brand": "flowbiz",
+ "formats": [
+  "reels"
+ ],
+ "hook": {
+  "text": "System zrobiony z AI po godzinach. *Bez bazy danych.",
+  "until": 6.5,
+  "visual": {
+   "kind": "versus",
+   "sign": "→",
+   "left": {
+    "logo": "openai",
+    "label": "Codex"
+   },
+   "right": {
+    "art": "h-warning-gear",
+    "label": "0 danych",
+    "accent": true
+   }
+  }
+ },
+ "topic": {
+  "kicker": "Vibe coding",
+  "text": "Gdzie są *Twoje dane?",
+  "sub": "aplikacja z AI bez bazy danych"
+ },
+ "cta": {
+  "chip": "Open Mercato · flowbiz.pl",
+  "reels": {
+   "kicker": "Chcesz pogadać o swoim systemie?",
+   "title": "Napisz *BAZA w komentarzu",
+   "sub": "Sprawdzę, gdzie lądują Twoje dane"
+  }
+ },
+ "events": [
+  {
+   "type": "broll",
+   "at": "Zarządzanie",
+   "until": "+3",
+   "src": "build/broll-real/stock-kod-laptop.mp4",
+   "ai": false,
+   "label": "Vibe coding po godzinach"
+  },
+  {
+   "type": "mockup",
+   "name": "storage",
+   "at": "bazę",
+   "until": "frustracja"
+  }
+ ]
+}

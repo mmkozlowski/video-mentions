@@ -1,0 +1,40 @@
+{
+ "clip": "ch-module-7-slownik",
+ "brand": "flowbiz",
+ "formats": [
+  "reels"
+ ],
+ "hook": {
+  "text": "Jedno słowo, które *wywraca projekty IT.",
+  "until": 8.0,
+  "visual": {
+   "kind": "icon",
+   "art": "h-warning-gear"
+  }
+ },
+ "topic": {
+  "kicker": "Jak składam moduł",
+  "text": "Najpierw kartka, *potem kod",
+  "sub": "warsztat → specyfikacja → moduł"
+ },
+ "cta": {
+  "chip": "Open Mercato · flowbiz.pl",
+  "reels": {
+   "kicker": "Chcesz pogadać o swoim systemie?",
+   "title": "Napisz *SPEC w komentarzu",
+   "sub": "Pokażę Ci, jak spisać słownik pojęć"
+  }
+ },
+ "events": [
+  {
+   "type": "mockup",
+   "name": "glossary",
+   "at": "Zamówienie",
+   "until": 24.3
+  }
+ ],
+ "cover": {
+  "kicker": "Jak składam moduł",
+  "text": "Najczęściej pomijana część *specyfikacji systemu."
+ }
+}

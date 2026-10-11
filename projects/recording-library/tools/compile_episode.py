@@ -17,6 +17,28 @@ import subprocess
 from sources import DATA, LIBRARY
 
 COMPILATIONS = {
+    # S12 „Jak składam moduł” nagrany w dwóch plikach (budowanie + dogrywka) — jeden odcinek
+    "ep-module": dict(
+        title="Jak składam moduł systemu: od kartki do specyfikacji",
+        brand="flowbiz",
+        parts=["ep-module-1", "ep-module-2"],
+    ),
+    # zajawki 4:5 starszych odcinków kanału — historia + puenta
+    "zaj-vibecoding": dict(
+        title="Zajawka: Claude vs Open Mercato",
+        brand="flowbiz",
+        parts=["ch-vibe-1-baza-danych", "ch-vibe-6-puenta"],
+    ),
+    "zaj-module": dict(
+        title="Zajawka: Jak składam moduł",
+        brand="flowbiz",
+        parts=["ch-module-1-kartka", "ch-module-7-slownik", "ch-module-9-wyjatki"],
+    ),
+    "zaj-om": dict(
+        title="Zajawka: Po co Open Mercato",
+        brand="flowbiz",
+        parts=["ch-om-1-co-tu-wow", "ch-om-10-excel-dziala"],
+    ),
     # zajawka przeglądu na LinkedIn/Facebook (4:5) — dwa krótkie, mocne fragmenty
     "zaj-8-wdrozen": dict(
         title="Zajawka: 8 wdrożeń Open Mercato",

@@ -1,5 +1,97 @@
 [
  {
+  "id": "ep-module",
+  "title": "Jak składam moduł systemu: od kartki do specyfikacji",
+  "brand": "flowbiz",
+  "kind": "episode",
+  "source": "session",
+  "duration": 482.07,
+  "priority": "A",
+  "scores": {
+   "total": 0
+  },
+  "parts": [
+   {
+    "clip": "ep-module-1",
+    "start": 0.0
+   },
+   {
+    "clip": "ep-module-2",
+    "start": 255.873
+   }
+  ]
+ },
+ {
+  "id": "zaj-vibecoding",
+  "title": "Zajawka: Claude vs Open Mercato",
+  "brand": "flowbiz",
+  "kind": "episode",
+  "source": "session",
+  "duration": 74.46,
+  "priority": "A",
+  "scores": {
+   "total": 0
+  },
+  "parts": [
+   {
+    "clip": "ch-vibe-1-baza-danych",
+    "start": 0.0
+   },
+   {
+    "clip": "ch-vibe-6-puenta",
+    "start": 39.133
+   }
+  ]
+ },
+ {
+  "id": "zaj-module",
+  "title": "Zajawka: Jak składam moduł",
+  "brand": "flowbiz",
+  "kind": "episode",
+  "source": "session",
+  "duration": 86.6,
+  "priority": "A",
+  "scores": {
+   "total": 0
+  },
+  "parts": [
+   {
+    "clip": "ch-module-1-kartka",
+    "start": 0.0
+   },
+   {
+    "clip": "ch-module-7-slownik",
+    "start": 32.01
+   },
+   {
+    "clip": "ch-module-9-wyjatki",
+    "start": 56.577
+   }
+  ]
+ },
+ {
+  "id": "zaj-om",
+  "title": "Zajawka: Po co Open Mercato",
+  "brand": "flowbiz",
+  "kind": "episode",
+  "source": "session",
+  "duration": 82.93,
+  "priority": "A",
+  "scores": {
+   "total": 0
+  },
+  "parts": [
+   {
+    "clip": "ch-om-1-co-tu-wow",
+    "start": 0.0
+   },
+   {
+    "clip": "ch-om-10-excel-dziala",
+    "start": 37.333
+   }
+  ]
+ },
+ {
   "id": "zaj-8-wdrozen",
   "title": "Zajawka: 8 wdrożeń Open Mercato",
   "brand": "flowbiz",

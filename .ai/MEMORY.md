@@ -20,12 +20,13 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 - [Nigdy nie rozciągaj kadru](memory/nigdy-nie-rozciagaj-kadru.md) — `scale=W:H` na innych proporcjach deformuje; blur-fill albo czysty crop
 - [Whisper zapętla się na długim pliku](memory/whisper-dlugi-plik-petla.md) — > 20 min: `--condition-on-previous-text False --hallucination-silence-threshold 2` od razu; pętla nie zmienia kodu wyjścia
 - [Nagranie z promptera nie trzyma się tekstu](memory/nagranie-z-promptera-nie-trzyma-sie-tekstu.md) — dubel z transkrypcji, scenariusz tylko identyfikuje; poprawki liczb na nagraniu są celowe
-- [Whisper gubi falstarty](memory/whisper-gubi-falstarty.md) — przy powtórkach dubla czasy słów kłamią; sklejka po ciszy w sygnale, kontrola transkrypcją gotowego klipu
+- [Whisper gubi falstarty](memory/whisper-gubi-falstarty.md) — przy powtórkach dubla czasy słów kłamią; sklejka po ciszy w sygnale, kontrola transkrypcją gotowego klipu; słowo potrafi przykryć cały drugi dubel
 
 - [Veo i Nano Banana przez Gemini API](memory/veo-gemini-api.md) — kadr → ożywienie; klucz `GEMINI_API=`, JPEG zamiast PNG, „jeden kadr” bywa tryptykiem, image-to-video 4–5 min
 - [Pion: strefy zakazane Reels](memory/pion-strefy-zakazane-reels.md) — góra ~230, prawa ~130, dół ~260 px; wszystko u góry wchodzi po hooku
 - [Pion: jedno na raz](memory/pion-jedno-na-raz.md) — jedno zdanie = jedno tło, zdania po kolei, hook z grafiką i jako nagłówek, nic na głowie, tylko paleta A
 - [Whisper dokleja „yyy” do słowa](memory/whisper-dokleja-yyy-do-slowa.md) — „yyy” i cisza w środku słowa: wykrywaj w audio (fillers.py); tnij tylko po sygnale, słowa chronią; pauzy zostawiaj ~0,4 s (za mocne cięcie = skarga)
+- [Sprawdź ostrość źródła](memory/sprawdz-ostrosc-zrodla.md) — surówka z kanału bywa rozmyta przez kilka minut (twarde cięcie); pomiar edgedetect przed EDL, szukaj dogrywki/czystej wersji
 - [iPhone HDR psuje render](memory/iphone-hdr-psuje-render.md) — HLG z telefonu przełącza HyperFrames na HDR całego klipu (wolno, wyprane kolory); avconvert → SDR
 - [Grafiki reklamowe z twarzą Mateusza (do zrobienia)](memory/grafiki-reklamowe-z-twarza-mateusza.md) — zdjęcia z miniatur YT, różne nagłówki pod konwersję na kontakt w automatyzacjach, nie tylko treść nagrań
 - [Reklamy graficzne: wzór SellWise](memory/reklamy-graficzne-wzor-sellwise.md) — jedna myśl, nagłówek 2 grubości z frazą w ramce, prawdziwy człowiek z rolą, jeden przycisk; seria z ikonami była „chaotyczna”
@@ -48,3 +49,4 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 - [Pipeline shortów z telefonu (ADR projektowy)](../projects/shorts%20IG/ai/decisions/2026-08-19-pipeline-shortow-z-telefonu.md) — 2026-08-19
 - [Baza klipów z sesji nagraniowej (ADR projektowy)](../projects/recording-library/ai/decisions/2026-10-08-baza-klipow-z-sesji-nagraniowej.md) — 2026-10-08
 - [Opakowanie klipów: 3 formaty × 2 palety (ADR projektowy)](../projects/recording-library/ai/decisions/2026-10-09-opakowanie-klipow-trzy-formaty-dwie-palety.md) — 2026-10-09
+- [Starsze odcinki kanału w bibliotece (ADR projektowy)](../projects/recording-library/ai/decisions/2026-10-11-starsze-odcinki-kanalu.md) — 2026-10-11

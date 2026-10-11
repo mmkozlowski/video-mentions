@@ -14,11 +14,18 @@ TRANSCRIPTS = DATA / "transcripts"   # Whisper large-v3-turbo, czasy słów — 
 LIBRARY = BUILD / "library"          # wycięte klipy — odtwarzalne z clips.json
 
 RAW_DIR = Path.home() / "Downloads" / "nagrywki pazdziernik 2026"
+YT_DIR = Path.home() / "Youtube Projects"
 
 SOURCES = {
     "session": RAW_DIR / "nagrywki reklamy i pozniej spokojne flow .mov",
     "doram": RAW_DIR / "doram.mov",
     "vacuactiv": RAW_DIR / "vacuactiv.mov",
+    # starsze odcinki kanału (nagrania z września/października), też poza repo
+    "vibecoding": YT_DIR / "odcinek-cloud vs openmerrcaot.mov",          # Claude vs Open Mercato (czysta wersja S11)
+    "module-build": YT_DIR / "budowanie - modulu.mov",                    # S12 cz. 1 — od 8:00 obraz rozmyty
+    "module-retake": YT_DIR / "moduly-dogrywka.mov",                      # S12 cz. 2 — specyfikacja → powtarzalność
+    "om-intro": YT_DIR / "S-10 - czym jest OM" / "Surowy" / "01 - czym jest OM.mov",  # S-10, opublikowany
+    "om-retake": YT_DIR / "dogrywka_01.mov",                              # dogrywki S-10: hook „Excel działa”, społeczność
 }
 
 # Kadr źródła: 1280×720, kamera statyczna, twarz w okolicy x≈700–720.
@@ -40,6 +47,11 @@ FACE_CENTER_X = {
     "session": 720,
     "doram": 700,
     "vacuactiv": 720,
+    "vibecoding": 644,
+    "module-build": 674,
+    "module-retake": 650,
+    "om-intro": 644,
+    "om-retake": 660,
 }
 
 

@@ -1,0 +1,70 @@
+{
+ "clip": "ch-om-3-dwa-zdania",
+ "brand": "flowbiz",
+ "formats": [
+  "reels"
+ ],
+ "hook": {
+  "text": "Dwa zdania, które mówię *każdemu właścicielowi.",
+  "until": 6.5,
+  "visual": {
+   "kind": "icon",
+   "art": "h-dashboard"
+  }
+ },
+ "topic": {
+  "kicker": "Po co Open Mercato",
+  "text": "Własny system *zamiast narzędzi",
+  "sub": "kod, role i historia zmian"
+ },
+ "cta": {
+  "chip": "Open Mercato · flowbiz.pl",
+  "reels": {
+   "kicker": "Chcesz pogadać o swoim systemie?",
+   "title": "Napisz *MERCATO w komentarzu",
+   "sub": "Pokażę Ci, od czego zacząć porządki"
+  }
+ },
+ "events": [
+  {
+   "type": "list",
+   "at": "Scentralizować",
+   "until": "najważniejsza",
+   "kicker": "Dwa zdania",
+   "items": [
+    {
+     "text": "Scentralizuj dane",
+     "at": "Scentralizować"
+    },
+    {
+     "text": "Ustal, kto ma dostęp",
+     "at": "ustalić"
+    }
+   ]
+  },
+  {
+   "type": "compare",
+   "at": "Ludzie",
+   "until": "Kupują",
+   "kicker": "Co naprawdę kupujesz",
+   "before": {
+    "value": "platforma",
+    "label": "tak myślą"
+   },
+   "after": {
+    "value": "własny system",
+    "label": "tak jest"
+   },
+   "after_at": "naprawdę"
+  },
+  {
+   "type": "beat",
+   "style": "burst",
+   "at": "Kupują",
+   "until": 40.4,
+   "label": "Kupujesz",
+   "num": "KOD",
+   "bottom": "własność i niezależność"
+  }
+ ]
+}

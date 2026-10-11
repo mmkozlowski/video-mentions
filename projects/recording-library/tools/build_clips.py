@@ -76,7 +76,8 @@ def priority(hook, delivery):
 
 
 def main():
-    words = {s: load_words(s) for s in ("session", "doram", "vacuactiv")}
+    used = {e["source"] for e in edl.CHAPTERS + edl.EPISODES + edl.RAW} | {"session"}
+    words = {s: load_words(s) for s in used}
     clips = []
 
     def add(entry, kind, source, clip_id):

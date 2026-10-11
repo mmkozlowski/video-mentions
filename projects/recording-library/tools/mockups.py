@@ -505,3 +505,320 @@ MOCKUP_STYLE = """
 .fmt-v .mk-theirs{{grid-area:t;font-size:24px}} .fmt-v .mk-ours{{grid-area:o;font-size:28px}} .fmt-v .mk-score{{grid-area:s;grid-template-columns:auto;justify-items:center}}
 .fmt-v .mk-memo{{grid-column:1;grid-row:2;font-size:18px;margin-top:8px}}
 """
+
+
+# ── Makiety do starszych odcinków kanału (11.10.2026): vibe coding, moduł, Open Mercato ──
+
+def appear(comp, sid, selector, at, step=0.18, y=24):
+    comp.js.append(f'tl.fromTo("#{sid} {selector}",{{opacity:0,y:{y}}},{{opacity:1,y:0,duration:0.35,stagger:{step},ease:"power2.out"}},{comp.q(at)});')
+
+
+# Kolega z ep-vibecoding (~0:45): „wyczyści cache przeglądarki, cała jego praca pójdzie na marne,
+# wszystkie dane pracowników, historia” — aplikacja na localhost, dane tylko w pamięci przeglądarki.
+STAFF = [("Anna Nowak", "urlop 12–16.10"), ("Piotr Wiśniewski", "zadanie: inwentaryzacja"), ("Kasia Lewandowska", "urlop 3 dni"),
+         ("Marek Zieliński", "zadanie: dostawa Gdańsk"), ("Ola Kamińska", "L4 do piątku")]
+
+
+def storage(comp, ev, start, end):
+    rows = "".join(f'<div class="st-row" data-i="{i}"><i>{esc(n[0])}</i><b>{esc(n)}</b><span>{esc(s)}</span></div>' for i, (n, s) in enumerate(STAFF))
+    inner = (f'<div class="mk-window st"><div class="mk-bar"><i></i><i></i><i></i><span>localhost:3000 · Pracownicy i urlopy</span></div>'
+             f'<div class="st-list">{rows}<div class="st-empty">0 pracowników</div></div>'
+             f'<div class="st-dialog">Wyczyść dane przeglądania<small>pliki cookie i dane witryn</small><b>Wyczyść</b></div>'
+             f'<div class="mk-foot st-foot">dane były zapisane <b>tylko w przeglądarce</b> — bez bazy danych</div></div>')
+    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    q, span = comp.q, end - start
+    wipe = start + max(2.2, span * 0.45)
+    appear(comp, sid, ".st-row", start + 0.3, 0.15)
+    comp.js.append(f'tl.set("#{sid} .st-dialog, #{sid} .st-empty, #{sid} .st-foot",{{opacity:0}},{q(start)});')
+    comp.js.append(f'tl.fromTo("#{sid} .st-dialog",{{opacity:0,scale:0.8}},{{opacity:1,scale:1,duration:0.3,ease:"back.out(2)"}},{q(wipe - 0.9)});')
+    comp.js.append(f'tl.to("#{sid} .st-dialog b",{{scale:0.92,duration:0.1,yoyo:true,repeat:1}},{q(wipe - 0.25)});')
+    comp.js.append(f'tl.to("#{sid} .st-dialog",{{opacity:0,duration:0.2}},{q(wipe)});')
+    comp.js.append(f'tl.to("#{sid} .st-row",{{opacity:0,x:80,duration:0.25,stagger:0.08,ease:"power2.in"}},{q(wipe + 0.1)});')
+    comp.js.append(f'tl.to("#{sid} .st-empty",{{opacity:1,duration:0.3}},{q(wipe + 0.6)});')
+    comp.js.append(f'tl.to("#{sid} .st-foot",{{opacity:1,duration:0.3}},{q(wipe + 0.9)});')
+
+
+# „Zainstalowały się paczki i moduły, które ze sobą nie gadają… na lokalnym komputerze działa
+# pięknie, produkcyjnie już nie” (ep-vibecoding ~2:10).
+DEPS = ["Pracownicy", "Urlopy", "Zadania", "Faktury", "Magazyn", "Raporty"]
+
+
+def deps(comp, ev, start, end):
+    tiles = "".join(f'<div class="dp-tile" data-i="{i}">{esc(n)}<i class="dp-x">✕</i></div>' for i, n in enumerate(DEPS))
+    errors = ["TypeError: Cannot read properties of undefined", "Error: module 'invoices' not found", "500 Internal Server Error"]
+    log = "".join(f'<div class="dp-err">{esc(e)}</div>' for e in errors)
+    inner = (f'<div class="dp"><div class="dp-grid">{tiles}</div>'
+             f'<div class="dp-env"><span class="dp-local">laptop: <b>działa ✓</b></span><span class="dp-prod">produkcja: <b>✕</b></span></div>'
+             f'<div class="dp-log">{log}</div></div>')
+    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    q, span = comp.q, end - start
+    brk = start + max(2.0, span * 0.45)
+    comp.js.append(f'tl.fromTo("#{sid} .dp-tile",{{opacity:0,scale:0.6}},{{opacity:1,scale:1,duration:0.3,stagger:0.22,ease:"back.out(2)"}},{q(start + 0.2)});')
+    comp.js.append(f'tl.set("#{sid} .dp-x, #{sid} .dp-prod, #{sid} .dp-err",{{opacity:0}},{q(start)});')
+    comp.js.append(f'tl.fromTo("#{sid} .dp-local",{{opacity:0}},{{opacity:1,duration:0.3}},{q(start + 1.6)});')
+    comp.js.append(f'tl.to("#{sid} .dp-tile",{{borderColor:"{{danger}}",duration:0.2,stagger:0.1}},{q(brk)});'.replace("{danger}", comp.pal["danger"]))
+    comp.js.append(f'tl.to("#{sid} .dp-x",{{opacity:1,duration:0.2,stagger:0.1}},{q(brk)});')
+    comp.js.append(f'tl.to("#{sid} .dp-prod",{{opacity:1,duration:0.3}},{q(brk + 0.4)});')
+    comp.js.append(f'tl.to("#{sid} .dp-err",{{opacity:1,duration:0.2,stagger:0.25}},{q(brk + 0.6)});')
+    for k, dx in enumerate((-8, 8, -4, 0)):
+        comp.js.append(f'tl.to("#{sid} .dp-grid",{{x:{dx},duration:0.05,ease:"none"}},{q(brk + k * 0.05)});')
+
+
+# Warstwy z ep-vibecoding (~5:40) i S-10 (~9:30): „są użytkownicy, jeśli użytkownicy, to role,
+# jeśli role, to uprawnienia, a za uprawnieniami stoją moduły — cała ta siatka od razu”.
+LAYERS = [("Użytkownicy", "Anna · Piotr · Kasia"), ("Role", "handlowiec · produkcja · biuro"),
+          ("Uprawnienia", "widzi ceny · edytuje · zatwierdza"), ("Moduły", "zamówienia · oferty · magazyn")]
+
+
+def layers(comp, ev, start, end):
+    rows = "".join(f'<div class="ly-row" data-i="{i}"><b>{esc(n)}</b><span>{esc(d)}</span></div>'
+                   + ('<div class="ly-arrow">↓</div>' if i < len(LAYERS) - 1 else "") for i, (n, d) in enumerate(LAYERS))
+    inner = f'<div class="ly">{rows}<div class="ly-foot">powstaje razem z modułem — <b>od razu, nie po roku</b></div></div>'
+    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    step = min(0.9, max(0.35, (end - start - 1.5) / 5))
+    appear(comp, sid, ".ly-row", start + 0.2, step)
+    appear(comp, sid, ".ly-arrow", start + 0.2 + step * 0.6, step, 0)
+    appear(comp, sid, ".ly-foot", start + 0.4 + step * 4, 0)
+
+
+# Droga kartki z ep-module (~5:10): handlowiec → administracja → produkcja → pakowanie →
+# faktury, „tej jednej kartki dotyka kilka, czasem kilkadziesiąt osób”.
+ROUTE = [("Handlowiec", "przyjmuje"), ("Administracja", "przepisuje"), ("Produkcja", "realizuje"),
+         ("Pakowanie", "wysyła · status"), ("Faktury", "dokumenty · status")]
+
+
+def route(comp, ev, start, end):
+    nodes = "".join(f'<div class="rt-node" data-i="{i}"><i>{i + 1}</i><b>{esc(n)}</b><span>{esc(d)}</span></div>' for i, (n, d) in enumerate(ROUTE))
+    inner = (f'<div class="rt"><div class="rt-line"></div>{nodes}<div class="rt-card">ZAM 0418</div></div>'
+             f'<div class="rt-count">osoby przy jednej kartce: <b class="rt-n">1</b></div>')
+    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    q, span = comp.q, end - start
+    step = min(1.6, max(0.6, (span - 2.0) / len(ROUTE)))
+    appear(comp, sid, ".rt-node", start + 0.2, 0.12)
+    comp.js.append(f'tl.fromTo("#{sid} .rt-line",{{scaleY:0,scaleX:0}},{{scaleY:1,scaleX:1,duration:0.6}},{q(start + 0.2)});')
+    for i in range(len(ROUTE)):
+        t = q(start + 0.9 + i * step)
+        comp.js.append(f'tl.to("#{sid} .rt-card",{{"--i":{i},duration:0.45,ease:"power2.inOut"}},{t});')
+        comp.js.append(f'tl.to("#{sid} .rt-node[data-i=\'{i}\'] i",{{backgroundColor:"{comp.pal["accent"]}",color:"{comp.pal["on_accent"]}",duration:0.2}},{t});')
+        comp.js.append(f'tl.call(function(){{var e=document.querySelector("#{sid} .rt-n");if(e)e.textContent="{(1, 2, 4, 6, 8)[i]}";}},null,{t});')
+    comp.js.append(f'tl.call(function(){{var e=document.querySelector("#{sid} .rt-n");if(e)e.textContent="kilkanaście";}},null,{q(start + 0.9 + len(ROUTE) * step)});')
+
+
+# Specyfikacja z ep-module (~9:50): „trzy warstwy i nie miesza się ich ze sobą — problem biznesowy,
+# reguły biznesowe, specyfikacja techniczna… nie »handlowiec traci dużo czasu«, tylko 40 minut dziennie”.
+def spec(comp, ev, start, end):
+    secs = [("1", "Problem biznesowy", ["Handlowiec traci <b>40 min dziennie</b>", "<b>3 faktury</b> ze złą stawką"]),
+            ("2", "Reguły biznesowe", ["Rabat powyżej 8% zatwierdza szef", "Zamówienie bez karty → nie idzie na produkcję"]),
+            ("3", "Specyfikacja techniczna", ["Moduł: zamówienia · role: handlowiec, biuro", "Poza zakresem: magazyn"])]
+    body = "".join(f'<div class="sp-sec" data-i="{i}"><div class="sp-h"><i>{n}</i>{esc(t)}</div>'
+                   + "".join(f'<div class="sp-li">{li}</div>' for li in lis) + '</div>' for i, (n, t, lis) in enumerate(secs))
+    inner = f'<div class="mk-window sp"><div class="mk-bar"><i></i><i></i><i></i><span>specyfikacja · moduł zamówień.md</span></div><div class="sp-body">{body}</div></div>'
+    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    step = min(1.4, max(0.5, (end - start - 1.2) / 3))
+    appear(comp, sid, ".sp-sec", start + 0.3, step)
+    comp.js.append(f'tl.fromTo("#{sid} .sp-sec[data-i=\'0\'] b",{{color:"{comp.pal["text"]}"}},{{color:"{comp.pal["accent"]}",duration:0.3}},{comp.q(start + 0.9)});')
+
+
+# Słownik pojęć z ep-module (~11:30): „zamówienie u handlowca to jedno, zamówienie na produkcji
+# to co innego — jak tego nie spiszesz, każdy zbuduje coś innego”.
+def glossary(comp, ev, start, end):
+    cards = [("u handlowca", ["klient i rabat", "termin dostawy", "cena netto"]),
+             ("na produkcji", ["karta technologiczna", "materiał i wymiary", "etap i stanowisko"])]
+    body = "".join(f'<div class="gl-card" data-i="{i}"><div class="gl-word">Zamówienie</div><div class="gl-where">{esc(w)}</div>'
+                   + "".join(f'<div class="gl-f">{esc(f)}</div>' for f in fs) + '</div>' for i, (w, fs) in enumerate(cards))
+    inner = f'<div class="gl"><div class="gl-row">{body}<div class="gl-ne">≠</div></div><div class="gl-foot">to samo słowo · <b>inne pola</b> · spisz to w słowniku pojęć</div></div>'
+    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    appear(comp, sid, ".gl-card", start + 0.2, 0.6, 40)
+    comp.js.append(f'tl.fromTo("#{sid} .gl-ne",{{opacity:0,scale:0.3}},{{opacity:1,scale:1,duration:0.4,ease:"back.out(2.5)"}},{comp.q(start + 1.4)});')
+    appear(comp, sid, ".gl-foot", start + 2.0, 0)
+
+
+# Checklista z ep-module (~12:20): „bezpieczeństwo, wydajność, ryzyka, przegląd tego, czego nie
+# wzięliśmy pod uwagę… przy dobrej specyfikacji trafność 70–90%”.
+def checklist(comp, ev, start, end):
+    items = ["Bezpieczeństwo", "Wydajność", "Ryzyka", "Uprawnienia: kto i dlaczego", "Czego nie wzięliśmy pod uwagę"]
+    rows = "".join(f'<div class="ck-row" data-i="{i}"><i>✓</i>{esc(t)}</div>' for i, t in enumerate(items))
+    inner = (f'<div class="ck"><div class="mk-window ck-list"><div class="mk-bar"><i></i><i></i><i></i><span>checklista specyfikacji</span></div>{rows}</div>'
+             f'<div class="ck-gauge"><span>trafność modułu</span><div class="hv-bar"><i></i></div><b>70–90%</b></div></div>')
+    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    q, span = comp.q, end - start
+    step = min(0.7, max(0.3, (span - 2.5) / 6))
+    appear(comp, sid, ".ck-row", start + 0.3, step, 0)
+    comp.js.append(f'tl.fromTo("#{sid} .ck-row i",{{scale:0}},{{scale:1,duration:0.25,stagger:{step},ease:"back.out(2.5)"}},{q(start + 0.5)});')
+    g = start + 0.5 + step * 5
+    comp.js.append(f'tl.fromTo("#{sid} .ck-gauge",{{opacity:0,y:20}},{{opacity:1,y:0,duration:0.35}},{q(g)});')
+    comp.js.append(f'tl.fromTo("#{sid} .ck-gauge .hv-bar i",{{width:"0%"}},{{width:"85%",duration:0.9,ease:"power2.out"}},{q(g + 0.2)});')
+
+
+# Kopie Excela z S-10 (~3:00): „ten sam plik w kilku wersjach… jedna osoba widzi tę kolumnę,
+# druga inną… nie chcemy, żeby ktoś widział marżę, za ile kupiliśmy”.
+COPIES = [("zamowienia_SZEF.xlsx", ["Klient", "Ilość", "Cena", "Zakup", "Marża"], []),
+          ("zamowienia_handlowcy.xlsx", ["Klient", "Ilość", "Cena", "Zakup", "Marża"], [3, 4]),
+          ("zamowienia_produkcja.xlsx", ["Klient", "Ilość", "Cena", "Zakup", "Marża"], [2, 3, 4])]
+
+
+def copies(comp, ev, start, end):
+    sheets = "".join(f'<div class="xc" data-i="{i}"><div class="xl-name">{esc(n)}</div><div class="xc-cols">'
+                     + "".join(f'<span class="{"xc-hid" if k in hidden else ""}">{esc(c)}</span>' for k, c in enumerate(cols))
+                     + '</div></div>' for i, (n, cols, hidden) in enumerate(COPIES))
+    inner = f'<div class="xc-wrap">{sheets}</div><div class="xl-foot">1 proces · <b>3 kopie pliku</b> · 3 wersje prawdy</div>'
+    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    q = comp.q
+    comp.js.append(f'tl.fromTo("#{sid} .xc",{{opacity:0,y:50,rotation:-2}},{{opacity:1,y:0,rotation:0,duration:0.45,stagger:0.35,ease:"back.out(1.5)"}},{q(start + 0.3)});')
+    comp.js.append(f'tl.fromTo("#{sid} .xc-hid",{{opacity:1}},{{opacity:0.12,duration:0.3,stagger:0.12}},{q(start + 1.7)});')
+    appear(comp, sid, ".xl-foot", start + 2.5, 0)
+
+
+# Historia zmian z S-10 (~13:40): „wiadomo, kto, co, kiedy i na czym pracuje” — zamiast szukania
+# po różnych miejscach, kto zmienił i dlaczego.
+HISTORY = [("Anna K.", "handlowiec", "cena 120 → 98 zł", "wt 09:14"), ("Piotr W.", "produkcja", "status → w produkcji", "wt 10:02"),
+           ("Biuro", "biuro", "faktura FV/10/418", "wt 13:47"), ("System", "automat", "mail do klienta: wysłane", "wt 13:48")]
+
+
+def history(comp, ev, start, end):
+    rows = "".join(f'<div class="hs-row" data-i="{i}"><b>{esc(w)}</b><span class="mk-badge mid">{esc(r)}</span><span>{esc(a)}</span><em>{esc(t)}</em></div>'
+                   for i, (w, r, a, t) in enumerate(HISTORY))
+    inner = (f'<div class="mk-window hs"><div class="mk-bar"><i></i><i></i><i></i><span>Zamówienie ZAM 0418 · historia zmian</span></div>'
+             f'{rows}<div class="mk-foot">kto · co · kiedy — <b>bez szukania po mailach</b></div></div>')
+    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    appear(comp, sid, ".hs-row", start + 0.3, min(0.7, max(0.25, (end - start - 1.5) / 5)), 0)
+    appear(comp, sid, ".mk-foot", start + 2.4, 0)
+
+
+# Warsztat z ep-module (~3:10): „około 70 pytań, ułożone nie tematycznie, tylko po ludziach —
+# właściciel, handlowiec, produkcja, biuro, obsługa zamówień; na końcu otwarte decyzje”.
+ROLES_Q = [("Właściciel", 12), ("Handlowiec", 14), ("Produkcja", 16), ("Biuro", 11), ("Obsługa zamówień", 12), ("Otwarte decyzje", 5)]
+
+
+def questions(comp, ev, start, end):
+    rows = "".join(f'<div class="qs-row" data-i="{i}"><b>{esc(r)}</b><span>{n} pytań</span></div>' for i, (r, n) in enumerate(ROLES_Q))
+    inner = (f'<div class="qs"><div class="co-kicker">Warsztat · 6 godzin · 1 dzień</div><div class="qs-list">{rows}</div>'
+             f'<div class="qs-total"><b class="qs-n">0</b> pytań — po ludziach, nie po tematach</div></div>')
+    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    q = comp.q
+    step = min(0.6, max(0.25, (end - start - 2) / 7))
+    appear(comp, sid, ".qs-row", start + 0.3, step, 0)
+    total = sum(n for _, n in ROLES_Q)
+    comp.js.append(f'(function(){{var o={{v:0}};tl.to(o,{{v:{total},duration:{q(step * 6)},ease:"none",onUpdate:function(){{var e=document.querySelector("#{sid} .qs-n");if(e)e.textContent=Math.round(o.v);}}}},{q(start + 0.3)});}})();')
+
+
+# Moduły Open Mercato z S-10 (~9:55) i dogrywki (~7:30): „zamówienia, oferty, pipeline, kontrahenci,
+# użytkownicy, role, portal klienta… 80% masz gotowe” + WMS i kalendarz od społeczności.
+OM_MODULES = ["Zamówienia", "Oferty", "Pipeline", "Kontrahenci", "Użytkownicy i role", "Portal klienta", "Historia zmian", "Katalog"]
+
+
+def modules(comp, ev, start, end):
+    from package import logo
+    fresh = ev.get("fresh", [])
+    tiles = "".join(f'<div class="om-tile" data-i="{i}">{esc(n)}</div>' for i, n in enumerate(OM_MODULES))
+    tiles += "".join(f'<div class="om-tile om-new">{esc(n)}<i>nowe</i></div>' for n in fresh)
+    own = '<div class="om-tile om-own">Twój proces<i>dopisujesz</i></div>'
+    inner = (f'<div class="om"><div class="om-head">{logo("openmercato", 56)}<span>{esc(ev.get("title", "gotowe moduły"))}</span></div>'
+             f'<div class="om-grid">{tiles}{own}</div>'
+             f'<div class="om-foot"><b>~80%</b> gotowe · resztę dopisujesz pod swoją firmę</div></div>')
+    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    q = comp.q
+    comp.js.append(f'tl.fromTo("#{sid} .om-tile",{{opacity:0,scale:0.7}},{{opacity:1,scale:1,duration:0.3,stagger:0.12,ease:"back.out(2)"}},{q(start + 0.3)});')
+    if fresh:
+        comp.js.append(f'tl.fromTo("#{sid} .om-new",{{boxShadow:"0 0 0 0 rgba(245,166,35,0)"}},{{boxShadow:"0 0 0 8px rgba(245,166,35,0.35)",duration:0.4,yoyo:true,repeat:3}},{q(start + 1.8)});')
+    appear(comp, sid, ".om-foot", start + 2.2, 0)
+
+
+# Repozytorium z ep-vibecoding (~6:00): „struktura ma w repozytorium konkretne miejsce, specyfikacja
+# powstaje, zanim powstanie kod, a każdy moduł ma osobny plik z zasadami dla agenta”.
+REPO = [("modules/", 0, ""), ("orders/", 1, ""), ("spec.md", 2, "specyfikacja — przed kodem"), ("AGENTS.md", 2, "zasady dla agenta"),
+        ("acl.ts", 2, "role i uprawnienia"), ("data/", 2, "baza danych"), ("offers/", 1, ""), ("AGENTS.md", 2, "zasady dla agenta")]
+
+
+def repo(comp, ev, start, end):
+    rows = "".join(f'<div class="rp-row" data-i="{i}" style="padding-left:{40 + d * 52}px"><b>{esc(n)}</b>'
+                   + (f'<span>{esc(note)}</span>' if note else "") + '</div>' for i, (n, d, note) in enumerate(REPO))
+    inner = f'<div class="mk-window rp"><div class="mk-bar"><i></i><i></i><i></i><span>repozytorium · Open Mercato</span></div>{rows}</div>'
+    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    appear(comp, sid, ".rp-row", start + 0.3, min(0.45, max(0.18, (end - start - 1.5) / 9)), 0)
+
+
+MOCKUPS.update({"storage": storage, "deps": deps, "layers": layers, "route": route, "spec": spec, "glossary": glossary,
+                "checklist": checklist, "copies": copies, "history": history, "questions": questions, "modules": modules, "repo": repo})
+
+MOCKUP_STYLE += """
+.st-list{{position:relative;min-height:520px}} .st-empty{{position:absolute;left:0;right:0;top:45%;text-align:center;font-size:54px;font-weight:800;color:{danger}}}
+.st-row{{display:grid;grid-template-columns:70px 1fr 1fr;gap:24px;align-items:center;padding:0 34px;min-height:96px;font-size:32px;border-bottom:1px solid {line}}}
+.st-row i{{width:58px;height:58px;border-radius:50%;background:{raised};display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:800;color:{accent}}}
+.st-row span{{color:{muted}}} .st{{position:relative}}
+.st-dialog{{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);width:620px;padding:34px 40px;border-radius:24px;background:{raised};border:2px solid {line};display:flex;flex-direction:column;gap:10px;font-size:36px;font-weight:800;box-shadow:0 30px 80px rgba(0,0,0,.6)}}
+.st-dialog small{{font-size:24px;color:{muted};font-weight:500}} .st-dialog b{{align-self:flex-end;margin-top:14px;padding:14px 30px;border-radius:14px;background:{danger};color:#fff;font-size:28px}}
+.fmt-v .st-row{{grid-template-columns:76px 1fr;row-gap:4px;font-size:40px;padding:22px 34px}} .fmt-v .st-row i{{grid-row:1/3;width:66px;height:66px}} .fmt-v .st-row span{{grid-column:2;font-size:30px}} .fmt-v .st-list{{min-height:820px}} .fmt-v .mk-bar{{font-size:30px}} .fmt-v .mk-foot{{font-size:32px}}
+.dp{{display:flex;flex-direction:column;gap:40px;align-items:center;width:100%}}
+.dp-grid{{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;width:100%}}
+.dp-tile{{position:relative;height:150px;border-radius:24px;background:{panel};border:3px solid {accent};display:flex;align-items:center;justify-content:center;font-size:38px;font-weight:800}}
+.dp-x{{position:absolute;top:-18px;right:-18px;width:52px;height:52px;border-radius:50%;background:{danger};color:#fff;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:30px}}
+.dp-env{{display:flex;gap:60px;font-size:40px;font-weight:700}} .dp-local b{{color:{accent2}}} .dp-prod b{{color:{danger}}}
+.dp-log{{width:100%;background:#050504;border-radius:20px;padding:24px 30px;font-family:ui-monospace,Menlo,monospace;font-size:26px;color:{danger};text-align:left;display:flex;flex-direction:column;gap:8px}}
+.fmt-v .dp-grid{{grid-template-columns:repeat(2,1fr)}} .fmt-v .dp-tile{{height:120px;font-size:34px}} .fmt-v .dp-env{{flex-direction:column;gap:10px}} .fmt-v .dp-log{{font-size:22px}}
+.ly{{display:flex;flex-direction:column;align-items:center;gap:14px;width:100%}}
+.ly-row{{width:100%;display:flex;justify-content:space-between;align-items:center;padding:28px 44px;border-radius:24px;background:{panel};border:2px solid {line};border-left:10px solid {accent}}}
+.ly-row b{{font-size:48px;font-weight:800}} .ly-row span{{font-size:30px;color:{muted}}}
+.ly-arrow{{font-size:44px;color:{accent};font-weight:800;line-height:1}}
+.ly-foot{{margin-top:18px;font-size:34px;color:{muted}}} .ly-foot b{{color:{text}}}
+.fmt-v .ly-row{{flex-direction:column;align-items:flex-start;gap:6px;padding:22px 34px}} .fmt-v .ly-row b{{font-size:44px}} .fmt-v .ly-row span{{font-size:28px}}
+.rt{{position:relative;width:100%;display:grid;grid-template-columns:repeat(5,1fr);gap:16px;padding-top:120px}}
+.rt-line{{position:absolute;left:10%;right:10%;top:174px;height:6px;background:{line};transform-origin:left center}}
+.rt-node{{position:relative;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}}
+.rt-node i{{width:110px;height:110px;border-radius:50%;background:{raised};border:3px solid {line};display:flex;align-items:center;justify-content:center;font-style:normal;font-size:44px;font-weight:800}}
+.rt-node b{{font-size:32px;font-weight:800}} .rt-node span{{font-size:24px;color:{muted}}}
+.rt-card{{--i:0;position:absolute;top:0;left:calc(10% - 85px + var(--i) * 20%);width:170px;padding:16px 0;border-radius:14px;background:#FAF8F0;color:#0A0A08;font-size:26px;font-weight:800;text-align:center;box-shadow:0 14px 30px rgba(0,0,0,.5)}}
+.rt-count{{margin-top:60px;font-size:44px;font-weight:700}} .rt-count b{{color:{accent}}}
+.fmt-v .rt{{grid-template-columns:1fr;padding-top:0;padding-left:230px;gap:22px}}
+.fmt-v .rt-line{{left:284px;right:auto;top:6%;bottom:6%;width:6px;height:auto;transform-origin:center top}}
+.fmt-v .rt-node{{flex-direction:row;text-align:left;gap:24px}} .fmt-v .rt-node i{{width:96px;height:96px;flex:none}}
+.fmt-v .rt-node b{{font-size:36px}} .fmt-v .rt-node span{{display:block;font-size:26px}}
+.fmt-v .rt-card{{left:0;top:calc(var(--i) * 118px + 24px);width:180px}}
+.sp-body{{padding:24px 34px 34px;display:flex;flex-direction:column;gap:24px}}
+.sp-sec{{padding:22px 28px;border-radius:20px;background:{raised}}}
+.sp-h{{display:flex;align-items:center;gap:16px;font-size:36px;font-weight:800;margin-bottom:10px}}
+.sp-h i{{width:50px;height:50px;border-radius:12px;background:{accent};color:{on_accent};display:flex;align-items:center;justify-content:center;font-style:normal}}
+.sp-li{{font-size:30px;color:{muted};padding:6px 0 6px 66px}} .sp-li b{{color:{text}}}
+.fmt-v .sp-li{{padding-left:0;font-size:28px}}
+.gl{{display:flex;flex-direction:column;align-items:center;gap:40px;width:100%}}
+.gl-row{{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:110px;width:100%}}
+.gl-card{{padding:34px 36px;border-radius:26px;background:{panel};border:2px solid {line};text-align:left;display:flex;flex-direction:column;gap:14px}}
+.gl-word{{font-size:54px;font-weight:900}} .gl-where{{font-size:28px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:{accent}}}
+.gl-f{{font-size:32px;padding:12px 18px;border-radius:14px;background:{raised}}}
+.gl-ne{{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:120px;font-weight:900;color:{danger}}}
+.gl-foot{{font-size:34px;color:{muted}}} .gl-foot b{{color:{text}}}
+.fmt-v .gl-row{{grid-template-columns:1fr;gap:90px}} .fmt-v .gl-word{{font-size:46px}} .fmt-v .gl-f{{font-size:28px;padding:8px 16px}} .fmt-v .gl-card{{padding:24px 30px;gap:10px}}
+.ck{{display:flex;flex-direction:column;gap:40px;width:100%}}
+.ck-row{{display:flex;align-items:center;gap:24px;padding:0 34px;min-height:92px;font-size:36px;font-weight:700;border-bottom:1px solid {line}}}
+.ck-row i{{width:56px;height:56px;border-radius:50%;background:{accent2};color:#0A0A08;display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:900}}
+.ck-gauge{{display:grid;grid-template-columns:auto 1fr auto;gap:30px;align-items:center;font-size:32px;color:{muted}}} .ck-gauge b{{font-size:64px;color:{accent};font-weight:900}}
+.ck-gauge .hv-bar{{height:24px;border-radius:12px;background:{raised};overflow:hidden}} .ck-gauge .hv-bar i{{display:block;height:100%;background:{accent}}}
+.fmt-v .ck-gauge{{grid-template-columns:1fr auto}} .fmt-v .ck-gauge span{{grid-column:1/3}} .fmt-v .ck-row{{font-size:32px}}
+.xc-wrap{{display:flex;flex-direction:column;gap:24px;width:100%}}
+.xc{{background:#F4F6F2;border-radius:18px;overflow:hidden;color:#1D3A26;text-align:left}}
+.xc .xl-name{{background:#1D6F42;color:#fff}}
+.xc-cols{{display:grid;grid-template-columns:repeat(5,1fr)}} .xc-cols span{{padding:22px 18px;font-size:30px;font-weight:700;border-right:1px solid #CFD8CF}}
+.fmt-v .xc-cols span{{font-size:24px;padding:18px 10px}}
+.hs-row{{display:grid;grid-template-columns:200px 200px 1fr 140px;gap:20px;align-items:center;padding:0 34px;min-height:96px;font-size:30px;border-bottom:1px solid {line}}}
+.hs-row em{{font-style:normal;color:{muted}}} .hs-row .mk-badge{{font-size:22px;justify-self:start}}
+.fmt-v .hs-row{{grid-template-columns:1fr auto;row-gap:2px;padding:14px 28px}} .fmt-v .hs-row span:not(.mk-badge){{grid-column:1/3;color:{muted}}} .fmt-v .hs-row em{{display:none}}
+.qs{{display:flex;flex-direction:column;align-items:center;gap:30px;width:100%}}
+.qs-list{{display:grid;grid-template-columns:1fr 1fr;gap:18px;width:100%}}
+.qs-row{{display:flex;justify-content:space-between;align-items:center;padding:24px 30px;border-radius:20px;background:{panel};border:2px solid {line};font-size:34px}}
+.qs-row span{{color:{accent};font-weight:800;font-size:30px}}
+.qs-total{{font-size:40px;color:{muted}}} .qs-total b{{font-size:72px;color:{accent};font-weight:900;margin-right:10px}}
+.fmt-v .qs-list{{grid-template-columns:1fr;gap:12px}} .fmt-v .qs-row{{padding:18px 26px;font-size:32px}}
+.om{{display:flex;flex-direction:column;align-items:center;gap:34px;width:100%}}
+.om-head{{display:flex;align-items:center;gap:20px;font-size:34px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:{muted}}}
+.om-grid{{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;width:100%}}
+.om-tile{{position:relative;height:130px;border-radius:20px;background:{panel};border:2px solid {line};display:flex;align-items:center;justify-content:center;text-align:center;padding:0 14px;font-size:30px;font-weight:800}}
+.om-tile i{{position:absolute;top:-14px;right:14px;padding:4px 12px;border-radius:12px;background:{accent};color:{on_accent};font-style:normal;font-size:20px}}
+.om-own{{border:3px dashed {accent};color:{accent}}}
+.om-foot{{font-size:36px;color:{muted}}} .om-foot b{{color:{accent};font-size:50px}}
+.fmt-v .om-grid{{grid-template-columns:repeat(2,1fr)}} .fmt-v .om-tile{{height:110px;font-size:30px}}
+.rp-row{{display:flex;align-items:center;gap:30px;min-height:80px;font-family:ui-monospace,Menlo,monospace;font-size:32px;border-bottom:1px solid {line}}}
+.rp-row b{{font-weight:700}} .rp-row span{{font-family:{font},sans-serif;font-size:26px;color:{accent};font-weight:700}}
+.fmt-v .rp-row{{font-size:28px;gap:18px}} .fmt-v .rp-row span{{font-size:22px}}
+.fmt-v .dp,.fmt-v .ly,.fmt-v .sp,.fmt-v .gl,.fmt-v .ck,.fmt-v .xc-wrap,.fmt-v .hs,.fmt-v .qs,.fmt-v .om,.fmt-v .rp{{zoom:1.3;width:692px;align-self:center}}
+.fmt-v .rt{{zoom:1.25;width:720px;align-self:center}} .fmt-v .rt-count{{font-size:52px}} .fmt-v .xl-foot{{font-size:40px}}
+"""

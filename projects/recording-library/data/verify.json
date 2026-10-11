@@ -406,5 +406,203 @@
   "av_drift": 0.017,
   "new_repeats": [],
   "heard": "Cześć, czy masz wrażenie, że cała bańka AI-owa powoduje strach w Twojej firmie?\nCzy cały czas masz poczucie, że wszystkie nowinki techniczne uciekają Ci,\na Ty dalej masz problem z tym, żeby dobrze nawet wykorzystać czar GPT w Twojej firmie?\nto jest normalne uczucie i zagubienie w tych gościu informacji jest czymś zupełnie normalnym.\nJa zapraszam Cię na warsztaty, na których będę pokazywał jak mądrze i jak etapami wdrażać AI w Twojej firmie.\nPo co AI w Twojej firmie? A po to, aby zlikwidować pracę ręczną,\ntak zwane klikanie i przenoszenie rzeczy z jednego miejsca w drugie.\nNiestety jest to jedna z pierwszych pozycji na raportach od firmy Antropi,\nktóra jest właścicielem narzędzia Cloud, od tego, że ta praca będzie likwidowana jako pierwsza.\nRzeczy, które przenosimy ręcznie będą najszybciej automatyzowane.\ngenerują teraz bardzo dużo zawsze problemów, błędów i kosztów dla firmy.\nJakie to są problemy? Jakie to są rzeczy, które można wdrożyć?\nRęczne wystawianie ofert.\nRęczne wystawianie ofert, raportowanie danych, przenoszenie z jednego Excel do drugiego,\naby druga osoba miała na przykład dostęp.\nAutomatyczne, zautomatyzowane wystawianie faktur dla firmie.\n"
+ },
+ "ch-vibe-1-baza-danych": {
+  "verdict": "ok",
+  "coverage": 0.979,
+  "av_drift": 0.023,
+  "new_repeats": [],
+  "heard": "Kolega pokazał mi ostatnio system, który zrobił sam dla swojej firmy,\nvibe kodując razem z kodeksem.\nZarządzanie pracownikami, uropy i wszystko ładnie klikane.\nZrobił to z agentem sam, bez programisty, za pomocą kodeksa.\nPatrzy i mówię, super, a ja mówię, a jak zrobiłeś tą bazę danych,\nktóra tam pod spodem działa?\nA on po chwili pyta, ale jaką bazę danych?\nI tutaj się lekko uśmiecham, bo musiałem mu powiedzieć,\nże w momencie, kiedy wyczyści\ncash przeglądarki,\ncała jego praca po prostu\npójdzie na marne, zniknie.\nWszystkie dane pracowników, historia,\npo prostu wszystko. I będzie\nwielka frustracja.\n"
+ },
+ "ch-vibe-2-magiczne-sesje": {
+  "verdict": "ok",
+  "coverage": 1.0,
+  "av_drift": 0.003,
+  "new_repeats": [],
+  "heard": "Kiedy zaczynasz budować z agentem AI pierwsze, dwie sesje wyglądają magiczne.\nProsisz o ekran, dostajesz ekran.\nProsisz o formularz, jest formularz.\nI pojawia się ekscytacja.\nWidzę to bardzo często u osób nietechnicznych.\nJeszcze bym chciał to, jeszcze bym chciał kolejny moduł i jeszcze kolejny moduł.\nI nagle się okazuje, że zainstalowały się paczki i moduły, które ze sobą po prostu nie grają, nie gadają.\nnie gadają ze sobą i nie są w stanie współpracować.\nPowstaje coś, co działa i wygląda jak system,\nale to jest rozwiązanie do jednorazowego użytku,\npotocznie mówiąc vibe coding.\nNa lokalnym komputerze to wszystko działa pięknie,\nprodukcyjnie już nie,\nbo dowolna zmiana, którą zrobisz,\nmoże wywalić całą resztę.\nI najgorsze jest to, że sam się o tym nie dowiesz.\nNie masz jak, nie wiesz czego szukać.\n"
+ },
+ "ch-vibe-3-przyznaje-racje": {
+  "verdict": "check",
+  "coverage": 0.951,
+  "av_drift": 0.007,
+  "new_repeats": [
+   "i to jest"
+  ],
+  "heard": "Problem jest gdzie indziej. AI przyznaje Ci rację. Cokolwiek go o cokolwiek poprosisz w 99% zrobi. I jeszcze Ci powie, że to jest super pomysł, że na pewno tym razem to będzie świetnie działało i że jesteś niespanialszym programistą na świecie.\nI to jest bardzo, i to jest dokładnie ten problem, bo przy pustym projekcie agent musi podjąć setki decyzji architektonicznych, żeby zbudować fundamenty, zbudować infrastrukturę.\nA skoro nikt mu nie powiedział jak, to podejmuje je za każdym razem inaczej.\n"
+ },
+ "ch-vibe-4-framework": {
+  "verdict": "ok",
+  "coverage": 0.991,
+  "av_drift": 0.003,
+  "new_repeats": [],
+  "heard": "Open Mercato to jest w pewnym uproszczeniu\nframework we frameworku.\nPodłączasz swojego cloud'a albo kodeksa\ni on nie zaczyna od pustej kartki.\nOn wpada w pewną strukturę, przygotowane fundamenty\ni architekturę. I ta struktura mu mówi\nhej, w tym co chcesz zrobić brakuje\ntego i jeszcze innej rzeczy.\nTego nie możesz zrobić. Jeśli to zrobisz, to na własne\nryzyko i coś się może zepsuć. A jeśli chcesz zrobić, żeby to było\nzrobione dobrze, to zrób w ten sposób, jak my to Ci zalecamy.\nI teraz wróćmy do mojego kolegi. Czy on popełni ten sam błąd tutaj\nprzy Open Mercato? No właśnie nie, bo pod spodem odpalają się mechanizmy,\nktóre wiedzą, co mają robić.\n"
+ },
+ "ch-vibe-5-gliniane-nogi": {
+  "verdict": "ok",
+  "coverage": 0.97,
+  "av_drift": 0.0,
+  "new_repeats": [],
+  "heard": "Jeśli nie znasz cyklu wytwarzania oprogramowania, to i tak na Open Mercato zbudujesz system.\nW przypadku tworzenia od postaw systemu i bez wiedzy na temat cyklu wytwarzania oprogramowania,\nTwój soft wywali się na pierwszym zakręcie, którym jest produkcja.\nTaki system stoi na glinianych nogach, dopóki bawisz się lokalnie, wszystko w porządku.\nZabawa zacznie się, kiedy ma działać na produkcji.\nW przypadku budowania za pomocą Open Mercato, te fundamenty nie są gliniane,\nale są to mocne fundamenty, które pilnują tego, jak to robić zgodnie ze sztuką.\nMa być stabilne, bez błędów, a jak będą błędy, to musisz wiedzieć, gdzie te błędy są.\n"
+ },
+ "ch-vibe-6-puenta": {
+  "verdict": "ok",
+  "coverage": 0.987,
+  "av_drift": 0.016,
+  "new_repeats": [],
+  "heard": "A i AI obniżyło mocno bariery, jeżeli chodzi o wytwarzanie kodu, bardzo mocno,\nale nie obniżyło bariery projektowania i decyzji architektonicznych.\nAgent nie gubi się dlatego, że jest słaby, gubi się dlatego, że przy pustym projekcie\nmusi wymyślać wszystko od nowa. Za każdym razem inaczej.\nFramework nie robi go mądrzejszym, framework zabiera mu wybór, narzuca mu pewne granice\nI to jest różnica między czymś, co działa u Ciebie na laptopie lokalnie,\na czymś, co można oddać w firmie.\n"
+ },
+ "ch-vibe-7-nie-dla-kazdego": {
+  "verdict": "ok",
+  "coverage": 1.0,
+  "av_drift": 0.004,
+  "new_repeats": [],
+  "heard": "I teraz rzecz, której nie powie Ci nikt, kto sprzedaje oprogramowanie.\nTo nie jest narzędzie dla każdego.\nJeśli pytasz, czy da się to zrobić bez zespołu deweloperskiego,\nto Ci od razu powiem, że raczej nie.\nTo jest narzędzie dla programistów.\nTo jest narzędzie dla osób technicznych.\nI teraz kolejna rzecz, najbardziej uczciwa.\nUtrzymanie masz na własnych barkach.\naktualizacje, serwer, błędy na tym serwerze, to wszystko jest po Twojej stronie.\nW gotowym sasie oczywiście płacisz za to, żeby ktoś inny się tym martwił.\n"
+ },
+ "ch-module-1-kartka": {
+  "verdict": "ok",
+  "coverage": 1.0,
+  "av_drift": 0.01,
+  "new_repeats": [],
+  "heard": "Zanim napiszę jedną linię kodu, biorę kartkę, taką zwykłą kartkę papieru, która często funkcjonuje w firmach.\nI 6 godzin chodzę z tą kartką po firmach albo kartkami, śledząc drogę tego na przykład zamówienia.\nOd momentu, w którym wpada, do momentu, w którym ktoś wystawia fakturę i wyjeżdża z danym zamówieniem.\nI to jest najważniejsza część mojej roboty.\nNie kod, nie ekran, nie wybór technologii.\nTa kartka.\n"
+ },
+ "ch-module-2-druga-strona": {
+  "verdict": "ok",
+  "coverage": 0.99,
+  "av_drift": 0.014,
+  "new_repeats": [],
+  "heard": "Mówię o tym, bo widzę jak ludzie zacząć od drugiej strony.\nOdpalają agenta, proszą o system, dostają system.\nI po miesiącu okazuje się, że to nie opisuje ich firmy, to nie opisuje ich procesu.\nZaczynam od warsztatu, 6 godzin, 1 dzień i przychodzę na niego z gotową listą.\nOkoło 70 nieraz pytań nawet w różnych koncepcjach.\nNie są ułożone tematycznie, są ułożone często po ludziach.\nOsobno pytania dla właściciela, osobno pytania dla handlowca,\nosobno dla produkcji i dla działów technicznych.\nDla biur inny zestaw i dla obsługi zamówienia też inny zestaw pytań.\nNa końcu osobna sekcja otwartych decyzji do zamknięcia.\n"
+ },
+ "ch-module-3-wtorek-rano": {
+  "verdict": "ok",
+  "coverage": 1.0,
+  "av_drift": 0.0,
+  "new_repeats": [],
+  "heard": "Bo jak zapytasz, jak wygląda proces, usłyszysz bardzo oficjalną wersję.\nA często jest tak, że właściciel mówi, ja wszystko wiem, jak wygląda na każdym szczeblu,\na niestety też mam takie poczucie i takie doświadczenie w tym wszystkim,\nże dopiero chodząc po tych konkretnych osobach dowiadujemy się bardzo dużo szczegółów\nna temat procesu, jak on faktycznie wygląda, a nie jak wygląda w głowie właściciela.\nbo często właściciel jest już na kompletnie innym etapie i jeszcze dwa lata temu ten proces mógł wyglądać tak, jak on go pamięta.\nTeraz to wygląda zupełnie inaczej.\nA jak zapytasz konkretną osobę, co robi rękami we wtorek rano przychodząc do pracy, usłyszysz tak naprawdę 100% tego, jak ten proces faktycznie wygląda.\n"
+ },
+ "ch-module-4-droga-kartki": {
+  "verdict": "ok",
+  "coverage": 1.0,
+  "av_drift": 0.033,
+  "new_repeats": [],
+  "heard": "Idziemy z tą kartką, zaczyna się od handlowca albo od razu od klienta.\nZamówienie ląduje w administracji, z administracji trafia w zależności od oddziału na konkretną produkcję.\nProdukcja przerabia je w swoim tempie, potem jest kolejna osoba, która zbiera, pakuje, wysyła i zmienia status zamówienia.\nJeszcze jedna, która to wszystko podsumowuje, wystawia dokumenty, rachunki, faktury i komunikuje się z klientem.\nI teraz policz. Tej jednej kartki dotyka kilka, czasem kilkadziesiąt osób w zależności od tego, jak duża jest firma.\nKażdy robi z nią coś innego, każdy widzi co innego, każdy może zepsuć co innego, każda osoba popełnia inne błędy.\nI to jest moment, w którym przestaje być jasne, czego ludzie potrzebują, a zaczyna być jasne, jak ten moduł ma wyglądać.\n"
+ },
+ "ch-module-5-nagraj-rozmowe": {
+  "verdict": "ok",
+  "coverage": 1.0,
+  "av_drift": 0.014,
+  "new_repeats": [],
+  "heard": "I teraz rzecz, którą polecam każdemu, kto ma w firmie programistę.\nUsiądźcie razem, ty od biznesu, on od technologii, bo on nie do końca rozumie Waszą firmę i nie ma w tym nic złego tak naprawdę.\nPoświęćcie na to kilka godzin i nagrajcie tę rozmowę najlepiej, zwyczajnie dyktafonem,\npotem oczywiście wrzućcie to transkrypcję do systemu,\na on pomoże ją poukładać w specyfikacje,\njeżeli wykorzystacie gotowe narzędzia,\nktóre są w Open Mercato do budowania tych specyfikacji.\n"
+ },
+ "ch-module-6-40-minut": {
+  "verdict": "ok",
+  "coverage": 0.976,
+  "av_drift": 0.007,
+  "new_repeats": [],
+  "heard": "Zasada podstawowa. Są trzy warstwy i najlepiej ich nie mieszać ze sobą.\nProblem biznesowy, reguły biznesowe i specyfikacja techniczna.\nProblem biznesowy odpowiada na pytanie, co boli, kogo boli i ile to kosztuje.\nI to naprawdę w liczbach. Nie handlowie straci dużo czasu, tylko handlowie straci 40 minut dziennie, albo trzy faktury mają złe stan.\ndalej\nkontekst, aktorzy, stan obecny\nskala i częstotliwość\npytanie dlaczego teraz\nbo nie każdy problem trzeba rozwiązywać\njuż dziś\nmetryki sukcesu, zakres i co najważniejsze\nco jest poza tym zakresem\n"
+ },
+ "ch-module-7-slownik": {
+  "verdict": "ok",
+  "coverage": 1.0,
+  "av_drift": 0.017,
+  "new_repeats": [],
+  "heard": "I słownik pojęć to jest rzecz, która bardzo często wspomniana,\na która potrafi wywrócić cały projekt do góry nogami.\nBo to samo słowo znaczy co innego na różnych etapach procesu.\nZamówienie u handlowca to jedno, zamówienie na produkcji to co innego.\nJak tego nie spiszesz, to każdy zbuduje coś innego.\n"
+ },
+ "ch-module-8-70-90": {
+  "verdict": "ok",
+  "coverage": 0.991,
+  "av_drift": 0.007,
+  "new_repeats": [],
+  "heard": "Kiedy specyfikacja jest gotowa i przeszła przez checklistę bezpieczeństwo, wydajność, ryzyka, przegląd tego czego nie wzięliśmy pod uwagę i Open Mercato pomaga nam w tą checklistę przejść.\nI kiedy się jako programista musieliśmy na tym wszystkim czuwać, pamiętać, przechodzić w głowie, a co jest klient, zrobi, a kto ma mieć, jakie uprawnienia, a dlaczego.\nTeraz to jest zebrane do kupy, doświadczeniem ludzi, którzy zbudowali już niejeden duży system.\nI moje doświadczenie jest takie, że przy dobrej specyfikacji trafność tego, co wychodzi, jest na poziomie 70-90%.\nPrzy złej specyfikacji już tak nie jest.\nI to jest ta cała tajemnica, czyli warto się skupić na tej specyfikacji, żeby ona była zrobiona bardzo dobrze.\n"
+ },
+ "ch-module-9-wyjatki": {
+  "verdict": "ok",
+  "coverage": 1.0,
+  "av_drift": 0.0,
+  "new_repeats": [],
+  "heard": "Dobrze. I teraz uczciwie. Gdzie to pasuje?\nAgent nie powie Ci, gdzie kończy się moduł.\nJak nie postawisz granicy, to moduł zacznie się rozlewać.\nZaczynasz od kart technicznych, a po miesiącu budujesz wielkiego ERPA.\nI druga rzecz. Agent nie wie, co jest w Twojej firmie wyjątkowe.\nOn zna wzorce, a Ty znasz wyjątki.\nWyjątki są dokładnie tym, za co Twój klient płaci.\n"
+ },
+ "ch-module-10-powtarzalnosc": {
+  "verdict": "ok",
+  "coverage": 1.0,
+  "av_drift": 0.023,
+  "new_repeats": [],
+  "heard": "jest jedno słowo, które to wszystko spina\npowtarzalność\ni nie chodzi o to, żeby raz zbudować coś ładnego\nchodzi o to, żeby drugi moduł powstał tak samo jak pierwszy\ni trzeci tak samo jak drugi\nbo wtedy przestajesz robić projekty\nktóre muszą się jakoś połączyć\ni zaczynasz mieć system, który ze sobą współgra\nJeśli masz proces, który dziś żyje w Excelu i w mailach, weź kartkę, przejdź go od początku do końca, zanim zadzwonisz do kogokolwiek i będziesz chciał, żeby zbudował dla Ciebie jakieś rozwiązanie.\nSam zobaczysz, ile osób tej kartki dotyka.\nA zapraszam Cię do tego, aby w komentarzu napisać, przez ile rąk przechodzi u Ciebie ta przysłowiowa kartka.\nTo jedno zamówienie.\nCiekawy jestem, czy to będzie więcej niż myślisz.\n"
+ },
+ "ch-om-1-co-tu-wow": {
+  "verdict": "ok",
+  "coverage": 0.973,
+  "av_drift": 0.013,
+  "new_repeats": [],
+  "heard": "Kolega z branży, człowiek techniczny powiedział mi ostatnio wprost\nNie rozumiem co tu jest takiego wow\nCloud, cloud i tak wchodzi w ten kod\nWięc co takiego daje ten open mercato?\nI to jest bardzo dobre pytanie\nOdpowiedziałem mu wtedy jedno zdanie\nBo do tego kodu masz 100% dostęp\nStajesz się jego właścicielą\nW low-code, low-code nie zajrzysz jak to jest zrobione.\nNie nadpiszesz, nie rozbudujesz poza tym, co przewidział dostawca.\n"
+ },
+ "ch-om-2-excel-wersje": {
+  "verdict": "ok",
+  "coverage": 1.0,
+  "av_drift": 0.033,
+  "new_repeats": [],
+  "heard": "Zacznijmy od tego, co widzę u klientów. Wchodzę do firm i widzę Excela. Nie jeden, ale kilka, kilkanaście.\nI teraz uwaga, bo to jest ciekawe. Często to jest ten sam plik w kilku różnych wersjach.\nWszystko zależy dla kogo. Dlaczego? Bo chcemy, żeby jedna osoba widziała kolumnę tą, druga jeszcze inną, a kolejna jeszcze inną.\na nie chcemy, żeby widział ktokolwiek innych naszych wyliczeń,\nile na tym zarabiamy, jaką mamy marżę, za ile to kupiliśmy,\nto są dane, które są dla wąskiej grupy osób.\nPotem pytam, a kto wprowadza te dane?\nI się okazuje, że jeszcze jest inny proces na to, jeszcze inna osoba.\nA rzadko kiedy widać Excela, który jest odporny na błędy ludzkie,\nktóry ma blokady, sensowne funkcje zabezpieczenia przed pomyłką.\nDlatego przy rosnącej liczbie wierszy zaczynają się problemy z wydajnością takiego Excela i to nie jest wina ludzi, to jest wina tego, że proces nie ma gdzie mieszkać.\n"
+ },
+ "ch-om-3-dwa-zdania": {
+  "verdict": "ok",
+  "coverage": 1.0,
+  "av_drift": 0.03,
+  "new_repeats": [],
+  "heard": "Więc co mówię takiemu właścicielowi stojąc nad takim Excelem?\nNie mówię mu o frameworku i mówię te dane trzeba scentralizować i trzeba ustalić kto ma do czego dostęp.\nTo są dwa zdania i one wystarczą, żeby zacząć dyskusję na temat procesu i jak powinno to działać.\nA teraz najważniejsza rzecz w tym odcinku.\nLudzie myślą, że kupują gotowy system, myślą, że kupują platformę.\na tak naprawdę kupują narzędzie, które przyspiesza budowanie systemu dla ich firmy, skrójonego pod ich firmę.\nKupują własność kodu i niezależność.\n"
+ },
+ "ch-om-4-nie-zapier": {
+  "verdict": "ok",
+  "coverage": 1.0,
+  "av_drift": 0.007,
+  "new_repeats": [],
+  "heard": "z czym Open Mercato jest mylone, bo to jest ważne.\nTo nie jest Make, to nie jest N8N, to nie jest Zapier,\nto nie jest ta klasa narzędzi, to nie jest też platforma no-code,\nlow-code, gdzie nie masz dostępu do kodu i masz ograniczone możliwości.\nI uczciwie brak dostępu do infrastruktury bywa zaletą.\nKtoś inny się nią martwi, płacisz i masz to z głowy.\n"
+ },
+ "ch-om-5-erp-lat-90": {
+  "verdict": "ok",
+  "coverage": 0.984,
+  "av_drift": 0.013,
+  "new_repeats": [],
+  "heard": "były systemy klasy ERP i CRM,\nktóre powiem szczerze,\nczęsto wyglądają jak z lat 90.\ni w których dodanie jednego pola,\nbo akurat tego pola potrzebujesz,\nwymaga napisania customowego rozwiązania przez tą firmę.\nZa duże pieniądze i tak,\na na finalnie i tak coś dalej nie gra.\nNie działa tak jak powinno.\nMiałem kiedyś projekt z Symfonią,\ngdzie było kilkanaście wersji API napisaną pod tą jedną firmę.\nW jednym miejscu musieliśmy używać jednej wersji, w innym miejscu drugiej wersji, po prostu koszmar.\nNo ciężko to nazwać inaczej niż koszmar dla programisty, bo to było po prostu udrę.\nI więc kiedy zobaczyłem Open Mercatu pomyślałem, no w końcu, w końcu rynek jest w tym miejscu\ni dostał te zasoby dzięki AI, żeby właśnie zmienić te zasady gry na tym zastałym już rynku.\n"
+ },
+ "ch-om-6-najtrudniejsze": {
+  "verdict": "ok",
+  "coverage": 0.985,
+  "av_drift": 0.001,
+  "new_repeats": [],
+  "heard": "każdy proces biznesowy potrzebuje mniej więcej tego samego\npotrzebuje pól, potrzebuje uprawnień\npotrzebuje danych ograniczonych do roli\nmasz w procesie konkretnego człowieka\ni on może robić jedną rzecz, a inny nie może tego robić\ni teraz z punktu widzenia programisty\nto są najtrudniejsze rzeczy w całym rzemiośle programistycznym\nuprawnienia, role, mechanika logów\nzapisywanie każdej encji, historia zmienia\nTo wszystko w Open Mercato już jest i to naprawdę robi robotę.\n"
+ },
+ "ch-om-7-trzy-zarzuty": {
+  "verdict": "ok",
+  "coverage": 0.987,
+  "av_drift": 0.013,
+  "new_repeats": [],
+  "heard": "Teraz trzy zarzuty, które często słyszę.\nPierwsze, skoro AI umie budować software, to po co mi jakikolwiek framework?\nOdpowiedź jest taka, że mechanika, o której przed chwilą mówiłem,\njest już napisana i działa tak samo w każdym module, który dopisujesz.\nBez tego agent wymyśla ją od nowa. Za każdym razem inaczej.\nDrugi to kolejny boilerplate.\nBoiler Plate kopiujesz i rozjeżdża się z oryginałem po pierwszym aktualizacji.\nTutaj rdzeń zostaje rdzeniem, a Ty dokładasz obok swoje biznesowe moduły.\n"
+ },
+ "ch-om-8-komu-odradzam": {
+  "verdict": "ok",
+  "coverage": 0.99,
+  "av_drift": 0.01,
+  "new_repeats": [],
+  "heard": "Więc uczciwie, komu to odradzam? Jeśli nie masz w firmie ani jednej osoby technicznej, to nie jest dla Ciebie. Nie potrzebujesz też wielkiego zespołu, wystarczy jeden programista, ale zero programistów to zero. Tutaj tego nie oszukasz.\nDruga rzecz, utrzymanie jest po Twojej stronie. Aktualizacja, infrastruktura to, czego nie wolno ruszać. W gotowym sasie płacisz za to, żeby martwił się za to ktoś inny. Tutaj płacisz mniej i martwisz się sam. Nie masz ograniczeń na użytkowników.\ni trzecia to jest młody projekt\nwersja przed wersją 1.0\nnie ukrywam tego, bo i tak to sprawdzisz\ndla mnie to znaczy, że jest\nwcześnie, a nie\nże jest ryzykowe\n"
+ },
+ "ch-om-9-cztery-branze": {
+  "verdict": "ok",
+  "coverage": 0.982,
+  "av_drift": 0.007,
+  "new_repeats": [],
+  "heard": "I jeszcze jedno, co zobaczyłem dopiero po czwartym wdrożeniu.\nKarta techniczna u klienta, producenta opakowania, wizyta w gabinecie,\nzamówienia produkcji na oferta w produkcji przetwarzana na zamówienie.\nTo wygląda na trzy różne światy, a pod spodem jest ten sam kształt.\nJeden rekord, który przechodzi przez ręce kilku osób.\nzmiana statusu i na końcu zostawia dokument.\nCztery branże, jeden fundament.\n"
+ },
+ "ch-om-10-excel-dziala": {
+  "verdict": "ok",
+  "coverage": 0.99,
+  "av_drift": 0.05,
+  "new_repeats": [],
+  "heard": "Excel działa, no-cody, low-cody działają, SASy działają, a i też pisze już aplikacje, więc po co mi jest Open Mercato?\nBo w pewnym momencie firma nie potrzebuje kolejnego narzędzia, potrzebuje własnego systemu.\nSystemu dopasowanego do niej, a nie takiego, który firma musi się dopasować, bo tak wymyślił dostawca zamkniętego rozwiązania.\nOpen Mercato jest dla mnie takim fundamentem, gdzie są role, historie zmian, dostęp do kodu,\nmożliwość dopisania tego, co naprawdę jest specyficzne dla Twojej firmy.\nPo 80% już masz rzeczy gotowych od Open Mercato.\nI właśnie o tym jest ten odcinek, więc zapraszam Cię do oglądania.\n"
+ },
+ "ch-om-11-spolecznosc": {
+  "verdict": "ok",
+  "coverage": 0.947,
+  "av_drift": 0.027,
+  "new_repeats": [],
+  "heard": "Społeczność rozwija Open Mercato naprawdę szybko.\nDwa tygodnie temu, kiedy nagrywałem ten odcinek, nie mówiłem jeszcze o module WMS.\nA teraz jest nowa wersja i WMS już jest częścią tej układanki.\nPodobnie z kalendarzem.\nPlanowałem dopisać moduł dla recepcjonistki, żeby mogła ogarniać wizyty, terminy w bardzo prosty i przecieżny sposób.\nA nagle robi się to dużo prostsze, bo nie muszę tego robić sam,\nbo społeczność wydała moduł kalendarza.\nI to jest bardzo ważna różnica.\nW zamkniętym sasie czekasz, aż dostawca uzna, że Twoja potrzeba jest na roadmapie.\nA w Open Mercato społeczność dokłada kolejne klocki w niewyobrażalnym tempie,\na Ty możesz z nich szybciej zbudować system dopasowany do konkretnej firmy.\n"
  }
 }

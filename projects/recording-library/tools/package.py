@@ -1269,7 +1269,8 @@ def main():
         board = json.load(open(variant_file))
         clip = next(c for c in clips if c["id"] == board["clip"])
     else:
-        clip = next(c for c in clips if c["id"].startswith(a.clip))
+        # dokładne id ma pierwszeństwo przed prefiksem (ep-module ≠ ep-module-1)
+        clip = next((c for c in clips if c["id"] == a.clip), None) or next(c for c in clips if c["id"].startswith(a.clip))
         board = json.load(open(PACK / "storyboards" / f"{clip['id']}.json"))
     name = output_name(clip, board)
     for fmt in a.format or board.get("formats", ["reels", "ad", "youtube"]):

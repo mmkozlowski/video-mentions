@@ -3427,6 +3427,1260 @@
   "notes": ""
  },
  {
+  "id": "ch-vibe-1-baza-danych",
+  "kind": "chapter",
+  "source": "vibecoding",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": "ep-vibecoding",
+  "client": null,
+  "title": "Wyczyści cache i system znika",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    27.21,
+    36.65
+   ],
+   [
+    37.11,
+    43.53
+   ],
+   [
+    44.11,
+    65.71
+   ],
+   [
+    67.15,
+    68.8
+   ]
+  ],
+  "start": 27.21,
+  "end": 68.8,
+  "duration": 39.11,
+  "splices": 3,
+  "hook_line": "Kolega pokazał mi ostatnio system, który zrobił sam dla swojej firmy vibe kodując razem",
+  "transcript": "Kolega pokazał mi ostatnio system, który zrobił sam dla swojej firmy vibe kodując razem z kodeksem. Zarządzanie pracownikami Europy i wszystko ładnie klikane. Zrobił to z agentem sam, bez programisty za pomocą kodeksa. Patrzył i mówię super, a ja mówię, a jak zrobiłeś tą bazę danych, która tam pod spodem działa? A on po chwili pyta, ale jaką danych. I tutaj się lekko uśmiecham, bo musiałem mu powiedzieć, że w momencie, kiedy wyczyści cash przeglądarki, cała jego praca po prostu pójdzie na marne, zniknie. Wszystkie dane pracowników, historia, po prostu wszystko. I będzie wielka frustracja.",
+  "scores": {
+   "hook": 5,
+   "delivery": 4,
+   "total": 14
+  },
+  "priority": "A",
+  "cta": "none",
+  "uses": [
+   "reels-organic"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "ch-vibe-2-magiczne-sesje",
+  "kind": "chapter",
+  "source": "vibecoding",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": "ep-vibecoding",
+  "client": null,
+  "title": "Dwie magiczne sesje z agentem",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    108.79,
+    159.75
+   ],
+   [
+    161.47,
+    174.34
+   ]
+  ],
+  "start": 108.79,
+  "end": 174.34,
+  "duration": 63.83,
+  "splices": 1,
+  "hook_line": "Kiedy zaczynasz budować z agentem AI pierwsze dwie sesje wyglądają magiczne. Prosisz o ekran,",
+  "transcript": "Kiedy zaczynasz budować z agentem AI pierwsze dwie sesje wyglądają magiczne. Prosisz o ekran, dostajesz ekran. Prosisz o formularz, jest formularz. I pojawia się ekscytacja. Widzę to bardzo często u osób nietechnicznych. Jeszcze bym chciał to, jeszcze bym chciał kolejny moduł i jeszcze kolejny moduł. I nagle się okazuje, że zainstalowały się paczki i moduły, które ze sobą po prostu nie grają, nie gadają. Nie gadają ze sobą i nie są w stanie współpracować. Powstaje coś, co działa i wygląda jak system, ale to jest rozwiązanie do jednorazowego użytku, potocznie mówiąc vibe coding. Na lokalnym komputerze to wszystko działa pięknie. Produkcyjnie już nie, bo dowolna zmiana, którą zrobisz, może wywalić całą resztę. Najgorsze jest to, że sam się o tym nie dowiesz. Nie masz jak, nie wiesz czego szukać.",
+  "scores": {
+   "hook": 4,
+   "delivery": 4,
+   "total": 12
+  },
+  "priority": "B",
+  "cta": "none",
+  "uses": [
+   "reels-organic",
+   "needs-cutdown"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "ch-vibe-3-przyznaje-racje",
+  "kind": "chapter",
+  "source": "vibecoding",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": "ep-vibecoding",
+  "client": null,
+  "title": "AI zawsze przyzna Ci rację",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    210.05,
+    210.47
+   ],
+   [
+    210.93,
+    212.35
+   ],
+   [
+    213.15,
+    220.04
+   ],
+   [
+    231.2,
+    241.38
+   ],
+   [
+    241.74,
+    255.98
+   ],
+   [
+    258.98,
+    265.32
+   ]
+  ],
+  "start": 210.05,
+  "end": 265.32,
+  "duration": 39.49,
+  "splices": 5,
+  "hook_line": "Problem jest gdzie indziej. AI przyznaje Ci rację cokolwiek go o cokolwiek poprosisz w",
+  "transcript": "Problem jest gdzie indziej. AI przyznaje Ci rację cokolwiek go o cokolwiek poprosisz w 90 -90 % zrobi to i jeszcze Ci powie, że to jest super pomysł że na pewno tym razem to będzie świetnie działało i że jesteś niespaniałszym programistą na świecie i to jest bardzo miłe jest dokładnie ten problem, bo przy pustym projekcie agent musi podjąć setki decyzji architektonicznych, żeby zbudować fundamenty, zbudować infrastrukturę. A skoro nikt mu nie powiedział jak, to podejmuje je za każdym razem inaczej.",
+  "scores": {
+   "hook": 5,
+   "delivery": 3,
+   "total": 13
+  },
+  "priority": "A",
+  "cta": "none",
+  "uses": [
+   "reels-organic"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "ch-vibe-4-framework",
+  "kind": "chapter",
+  "source": "vibecoding",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": "ep-vibecoding",
+  "client": null,
+  "title": "Framework we frameworku",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    279.17,
+    327.54
+   ]
+  ],
+  "start": 279.17,
+  "end": 327.54,
+  "duration": 48.37,
+  "splices": 0,
+  "hook_line": "Open Mercato to jest w pewnym uproszczeniu framework we frameworku. Podłączasz swojego cloud 'a",
+  "transcript": "Open Mercato to jest w pewnym uproszczeniu framework we frameworku. Podłączasz swojego cloud 'a albo kodeksa i on nie zaczyna od pustej kartki. On wpada w pewną strukturę, już przygotowane fundamenty i architekturę. I ta struktura mu mówi, hej, w tym, co chcesz zrobić, brakuje tego i jeszcze innej rzeczy. Tego nie możesz zrobić. Jeśli to zrobisz, to na własne ryzyko i coś się może zepsuć. A jeśli chcesz zrobić, żeby to było zrobione dobrze, to zrób w ten sposób, jak my to Ci zalecamy. I teraz wróćmy do mojego kolegi. Czy on popełni ten sam błąd tutaj przy Open Mercato? No właśnie nie, bo pod spodem odpalają się mechanizmy, które wiedzą, co mają robić.",
+  "scores": {
+   "hook": 3,
+   "delivery": 4,
+   "total": 10
+  },
+  "priority": "C",
+  "cta": "none",
+  "uses": [
+   "reels-organic"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "ch-vibe-5-gliniane-nogi",
+  "kind": "chapter",
+  "source": "vibecoding",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": "ep-vibecoding",
+  "client": null,
+  "title": "System na glinianych nogach",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    415.14,
+    441.64
+   ],
+   [
+    448.66,
+    463.16
+   ]
+  ],
+  "start": 415.14,
+  "end": 463.16,
+  "duration": 41.0,
+  "splices": 1,
+  "hook_line": "Jeśli nie znasz cyklu wytwarzania oprogramowania, to i tak na Open Mercatus budujesz system.",
+  "transcript": "Jeśli nie znasz cyklu wytwarzania oprogramowania, to i tak na Open Mercatus budujesz system. W przypadku tworzenia od postaw systemu i bez wiedzy na temat cyklu wytwarzania oprogramowania Twój soft wywali się na pierwszym zakręcie, którym jest produkcja. Taki system stoi na glinianych nogach. Dopóki bawisz się lokalnie, wszystko w porządku. Zabawa zaczyna się, kiedy ma działać na produkcji. W przypadku budowania za pomocą Open Mercato te fundamenty Nie są gliniane, ale są to mocne fundamenty, które pilnują tego, jak to robić zgodnie ze sztuką. Ma być stabilne, bez błędów, a jak będą błędy, to musisz wiedzieć, gdzie te błędy są.",
+  "scores": {
+   "hook": 4,
+   "delivery": 4,
+   "total": 12
+  },
+  "priority": "B",
+  "cta": "none",
+  "uses": [
+   "reels-organic"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "ch-vibe-6-puenta",
+  "kind": "chapter",
+  "source": "vibecoding",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": "ep-vibecoding",
+  "client": null,
+  "title": "Bariera budowania spadła, projektowania nie",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    539.51,
+    558.47
+   ],
+   [
+    558.85,
+    575.2
+   ]
+  ],
+  "start": 539.51,
+  "end": 575.2,
+  "duration": 35.31,
+  "splices": 1,
+  "hook_line": "AI obniżyło mocno barierę, jeżeli chodzi o wytwarzanie kodu. Bardzo mocno. ale nie obniżyło",
+  "transcript": "AI obniżyło mocno barierę, jeżeli chodzi o wytwarzanie kodu. Bardzo mocno. ale nie obniżyło bariery projektowania i decyzji architektonicznych. Agent nie gubi się dlatego, że jest słaby. Gubi się dlatego, że przy pustym projekcie musi wymyślać wszystko od nowa. Za każdym razem inaczej. Framework nie robi go mądrzejszym. Framework zabiera mu wybór, narzuca mu pewne granice. I to jest różnica między czymś, co działa u Ciebie na laptopie lokalnie, a czymś, co można oddać w firmie.",
+  "scores": {
+   "hook": 5,
+   "delivery": 4,
+   "total": 14
+  },
+  "priority": "A",
+  "cta": "none",
+  "uses": [
+   "reels-organic"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "ch-vibe-7-nie-dla-kazdego",
+  "kind": "chapter",
+  "source": "vibecoding",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": "ep-vibecoding",
+  "client": null,
+  "title": "Czego nie powie Ci sprzedawca oprogramowania",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    366.13,
+    367.97
+   ],
+   [
+    368.31,
+    370.75
+   ],
+   [
+    371.17,
+    373.03
+   ],
+   [
+    373.55,
+    388.64
+   ],
+   [
+    463.92,
+    470.12
+   ],
+   [
+    502.36,
+    513.46
+   ]
+  ],
+  "start": 366.13,
+  "end": 513.46,
+  "duration": 38.53,
+  "splices": 5,
+  "hook_line": "I teraz rzecz, której nie powie Ci nikt, kto sprzedaje oprogramowanie. To nie jest",
+  "transcript": "I teraz rzecz, której nie powie Ci nikt, kto sprzedaje oprogramowanie. To nie jest narzędzie dla każdego. to zrobić bez zespołu deweloperskiego, to Ci od razu powiem, że raczej nie. To jest narzędzie dla programistów, to jest narzędzie dla osób technicznych. I teraz kolejna rzecz, najbardziej uczciwa. Utrzymanie masz na własnych barkach. aktualizacje, serwer, błędy na tym serwerze, to wszystko jest po Twojej stronie, w gotowym sasie oczywiście płacisz za to, żeby ktoś inny się tym martwił",
+  "scores": {
+   "hook": 4,
+   "delivery": 3,
+   "total": 11
+  },
+  "priority": "B",
+  "cta": "none",
+  "uses": [
+   "reels-organic"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "ch-module-1-kartka",
+  "kind": "chapter",
+  "source": "module-build",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": "ep-module",
+  "client": null,
+  "title": "Zanim napiszę linię kodu, biorę kartkę",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    65.61,
+    92.42
+   ],
+   [
+    103.9,
+    109.1
+   ]
+  ],
+  "start": 65.61,
+  "end": 109.1,
+  "duration": 32.01,
+  "splices": 1,
+  "hook_line": "Zanim napiszę jedną linię kodu, biorę kartkę, taką zwykłą kartkę papieru, która często funkcjonuje",
+  "transcript": "Zanim napiszę jedną linię kodu, biorę kartkę, taką zwykłą kartkę papieru, która często funkcjonuje w firmach. I 6 godzin chodzę z tą kartką po firmach albo kartkami, śledząc drogę tego na przykład zamówienia. Od momentu, w którym wpada, do momentu, w którym ktoś wystawia fakturę i wyjeżdża z danym zamówieniem. I to jest najważniejsza część mojej roboty. Nie kod, nie ekran, nie wybór technologii. Ta kartka.",
+  "scores": {
+   "hook": 5,
+   "delivery": 4,
+   "total": 14
+  },
+  "priority": "A",
+  "cta": "none",
+  "uses": [
+   "reels-organic"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "ch-module-2-druga-strona",
+  "kind": "chapter",
+  "source": "module-build",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": "ep-module",
+  "client": null,
+  "title": "Warsztat: 70 pytań po rolach",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    144.69,
+    148.03
+   ],
+   [
+    148.39,
+    157.73
+   ],
+   [
+    158.33,
+    161.38
+   ],
+   [
+    189.24,
+    220.64
+   ]
+  ],
+  "start": 144.69,
+  "end": 220.64,
+  "duration": 47.13,
+  "splices": 3,
+  "hook_line": "Mówię o tym, bo widzę, jak ludzie zaczynają od drugiej strony. Odpalają agenta, proszą",
+  "transcript": "Mówię o tym, bo widzę, jak ludzie zaczynają od drugiej strony. Odpalają agenta, proszą o system, dostają system. I po miesiącu okazuje się, że to nie opisuje ich firmy, to nie opisuje ich procesu. Zaczynam od warsztatu. 6 godzin, 1 dzień i przychodzę na niego z gotową listą. Około 70 nieraz pytań nawet w różnych koncepcjach. Nie są ułożone tematycznie, są ułożone często po ludziach. Osobno pytania dla właściciela, osobno pytania dla handlowca, Osobno dla produkcji i dla działów technicznych. Dla biur inny zestaw i dla obsługi zamówienia też inny zestaw pytań. Na końcu osobna sekcja otwartych decyzji do zamknięcia.",
+  "scores": {
+   "hook": 4,
+   "delivery": 4,
+   "total": 12
+  },
+  "priority": "B",
+  "cta": "none",
+  "uses": [
+   "reels-organic"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "ch-module-3-wtorek-rano",
+  "kind": "chapter",
+  "source": "module-build",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": "ep-module",
+  "client": null,
+  "title": "Co robisz rękami we wtorek rano?",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    220.46,
+    249.95
+   ],
+   [
+    253.22,
+    256.44
+   ],
+   [
+    257.5,
+    258.4
+   ],
+   [
+    258.8,
+    267.78
+   ],
+   [
+    293.38,
+    300.26
+   ],
+   [
+    301.18,
+    304.52
+   ]
+  ],
+  "start": 220.46,
+  "end": 304.52,
+  "duration": 52.81,
+  "splices": 5,
+  "hook_line": "Bo jak zapytasz, jak wygląda proces, usłyszysz bardzo oficjalną wersję. A często jest tak,",
+  "transcript": "Bo jak zapytasz, jak wygląda proces, usłyszysz bardzo oficjalną wersję. A często jest tak, że właściciel mówi, ja wszystko wiem, jak wygląda na każdym szczeblu. A niestety też mam takie poczucie i takie doświadczenie w tym wszystkim, że dopiero chodząc po tych konkretnych osobach dowiadujemy się bardzo dużo szczegółów na temat procesu, jak on faktycznie wygląda, a nie jak wygląda w głowie właściciela. bo często właściciel jest już na kompletnie innym etapie i jeszcze dwa lata temu ten proces mógł wyglądać tak, jak on go pamięta. Teraz to wygląda zupełnie inaczej. A jak zapytasz konkretną osobę, co robi rękami we wtorek rano, przychodząc do pracy, usłyszysz tak naprawdę 100 % tego, jak ten proces faktycznie wygląda.",
+  "scores": {
+   "hook": 4,
+   "delivery": 3,
+   "total": 11
+  },
+  "priority": "B",
+  "cta": "none",
+  "uses": [
+   "reels-organic"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "ch-module-4-droga-kartki",
+  "kind": "chapter",
+  "source": "module-build",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": "ep-module",
+  "client": null,
+  "title": "Jedną kartkę dotyka kilkanaście osób",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    306.2,
+    319.78
+   ],
+   [
+    320.1,
+    362.42
+   ]
+  ],
+  "start": 306.2,
+  "end": 362.42,
+  "duration": 55.9,
+  "splices": 1,
+  "hook_line": "Idziemy z tą kartką, zaczyna się od handlowca albo od razu od klienta. Zamówienie",
+  "transcript": "Idziemy z tą kartką, zaczyna się od handlowca albo od razu od klienta. Zamówienie ląduje w administracji, z administracji trafia w zależności od oddziału na konkretną produkcję. Produkcja przerabia je w swoim tempie, potem jest kolejna osoba, która zbiera, pakuje, wysyła i zmienia status zamówienia. Jeszcze jedna, która to wszystko podsumowuje, wystawia dokumenty, rachunki, faktury i komunikuje się z klientem. I teraz policz. Tej jednej kartki dotyka kilka, czasem kilkadziesiąt osób w zależności od tego, jak duża jest firma. Każdy robi z nią coś innego, każdy widzi co innego, każdy może zepsuć co innego, każda osoba popełnia inne błędy. I to jest moment, w którym przestaje być jasne, czego ludzie potrzebują, a zaczyna być jasne, jak ten moduł ma wyglądać.",
+  "scores": {
+   "hook": 4,
+   "delivery": 4,
+   "total": 12
+  },
+  "priority": "B",
+  "cta": "none",
+  "uses": [
+   "reels-organic"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "ch-module-5-nagraj-rozmowe",
+  "kind": "chapter",
+  "source": "module-build",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": "ep-module",
+  "client": null,
+  "title": "Nagraj rozmowę z programistą",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    365.13,
+    380.74
+   ],
+   [
+    384.72,
+    406.14
+   ]
+  ],
+  "start": 365.13,
+  "end": 406.14,
+  "duration": 37.03,
+  "splices": 1,
+  "hook_line": "I teraz rzecz, którą polecam każdemu, kto ma w firmie programistę. Usiądźcie razem, ty",
+  "transcript": "I teraz rzecz, którą polecam każdemu, kto ma w firmie programistę. Usiądźcie razem, ty od biznesu, on od technologii, bo on nie do końca rozumie Waszą firmę i nie ma w tym nic złego tak naprawdę. Poświęćcie na to kilka godzin i nagrajcie tę rozmowę najlepiej, zwyczajnie dyktafonem, potem oczywiście wrzućcie to transkrypcję do systemu, a on pomoże ją poukładać w specyfikacje, jeżeli wykorzystacie gotowe narzędzia, które są w Open Mercato do budowania tych specyfikacji.",
+  "scores": {
+   "hook": 4,
+   "delivery": 3,
+   "total": 11
+  },
+  "priority": "B",
+  "cta": "none",
+  "uses": [
+   "reels-organic"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "ch-module-6-40-minut",
+  "kind": "chapter",
+  "source": "module-retake",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": "ep-module",
+  "client": null,
+  "title": "Problem w liczbach: 40 minut dziennie",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    104.81,
+    116.21
+   ],
+   [
+    116.85,
+    119.89
+   ],
+   [
+    120.19,
+    131.44
+   ],
+   [
+    202.72,
+    218.64
+   ]
+  ],
+  "start": 104.81,
+  "end": 218.64,
+  "duration": 41.61,
+  "splices": 3,
+  "hook_line": "Zasada podstawowa. Są trzy warstwy i najlepiej ich nie mieszać ze sobą. Problem biznesowy,",
+  "transcript": "Zasada podstawowa. Są trzy warstwy i najlepiej ich nie mieszać ze sobą. Problem biznesowy, reguły biznesowe i specyfikacja techniczna. Problem biznesowy odpowiada na pytanie Co boli, kogo boli i ile to kosztuje I to naprawdę w liczbach Nie handlowie straci dużo czasu Tylko handlowie straci 40 minut dziennie Albo 3 faktury mają złe stawki Dalej Kontekst, aktorzy, stan obecny Skala i częstotliwość Pytanie dlaczego teraz Bo nie każdy problem trzeba rozwiązywać Już dziś Metryki sukcesu, zakres i co najważniejsze, co jest poza tym zakresem.",
+  "scores": {
+   "hook": 4,
+   "delivery": 3,
+   "total": 11
+  },
+  "priority": "B",
+  "cta": "none",
+  "uses": [
+   "reels-organic"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "ch-module-7-slownik",
+  "kind": "chapter",
+  "source": "module-retake",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": "ep-module",
+  "client": null,
+  "title": "Zamówienie u handlowca ≠ zamówienie na produkcji",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    218.35,
+    242.9
+   ]
+  ],
+  "start": 218.35,
+  "end": 242.9,
+  "duration": 24.55,
+  "splices": 0,
+  "hook_line": "I słownik pojęć to jest rzecz, która bardzo często wspomniana, a która potrafi wywrócić",
+  "transcript": "I słownik pojęć to jest rzecz, która bardzo często wspomniana, a która potrafi wywrócić cały projekt do góry nogami. Bo to samo słowo znaczy co innego na różnych etapach procesu. Zamówienie u handlowca to jedno, zamówienie na produkcji to co innego. Jak tego nie spiszesz, to każdy zbuduje coś innego.",
+  "scores": {
+   "hook": 4,
+   "delivery": 4,
+   "total": 12
+  },
+  "priority": "B",
+  "cta": "none",
+  "uses": [
+   "reels-organic"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "ch-module-8-70-90",
+  "kind": "chapter",
+  "source": "module-retake",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": "ep-module",
+  "client": null,
+  "title": "Dobra specyfikacja = 70–90% trafności",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    256.04,
+    261.48
+   ],
+   [
+    262.02,
+    267.36
+   ],
+   [
+    268.02,
+    277.6
+   ],
+   [
+    278.14,
+    278.64
+   ],
+   [
+    281.84,
+    300.22
+   ],
+   [
+    300.58,
+    314.36
+   ]
+  ],
+  "start": 256.04,
+  "end": 314.36,
+  "duration": 53.02,
+  "splices": 5,
+  "hook_line": "Kiedy specyfikacja jest gotowa i przeszła przez checklistę bezpieczeństwo, wydajność, ryzyka, przegląd tego, czego",
+  "transcript": "Kiedy specyfikacja jest gotowa i przeszła przez checklistę bezpieczeństwo, wydajność, ryzyka, przegląd tego, czego nie wzięliśmy pod uwagę i Open Mercato pomaga nam w tą checklistę przejść. I kiedy się jako Programista musieliśmy na tym wszystkim czuwać, pamiętać. Przechodzi w głowie, a co jest klient zrobi, a kto ma mieć, jakie uprawnienia, a dlaczego. Teraz to jest zebrane do kupy, doświadczeniem ludzi, którzy zbudowali już niejeden duży system. I moje doświadczenie jest takie, że przy dobrej specyfikacji trafność tego, co wychodzi, jest na poziomie 70 -90%. Przy złej specyfikacji już tak nie jest. I to jest ta cała tajemnica, czyli warto się skupić na tej specyfikacji, żeby ona była zrobiona bardzo dobrze.",
+  "scores": {
+   "hook": 4,
+   "delivery": 3,
+   "total": 11
+  },
+  "priority": "B",
+  "cta": "none",
+  "uses": [
+   "reels-organic"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "ch-module-9-wyjatki",
+  "kind": "chapter",
+  "source": "module-retake",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": "ep-module",
+  "client": null,
+  "title": "On zna wzorce, Ty znasz wyjątki",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    314.1,
+    330.16
+   ],
+   [
+    331.92,
+    345.86
+   ]
+  ],
+  "start": 314.1,
+  "end": 345.86,
+  "duration": 30.0,
+  "splices": 1,
+  "hook_line": "I teraz uczciwie, gdzie to pasuje? Agent nie powie Ci, gdzie kończy się moduł.",
+  "transcript": "I teraz uczciwie, gdzie to pasuje? Agent nie powie Ci, gdzie kończy się moduł. Jak nie postawisz granicy, to moduł zacznie się rozlewać. Zaczynasz od kart technicznych, a po miesiącu budujesz wielkiego ERPA. I druga rzecz. Agent nie wie, co jest w Twojej firmie wyjątkowe. On zna wzorce, a Ty znasz wyjątki. Wyjątki są dokładnie tym, za co Twój klient płaci.",
+  "scores": {
+   "hook": 5,
+   "delivery": 4,
+   "total": 14
+  },
+  "priority": "A",
+  "cta": "none",
+  "uses": [
+   "reels-organic"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "ch-module-10-powtarzalnosc",
+  "kind": "chapter",
+  "source": "module-retake",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": "ep-module",
+  "client": null,
+  "title": "Jedno słowo: powtarzalność",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    346.11,
+    351.89
+   ],
+   [
+    353.49,
+    355.79
+   ],
+   [
+    356.15,
+    389.73
+   ],
+   [
+    390.35,
+    402.2
+   ]
+  ],
+  "start": 346.11,
+  "end": 402.2,
+  "duration": 53.51,
+  "splices": 3,
+  "hook_line": "Jest jedno słowo, które to wszystko spina. Powtarzalność. I nie chodzi o to, żeby",
+  "transcript": "Jest jedno słowo, które to wszystko spina. Powtarzalność. I nie chodzi o to, żeby raz zbudować coś ładnego. Chodzi o to, żeby drugi moduł powstał tak samo jak pierwszy i trzeci tak samo jak drugi. Bo wtedy przestajesz robić projekty, które muszą się jakoś połączyć i zaczynasz mieć system, który ze sobą współgra. Jeśli masz proces, który dziś żyje w Excelu i w mailach, weź kartkę, przejdź go od początku do końca, zanim zadzwonisz do kogokolwiek i będziesz chciał, żeby zbudował dla Ciebie jakieś rozwiązanie. Sam zobaczysz, ile osób tej kartki dotyka. A zapraszam Cię do tego, aby w komentarzu napisać, przez ile rąk przechodzi u Ciebie ta przysłowiowa kartka. To jedno zamówienie. Ciekawy jestem, czy to będzie więcej niż myślisz.",
+  "scores": {
+   "hook": 4,
+   "delivery": 4,
+   "total": 12
+  },
+  "priority": "B",
+  "cta": "comment",
+  "uses": [
+   "reels-organic"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "ch-om-1-co-tu-wow",
+  "kind": "chapter",
+  "source": "om-intro",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": "ep-om-intro",
+  "client": null,
+  "title": "„Co tu jest takiego wow?”",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    30.03,
+    45.89
+   ],
+   [
+    47.21,
+    57.24
+   ],
+   [
+    65.96,
+    77.38
+   ]
+  ],
+  "start": 30.03,
+  "end": 77.38,
+  "duration": 37.31,
+  "splices": 2,
+  "hook_line": "Kolega z branży, człowiek techniczny powiedział mi ostatnio wprost Nie rozumiem co tu jest",
+  "transcript": "Kolega z branży, człowiek techniczny powiedział mi ostatnio wprost Nie rozumiem co tu jest takiego wow Cloud, cloud i tak wchodzi w ten kod Więc co takiego daje ten open mercato? I to jest bardzo dobre pytanie Odpowiedziałem mu wtedy jedno zdanie Bo do tego kodu masz 100 % dostęp Stajesz się jego właścicielem W low code, no code nie zajrzysz, jak to jest zrobione. Nie nadpiszesz, nie rozbudujesz poza tym, co przewidział dostawca.",
+  "scores": {
+   "hook": 5,
+   "delivery": 4,
+   "total": 14
+  },
+  "priority": "A",
+  "cta": "none",
+  "uses": [
+   "reels-organic"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "ch-om-2-excel-wersje",
+  "kind": "chapter",
+  "source": "om-intro",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": "ep-om-intro",
+  "client": null,
+  "title": "Ten sam Excel w kilku wersjach",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    167.94,
+    181.32
+   ],
+   [
+    181.9,
+    187.14
+   ],
+   [
+    187.54,
+    203.48
+   ],
+   [
+    219.98,
+    224.24
+   ],
+   [
+    224.62,
+    227.84
+   ],
+   [
+    235.48,
+    258.52
+   ]
+  ],
+  "start": 167.94,
+  "end": 258.52,
+  "duration": 65.08,
+  "splices": 5,
+  "hook_line": "Zacznijmy od tego, co widzę u klientów. Wchodzę do firm i widzę Excela. Nie",
+  "transcript": "Zacznijmy od tego, co widzę u klientów. Wchodzę do firm i widzę Excela. Nie jeden, ale kilka, kilkanaście. I teraz uwaga, bo to jest ciekawe. Często to jest ten sam plik w kilku różnych wersjach. Wszystko zależy dla kogo. Dlaczego? Bo chcemy, żeby jedna osoba widziała kolumnę tą, druga jeszcze inną, a kolejna jeszcze inną. A nie chcemy, żeby widział ktokolwiek innych naszych wyliczeń. Ile na tym zarabiamy, jaką mamy marżę, za ile to kupiliśmy. to są dane, które są dla wąskiej grupy osób. Potem pytam, a kto wprowadza te dane? I się okazuje, że jeszcze jest inny proces na to, jeszcze inna osoba. rzadko kiedy widać Excela, który jest odporny na błędy ludzkie, który ma blokady, sensowne funkcje zabezpieczenia przed pomyłką. Dlatego przy rosnącej liczbie wierszy zaczynają się problemy z wydajnością takiego Excela i to nie jest wina ludzi, to jest wina tego, że proces nie ma gdzie mieszkać,",
+  "scores": {
+   "hook": 5,
+   "delivery": 3,
+   "total": 13
+  },
+  "priority": "A",
+  "cta": "none",
+  "uses": [
+   "reels-organic",
+   "needs-cutdown"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "ch-om-3-dwa-zdania",
+  "kind": "chapter",
+  "source": "om-intro",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": "ep-om-intro",
+  "client": null,
+  "title": "Dwa zdania dla właściciela",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    260.65,
+    268.46
+   ],
+   [
+    282.5,
+    312.68
+   ],
+   [
+    313.02,
+    315.8
+   ]
+  ],
+  "start": 260.65,
+  "end": 315.8,
+  "duration": 40.77,
+  "splices": 2,
+  "hook_line": "Więc co mówię Takiemu właścicielowi Stojąc nad takim Excelem Nie mówię mu o frameworku",
+  "transcript": "Więc co mówię Takiemu właścicielowi Stojąc nad takim Excelem Nie mówię mu o frameworku I mówię te Dane trzeba Scentralizować i trzeba ustalić kto ma dostęp. To są dwa zdania i one wystarczą, żeby zacząć dyskusję na temat procesu i jak powinno to działać. A teraz najważniejsza rzecz w tym odcinku. Ludzie myślą, że kupują gotowy system, myślą, że kupują platformę, a tak naprawdę kupują narzędzie, które przyspiesza budowanie systemu dla ich firmy, skrójonego pod ich firmę. Kupują własność kodu i niezależność.",
+  "scores": {
+   "hook": 4,
+   "delivery": 3,
+   "total": 11
+  },
+  "priority": "B",
+  "cta": "none",
+  "uses": [
+   "reels-organic"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "ch-om-4-nie-zapier",
+  "kind": "chapter",
+  "source": "om-intro",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": "ep-om-intro",
+  "client": null,
+  "title": "To nie jest Make, n8n ani Zapier",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    325.52,
+    328.0
+   ],
+   [
+    328.64,
+    334.02
+   ],
+   [
+    334.44,
+    343.24
+   ],
+   [
+    364.16,
+    372.24
+   ]
+  ],
+  "start": 325.52,
+  "end": 372.24,
+  "duration": 24.74,
+  "splices": 3,
+  "hook_line": "z czym Open Mercato jest mylone, bo to jest ważne to nie jest Make,",
+  "transcript": "z czym Open Mercato jest mylone, bo to jest ważne to nie jest Make, to nie jest N8N to nie jest Zapier to nie jest ta klasa narzędzi to nie jest też platforma no -code, low -code, gdzie nie masz dostępu do kodu i masz ograniczone możliwości Uczciwie brak dostępu do infrastruktury bywa zaletą. Ktoś inny się nią martwi, płacisz i masz to z głowy.",
+  "scores": {
+   "hook": 4,
+   "delivery": 4,
+   "total": 12
+  },
+  "priority": "B",
+  "cta": "none",
+  "uses": [
+   "reels-organic"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "ch-om-5-erp-lat-90",
+  "kind": "chapter",
+  "source": "om-intro",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": "ep-om-intro",
+  "client": null,
+  "title": "ERP z lat 90. i jedno pole za duże pieniądze",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    469.8,
+    492.96
+   ],
+   [
+    493.48,
+    509.34
+   ],
+   [
+    519.94,
+    533.76
+   ]
+  ],
+  "start": 469.8,
+  "end": 533.76,
+  "duration": 52.84,
+  "splices": 2,
+  "hook_line": "systemy klasy ERP i CRM które powiem szczerze często wyglądają jak z lat 90",
+  "transcript": "systemy klasy ERP i CRM które powiem szczerze często wyglądają jak z lat 90 i w których dodanie jednego pola bo akurat tego pola potrzebujesz wymaga napisania customowego rozwiązania przez tą firmę, za duże pieniądze i tak, a na finalnie i tak coś dalej nie gra, nie działa tak jak powinno. Miałem kiedyś projekt z Symfonią, gdzie było kilkanaście wersji API napisaną pod tą jedną firmę. W jednym miejscu musieliśmy używać jednej wersji, w innym miejscu drugiej wersji, po prostu koszmar. No ciężko to nazwać inaczej niż koszmar dla programisty, bo to było po prostu udręka. więc kiedy zobaczyłem Open Mercato, pomyślałem, no w końcu, w końcu rynek jest w tym miejscu i dostał te zasoby dzięki AI, żeby właśnie zmienić te zasady gry na tym zastałym już rynku.",
+  "scores": {
+   "hook": 4,
+   "delivery": 3,
+   "total": 11
+  },
+  "priority": "B",
+  "cta": "none",
+  "uses": [
+   "reels-organic"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "ch-om-6-najtrudniejsze",
+  "kind": "chapter",
+  "source": "om-intro",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": "ep-om-intro",
+  "client": null,
+  "title": "Najtrudniejsze rzeczy w programowaniu już są",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    550.27,
+    566.11
+   ],
+   [
+    566.49,
+    571.45
+   ],
+   [
+    571.87,
+    579.3
+   ],
+   [
+    588.68,
+    589.14
+   ],
+   [
+    589.64,
+    594.4
+   ]
+  ],
+  "start": 550.27,
+  "end": 594.4,
+  "duration": 33.45,
+  "splices": 4,
+  "hook_line": "Każdy proces biznesowy potrzebuje mniej więcej tego samego. Potrzebuje pól, potrzebuje uprawnień, potrzebuje danych",
+  "transcript": "Każdy proces biznesowy potrzebuje mniej więcej tego samego. Potrzebuje pól, potrzebuje uprawnień, potrzebuje danych ograniczonych do roli. Masz w procesie konkretnego człowieka i on może robić jedną rzecz, a inny nie może tego robić. I teraz z punktu widzenia programisty. są najtrudniejsze rzeczy w całym rzemiośle programistycznym. Uprawnienia, role, mechanika logów, zapisywanie każdej encji, historia zmian. To wszystko w Open Mercato już jest i to naprawdę robi robotę.",
+  "scores": {
+   "hook": 4,
+   "delivery": 3,
+   "total": 11
+  },
+  "priority": "B",
+  "cta": "none",
+  "uses": [
+   "reels-organic"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "ch-om-7-trzy-zarzuty",
+  "kind": "chapter",
+  "source": "om-intro",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": "ep-om-intro",
+  "client": null,
+  "title": "Po co framework, skoro AI pisze kod?",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    626.38,
+    648.48
+   ],
+   [
+    650.54,
+    666.08
+   ],
+   [
+    666.44,
+    667.88
+   ]
+  ],
+  "start": 626.38,
+  "end": 667.88,
+  "duration": 39.08,
+  "splices": 2,
+  "hook_line": "Teraz trzy zarzuty, które często słyszę. Pierwsze, skoro AI umie budować software, to po",
+  "transcript": "Teraz trzy zarzuty, które często słyszę. Pierwsze, skoro AI umie budować software, to po co mi jakikolwiek framework? Odpowiedź jest taka, że mechanika, o której przed chwilą mówiłem, jest już napisana i działa tak samo w każdym module, który dopisujesz. Bez tego agent wymyśla ją od nowa. Za każdym razem inaczej. Drugi to kolejny boilerplate. Boller Plate kopiujesz i rozjeżdża się z oryginałem po pierwszym aktualizacji. Tutaj rdzeń zostaje rdzeniem, a Ty dokładasz obok swoje biznesowe moduły.",
+  "scores": {
+   "hook": 5,
+   "delivery": 4,
+   "total": 14
+  },
+  "priority": "A",
+  "cta": "none",
+  "uses": [
+   "reels-organic"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "ch-om-8-komu-odradzam",
+  "kind": "chapter",
+  "source": "om-intro",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": "ep-om-intro",
+  "client": null,
+  "title": "Komu odradzam Open Mercato",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    696.85,
+    711.25
+   ],
+   [
+    711.91,
+    713.81
+   ],
+   [
+    714.57,
+    732.29
+   ],
+   [
+    732.85,
+    746.62
+   ]
+  ],
+  "start": 696.85,
+  "end": 746.62,
+  "duration": 47.79,
+  "splices": 3,
+  "hook_line": "Więc uczciwie, komu to odradzam? Jeśli nie masz w firmie osoby technicznej, to nie",
+  "transcript": "Więc uczciwie, komu to odradzam? Jeśli nie masz w firmie osoby technicznej, to nie jest dla Ciebie. Nie potrzebujesz też wielkiego zespołu. Wystarczy jeden programista, ale zero programistów to zero. Tutaj tego nie oszukasz. Druga rzecz, utrzymanie jest po Twojej stronie. Aktualizacja, infrastruktura to, czego nie wolno ruszać. W gotowym sasie płacisz za to, żeby martwił się za to ktoś inny. Tutaj płacisz mniej i martwisz się sam. Nie masz ograniczeń na użytkowników. I trzecia, to jest młody projekt, wersja przed wersją 1 .0. Nie ukrywam tego, bo i tak to sprawdzisz. Dla mnie to znaczy, że jest wcześnie, a nie, że jest ryzykowne,",
+  "scores": {
+   "hook": 5,
+   "delivery": 4,
+   "total": 14
+  },
+  "priority": "A",
+  "cta": "none",
+  "uses": [
+   "reels-organic"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "ch-om-9-cztery-branze",
+  "kind": "chapter",
+  "source": "om-intro",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": "ep-om-intro",
+  "client": null,
+  "title": "Cztery branże, jeden fundament",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    850.14,
+    851.92
+   ],
+   [
+    857.14,
+    857.58
+   ],
+   [
+    860.06,
+    863.74
+   ],
+   [
+    864.08,
+    872.3
+   ],
+   [
+    887.58,
+    907.12
+   ]
+  ],
+  "start": 850.14,
+  "end": 907.12,
+  "duration": 33.66,
+  "splices": 4,
+  "hook_line": "jeszcze jedno co zobaczyłem dopiero po czwartym wdrożeniu, karta techniczna u klienta, producenta opakowanie,",
+  "transcript": "jeszcze jedno co zobaczyłem dopiero po czwartym wdrożeniu, karta techniczna u klienta, producenta opakowanie, wizyta w gabinecie, zamówienia produkcji na Oferta w produkcji przetwarzana na zamówienie. To wygląda na trzy różne światy, a pod spodem jest ten sam kształt. Jeden rekord, który przechodzi przez ręce kilku osób. Zmiana statusu zostawia dokument. Cztery branże, jeden fundament.",
+  "scores": {
+   "hook": 3,
+   "delivery": 3,
+   "total": 9
+  },
+  "priority": "C",
+  "cta": "none",
+  "uses": [
+   "reels-organic"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "ch-om-10-excel-dziala",
+  "kind": "chapter",
+  "source": "om-retake",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": "ep-om-intro",
+  "client": null,
+  "title": "Excel działa. Po co mi Open Mercato?",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    313.85,
+    359.4
+   ]
+  ],
+  "start": 313.85,
+  "end": 359.4,
+  "duration": 45.55,
+  "splices": 0,
+  "hook_line": "Excel działa, no -cody, low -cody działają, Sasy działają, a i też pisze już",
+  "transcript": "Excel działa, no -cody, low -cody działają, Sasy działają, a i też pisze już aplikację, więc po co mi jest Open Mercato? Bo w pewnym momencie firma nie potrzebuje kolejnego narzędzia, potrzebuje własnego systemu. Systemu dopasowanego do niej, a nie takiego, który firma musi się dopasować, bo tak wymyślił dostawca zamkniętego rozwiązania. Open Mercato jest dla mnie takim fundamentem, gdzie są role, historie zmian, dostęp do kodu, możliwość dopisania tego, co naprawdę jest specyficzne dla Twojej firmy. Po 80 % już masz rzeczy gotowych od Open Mercato. I właśnie o tym jest ten odcinek, więc zapraszam Cię do oglądania.",
+  "scores": {
+   "hook": 5,
+   "delivery": 4,
+   "total": 14
+  },
+  "priority": "A",
+  "cta": "youtube",
+  "uses": [
+   "reels-organic"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "ch-om-11-spolecznosc",
+  "kind": "chapter",
+  "source": "om-retake",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": "ep-om-intro",
+  "client": null,
+  "title": "WMS i kalendarz w dwa tygodnie",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    447.76,
+    481.44
+   ],
+   [
+    490.34,
+    500.02
+   ],
+   [
+    532.58,
+    543.36
+   ]
+  ],
+  "start": 447.76,
+  "end": 543.36,
+  "duration": 54.14,
+  "splices": 2,
+  "hook_line": "Społeczność rozwija Open Mercato na Open Mercato naprawdę szybko. Dwa tygodnie temu, kiedy nagrywałem",
+  "transcript": "Społeczność rozwija Open Mercato na Open Mercato naprawdę szybko. Dwa tygodnie temu, kiedy nagrywałem ten odcinek, nie mówiłem jeszcze o module WMS, a teraz jest nowa wersja i WMS już jest częścią tej układanki. Podobnie z kalendarzem. Planowałem dopisać moduł dla recepcjonistki, żeby mogła ogarniać wizyty, terminy w bardzo prosty i przecież ten sposób. A nagle robi się to dużo prostsze, bo nie muszę tego robić sam, bo społeczność wydała moduł kalendarza. I to jest bardzo ważna różnica. W zamkniętym SAS czekasz, aż dostawca uzna, że Twoja potrzeba jest na roadmapie. A w Open Mercato społeczność dokłada kolejne klocki w niewyobrażalnym tempie a Ty możesz z nich szybciej zbudować system dopasowany do konkretnej firmy.",
+  "scores": {
+   "hook": 4,
+   "delivery": 3,
+   "total": 11
+  },
+  "priority": "B",
+  "cta": "none",
+  "uses": [
+   "reels-organic"
+  ],
+  "notes": ""
+ },
+ {
   "id": "ep-doram",
   "kind": "episode",
   "source": "doram",
@@ -4736,6 +5990,399 @@
    "youtube-16x9"
   ],
   "notes": "Sklep internetowy ze Słupska. Paczki po 25 kg = 4 etykiety na zamówienie w Apilo, teraz jedno kliknięcie — ok. 100 h/mies. Katalog AI z faktur do Nexo i opisy na Allegro/Erli/sklep. „Dokręcanie śrubek”."
+ },
+ {
+  "id": "ep-vibecoding",
+  "kind": "episode",
+  "source": "vibecoding",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": null,
+  "client": "(kanał)",
+  "title": "Vibe coding vs framework: dlaczego system z agentem sypie się na produkcji",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    27.21,
+    36.65
+   ],
+   [
+    37.11,
+    43.53
+   ],
+   [
+    44.11,
+    65.71
+   ],
+   [
+    67.15,
+    85.06
+   ],
+   [
+    89.7,
+    100.5
+   ],
+   [
+    101.04,
+    105.9
+   ],
+   [
+    109.58,
+    112.74
+   ],
+   [
+    113.1,
+    159.76
+   ],
+   [
+    161.46,
+    173.94
+   ],
+   [
+    175.78,
+    201.36
+   ],
+   [
+    204.56,
+    210.48
+   ],
+   [
+    210.94,
+    212.04
+   ],
+   [
+    212.62,
+    220.04
+   ],
+   [
+    231.2,
+    241.38
+   ],
+   [
+    241.74,
+    255.98
+   ],
+   [
+    258.98,
+    264.7
+   ],
+   [
+    267.38,
+    272.62
+   ],
+   [
+    279.34,
+    323.5
+   ],
+   [
+    323.8,
+    329.12
+   ],
+   [
+    329.66,
+    365.32
+   ],
+   [
+    367.14,
+    367.96
+   ],
+   [
+    368.32,
+    370.74
+   ],
+   [
+    371.16,
+    373.04
+   ],
+   [
+    373.54,
+    388.64
+   ],
+   [
+    414.02,
+    441.64
+   ],
+   [
+    448.66,
+    462.54
+   ],
+   [
+    463.92,
+    470.12
+   ],
+   [
+    502.36,
+    512.84
+   ],
+   [
+    523.14,
+    529.66
+   ],
+   [
+    539.68,
+    558.48
+   ],
+   [
+    558.86,
+    574.58
+   ],
+   [
+    577.56,
+    589.76
+   ],
+   [
+    590.14,
+    592.88
+   ],
+   [
+    637.04,
+    657.28
+   ],
+   [
+    657.72,
+    673.32
+   ],
+   [
+    677.66,
+    681.22
+   ],
+   [
+    681.66,
+    684.82
+   ],
+   [
+    685.8,
+    689.2
+   ]
+  ],
+  "start": 27.21,
+  "end": 689.2,
+  "duration": 474.21,
+  "splices": 37,
+  "hook_line": "Kolega pokazał mi ostatnio system, który zrobił sam dla swojej firmy vibe kodując razem",
+  "transcript": "Kolega pokazał mi ostatnio system, który zrobił sam dla swojej firmy vibe kodując razem z kodeksem. Zarządzanie pracownikami Europy i wszystko ładnie klikane. Zrobił to z agentem sam, bez programisty za pomocą kodeksa. Patrzył i mówię super, a ja mówię, a jak zrobiłeś tą bazę danych, która tam pod spodem działa? A on po chwili pyta, ale jaką danych. I tutaj się lekko uśmiecham, bo musiałem mu powiedzieć, że w momencie, kiedy wyczyści cash przeglądarki, cała jego praca po prostu pójdzie na marne, zniknie. Wszystkie dane pracowników, historia, po prostu wszystko. I będzie wielka frustracja. I teraz uwaga, bo to nie jest odcinek o tym, że kolega czegoś nie umie. Ja jestem wielkim entuzjastą tego, żeby ludzie biznesu zaczynali programować. Naprawdę, serio. To skraca dystans między biznesem a software housem i osobami, które tworzą oprogramowanie. Robi się to szybciej, taniej i bliżej tego, co naprawdę jest potrzebne dla biznesu. Tylko, że przy takim budowaniu jest jeden moment, w którym wszystko się wywraca. I ten moment nie ma nic wspólnego z tym, jak dobry jest model. Kiedy zaczynasz budować z agentem AI pierwsze dwie sesje wyglądają magiczne. Prosisz o ekran, dostajesz ekran. Prosisz o formularz, jest formularz. I pojawia się ekscytacja. Widzę to bardzo często u osób nietechnicznych. Jeszcze bym chciał to, jeszcze bym chciał kolejny moduł i jeszcze kolejny moduł. I nagle się okazuje, że zainstalowały się paczki i moduły, które ze sobą po prostu nie grają, nie gadają. Nie gadają ze sobą i nie są w stanie współpracować. Powstaje coś, co działa i wygląda jak system, ale to jest rozwiązanie do jednorazowego użytku, potocznie mówiąc vibe coding. Na lokalnym komputerze to wszystko działa pięknie. Produkcyjnie już nie, bo dowolna zmiana, którą zrobisz, może wywalić całą resztę. Najgorsze jest to, że sam się o tym nie dowiesz. Nie masz jak, nie wiesz czego szukać. Nie wiesz jakich słów używać, żeby dostać dobrą odpowiedź. I teraz dlaczego to się dzieje? Nie dlatego, że model jest słaby. i naprawdę przyspieszają pracę programistom kilkukrotnie. AI zrobiło mocnego fikołka w tym, jak się dzisiaj tworzy oprogramowanie. Dwa lata temu agent podpowiadał linijkę i podnosił produktywność o 10%. Dzisiaj to jest razy 5, może nawet razy 10. I może nawet trochę przesadzam, ale rząd wielkości jest na pewno kilkukrotny. Problem jest gdzie indziej. AI przyznaje Ci rację cokolwiek go o cokolwiek poprosisz w 90 -90 % zrobi to i jeszcze Ci powie, że to jest super pomysł że na pewno tym razem to będzie świetnie działało i że jesteś niespaniałszym programistą na świecie i to jest bardzo miłe jest dokładnie ten problem, bo przy pustym projekcie agent musi podjąć setki decyzji architektonicznych, żeby zbudować fundamenty, zbudować infrastrukturę. A skoro nikt mu nie powiedział jak, to podejmuje je za każdym razem inaczej. I tutaj wchodzi rzecz, przez którą w ogóle Wam ten odcinek. Open Mercato to jest w pewnym uproszczeniu framework we frameworku. Podłączasz swojego cloud 'a albo kodeksa i on nie zaczyna od pustej kartki. On wpada w pewną strukturę, już przygotowane fundamenty i architekturę. I ta struktura mu mówi, hej, w tym, co chcesz zrobić, brakuje tego i jeszcze innej rzeczy. Tego nie możesz zrobić. Jeśli to zrobisz, to na własne ryzyko i coś się może zepsuć. A jeśli chcesz zrobić, żeby to było zrobione dobrze, to zrób w ten sposób, jak my to Ci zalecamy. I teraz wróćmy do mojego kolegi. Czy on popełni ten sam błąd tutaj przy Open Mercato? No właśnie nie, bo pod spodem odpalają się mechanizmy, które wiedzą, co mają robić. To jest ten drugi framework. Wiedząc, jakie dane mogą zostać w pamięci przeglądarki, a jakie muszą trafić do bazy danych. I to nie są dwie warstwy. Tych warstw jest dużo więcej. Są użytkownicy, jeśli użytkownicy, to role. Jeśli role, to uprawnienia. a jeżeli uprawnienia, to stoją za nimi konkretne moduły i funkcjonalności. Cała ta siatka matryca powstaje wokół modułu od razu, a nie po roku. Ta struktura ma w repozytorium konkretne miejsce, specyfikacja powstaje zanim powstanie kod, a każdy moduł na osobny plik z zasadami dla agenta. I teraz rzecz, której nie powie Ci nikt, kto sprzedaje oprogramowanie. To nie jest narzędzie dla każdego. to zrobić bez zespołu deweloperskiego, to Ci od razu powiem, że raczej nie. To jest narzędzie dla programistów, to jest narzędzie dla osób technicznych. Druga rzecz. Jeśli nie znasz cyklu wytwarzania oprogramowania, to i tak na Open Mercatus budujesz system. W przypadku tworzenia od postaw systemu i bez wiedzy na temat cyklu wytwarzania oprogramowania Twój soft wywali się na pierwszym zakręcie, którym jest produkcja. Taki system stoi na glinianych nogach. Dopóki bawisz się lokalnie, wszystko w porządku. Zabawa zaczyna się, kiedy ma działać na produkcji. W przypadku budowania za pomocą Open Mercato te fundamenty Nie są gliniane, ale są to mocne fundamenty, które pilnują tego, jak to robić zgodnie ze sztuką. Ma być stabilne, bez błędów, a jak będą błędy, to musisz wiedzieć, gdzie te błędy są. I teraz kolejna rzecz, najbardziej uczciwa. Utrzymanie masz na własnych barkach. aktualizacje, serwer, błędy na tym serwerze, to wszystko jest po Twojej stronie, w gotowym sasie oczywiście płacisz za to, żeby ktoś inny się tym martwił i chciałbym Cię zostawić właśnie z tą myślą i taką puentą tego odcinka. AI obniżyło mocno barierę, jeżeli chodzi o wytwarzanie kodu. Bardzo mocno. ale nie obniżyło bariery projektowania i decyzji architektonicznych. Agent nie gubi się dlatego, że jest słaby. Gubi się dlatego, że przy pustym projekcie musi wymyślać wszystko od nowa. Za każdym razem inaczej. Framework nie robi go mądrzejszym. Framework zabiera mu wybór, narzuca mu pewne granice. I to jest różnica między czymś, co działa u Ciebie na laptopie lokalnie, a czymś, co można oddać w firmie. A jeśli chcesz zobaczyć, jak to wygląda od strony biznesu, czym w ogóle jest moduł i co dostajesz gotowe, a co musisz dopisać, to jest o tym mój inny odcinek, do którego zachęcam Cię oglądać. A jeśli sam coś budujesz z agentem i masz wrażenie, że zaczyna Ci się to rozjeżdżać, to napisz w komentarzu, na czym się wyłożyłeś. Jestem bardzo ciekawy, z jakimi wyzwaniami się u siebie mierzysz. A jeżeli potrzebujesz jeszcze większego pogłębienia tematu i porozmawiania na przykład ze mną o tym, to zapraszam Cię na moją stronę, która tutaj właśnie się wyświetla. Mam możliwość umówienia się na bezpłatną konsultację 30 minut, godzina, w zależności od tego, ile będziesz potrzebował. Pomogę zrozumieć ten proces, który macie w firmie. Pomogę dopasować też narzędzie.",
+  "scores": {
+   "hook": 4,
+   "delivery": 3,
+   "total": 11
+  },
+  "priority": "B",
+  "cta": null,
+  "uses": [
+   "youtube-16x9"
+  ],
+  "notes": "Kolega zrobił system z Codexem — dane w pamięci przeglądarki. Magiczne pierwsze sesje, paczki, które ze sobą nie gadają, AI przyznaje Ci rację, framework we frameworku, trzy uczciwe zastrzeżenia, puenta: AI obniżyło barierę budowania, nie projektowania."
+ },
+ {
+  "id": "ep-module-1",
+  "kind": "episode",
+  "source": "module-build",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": null,
+  "client": "(kanał)",
+  "title": "Jak składam moduł — cz. 1",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    65.61,
+    92.42
+   ],
+   [
+    103.9,
+    108.48
+   ],
+   [
+    128.32,
+    144.74
+   ],
+   [
+    145.38,
+    148.04
+   ],
+   [
+    148.4,
+    157.72
+   ],
+   [
+    158.32,
+    161.38
+   ],
+   [
+    185.14,
+    226.78
+   ],
+   [
+    226.64,
+    249.95
+   ],
+   [
+    253.22,
+    256.44
+   ],
+   [
+    257.5,
+    258.4
+   ],
+   [
+    258.8,
+    267.78
+   ],
+   [
+    293.38,
+    300.26
+   ],
+   [
+    301.18,
+    304.4
+   ],
+   [
+    306.2,
+    319.78
+   ],
+   [
+    320.1,
+    361.8
+   ],
+   [
+    365.3,
+    380.74
+   ],
+   [
+    384.72,
+    405.52
+   ],
+   [
+    456.28,
+    469.58
+   ]
+  ],
+  "start": 65.61,
+  "end": 469.58,
+  "duration": 255.82,
+  "splices": 17,
+  "hook_line": "Zanim napiszę jedną linię kodu, biorę kartkę, taką zwykłą kartkę papieru, która często funkcjonuje",
+  "transcript": "Zanim napiszę jedną linię kodu, biorę kartkę, taką zwykłą kartkę papieru, która często funkcjonuje w firmach. I 6 godzin chodzę z tą kartką po firmach albo kartkami, śledząc drogę tego na przykład zamówienia. Od momentu, w którym wpada, do momentu, w którym ktoś wystawia fakturę i wyjeżdża z danym zamówieniem. I to jest najważniejsza część mojej roboty. Nie kod, nie ekran, nie wybór technologii. Ta kartka. Dziś pokażę, jak z procesu, który żyje w Excelu i w mailach, robi się działający moduł systemów Open Mercator. Nie od ekranu, nie od bazy danych. Od kartki, rozmowy i jednej porządnej specyfikacji. Mówię o tym, bo widzę, jak ludzie zaczynają od drugiej strony. Odpalają agenta, proszą o system, dostają system. I po miesiącu okazuje się, że to nie opisuje ich firmy, to nie opisuje ich procesu. Okej, ale zacznijmy od początku. Zaczynam od warsztatu. 6 godzin, 1 dzień i przychodzę na niego z gotową listą. Około 70 nieraz pytań nawet w różnych koncepcjach. Nie są ułożone tematycznie, są ułożone często po ludziach. Osobno pytania dla właściciela, osobno pytania dla handlowca, Osobno dla produkcji i dla działów technicznych. Dla biur inny zestaw i dla obsługi zamówienia też inny zestaw pytań. Na końcu osobna sekcja otwartych decyzji do zamknięcia. Bo jak zapytasz, jak wygląda proces, usłyszysz bardzo oficjalną wersję. A często jest tak, że właściciel mówi, ja wszystko wiem, jak wygląda na każdym szczeblu. A niestety też mam takie poczucie i takie doświadczenie w tym wszystkim, że dopiero chodząc po tych konkretnych osobach dowiadujemy się bardzo dużo szczegółów na temat procesu, jak on faktycznie wygląda, a nie jak wygląda w głowie właściciela. bo często właściciel jest już na kompletnie innym etapie i jeszcze dwa lata temu ten proces mógł wyglądać tak, jak on go pamięta. Teraz to wygląda zupełnie inaczej. A jak zapytasz konkretną osobę, co robi rękami we wtorek rano, przychodząc do pracy, usłyszysz tak naprawdę 100 % tego, jak ten proces faktycznie wygląda. Idziemy z tą kartką, zaczyna się od handlowca albo od razu od klienta. Zamówienie ląduje w administracji, z administracji trafia w zależności od oddziału na konkretną produkcję. Produkcja przerabia je w swoim tempie, potem jest kolejna osoba, która zbiera, pakuje, wysyła i zmienia status zamówienia. Jeszcze jedna, która to wszystko podsumowuje, wystawia dokumenty, rachunki, faktury i komunikuje się z klientem. I teraz policz. Tej jednej kartki dotyka kilka, czasem kilkadziesiąt osób w zależności od tego, jak duża jest firma. Każdy robi z nią coś innego, każdy widzi co innego, każdy może zepsuć co innego, każda osoba popełnia inne błędy. I to jest moment, w którym przestaje być jasne, czego ludzie potrzebują, a zaczyna być jasne, jak ten moduł ma wyglądać. I teraz rzecz, którą polecam każdemu, kto ma w firmie programistę. Usiądźcie razem, ty od biznesu, on od technologii, bo on nie do końca rozumie Waszą firmę i nie ma w tym nic złego tak naprawdę. Poświęćcie na to kilka godzin i nagrajcie tę rozmowę najlepiej, zwyczajnie dyktafonem, potem oczywiście wrzućcie to transkrypcję do systemu, a on pomoże ją poukładać w specyfikacje, jeżeli wykorzystacie gotowe narzędzia, które są w Open Mercato do budowania tych specyfikacji. I oczywiście nie za pierwszym razem to wszystko wyjdzie. Potrzeba pewnie kilku iteracji, które spowodują, że powiesz w końcu, o, tak to miało wyglądać, tak chciałem, żeby to zawsze działało,",
+  "scores": {
+   "hook": 4,
+   "delivery": 3,
+   "total": 11
+  },
+  "priority": "B",
+  "cta": null,
+  "uses": [
+   "youtube-16x9"
+  ],
+  "notes": "Kartka papieru zamiast kodu, warsztat 6 h z ~70 pytaniami po rolach, droga zamówienia przez firmę, nagrana rozmowa z programistą → specyfikacja."
+ },
+ {
+  "id": "ep-module-2",
+  "kind": "episode",
+  "source": "module-retake",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": null,
+  "client": "(kanał)",
+  "title": "Jak składam moduł — cz. 2",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    71.35,
+    90.25
+   ],
+   [
+    90.63,
+    93.8
+   ],
+   [
+    94.52,
+    98.12
+   ],
+   [
+    104.98,
+    116.2
+   ],
+   [
+    116.84,
+    119.88
+   ],
+   [
+    120.2,
+    131.44
+   ],
+   [
+    202.72,
+    218.28
+   ],
+   [
+    218.92,
+    242.28
+   ],
+   [
+    256.04,
+    261.48
+   ],
+   [
+    262.02,
+    267.36
+   ],
+   [
+    268.02,
+    277.6
+   ],
+   [
+    278.14,
+    278.64
+   ],
+   [
+    281.84,
+    300.22
+   ],
+   [
+    300.58,
+    330.16
+   ],
+   [
+    331.92,
+    346.4
+   ],
+   [
+    346.98,
+    351.88
+   ],
+   [
+    353.48,
+    355.78
+   ],
+   [
+    356.16,
+    389.74
+   ],
+   [
+    390.34,
+    402.2
+   ]
+  ],
+  "start": 71.35,
+  "end": 402.2,
+  "duration": 226.03,
+  "splices": 18,
+  "hook_line": "To brzmi banalnie, ale zmienia jedną rzecz zasadniczo. Rozmawiacie o procesie bez presji dowożenia.",
+  "transcript": "To brzmi banalnie, ale zmienia jedną rzecz zasadniczo. Rozmawiacie o procesie bez presji dowożenia. Nikt nie liczy godzin, nikt nie patrzy na terminy i dopiero wtedy, gdy da się zejść na tyle głęboko, żeby specyfikacja była coś warta, i w tym pomaga oczywiście Open Mercato i agenci, którzy tam są. Więc co ta specyfikacja musi zawierać? Zasada podstawowa. Są trzy warstwy i najlepiej ich nie mieszać ze sobą. Problem biznesowy, reguły biznesowe i specyfikacja techniczna. Problem biznesowy odpowiada na pytanie Co boli, kogo boli i ile to kosztuje I to naprawdę w liczbach Nie handlowie straci dużo czasu Tylko handlowie straci 40 minut dziennie Albo 3 faktury mają złe stawki Dalej Kontekst, aktorzy, stan obecny Skala i częstotliwość Pytanie dlaczego teraz Bo nie każdy problem trzeba rozwiązywać Już dziś Metryki sukcesu, zakres i co najważniejsze, co jest poza tym zakresem. I słownik pojęć to jest rzecz, która bardzo często wspomniana, a która potrafi wywrócić cały projekt do góry nogami. Bo to samo słowo znaczy co innego na różnych etapach procesu. Zamówienie u handlowca to jedno, zamówienie na produkcji to co innego. Jak tego nie spiszesz, to każdy zbuduje coś innego. Kiedy specyfikacja jest gotowa i przeszła przez checklistę bezpieczeństwo, wydajność, ryzyka, przegląd tego, czego nie wzięliśmy pod uwagę i Open Mercato pomaga nam w tą checklistę przejść. I kiedy się jako Programista musieliśmy na tym wszystkim czuwać, pamiętać. Przechodzi w głowie, a co jest klient zrobi, a kto ma mieć, jakie uprawnienia, a dlaczego. Teraz to jest zebrane do kupy, doświadczeniem ludzi, którzy zbudowali już niejeden duży system. I moje doświadczenie jest takie, że przy dobrej specyfikacji trafność tego, co wychodzi, jest na poziomie 70 -90%. Przy złej specyfikacji już tak nie jest. I to jest ta cała tajemnica, czyli warto się skupić na tej specyfikacji, żeby ona była zrobiona bardzo dobrze. I teraz uczciwie, gdzie to pasuje? Agent nie powie Ci, gdzie kończy się moduł. Jak nie postawisz granicy, to moduł zacznie się rozlewać. Zaczynasz od kart technicznych, a po miesiącu budujesz wielkiego ERPA. I druga rzecz. Agent nie wie, co jest w Twojej firmie wyjątkowe. On zna wzorce, a Ty znasz wyjątki. Wyjątki są dokładnie tym, za co Twój klient płaci. Jest jedno słowo, które to wszystko spina. Powtarzalność. I nie chodzi o to, żeby raz zbudować coś ładnego. Chodzi o to, żeby drugi moduł powstał tak samo jak pierwszy i trzeci tak samo jak drugi. Bo wtedy przestajesz robić projekty, które muszą się jakoś połączyć i zaczynasz mieć system, który ze sobą współgra. Jeśli masz proces, który dziś żyje w Excelu i w mailach, weź kartkę, przejdź go od początku do końca, zanim zadzwonisz do kogokolwiek i będziesz chciał, żeby zbudował dla Ciebie jakieś rozwiązanie. Sam zobaczysz, ile osób tej kartki dotyka. A zapraszam Cię do tego, aby w komentarzu napisać, przez ile rąk przechodzi u Ciebie ta przysłowiowa kartka. To jedno zamówienie. Ciekawy jestem, czy to będzie więcej niż myślisz.",
+  "scores": {
+   "hook": 3,
+   "delivery": 3,
+   "total": 9
+  },
+  "priority": "C",
+  "cta": null,
+  "uses": [
+   "youtube-16x9"
+  ],
+  "notes": "Trzy warstwy specyfikacji (40 minut dziennie, 3 faktury), słownik pojęć, checklista, trafność 70–90%, granice modułu, wzorce vs wyjątki, powtarzalność, CTA w komentarzu."
  },
  {
   "id": "raw-freestyle-workshop",

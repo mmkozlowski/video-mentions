@@ -1,0 +1,58 @@
+{
+ "clip": "ch-module-2-druga-strona",
+ "brand": "flowbiz",
+ "formats": [
+  "reels"
+ ],
+ "hook": {
+  "text": "Agent AI zbuduje Ci system. *Tylko nie Twojej firmy.",
+  "until": 8.0,
+  "visual": {
+   "kind": "versus",
+   "sign": "→",
+   "left": {
+    "art": "h-robot",
+    "label": "gotowy ekran"
+   },
+   "right": {
+    "art": "h-factory",
+    "label": "Twój proces",
+    "strike": true
+   }
+  }
+ },
+ "topic": {
+  "kicker": "Jak składam moduł",
+  "text": "Najpierw kartka, *potem kod",
+  "sub": "warsztat → specyfikacja → moduł"
+ },
+ "cta": {
+  "chip": "Open Mercato · flowbiz.pl",
+  "reels": {
+   "kicker": "Chcesz pogadać o swoim systemie?",
+   "title": "Napisz *KARTKA w komentarzu",
+   "sub": "Pokażę Ci, jak wygląda taki warsztat"
+  }
+ },
+ "events": [
+  {
+   "type": "beat",
+   "style": "burst",
+   "at": "warsztatu",
+   "until": "+3",
+   "label": "Zanim powstanie kod",
+   "num": "6 H",
+   "bottom": "warsztat w firmie"
+  },
+  {
+   "type": "mockup",
+   "name": "questions",
+   "at": "listą",
+   "until": 46.6
+  }
+ ],
+ "cover": {
+  "kicker": "Jak składam moduł",
+  "text": "Dlaczego system z AI po miesiącu *nie pasuje do firmy?"
+ }
+}

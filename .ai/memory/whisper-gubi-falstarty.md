@@ -15,6 +15,11 @@ ustawiona po czasach słów zostawiła powtórzenie.
   Zrobiono… A na hali”) słowa miały czasy przesunięte o ~1,5 s, więc cięcie
   „po słowach” wpuściło nieudaną próbę.
 
+- **Słowo rozciągnięte na cały dubel** (11.10, „Jak składam moduł”, 248,5–253,2 s):
+  „…a nie jak wygląda w głowie właściciela” padło dwa razy, a w transkrypcji
+  raz — ostatnie „właściciela” trwało 4 s i przykryło drugi dubel. Cięcie
+  „na końcu słowa” wpuściło oba. Wykryło to dopiero `verify.py`.
+
 Lek: granica z **ciszy w sygnale** (`silencedetect` na wycinku ±5 s,
 `-32…-38 dB`, `d=0.1–0.25`) i ewentualnie transkrypcja samego 2-sekundowego
 wycinka. W EDL `projects/recording-library` takie miejsce zapisuje się jako

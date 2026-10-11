@@ -90,12 +90,13 @@ code{{color:var(--mut)}} .brand{{border:1px solid var(--line);border-radius:20px
 .fmt-youtube video{{width:min(620px,100%);aspect-ratio:16/9;background:#000;border-radius:10px}}
 .none{{color:var(--mut)}}
 </style></head><body><main><h1>Próbki opakowania klipów</h1>
-<p class="lead"><a href="odcinki-i-grafiki.html" style="color:#F5A623">→ odcinki YouTube i grafiki statyczne</a><br>Sesja 8.10.2026 · paleta A (bursztyn) · ujęcia oznaczone „AI” są generowane (art. 50 AI Act — przy publikacji włącz też przełącznik na platformie).</p>
+<p class="lead"><a href="odcinki-i-grafiki.html" style="color:#F5A623">→ odcinki YouTube i grafiki statyczne</a> · <a href="starsze-odcinki.html" style="color:#F5A623">→ starsze odcinki kanału: Claude vs Open Mercato, Jak składam moduł, Po co Open Mercato</a><br>Sesja 8.10.2026 · paleta A (bursztyn) · ujęcia oznaczone „AI” są generowane (art. 50 AI Act — przy publikacji włącz też przełącznik na platformie).</p>
 {"".join(rows)}</main>'''+NOTES+'''</body></html>'''
     FINAL.mkdir(parents=True, exist_ok=True)
     (FINAL / "index.html").write_text(page)
     print(f"{len(rows)} klipów → {FINAL / 'index.html'}")
     print("odcinki i grafiki →", episodes_and_static(clips))
+    print("starsze odcinki →", series_page(clips))
 
 
 def episodes_and_static(clips):
@@ -136,6 +137,46 @@ nav a{{color:var(--acc)}}
 <section><h2>Grafiki statyczne — feed 4:5 i story 9:16</h2><div class="grid">{"".join(shots)}</div></section>
 </main>'''+NOTES+'''</body></html>'''
     out = FINAL / "odcinki-i-grafiki.html"
+    out.write_text(page)
+    return out
+
+
+# Starsze odcinki kanału (11.10.2026): jedna seria = zajawka 4:5 → pełny odcinek 16:9 → rolki 9:16.
+SERIES = [("Claude vs Open Mercato — vibe coding kontra framework", "zaj-vibecoding", "ep-vibecoding", "ch-vibe-"),
+          ("Jak składam moduł — od kartki do specyfikacji", "zaj-module", "ep-module", "ch-module-"),
+          ("Po co Open Mercato (S-10, odcinek już na YouTube)", "zaj-om", None, "ch-om-")]
+
+
+def series_page(clips):
+    def video(name, cls):
+        f = FINAL / name
+        if not f.exists():
+            return '<p class="none">renderuje się…</p>'
+        return f'<figure class="{cls}"><video src="{f.name}?v={int(f.stat().st_mtime)}" controls preload="metadata" playsinline></video><figcaption>{html.escape(name)}</figcaption></figure>'
+    blocks = []
+    for title, teaser, episode, prefix in SERIES:
+        reels = sorted((c for c in clips.values() if c["id"].startswith(prefix)), key=lambda c: int(c["id"].split("-")[2]))
+        chapters = FINAL / f"{episode}__chapters.txt" if episode else None
+        ep = (f'<h3>Pełny odcinek YouTube 16:9 · {int(clips[episode]["duration"] // 60)}:{int(clips[episode]["duration"] % 60):02d}</h3><div class="ep">{video(f"{episode}__youtube-A.mp4", "yt")}'
+              + (f'<pre>{html.escape(chapters.read_text())}</pre>' if chapters and chapters.exists() else "") + '</div>') if episode else ""
+        cards = "".join(f'<div class="reel"><b>{html.escape(c["title"])}</b><code>{c["id"]} · {round(c["duration"])} s</code>{video(c["id"] + "__reels-A.mp4", "v")}</div>' for c in reels)
+        blocks.append(f'<section><h2>{html.escape(title)}</h2><h3>Zajawka 4:5 — LinkedIn / Facebook</h3>{video(teaser + "__feed-A.mp4", "feed")}'
+                      f'{ep}<h3>Rolki i shorty 9:16 — Reels, Shorts, TikTok ({len(reels)})</h3><div class="grid">{cards}</div></section>')
+    page = f'''<!doctype html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Starsze odcinki</title><style>
+:root{{--bg:#0A0A08;--fg:#FAF8F0;--mut:#9A938A;--acc:#F5A623;--line:#2E2C28}}
+body{{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,sans-serif}}
+main{{max-width:1500px;margin:0 auto;padding:24px 16px 80px}} h1{{font-size:28px;margin:0 0 4px}} .lead{{color:var(--mut)}}
+section{{border-top:1px solid var(--line);padding:24px 0}} h2{{margin:0 0 4px;font-size:24px}} h3{{color:var(--acc);font-size:15px;margin:22px 0 10px}} code{{color:var(--mut);display:block;font-size:12px}}
+.ep{{display:flex;gap:20px;flex-wrap:wrap}} .yt video{{width:min(900px,100%);aspect-ratio:16/9;background:#000;border-radius:10px}}
+.feed video{{width:340px;max-width:100%;aspect-ratio:4/5;background:#000;border-radius:10px}}
+.grid{{display:flex;flex-wrap:wrap;gap:22px}} .reel{{width:270px}} .reel b{{display:block;min-height:42px}} .v video{{width:270px;aspect-ratio:9/16;background:#000;border-radius:10px}}
+figure{{margin:6px 0 0}} figcaption{{display:none}} pre{{margin:0;color:var(--mut);font-size:14px;white-space:pre-wrap}} .none{{color:var(--mut)}} nav a{{color:var(--acc)}}
+</style></head><body><main><h1>Starsze odcinki kanału — zajawki, odcinki, rolki</h1>
+<p class="lead"><nav><a href="index.html">← klipy z sesji 8.10</a> · <a href="odcinki-i-grafiki.html">odcinki z sesji 8.10</a></nav>
+Ujęcia oznaczone „AI” są generowane (art. 50 AI Act — przy publikacji włącz też przełącznik na platformie).</p>
+{"".join(blocks)}</main>'''+NOTES+'''</body></html>'''
+    out = FINAL / "starsze-odcinki.html"
     out.write_text(page)
     return out
 

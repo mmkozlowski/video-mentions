@@ -1,0 +1,404 @@
+{
+ "clip": "ep-vibecoding",
+ "brand": "flowbiz",
+ "formats": [
+  "youtube"
+ ],
+ "topic": {
+  "kicker": "Claude vs Open Mercato",
+  "text": "System z AI, *który wytrzyma",
+  "sub": "vibe coding kontra framework"
+ },
+ "cta": {
+  "chip": "Open Mercato · flowbiz.pl"
+ },
+ "chapters": [
+  [
+   "Kolega",
+   "Kolega i system bez bazy danych"
+  ],
+  [
+   "entuzjastą",
+   "Dlaczego kibicuję vibe codingowi"
+  ],
+  [
+   "Kiedy zaczynasz",
+   "Dwie magiczne sesje i chaos"
+  ],
+  [
+   "dlaczego to się dzieje",
+   "Model nie jest słaby"
+  ],
+  [
+   "Problem jest",
+   "AI zawsze przyzna Ci rację"
+  ],
+  [
+   "Open Mercato to jest",
+   "Framework we frameworku"
+  ],
+  [
+   "Tych warstw",
+   "Użytkownicy, role, uprawnienia"
+  ],
+  [
+   "nie powie",
+   "Uczciwie: nie dla każdego"
+  ],
+  [
+   "glinianych",
+   "Gliniane nogi na produkcji"
+  ],
+  [
+   "Utrzymanie",
+   "Utrzymanie po Twojej stronie"
+  ],
+  [
+   "AI obniżyło",
+   "Puenta: bariera projektowania"
+  ],
+  [
+   "komentarzu",
+   "Napisz, na czym się wyłożyłeś"
+  ]
+ ],
+ "events": [
+  {
+   "type": "broll",
+   "at": "Zarządzanie",
+   "until": "+3.4",
+   "src": "build/broll-real/stock-kod-laptop.mp4",
+   "ai": false,
+   "kicker": "Vibe coding",
+   "title": "System *zrobiony z agentem"
+  },
+  {
+   "type": "mockup",
+   "name": "storage",
+   "at": "bazę",
+   "until": "frustracja"
+  },
+  {
+   "type": "title",
+   "at": "entuzjastą",
+   "until": "+7",
+   "zone": "lower",
+   "kicker": "Jestem za",
+   "text": "Ludzie biznesu *programują"
+  },
+  {
+   "type": "list",
+   "at": "szybciej",
+   "until": "Tylko",
+   "kicker": "Co daje vibe coding",
+   "items": [
+    {
+     "text": "Szybciej",
+     "at": "szybciej"
+    },
+    {
+     "text": "Taniej",
+     "at": "taniej"
+    },
+    {
+     "text": "Bliżej biznesu",
+     "at": "bliżej"
+    }
+   ]
+  },
+  {
+   "type": "beat",
+   "style": "slam",
+   "at": "jeden moment",
+   "until": "+3.6",
+   "label": "Przy budowaniu",
+   "lines": [
+    "JEDEN MOMENT",
+    "i wszystko",
+    "SIĘ WYWRACA"
+   ]
+  },
+  {
+   "type": "broll",
+   "at": "Kiedy zaczynasz",
+   "until": "+3.2",
+   "src": "build/broll-real/stock-przy-biurku.mp4",
+   "ai": false,
+   "title": "Dwie *magiczne sesje",
+   "center": true
+  },
+  {
+   "type": "list",
+   "at": "Prosisz",
+   "until": "nagle",
+   "kicker": "Pierwsze sesje",
+   "items": [
+    {
+     "text": "Ekran — jest",
+     "at": "ekran"
+    },
+    {
+     "text": "Formularz — jest",
+     "at": "formularz"
+    },
+    {
+     "text": "Kolejny moduł",
+     "at": "kolejny"
+    }
+   ]
+  },
+  {
+   "type": "mockup",
+   "name": "deps",
+   "at": "zainstalowały",
+   "until": "Najgorsze"
+  },
+  {
+   "type": "beat",
+   "style": "strike",
+   "at": "Najgorsze",
+   "until": "+3.4",
+   "label": "Najgorsze",
+   "main": "NIE DOWIESZ SIĘ",
+   "sub": [
+    "Nie wiesz,",
+    "czego szukać."
+   ]
+  },
+  {
+   "type": "compare",
+   "at": "Dwa lata",
+   "until": "przesadzam",
+   "kicker": "Produktywność programisty",
+   "before": {
+    "value": "+10%",
+    "label": "2 lata temu"
+   },
+   "after": {
+    "value": "×5–10",
+    "label": "dziś"
+   },
+   "after_at": "Dzisiaj"
+  },
+  {
+   "type": "chat",
+   "at": "rację",
+   "until": "bo",
+   "app": "openai",
+   "bot": "Agent AI",
+   "messages": [
+    {
+     "side": "me",
+     "text": "Dodaj moduł faktur",
+     "at": "rację"
+    },
+    {
+     "side": "bot",
+     "text": "Świetny pomysł! Tym razem zadziała.",
+     "at": "super"
+    },
+    {
+     "side": "bot",
+     "text": "Jesteś najlepszym programistą na świecie.",
+     "at": "programistą"
+    }
+   ]
+  },
+  {
+   "type": "beat",
+   "style": "burst",
+   "at": "setki",
+   "until": "+3.2",
+   "label": "Pusty projekt",
+   "num": "100+",
+   "bottom": "decyzji architektonicznych"
+  },
+  {
+   "type": "title",
+   "at": "skoro",
+   "until": "+5",
+   "zone": "lower",
+   "kicker": "Bez zasad",
+   "text": "Za każdym razem *inaczej"
+  },
+  {
+   "type": "logos",
+   "at": "Podłączasz",
+   "until": "strukturę",
+   "kicker": "Twój agent + struktura",
+   "items": [
+    {
+     "logo": "claude",
+     "name": "Claude"
+    },
+    {
+     "logo": "openai",
+     "name": "Codex"
+    },
+    {
+     "logo": "openmercato",
+     "name": "Open Mercato"
+    }
+   ]
+  },
+  {
+   "type": "list",
+   "at": "brakuje",
+   "until": "kolegi",
+   "kicker": "Struktura mówi agentowi",
+   "items": [
+    {
+     "text": "Tu brakuje fundamentu",
+     "at": "brakuje"
+    },
+    {
+     "text": "Tego nie rób",
+     "at": "Tego"
+    },
+    {
+     "text": "Zrób to tak",
+     "at": "zrób"
+    }
+   ]
+  },
+  {
+   "type": "slate",
+   "at": "Czy on",
+   "until": "+3.2",
+   "kicker": "Wróćmy do kolegi",
+   "text": "Czy popełniłby *ten sam błąd?",
+   "pip": true
+  },
+  {
+   "type": "mockup",
+   "name": "layers",
+   "at": "dwie warstwy",
+   "until": "Ta struktura"
+  },
+  {
+   "type": "mockup",
+   "name": "repo",
+   "at": "Ta struktura",
+   "until": "+8"
+  },
+  {
+   "type": "title",
+   "at": "nie powie",
+   "until": "+8",
+   "zone": "lower",
+   "kicker": "Uczciwie",
+   "text": "Nie dla każdego — *potrzebny programista"
+  },
+  {
+   "type": "beat",
+   "style": "strike",
+   "at": "glinianych",
+   "until": "+3.2",
+   "label": "Bez fundamentów",
+   "main": "GLINIANE NOGI",
+   "sub": [
+    "Lokalnie działa.",
+    "Produkcja nie."
+   ]
+  },
+  {
+   "type": "broll",
+   "at": "mocne",
+   "until": "+4.4",
+   "src": "build/klocki/system-moduly-przelot-16x9.mp4",
+   "ai": false
+  },
+  {
+   "type": "list",
+   "at": "Utrzymanie",
+   "until": "gotowym",
+   "kicker": "Po Twojej stronie",
+   "items": [
+    {
+     "text": "Aktualizacje",
+     "at": "aktualizacje"
+    },
+    {
+     "text": "Serwer",
+     "at": "serwer"
+    },
+    {
+     "text": "Błędy na serwerze",
+     "at": "błędy"
+    }
+   ]
+  },
+  {
+   "type": "title",
+   "at": "gotowym",
+   "until": "chciałbym",
+   "zone": "lower",
+   "kicker": "W gotowym SaaS-ie",
+   "text": "Płacisz, *żeby ktoś się martwił"
+  },
+  {
+   "type": "beat",
+   "style": "slam",
+   "at": "AI obniżyło",
+   "until": "+4",
+   "label": "Puenta",
+   "lines": [
+    "KOD: TANIEJ",
+    "ale",
+    "PROJEKT: NIE"
+   ]
+  },
+  {
+   "type": "beat",
+   "style": "slam",
+   "at": "Framework nie",
+   "until": "+3.8",
+   "label": "Framework",
+   "lines": [
+    "NIE MĄDRZEJSZY",
+    "tylko",
+    "BEZ WYBORU"
+   ]
+  },
+  {
+   "type": "compare",
+   "at": "różnica",
+   "until": "+6",
+   "kicker": "Różnica",
+   "before": {
+    "value": "laptop",
+    "label": "działa u Ciebie"
+   },
+   "after": {
+    "value": "firma",
+    "label": "można oddać ludziom"
+   },
+   "after_at": "można"
+  },
+  {
+   "type": "title",
+   "at": "od strony biznesu",
+   "until": "+7",
+   "zone": "lower",
+   "kicker": "Następny odcinek",
+   "text": "Jak składam *moduł systemu"
+  },
+  {
+   "type": "title",
+   "at": "komentarzu",
+   "until": "+6",
+   "zone": "lower",
+   "kicker": "Napisz w komentarzu",
+   "text": "Na czym *się wyłożyłeś?"
+  },
+  {
+   "type": "slate",
+   "at": "stronę",
+   "until": "Pomogę dopasować",
+   "kicker": "Bezpłatna konsultacja · 30–60 min",
+   "text": "*flowbiz.pl",
+   "sub": "proces w Twojej firmie · dobór narzędzia",
+   "pip": true
+  }
+ ]
+}

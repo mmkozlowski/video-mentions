@@ -1,0 +1,55 @@
+{
+ "clip": "ch-om-10-excel-dziala",
+ "brand": "flowbiz",
+ "formats": [
+  "reels"
+ ],
+ "hook": {
+  "text": "Excel działa. SaaS działa. AI pisze kod. *Po co własny system?",
+  "until": 6.5,
+  "visual": {
+   "kind": "logos",
+   "items": [
+    "excel",
+    "zapier",
+    "openai"
+   ]
+  }
+ },
+ "topic": {
+  "kicker": "Po co Open Mercato",
+  "text": "Własny system *zamiast narzędzi",
+  "sub": "kod, role i historia zmian"
+ },
+ "cta": {
+  "chip": "Open Mercato · flowbiz.pl",
+  "reels": {
+   "kicker": "Cały odcinek na YouTube",
+   "title": "Po co *Open Mercato?",
+   "sub": "kanał FlowBiz · link w profilu"
+  }
+ },
+ "events": [
+  {
+   "type": "compare",
+   "at": "kolejnego",
+   "until": "fundamentem",
+   "kicker": "W pewnym momencie",
+   "before": {
+    "value": "narzędzie",
+    "label": "firma się dopasowuje"
+   },
+   "after": {
+    "value": "system",
+    "label": "dopasowany do firmy"
+   },
+   "after_at": "własnego"
+  },
+  {
+   "type": "mockup",
+   "name": "modules",
+   "at": "fundamentem",
+   "until": "właśnie"
+  }
+ ]
+}

@@ -1,0 +1,58 @@
+{
+ "clip": "ch-module-8-70-90",
+ "brand": "flowbiz",
+ "formats": [
+  "reels"
+ ],
+ "hook": {
+  "text": "Dobra specyfikacja = *70–90% trafności modułu.",
+  "until": 8.0,
+  "visual": {
+   "kind": "meter",
+   "from": 20,
+   "to": 85,
+   "suffix": "%"
+  }
+ },
+ "topic": {
+  "kicker": "Jak składam moduł",
+  "text": "Najpierw kartka, *potem kod",
+  "sub": "warsztat → specyfikacja → moduł"
+ },
+ "cta": {
+  "chip": "Open Mercato · flowbiz.pl",
+  "reels": {
+   "kicker": "Chcesz pogadać o swoim systemie?",
+   "title": "Napisz *SPEC w komentarzu",
+   "sub": "Pokażę Ci, jak wygląda dobra specyfikacja"
+  }
+ },
+ "events": [
+  {
+   "type": "mockup",
+   "name": "checklist",
+   "at": "bezpieczeństwo",
+   "until": "Teraz"
+  },
+  {
+   "type": "beat",
+   "style": "burst",
+   "at": "70",
+   "until": "+3.4",
+   "label": "Przy dobrej specyfikacji",
+   "num": "70–90%",
+   "bottom": "trafności modułu"
+  },
+  {
+   "type": "title",
+   "at": "złej",
+   "until": 52.6,
+   "kicker": "Cała tajemnica",
+   "text": "Najpierw *specyfikacja, potem kod"
+  }
+ ],
+ "cover": {
+  "kicker": "Jak składam moduł",
+  "text": "Ile z modułu pisanego z AI *trafia za pierwszym razem?"
+ }
+}

@@ -1,0 +1,70 @@
+{
+ "clip": "ch-module-5-nagraj-rozmowe",
+ "brand": "flowbiz",
+ "formats": [
+  "reels"
+ ],
+ "hook": {
+  "text": "Masz programistę? *Nagraj z nim jedną rozmowę.",
+  "until": 6.5,
+  "visual": {
+   "kind": "flow",
+   "sign": "→",
+   "items": [
+    {
+     "art": "h-developer"
+    },
+    {
+     "art": "h-notebook"
+    }
+   ]
+  }
+ },
+ "topic": {
+  "kicker": "Jak składam moduł",
+  "text": "Najpierw kartka, *potem kod",
+  "sub": "warsztat → specyfikacja → moduł"
+ },
+ "cta": {
+  "chip": "Open Mercato · flowbiz.pl",
+  "reels": {
+   "kicker": "Chcesz pogadać o swoim systemie?",
+   "title": "Napisz *SPEC w komentarzu",
+   "sub": "Pokażę Ci, jak wygląda taka specyfikacja"
+  }
+ },
+ "events": [
+  {
+   "type": "broll",
+   "at": "Usiądźcie",
+   "until": "+3",
+   "src": "build/broll-real/stock-zespol-laptop.mp4",
+   "ai": false,
+   "label": "Ty od biznesu, on od technologii"
+  },
+  {
+   "type": "list",
+   "at": "Poświęćcie",
+   "until": 36.5,
+   "kicker": "Przepis na specyfikację",
+   "items": [
+    {
+     "text": "Kilka godzin rozmowy",
+     "at": "godzin"
+    },
+    {
+     "text": "Nagranie dyktafonem",
+     "at": "dyktafonem"
+    },
+    {
+     "text": "Transkrypcja do AI",
+     "at": "transkrypcję"
+    },
+    {
+     "text": "Gotowa specyfikacja",
+     "at": "specyfikacje"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,76 @@
+{
+ "clip": "zaj-vibecoding",
+ "brand": "flowbiz",
+ "formats": [
+  "feed"
+ ],
+ "episode_title": "Claude vs Open Mercato: dlaczego system z AI sypie się na produkcji",
+ "cover": {
+  "kicker": "Vibe coding vs framework",
+  "text": "Zbudował system z AI w weekend. *Zapomniał o bazie danych."
+ },
+ "hook": {
+  "text": "System z agentem AI. *Bez bazy danych.",
+  "until": 8.0,
+  "visual": {
+   "kind": "versus",
+   "sign": "→",
+   "left": {
+    "logo": "openai",
+    "label": "Codex"
+   },
+   "right": {
+    "art": "h-warning-gear",
+    "label": "0 danych",
+    "accent": true
+   }
+  }
+ },
+ "topic": {
+  "kicker": "Claude vs Open Mercato",
+  "text": "System z AI, *który wytrzyma",
+  "sub": "vibe coding kontra framework"
+ },
+ "cta": {
+  "chip": "Open Mercato · flowbiz.pl"
+ },
+ "events": [
+  {
+   "type": "mockup",
+   "name": "storage",
+   "at": "bazę",
+   "until": "frustracja"
+  },
+  {
+   "type": "beat",
+   "style": "slam",
+   "at": "AI obniżyło",
+   "until": "+4",
+   "label": "Puenta odcinka",
+   "lines": [
+    "KOD: TANIEJ",
+    "ale",
+    "PROJEKT: NIE"
+   ]
+  },
+  {
+   "type": "beat",
+   "style": "slam",
+   "at": "Framework nie",
+   "until": "+3.8",
+   "label": "Framework",
+   "lines": [
+    "NIE MĄDRZEJSZY",
+    "tylko",
+    "BEZ WYBORU"
+   ]
+  },
+  {
+   "type": "title",
+   "at": "różnica",
+   "until": "+6",
+   "kicker": "W odcinku",
+   "text": "Od laptopa *do systemu dla firmy"
+  }
+ ]
+}
