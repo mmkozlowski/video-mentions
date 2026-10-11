@@ -5,7 +5,7 @@
   "reels"
  ],
  "hook": {
-  "text": "System zrobiony z AI po godzinach. *Bez bazy danych.",
+  "text": "System zrobiony sam, z agentem AI. *Bez bazy danych.",
   "until": 6.5,
   "visual": {
    "kind": "versus",
@@ -41,7 +41,7 @@
    "until": "+3",
    "src": "build/broll-real/stock-kod-laptop.mp4",
    "ai": false,
-   "label": "Vibe coding po godzinach"
+   "label": "Vibe coding z Codexem"
   },
   {
    "type": "mockup",
