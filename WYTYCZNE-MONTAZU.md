@@ -134,7 +134,8 @@ Wszystkie układy z klatkami i podpowiedzią, kiedy którego użyć: [`KATALOG-U
 - **Muzyka:** cichy podkład pod mową, wyraźnie ciszej niż głos, ściszany pod słowami.
   Tylko z biblioteki z licencją do użytku komercyjnego bez roszczeń Content ID (YouTube
   Audio Library i podobne) — inaczej YouTube obcina zasięg albo zarabia na filmie ktoś inny.
-- **Kolor:** lekka korekta — trochę kontrastu i nasycenia, bez efektu „filtra”.
+- **Kolor:** korekta „średnia” (decyzja Mateusza 12.10): kontrast +10%, nasycenie +18%, lekkie
+  wyostrzenie — obraz żywszy, twarz naturalna. Tylko na nagraniu, grafiki zostają w kolorach marki.
 - **Tempo mowy:** Mateusz mówi wolniej niż swobodna polszczyzna (4,2–4,9 sylaby/s wobec
   ~5,5–6). Propozycja: przyspieszenie o 5% (1,05×), ton głosu bez zmian.
   *Status: do decyzji Mateusza na podstawie próbek w
@@ -208,9 +209,10 @@ na czas sklejki.
 - Kolorowy drobny tekst oceniaj po kompresji h.264, nie na PNG.
 - `history.py <film> "zmiana" --by Mateusz|kontrola|Claude` przed każdym renderem.
 
-## Postprodukcja (próbki, do decyzji)
+## Postprodukcja
 
-- obraz: `eq=contrast=1.06:saturation=1.10:brightness=0.005`
+- obraz (✅ 12.10): `eq=contrast=1.10:saturation=1.18:brightness=0.01,unsharp=5:5:0.3` — `cut.py` `COLOR_GRADE`,
+  na materiale z kamery przed grafikami; wchodzi przy ponownym cięciu (`cut.py --force`)
 - dźwięk: highpass 80 Hz, −2 dB @ 250 Hz, +2,5 dB @ 3,2 kHz, kompresor, `loudnorm` −14 LUFS
 - tempo: `atempo=1.05` + `setpts` (ton bez zmian)
 - muzyka: `loudnorm` −31 LUFS + `sidechaincompress` pod mową; biblioteka

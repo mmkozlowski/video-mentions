@@ -23,6 +23,12 @@ import sys
 
 from sources import DATA, FACE_CENTER_X, LIBRARY, SOURCE_W, SOURCES, VERTICAL, load_words
 
+# Korekta koloru nagrania — Mateusz 12.10 wybrał poziom „średnio” z próbek w
+# final/samples/postprodukcja/ (kolor-2-srednio.mp4): kontrast +10 %, nasycenie +18 %,
+# lekkie wyostrzenie. Idzie na sam materiał z kamery w tym miejscu, nie w package.py —
+# grafiki (bursztyn marki) mają zostać w kolorach z palety.
+COLOR_GRADE = "eq=contrast=1.10:saturation=1.18:brightness=0.01,unsharp=5:5:0.3"
+
 
 def words_in(words, ranges):
     """Słowa z przedziałów źródła przeliczone na oś sklejonego klipu.
@@ -86,7 +92,7 @@ def splice_graph(ranges, offset, vertical_of=None):
                      f"afade=t=in:d=0.012,afade=t=out:st={max(0, e - s - 0.012):.3f}:d=0.012[a{i}]")
         labels += f"[v{i}][a{i}]"
     post = f",{vertical_filter(vertical_of)}" if vertical_of else ""
-    parts.append(f"{labels}concat=n={len(ranges)}:v=1:a=1[vc][a];[vc]null{post}[v]")
+    parts.append(f"{labels}concat=n={len(ranges)}:v=1:a=1[vc][a];[vc]{COLOR_GRADE}{post}[v]")
     return ";".join(parts)
 
 

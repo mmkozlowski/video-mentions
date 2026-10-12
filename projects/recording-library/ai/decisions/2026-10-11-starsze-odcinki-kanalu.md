@@ -80,3 +80,7 @@ Artefakt Cd35tVFfQoR53XmTEkYDgW zostaje jako wersja do wysłania poza biuro (tyl
 Panel (12.10, wieczór): plansza przeniesiona do FlowBiz Studio, zakładka „Filmy” — `tools/export_studio.py` pisze
 `studio-index.json` + `exports/studio-manifest.json`, studio czyta je i strumieniuje wideo; decyzje w
 `flowbiz-ads-studio/data/videos/`. `board_server.py` wyłączony (zapas). ADR: `flowbiz-ads-studio/ai/decisions/2026-10-12-zakladka-filmy-zrodla-z-innych-repo.md`.
+
+Kolor (12.10): Mateusz wybrał poziom „średnio” z czterech próbek (`final/samples/postprodukcja/kolor-*.mp4`) —
+`cut.py` `COLOR_GRADE`, na samym nagraniu (nie na grafikach). Wchodzi przy przecięciu całej biblioteki razem z tempem
+(decyzja o tempie: otwarta), żeby nie renderować 66 filmów dwa razy.
