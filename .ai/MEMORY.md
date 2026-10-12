@@ -25,6 +25,7 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 
 - [Veo i Nano Banana przez Gemini API](memory/veo-gemini-api.md) — kadr → ożywienie; klucz `GEMINI_API=`, JPEG zamiast PNG, „jeden kadr” bywa tryptykiem, image-to-video 4–5 min
 - [Pion: strefy zakazane Reels](memory/pion-strefy-zakazane-reels.md) — góra ~230, prawa ~130, dół ~260 px; wszystko u góry wchodzi po hooku
+- [Miniatury bez obcych skilli](memory/miniatury-bez-obcych-skilli.md) — żadnych skilli „noname”; dane z sieci + własne wytyczne (§13) + wzory Mateusza; od kanałów tylko konstrukcja
 - [Studio czyta spis po eksporcie](memory/studio-czyta-spis-po-eksporcie.md) — po renderze `export_studio.py`, inaczej panel nie widzi zmian; uwagi agencji w `flowbiz-ads-studio/data/videos/`
 - [Historia zmian per film](memory/historia-zmian-per-film.md) — każda poprawka (też z kontroli i zmian stylu) → tools/history.py przed renderem; galeria pokazuje ją pod filmem
 - [Pion: jedno na raz](memory/pion-jedno-na-raz.md) — jedno zdanie = jedno tło, zdania po kolei, hook z grafiką i jako nagłówek, nic na głowie, tylko paleta A
@@ -52,5 +53,6 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 - [Pipeline shortów z telefonu (ADR projektowy)](../projects/shorts%20IG/ai/decisions/2026-08-19-pipeline-shortow-z-telefonu.md) — 2026-08-19
 - [Baza klipów z sesji nagraniowej (ADR projektowy)](../projects/recording-library/ai/decisions/2026-10-08-baza-klipow-z-sesji-nagraniowej.md) — 2026-10-08
 - [Opakowanie klipów: 3 formaty × 2 palety (ADR projektowy)](../projects/recording-library/ai/decisions/2026-10-09-opakowanie-klipow-trzy-formaty-dwie-palety.md) — 2026-10-09
+- [Ustalenia z 12.10: postprodukcja, panel, miniatury](decisions/2026-10-12-ustalenia-dnia-postprodukcja-panel-miniatury.md) — 2026-10-12
 - [Podział wiedzy: montaż tutaj, marka w FlowBiz, panel w studiu](decisions/2026-10-12-podzial-wiedzy-montaz-marka-panel.md) — 2026-10-12
 - [Starsze odcinki kanału w bibliotece (ADR projektowy)](../projects/recording-library/ai/decisions/2026-10-11-starsze-odcinki-kanalu.md) — 2026-10-11
