@@ -44,6 +44,22 @@ def tempo(words):
     return syl / talk if talk else 0
 
 
+SERIES = [("ch-vibe", "Claude vs Open Mercato"), ("ep-vibecoding", "Claude vs Open Mercato"), ("zaj-vibecoding", "Claude vs Open Mercato"),
+          ("ch-module", "Jak składam moduł"), ("ep-module", "Jak składam moduł"), ("zaj-module", "Jak składam moduł"),
+          ("ch-om", "Po co Open Mercato"), ("zaj-om", "Po co Open Mercato"),
+          ("ch-doram", "Doram — meble ogrodowe"), ("ep-doram", "Doram — meble ogrodowe"),
+          ("ch-marpasz", "Marpasz — pasza"), ("ep-marpasz", "Marpasz — pasza"), ("ch-rezon", "Rezon — pamiątki"), ("ep-rezon", "Rezon — pamiątki"),
+          ("ch-vacu", "Vacuactiv — agent AI"), ("ep-vacuactiv", "Vacuactiv — agent AI"),
+          ("ch-offers", "Oferty w 5 minut"), ("ep-open-mercato-offers", "Oferty w 5 minut"),
+          ("ep-8-wdrozen", "8 wdrożeń Open Mercato"), ("zaj-8-wdrozen", "8 wdrożeń Open Mercato")]
+
+
+def series_name(video, brand):
+    if brand == "aislupsk":
+        return "AI Słupsk — warsztaty"
+    return next((name for prefix, name in SERIES if video.startswith(prefix)), "Reklamy z promptera (8.10)")
+
+
 def kind_of(clip, board, fmt):
     if fmt == "feed":
         return "zajawka"
@@ -106,6 +122,7 @@ def main():
             "id": name, "clip": clip["id"], "title": clip["title"], "kind": kind, "format": fmt,
             "brand": board.get("brand", clip["brand"]), "duration": round(clip["duration"], 1),
             "series": clip.get("parent") or clip.get("block") or clip["source"],
+            "seriesName": series_name(name, board.get("brand", clip["brand"])),
             "hook_text": board.get("hook", {}).get("text", "").replace("*", ""),
             "cover_text": board.get("cover", {}).get("text", "").replace("*", ""),
             "cta_text": (cta.get("reels") or cta.get("ad") or {}).get("title", "").replace("*", ""),

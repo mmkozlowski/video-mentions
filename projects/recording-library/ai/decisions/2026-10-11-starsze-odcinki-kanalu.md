@@ -70,3 +70,9 @@ wariantów A/B). Pułapka: dwa warianty ad-11 różniące się tylko hasłem na 
 
 Tempo mowy (12.10): 4,2–4,9 sylaby/s czystej mowy we wszystkich nagraniach (swobodna polszczyzna ~5,5–6).
 Próbki 1,05× i 1,08× z korektą koloru i dźwięku w `final/samples/postprodukcja/` — decyzja Mateusza.
+
+Plansza lokalna (12.10, Mateusz: „wolę to mieć na localhost”): `python3 tools/board_server.py` →
+http://localhost:8765, pełne filmy z `final/samples` (Range — da się przewijać odcinki), decyzje i uwagi
+w `data/board-state.json` (w repo, Claude czyta uwagi wprost z pliku), historia zmian filmu na karcie,
+przycisk „Wstaw czas” bierze moment z odtwarzacza. `--lan` udostępnia planszę w sieci lokalnej.
+Artefakt Cd35tVFfQoR53XmTEkYDgW zostaje jako wersja do wysłania poza biuro (tylko 15-sekundowe podglądy).
