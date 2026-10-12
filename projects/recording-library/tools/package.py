@@ -246,8 +246,9 @@ class Composition:
         words = json.load(open(LIBRARY / clip["id"] / "words.json"))
         self.splices_file = LIBRARY / clip["id"] / "splices.json"
         fixes = json.load(open(DATA / "caption-fixes.json"))
-        self.words = [dict(w, word=self.fix(w["word"], fixes), start=round(w["start"] / self.tempo, 3),
-                           end=round(w["end"] / self.tempo, 3)) for w in words]
+        self.words = [dict(w, word=self.fix(w["word"], fixes, words[i - 1]["word"] if i else ""),
+                           start=round(w["start"] / self.tempo, 3), end=round(w["end"] / self.tempo, 3))
+                      for i, w in enumerate(words)]
         self.clock = Clock(self.words, fixes, self.tempo)
         self.clip_len = round(clip["duration"] / self.tempo, 3)
         self.end_len = board.get("endcard", {}).get(fmt, {"ad": 3.5, "reels": 2.6, "youtube": 2.5, "feed": 3.5}[fmt])
@@ -265,9 +266,14 @@ class Composition:
         self.ai_until = 0.0
 
     @staticmethod
-    def fix(word, fixes):
+    def fix(word, fixes, previous=""):
+        """Klucz „słowo” poprawia zawsze, klucz „poprzednie|słowo” tylko po tym słowie —
+        „jako|Programista” → „programiści”, ale „Programista mówi” i „jeden programista” zostają."""
         for wrong, right in fixes.items():
             if wrong.startswith("_"):
+                continue
+            before, _, wrong = wrong.rpartition("|")
+            if before and previous.strip(".,?!:;").lower() != before.lower():
                 continue
             if word.strip(".,?!:;").lower() == wrong.lower():
                 return word.replace(word.strip(".,?!:;"), right)
