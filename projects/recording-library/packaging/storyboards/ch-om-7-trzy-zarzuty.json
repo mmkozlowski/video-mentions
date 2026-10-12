@@ -1,0 +1,60 @@
+{
+ "clip": "ch-om-7-trzy-zarzuty",
+ "brand": "flowbiz",
+ "formats": [
+  "reels"
+ ],
+ "hook": {
+  "text": "„AI pisze kod — *po co mi framework?”",
+  "until": 6.5,
+  "visual": {
+   "kind": "flow",
+   "sign": "+",
+   "items": [
+    {
+     "logo": "claude"
+    },
+    {
+     "logo": "openmercato"
+    }
+   ]
+  }
+ },
+ "topic": {
+  "kicker": "Po co Open Mercato",
+  "text": "Własny system *zamiast narzędzi",
+  "sub": "kod, role i historia zmian"
+ },
+ "cta": {
+  "chip": "Open Mercato · flowbiz.pl",
+  "reels": {
+   "kicker": "Chcesz pogadać o swoim systemie?",
+   "title": "Napisz *MERCATO w komentarzu",
+   "sub": "Odpowiem na Twój zarzut"
+  }
+ },
+ "events": [
+  {
+   "type": "title",
+   "at": "mechanika",
+   "until": "Drugi",
+   "kicker": "Zarzut 1",
+   "text": "Mechanika *napisana raz, działa wszędzie"
+  },
+  {
+   "type": "compare",
+   "at": "Drugi",
+   "until": 38.8,
+   "kicker": "Zarzut 2 · boilerplate",
+   "before": {
+    "value": "kopia",
+    "label": "rozjeżdża się po aktualizacji"
+   },
+   "after": {
+    "value": "rdzeń",
+    "label": "+ Twoje moduły obok"
+   },
+   "after_at": "Tutaj"
+  }
+ ]
+}

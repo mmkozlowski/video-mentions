@@ -1,0 +1,65 @@
+{
+ "clip": "ch-om-6-najtrudniejsze",
+ "brand": "flowbiz",
+ "formats": [
+  "reels"
+ ],
+ "hook": {
+  "text": "Najtrudniejsze w systemie? *Uprawnienia i historia zmian.",
+  "until": 6.5,
+  "visual": {
+   "kind": "icon",
+   "art": "h-dashboard"
+  }
+ },
+ "topic": {
+  "kicker": "Po co Open Mercato",
+  "text": "Własny system *zamiast narzędzi",
+  "sub": "kod, role i historia zmian"
+ },
+ "cta": {
+  "chip": "Open Mercato · flowbiz.pl",
+  "reels": {
+   "kicker": "Chcesz pogadać o swoim systemie?",
+   "title": "Napisz *MERCATO w komentarzu",
+   "sub": "Pokażę Ci, co masz od razu"
+  }
+ },
+ "events": [
+  {
+   "type": "mockup",
+   "name": "layers",
+   "at": "Potrzebuje",
+   "until": "teraz"
+  },
+  {
+   "type": "list",
+   "at": "Uprawnienia",
+   "until": "wszystko",
+   "kicker": "Najtrudniejsze dla programisty",
+   "items": [
+    {
+     "text": "Uprawnienia i role",
+     "at": "Uprawnienia"
+    },
+    {
+     "text": "Logi i encje",
+     "at": "logów"
+    },
+    {
+     "text": "Historia zmian",
+     "at": "historia"
+    }
+   ]
+  },
+  {
+   "type": "beat",
+   "style": "burst",
+   "at": "wszystko",
+   "until": 33.2,
+   "label": "W Open Mercato",
+   "num": "GOTOWE",
+   "bottom": "uprawnienia · role · historia"
+  }
+ ]
+}

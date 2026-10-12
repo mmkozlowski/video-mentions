@@ -1,0 +1,68 @@
+{
+ "clip": "ch-module-4-droga-kartki",
+ "brand": "flowbiz",
+ "formats": [
+  "reels"
+ ],
+ "hook": {
+  "text": "Przez ile rąk przechodzi *jedno zamówienie?",
+  "until": 8.0,
+  "visual": {
+   "kind": "icon",
+   "art": "h-paper-stack"
+  }
+ },
+ "topic": {
+  "kicker": "Jak składam moduł",
+  "text": "Najpierw kartka, *potem kod",
+  "sub": "warsztat → specyfikacja → moduł"
+ },
+ "cta": {
+  "chip": "Open Mercato · flowbiz.pl",
+  "reels": {
+   "kicker": "Chcesz pogadać o swoim systemie?",
+   "title": "Napisz *KARTKA w komentarzu",
+   "sub": "Pokażę Ci, jak przejść swój proces"
+  }
+ },
+ "events": [
+  {
+   "type": "mockup",
+   "name": "route",
+   "at": "administracji",
+   "until": "policz"
+  },
+  {
+   "type": "beat",
+   "style": "burst",
+   "at": "kilkadziesiąt",
+   "until": "Każdy",
+   "label": "Jedną kartkę dotyka",
+   "num": "KILKADZIESIĄT",
+   "bottom": "osób — zależnie od firmy"
+  },
+  {
+   "type": "beat",
+   "style": "slam",
+   "at": "Każdy",
+   "until": "+3.6",
+   "label": "I każdy",
+   "lines": [
+    "ROBI CO INNEGO",
+    "i",
+    "PSUJE CO INNEGO"
+   ]
+  },
+  {
+   "type": "title",
+   "at": "moment",
+   "until": 55.4,
+   "kicker": "Dopiero wtedy",
+   "text": "Widać, *jak ma wyglądać moduł"
+  }
+ ],
+ "cover": {
+  "kicker": "Jak składam moduł",
+  "text": "Zanim powstanie system, *idę za jednym zamówieniem."
+ }
+}

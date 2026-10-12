@@ -1,0 +1,162 @@
+[
+ {
+  "id": "ep-module",
+  "title": "Jak składam moduł systemu: od kartki do specyfikacji",
+  "brand": "flowbiz",
+  "kind": "episode",
+  "source": "session",
+  "duration": 482.07,
+  "priority": "A",
+  "scores": {
+   "total": 0
+  },
+  "parts": [
+   {
+    "clip": "ep-module-1",
+    "start": 0.0
+   },
+   {
+    "clip": "ep-module-2",
+    "start": 255.873
+   }
+  ]
+ },
+ {
+  "id": "zaj-vibecoding",
+  "title": "Zajawka: Claude vs Open Mercato",
+  "brand": "flowbiz",
+  "kind": "episode",
+  "source": "session",
+  "duration": 74.46,
+  "priority": "A",
+  "scores": {
+   "total": 0
+  },
+  "parts": [
+   {
+    "clip": "ch-vibe-1-baza-danych",
+    "start": 0.0
+   },
+   {
+    "clip": "ch-vibe-6-puenta",
+    "start": 39.133
+   }
+  ]
+ },
+ {
+  "id": "zaj-module",
+  "title": "Zajawka: Jak składam moduł",
+  "brand": "flowbiz",
+  "kind": "episode",
+  "source": "session",
+  "duration": 86.6,
+  "priority": "A",
+  "scores": {
+   "total": 0
+  },
+  "parts": [
+   {
+    "clip": "ch-module-1-kartka",
+    "start": 0.0
+   },
+   {
+    "clip": "ch-module-7-slownik",
+    "start": 32.01
+   },
+   {
+    "clip": "ch-module-9-wyjatki",
+    "start": 56.577
+   }
+  ]
+ },
+ {
+  "id": "zaj-om",
+  "title": "Zajawka: Po co Open Mercato",
+  "brand": "flowbiz",
+  "kind": "episode",
+  "source": "session",
+  "duration": 82.93,
+  "priority": "A",
+  "scores": {
+   "total": 0
+  },
+  "parts": [
+   {
+    "clip": "ch-om-1-co-tu-wow",
+    "start": 0.0
+   },
+   {
+    "clip": "ch-om-10-excel-dziala",
+    "start": 37.333
+   }
+  ]
+ },
+ {
+  "id": "zaj-8-wdrozen",
+  "title": "Zajawka: 8 wdrożeń Open Mercato",
+  "brand": "flowbiz",
+  "kind": "episode",
+  "source": "session",
+  "duration": 71.8,
+  "priority": "A",
+  "scores": {
+   "total": 0
+  },
+  "parts": [
+   {
+    "clip": "ch-doram-6-kody-15-minut",
+    "start": 0.0
+   },
+   {
+    "clip": "ch-marpasz-4-srubki",
+    "start": 33.417
+   }
+  ]
+ },
+ {
+  "id": "ep-8-wdrozen",
+  "title": "8 wdrożeń Open Mercato — co dały firmom",
+  "brand": "flowbiz",
+  "kind": "episode",
+  "source": "session",
+  "duration": 783.03,
+  "priority": "A",
+  "scores": {
+   "total": 0
+  },
+  "parts": [
+   {
+    "clip": "ep-open-mercato-offers",
+    "start": 0.0
+   },
+   {
+    "clip": "ch-doram-5-70-94",
+    "start": 197.7
+   },
+   {
+    "clip": "ch-doram-6-kody-15-minut",
+    "start": 274.713
+   },
+   {
+    "clip": "ch-marpasz-2-100-godzin",
+    "start": 308.13
+   },
+   {
+    "clip": "ch-marpasz-3-katalog-ai",
+    "start": 400.963
+   },
+   {
+    "clip": "ch-rezon-3-panel-klienta",
+    "start": 518.597
+   },
+   {
+    "clip": "ch-vacu-5-kierownik-w-godzine",
+    "start": 625.763
+   },
+   {
+    "clip": "ch-marpasz-4-srubki",
+    "start": 744.63
+   }
+  ]
+ }
+]

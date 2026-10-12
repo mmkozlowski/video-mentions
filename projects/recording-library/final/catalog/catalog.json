@@ -1,0 +1,458 @@
+{
+ "beat-burst": {
+  "video": "ep-open-mercato-offers__youtube-A.mp4",
+  "at": 2.8,
+  "board": "ep-open-mercato-offers",
+  "label": "Wdrożenia Open Mercato"
+ },
+ "title-youtube-lower": {
+  "video": "ep-open-mercato-offers__youtube-A.mp4",
+  "at": 22.17,
+  "board": "ep-open-mercato-offers",
+  "label": "Oferta z *tysiąca indeksów"
+ },
+ "broll-youtube": {
+  "video": "ep-open-mercato-offers__youtube-A.mp4",
+  "at": 38.53,
+  "board": "ep-open-mercato-offers",
+  "label": "Klient czeka *kilka dni"
+ },
+ "mockup-pdfs": {
+  "video": "ep-open-mercato-offers__youtube-A.mp4",
+  "at": 50.37,
+  "board": "ep-open-mercato-offers",
+  "label": ""
+ },
+ "mockup-funnel": {
+  "video": "ep-open-mercato-offers__youtube-A.mp4",
+  "at": 104.51,
+  "board": "ep-open-mercato-offers",
+  "label": ""
+ },
+ "mockup-telegram": {
+  "video": "ep-open-mercato-offers__youtube-A.mp4",
+  "at": 156.23,
+  "board": "ep-open-mercato-offers",
+  "label": ""
+ },
+ "beat-strike": {
+  "video": "ep-open-mercato-offers__youtube-A.mp4",
+  "at": 176.07,
+  "board": "ep-open-mercato-offers",
+  "label": "KILKANAŚCIE H"
+ },
+ "endcard-youtube": {
+  "video": "ep-open-mercato-offers__youtube-A.mp4",
+  "at": 199.34,
+  "board": "ep-open-mercato-offers",
+  "label": ""
+ },
+ "mockup-storage": {
+  "video": "ep-vibecoding__youtube-A.mp4",
+  "at": 19.63,
+  "board": "ep-vibecoding",
+  "label": ""
+ },
+ "list-youtube": {
+  "video": "ep-vibecoding__youtube-A.mp4",
+  "at": 57.79,
+  "board": "ep-vibecoding",
+  "label": ""
+ },
+ "beat-slam": {
+  "video": "ep-vibecoding__youtube-A.mp4",
+  "at": 64.45,
+  "board": "ep-vibecoding",
+  "label": "Przy budowaniu"
+ },
+ "mockup-deps": {
+  "video": "ep-vibecoding__youtube-A.mp4",
+  "at": 95.65,
+  "board": "ep-vibecoding",
+  "label": ""
+ },
+ "compare-youtube": {
+  "video": "ep-vibecoding__youtube-A.mp4",
+  "at": 148.47,
+  "board": "ep-vibecoding",
+  "label": ""
+ },
+ "chat-youtube": {
+  "video": "ep-vibecoding__youtube-A.mp4",
+  "at": 165.83,
+  "board": "ep-vibecoding",
+  "label": ""
+ },
+ "logos-youtube": {
+  "video": "ep-vibecoding__youtube-A.mp4",
+  "at": 209.86,
+  "board": "ep-vibecoding",
+  "label": ""
+ },
+ "slate-youtube": {
+  "video": "ep-vibecoding__youtube-A.mp4",
+  "at": 241.08,
+  "board": "ep-vibecoding",
+  "label": "Czy popełniłby *ten sam błąd?"
+ },
+ "mockup-layers": {
+  "video": "ep-vibecoding__youtube-A.mp4",
+  "at": 263.26,
+  "board": "ep-vibecoding",
+  "label": ""
+ },
+ "mockup-repo": {
+  "video": "ep-vibecoding__youtube-A.mp4",
+  "at": 279.96,
+  "board": "ep-vibecoding",
+  "label": ""
+ },
+ "mockup-route": {
+  "video": "ep-module__youtube-A.mp4",
+  "at": 18.35,
+  "board": "ep-module",
+  "label": ""
+ },
+ "mockup-questions": {
+  "video": "ep-module__youtube-A.mp4",
+  "at": 74.85,
+  "board": "ep-module",
+  "label": ""
+ },
+ "quote-youtube": {
+  "video": "ep-module__youtube-A.mp4",
+  "at": 142.96,
+  "board": "ep-module",
+  "label": "Co robisz rękami we wtorek rano?"
+ },
+ "mockup-spec": {
+  "video": "ep-module__youtube-A.mp4",
+  "at": 288.38,
+  "board": "ep-module",
+  "label": ""
+ },
+ "mockup-glossary": {
+  "video": "ep-module__youtube-A.mp4",
+  "at": 337.5,
+  "board": "ep-module",
+  "label": ""
+ },
+ "mockup-checklist": {
+  "video": "ep-module__youtube-A.mp4",
+  "at": 352.84,
+  "board": "ep-module",
+  "label": ""
+ },
+ "broll-reels": {
+  "video": "ch-module-5-nagraj-rozmowe__reels-A.mp4",
+  "at": 7.49,
+  "board": "ch-module-5-nagraj-rozmowe",
+  "label": "Ty od biznesu, on od technologii"
+ },
+ "list-reels": {
+  "video": "ch-module-5-nagraj-rozmowe__reels-A.mp4",
+  "at": 17.19,
+  "board": "ch-module-5-nagraj-rozmowe",
+  "label": ""
+ },
+ "hook-reels": {
+  "video": "ch-module-5-nagraj-rozmowe__reels-A.mp4",
+  "at": 3.25,
+  "board": "ch-module-5-nagraj-rozmowe",
+  "label": ""
+ },
+ "endcard-reels": {
+  "video": "ch-module-5-nagraj-rozmowe__reels-A.mp4",
+  "at": 38.85,
+  "board": "ch-module-5-nagraj-rozmowe",
+  "label": ""
+ },
+ "cover-reels": {
+  "video": "ch-module-7-slownik__reels-A.mp4",
+  "at": 1.0,
+  "board": "ch-module-7-slownik",
+  "label": ""
+ },
+ "compare-reels": {
+  "video": "ch-module-9-wyjatki__reels-A.mp4",
+  "at": 12.82,
+  "board": "ch-module-9-wyjatki",
+  "label": ""
+ },
+ "broll-full": {
+  "video": "ch-module-10-powtarzalnosc__reels-A.mp4",
+  "at": 13.37,
+  "board": "ch-module-10-powtarzalnosc",
+  "label": ""
+ },
+ "title-reels": {
+  "video": "ch-module-10-powtarzalnosc__reels-A.mp4",
+  "at": 28.11,
+  "board": "ch-module-10-powtarzalnosc",
+  "label": "Weź kartkę i *przejdź proces"
+ },
+ "quote-reels": {
+  "video": "ch-module-3-wtorek-rano__reels-A.mp4",
+  "at": 44.65,
+  "board": "ch-module-3-wtorek-rano",
+  "label": "Co robisz rękami we wtorek rano?"
+ },
+ "chat-reels": {
+  "video": "ch-vibe-3-przyznaje-racje__reels-A.mp4",
+  "at": 11.14,
+  "board": "ch-vibe-3-przyznaje-racje",
+  "label": ""
+ },
+ "mockup-modules": {
+  "video": "ch-om-10-excel-dziala__reels-A.mp4",
+  "at": 29.05,
+  "board": "ch-om-10-excel-dziala",
+  "label": ""
+ },
+ "mockup-history": {
+  "video": "ch-om-9-cztery-branze__reels-A.mp4",
+  "at": 24.82,
+  "board": "ch-om-9-cztery-branze",
+  "label": ""
+ },
+ "mockup-copies": {
+  "video": "ch-om-2-excel-wersje__reels-A.mp4",
+  "at": 11.98,
+  "board": "ch-om-2-excel-wersje",
+  "label": ""
+ },
+ "compare-feed": {
+  "video": "zaj-module__feed-A.mp4",
+  "at": 69.4,
+  "board": "zaj-module",
+  "label": ""
+ },
+ "cover-feed": {
+  "video": "zaj-module__feed-A.mp4",
+  "at": 1.0,
+  "board": "zaj-module",
+  "label": ""
+ },
+ "hook-feed": {
+  "video": "zaj-module__feed-A.mp4",
+  "at": 5.1,
+  "board": "zaj-module",
+  "label": ""
+ },
+ "endcard-feed": {
+  "video": "zaj-module__feed-A.mp4",
+  "at": 89.05,
+  "board": "zaj-module",
+  "label": ""
+ },
+ "stat-reels": {
+  "video": "ch-marpasz-2-100-godzin__reels-A.mp4",
+  "at": 30.84,
+  "board": "ch-marpasz-2-100-godzin",
+  "label": "miesięcznie mniej ręcznej pracy"
+ },
+ "list-ad": {
+  "video": "ch-marpasz-2-100-godzin__ad-A.mp4",
+  "at": 8.64,
+  "board": "ch-marpasz-2-100-godzin",
+  "label": ""
+ },
+ "broll-ad": {
+  "video": "ch-marpasz-2-100-godzin__ad-A.mp4",
+  "at": 26.18,
+  "board": "ch-marpasz-2-100-godzin",
+  "label": "Drukarka etykiet"
+ },
+ "stat-ad": {
+  "video": "ch-marpasz-2-100-godzin__ad-A.mp4",
+  "at": 30.84,
+  "board": "ch-marpasz-2-100-godzin",
+  "label": "miesięcznie mniej ręcznej pracy"
+ },
+ "title-ad": {
+  "video": "ch-marpasz-2-100-godzin__ad-A.mp4",
+  "at": 52.84,
+  "board": "ch-marpasz-2-100-godzin",
+  "label": "Monotonna, *łatwa pomyłka, gaszenie pożarów"
+ },
+ "cover-ad": {
+  "video": "ch-marpasz-2-100-godzin__ad-A.mp4",
+  "at": 1.0,
+  "board": "ch-marpasz-2-100-godzin",
+  "label": ""
+ },
+ "hook-ad": {
+  "video": "ch-marpasz-2-100-godzin__ad-A.mp4",
+  "at": 3.45,
+  "board": "ch-marpasz-2-100-godzin",
+  "label": ""
+ },
+ "endcard-ad": {
+  "video": "ch-marpasz-2-100-godzin__ad-A.mp4",
+  "at": 95.21,
+  "board": "ch-marpasz-2-100-godzin",
+  "label": ""
+ },
+ "stat-youtube": {
+  "video": "ch-marpasz-2-100-godzin__youtube-A.mp4",
+  "at": 30.84,
+  "board": "ch-marpasz-2-100-godzin",
+  "label": "miesięcznie mniej ręcznej pracy"
+ },
+ "title-youtube": {
+  "video": "ch-marpasz-2-100-godzin__youtube-A.mp4",
+  "at": 52.84,
+  "board": "ch-marpasz-2-100-godzin",
+  "label": "Monotonna, *łatwa pomyłka, gaszenie pożarów"
+ },
+ "list-feed": {
+  "video": "ch-marpasz-2-100-godzin--zajawka__feed-A.mp4",
+  "at": 8.64,
+  "board": "ch-marpasz-2-100-godzin--zajawka",
+  "label": ""
+ },
+ "broll-feed": {
+  "video": "ch-marpasz-2-100-godzin--zajawka__feed-A.mp4",
+  "at": 26.18,
+  "board": "ch-marpasz-2-100-godzin--zajawka",
+  "label": "Drukarka etykiet"
+ },
+ "stat-feed": {
+  "video": "ch-marpasz-2-100-godzin--zajawka__feed-A.mp4",
+  "at": 30.84,
+  "board": "ch-marpasz-2-100-godzin--zajawka",
+  "label": "miesięcznie mniej ręcznej pracy"
+ },
+ "title-feed": {
+  "video": "ch-marpasz-2-100-godzin--zajawka__feed-A.mp4",
+  "at": 52.84,
+  "board": "ch-marpasz-2-100-godzin--zajawka",
+  "label": "Monotonna, *łatwa pomyłka, gaszenie pożarów"
+ },
+ "quote-ad": {
+  "video": "ad-34-e4__ad-A.mp4",
+  "at": 28.86,
+  "board": "ad-34-e4",
+  "label": "AI przygotowuje. Człowiek decyduje."
+ },
+ "logos-reels": {
+  "video": "ad-11-r1__reels-A.mp4",
+  "at": 14.19,
+  "board": "ad-11-r1",
+  "label": ""
+ },
+ "compare-ad": {
+  "video": "ad-11-r1__ad-A.mp4",
+  "at": 9.51,
+  "board": "ad-11-r1",
+  "label": ""
+ },
+ "logos-ad": {
+  "video": "ad-11-r1__ad-A.mp4",
+  "at": 14.19,
+  "board": "ad-11-r1",
+  "label": ""
+ },
+ "chat-ad": {
+  "video": "ad-19-ra1__ad-A.mp4",
+  "at": 6.57,
+  "board": "ad-19-ra1",
+  "label": ""
+ },
+ "logos-feed": {
+  "video": "ch-offers-1-oferta-5-minut--zajawka__feed-A.mp4",
+  "at": 11.62,
+  "board": "ch-offers-1-oferta-5-minut--zajawka",
+  "label": ""
+ },
+ "chat-feed": {
+  "video": "ch-offers-1-oferta-5-minut--zajawka__feed-A.mp4",
+  "at": 19.94,
+  "board": "ch-offers-1-oferta-5-minut--zajawka",
+  "label": ""
+ },
+ "quote-youtube-lower": {
+  "video": "ch-doram-5-70-94__youtube-A.mp4",
+  "at": 73.44,
+  "board": "ch-doram-5-70-94",
+  "label": "Zostają marginalne przypadki"
+ },
+ "mockup-parcels": {
+  "video": "ep-marpasz__youtube-A.mp4",
+  "at": 96.04,
+  "board": "ep-marpasz",
+  "label": ""
+ },
+ "mockup-catalog": {
+  "video": "ep-marpasz__youtube-A.mp4",
+  "at": 373.84,
+  "board": "ep-marpasz",
+  "label": ""
+ },
+ "slate-feed": {
+  "video": "zaj-8-wdrozen__feed-A.mp4",
+  "at": 34.74,
+  "board": "zaj-8-wdrozen",
+  "label": "AI to *dokręcanie śrubek"
+ },
+ "mockup-context": {
+  "video": "ch-vacu-1-chatgpt-zapomina--zajawka__feed-A.mp4",
+  "at": 16.7,
+  "board": "ch-vacu-1-chatgpt-zapomina--zajawka",
+  "label": ""
+ },
+ "mockup-excels": {
+  "video": "ep-doram__youtube-A.mp4",
+  "at": 153.41,
+  "board": "ep-doram",
+  "label": ""
+ },
+ "mockup-match": {
+  "video": "ep-doram__youtube-A.mp4",
+  "at": 394.41,
+  "board": "ep-doram",
+  "label": ""
+ },
+ "mockup-labels": {
+  "video": "ep-doram__youtube-A.mp4",
+  "at": 576.71,
+  "board": "ep-doram",
+  "label": ""
+ },
+ "mockup-sources": {
+  "video": "ep-vacuactiv__youtube-A.mp4",
+  "at": 136.97,
+  "board": "ep-vacuactiv",
+  "label": ""
+ },
+ "mockup-board": {
+  "video": "ep-vacuactiv__youtube-A.mp4",
+  "at": 433.85,
+  "board": "ep-vacuactiv",
+  "label": ""
+ },
+ "mockup-b2b": {
+  "video": "ep-8-wdrozen__youtube-A.mp4",
+  "at": 557.21,
+  "board": "ep-8-wdrozen",
+  "label": ""
+ },
+ "quote-feed": {
+  "video": "ch-doram-5-70-94--zajawka__feed-A.mp4",
+  "at": 73.44,
+  "board": "ch-doram-5-70-94--zajawka",
+  "label": "Zostają marginalne przypadki"
+ },
+ "mockup-sync": {
+  "video": "ep-rezon__youtube-A.mp4",
+  "at": 126.96,
+  "board": "ep-rezon",
+  "label": ""
+ },
+ "mockup-coast": {
+  "video": "ep-rezon__youtube-A.mp4",
+  "at": 171.2,
+  "board": "ep-rezon",
+  "label": ""
+ }
+}

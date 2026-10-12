@@ -1,0 +1,81 @@
+{
+ "clip": "zaj-module",
+ "brand": "flowbiz",
+ "formats": [
+  "feed"
+ ],
+ "episode_title": "Jak składam moduł systemu: od kartki do specyfikacji",
+ "cover": {
+  "kicker": "Jak składam moduł",
+  "text": "Zanim napiszę linię kodu, *biorę kartkę papieru."
+ },
+ "hook": {
+  "text": "Najważniejsze narzędzie przy budowie systemu? *Kartka.",
+  "until": 8.0,
+  "visual": {
+   "kind": "icon",
+   "art": "h-paper-stack"
+  }
+ },
+ "topic": {
+  "kicker": "Jak składam moduł",
+  "text": "Najpierw kartka, *potem kod",
+  "sub": "warsztat → specyfikacja → moduł"
+ },
+ "cta": {
+  "chip": "Open Mercato · flowbiz.pl"
+ },
+ "events": [
+  {
+   "type": "mockup",
+   "name": "route",
+   "at": "momentu",
+   "until": "najważniejsza"
+  },
+  {
+   "type": "beat",
+   "style": "strike",
+   "at": "Nie kod",
+   "until": "+3.2",
+   "label": "Najpierw",
+   "main": "KOD",
+   "sub": [
+    "Nie ekran.",
+    "Nie technologia."
+   ]
+  },
+  {
+   "type": "mockup",
+   "name": "glossary",
+   "at": "Zamówienie",
+   "until": "uczciwie"
+  },
+  {
+   "type": "compare",
+   "at": "kart",
+   "until": "druga",
+   "kicker": "Bez granic moduł się rozlewa",
+   "before": {
+    "value": "karty",
+    "label": "na początku"
+   },
+   "after": {
+    "value": "cały ERP",
+    "label": "po miesiącu"
+   },
+   "after_at": "miesiącu"
+  },
+  {
+   "type": "beat",
+   "style": "slam",
+   "at": "On zna",
+   "until": "+3.8",
+   "label": "Za to płaci klient",
+   "lines": [
+    "AI ZNA WZORCE",
+    "Ty znasz",
+    "WYJĄTKI"
+   ]
+  }
+ ]
+}

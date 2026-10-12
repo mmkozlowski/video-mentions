@@ -237,3 +237,8 @@ a montaż wyglądał na kompletny, więc nic nie sygnalizowało braku. Numeracja
 jaki masz (tu: 1604, 1605, **brak 1606**, 1607). **Kolejność zdjęć wynika z treści, nie z `creation_time`** — daty
 w metadanych tych plików są niespójne (największy plik ma najwcześniejszą),
 kolejność odtworzył numer `IMG_` i to, co widać w kadrze.
+
+## Połączenia z repo
+
+- Projekt samodzielny — nie czyta z innych repo
+- `~/Repo/flowbiz-automation-unlocked` — brandbook FlowBiz: paleta i font w `.ai/memory/project-rebrand-palette-font.md`, tokeny w `src/app/globals.css` (teal `#1C9E7A`, amber `#F5A623`, Plus Jakarta Sans) — gdy short ma grafikę marki

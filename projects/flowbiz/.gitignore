@@ -1,0 +1,4 @@
+# Nakładki z alfą (qtrle .mov) ważą 40–150 MB sztuka i odtwarzają się jednym poleceniem
+# (./screens/render.sh) — w gicie zostają MP4 i źródła. Ten sam precedens co projects/youtube
+# w głównym .gitignore (decyzja 22.08.2026). Do decyzji: git-lfs albo Drive, jeśli mają krążyć.
+final/*.mov

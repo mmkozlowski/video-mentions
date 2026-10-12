@@ -1,0 +1,235 @@
+{
+ "clip": "ep-marpasz",
+ "brand": "flowbiz",
+ "formats": [
+  "youtube"
+ ],
+ "topic": {
+  "kicker": "Case study · sklep z paszą",
+  "text": "Etykiety i *katalog AI",
+  "sub": "firma handlowa ze Słupska"
+ },
+ "cta": {
+  "chip": "Case study · flowbiz.pl"
+ },
+ "chapters": [
+  [
+   "dobra",
+   "Realne przypadki AI"
+  ],
+  [
+   "paszą",
+   "Paczki do 25 kg: cztery worki, cztery etykiety"
+  ],
+  [
+   "wchodził",
+   "Jak to wyglądało wcześniej"
+  ],
+  [
+   "Teraz klient",
+   "Teraz: AI łączy w jeden koszyk"
+  ],
+  [
+   "mierzyliśmy",
+   "Około 100 godzin miesięcznie"
+  ],
+  [
+   "Katalog AI",
+   "Katalog AI: faktura → produkty → opisy"
+  ],
+  [
+   "idealnie",
+   "Czy to działa idealnie?"
+  ]
+ ],
+ "events": [
+  {
+   "type": "title",
+   "at": "brakuje",
+   "until": "+8",
+   "zone": "lower",
+   "kicker": "Bez teorii",
+   "text": "Realne przypadki AI *w firmach"
+  },
+  {
+   "type": "broll",
+   "at": "paszą",
+   "until": "+3.6",
+   "src": "assets/broll/hf/video/h11-worki-paszy-etykiety.mp4",
+   "kicker": "Case study",
+   "title": "Sklep z *paszą dla zwierząt"
+  },
+  {
+   "type": "beat",
+   "style": "slam",
+   "at": "25",
+   "until": "+3.4",
+   "label": "Limit kuriera",
+   "lines": [
+    "4 WORKI PO 25 KG",
+    "to",
+    "4 ETYKIETY."
+   ]
+  },
+  {
+   "type": "mockup",
+   "name": "parcels",
+   "at": "wchodził",
+   "until": "+14"
+  },
+  {
+   "type": "broll",
+   "at": "Excela",
+   "until": "+3.0",
+   "src": "assets/broll/hf/video/h01-biuro-przeciazenie.mp4"
+  },
+  {
+   "type": "beat",
+   "style": "strike",
+   "at": "zajmowało",
+   "until": "+3.4",
+   "label": "Jedno zamówienie",
+   "main": "10–15 MIN",
+   "sub": [
+    "Komentarz.",
+    "Excel.",
+    "Etykieta."
+   ]
+  },
+  {
+   "type": "title",
+   "at": "paczek",
+   "until": "+8",
+   "kicker": "Kurier przyjeżdża",
+   "text": "100–200 *paczek dziennie",
+   "sub": "i żadna nie może zginąć"
+  },
+  {
+   "type": "mockup",
+   "name": "parcels",
+   "mode": "after",
+   "at": "dostał",
+   "until": "+12"
+  },
+  {
+   "type": "broll",
+   "at": "drukarki",
+   "until": "+3.0",
+   "src": "assets/broll/hf/video/h06-etykiety-kody.mp4"
+  },
+  {
+   "type": "beat",
+   "style": "burst",
+   "at": "mierzyliśmy",
+   "until": "+3.4",
+   "label": "Zaoszczędzone miesięcznie",
+   "num": "100 H",
+   "bottom": "zmierzone u klienta",
+   "pip": true
+  },
+  {
+   "type": "list",
+   "at": "Nikt",
+   "until": "+12",
+   "kicker": "Praca, której nikt nie chce",
+   "items": [
+    {
+     "text": "Monotonna",
+     "at": "monotonna"
+    },
+    {
+     "text": "Łatwa pomyłka",
+     "at": "pomyłkę"
+    },
+    {
+     "text": "Gaszenie pożarów",
+     "at": "pożarów"
+    }
+   ]
+  },
+  {
+   "type": "title",
+   "at": "przestrzeń",
+   "until": "+9",
+   "zone": "lower",
+   "kicker": "Co z tą osobą?",
+   "text": "Człowiek do *ważniejszych zadań"
+  },
+  {
+   "type": "broll",
+   "at": "faktury",
+   "until": "+3.2",
+   "src": "build/broll-real/veo-stos-dokumentow.mp4",
+   "ai": true,
+   "center": true,
+   "title": "Faktura → *ręczne przepisywanie"
+  },
+  {
+   "type": "logos",
+   "at": "GPT",
+   "until": "+10",
+   "kicker": "Opis osobno dla każdej platformy",
+   "items": [
+    {
+     "logo": "openai",
+     "name": "ChatGPT"
+    },
+    {
+     "logo": "allegro",
+     "name": "Allegro"
+    },
+    {
+     "logo": "wordpress",
+     "name": "Sklep"
+    }
+   ]
+  },
+  {
+   "type": "beat",
+   "style": "strike",
+   "at": "cały dzień",
+   "until": "+3.4",
+   "label": "Kilkanaście produktów",
+   "main": "CAŁY DZIEŃ",
+   "sub": [
+    "Przepisywanie.",
+    "Opisy.",
+    "Zdjęcia."
+   ]
+  },
+  {
+   "type": "mockup",
+   "name": "catalog",
+   "at": "odczytać",
+   "until": "+14"
+  },
+  {
+   "type": "title",
+   "at": "pola bitwy",
+   "until": "+8",
+   "zone": "lower",
+   "kicker": "Firma handlowa",
+   "text": "Dwa wdrożenia *z pola bitwy"
+  },
+  {
+   "type": "beat",
+   "style": "slam",
+   "at": "idealnie",
+   "until": "+3.6",
+   "label": "Czy działa idealnie?",
+   "lines": [
+    "NIE OD RAZU.",
+    "to",
+    "DOKRĘCANIE ŚRUBEK."
+   ]
+  },
+  {
+   "type": "title",
+   "at": "zapraszam",
+   "until": "+8",
+   "zone": "lower",
+   "kicker": "flowbiz.pl",
+   "text": "Pokażę, jak to zrobić *u Ciebie"
+  }
+ ]
+}

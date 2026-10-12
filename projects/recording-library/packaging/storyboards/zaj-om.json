@@ -1,0 +1,84 @@
+{
+ "clip": "zaj-om",
+ "brand": "flowbiz",
+ "formats": [
+  "feed"
+ ],
+ "episode_title": "Po co Open Mercato? Własny system zamiast kolejnych narzędzi",
+ "cover": {
+  "kicker": "Po co Open Mercato",
+  "text": "„Claude i tak wchodzi w kod. *Co tu jest takiego wow?”"
+ },
+ "hook": {
+  "text": "Masz Excela, SaaS-y i AI. *Po co własny system?",
+  "until": 8.0,
+  "visual": {
+   "kind": "logos",
+   "items": [
+    "excel",
+    "zapier",
+    "openai"
+   ]
+  }
+ },
+ "topic": {
+  "kicker": "Po co Open Mercato",
+  "text": "Własny system *zamiast narzędzi",
+  "sub": "kod, role i historia zmian"
+ },
+ "cta": {
+  "chip": "Open Mercato · flowbiz.pl"
+ },
+ "events": [
+  {
+   "type": "beat",
+   "style": "burst",
+   "at": "100",
+   "until": "+3.2",
+   "label": "Do kodu masz",
+   "num": "100%",
+   "bottom": "dostępu — jesteś właścicielem"
+  },
+  {
+   "type": "list",
+   "at": "low",
+   "until": "Excel",
+   "kicker": "W low-code / no-code",
+   "items": [
+    {
+     "text": "Nie zajrzysz w kod",
+     "at": "zajrzysz"
+    },
+    {
+     "text": "Nie nadpiszesz",
+     "at": "nadpiszesz"
+    },
+    {
+     "text": "Nie rozbudujesz",
+     "at": "rozbudujesz"
+    }
+   ]
+  },
+  {
+   "type": "compare",
+   "at": "kolejnego",
+   "until": "fundamentem",
+   "kicker": "W pewnym momencie",
+   "before": {
+    "value": "narzędzie",
+    "label": "firma się dopasowuje"
+   },
+   "after": {
+    "value": "system",
+    "label": "dopasowany do firmy"
+   },
+   "after_at": "własnego"
+  },
+  {
+   "type": "mockup",
+   "name": "modules",
+   "at": "fundamentem",
+   "until": "właśnie"
+  }
+ ]
+}

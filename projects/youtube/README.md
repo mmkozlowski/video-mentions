@@ -187,3 +187,10 @@ Każda ma wersję ciemną (do oceny) i `_chroma` (do montażu) w `out/eNN/`, ora
 dźwiękową w `sfx/tracks/<scena>_sfx.wav`.
 
 **Zostają nagrania ekranu od Mateusza** — sześć ujęć, spis w `_plan-broll.md` w vaulcie.
+
+## Połączenia z repo
+
+- `~/Repo/flowbiz-automation-unlocked` — brandbook FlowBiz: paleta i font w `.ai/memory/project-rebrand-palette-font.md`, tokeny w `src/app/globals.css` (teal `#1C9E7A`, amber `#F5A623`, Plus Jakarta Sans)
+- `projects/recording-library` — używa stąd `logos.css` i efektów uderzeń; odcinki z biblioteki klipów składa już `recording-library`
+- Plan wstawek: Obsidian Vault → `marketing/content/youtube/_plan-broll.md`
+- `~/Repo/flowbiz-ads-studio` — panel marketingu (localhost:4317): reklamy, Meta/Google Ads, zakładka YouTube (`data/episodes/<id>.json`) — publikacja odcinków (tytuły, opisy, rozdziały)

@@ -1,0 +1,513 @@
+{
+ "clip": "ep-8-wdrozen",
+ "brand": "flowbiz",
+ "formats": [
+  "youtube"
+ ],
+ "topic": {
+  "kicker": "8 wdrożeń Open Mercato",
+  "text": "Co *dały firmom",
+  "sub": "handel i produkcja z Pomorza"
+ },
+ "cta": {
+  "chip": "Case study · flowbiz.pl"
+ },
+ "chapters": [
+  [
+   "Cześć",
+   "Oferta w 5 minut"
+  ],
+  [
+   197.7,
+   "Zamówienia z Excela: 70% → 94%"
+  ],
+  [
+   274.71,
+   "Kody kreskowe: kilka dni → 15 minut"
+  ],
+  [
+   308.13,
+   "Etykiety: ok. 100 godzin miesięcznie"
+  ],
+  [
+   400.96,
+   "Katalog AI z faktur"
+  ],
+  [
+   518.6,
+   "Panel klienta B2B"
+  ],
+  [
+   625.76,
+   "Kierownik produkcji w godzinę"
+  ],
+  [
+   744.63,
+   "AI to dokręcanie śrubek"
+  ]
+ ],
+ "events": [
+  {
+   "type": "beat",
+   "style": "burst",
+   "at": "Zrobiłem",
+   "until": "+3.4",
+   "label": "Wdrożenia Open Mercato",
+   "num": "8",
+   "bottom": "firmy handlowe i produkcyjne",
+   "floor": 0.0
+  },
+  {
+   "type": "title",
+   "at": "tworzenie ofert",
+   "until": "+8",
+   "zone": "lower",
+   "kicker": "Najczęstszy problem",
+   "text": "Oferta z *tysiąca indeksów",
+   "floor": 0.0
+  },
+  {
+   "type": "broll",
+   "at": "kilka dni",
+   "until": "+3.0",
+   "src": "assets/broll/hf/video/h01-biuro-przeciazenie.mp4",
+   "center": true,
+   "title": "Klient czeka *kilka dni",
+   "floor": 0.0
+  },
+  {
+   "type": "mockup",
+   "name": "pdfs",
+   "at": "wersję",
+   "until": "+12",
+   "floor": 0.0
+  },
+  {
+   "type": "broll",
+   "at": "jednolity",
+   "until": "+4.5",
+   "src": "build/klocki/oferta-chaos-do-systemu-16x9.mp4",
+   "ai": false,
+   "from": 5.6,
+   "floor": 0.0
+  },
+  {
+   "type": "mockup",
+   "name": "funnel",
+   "at": "20",
+   "until": "+8",
+   "floor": 0.0
+  },
+  {
+   "type": "beat",
+   "style": "burst",
+   "at": "konwersja",
+   "until": "+3.4",
+   "label": "Po pół roku danych",
+   "num": "KONWERSJA",
+   "bottom": "każdego handlowca",
+   "floor": 0.0
+  },
+  {
+   "type": "broll",
+   "at": "producenta",
+   "until": "+3.2",
+   "src": "assets/broll/hf/video/h15-kierownik-produkcji-tablet.mp4",
+   "kicker": "Producent maszyn sportowych",
+   "title": "Asystent AI *czyta maile",
+   "floor": 0.0
+  },
+  {
+   "type": "mockup",
+   "name": "telegram",
+   "mode": "offer",
+   "at": "Sprawdza",
+   "until": "+12",
+   "floor": 0.0
+  },
+  {
+   "type": "beat",
+   "style": "burst",
+   "at": "5 minut",
+   "until": "+3.2",
+   "label": "Szkic oferty",
+   "num": "5 MIN",
+   "floor": 0.0
+  },
+  {
+   "type": "beat",
+   "style": "strike",
+   "at": "kilkanaście godzin",
+   "until": "+3.4",
+   "label": "Wcześniej ta sama oferta",
+   "main": "KILKANAŚCIE H",
+   "sub": [
+    "Zabieranie się.",
+    "Stare oferty.",
+    "Wybór najlepszej."
+   ],
+   "floor": 0.0
+  },
+  {
+   "type": "broll",
+   "at": "odkopaliśmy",
+   "until": "+3.2",
+   "src": "build/broll-real/veo-stos-dokumentow.mp4",
+   "ai": true,
+   "floor": 0.0
+  },
+  {
+   "type": "title",
+   "at": "poniedziałek",
+   "until": "+8",
+   "zone": "lower",
+   "kicker": "Bez systemu",
+   "text": "Od poniedziałku *do wtorku",
+   "floor": 0.0
+  },
+  {
+   "type": "slate",
+   "at": 197.75,
+   "until": 200.3,
+   "kicker": "Wdrożenie · producent mebli ogrodowych",
+   "text": "AI uczy się *zamówień",
+   "pip": false
+  },
+  {
+   "type": "beat",
+   "style": "burst",
+   "at": "poziomie",
+   "until": "+3.4",
+   "label": "Trafność dopasowania na start",
+   "num": "70%",
+   "floor": 200.5
+  },
+  {
+   "type": "beat",
+   "style": "burst",
+   "at": "miesiącu",
+   "until": "+3.4",
+   "label": "Po miesiącu",
+   "num": "94%",
+   "bottom": "bez zmiany pracy biura",
+   "pip": true,
+   "floor": 200.5
+  },
+  {
+   "type": "title",
+   "at": "dopasowuje to",
+   "until": "Zostają",
+   "kicker": "Kolejne zamówienie",
+   "text": "AI dopasowuje *95% samo",
+   "floor": 200.5
+  },
+  {
+   "type": "slate",
+   "at": 274.763,
+   "until": 277.313,
+   "kicker": "Wdrożenie · producent mebli ogrodowych",
+   "text": "Kody kreskowe *w 15 minut",
+   "pip": false
+  },
+  {
+   "type": "broll",
+   "at": "kodów kreskowych",
+   "until": "+3.4",
+   "src": "assets/broll/hf/video/h06-etykiety-kody.mp4",
+   "kicker": "Biuro",
+   "title": "Kody kreskowe do *każdej paczki",
+   "ai": true,
+   "floor": 277.513
+  },
+  {
+   "type": "beat",
+   "style": "slam",
+   "at": "żadnej magii",
+   "until": "+3.4",
+   "label": "Kody kreskowe",
+   "lines": [
+    "ŻADNEGO AI.",
+    "tylko",
+    "PROGRAM."
+   ],
+   "floor": 277.513
+  },
+  {
+   "type": "mockup",
+   "name": "labels",
+   "at": "system bierze",
+   "until": "kilku dni",
+   "floor": 277.513
+  },
+  {
+   "type": "beat",
+   "style": "burst",
+   "at": "15",
+   "until": "+3.2",
+   "label": "Etykiety do zamówienia",
+   "num": "15 MIN",
+   "bottom": "zamiast kilku dni",
+   "floor": 277.513
+  },
+  {
+   "type": "slate",
+   "at": 308.18,
+   "until": 310.73,
+   "kicker": "Wdrożenie · sklep z paszą dla zwierząt",
+   "text": "Etykiety *jednym kliknięciem",
+   "pip": false
+  },
+  {
+   "type": "broll",
+   "at": "drukarki",
+   "until": "+3.0",
+   "src": "assets/broll/hf/video/h06-etykiety-kody.mp4",
+   "floor": 310.93
+  },
+  {
+   "type": "beat",
+   "style": "burst",
+   "at": "mierzyliśmy",
+   "until": "+3.4",
+   "label": "Zaoszczędzone miesięcznie",
+   "num": "100 H",
+   "bottom": "zmierzone u klienta",
+   "pip": true,
+   "floor": 310.93
+  },
+  {
+   "type": "list",
+   "at": "Nikt",
+   "until": "+12",
+   "kicker": "Praca, której nikt nie chce",
+   "items": [
+    {
+     "text": "Monotonna",
+     "at": "monotonna"
+    },
+    {
+     "text": "Łatwa pomyłka",
+     "at": "pomyłkę"
+    },
+    {
+     "text": "Gaszenie pożarów",
+     "at": "pożarów"
+    }
+   ],
+   "floor": 310.93
+  },
+  {
+   "type": "title",
+   "at": "przestrzeń",
+   "until": "+9",
+   "zone": "lower",
+   "kicker": "Co z tą osobą?",
+   "text": "Człowiek do *ważniejszych zadań",
+   "floor": 310.93
+  },
+  {
+   "type": "slate",
+   "at": 401.013,
+   "until": 403.563,
+   "kicker": "Wdrożenie · sklep z paszą dla zwierząt",
+   "text": "Katalog *z faktur",
+   "pip": false
+  },
+  {
+   "type": "broll",
+   "at": "faktury",
+   "until": "+3.2",
+   "src": "build/broll-real/veo-stos-dokumentow.mp4",
+   "ai": true,
+   "center": true,
+   "title": "Faktura → *ręczne przepisywanie",
+   "floor": 403.763
+  },
+  {
+   "type": "logos",
+   "at": "GPT",
+   "until": "+10",
+   "kicker": "Opis osobno dla każdej platformy",
+   "items": [
+    {
+     "logo": "openai",
+     "name": "ChatGPT"
+    },
+    {
+     "logo": "allegro",
+     "name": "Allegro"
+    },
+    {
+     "logo": "wordpress",
+     "name": "Sklep"
+    }
+   ],
+   "floor": 403.763
+  },
+  {
+   "type": "beat",
+   "style": "strike",
+   "at": "cały dzień",
+   "until": "+3.4",
+   "label": "Kilkanaście produktów",
+   "main": "CAŁY DZIEŃ",
+   "sub": [
+    "Przepisywanie.",
+    "Opisy.",
+    "Zdjęcia."
+   ],
+   "floor": 403.763
+  },
+  {
+   "type": "mockup",
+   "name": "catalog",
+   "at": "odczytać",
+   "until": "+14",
+   "floor": 403.763
+  },
+  {
+   "type": "title",
+   "at": "pola bitwy",
+   "until": "+8",
+   "zone": "lower",
+   "kicker": "Firma handlowa",
+   "text": "Dwa wdrożenia *z pola bitwy",
+   "floor": 403.763
+  },
+  {
+   "type": "slate",
+   "at": 518.647,
+   "until": 521.197,
+   "kicker": "Wdrożenie · producent pamiątek, Kołobrzeg",
+   "text": "Klient zamawia *sam",
+   "pip": false
+  },
+  {
+   "type": "list",
+   "at": "mailowo",
+   "until": "+10",
+   "kicker": "Zamówienia przed systemem",
+   "items": [
+    {
+     "text": "Maile",
+     "at": "mailowo"
+    },
+    {
+     "text": "Formularze",
+     "at": "formularze"
+    },
+    {
+     "text": "Karteczki",
+     "at": "karteczkach"
+    }
+   ],
+   "floor": 521.397
+  },
+  {
+   "type": "mockup",
+   "name": "b2b",
+   "at": "loguje",
+   "until": "+12",
+   "floor": 521.397
+  },
+  {
+   "type": "title",
+   "at": "zamówienie",
+   "until": "+9",
+   "kicker": "Teraz",
+   "text": "Produkcja *na zamówienie",
+   "sub": "na pace tylko flagowe produkty",
+   "floor": 521.397
+  },
+  {
+   "type": "broll",
+   "at": "powiadomienie",
+   "until": "+3.2",
+   "src": "assets/broll/hf/video/h10-sklep-pamiatki-tablet.mp4",
+   "floor": 521.397
+  },
+  {
+   "type": "mockup",
+   "name": "b2b",
+   "mode": "rep",
+   "at": "za klienta",
+   "until": "+10",
+   "floor": 521.397
+  },
+  {
+   "type": "title",
+   "at": "dwie drogi",
+   "until": "+8",
+   "zone": "lower",
+   "kicker": "Dwie drogi",
+   "text": "Klient sam *albo handlowiec za niego",
+   "floor": 521.397
+  },
+  {
+   "type": "title",
+   "at": "Więc to jest",
+   "until": "+8",
+   "kicker": "Open Mercato · B2B",
+   "text": "Branża pamiątkarska *na jednym systemie",
+   "floor": 521.397
+  },
+  {
+   "type": "slate",
+   "at": 625.813,
+   "until": 628.363,
+   "kicker": "Wdrożenie · producent sprzętu sportowego",
+   "text": "System *jak Excel kierownika",
+   "pip": false
+  },
+  {
+   "type": "mockup",
+   "name": "board",
+   "at": "widoki",
+   "until": "+12",
+   "floor": 628.563
+  },
+  {
+   "type": "beat",
+   "style": "burst",
+   "at": "godzinę",
+   "until": "+3.2",
+   "label": "Nauka kierownika produkcji",
+   "num": "1 H",
+   "floor": 628.563
+  },
+  {
+   "type": "broll",
+   "at": "Open Mercato",
+   "until": "+10",
+   "src": "build/klocki/system-moduly-przelot-16x9.mp4",
+   "ai": false,
+   "from": 1.0,
+   "floor": 628.563
+  },
+  {
+   "type": "title",
+   "at": "PDF",
+   "until": "+8",
+   "kicker": "Wydruk",
+   "text": "PDF 1:1 *jak dawny Excel",
+   "floor": 628.563
+  },
+  {
+   "type": "slate",
+   "at": 744.68,
+   "until": 747.23,
+   "kicker": "Na koniec",
+   "text": "AI to *dokręcanie śrubek",
+   "pip": false
+  },
+  {
+   "type": "title",
+   "at": "zapraszam",
+   "until": "+8",
+   "zone": "lower",
+   "kicker": "flowbiz.pl",
+   "text": "Pokażę, jak to zrobić *u Ciebie",
+   "floor": 747.43
+  }
+ ]
+}

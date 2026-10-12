@@ -1,0 +1,73 @@
+{
+ "clip": "ch-vibe-6-puenta",
+ "brand": "flowbiz",
+ "formats": [
+  "reels"
+ ],
+ "hook": {
+  "text": "Pisanie kodu: *tanie. Projektowanie: *wciąż nie.",
+  "until": 6.5,
+  "visual": {
+   "kind": "versus",
+   "sign": "→",
+   "left": {
+    "art": "h-developer",
+    "label": "kod"
+   },
+   "right": {
+    "art": "h-dashboard",
+    "label": "architektura",
+    "accent": true
+   }
+  }
+ },
+ "topic": {
+  "kicker": "Vibe coding vs framework",
+  "text": "System z AI, *który wytrzyma",
+  "sub": "Claude, Codex i Open Mercato"
+ },
+ "cta": {
+  "chip": "Open Mercato · flowbiz.pl",
+  "reels": {
+   "kicker": "Chcesz pogadać o swoim systemie?",
+   "title": "Napisz *SYSTEM w komentarzu",
+   "sub": "Powiem Ci, od czego zacząć u Ciebie"
+  }
+ },
+ "events": [
+  {
+   "type": "title",
+   "at": "Gubi",
+   "until": "Framework",
+   "kicker": "Pusty projekt",
+   "text": "Wszystko *od nowa"
+  },
+  {
+   "type": "beat",
+   "style": "slam",
+   "at": "Framework",
+   "until": "+3.8",
+   "label": "Framework",
+   "lines": [
+    "NIE MĄDRZEJSZY",
+    "tylko",
+    "BEZ WYBORU"
+   ]
+  },
+  {
+   "type": "compare",
+   "at": "różnica",
+   "until": "+6",
+   "kicker": "Różnica",
+   "before": {
+    "value": "laptop",
+    "label": "działa u Ciebie"
+   },
+   "after": {
+    "value": "firma",
+    "label": "można oddać ludziom"
+   },
+   "after_at": "można"
+  }
+ ]
+}

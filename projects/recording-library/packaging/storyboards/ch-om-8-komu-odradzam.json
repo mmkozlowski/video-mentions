@@ -1,0 +1,53 @@
+{
+ "clip": "ch-om-8-komu-odradzam",
+ "brand": "flowbiz",
+ "formats": [
+  "reels"
+ ],
+ "hook": {
+  "text": "Komu *odradzam Open Mercato.",
+  "until": 6.5,
+  "visual": {
+   "kind": "icon",
+   "art": "h-warning-gear"
+  }
+ },
+ "topic": {
+  "kicker": "Po co Open Mercato",
+  "text": "Własny system *zamiast narzędzi",
+  "sub": "kod, role i historia zmian"
+ },
+ "cta": {
+  "chip": "Open Mercato · flowbiz.pl",
+  "reels": {
+   "kicker": "Chcesz pogadać o swoim systemie?",
+   "title": "Napisz *MERCATO w komentarzu",
+   "sub": "Powiem Ci szczerze, czy to dla Ciebie"
+  }
+ },
+ "events": [
+  {
+   "type": "beat",
+   "style": "burst",
+   "at": "zero",
+   "until": "+3",
+   "label": "Programistów w firmie",
+   "num": "0 = 0",
+   "bottom": "tego nie oszukasz"
+  },
+  {
+   "type": "title",
+   "at": "Tutaj płacisz",
+   "until": "trzecia",
+   "kicker": "2 · Utrzymanie",
+   "text": "Płacisz mniej, *martwisz się sam"
+  },
+  {
+   "type": "title",
+   "at": "trzecia",
+   "until": 47.4,
+   "kicker": "3 · Młody projekt",
+   "text": "Przed wersją 1.0: *wcześnie, nie ryzykownie"
+  }
+ ]
+}

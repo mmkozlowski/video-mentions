@@ -1,0 +1,77 @@
+{
+ "clip": "ch-vibe-7-nie-dla-kazdego",
+ "brand": "flowbiz",
+ "formats": [
+  "reels"
+ ],
+ "hook": {
+  "text": "Czego *nie powie Ci sprzedawca oprogramowania.",
+  "until": 8.0,
+  "visual": {
+   "kind": "icon",
+   "art": "h-contract"
+  }
+ },
+ "topic": {
+  "kicker": "Vibe coding vs framework",
+  "text": "System z AI, *który wytrzyma",
+  "sub": "Claude, Codex i Open Mercato"
+ },
+ "cta": {
+  "chip": "Open Mercato · flowbiz.pl",
+  "reels": {
+   "kicker": "Chcesz pogadać o swoim systemie?",
+   "title": "Napisz *MERCATO w komentarzu",
+   "sub": "Powiem Ci, czy to ma sens u Ciebie"
+  }
+ },
+ "events": [
+  {
+   "type": "list",
+   "at": "deweloperskiego",
+   "until": "Utrzymanie",
+   "kicker": "Uczciwie",
+   "items": [
+    {
+     "text": "Bez programisty? Nie",
+     "at": "deweloperskiego"
+    },
+    {
+     "text": "Narzędzie techniczne",
+     "at": "programistów"
+    }
+   ]
+  },
+  {
+   "type": "list",
+   "at": "Utrzymanie",
+   "until": "gotowym",
+   "kicker": "Po Twojej stronie",
+   "items": [
+    {
+     "text": "Aktualizacje",
+     "at": "aktualizacje"
+    },
+    {
+     "text": "Serwer",
+     "at": "serwer"
+    },
+    {
+     "text": "Błędy na serwerze",
+     "at": "błędy"
+    }
+   ]
+  },
+  {
+   "type": "title",
+   "at": "gotowym",
+   "until": "+5",
+   "kicker": "W gotowym SaaS-ie",
+   "text": "Płacisz, *żeby ktoś się martwił"
+  }
+ ],
+ "cover": {
+  "kicker": "Open Mercato — uczciwie",
+  "text": "Open Mercato *nie jest dla każdego."
+ }
+}

@@ -1,0 +1,70 @@
+{
+ "clip": "ch-module-9-wyjatki",
+ "brand": "flowbiz",
+ "formats": [
+  "reels"
+ ],
+ "hook": {
+  "text": "AI zna wzorce. *Ty znasz wyjątki.",
+  "until": 8.0,
+  "visual": {
+   "kind": "versus",
+   "sign": "vs",
+   "left": {
+    "art": "h-robot",
+    "label": "AI"
+   },
+   "right": {
+    "art": "h-factory",
+    "label": "Twoja firma",
+    "accent": true
+   }
+  }
+ },
+ "topic": {
+  "kicker": "Jak składam moduł",
+  "text": "Najpierw kartka, *potem kod",
+  "sub": "warsztat → specyfikacja → moduł"
+ },
+ "cta": {
+  "chip": "Open Mercato · flowbiz.pl",
+  "reels": {
+   "kicker": "Chcesz pogadać o swoim systemie?",
+   "title": "Napisz *MODUŁ w komentarzu",
+   "sub": "Powiem Ci, gdzie postawić granice"
+  }
+ },
+ "events": [
+  {
+   "type": "compare",
+   "at": "kart",
+   "until": "druga",
+   "kicker": "Bez granic moduł się rozlewa",
+   "before": {
+    "value": "karty",
+    "label": "na początku"
+   },
+   "after": {
+    "value": "cały ERP",
+    "label": "po miesiącu"
+   },
+   "after_at": "miesiącu"
+  },
+  {
+   "type": "beat",
+   "style": "slam",
+   "at": "On zna",
+   "until": 29.6,
+   "label": "Za to płaci klient",
+   "lines": [
+    "AI ZNA WZORCE",
+    "Ty znasz",
+    "WYJĄTKI"
+   ]
+  }
+ ],
+ "cover": {
+  "kicker": "Moduł z agentem AI",
+  "text": "Gdzie agent AI *się myli?"
+ }
+}

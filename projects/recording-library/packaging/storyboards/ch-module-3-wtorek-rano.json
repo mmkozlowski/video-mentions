@@ -1,0 +1,72 @@
+{
+ "clip": "ch-module-3-wtorek-rano",
+ "brand": "flowbiz",
+ "formats": [
+  "reels"
+ ],
+ "hook": {
+  "text": "Szef mówi: *wiem wszystko. Hala mówi: *co innego.",
+  "until": 8.0,
+  "visual": {
+   "kind": "versus",
+   "sign": "→",
+   "left": {
+    "art": "h-skyscraper",
+    "label": "biuro"
+   },
+   "right": {
+    "art": "h-factory",
+    "label": "hala",
+    "accent": true
+   }
+  }
+ },
+ "topic": {
+  "kicker": "Jak składam moduł",
+  "text": "Najpierw kartka, *potem kod",
+  "sub": "warsztat → specyfikacja → moduł"
+ },
+ "cta": {
+  "chip": "Open Mercato · flowbiz.pl",
+  "reels": {
+   "kicker": "Chcesz pogadać o swoim systemie?",
+   "title": "Napisz *KARTKA w komentarzu",
+   "sub": "Pokażę Ci, jak dopytać zespół"
+  }
+ },
+ "events": [
+  {
+   "type": "broll",
+   "at": "chodząc",
+   "until": "+3.2",
+   "src": "assets/broll/hf/video/h12-konsultacja-na-hali.mp4",
+   "label": "Rozmowy z ludźmi na hali"
+  },
+  {
+   "type": "compare",
+   "at": "etapie",
+   "until": "konkretną",
+   "kicker": "Ten sam proces",
+   "before": {
+    "value": "2 lata temu",
+    "label": "w głowie szefa"
+   },
+   "after": {
+    "value": "dziś",
+    "label": "na hali"
+   },
+   "after_at": "Teraz"
+  },
+  {
+   "type": "quote",
+   "at": "konkretną",
+   "until": 52.4,
+   "text": "Co robisz rękami we wtorek rano?",
+   "sub": "to pytanie mówi więcej niż schemat procesu"
+  }
+ ],
+ "cover": {
+  "kicker": "Jak składam moduł",
+  "text": "Czy właściciel firmy *naprawdę zna swoje procesy?"
+ }
+}

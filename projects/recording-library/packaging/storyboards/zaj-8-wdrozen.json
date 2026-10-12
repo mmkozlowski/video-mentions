@@ -1,0 +1,92 @@
+{
+ "clip": "zaj-8-wdrozen",
+ "brand": "flowbiz",
+ "formats": [
+  "feed"
+ ],
+ "episode_title": "8 wdrożeń Open Mercato — co dały firmom",
+ "cover": {
+  "kicker": "8 wdrożeń Open Mercato",
+  "text": "Co AI i automatyzacja *dały firmom z Pomorza?"
+ },
+ "hook": {
+  "text": "Kody kreskowe: z *kilku dni do *15 minut",
+  "until": "czy",
+  "visual": {
+   "kind": "versus",
+   "sign": "→",
+   "left": {
+    "art": "h-calendar",
+    "label": "kilka dni",
+    "strike": true
+   },
+   "right": {
+    "art": "h-stopwatch",
+    "label": "15 minut",
+    "accent": true
+   }
+  }
+ },
+ "topic": {
+  "kicker": "8 wdrożeń Open Mercato",
+  "text": "Co *dały firmom",
+  "sub": "handel i produkcja z Pomorza"
+ },
+ "cta": {
+  "chip": "Case study · flowbiz.pl"
+ },
+ "events": [
+  {
+   "type": "broll",
+   "at": "kodów",
+   "until": "+2.2",
+   "src": "assets/broll/hf/video/h06-etykiety-kody.mp4",
+   "label": "Kody kreskowe do każdej paczki",
+   "ai": true
+  },
+  {
+   "type": "title",
+   "at": "nie",
+   "until": "system",
+   "kicker": "Bez magii",
+   "text": "Żadnego AI. *Zwykły program.",
+   "sub": "nie wszystko wymaga sztucznej inteligencji"
+  },
+  {
+   "type": "list",
+   "at": "system",
+   "until": "nagle",
+   "kicker": "Po jednym kliknięciu",
+   "items": [
+    {
+     "text": "Cztery numery",
+     "at": "cztery"
+    },
+    {
+     "text": "PDF po minucie",
+     "at": "minucie"
+    },
+    {
+     "text": "40 stron etykiet",
+     "logo": "adobeacrobatreader",
+     "at": "40"
+    }
+   ]
+  },
+  {
+   "type": "slate",
+   "at": 33.467,
+   "until": 36.017,
+   "kicker": "Na koniec",
+   "text": "AI to *dokręcanie śrubek"
+  },
+  {
+   "type": "title",
+   "at": "zapomnieć",
+   "floor": 33.417,
+   "until": "+5",
+   "kicker": "W odcinku",
+   "text": "8 wdrożeń, *jedna lekcja"
+  }
+ ]
+}

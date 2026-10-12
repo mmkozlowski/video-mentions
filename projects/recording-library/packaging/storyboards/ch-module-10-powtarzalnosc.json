@@ -1,0 +1,61 @@
+{
+ "clip": "ch-module-10-powtarzalnosc",
+ "brand": "flowbiz",
+ "formats": [
+  "reels"
+ ],
+ "hook": {
+  "text": "Jedno słowo, które odróżnia *system od projektów.",
+  "until": 6.5,
+  "visual": {
+   "kind": "icon",
+   "art": "h-dashboard"
+  }
+ },
+ "topic": {
+  "kicker": "Jak składam moduł",
+  "text": "Najpierw kartka, *potem kod",
+  "sub": "warsztat → specyfikacja → moduł"
+ },
+ "cta": {
+  "chip": "Open Mercato · flowbiz.pl",
+  "reels": {
+   "kicker": "Napisz w komentarzu",
+   "title": "Ile osób dotyka *jednego zamówienia?",
+   "sub": "Ciekawe, czy więcej, niż myślisz"
+  }
+ },
+ "events": [
+  {
+   "type": "beat",
+   "style": "burst",
+   "at": "Powtarzalność",
+   "until": "+3",
+   "label": "Jedno słowo",
+   "num": "POWTARZALNOŚĆ"
+  },
+  {
+   "type": "broll",
+   "at": "drugi",
+   "until": "+4.5",
+   "src": "build/klocki/system-moduly-przelot-16x9.mp4",
+   "src_v": "build/klocki/system-moduly-przelot-9x16.mp4",
+   "full": true,
+   "ai": false
+  },
+  {
+   "type": "title",
+   "at": "Jeśli masz",
+   "until": "komentarzu",
+   "kicker": "Zadanie na dziś",
+   "text": "Weź kartkę i *przejdź proces"
+  },
+  {
+   "type": "title",
+   "at": "komentarzu",
+   "until": 53.0,
+   "kicker": "Napisz w komentarzu",
+   "text": "Przez ile rąk *przechodzi u Ciebie?"
+  }
+ ]
+}

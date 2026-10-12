@@ -1,0 +1,48 @@
+{
+ "clip": "ch-om-4-nie-zapier",
+ "brand": "flowbiz",
+ "formats": [
+  "reels"
+ ],
+ "hook": {
+  "text": "Open Mercato to *nie jest kolejny Zapier.",
+  "until": 6.5,
+  "visual": {
+   "kind": "logos",
+   "items": [
+    "make",
+    "n8n",
+    "zapier"
+   ]
+  }
+ },
+ "topic": {
+  "kicker": "Po co Open Mercato",
+  "text": "Własny system *zamiast narzędzi",
+  "sub": "kod, role i historia zmian"
+ },
+ "cta": {
+  "chip": "Open Mercato · flowbiz.pl",
+  "reels": {
+   "kicker": "Chcesz pogadać o swoim systemie?",
+   "title": "Napisz *MERCATO w komentarzu",
+   "sub": "Powiem Ci, co lepiej pasuje u Ciebie"
+  }
+ },
+ "events": [
+  {
+   "type": "title",
+   "at": "platforma",
+   "until": "Uczciwie",
+   "kicker": "Ani no-code",
+   "text": "Bez dostępu *do kodu"
+  },
+  {
+   "type": "quote",
+   "at": "Uczciwie",
+   "until": 24.4,
+   "text": "Brak dostępu do infrastruktury bywa zaletą.",
+   "sub": "płacisz i masz to z głowy"
+  }
+ ]
+}

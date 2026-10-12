@@ -1,0 +1,46 @@
+{
+ "ch-vibe-1-baza-danych": {
+  "overall_score": 48,
+  "brain_engagement": 42,
+  "hook_score": 31,
+  "viral_potential": 49,
+  "sustain": 94,
+  "peak_second": 7,
+  "peak_frame_index": 7,
+  "peak_score": 0.474605,
+  "source": "Higgsfield Virality Predictor, pierwsze 15 s"
+ },
+ "ad-05-m1": {
+  "overall_score": 45,
+  "brain_engagement": 41,
+  "hook_score": 29,
+  "viral_potential": 48,
+  "sustain": 86,
+  "peak_second": 8,
+  "peak_frame_index": 8,
+  "peak_score": 0.481827,
+  "source": "Higgsfield Virality Predictor, pierwsze 15 s"
+ },
+ "ad-11-r1--ai-w-produkcji": {
+  "overall_score": 50,
+  "brain_engagement": 40,
+  "hook_score": 34,
+  "viral_potential": 52,
+  "sustain": 100,
+  "peak_second": 13,
+  "peak_frame_index": 13,
+  "peak_score": 0.476871,
+  "source": "Higgsfield Virality Predictor, pierwsze 15 s"
+ },
+ "ad-11-r1--firma-produkcyjna": {
+  "overall_score": 50,
+  "brain_engagement": 40,
+  "hook_score": 34,
+  "viral_potential": 52,
+  "sustain": 100,
+  "peak_second": 13,
+  "peak_frame_index": 13,
+  "peak_score": 0.478009,
+  "source": "Higgsfield Virality Predictor, pierwsze 15 s"
+ }
+}

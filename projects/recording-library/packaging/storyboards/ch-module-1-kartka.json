@@ -1,0 +1,55 @@
+{
+ "clip": "ch-module-1-kartka",
+ "brand": "flowbiz",
+ "formats": [
+  "reels"
+ ],
+ "hook": {
+  "text": "Najważniejsze narzędzie przy budowie systemu? *Kartka papieru.",
+  "until": 6.5,
+  "visual": {
+   "kind": "icon",
+   "art": "h-paper-stack"
+  }
+ },
+ "topic": {
+  "kicker": "Jak składam moduł",
+  "text": "Najpierw kartka, *potem kod",
+  "sub": "warsztat → specyfikacja → moduł"
+ },
+ "cta": {
+  "chip": "Open Mercato · flowbiz.pl",
+  "reels": {
+   "kicker": "Chcesz pogadać o swoim systemie?",
+   "title": "Napisz *KARTKA w komentarzu",
+   "sub": "Pokażę Ci, od czego zacząć u Ciebie"
+  }
+ },
+ "events": [
+  {
+   "type": "broll",
+   "at": "godzin",
+   "until": "+3",
+   "src": "assets/broll/hf/video/h18-karteczki-zamowienia.mp4",
+   "title": "6 godzin *z jedną kartką"
+  },
+  {
+   "type": "mockup",
+   "name": "route",
+   "at": "momentu",
+   "until": "najważniejsza"
+  },
+  {
+   "type": "beat",
+   "style": "strike",
+   "at": "Nie kod",
+   "until": 31.5,
+   "label": "Najpierw",
+   "main": "KOD",
+   "sub": [
+    "Nie ekran.",
+    "Nie technologia."
+   ]
+  }
+ ]
+}

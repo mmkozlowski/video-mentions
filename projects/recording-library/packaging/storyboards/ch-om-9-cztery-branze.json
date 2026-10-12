@@ -1,0 +1,84 @@
+{
+ "clip": "ch-om-9-cztery-branze",
+ "brand": "flowbiz",
+ "formats": [
+  "reels"
+ ],
+ "hook": {
+  "text": "Cztery branże. *Jeden fundament.",
+  "until": 8.0,
+  "visual": {
+   "kind": "flow",
+   "sign": "·",
+   "items": [
+    {
+     "art": "h-factory"
+    },
+    {
+     "art": "h-calendar"
+    },
+    {
+     "art": "h-contract"
+    }
+   ]
+  }
+ },
+ "topic": {
+  "kicker": "Po co Open Mercato",
+  "text": "Własny system *zamiast narzędzi",
+  "sub": "kod, role i historia zmian"
+ },
+ "cta": {
+  "chip": "Open Mercato · flowbiz.pl",
+  "reels": {
+   "kicker": "Chcesz pogadać o swoim systemie?",
+   "title": "Napisz *MERCATO w komentarzu",
+   "sub": "Powiem Ci, jak to wygląda w Twojej branży"
+  }
+ },
+ "events": [
+  {
+   "type": "list",
+   "at": "karta",
+   "until": "wygląda",
+   "kicker": "Cztery wdrożenia",
+   "items": [
+    {
+     "text": "Karty techniczne",
+     "at": "karta"
+    },
+    {
+     "text": "Wizyty w gabinecie",
+     "at": "wizyta"
+    },
+    {
+     "text": "Zamówienia produkcji",
+     "at": "zamówienia"
+    },
+    {
+     "text": "Oferty → zamówienia",
+     "at": "Oferta"
+    }
+   ]
+  },
+  {
+   "type": "mockup",
+   "name": "history",
+   "at": "Jeden",
+   "until": "Cztery"
+  },
+  {
+   "type": "beat",
+   "style": "burst",
+   "at": "Cztery",
+   "until": 33.4,
+   "label": "Cztery branże",
+   "num": "1",
+   "bottom": "fundament"
+  }
+ ],
+ "cover": {
+  "kicker": "4 wdrożenia Open Mercato",
+  "text": "Opakowania, gabinet, produkcja — *co je łączy?"
+ }
+}

@@ -1,6 +1,7 @@
 # Index pamięci — video-mentions (.ai/memory)
 
-Wiedza **cross-project** o produkcji wideo reklamowego. Rzeczy specyficzne dla
+Wiedza **cross-project** o produkcji wideo reklamowego. Zasady montażu zebrane dla ludzi:
+[`WYTYCZNE-MONTAZU.md`](../WYTYCZNE-MONTAZU.md) — nowa ogólna poprawka Mateusza trafia też tam. Rzeczy specyficzne dla
 jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 
 - [Higgsfield MCP: limity](memory/higgsfield-mcp-limity.md) — trial „unlimited" nie działa przez MCP (liczą się tylko kredyty); `veo3_1_lite` wymusza 8 s przy start+end frame; polski TTS tylko przez `text2speech_v2`/elevenlabs
@@ -18,6 +19,23 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 - [Opis do rolki: krótko i na luzie](memory/opis-do-rolki-pisz-krotko-i-na-luzie.md) — zaczynaj od dwóch zdań; pointa potrzebuje własnej linii; żadnej listy tego, co widać w materiale; zdanie o niedoskonałości zostaje zawsze
 - [Prośby o głośność tłumacz na decybele](memory/prosby-o-glosnosc-tlumacz-na-decybele.md) — „ścisz o 2 %" to −0,18 dB, czyli poniżej progu słyszalności; procent = kierunek, nie mnożnik; raportuj w dB
 - [Nigdy nie rozciągaj kadru](memory/nigdy-nie-rozciagaj-kadru.md) — `scale=W:H` na innych proporcjach deformuje; blur-fill albo czysty crop
+- [Whisper zapętla się na długim pliku](memory/whisper-dlugi-plik-petla.md) — > 20 min: `--condition-on-previous-text False --hallucination-silence-threshold 2` od razu; pętla nie zmienia kodu wyjścia
+- [Nagranie z promptera nie trzyma się tekstu](memory/nagranie-z-promptera-nie-trzyma-sie-tekstu.md) — dubel z transkrypcji, scenariusz tylko identyfikuje; poprawki liczb na nagraniu są celowe
+- [Whisper gubi falstarty](memory/whisper-gubi-falstarty.md) — przy powtórkach dubla czasy słów kłamią; sklejka po ciszy w sygnale, kontrola transkrypcją gotowego klipu; słowo potrafi przykryć cały drugi dubel
+
+- [Veo i Nano Banana przez Gemini API](memory/veo-gemini-api.md) — kadr → ożywienie; klucz `GEMINI_API=`, JPEG zamiast PNG, „jeden kadr” bywa tryptykiem, image-to-video 4–5 min
+- [Pion: strefy zakazane Reels](memory/pion-strefy-zakazane-reels.md) — góra ~230, prawa ~130, dół ~260 px; wszystko u góry wchodzi po hooku
+- [Miniatury bez obcych skilli](memory/miniatury-bez-obcych-skilli.md) — żadnych skilli „noname”; dane z sieci + własne wytyczne (§13) + wzory Mateusza; od kanałów tylko konstrukcja
+- [Studio czyta spis po eksporcie](memory/studio-czyta-spis-po-eksporcie.md) — po renderze `export_studio.py`, inaczej panel nie widzi zmian; uwagi agencji w `flowbiz-ads-studio/data/videos/`
+- [Historia zmian per film](memory/historia-zmian-per-film.md) — każda poprawka (też z kontroli i zmian stylu) → tools/history.py przed renderem; galeria pokazuje ją pod filmem
+- [Pion: jedno na raz](memory/pion-jedno-na-raz.md) — jedno zdanie = jedno tło, zdania po kolei, hook z grafiką i jako nagłówek, nic na głowie, tylko paleta A
+- [Whisper dokleja „yyy” do słowa](memory/whisper-dokleja-yyy-do-slowa.md) — „yyy” i cisza w środku słowa: wykrywaj w audio (fillers.py); tnij tylko po sygnale, słowa chronią; pauzy zostawiaj ~0,4 s (za mocne cięcie = skarga)
+- [Sprawdź ostrość źródła](memory/sprawdz-ostrosc-zrodla.md) — surówka z kanału bywa rozmyta przez kilka minut (twarde cięcie); pomiar edgedetect przed EDL, szukaj dogrywki/czystej wersji
+- [iPhone HDR psuje render](memory/iphone-hdr-psuje-render.md) — HLG z telefonu przełącza HyperFrames na HDR całego klipu (wolno, wyprane kolory); avconvert → SDR
+- [Grafiki reklamowe z twarzą Mateusza (do zrobienia)](memory/grafiki-reklamowe-z-twarza-mateusza.md) — zdjęcia z miniatur YT, różne nagłówki pod konwersję na kontakt w automatyzacjach, nie tylko treść nagrań
+- [Reklamy graficzne: wzór SellWise](memory/reklamy-graficzne-wzor-sellwise.md) — jedna myśl, nagłówek 2 grubości z frazą w ramce, prawdziwy człowiek z rolą, jeden przycisk; seria z ikonami była „chaotyczna”
+- [Higgsfield: generacja przebitek](memory/higgsfield-generacja-przebitek.md) — GPT Image 2.5 + Kling 3.0 Pro 5 s (8,75 kr.); partie po 4 (429), declined_preset_id, normalizacja 1920×1080
+- [HyperFrames wymaga Node 22](memory/hyperframes-wymaga-node-22.md) — domyślny nvm to 20; PATH na v22.22.2 w skrypcie, nie globalnie
 
 - [Wstawki: alfa zamiast green screena](memory/wstawki-alfa-nie-green-screen.md) — key zawsze zostawia zielony rant na krawędziach liter; `ALPHA=1`, kodek qtrle (~9× mniejszy od ProRes), podkładki chromakeya wtedy wyłączone
 
@@ -26,9 +44,15 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 - [Wstawki: rozdzielczość pod projekt montażowy](memory/wstawki-rozdzielczosc-pod-projekt.md) — 1920x1080 na płótnie 720p pokazuje środkowe 66 %; renderuj W/H pod projekt
 
 - [Nasycony kolor tekstu na materiale](memory/tekst-nasycony-kolor-na-materiale.md) — h.264 4:2:0 zabija krawędź bursztynu; mały kolorowy tekst na ciemną pigułkę, weryfikuj PO kompresji nie na PNG
+- [HyperFrames check: zasłanianie](memory/hyperframes-check-zaslanianie.md) — `data-layout-allow-occlusion` tylko na zasłanianym tekście, nie na nakładce i bez dziedziczenia; scrim ≥ 0,6 krycia to zasłonięcie
 
 ## Decyzje (ADR)
 
 - [Ekran produktu z HTML zamiast nagrań i generacji](decisions/2026-07-30-ekran-produktu-z-html.md) — 2026-07-30
 - [Oznaczanie treści AI — trzy warstwy, znak tylko na starcie](decisions/2026-08-02-oznaczanie-tresci-ai.md) — 2026-08-02
 - [Pipeline shortów z telefonu (ADR projektowy)](../projects/shorts%20IG/ai/decisions/2026-08-19-pipeline-shortow-z-telefonu.md) — 2026-08-19
+- [Baza klipów z sesji nagraniowej (ADR projektowy)](../projects/recording-library/ai/decisions/2026-10-08-baza-klipow-z-sesji-nagraniowej.md) — 2026-10-08
+- [Opakowanie klipów: 3 formaty × 2 palety (ADR projektowy)](../projects/recording-library/ai/decisions/2026-10-09-opakowanie-klipow-trzy-formaty-dwie-palety.md) — 2026-10-09
+- [Ustalenia z 12.10: postprodukcja, panel, miniatury](decisions/2026-10-12-ustalenia-dnia-postprodukcja-panel-miniatury.md) — 2026-10-12
+- [Podział wiedzy: montaż tutaj, marka w FlowBiz, panel w studiu](decisions/2026-10-12-podzial-wiedzy-montaz-marka-panel.md) — 2026-10-12
+- [Starsze odcinki kanału w bibliotece (ADR projektowy)](../projects/recording-library/ai/decisions/2026-10-11-starsze-odcinki-kanalu.md) — 2026-10-11

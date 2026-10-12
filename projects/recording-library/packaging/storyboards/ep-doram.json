@@ -1,0 +1,314 @@
+{
+ "clip": "ep-doram",
+ "brand": "flowbiz",
+ "formats": [
+  "youtube"
+ ],
+ "topic": {
+  "kicker": "Case study · meble ogrodowe",
+  "text": "Zamówienia od kontrahentów z *Niemiec",
+  "sub": "producent z okolic Słupska"
+ },
+ "cta": {
+  "chip": "Case study · flowbiz.pl"
+ },
+ "chapters": [
+  [
+   "Teraz",
+   "Kolejny przypadek z firmy"
+  ],
+  [
+   "Klient dostawał",
+   "Zamówienia w Excelu od kontrahentów z Niemiec"
+  ],
+  [
+   "kilka dni",
+   "Kilka dni klepania → 10 minut"
+  ],
+  [
+   "dlaczego ten proces",
+   "Dlaczego to tak długo trwało"
+  ],
+  [
+   "kodów kreskowych",
+   "Kody kreskowe: przeklej, drukuj"
+  ],
+  [
+   "scentralizować",
+   "Najpierw jedna baza"
+  ],
+  [
+   "pamięć dla",
+   "Pamięć dla AI"
+  ],
+  [
+   "czatem",
+   "Jak uczy się zwykły czat"
+  ],
+  [
+   "poziomie",
+   "70% → 94% → 95%"
+  ],
+  [
+   "żadnej magii",
+   "Kody bez AI: 15 minut"
+  ],
+  [
+   "W tej firmie",
+   "Co dalej"
+  ]
+ ],
+ "events": [
+  {
+   "type": "title",
+   "at": "Teraz",
+   "until": "Klient",
+   "zone": "lower",
+   "kicker": "Case study · meble ogrodowe",
+   "text": "Zamówienia od kontrahentów z *Niemiec",
+   "sub": "producent z okolic Słupska"
+  },
+  {
+   "type": "broll",
+   "at": "meble",
+   "until": "+3.4",
+   "src": "assets/broll/hf/video/h05-szwalnia-meble-ogrodowe.mp4",
+   "ai": true,
+   "kicker": "Producent z Pomorza",
+   "title": "Meble ogrodowe i *szwalnia"
+  },
+  {
+   "type": "broll",
+   "at": "Excelu",
+   "until": "+3.0",
+   "src": "assets/broll/hf/video/h01-biuro-przeciazenie.mp4",
+   "ai": true
+  },
+  {
+   "type": "list",
+   "at": "diabeł",
+   "until": "+14",
+   "kicker": "Jeden produkt, trzy nazwy",
+   "items": [
+    {
+     "text": "Nazwa handlowa",
+     "at": "nazwać"
+    },
+    {
+     "text": "Nazwa produkcyjna",
+     "at": "angielsku"
+    },
+    {
+     "text": "Nazwa kontrahenta",
+     "at": "rozszyfrowanie"
+    }
+   ]
+  },
+  {
+   "type": "beat",
+   "style": "strike",
+   "at": "kilka dni",
+   "until": "+3.2",
+   "label": "Zamówienie ze 100 pozycjami",
+   "main": "KILKA DNI",
+   "sub": [
+    "Nazwy.",
+    "Ceny.",
+    "Kolumny."
+   ]
+  },
+  {
+   "type": "broll",
+   "at": "setką",
+   "until": "+3.0",
+   "src": "build/broll-real/veo-stos-dokumentow.mp4",
+   "ai": true
+  },
+  {
+   "type": "broll",
+   "at": "frustrująca",
+   "until": "+3.0",
+   "src": "build/broll-real/stock-chaos-biuro.mp4",
+   "ai": false,
+   "center": true,
+   "title": "Frustracja *całego biura"
+  },
+  {
+   "type": "beat",
+   "style": "burst",
+   "at": "10",
+   "until": "+3.2",
+   "label": "System z nakładką AI",
+   "num": "10 MIN",
+   "bottom": "zamiast kilku dni"
+  },
+  {
+   "type": "list",
+   "at": "dopasować",
+   "until": "+12",
+   "kicker": "Dlaczego to tyle trwało",
+   "items": [
+    {
+     "text": "Różne nazwy",
+     "at": "nazwy"
+    },
+    {
+     "text": "Rozproszone ceny",
+     "at": "ceny"
+    },
+    {
+     "text": "Własne kolumny",
+     "at": "kolumny"
+    }
+   ]
+  },
+  {
+   "type": "mockup",
+   "name": "excels",
+   "at": "trzech",
+   "until": "+9"
+  },
+  {
+   "type": "broll",
+   "at": "kodów kreskowych",
+   "until": "+3.4",
+   "src": "assets/broll/hf/video/h06-etykiety-kody.mp4",
+   "kicker": "Biuro",
+   "title": "Kody kreskowe do *każdej paczki",
+   "ai": true
+  },
+  {
+   "type": "slate",
+   "at": "przeklejała",
+   "until": "setce",
+   "kicker": "Przy każdej pozycji",
+   "text": "Przeklej. Drukuj. *Przeklej. Drukuj.",
+   "pip": true
+  },
+  {
+   "type": "broll",
+   "at": "awarię",
+   "until": "+3.0",
+   "src": "../youtube/Animation flowbiz youtube/assets/veo/02-drukarka-zamowienie.mp4"
+  },
+  {
+   "type": "broll",
+   "at": "scentralizować",
+   "until": "+9",
+   "src": "build/klocki/integracje-w-jeden-system-16x9.mp4",
+   "ai": false,
+   "from": 0.5
+  },
+  {
+   "type": "quote",
+   "at": "Bez tych",
+   "until": "I przez",
+   "text": "Bez fundamentów AI nie wie, jak firma pracuje"
+  },
+  {
+   "type": "title",
+   "at": "pamięć dla",
+   "until": "+12",
+   "kicker": "Pamięć dla AI",
+   "text": "Jeden produkt, *pięć nazw",
+   "sub": "każdy kontrahent pisze inaczej"
+  },
+  {
+   "type": "mockup",
+   "name": "match",
+   "at": "kolorach",
+   "until": "+14"
+  },
+  {
+   "type": "logos",
+   "at": "czatem",
+   "until": "+12",
+   "kicker": "Jak uczy się zwykły czat",
+   "items": [
+    {
+     "logo": "openai",
+     "name": "ChatGPT"
+    },
+    {
+     "logo": "googlegemini",
+     "name": "Gemini"
+    }
+   ],
+   "sub": "poprawiasz → zapamiętuje"
+  },
+  {
+   "type": "broll",
+   "at": "maila",
+   "until": "+3.0",
+   "src": "../youtube/Animation flowbiz youtube/assets/veo/03-palce-klawiatura.mp4",
+   "center": true,
+   "title": "Poprawiasz. *Zapamiętuje."
+  },
+  {
+   "type": "beat",
+   "style": "burst",
+   "at": "poziomie",
+   "until": "+3.4",
+   "label": "Trafność dopasowania na start",
+   "num": "70%"
+  },
+  {
+   "type": "beat",
+   "style": "burst",
+   "at": "miesiącu",
+   "until": "+3.4",
+   "label": "Po miesiącu",
+   "num": "94%",
+   "bottom": "bez zmiany pracy biura",
+   "pip": true
+  },
+  {
+   "type": "title",
+   "at": "dopasowuje to",
+   "until": "Zostają",
+   "kicker": "Kolejne zamówienie",
+   "text": "AI dopasowuje *95% samo"
+  },
+  {
+   "type": "quote",
+   "at": "Zostają",
+   "until": "Jeżeli chodzi",
+   "text": "Zostają marginalne przypadki"
+  },
+  {
+   "type": "beat",
+   "style": "slam",
+   "at": "żadnej magii",
+   "until": "+3.4",
+   "label": "Kody kreskowe",
+   "lines": [
+    "ŻADNEGO AI.",
+    "tylko",
+    "PROGRAM."
+   ]
+  },
+  {
+   "type": "mockup",
+   "name": "labels",
+   "at": "system bierze",
+   "until": "kilku dni"
+  },
+  {
+   "type": "beat",
+   "style": "burst",
+   "at": "15",
+   "until": "+3.2",
+   "label": "Etykiety do zamówienia",
+   "num": "15 MIN",
+   "bottom": "zamiast kilku dni"
+  },
+  {
+   "type": "title",
+   "at": "komentarza",
+   "until": "+7",
+   "zone": "lower",
+   "kicker": "Napisz w komentarzu",
+   "text": "Co *Ty chcesz zautomatyzować?"
+  }
+ ]
+}

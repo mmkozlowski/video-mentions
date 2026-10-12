@@ -1,0 +1,207 @@
+    7.3 Klient zgłosił się do nas z takim problemem, żebyśmy pomogli mu zbudować asystenta AI
+   14.9 do zarządzania jego firmą. Jest to firma z Podsłupska, która produkuje sprzęt sportowy
+   23.5 bardzo wysokiej jakości i wysyła go na cały świat, więc jestem bardzo dumny z tego,
+   30.2 że mogę z taką firmą współpracować i że takie produkty dzieją się i są produkowane u nas lokalnie,
+   37.0 ale do rzeczy. Jaki był problem? Problem był taki, że właściciel tutaj korzystając z tych narzędzi
+   44.0 najbardziej popularnych jak ChatGPT po prostu miał dosyć dużo frustracji do tego,
+   49.1 że ten Chat w pewnym momencie przestaje pamiętać moje wcześniej się wytyczne.
+   54.5 Ten Chat przestaje rozumieć i zaczyna haucynować i to jest bardzo frustrujące,
+   59.6 zdaję sobie z tego sprawę i powodował, że często to AI było naszym wrogiem,
+   67.6 a nie sprzymierzęcym w tym wszystkim i żeby nam pomagało w pracy, a nie utrudniało.
+   72.2 I niestety to jest ten syndrom tego, że te narzędzia mają po prostu ograniczony kontekst.
+   81.8 Kontekst to możemy powiedzieć w takim mniej więcej języku potocznym,
+   86.9 że to jest po prostu pamięć, która po prostu się kończy.
+   89.9 I przypuśćmy narzędzia, część narzędzi, duża część narzędzi ma to powiedzmy
+   97.6 milion kontekstu samego w sobie albo duże liczby, które wydają się wręcz nieosiągalne,
+  105.7 żeby to wypełnić to wszystko. Jednak siedząc nad danym czatem powiedzmy
+  113.8 kilkanaście miesięcy, ten czat zaczyna nam się zacinać, ten czat zaczyna nam
+  118.8 halucynować, ten czat zaczyna wymyślać i powoduje jeszcze większą frustrację.
+  124.7 Więc ten klient do nas się zgłosił z takim dosyć dużym problemem
+  127.7 i zaczęliśmy myśleć jak mu to uprościć. No więc pierwsze tutaj hasło
+  133.2 agent AI dla tego właściciela. Jednak problem się stał o wiele bardziej złożony,
+  140.2 bo w momencie kiedy weszliśmy do tej firmy okazało się, że dane są w głowach,
+  147.3 na kartkach, na mailach i niestety agent AI nie ma skąd tych danych pobierać.
+  156.7 I oczywiście mogliśmy częściowo ten problem rozwiązać i tylko po ten jeden problem,
+  164.0 po ten jeden prompt, który na przykład dany właściciel powtarzał,
+  167.6 ale wiedzieliśmy razem tutaj z Marcinem, którym tutaj tworzymy ten projekt,
+  174.2 że to nie da takiego przełożenia i takiej siły we wdrożeniu i trzeba to zrobić
+  181.6 po prostu całościowo i porządnie. A porządnie to oznacza tyle, że trzeba
+  186.1 zbudować fundamenty. Fundamenty pod AI, czyli AI musi mieć skąd te dane pobierać,
+  191.9 musi mieć możliwość tych danych po prostu, żeby one były w jakimś konkretnym miejscu,
+  200.9 cyfrowym miejscu, a nie w głowach, no bo tam nam AI jeszcze, na razie jeszcze,
+  205.7 nie zajrzy, kto wie jak to dalej, w jakim kierunku to dalej pójdzie.
+  210.2 I idąc tym tropem, no poszliśmy w tym kierunku, ok, tworzymy mózg firmy.
+  217.9 Mózg firmy polega na tym, że po prostu dostaliśmy dostęp do dysku,
+  225.9 dostaliśmy dostęp do danych około, wydaje mi się, że tam było między 100 a 150 giga
+  232.9 różnych danych, manuali, procedur, filmów instruktażowych, ofert, wycen,
+  241.5 po prostu wielki, gigantyczny miszmasz, jeżeli chodzi o te dane.
+  246.7 No i zaczęliśmy je z nich budować po prostu wiedzę dla tej firmy.
+  251.0 I efekt był o tyle imponujący, że nagle dowolne zadanie pytania właściciela
+  261.8 do tego agenta AI powodował, że dostawał bardzo konkretną odpowiedź.
+  267.5 I to o tyle rozpaliło ciekawość i chęć dalszych wdrożeń u tego właściciela
+  272.1 do tego, że ja chcę wiedzieć, co się dzisiaj dzieje w firmie.
+  275.9 Ja chcę mieć codzienny brief tego, co się w firmie wydarzyło rano, po południu,
+  282.6 chcę wiedzieć po tygodniu.
+  284.4 No więc zakasaliśmy rękawy i zaczęliśmy drążyć ten temat dalej,
+  288.2 zaczęliśmy wdrażać kolejne rozwiązania, kolejne rozwiązania dla produkcji,
+  292.6 kolejne statu, tak żeby produkcja mogła zostawiać status i ślad,
+  298.5 w jakim jest dana produkcja.
+  306.6 Nagle trzeba było scyfryzować wszystkie dane, scentralizować,
+  312.6 wrzucić wszystkie produkty do jednego systemu, całą tablicę produkcyjną,
+  318.4 etapy zamówienia też do jednego systemu.
+  325.0 Tutaj naszymi podstawami genialnie się sprawdził system Open Mercato,
+  329.3 który naprawdę dał dużo rzeczy z pudełka i pozwolił nam zbudować,
+  334.6 co najciekawsze, system, który niedużo się różnił od samego sposobu pracy osoby,
+  341.7 która jest kierownikiem produkcji.
+  344.6 A to dlatego, że ja mam takie odczucie, że często kupując gotowca system dla produkcji,
+  354.2 bierzemy coś, co do czegoś musimy dostosować i nagle z pewnego układu,
+  358.4 nawet w Excelu, jaki mieliśmy, musimy się kompletnie przestawić na to, jak to używać,
+  365.5 bo nagle jakaś firma sobie wymyśliła w ten sposób, a nie inny,
+  370.4 a my, kurde, chcieliśmy tylko mieć system, który dużo będzie się nie różnił od tego,
+  377.3 co na co dzień robimy i to powoduje, że jest duża niechęć do dużych wdrożeń,
+  382.4 dużych systemów, bo widzę to i to jest powtarzający się problem,
+  386.5 że duże systemy nie udaje się wdrożyć.
+  391.0 Duże systemy wdrażają, wdraża się kilka miesięcy i te wdrożenia też nie są,
+  397.0 nie kończą się sukcesem i nie kończą się sukcesem dlatego,
+  407.0 że te systemy są oderwane od rzeczywistości.
+  409.8 One wymagają od nas, żeby się dostosować do tych systemów,
+  413.1 a nie dostosowują się do nas, a jeżeli w ogóle chcemy,
+  415.9 żeby system się dostosował do nas i chcemy jakiejś customowej,
+  419.9 niestandardowej integracji, no to firmy tutaj jakby powodują,
+  425.3 że nasze budżety po prostu wykraczają na rozwiązania IT
+  429.6 bardzo mocno poza planowane budżety i to jest też częsta blokada dla firm,
+  435.6 które by chciały takie rozwiązania.
+  438.5 My wychodzimy z innego założenia, czyli Excel miał pewien plan produkcji,
+  443.4 nie był to może idealny sposób planowania, nie był to taki, że tak powiem,
+  448.0 książkowy planowanie produkcji, ale miał swój sposób.
+  452.4 Kierownik produkcji miał swój sposób, a miał go na tyle ten sposób,
+  456.1 że miał na tyle ten sposób ułożony, że mi zależało na tym,
+  461.7 żeby odzwierciedlić jak najbliżej tego, co on ma.
+  464.3 I finalnie widoki, które udało się ułożyć były bardzo bliskie temu Excelowi,
+  469.9 były o wiele bardziej oczywiście funkcjonalne, tak, zapisywały historię
+  473.4 każdego z etapów, dawały gigantyczne możliwości,
+  476.6 i, ale nauka i wdrożenie tego, u tego kierownika produkcji naprawdę,
+  483.7 uwierzcie mi, że zajęła godzinę i ewentualnie później jakieś tam uwagi,
+  489.4 czy możemy jeszcze ten przycisk tak zrobić, a czy tu może się inaczej wyświetlać,
+  494.1 a jakieś drobne tutaj jakby poprawki, ale to możliwości dało naprawdę potężne
+  501.2 Open Mercato, które dawało gigantyczne podstawy gotowych modułów,
+  506.0 z których tak naprawdę trzeba było złożyć jeden konkretny moduł,
+  511.6 jedną konkretną tutaj dla danego kierownika produkcji konkretny proces,
+  521.0 do tego, żeby tutaj to wdrożenie zajęło dosłownie kilka godzin, tak,
+  528.4 kilka godzin też mówię o takich godzinach też gdzieś tam na wymianie na Whatsappie
+  533.2 i zapytaniu się jak coś, dlaczego tak działa, a czy mogę tak, żeby tak działało
+  537.8 i na takiej zasadzie wymiany, wymiany zdań.
+  542.5 I najlepsze było to, że efektem był wydrukowany bardzo, że tak powiem,
+  548.5 jeden do jednego Excel, który, przepraszam, nie Excel, tylko PDF,
+  553.3 który przypominał tego Excela wyjściowego, więc kierownik produkcji naprawdę tutaj
+  558.4 dużo, dużo z tego wszystkiego miał radości, że to wdrożenie poszło bardzo sprawnie,
+  563.9 a jak to wpłynęło dalej na tego właściciela, który temu wszystkiemu chciał,
+  568.4 żeby te dane wszystkie mieć w jednym miejscu, no tak, że jeżeli kierownik produkcji
+  573.1 uzupełnia te dane i je robi, bo może je łatwo uzupełniać, nie ma strachu
+  578.7 przed nowym systemem, przed dużym systemem, przed dużym wdrożeniem,
+  581.9 zaczyna z niego korzystać, to nagle się okazało, że codzienny briefing
+  587.3 właściciela firmy staje się przyjemnością.
+  589.9 Właściciel dostaje codziennie powiadomienie na temat etapów,
+  593.8 na temat postępów produkcji, na temat opóźnie produkcji,
+  596.7 na temat tego danego zamówienia, czyli jak wygląda zamówienie
+  602.7 dla kluczowych klientów i dostaje listę tych kluczowych klientów,
+  606.3 dostaje możliwość generowania oferty z samego komunikatora,
+  614.1 czy to będzie Whatsapp, czy Slack, nie ma to dużego znaczenia,
+  617.0 jeżeli chodzi o konfigurację.
+  618.9 Dostaje też możliwość tworzenia w ogóle dla fajnych...
+  623.0 Sam właściciel w ogóle nie jest potrzebny do tego, żeby w tym systemie
+  626.5 do niego wchodzić, bo jeżeli wiemy, jak praca właściciela często wygląda tak,
+  630.9 że siedzimy na telefonie, to ten asystent AI w połączeniu z mózgiem
+  636.9 spowodował, że właściciel wpisuje, chce, utwórz mi zamówienie dla tego klienta
+  644.9 i dostajesz informację, że takie i takie zamówienie było w niedawnym czasie stworzone,
+  650.9 czy chcesz które zduplikować, czy chcesz całkowicie nowe stworzyć dla tego klienta
+  654.6 i nie wychodząc z żadnego komunikatora i robiąc to w bardzo przystępny
+  659.2 i banalny wręcz sposób, w zasadzie tylko klikania w menu, na przykład w Telegramie,
+  665.4 powoduje, że w trzech kliknięcia masz gotowe nowe zamówienie,
+  670.2 masz gotową nową ofertę w tym wszystkim, więc tutaj to też powoduje,
+  678.2 że wybranie na przykład do tego wszystkiego jako bazy narzędzia, jakim jest Obsidian
+  683.8 i narzędzia, jakim jest Hermes i połączenie tego jeszcze z kodeksem,
+  690.6 czyli te trzy narzędzia łączymy w jedno, powoduje, że dostajesz naprawdę gigantyczne
+  695.7 fundamenty pod agenta AI, który wymaga fundamentów, ale daje też tą możliwość
+  701.6 zarządzania naprawdę wszechstronnego firmą i dostajesz project managera,
+  708.4 który przypomina Ci o ważnych sprawach, przypomina Ci o tym, jakie są opóźnienia
+  713.8 na produkcji i co najciekawsze w tym wszystkim, ten kontekst jest cały czas odświeżany.
+  721.5 On, dlatego, że pamięć w Hermesie, w Obsidianie jest na bieżąco zapisywana.
+  728.7 Hermes też uczy się i buduje skille na podstawie tego, jak Ty pracujesz
+  734.1 i nie ma tam możliwości takiej, że on straci kontekst albo za mocno go wypełni,
+  740.2 bo na bieżąco on ma dostęp do najnowszej pamięci, ma dostęp do najnowszych plików,
+  746.7 najnowszych zmian i za każdym razem je pobiera na świeżo. Nie musi wracać,
+  752.4 tak jak to właśnie w czacie GPT na zasadzie, jeżeli mamy okno tutaj rozmowy
+  756.1 sprzed miesiąca i my byśmy chcieli wrócić do tego, co było pół roku wcześniej,
+  759.5 to system, system typu czat GPT, narzędzie, bardziej niż system,
+  765.9 musi odnieść się i znaleźć na przykład coś, co było rok temu.
+  769.4 A jak wiemy, no dla takiego czata GPT to są gigantyczne koszty,
+  773.1 żeby tak mocno się cofnąć, nawet nie chodzi też może o koszty,
+  777.0 to źle tutaj powiedziałem, ale jakby bardzo technicznie nie jest to możliwe,
+  781.9 żeby tu się cofnąć, bo czat GPT nie zapisuje tych plików.
+  784.9 Nasza rozmowa jest po prostu jednym wielkim plikiem, a ten plik po prostu kiedyś
+  790.0 tą pamięć kończy, tak, ta pamięć się kończy i ona po prostu nadpisuje te dane
+  795.3 i dlatego też zaczyna halucynować. A w przypadku, kiedy te dane są na bieżąco
+  799.9 zapisywane i co najciekawsze, możesz do tych wszystkich całej pamięci
+  803.9 mieć wgląd i to nie wgląd do 0 i 1, jak to myślimy o pamięci na przykład RAM,
+  810.2 gdzie system się, typowe, że tak powiem pamięci tak nam się kojarzą
+  815.7 w tym wszystkim, gdzie nie wiemy co ten ciąg znaków znaczy.
+  819.5 Tak, w przypadku Obsidiana Hermesa wchodzisz nawet na taki serwer,
+  826.8 wchodzisz na ten profil Obsidiana i ty widzisz po prostu pliki tak zwane markdown,
+  835.3 pliki o tej samej strukturze powtarzające się z historią tego,
+  840.6 jak to jest zapisywane i łącząc to właśnie w taki mózg.
+  844.2 Jak sobie zobaczysz za chwilę, to ja też w świetle właśnie Obsidian potrafi
+  848.2 łączyć bardzo dobrze, jest genialnym narzędziem, które bardzo dobrze
+  852.8 nadaje się na mózg firmowy, na mózg nie tylko firmowy, ale też nawet
+  857.4 pod jakieś mniejsze projekty, ale ma bardzo dobry kontekst, ma masę wiedzy do tego,
+  863.9 która się zapisuje do tego, żeby bardzo trafnie dawać to, jak daną decyzję
+  870.8 mamy podjąć. On nie wymyśla, on bierze je na bieżąco, on ma wszystkie
+  875.1 powiązania między sobą, dzięki temu dostajemy naprawdę wysokiej jakości dane,
+  880.4 na podstawie których możemy podjąć decyzje. Więc tak to pokrótce o agentach AI
+  885.8 miało być krótko, miało być szybko, ale jakby bez tego kontekstu,
+  890.0 bez tych fundamentów chciałem Wam tylko pokazać, że zrobienie dużego kroku
+  895.9 dla firmy nie jest po prostu możliwe, a dużym krokiem oczywiście w tych czasach,
+  902.7 gdzie ciągle dostajemy komunikaty, że musisz wdrożyć AI, musi być AI,
+  907.2 bo cała firma Ci ucieka, no po prostu musimy być świadomi do tego,
+  911.4 że jeżeli nie mamy tych fundamentów, jeżeli nie mamy danych w jednym miejscu,
+  917.2 w jakimś systemie, który też jest otwarty na integrację, bo nie mówię o systemach,
+  922.6 które na przykład są jak subiekt, albo systemy bardzo zamknięte,
+  927.8 które nie są otwarte na integrację albo bardzo ograniczone, to powoduje,
+  932.1 że nie możemy się podłączyć z różnych stron do tych systemów,
+  936.2 nie możemy ich automatyzować, nie możemy wdrożyć do nich AI i tego wszystkiego,
+  941.0 więc tutaj dochodzimy do takiego momentu, że trzeba dobre fundamenty
+  946.8 pod to wszystko wylać, tak i dzięki temu możemy dostać po kilku miesiącach,
+  953.5 no wydaje mi się po trzech miesiącach pracy, wszystko zależy od złożoności
+  957.1 danego problemu, rozwiązanie, które jest rozwiązaniem, które daje dużą ulgę,
+  965.0 bo ostatnie rozmowy, którą nawet mieliśmy dzisiaj, właściciel i osoby zarządzające
+  971.3 tutaj dyrektorzy, mają ogromną ulgę i chęć korzystania z tych rozwiązań,
+  978.6 a to dlatego, że te rozwiązania po prostu realnie wpłynęły na ich pracę
+  982.8 i oczywiście trzeba pamiętać, żeby z tych rozwiązań też korzystać,
+  987.1 bo to też jest tak, wiemy, możesz mieć narzędzia, ale te narzędzie
+  991.0 po prostu odłożysz na bok i nie zapomnisz o nim, nie,
+  994.9 ale musisz oczywiście mieć też nawyk tego, żeby wyrobić sobie to,
+  999.5 żeby, nie wiem, nie uruchamiać czata GPT, nie wrzucać tam informacji,
+ 1003.4 tylko korzystać z tego agenta, który został przygotowany typowo pod naszą firmę,
+ 1007.5 no bo znowu, jeżeli będziemy wrzucać dane do czata GPT,
+ 1010.1 no to ten nasz agent główny będzie tracił ten kontekst,
+ 1012.6 więc tutaj trzeba też się przestawić i nigdy przesiadka z jednego narzędzia
+ 1017.1 do drugiego albo z jednego systemu do drugiego nie jest prosta
+ 1020.0 i często nie jest to najłatwiejsze zadanie, ale jest to realne.
+ 1025.1 My też podchodzimy tutaj w tym wszystkim jako flowbiz do tego,
+ 1029.2 żeby najpierw stawiamy na konsultacje, najpierw stawiamy na doradztwo,
+ 1034.3 no to dlatego, że duża część systemów, duża część technicznej rzeczy
+ 1039.2 po prostu już jest, daje nieograniczone możliwości, tak,
+ 1044.2 a pomoc AI w tworzeniu oprogramowania daje ogromne korzyści
+ 1052.7 dlatego, żeby skupić się na tym, na ludziach, na tym, żeby razem szkolić,
+ 1058.3 żeby doradzać, konsultować dane rozwiązania i skupić się na tym w dużej mierze,
+ 1063.4 bo samo rozwiązanie techniczne często, jak widzimy po tych różnych wdrożeniach
+ 1067.6 nieudanych, po prostu samo narzędzie nie rozwiązuje problemu.
+ 1072.1 Posiadanie narzędzia jakiegokolwiek, wykupienia go na niego licencji
+ 1077.5 nie oznacza, że będziemy z niego korzystać, więc my tutaj mocno na to stawiamy,
+ 1082.3 żeby było rozwiązanie to naszyte na miarę, żeby to było rozwiązanie,
+ 1085.9 które będzie efektywne i które będzie łatwe do wdrożenia,
+ 1089.0 które nie będzie rozwiązaniem, które po prostu powoduje ścisk żołądka,
+ 1094.0 niechęć pracowników i tak dalej, tak, więc tutaj każdy jako właściciel
+ 1100.2 wstawi sobie odpowiedni przymiotnik do tego, jakie emocje z tym są związane,
+ 1114.2 tak, pytanie czy to przymiotnik. No dobra, dziękuję Wam na dzisiaj
+ 1120.1 i do usłyszenia.

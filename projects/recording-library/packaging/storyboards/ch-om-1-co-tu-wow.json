@@ -1,0 +1,59 @@
+{
+ "clip": "ch-om-1-co-tu-wow",
+ "brand": "flowbiz",
+ "formats": [
+  "reels"
+ ],
+ "hook": {
+  "text": "„Co tu jest takiego wow?” — *odpowiedź w jednym zdaniu.",
+  "until": 6.5,
+  "visual": {
+   "kind": "icon",
+   "art": "h-developer"
+  }
+ },
+ "topic": {
+  "kicker": "Po co Open Mercato",
+  "text": "Własny system *zamiast narzędzi",
+  "sub": "kod, role i historia zmian"
+ },
+ "cta": {
+  "chip": "Open Mercato · flowbiz.pl",
+  "reels": {
+   "kicker": "Chcesz pogadać o swoim systemie?",
+   "title": "Napisz *MERCATO w komentarzu",
+   "sub": "Pokażę Ci, co dostajesz na własność"
+  }
+ },
+ "events": [
+  {
+   "type": "beat",
+   "style": "burst",
+   "at": "100",
+   "until": "+3.2",
+   "label": "Do kodu masz",
+   "num": "100%",
+   "bottom": "dostępu — jesteś właścicielem"
+  },
+  {
+   "type": "list",
+   "at": "low",
+   "until": 37.0,
+   "kicker": "W low-code / no-code",
+   "items": [
+    {
+     "text": "Nie zajrzysz w kod",
+     "at": "zajrzysz"
+    },
+    {
+     "text": "Nie nadpiszesz",
+     "at": "nadpiszesz"
+    },
+    {
+     "text": "Nie rozbudujesz",
+     "at": "rozbudujesz"
+    }
+   ]
+  }
+ ]
+}

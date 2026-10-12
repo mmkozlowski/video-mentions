@@ -37,6 +37,14 @@ projects/youtube/**/out/
 projects/shorts IG/assets/raw/
 projects/shorts IG/final/
 
+# ── recording-library: próbki wideo ───────────────────────────────────────
+# Odtwarzalne jednym poleceniem (tools/package.py --render) z bazy klipów,
+# a 30 wariantów × ~20 MB zablokowałoby klony. W gicie zostają storyboardy,
+# generator i płatne b-rolle (assets/broll/), tak jak ujęcia Veo w youtube/.
+projects/recording-library/final/*
+# Wyjątek: klatki katalogu układów (2,5 MB) — KATALOG-UKLADOW.md musi je pokazać bez renderu.
+!projects/recording-library/final/catalog/
+
 # --- projects/youtube: wstawki POZA gitem, referencje w gicie (decyzja 22.08.2026)
 # Wstawki alfa (qtrle) waza po kilkadziesiat–kilkaset MB sztuka: komplet 40 scen
 # to ~1,8 GB, a kazda odtwarza sie jednym poleceniem z kompozycji, ktore SA w gicie.
@@ -46,3 +54,19 @@ projects/youtube/final/**/*.mov
 !projects/youtube/final/**/referencje/*.mp4
 # zgrubne montaze — odtwarzalne z planu jednym poleceniem, po kilkaset MB
 projects/youtube/final/**/zgrubny/
+
+# MP4/MOV na razie POZA gitem (decyzja Mateusza 10.10.2026) — za duże do repo.
+# Pliki leżą lokalnie; 56 starszych plików wideo, które już były na serwerze,
+# zostaje śledzonych (ta reguła nie usuwa ich z gita, tylko blokuje nowe).
+# Animacje flowbiz odtworzysz: projects/flowbiz/screens/render.sh
+*.mp4
+*.MP4
+*.mov
+*.MOV
+
+# Spisy dla FlowBiz Studio — odtwarzalne (tools/export_studio.py) i lokalne, jak final/samples
+studio-index.json
+projects/*/exports/
+
+# Referencje wstawek YouTube zostają w gicie mimo reguły *.mp4 wyżej (decyzja 22.08.2026)
+!projects/youtube/final/**/referencje/*.mp4

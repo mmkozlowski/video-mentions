@@ -1,0 +1,77 @@
+{
+ "clip": "ch-vibe-2-magiczne-sesje",
+ "brand": "flowbiz",
+ "formats": [
+  "reels"
+ ],
+ "hook": {
+  "text": "Dwie pierwsze sesje z agentem: *magia. Potem: *chaos.",
+  "until": 6.5,
+  "visual": {
+   "kind": "versus",
+   "sign": "→",
+   "left": {
+    "art": "h-robot",
+    "label": "sesja 1–2"
+   },
+   "right": {
+    "art": "h-warning-gear",
+    "label": "sesja 10",
+    "accent": true
+   }
+  }
+ },
+ "topic": {
+  "kicker": "Vibe coding vs framework",
+  "text": "System z AI, *który wytrzyma",
+  "sub": "Claude, Codex i Open Mercato"
+ },
+ "cta": {
+  "chip": "Open Mercato · flowbiz.pl",
+  "reels": {
+   "kicker": "Chcesz pogadać o swoim systemie?",
+   "title": "Napisz *SYSTEM w komentarzu",
+   "sub": "Powiem Ci, czy Twój projekt wytrzyma produkcję"
+  }
+ },
+ "events": [
+  {
+   "type": "list",
+   "at": "Jeszcze",
+   "until": "nagle",
+   "kicker": "Jeszcze tylko…",
+   "items": [
+    {
+     "text": "Jeszcze ten ekran",
+     "at": "Jeszcze"
+    },
+    {
+     "text": "Kolejny moduł",
+     "at": "kolejny"
+    },
+    {
+     "text": "I jeszcze jeden",
+     "at": "kolejny#2"
+    }
+   ]
+  },
+  {
+   "type": "mockup",
+   "name": "deps",
+   "at": "zainstalowały",
+   "until": "Najgorsze"
+  },
+  {
+   "type": "beat",
+   "style": "slam",
+   "at": "Najgorsze",
+   "until": "+3.6",
+   "label": "Najgorsze",
+   "lines": [
+    "NIE DOWIESZ SIĘ",
+    "sam,",
+    "CO SIĘ ZEPSUŁO"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,76 @@
+{
+ "clip": "ch-module-6-40-minut",
+ "brand": "flowbiz",
+ "formats": [
+  "reels"
+ ],
+ "hook": {
+  "text": "Nie „dużo czasu”. *40 minut dziennie.",
+  "until": 8.0,
+  "visual": {
+   "kind": "icon",
+   "art": "h-stopwatch"
+  }
+ },
+ "topic": {
+  "kicker": "Jak składam moduł",
+  "text": "Najpierw kartka, *potem kod",
+  "sub": "warsztat → specyfikacja → moduł"
+ },
+ "cta": {
+  "chip": "Open Mercato · flowbiz.pl",
+  "reels": {
+   "kicker": "Chcesz pogadać o swoim systemie?",
+   "title": "Napisz *SPEC w komentarzu",
+   "sub": "Pokażę Ci, jak policzyć swój proces"
+  }
+ },
+ "events": [
+  {
+   "type": "mockup",
+   "name": "spec",
+   "at": "odpowiada",
+   "until": "Nie handlowiec"
+  },
+  {
+   "type": "beat",
+   "style": "strike",
+   "at": "Nie handlowiec",
+   "until": "Albo",
+   "label": "Nie pisz",
+   "main": "DUŻO CZASU",
+   "sub": [
+    "Pisz:",
+    "40 min dziennie."
+   ]
+  },
+  {
+   "type": "list",
+   "at": "Dalej",
+   "until": 41.2,
+   "kicker": "Dalej w specyfikacji",
+   "items": [
+    {
+     "text": "Kontekst i aktorzy",
+     "at": "Kontekst"
+    },
+    {
+     "text": "Dlaczego teraz?",
+     "at": "dlaczego"
+    },
+    {
+     "text": "Metryki sukcesu",
+     "at": "Metryki"
+    },
+    {
+     "text": "Poza zakresem",
+     "at": "poza"
+    }
+   ]
+  }
+ ],
+ "cover": {
+  "kicker": "Jak składam moduł",
+  "text": "Co musi zawierać *dobra specyfikacja systemu?"
+ }
+}

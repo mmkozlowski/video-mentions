@@ -4,6 +4,28 @@ Produkcja wideo reklamowego — pipeline, materiał i wiedza. Jedno repo na wszy
 projekty, żeby to, czego nauczyliśmy się na jednym kliencie, działało od razu na
 następnym.
 
+## Gdzie co jest
+
+| Wiedza | Gdzie |
+|---|---|
+| Jak montujemy: cięcia, przeskoki, hook, formaty, kontrola | [`WYTYCZNE-MONTAZU.md`](WYTYCZNE-MONTAZU.md) |
+| Jakie mamy układy przejść, tekstów i przebitek (z klatkami) | [`KATALOG-UKLADOW.md`](KATALOG-UKLADOW.md) |
+| Pułapki techniczne (dla Claude) | [`.ai/MEMORY.md`](.ai/MEMORY.md) |
+| Marka FlowBiz: kolory, fonty, logo, ton | `~/Repo/flowbiz-automation-unlocked` (nie tutaj) |
+| Panel marketingu: reklamy, kampanie, publikacja odcinków | `~/Repo/flowbiz-ads-studio` (localhost:4317) |
+
+## Połączenia z repo
+
+Każdy projekt ma w swoim README sekcję **„Połączenia z repo”** — z czego czyta i dokąd oddaje.
+
+| Projekt | Połączony z |
+|---|---|
+| `adresflow` | `adresflow-v2` (produkt, liczby do copy) |
+| `flowbiz` | `flowbiz-automation-unlocked` (marka), `flowbiz-ads-studio` (reklamy) |
+| `recording-library` | `flowbiz-automation-unlocked` (marka), `flowbiz-ads-studio` (publikacja, plansza filmów), repo klientów z case studies |
+| `youtube` | `flowbiz-automation-unlocked` (marka), `flowbiz-ads-studio` (publikacja) |
+| `shorts IG` | samodzielny |
+
 ## Struktura
 
 ```
@@ -15,6 +37,7 @@ video-mentions/
 └── projects/
     ├── adresflow/            ← JEDEN PROJEKT
     ├── shorts IG/            ← shorty z telefonu; własny pipeline, patrz jego README
+    ├── recording-library/    ← baza klipów z sesji nagraniowych; patrz jego README
     └── granit/
         ├── ai/               decyzje i plany TEGO projektu
         ├── assets/           ŹRÓDŁA — nieodtwarzalne
@@ -74,6 +97,7 @@ w `tools/story.py`.
 | `adresflow` | AdresFlow | wizualizacje nieruchomości — rzut 3D z kartki, home staging |
 | `granit` | Granit Kończewo × FlowBiz AI | kampania sponsorska klubu; sponsor dostaje bezpłatny audyt AI |
 | `shorts IG` | FlowBiz (kanał Mateusza) | pionowe shorty z nagrań telefonem — gadana głowa, przebitki, filmowany ekran |
+| `recording-library` | FlowBiz + AI Słupsk | baza klipów z sesji nagraniowych: reklamy z promptera, case studies, ranking hooków |
 
 ## Powiązane repo
 

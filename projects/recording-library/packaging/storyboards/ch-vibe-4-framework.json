@@ -1,0 +1,75 @@
+{
+ "clip": "ch-vibe-4-framework",
+ "brand": "flowbiz",
+ "formats": [
+  "reels"
+ ],
+ "hook": {
+  "text": "Agent AI, który *nie zaczyna od pustej kartki.",
+  "until": 8.0,
+  "visual": {
+   "kind": "flow",
+   "sign": "+",
+   "items": [
+    {
+     "logo": "claude"
+    },
+    {
+     "logo": "openmercato"
+    }
+   ]
+  }
+ },
+ "topic": {
+  "kicker": "Vibe coding vs framework",
+  "text": "System z AI, *który wytrzyma",
+  "sub": "Claude, Codex i Open Mercato"
+ },
+ "cta": {
+  "chip": "Open Mercato · flowbiz.pl",
+  "reels": {
+   "kicker": "Chcesz pogadać o swoim systemie?",
+   "title": "Napisz *MERCATO w komentarzu",
+   "sub": "Pokażę Ci, jak to wygląda w praktyce"
+  }
+ },
+ "events": [
+  {
+   "type": "mockup",
+   "name": "repo",
+   "at": "strukturę",
+   "until": "Tego"
+  },
+  {
+   "type": "list",
+   "at": "Tego",
+   "until": "kolegi",
+   "kicker": "Struktura mówi agentowi",
+   "items": [
+    {
+     "text": "Tego nie rób",
+     "at": "Tego"
+    },
+    {
+     "text": "Na własne ryzyko",
+     "at": "ryzyko"
+    },
+    {
+     "text": "Zrób to tak",
+     "at": "zrób"
+    }
+   ]
+  },
+  {
+   "type": "title",
+   "at": "właśnie nie",
+   "until": "+5",
+   "kicker": "Pod spodem",
+   "text": "Mechanizmy, które *wiedzą, co robić"
+  }
+ ],
+ "cover": {
+  "kicker": "Claude vs Open Mercato",
+  "text": "Co zmienia framework, kiedy *kod pisze agent AI?"
+ }
+}

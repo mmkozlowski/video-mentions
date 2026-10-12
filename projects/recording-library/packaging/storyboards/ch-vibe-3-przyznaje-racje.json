@@ -1,0 +1,74 @@
+{
+ "clip": "ch-vibe-3-przyznaje-racje",
+ "brand": "flowbiz",
+ "formats": [
+  "reels"
+ ],
+ "hook": {
+  "text": "„Świetny pomysł!” — AI *zawsze przyzna Ci rację.",
+  "until": 8.0,
+  "visual": {
+   "kind": "icon",
+   "art": "h-robot"
+  }
+ },
+ "topic": {
+  "kicker": "Vibe coding vs framework",
+  "text": "System z AI, *który wytrzyma",
+  "sub": "Claude, Codex i Open Mercato"
+ },
+ "cta": {
+  "chip": "Open Mercato · flowbiz.pl",
+  "reels": {
+   "kicker": "Chcesz pogadać o swoim systemie?",
+   "title": "Napisz *AGENT w komentarzu",
+   "sub": "Powiem Ci, jak dać agentowi zasady"
+  }
+ },
+ "events": [
+  {
+   "type": "chat",
+   "at": "powie",
+   "until": "bo",
+   "app": "openai",
+   "bot": "Agent AI",
+   "messages": [
+    {
+     "side": "me",
+     "text": "Dodaj moduł faktur",
+     "at": "powie"
+    },
+    {
+     "side": "bot",
+     "text": "Świetny pomysł! Gotowe — tym razem zadziała.",
+     "at": "super"
+    },
+    {
+     "side": "bot",
+     "text": "Jesteś najlepszym programistą na świecie.",
+     "at": "najwspanialszym"
+    }
+   ]
+  },
+  {
+   "type": "beat",
+   "style": "burst",
+   "at": "setki",
+   "until": "+3.2",
+   "label": "Pusty projekt",
+   "num": "100+",
+   "bottom": "decyzji architektonicznych"
+  },
+  {
+   "type": "title",
+   "at": "skoro",
+   "until": "+6",
+   "kicker": "Nikt mu nie powiedział jak",
+   "text": "Za każdym razem *inaczej"
+  }
+ ],
+ "cover": {
+  "kicker": "Vibe coding",
+  "text": "Dlaczego agent AI buduje *za każdym razem inaczej?"
+ }
+}

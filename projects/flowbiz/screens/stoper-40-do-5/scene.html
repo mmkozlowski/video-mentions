@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="pl" class="__HTMLCLASS__">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=__W__, height=__H__" />
+    <title>flowbiz — 40 minut do 5–10</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="assets/flowbiz.css" />
+    <style>
+      /* ── Klocek 5: hit liczby 40 min → 5–10 min (jedyna prawdziwa liczba z wdrożenia) ──
+         Trzy układy z jednego pliku:
+           poziom         — tarcza po lewej, tekst po prawej (samodzielna plansza),
+           poziom + alfa  — blok w lewej tercji (nakładka na gadaną głowę, twarz zostaje odsłonięta),
+           pion           — tarcza u góry, tekst pod nią. */
+
+      .dial {
+        position: absolute;
+        left: 260px;
+        top: 200px;
+        width: 640px;
+        height: 640px;
+      }
+      .alpha-mode .fmt-land .dial {
+        left: 132px;
+        top: 110px;
+        width: 440px;
+        height: 440px;
+      }
+      .fmt-port .dial {
+        left: 190px;
+        top: 300px;
+        width: 700px;
+        height: 700px;
+      }
+      .dial svg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        transform: rotate(-90deg);
+        overflow: visible;
+      }
+      .disc {
+        position: absolute;
+        inset: 9%;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255, 106, 26, 0.16), rgba(11, 11, 13, 0) 70%);
+      }
+      .alpha-mode .disc {
+        background: radial-gradient(circle, rgba(30, 18, 12, 0.92), rgba(11, 11, 13, 0.86) 72%);
+      }
+      .bgc {
+        fill: none;
+        stroke: #26262c;
+        stroke-width: 3.2;
+      }
+      .arc {
+        fill: none;
+        stroke-width: 3.6;
+        stroke-linecap: round;
+        stroke-dasharray: 100;
+        filter: drop-shadow(0 0 1.6px rgba(255, 106, 26, 0.9));
+      }
+      .tick {
+        stroke: #3a3a43;
+        stroke-width: 0.5;
+      }
+      .tick.major {
+        stroke: #6a6a74;
+        stroke-width: 0.9;
+      }
+      .shock {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        border: 3px solid var(--acc);
+        box-shadow: 0 0 40px var(--acc);
+        opacity: 0;
+      }
+      .read {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .digits {
+        position: relative;
+        width: 100%;
+        height: 230px;
+      }
+      .alpha-mode .fmt-land .digits {
+        height: 160px;
+      }
+      .digits span {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--mono);
+        font-variant-numeric: tabular-nums;
+        font-weight: 800;
+        font-size: 190px;
+        letter-spacing: -0.04em;
+        white-space: nowrap;
+      }
+      .alpha-mode .fmt-land .digits span {
+        font-size: 128px;
+      }
+      .fmt-port .digits span {
+        font-size: 200px;
+      }
+      #s-final {
+        font-size: 160px;
+        color: var(--acc2);
+        text-shadow: 0 0 40px rgba(255, 106, 26, 0.45);
+        opacity: 0;
+      }
+      .alpha-mode .fmt-land #s-final {
+        font-size: 110px;
+      }
+      .fmt-port #s-final {
+        font-size: 170px;
+      }
+      .unit {
+        font-size: 40px;
+        font-weight: 700;
+        color: var(--tx);
+        margin-top: -6px;
+      }
+      .alpha-mode .fmt-land .unit {
+        font-size: 30px;
+      }
+
+      .txt {
+        position: absolute;
+        left: 990px;
+        top: 330px;
+        width: 860px;
+      }
+      .alpha-mode .fmt-land .txt {
+        left: 132px;
+        top: 590px;
+        width: 680px;
+        padding: 26px 30px 30px;
+        border-radius: 22px;
+        background: rgba(11, 11, 13, 0.82);
+        border: 1px solid var(--line2);
+      }
+      .fmt-port .txt {
+        left: 90px;
+        top: 1080px;
+        width: 900px;
+        text-align: center;
+      }
+      .txt .eyebrow {
+        position: relative;
+      }
+      .big {
+        margin: 28px 0 0;
+        font-size: 84px;
+        line-height: 1.02;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+      }
+      .alpha-mode .fmt-land .big {
+        font-size: 58px;
+        margin-top: 20px;
+      }
+      .fmt-port .big {
+        font-size: 92px;
+      }
+      .big .hi {
+        color: var(--acc2);
+      }
+      .big .w {
+        display: inline-block;
+      }
+      .sub {
+        margin: 22px 0 0;
+        font-size: 32px;
+        font-weight: 500;
+        color: #d4d4d8;
+      }
+      .alpha-mode .fmt-land .sub {
+        font-size: 26px;
+        margin-top: 14px;
+      }
+      .sub s {
+        color: var(--red-tx);
+        text-decoration-thickness: 3px;
+      }
+      .logo {
+        margin-top: 46px;
+        width: 330px;
+        height: 100px;
+        display: block;
+      }
+      .alpha-mode .fmt-land .logo {
+        margin-top: 26px;
+        width: 240px;
+        height: 73px;
+      }
+      .fmt-port .logo {
+        margin: 70px auto 0;
+        width: 400px;
+        height: 121px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" class="fmt-__FMT__" data-composition-id="__ID__" data-start="0" data-duration="8" data-width="__W__" data-height="__H__" data-fps="30" style="width: __W__px; height: __H__px">
+      <div class="stage" data-layout-ignore></div>
+      <div class="grid" data-layout-ignore></div>
+
+      <section id="s-clip" class="clip" data-start="0" data-duration="8" data-track-index="1" style="position: absolute; inset: 0">
+        <div id="s-scene" style="position: absolute; inset: 0">
+          <div class="dial" id="s-dial">
+            <div class="disc" id="s-disc"></div>
+            <svg viewBox="0 0 100 100" id="s-svg">
+              <g id="s-ticks"></g>
+              <circle class="bgc" cx="50" cy="50" r="43" />
+              <circle id="s-arc" class="arc" cx="50" cy="50" r="43" pathLength="100" stroke="#b8443c" />
+            </svg>
+            <div class="shock" id="s-shock" data-layout-ignore></div>
+            <div class="read">
+              <div class="digits">
+                <span id="s-count">40</span>
+                <span id="s-final">5–10</span>
+              </div>
+              <div class="unit">min</div>
+            </div>
+          </div>
+
+          <div class="txt" id="s-txt">
+            <div class="eyebrow" id="s-eb"><span class="dot"></span>Szwalnia · wdrożenie flowbiz</div>
+            <p class="big" id="s-big"><span class="w">Oferta</span> <span class="w">w</span> <span class="w hi">5–10</span> <span class="w hi">minut</span></p>
+            <p class="sub" id="s-sub">zamiast <s>40 minut</s> — przygotowanie jednej oferty</p>
+            <img class="logo" id="s-logo" src="assets/logo-flowbiz-white.svg" alt="flowbiz" />
+          </div>
+        </div>
+      </section>
+      <div class="grain" data-layout-ignore></div>
+      <div class="vignette" data-layout-ignore></div>
+    </div>
+
+    <script src="assets/kit.js"></script>
+    <script>
+      // Podziałka tarczy: 60 kresek, co piąta dłuższa
+      const ticks = [];
+      for (let i = 0; i < 60; i++) {
+        const a = (i / 60) * Math.PI * 2;
+        const major = i % 5 === 0;
+        const r1 = 47.2, r2 = major ? 49.6 : 48.6;
+        ticks.push(
+          `<line class="tick${major ? " major" : ""}" x1="${(50 + r1 * Math.cos(a)).toFixed(2)}" y1="${(50 + r1 * Math.sin(a)).toFixed(2)}" x2="${(50 + r2 * Math.cos(a)).toFixed(2)}" y2="${(50 + r2 * Math.sin(a)).toFixed(2)}"/>`,
+        );
+      }
+      document.getElementById("s-ticks").innerHTML = ticks.join("");
+
+      const { countTo } = window.FB;
+      const tl = gsap.timeline({ paused: true });
+
+      // 0. Tarcza i „40" w stanie przed
+      tl.fromTo("#s-dial", { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1, duration: 0.8, ease: "expo.out" }, 0.1);
+      tl.set("#s-arc", { strokeDashoffset: 0 }, 0);
+      tl.fromTo("#s-eb", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.4);
+      tl.to("#s-count", { scale: 1.04, duration: 0.25, repeat: 3, yoyo: true, ease: "sine.inOut" }, 0.55);
+
+      // 1. Mocny moment: zegar zjeżdża z 40 do 5, łuk z czerwieni w pomarańcz
+      countTo(tl, document.getElementById("s-count"), 40, 5, 1.6, 1.6, (v) => String(Math.round(v)), "power3.inOut");
+      tl.to("#s-arc", { strokeDashoffset: 80, stroke: "#FF6A1A", duration: 1.6, ease: "power3.inOut" }, 1.6);
+      tl.to("#s-count", { opacity: 0, scale: 0.8, duration: 0.2, ease: "power2.in" }, 3.2);
+      tl.fromTo("#s-final", { opacity: 0, scale: 1.35 }, { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(2.2)" }, 3.28);
+      tl.fromTo("#s-shock", { opacity: 0.9, scale: 0.9 }, { opacity: 0, scale: 1.35, duration: 0.9, ease: "power2.out" }, 3.3);
+      tl.fromTo("#s-dial", { scale: 1 }, { scale: 1.035, duration: 0.15, ease: "power2.out", immediateRender: false }, 3.28);
+      tl.to("#s-dial", { scale: 1, duration: 0.6, ease: "power2.inOut" }, 3.43);
+
+      // 2. Napis — słowo po słowie
+      tl.fromTo("#s-big .w", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.55, ease: "expo.out", stagger: 0.09 }, 3.55);
+      tl.fromTo("#s-sub", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 4.2);
+
+      // Nakładka: karta pod tekstem nie może wisieć pusta, więc wchodzi razem z napisem
+      if (document.documentElement.classList.contains("alpha-mode")) {
+        tl.fromTo("#s-txt", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 3.4);
+      }
+
+      // 3. Logo flowbiz
+      tl.fromTo("#s-logo", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 5.0);
+
+      // Oddech poświaty do końca (skończona liczba cykli)
+      tl.to("#s-disc", { opacity: 0.55, duration: 0.9, repeat: 3, yoyo: true, ease: "sine.inOut" }, 4.2);
+      tl.fromTo("#s-scene", { scale: 1 }, { scale: 1.025, duration: 8, ease: "none" }, 0);
+
+      window.__timelines["__ID__"] = tl;
+    </script>
+  </body>
+</html>

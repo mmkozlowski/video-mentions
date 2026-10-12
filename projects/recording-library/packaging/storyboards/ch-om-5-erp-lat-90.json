@@ -1,0 +1,62 @@
+{
+ "clip": "ch-om-5-erp-lat-90",
+ "brand": "flowbiz",
+ "formats": [
+  "reels"
+ ],
+ "hook": {
+  "text": "Jedno nowe pole w ERP? *Płać i czekaj.",
+  "until": 8.0,
+  "visual": {
+   "kind": "icon",
+   "art": "h-money-bin"
+  }
+ },
+ "topic": {
+  "kicker": "Po co Open Mercato",
+  "text": "Własny system *zamiast narzędzi",
+  "sub": "kod, role i historia zmian"
+ },
+ "cta": {
+  "chip": "Open Mercato · flowbiz.pl",
+  "reels": {
+   "kicker": "Chcesz pogadać o swoim systemie?",
+   "title": "Napisz *MERCATO w komentarzu",
+   "sub": "Powiem Ci, ile kosztuje pole u Ciebie"
+  }
+ },
+ "events": [
+  {
+   "type": "beat",
+   "style": "strike",
+   "at": "kilkanaście",
+   "until": "+3.4",
+   "label": "Jedna firma",
+   "main": "KILKANAŚCIE API",
+   "sub": [
+    "Wersja tu.",
+    "Inna tam."
+   ]
+  },
+  {
+   "type": "broll",
+   "at": "zobaczyłem",
+   "until": "+4.5",
+   "src": "build/klocki/integracje-w-jeden-system-16x9.mp4",
+   "src_v": "build/klocki/integracje-w-jeden-system-9x16.mp4",
+   "full": true,
+   "ai": false
+  },
+  {
+   "type": "title",
+   "at": "zasady",
+   "until": 52.5,
+   "kicker": "Dzięki AI",
+   "text": "Rynek *zmienia zasady gry"
+  }
+ ],
+ "cover": {
+  "kicker": "Po co Open Mercato",
+  "text": "ERP i CRM, które *wyglądają jak z lat 90."
+ }
+}
