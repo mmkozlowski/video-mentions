@@ -138,3 +138,9 @@ realia branży: [`ai/realia-agenta-nieruchomosci.md`](ai/realia-agenta-nieruchom
 - **„899 zł u grafika"** (spoty 02, 08) wymaga źródła przed płatną kampanią.
 - **Spoty 01–09 zbudowane przed fixem klatkażu** w `story.py` — mają ok. 0,6 s
   naddatku obrazu nad lektorem. Warte przebudowy przy najbliższej zmianie.
+
+## Połączenia z repo
+
+- `~/Repo/adresflow-v2` — kod produktu; stąd liczby w copy (np. kredyty na start: `internal-metrics.repository.ts`), ekrany do odtworzenia w HTML
+- Marka AdresFlow jest w repo produktu, nie w FlowBiz
+- Biblioteka muzyki `assets/music/library/` (YouTube Audio Library) — używa jej też `recording-library`

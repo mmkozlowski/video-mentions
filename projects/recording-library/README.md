@@ -150,3 +150,12 @@ Każdy punkt jest niezależny i da się go puścić bez nadzoru:
 6. **Predyktor hooków** na klipach A — pierwsze 16 s.
 7. **Odcinki case study**: lista miejsc na mockupy systemu i przejścia grafik,
    na podstawie transkrypcji (rozdziały już są w `CHAPTERS`).
+
+## Połączenia z repo
+
+- `~/Repo/flowbiz-automation-unlocked` — brandbook FlowBiz: paleta i font w `.ai/memory/project-rebrand-palette-font.md`, tokeny w `src/app/globals.css` (teal `#1C9E7A`, amber `#F5A623`, Plus Jakarta Sans) — paleta B w `tools/package.py` (`PALETTES`) to **kopia** tokenów strony; zmiana na stronie wymaga ręcznej zmiany tutaj
+- `~/Repo/flowbiz-ads-studio` — panel marketingu (localhost:4317): reklamy, Meta/Google Ads, zakładka YouTube (`data/episodes/<id>.json`) — odcinki YouTube publikujemy z panelu; plan: zakładka „Filmy” czytająca `data/scorecard.json`, `data/board-state.json`, `data/video-history.json` i wideo z `final/samples` (zamiast `tools/board_server.py`)
+- Źródła nagrań: `~/Youtube Projects/` (poza gitem, ścieżki w `tools/sources.py`)
+- Repo klientów z case studies (fakty do copy sprawdzamy tam): Doram `~/Repo/doram-erp`, Marpasz `~/Repo/marpasz-system`, Rezon `~/Repo/rezon-erp-openmercato`, Vacuactiv `~/Repo/vacuactiv-mercato`
+- `projects/youtube` — efekty uderzeń (`beat`) i `logos.css` pochodzą z systemu wstawek YouTube
+- Zasady montażu i katalog układów: `WYTYCZNE-MONTAZU.md`, `KATALOG-UKLADOW.md` w katalogu głównym repo

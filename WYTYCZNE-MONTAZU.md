@@ -104,6 +104,8 @@ dopełniamy rozmytą kopią. Spłaszczona twarz dyskwalifikuje film.
 
 ## 7. Wstawki, grafiki, przebitki
 
+Wszystkie układy z klatkami i podpowiedzią, kiedy którego użyć: [`KATALOG-UKLADOW.md`](KATALOG-UKLADOW.md).
+
 - **Rytm:** co 15–30 s inna forma — uderzenie tekstem, schemat pokazujący mechanizm,
   pasek dolny, przebitka, twarz w okienku przy planszy. Wzorzec, który Mateusz pochwalił:
   odcinek „Oferty w 5 minut” (`ep-open-mercato-offers`).

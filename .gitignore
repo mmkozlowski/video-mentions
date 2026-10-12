@@ -41,7 +41,9 @@ projects/shorts IG/final/
 # Odtwarzalne jednym poleceniem (tools/package.py --render) z bazy klipów,
 # a 30 wariantów × ~20 MB zablokowałoby klony. W gicie zostają storyboardy,
 # generator i płatne b-rolle (assets/broll/), tak jak ujęcia Veo w youtube/.
-projects/recording-library/final/
+projects/recording-library/final/*
+# Wyjątek: klatki katalogu układów (2,5 MB) — KATALOG-UKLADOW.md musi je pokazać bez renderu.
+!projects/recording-library/final/catalog/
 
 # --- projects/youtube: wstawki POZA gitem, referencje w gicie (decyzja 22.08.2026)
 # Wstawki alfa (qtrle) waza po kilkadziesiat–kilkaset MB sztuka: komplet 40 scen

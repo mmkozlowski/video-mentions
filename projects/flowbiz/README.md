@@ -65,3 +65,9 @@ każdej sceny rozjechałoby je przy pierwszej poprawce. W pliku źródłowym `__
   znak = 0,6 em), więc szerokość i kursor to `n × znak` z `ease: steps(n)`.
 - **Ostrzeżenie `nested_structure_needs_subcomposition`** zostaje świadomie — to uwaga
   o czytelności osi czasu w Studio, nie o renderze.
+
+## Połączenia z repo
+
+- `~/Repo/flowbiz-automation-unlocked` — brandbook FlowBiz: paleta i font w `.ai/memory/project-rebrand-palette-font.md`, tokeny w `src/app/globals.css` (teal `#1C9E7A`, amber `#F5A623`, Plus Jakarta Sans) — **źródło prawdy**; `screens/shared/flowbiz.css` ma być z nim zgodny
+- `~/Repo/flowbiz-ads-studio` — panel marketingu (localhost:4317): reklamy, Meta/Google Ads, zakładka YouTube (`data/episodes/<id>.json`) — tam trafiają gotowe klocki do reklam
+- `projects/recording-library` — klocki wchodzą jako przebitki (`broll` + `full`) do rolek i odcinków
