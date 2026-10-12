@@ -239,5 +239,26 @@
     "okładka bez „w weekend” (nie pada w nagraniu): „Zbudował system sam, z agentem AI. Zapomniał o bazie danych.”"
    ]
   }
+ ],
+ "ch-offers-1-oferta-5-minut--zajawka": [
+  {
+   "date": "2026-10-12",
+   "by": "Mateusz",
+   "changes": [
+    "0:00 — start łapał końcówkę „…chwili” i ucinał „A” (start 2703,56)",
+    "0:15 — dubel „zbiera z nich informacje na temat wycen”: pierwsze podejście urwane, zostaje drugie",
+    "1:02 — koniec ucinał „pójdzie” (koniec 2768,20)",
+    "kolor „średnio” i muzyka (pierwszy film po nowym cięciu)"
+   ]
+  }
+ ],
+ "ch-offers-1-oferta-5-minut": [
+  {
+   "date": "2026-10-12",
+   "by": "Mateusz",
+   "changes": [
+    "jak zajawka: start, dubel „zbiera z nich…”, urwane „pójdzie”"
+   ]
+  }
  ]
 }

@@ -344,10 +344,10 @@
  },
  "ch-offers-1-oferta-5-minut": {
   "verdict": "ok",
-  "coverage": 0.992,
-  "av_drift": 0.007,
+  "coverage": 0.991,
+  "av_drift": 0.0,
   "new_repeats": [],
-  "heard": "chwili. A jak to działa w praktyce? U jednego producenta maszyn sportowych\nwdrożyliśmy asystenta AI, który po prostu na bieżąco czyta maile.\nCzyta maile i zbiera z nich informacje na temat wycen.\nSprawdza, które dotyczą wycen i w locie przygotowuje Ci szkic takiej oferty.\nDostajesz powiadomienia na Telegrama przykładowo albo na inny komunikator i możesz je zaakceptować albo poprosić o drobną korektę, zmianę. Wszystko w ciągu 5 minut. Wcześniej ta sama oferta zajmowała nawet kilkanaście godzin.\nCzemu kilkanaście godzin? No bo zanim się do niej zabraliśmy, zanim odkopaliśmy stare oferty, jak one wyglądały, która to była ta najlepsza oferta, powoduje, że zaczynamy tworzenie tej oferty prawdopodobnie w poniedziałek rano, a kończymy ją na przykład we wtorek pod koniec pracy, o ile wszystko dobrze.\n"
+  "heard": "A jak to działa w praktyce? U jednego producenta maszyn sportowych wdrożyliśmy asystenta AI, który po prostu na bieżąco czyta maile. Czyta maile, zbiera z nich informacje na temat wycen. Sprawdza, które dotyczą wycen i w locie przygotowuje Ci szkic takiej oferty.\nDostajesz powiadomienia na Telegrama przykładowo albo na inny komunikator i możesz je zaakceptować albo poprosić o drobną korektę zmianę. Wszystko w ciągu 5 minut. Wcześniej ta sama oferta zajmowała nawet kilkanaście godzin.\nCzemu kilkanaście godzin? No bo zanim się do niej zabraliśmy, zanim odkopaliśmy stare oferty, jak one wyglądały, która to była ta najlepsza oferta, powoduje, że zaczynamy tworzenie tej oferty prawdopodobnie w poniedziałek rano, a kończymy ją na przykład we wtorek pod koniec pracy, o ile wszystko dobrze pójdzie.\n"
  },
  "ch-rezon-1-ksiegowosc-po-fakcie": {
   "verdict": "ok",

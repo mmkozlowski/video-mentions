@@ -2880,19 +2880,15 @@
   "brand": "flowbiz",
   "ranges": [
    [
-    2702.96,
-    2703.38
-   ],
-   [
-    2703.74,
+    2703.56,
     2708.76
    ],
    [
     2709.12,
-    2718.32
+    2716.1
    ],
    [
-    2719.28,
+    2719.42,
     2727.24
    ],
    [
@@ -2909,15 +2905,15 @@
    ],
    [
     2747.64,
-    2767.8
+    2768.2
    ]
   ],
-  "start": 2702.96,
-  "end": 2767.8,
-  "duration": 61.34,
-  "splices": 7,
+  "start": 2703.56,
+  "end": 2768.2,
+  "duration": 59.14,
+  "splices": 6,
   "hook_line": "A jak to działa w praktyce? U jednego producenta maszyn sportowych wdrożyliśmy asystenta AI,",
-  "transcript": "A jak to działa w praktyce? U jednego producenta maszyn sportowych wdrożyliśmy asystenta AI, który po prostu na bieżąco czyta maile. Czyta maile i zbiera z nich informacje na temat wycen. Sprawdza, które dotyczą wycen i w locie przygotowuje Ci szkic takiej oferty. Dostajesz powiadomienia na Telegrama przykładowo albo na inny komunikator i możesz je zaakceptować albo poprosić o drobną korektę, zmianę. Wszystko w ciągu 5 minut. Wcześniej ta sama oferta zajmowała nawet kilkanaście godzin. Czemu kilkanaście godzin? no bo zanim się do niej zabraliśmy, zanim odkopaliśmy stare oferty, jak one wyglądały, która to była ta najlepsza oferta, powoduje, że zaczynamy tworzenie tej oferty prawdopodobnie w poniedziałek rano, a kończymy ją na przykład we wtorek pod koniec pracy, o ile wszystko dobrze pójdzie.",
+  "transcript": "A jak to działa w praktyce? U jednego producenta maszyn sportowych wdrożyliśmy asystenta AI, który po prostu na bieżąco czyta maile. Czyta maile i zbiera Sprawdza, które dotyczą wycen i w locie przygotowuje Ci szkic takiej oferty. Dostajesz powiadomienia na Telegrama przykładowo albo na inny komunikator i możesz je zaakceptować albo poprosić o drobną korektę, zmianę. Wszystko w ciągu 5 minut. Wcześniej ta sama oferta zajmowała nawet kilkanaście godzin. Czemu kilkanaście godzin? no bo zanim się do niej zabraliśmy, zanim odkopaliśmy stare oferty, jak one wyglądały, która to była ta najlepsza oferta, powoduje, że zaczynamy tworzenie tej oferty prawdopodobnie w poniedziałek rano, a kończymy ją na przykład we wtorek pod koniec pracy, o ile wszystko dobrze pójdzie.",
   "scores": {
    "hook": 5,
    "delivery": 4,
@@ -2926,8 +2922,7 @@
   "priority": "A",
   "cta": null,
   "uses": [
-   "reels-organic",
-   "needs-cutdown"
+   "reels-organic"
   ],
   "notes": ""
  },
@@ -5464,39 +5459,35 @@
    ],
    [
     2709.11,
-    2718.31
+    2716.1
    ],
    [
-    2719.27,
-    2719.57
+    2719.42,
+    2727.24
    ],
    [
-    2720.21,
-    2727.23
+    2727.58,
+    2739.22
    ],
    [
-    2727.59,
-    2739.21
+    2740.02,
+    2746.38
    ],
    [
-    2740.03,
-    2746.37
+    2746.72,
+    2747.3
    ],
    [
-    2746.71,
-    2747.31
-   ],
-   [
-    2747.65,
-    2767.8
+    2747.64,
+    2768.2
    ]
   ],
   "start": 2556.97,
-  "end": 2767.8,
-  "duration": 197.59,
-  "splices": 24,
+  "end": 2768.2,
+  "duration": 196.31,
+  "splices": 23,
   "hook_line": "Cześć. Zrobiłem już 8 wdrożeń z Open Mercato i chciałbym Ci powiedzieć pokrótce, jak",
-  "transcript": "Cześć. Zrobiłem już 8 wdrożeń z Open Mercato i chciałbym Ci powiedzieć pokrótce, jak to wyglądało w praktyce. Mam na swoim koncie już firmy handlowe i produkcyjne, które korzystałem na co dzień z Open Mercato. Gdzie one tego najwięcej widzą korzyści? Już Wam o tym mówię. Pierwsza rzecz to jest tworzenie ofert. To jest jeden z najczęściej powtarzających się problemów, tą ofertę z tysiąca indeksów często móc tworzyć szybkie oferty, czyli dostajemy maila i nie czeka klient na niego kilka dni, żeby w ogóle tą ofertę przygotować, do tego też nie ma osoby, która tą ofertę z miłą chęcią przygotuje, bo wiemy jak to jest trudne w firmie. Każdy w tej firmie ma swoją wersję jakiegoś PDF -a, niektórzy z takim logiem, niektórzy z jakimś nowym logotypem, bo wiemy, że te szaty graficzne się różnią, każdy ma jakiś system wyceny, wszystko jest bardzo rozmyte i rozbite na kilkanaście różnych sposobów pracy, nie ma jednego systemu, a wprowadzenie tego systemu i ograniczenie go do bardzo wąskiej liczby reguł i ułożenie tego procesu powoduje, że zaczynamy pracować w jednolity i ten sam sposób. To powoduje przejrzystość danych, lepsze zrozumienie klienta, wiedzę o tym, dlaczego te oferty są odrzucane albo dlaczego te oferty nie zwracają się. I to też wszystko powoduje, że oferty często, oferty, które są różne i różnie pisane nie do końca wiemy, dlaczego na przykład tylko na 20 wystawionych ofert 3 oferty stały się zamówieniem. Dzięki zbieraniu tym danym, powiedzmy po pół roku i mając te dane w systemie, wiesz jaka jest konwersja Twoich handlowców na to, żeby te oferty jeszcze lepiej sprzedawały. Obłożenie je na pewno w jakimś jednym procesie, layoutie, sekcjach, oferta ma mieć w produktach, które są dostępne aktualnie w magazynie, powoduje, że możemy tą ofertę wygenerować dosłownie w ciągu chwili. A jak to działa w praktyce? U jednego producenta maszyn sportowych wdrożyliśmy asystenta AI, który po prostu na bieżąco czyta maile. Czyta maile i zbiera z nich informacje na temat wycen. Sprawdza, które dotyczą wycen i w locie przygotowuje Ci szkic takiej oferty. Dostajesz powiadomienia na Telegrama przykładowo albo na inny komunikator i możesz je zaakceptować albo poprosić o drobną korektę, zmianę. Wszystko w ciągu 5 minut. Wcześniej ta sama oferta zajmowała nawet kilkanaście godzin. Czemu kilkanaście godzin? no bo zanim się do niej zabraliśmy, zanim odkopaliśmy stare oferty, jak one wyglądały, która to była ta najlepsza oferta, powoduje, że zaczynamy tworzenie tej oferty prawdopodobnie w poniedziałek rano, a kończymy ją na przykład we wtorek pod koniec pracy, o ile wszystko dobrze pójdzie.",
+  "transcript": "Cześć. Zrobiłem już 8 wdrożeń z Open Mercato i chciałbym Ci powiedzieć pokrótce, jak to wyglądało w praktyce. Mam na swoim koncie już firmy handlowe i produkcyjne, które korzystałem na co dzień z Open Mercato. Gdzie one tego najwięcej widzą korzyści? Już Wam o tym mówię. Pierwsza rzecz to jest tworzenie ofert. To jest jeden z najczęściej powtarzających się problemów, tą ofertę z tysiąca indeksów często móc tworzyć szybkie oferty, czyli dostajemy maila i nie czeka klient na niego kilka dni, żeby w ogóle tą ofertę przygotować, do tego też nie ma osoby, która tą ofertę z miłą chęcią przygotuje, bo wiemy jak to jest trudne w firmie. Każdy w tej firmie ma swoją wersję jakiegoś PDF -a, niektórzy z takim logiem, niektórzy z jakimś nowym logotypem, bo wiemy, że te szaty graficzne się różnią, każdy ma jakiś system wyceny, wszystko jest bardzo rozmyte i rozbite na kilkanaście różnych sposobów pracy, nie ma jednego systemu, a wprowadzenie tego systemu i ograniczenie go do bardzo wąskiej liczby reguł i ułożenie tego procesu powoduje, że zaczynamy pracować w jednolity i ten sam sposób. To powoduje przejrzystość danych, lepsze zrozumienie klienta, wiedzę o tym, dlaczego te oferty są odrzucane albo dlaczego te oferty nie zwracają się. I to też wszystko powoduje, że oferty często, oferty, które są różne i różnie pisane nie do końca wiemy, dlaczego na przykład tylko na 20 wystawionych ofert 3 oferty stały się zamówieniem. Dzięki zbieraniu tym danym, powiedzmy po pół roku i mając te dane w systemie, wiesz jaka jest konwersja Twoich handlowców na to, żeby te oferty jeszcze lepiej sprzedawały. Obłożenie je na pewno w jakimś jednym procesie, layoutie, sekcjach, oferta ma mieć w produktach, które są dostępne aktualnie w magazynie, powoduje, że możemy tą ofertę wygenerować dosłownie w ciągu chwili. A jak to działa w praktyce? U jednego producenta maszyn sportowych wdrożyliśmy asystenta AI, który po prostu na bieżąco czyta maile. Czyta maile i zbiera Sprawdza, które dotyczą wycen i w locie przygotowuje Ci szkic takiej oferty. Dostajesz powiadomienia na Telegrama przykładowo albo na inny komunikator i możesz je zaakceptować albo poprosić o drobną korektę, zmianę. Wszystko w ciągu 5 minut. Wcześniej ta sama oferta zajmowała nawet kilkanaście godzin. Czemu kilkanaście godzin? no bo zanim się do niej zabraliśmy, zanim odkopaliśmy stare oferty, jak one wyglądały, która to była ta najlepsza oferta, powoduje, że zaczynamy tworzenie tej oferty prawdopodobnie w poniedziałek rano, a kończymy ją na przykład we wtorek pod koniec pracy, o ile wszystko dobrze pójdzie.",
   "scores": {
    "hook": 3,
    "delivery": 3,
