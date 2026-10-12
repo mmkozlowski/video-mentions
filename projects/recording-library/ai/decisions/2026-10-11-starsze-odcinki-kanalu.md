@@ -54,3 +54,19 @@ i granice z sygnału; kontrola transkrypcją znalazła przy tym jeszcze jeden fa
 Od teraz każda zmiana filmu ląduje w `data/video-history.json` (`tools/history.py`), a galeria
 pokazuje historię pod filmem. Styl: przekreślenie `strike` leży na napisie (nie na planszy),
 `slam` w 16:9 o 30% mniejszy i bez łamania linii.
+
+## Dopisek 12.10 — plansza filmów i ocena przewidywanej skuteczności
+
+Plansza (artefakt Cd35tVFfQoR53XmTEkYDgW, baza `videos` / `notes` / `meta/plan`) zbiera wszystkie 66 filmów:
+sekcje decyzji (Do oceny → Publikujemy / Test w reklamie / Do poprawki / Odrzucone), podgląd pierwszych
+15 s (assets), uwagi z czasem od zespołu i agencji, wspólny plan pracy. Ocena z `tools/scorecard.py`:
+hook 30 + otwarcie 15 + CTA 15 + przekaz 10 + konkret 10 + długość 10 + dynamika 10, klasy A/B/C tercylami.
+**To przewidywanie, nie konwersja** — po publikacji dopisujemy prawdziwe wyniki i kalibrujemy wagi.
+
+Higgsfield Virality Predictor (`tools/predictor_fetch.py`): darmowy, max 16 s, 2 zadania naraz na planie
+Plus; każdy plik trzeba wgrać przez podpisany link (ręczne przepisywanie — dlatego liczony tylko dla
+wariantów A/B). Pułapka: dwa warianty ad-11 różniące się tylko hasłem na start dostały identyczny wynik
+(50/34/100) — model reaguje na obraz i dźwięk, nie na treść napisu, więc do oceny hasła się nie nadaje.
+
+Tempo mowy (12.10): 4,2–4,9 sylaby/s czystej mowy we wszystkich nagraniach (swobodna polszczyzna ~5,5–6).
+Próbki 1,05× i 1,08× z korektą koloru i dźwięku w `final/samples/postprodukcja/` — decyzja Mateusza.

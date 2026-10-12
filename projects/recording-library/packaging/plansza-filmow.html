@@ -1,0 +1,376 @@
+<title>Plansza filmów FlowBiz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Układ: tablica kanban (sekcje decyzji) + tabela wskaźników + instrukcja dla agencji; karta = podgląd hooka + ocena */
+:root{
+  --bg:#F6F4EF; --surface:#FFFFFF; --raised:#EFECE4; --line:#DDD8CC; --fg:#1B1A17; --muted:#6D675C;
+  --accent:#C77F0A; --accent-soft:#F7E7C6; --on-accent:#FFFFFF;
+  --good:#2F7D4F; --warn:#B7791F; --bad:#B4432E;
+  --display:"DM Sans",system-ui,sans-serif; --body:"DM Sans",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E0D0B; --surface:#171612; --raised:#201E19; --line:#2F2C26; --fg:#F4F1E8; --muted:#A39C8F;
+  --accent:#F5A623; --accent-soft:#3A2A0C; --on-accent:#0E0D0B; --good:#5FB37F; --warn:#E3A93E; --bad:#E07259; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E0D0B; --surface:#171612; --raised:#201E19; --line:#2F2C26; --fg:#F4F1E8; --muted:#A39C8F;
+  --accent:#F5A623; --accent-soft:#3A2A0C; --on-accent:#0E0D0B; --good:#5FB37F; --warn:#E3A93E; --bad:#E07259; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:15px/1.5 var(--body);margin:0}
+.wrap{padding-inline:20px;padding-block:20px 60px;max-width:1700px;margin:0 auto}
+header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:14px}
+h1{font:800 clamp(24px,3vw,34px)/1.1 var(--display);margin:0;letter-spacing:-.02em;text-wrap:balance}
+.lead{color:var(--muted);margin:4px 0 0;max-width:70ch}
+.stats{display:flex;gap:18px;flex-wrap:wrap;font-variant-numeric:tabular-nums}
+.stat b{display:block;font:700 22px/1 var(--mono)} .stat span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+nav.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin:10px 0 14px;overflow-x:auto}
+nav.tabs button{background:none;border:0;border-bottom:3px solid transparent;padding:10px 14px;font:600 14px var(--body);color:var(--muted);cursor:pointer;white-space:nowrap}
+nav.tabs button[aria-selected="true"]{color:var(--fg);border-color:var(--accent)}
+button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+.filters select,.filters input{font:14px var(--body);padding:7px 10px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--fg)}
+.filters label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.board{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(280px,1fr);gap:12px;overflow-x:auto;padding-bottom:10px;align-items:start}
+.col{background:var(--raised);border-radius:12px;padding:10px;min-height:200px;display:flex;flex-direction:column;gap:10px}
+.col.over{outline:2px dashed var(--accent);outline-offset:-4px}
+.col h2{font:700 14px var(--body);margin:2px 4px 0;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.col h2 small{font:600 12px var(--mono);color:var(--muted)}
+.col p.hint{margin:0 4px;font-size:12px;color:var(--muted)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px;display:grid;grid-template-columns:84px 1fr;gap:10px;cursor:grab}
+.card.dragging{opacity:.5}
+.media{position:relative;width:84px;border-radius:6px;overflow:hidden;background:#000;aspect-ratio:9/16;align-self:start}
+.media.h{aspect-ratio:16/9} .media.f{aspect-ratio:4/5}
+.media img,.media video{width:100%;height:100%;object-fit:cover;display:block}
+.media button{position:absolute;inset:0;background:transparent;border:0;cursor:pointer}
+.media button::after{content:"▶";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:30px;height:30px;border-radius:50%;background:rgba(0,0,0,.6);color:#fff;font-size:13px;display:flex;align-items:center;justify-content:center}
+.c-body{min-width:0;display:flex;flex-direction:column;gap:6px}
+.c-title{font:700 14px/1.25 var(--body);margin:0}
+.c-meta{display:flex;flex-wrap:wrap;gap:4px;font-size:11px}
+.chip{padding:1px 7px;border-radius:20px;background:var(--raised);color:var(--muted);font-weight:600}
+.grade{font:700 12px var(--mono);padding:1px 7px;border-radius:5px;color:#fff}
+.grade.A{background:var(--good)} .grade.B{background:var(--warn)} .grade.C{background:var(--bad)}
+.score{display:flex;align-items:center;gap:8px;font:600 12px var(--mono)}
+.bar{flex:1;height:6px;border-radius:3px;background:var(--raised);overflow:hidden} .bar i{display:block;height:100%;background:var(--accent)}
+.hook{font-size:12.5px;color:var(--muted);margin:0;overflow-wrap:anywhere}
+.c-actions{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.c-actions select{font:12px var(--body);padding:3px 6px;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--fg);max-width:100%}
+.btn{font:600 12px var(--body);padding:4px 9px;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.ncount{font:600 11px var(--mono);color:var(--accent)}
+.empty{padding:30px;border:1px dashed var(--line);border-radius:12px;color:var(--muted);text-align:center}
+/* szuflada szczegółów */
+dialog{border:0;border-radius:14px;padding:0;width:min(900px,96vw);max-height:92vh;background:var(--surface);color:var(--fg);box-shadow:0 30px 80px rgba(0,0,0,.35)}
+dialog::backdrop{background:rgba(0,0,0,.5)}
+.dlg{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:20px;padding:20px;overflow:auto;max-height:92vh}
+.dlg video{width:100%;border-radius:8px;background:#000}
+.dlg h3{margin:0 0 4px;font:800 20px/1.2 var(--display)} .dlg h4{margin:16px 0 6px;font:700 13px var(--body);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.metrics{display:grid;grid-template-columns:auto 1fr auto;gap:4px 10px;font-size:13px;align-items:center}
+.metrics .v{font:600 12px var(--mono);text-align:right}
+.note{border-left:3px solid var(--accent);padding:6px 10px;background:var(--raised);border-radius:0 8px 8px 0;font-size:13px;display:grid;gap:2px}
+.note.done{opacity:.55;border-color:var(--good)} .note small{color:var(--muted)}
+.note-row{display:flex;justify-content:space-between;gap:8px;align-items:start}
+form.addnote{display:grid;grid-template-columns:90px 1fr;gap:6px;margin-top:8px}
+form.addnote input,form.addnote textarea,form.addnote select{font:14px var(--body);padding:7px 9px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--fg)}
+form.addnote textarea{grid-column:1/-1;min-height:70px;resize:vertical}
+form.addnote .row{grid-column:1/-1;display:flex;gap:8px;justify-content:flex-end;align-items:center}
+.close{position:sticky;top:0;float:right;margin:10px 10px 0 0}
+table{border-collapse:collapse;width:100%;font-size:13px;font-variant-numeric:tabular-nums}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+th,td{padding:7px 9px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
+th{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);cursor:pointer;position:sticky;top:0;background:var(--surface)}
+td.num{font-family:var(--mono);text-align:right}
+td.t{white-space:normal;min-width:220px}
+.guide{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.guide section{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.guide h3{margin:0 0 8px;font:700 16px var(--display)} .guide p,.guide li{max-width:65ch}
+.guide code{font-family:var(--mono);background:var(--raised);padding:1px 5px;border-radius:4px;font-size:13px}
+.plan textarea{width:100%;min-height:260px;font:14px/1.5 var(--body);padding:12px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--fg)}
+.saved{font-size:12px;color:var(--muted)}
+.notes-list{display:grid;gap:8px}
+.ro{font-size:12px;color:var(--warn)}
+@media (max-width:700px){.dlg{grid-template-columns:1fr}.board{grid-auto-columns:minmax(260px,86vw)}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <div>
+    <h1>Plansza filmów FlowBiz</h1>
+    <p class="lead">Wszystkie rolki, reklamy, zajawki i odcinki z jedną oceną przewidywanej skuteczności. Przeciągaj karty między sekcjami, otwórz kartę, żeby obejrzeć początek filmu, zobaczyć wskaźniki i dopisać uwagę z czasem.</p>
+  </div>
+  <div class="stats" id="stats"></div>
+</header>
+
+<nav class="tabs" role="tablist">
+  <button role="tab" aria-selected="true" data-tab="board">Plansza</button>
+  <button role="tab" aria-selected="false" data-tab="table">Tabela wskaźników</button>
+  <button role="tab" aria-selected="false" data-tab="notes">Uwagi <span class="ncount" id="ntab"></span></button>
+  <button role="tab" aria-selected="false" data-tab="plan">Plan pracy</button>
+  <button role="tab" aria-selected="false" data-tab="guide">Jak pracować z planszą</button>
+</nav>
+
+<div class="filters" id="filters">
+  <label for="f-kind">Rodzaj</label>
+  <select id="f-kind"><option value="">wszystkie</option><option>rolka</option><option>reklama</option><option>zajawka</option><option>odcinek</option></select>
+  <label for="f-series">Seria</label>
+  <select id="f-series"><option value="">wszystkie</option></select>
+  <label for="f-grade">Klasa</label>
+  <select id="f-grade"><option value="">wszystkie</option><option>A</option><option>B</option><option>C</option></select>
+  <input id="f-q" type="search" placeholder="Szukaj w tytule lub hooku">
+  <span class="ro" id="ro" hidden>Masz dostęp tylko do podglądu — zmiany i uwagi zapisuje osoba z prawem edycji.</span>
+</div>
+
+<main>
+  <div id="tab-board"><div class="board" id="board"><div class="empty">Ładuję filmy z bazy… Jeśli nic się nie pojawi, plansza nie ma jeszcze danych albo nie masz dostępu.</div></div></div>
+  <div id="tab-table" hidden><div class="tablewrap"><table id="table"></table></div></div>
+  <div id="tab-notes" hidden>
+    <div class="filters"><button class="btn primary" id="copy-notes">Kopiuj otwarte uwagi dla Claude</button><span class="saved" id="copy-msg"></span></div>
+    <div class="notes-list" id="notes-list"></div>
+  </div>
+  <div id="tab-plan" hidden class="plan">
+    <p class="lead">Wspólny plan: kolejność publikacji, kanały, terminy, kto co robi. Zapisuje się sam po chwili bez pisania.</p>
+    <label for="plan-text" hidden>Plan pracy</label>
+    <textarea id="plan-text" placeholder="Plan ładuje się z bazy…"></textarea>
+    <p class="saved" id="plan-saved"></p>
+  </div>
+  <div id="tab-guide" hidden class="guide">
+    <section>
+      <h3>1. Oceń film</h3>
+      <ol>
+        <li>Otwórz kartę i obejrzyj pierwsze 15 sekund. To one decydują, czy ktoś zostanie.</li>
+        <li>Przeciągnij kartę do sekcji: <b>Publikujemy</b>, <b>Test w reklamie</b>, <b>Do poprawki</b> albo <b>Odrzucone</b>. Na telefonie użyj listy „Przenieś do” na karcie.</li>
+        <li>Wynik i klasa A/B/C to podpowiedź, nie wyrok. Ostatnie słowo ma człowiek, który zna klientów.</li>
+      </ol>
+    </section>
+    <section>
+      <h3>2. Napisz uwagę tak, żeby dało się ją wykonać</h3>
+      <p>Jedna uwaga = jedno miejsce w filmie. Wpisz czas, co nie gra i jak ma być.</p>
+      <p><code>0:12</code> — napis zasłania twarz, przesunąć niżej</p>
+      <p><code>0:03</code> — hook za długi, skrócić do „AI w produkcji?”</p>
+      <p><code>całość</code> — za cicho muzyka, podgłośnić</p>
+      <p>Bez czasu też można, ale wtedy opisz scenę słowami („przy liście trzech nazw”).</p>
+    </section>
+    <section>
+      <h3>3. Co dzieje się dalej</h3>
+      <ol>
+        <li>Mateusz albo agencja klika „Kopiuj otwarte uwagi dla Claude” i wkleja je do rozmowy.</li>
+        <li>Claude poprawia film, renderuje go od nowa i dopisuje zmianę do historii filmu.</li>
+        <li>Uwaga dostaje znacznik „zrobione” i znika z listy otwartych.</li>
+      </ol>
+    </section>
+    <section>
+      <h3>Co znaczą liczby</h3>
+      <ul>
+        <li><b>Wynik 0–100</b> — suma: hook (30), otwarcie (15), CTA (15), przekaz (10), konkret w hooku (10), długość (10), dynamika (10).</li>
+        <li><b>Hook / przekaz</b> — ocena redakcyjna 1–5: siła pierwszych sekund i płynność nagrania.</li>
+        <li><b>Otwarcie</b> — ile słów pada w pierwszych 3 s i czy pierwsze słowo nie jest spóźnione.</li>
+        <li><b>Konkret</b> — czy hook ma liczbę albo miarę (godziny, minuty, procent).</li>
+        <li><b>Tempo</b> — sylaby na sekundę mowy. Swobodna polszczyzna to ok. 5,5–6.</li>
+        <li><b>Predyktor</b> — model Higgsfield przewidujący reakcję widza na pierwsze 15 s (hook, zaangażowanie, utrzymanie uwagi). Liczony dla wybranych filmów.</li>
+        <li>Prawdziwa konwersja pojawi się dopiero po publikacji — wtedy dopiszemy wyniki z Meta i YouTube obok przewidywań.</li>
+      </ul>
+    </section>
+  </div>
+</main>
+</div>
+
+<dialog id="dlg" aria-labelledby="d-title"><button class="btn close" id="d-close">Zamknij</button><div class="dlg" id="d-body"></div></dialog>
+
+<script>
+const SECTIONS = [
+  {id: "ocena", name: "Do oceny", hint: "nowe filmy czekają na decyzję"},
+  {id: "publikujemy", name: "Publikujemy", hint: "organicznie: YouTube, Reels, LinkedIn"},
+  {id: "test", name: "Test w reklamie", hint: "Meta Ads, warianty A/B"},
+  {id: "poprawki", name: "Do poprawki", hint: "uwagi czekają na wykonanie"},
+  {id: "odrzucone", name: "Odrzucone", hint: "nie publikujemy"},
+];
+const KIND_CLASS = {odcinek: "h", zajawka: "f"};
+let db = null, user = null, canWrite = true;
+let videos = [], notes = [], filter = {kind: "", series: "", grade: "", q: ""}, sortKey = "score", sortDir = -1;
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+const fmtDur = s => s >= 60 ? `${Math.floor(s / 60)}:${String(Math.round(s % 60)).padStart(2, "0")}` : `${Math.round(s)} s`;
+
+// ── zakładki ──
+document.querySelectorAll("nav.tabs button").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll("nav.tabs button").forEach(x => x.setAttribute("aria-selected", x === b));
+  for (const t of ["board", "table", "notes", "plan", "guide"]) $(`#tab-${t}`).hidden = t !== b.dataset.tab;
+  $("#filters").hidden = !["board", "table"].includes(b.dataset.tab);
+  try { localStorage.setItem("tab", b.dataset.tab); } catch (e) {}
+}));
+try { const t = localStorage.getItem("tab"); if (t) document.querySelector(`nav.tabs [data-tab="${t}"]`)?.click(); } catch (e) {}
+
+for (const id of ["kind", "series", "grade"]) $(`#f-${id}`).addEventListener("change", e => { filter[id] = e.target.value; render(); });
+$("#f-q").addEventListener("input", e => { filter.q = e.target.value.toLowerCase(); render(); });
+
+function visible() {
+  return videos.filter(v => (!filter.kind || v.kind === filter.kind) && (!filter.series || v.seriesName === filter.series)
+    && (!filter.grade || v.grade === filter.grade)
+    && (!filter.q || (v.title + " " + v.hook_text + " " + v.id).toLowerCase().includes(filter.q)));
+}
+function openNotes(id) { return notes.filter(n => n.video === id && !n.done).length; }
+
+function card(v) {
+  const n = openNotes(v.id);
+  const opts = SECTIONS.map(s => `<option value="${s.id}"${s.id === (v.section || "ocena") ? " selected" : ""}>${s.name}</option>`).join("");
+  return `<article class="card" draggable="${canWrite}" data-id="${esc(v.id)}">
+    <div class="media ${KIND_CLASS[v.kind] || ""}">${v.thumb ? `<img src="${esc(v.thumb)}" alt="">` : ""}<button aria-label="Otwórz ${esc(v.title)}" data-open="${esc(v.id)}"></button></div>
+    <div class="c-body">
+      <h3 class="c-title">${esc(v.title)}</h3>
+      <div class="c-meta"><span class="grade ${v.grade}">${v.grade}</span><span class="chip">${esc(v.kind)}</span><span class="chip">${fmtDur(v.duration)}</span>${v.brand === "aislupsk" ? '<span class="chip">AI Słupsk</span>' : ""}</div>
+      <div class="score"><span>${v.score}</span><span class="bar"><i style="width:${v.score}%"></i></span>${v.predictor ? `<span title="Predyktor: hook">P ${v.predictor.hook_score}</span>` : ""}</div>
+      ${v.hook_text ? `<p class="hook">„${esc(v.hook_text)}”</p>` : ""}
+      <div class="c-actions"><label class="sr" hidden for="mv-${esc(v.id)}">Przenieś do</label>
+        <select id="mv-${esc(v.id)}" data-move="${esc(v.id)}" ${canWrite ? "" : "disabled"} aria-label="Przenieś do">${opts}</select>
+        <button class="btn" data-open="${esc(v.id)}">Uwagi${n ? ` · ${n}` : ""}</button></div>
+    </div></article>`;
+}
+
+function render() {
+  const list = visible();
+  const total = videos.length;
+  $("#stats").innerHTML = [
+    [total, "filmów"], [videos.filter(v => v.grade === "A").length, "klasa A"],
+    [videos.filter(v => v.section === "publikujemy").length, "do publikacji"],
+    [notes.filter(n => !n.done).length, "otwarte uwagi"]].map(([b, s]) => `<div class="stat"><b>${b}</b><span>${s}</span></div>`).join("");
+  $("#ntab").textContent = notes.filter(n => !n.done).length || "";
+  if (!total) return;
+  $("#board").innerHTML = SECTIONS.map(s => {
+    const items = list.filter(v => (v.section || "ocena") === s.id).sort((a, b) => b.score - a.score);
+    return `<section class="col" data-section="${s.id}"><h2>${s.name}<small>${items.length}</small></h2><p class="hint">${s.hint}</p>${items.map(card).join("")}</section>`;
+  }).join("");
+  renderTable(list);
+  renderNotes();
+}
+
+function renderTable(list) {
+  const cols = [["title", "Film"], ["kind", "Rodzaj"], ["score", "Wynik"], ["grade", "Klasa"], ["hook_ed", "Hook"], ["delivery_ed", "Przekaz"],
+    ["words_3s", "Słowa w 3 s"], ["syl_s", "Tempo"], ["events_per_min", "Wstawki/min"], ["duration", "Długość"], ["p_hook", "Predyktor hook"], ["p_overall", "Predyktor ogółem"], ["section", "Sekcja"]];
+  const val = (v, k) => k === "p_hook" ? v.predictor?.hook_score ?? "" : k === "p_overall" ? v.predictor?.overall_score ?? "" : v[k];
+  const rows = [...list].sort((a, b) => { const x = val(a, sortKey), y = val(b, sortKey); return (x > y ? 1 : x < y ? -1 : 0) * sortDir; });
+  $("#table").innerHTML = `<thead><tr>${cols.map(([k, n]) => `<th data-sort="${k}">${n}${sortKey === k ? (sortDir < 0 ? " ↓" : " ↑") : ""}</th>`).join("")}</tr></thead><tbody>` +
+    rows.map(v => `<tr><td class="t"><a href="#" data-open="${esc(v.id)}">${esc(v.title)}</a></td><td>${esc(v.kind)}</td><td class="num">${v.score}</td><td><span class="grade ${v.grade}">${v.grade}</span></td>
+      <td class="num">${v.hook_ed}</td><td class="num">${v.delivery_ed}</td><td class="num">${v.words_3s}</td><td class="num">${v.syl_s}</td><td class="num">${v.events_per_min}</td>
+      <td class="num">${fmtDur(v.duration)}</td><td class="num">${val(v, "p_hook")}</td><td class="num">${val(v, "p_overall")}</td><td>${esc(SECTIONS.find(s => s.id === (v.section || "ocena")).name)}</td></tr>`).join("") + "</tbody>";
+}
+
+async function names(ids) {
+  if (!user || !ids.length) return {};
+  try { return await user.profiles([...new Set(ids)]); } catch (e) { return {}; }
+}
+
+async function renderNotes() {
+  const open = notes.filter(n => !n.done).sort((a, b) => (a.video > b.video ? 1 : -1));
+  const ps = await names(open.map(n => n.author).filter(Boolean));
+  $("#notes-list").innerHTML = open.length ? open.map(n => {
+    const v = videos.find(x => x.id === n.video);
+    return `<div class="note"><div class="note-row"><b><a href="#" data-open="${esc(n.video)}">${esc(v ? v.title : n.video)}</a> · ${esc(n.at || "całość")}</b>
+      ${canWrite ? `<button class="btn" data-done="${esc(n.id)}">Zrobione</button>` : ""}</div><span>${esc(n.text)}</span>
+      <small>${esc(ps[n.author]?.name || "Ktoś z zespołu")} · ${new Date(n.createdAt).toLocaleString("pl-PL")}</small></div>`;
+  }).join("") : '<div class="empty">Brak otwartych uwag. Dopisz uwagę z karty filmu.</div>';
+}
+
+async function openDialog(id) {
+  const v = videos.find(x => x.id === id); if (!v) return;
+  const mine = notes.filter(n => n.video === id).sort((a, b) => a.createdAt - b.createdAt);
+  const ps = await names(mine.map(n => n.author).filter(Boolean));
+  const p = v.predictor;
+  const parts = Object.entries(v.parts || {}).map(([k, x]) => `<span>${({hook: "Hook", delivery: "Przekaz", opening: "Otwarcie", specific: "Konkret", length: "Długość", dynamics: "Dynamika", cta: "CTA"})[k] || k}</span><span class="bar"><i style="width:${Math.round(x * 100)}%"></i></span><span class="v">${Math.round(x * 100)}%</span>`).join("");
+  $("#d-body").innerHTML = `<div>${v.preview ? `<video src="${esc(v.preview)}" controls playsinline preload="metadata" poster="${esc(v.thumb || "")}"></video>` : ""}
+      <p class="saved">Podgląd: pierwsze ${v.kind === "odcinek" ? 20 : 15} s. Pełny plik: <code>${esc(v.file)}</code></p></div>
+    <div><h3 id="d-title">${esc(v.title)}</h3>
+      <div class="c-meta"><span class="grade ${v.grade}">${v.grade} · ${v.score}/100 · miejsce ${v.rank}</span><span class="chip">${esc(v.kind)}</span><span class="chip">${fmtDur(v.duration)}</span><span class="chip">${esc(v.seriesName)}</span></div>
+      ${v.cover_text ? `<h4>Okładka</h4><p>${esc(v.cover_text)}</p>` : ""}
+      ${v.hook_text ? `<h4>Hook</h4><p>„${esc(v.hook_text)}”</p>` : ""}
+      ${v.cta_text ? `<h4>Wezwanie</h4><p>${esc(v.cta_text)}</p>` : ""}
+      <h4>Składniki wyniku</h4><div class="metrics">${parts}</div>
+      <h4>Wskaźniki</h4><div class="metrics">
+        <span>Słowa w pierwszych 3 s</span><span></span><span class="v">${v.words_3s}</span>
+        <span>Pierwsze słowo po</span><span></span><span class="v">${v.first_word_s} s</span>
+        <span>Tempo mowy</span><span></span><span class="v">${v.syl_s} syl/s</span>
+        <span>Wstawki na minutę</span><span></span><span class="v">${v.events_per_min}</span>
+        ${p ? `<span>Predyktor: hook (0–3 s)</span><span></span><span class="v">${p.hook_score}</span>
+        <span>Predyktor: ogółem</span><span></span><span class="v">${p.overall_score}</span>
+        <span>Predyktor: utrzymanie uwagi</span><span></span><span class="v">${p.sustain}</span>
+        <span>Predyktor: szczyt reakcji</span><span></span><span class="v">${p.peak_second} s</span>` : `<span>Predyktor</span><span></span><span class="v">nie liczony</span>`}
+      </div>
+      <h4>Uwagi (${mine.length})</h4>
+      <div class="notes-list">${mine.map(n => `<div class="note${n.done ? " done" : ""}"><div class="note-row"><b>${esc(n.at || "całość")}</b>${canWrite ? `<button class="btn" data-done="${esc(n.id)}" data-undo="${n.done ? 1 : ""}">${n.done ? "Przywróć" : "Zrobione"}</button>` : ""}</div><span>${esc(n.text)}</span><small>${esc(ps[n.author]?.name || "Ktoś z zespołu")} · ${new Date(n.createdAt).toLocaleString("pl-PL")}</small></div>`).join("") || '<p class="saved">Jeszcze brak uwag.</p>'}</div>
+      ${canWrite ? `<form class="addnote" id="addnote"><label for="n-at" hidden>Czas</label><input id="n-at" placeholder="0:12" aria-label="Czas w filmie">
+        <select id="n-type" aria-label="Rodzaj uwagi"><option>Montaż</option><option>Tekst / napis</option><option>Grafika</option><option>Dźwięk</option><option>Pomysł</option></select>
+        <label for="n-text" hidden>Uwaga</label><textarea id="n-text" placeholder="Co nie gra i jak ma być — np. „napis zasłania twarz, przesunąć niżej”" required></textarea>
+        <div class="row"><span class="saved" id="n-msg"></span><button class="btn primary" type="submit">Dodaj uwagę</button></div></form>` : ""}
+    </div>`;
+  $("#dlg").showModal();
+  const f = $("#addnote");
+  if (f) f.addEventListener("submit", async e => {
+    e.preventDefault();
+    const text = $("#n-text").value.trim(); if (!text) return;
+    const me = user ? await user.id().catch(() => null) : null;
+    try {
+      await db.collection("notes").add({video: id, at: $("#n-at").value.trim(), type: $("#n-type").value, text, author: me, createdAt: Date.now(), done: false});
+      $("#n-msg").textContent = "Dodano"; setTimeout(() => openDialog(id), 300);
+    } catch (err) { $("#n-msg").textContent = "Nie udało się zapisać — sprawdź dostęp do edycji."; }
+  });
+}
+
+document.addEventListener("click", async e => {
+  const o = e.target.closest("[data-open]"); if (o) { e.preventDefault(); openDialog(o.dataset.open); return; }
+  const d = e.target.closest("[data-done]");
+  if (d && db) { try { await db.doc(`notes/${d.dataset.done}`).update({done: !d.dataset.undo}); } catch (err) {} const v = $("#dlg").open && $("#d-title"); if (v) { const n = notes.find(x => x.id === d.dataset.done); if (n) setTimeout(() => openDialog(n.video), 300); } }
+  const th = e.target.closest("th[data-sort]"); if (th) { sortDir = sortKey === th.dataset.sort ? -sortDir : -1; sortKey = th.dataset.sort; renderTable(visible()); }
+});
+$("#d-close").addEventListener("click", () => $("#dlg").close());
+document.addEventListener("change", async e => { const m = e.target.closest("[data-move]"); if (m) move(m.dataset.move, m.value); });
+
+async function move(id, section) {
+  const v = videos.find(x => x.id === id); if (!v || !db || v.section === section) return;
+  v.section = section; render();
+  try { await db.doc(`videos/${id}`).update({section}); } catch (err) { canWrite = false; $("#ro").hidden = false; }
+}
+// przeciąganie kart między sekcjami
+document.addEventListener("dragstart", e => { const c = e.target.closest(".card"); if (c) { c.classList.add("dragging"); e.dataTransfer.setData("text/plain", c.dataset.id); } });
+document.addEventListener("dragend", e => { e.target.closest?.(".card")?.classList.remove("dragging"); document.querySelectorAll(".col.over").forEach(c => c.classList.remove("over")); });
+document.addEventListener("dragover", e => { const c = e.target.closest(".col"); if (c && canWrite) { e.preventDefault(); c.classList.add("over"); } });
+document.addEventListener("dragleave", e => { const c = e.target.closest(".col"); if (c && !c.contains(e.relatedTarget)) c.classList.remove("over"); });
+document.addEventListener("drop", e => { const c = e.target.closest(".col"); if (c) { e.preventDefault(); move(e.dataTransfer.getData("text/plain"), c.dataset.section); } });
+
+$("#copy-notes").addEventListener("click", async () => {
+  const open = notes.filter(n => !n.done).sort((a, b) => (a.video > b.video ? 1 : -1));
+  const text = open.map(n => `${n.video} ${n.at || "całość"} — ${n.text}${n.type ? ` [${n.type}]` : ""}`).join("\n");
+  try { await navigator.clipboard.writeText(text); $("#copy-msg").textContent = `Skopiowano ${open.length} uwag`; }
+  catch (e) { const t = document.createElement("textarea"); t.value = text; document.body.appendChild(t); t.select(); $("#copy-msg").textContent = "Zaznaczone — skopiuj Cmd/Ctrl+C"; }
+});
+
+let planTimer = null, planLoaded = false;
+$("#plan-text").addEventListener("input", () => {
+  if (!db || !planLoaded) return;
+  clearTimeout(planTimer);
+  planTimer = setTimeout(async () => {
+    try { await db.doc("meta/plan").set({text: $("#plan-text").value, updatedAt: Date.now()}); $("#plan-saved").textContent = "Zapisano " + new Date().toLocaleTimeString("pl-PL"); }
+    catch (e) { $("#plan-saved").textContent = "Nie udało się zapisać — tylko podgląd."; }
+  }, 900);
+});
+
+(async () => {
+  db = await claude.use("db");
+  user = await claude.use("user");
+  if (!db) { $("#board").innerHTML = '<div class="empty">Baza planszy jest niedostępna w tym widoku. Zaloguj się, żeby zobaczyć filmy.</div>'; return; }
+  const can = user ? await Promise.resolve(user.can("data.write")).catch(() => null) : null;
+  if (can === false) { canWrite = false; $("#ro").hidden = false; }
+  db.collection("videos").onSnapshot(snap => {
+    videos = snap.docs.map(d => ({id: d.id, ...d.data()}));
+    const series = [...new Set(videos.map(v => v.seriesName))].sort();
+    $("#f-series").innerHTML = '<option value="">wszystkie</option>' + series.map(s => `<option${s === filter.series ? " selected" : ""}>${esc(s)}</option>`).join("");
+    if (!videos.length) $("#board").innerHTML = '<div class="empty">Plansza nie ma jeszcze filmów. Claude dopisze je do bazy.</div>';
+    render();
+  }, () => { $("#board").innerHTML = '<div class="empty">Nie udało się wczytać filmów.</div>'; });
+  db.collection("notes").onSnapshot(snap => { notes = snap.docs.map(d => ({id: d.id, ...d.data()})); render(); });
+  db.doc("meta/plan").onSnapshot(snap => {
+    const t = snap.data()?.text ?? "";
+    if (document.activeElement !== $("#plan-text")) $("#plan-text").value = t;
+    planLoaded = true;
+  });
+})();
+</script>
