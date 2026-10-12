@@ -466,10 +466,11 @@ class Composition:
         label = f'<div class="bt-label">{esc(ev.get("label", ""))}</div>' if ev.get("label") else ""
         if style == "strike":
             big = fit(ev["main"], width, 280 if not self.vertical else 200, 1, 90)
-            inner = (label + f'<div class="bt-main bt-acc" style="font-size:{big}px">{esc(ev["main"])}</div>'
-                     + '<div class="bt-sub">' + "".join(f'<span class="w">{esc(w)}</span>' for w in ev.get("sub", [])) + '</div>'
-                     + '<svg class="bt-strike" viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="8" y1="64" x2="92" y2="36" '
-                       'pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" vector-effect="non-scaling-stroke"/></svg>')
+            # przekreślenie leży NA napisie (Mateusz 12.10: „ma być nad tekstem”), nie na całej planszy
+            inner = (label + f'<div class="bt-main bt-acc" style="font-size:{big}px"><span class="bt-struck">{esc(ev["main"])}'
+                     + '<svg class="bt-strike" viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="-2" y1="62" x2="102" y2="40" '
+                       'pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" vector-effect="non-scaling-stroke"/></svg></span></div>'
+                     + '<div class="bt-sub">' + "".join(f'<span class="w">{esc(w)}</span>' for w in ev.get("sub", [])) + '</div>')
         elif style == "burst":
             big = fit(ev["num"], width, 420 if not self.vertical else 300, 1, 120)
             inner = (label + f'<div class="bt-num" style="font-size:{big}px">{esc(ev["num"])}<div class="bt-burst">'
@@ -477,7 +478,9 @@ class Composition:
                      + (f'<div class="bt-bottom">{esc(ev["bottom"])}</div>' if ev.get("bottom") else ""))
         else:   # slam
             l1, l2, l3 = ev["lines"]
-            sizes = [fit(l1, width, 230, 1, 80), fit(l2, width, 110, 1, 50), fit(l3, width, 230, 1, 80)]
+            # 16:9: trzy linie o 30% mniejsze — pełny rozmiar łamał się na dwie linie i wychodził z kadru (Mateusz 12.10)
+            k = 1.0 if self.vertical else 0.7
+            sizes = [int(fit(l1, width, 230, 1, 80) * k), int(fit(l2, width, 110, 1, 50) * k), int(fit(l3, width, 230, 1, 80) * k)]
             inner = (label + f'<div class="bt-l1" style="font-size:{sizes[0]}px">{esc(l1)}</div>'
                      f'<div class="bt-l2" style="font-size:{sizes[1]}px">{esc(l2)}</div><div class="bt-slam"></div>'
                      f'<div class="bt-l3" style="font-size:{sizes[2]}px">{esc(l3)}</div>')
@@ -1045,7 +1048,7 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .bt-main,.bt-num,.bt-l1,.bt-l3{{font-weight:900;line-height:1;letter-spacing:-.03em}}
 .bt-acc,.bt-num{{color:{accent}}} .bt-l1{{color:{text}}} .bt-l2{{font-weight:700;color:{muted}}} .bt-l3{{color:{danger}}}
 .bt-sub{{font-size:48px;font-weight:600;color:{muted};display:flex;gap:18px}} .bt-sub .w{{display:inline-block}}
-.bt-strike{{position:absolute;inset:0;width:100%;height:100%;overflow:visible}} .bt-strike line{{stroke:{danger};stroke-width:10;stroke-linecap:round}}
+.bt-struck{{position:relative;display:inline-block}} .bt-strike{{position:absolute;inset:0;width:100%;height:100%;overflow:visible}} .bt-l1,.bt-l3{{white-space:nowrap}} .bt-strike line{{stroke:{danger};stroke-width:10;stroke-linecap:round}}
 .bt-num{{position:relative;filter:drop-shadow(0 0 70px {accent}55)}}
 .bt-burst{{position:absolute;left:50%;top:50%;width:0;height:0}} .bt-burst i{{position:absolute;left:-7px;top:-7px;width:14px;height:14px;border-radius:50%;background:{accent};opacity:0}}
 .bt-bottom{{font-size:46px;font-weight:600;color:{text}}}

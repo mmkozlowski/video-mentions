@@ -3487,19 +3487,19 @@
   "ranges": [
    [
     108.79,
-    159.75
+    156.48
    ],
    [
-    161.47,
+    161.5,
     174.34
    ]
   ],
   "start": 108.79,
   "end": 174.34,
-  "duration": 63.83,
+  "duration": 60.53,
   "splices": 1,
   "hook_line": "Kiedy zaczynasz budować z agentem AI pierwsze dwie sesje wyglądają magiczne. Prosisz o ekran,",
-  "transcript": "Kiedy zaczynasz budować z agentem AI pierwsze dwie sesje wyglądają magiczne. Prosisz o ekran, dostajesz ekran. Prosisz o formularz, jest formularz. I pojawia się ekscytacja. Widzę to bardzo często u osób nietechnicznych. Jeszcze bym chciał to, jeszcze bym chciał kolejny moduł i jeszcze kolejny moduł. I nagle się okazuje, że zainstalowały się paczki i moduły, które ze sobą po prostu nie grają, nie gadają. Nie gadają ze sobą i nie są w stanie współpracować. Powstaje coś, co działa i wygląda jak system, ale to jest rozwiązanie do jednorazowego użytku, potocznie mówiąc vibe coding. Na lokalnym komputerze to wszystko działa pięknie. Produkcyjnie już nie, bo dowolna zmiana, którą zrobisz, może wywalić całą resztę. Najgorsze jest to, że sam się o tym nie dowiesz. Nie masz jak, nie wiesz czego szukać.",
+  "transcript": "Kiedy zaczynasz budować z agentem AI pierwsze dwie sesje wyglądają magiczne. Prosisz o ekran, dostajesz ekran. Prosisz o formularz, jest formularz. I pojawia się ekscytacja. Widzę to bardzo często u osób nietechnicznych. Jeszcze bym chciał to, jeszcze bym chciał kolejny moduł i jeszcze kolejny moduł. I nagle się okazuje, że zainstalowały się paczki i moduły, które ze sobą po prostu nie grają, nie gadają. Nie gadają ze sobą i nie są w stanie współpracować. Powstaje coś, co działa i wygląda jak system, ale to jest rozwiązanie do jednorazowego użytku, potocznie mówiąc vibe coding. Na lokalnym komputerze to wszystko działa pięknie. Produkcyjnie już nie, którą zrobisz, może wywalić całą resztę. Najgorsze jest to, że sam się o tym nie dowiesz. Nie masz jak, nie wiesz czego szukać.",
   "scores": {
    "hook": 4,
    "delivery": 4,
@@ -3535,27 +3535,31 @@
    ],
    [
     213.15,
-    220.04
+    215.15
    ],
    [
-    231.2,
+    226.4,
     241.38
    ],
    [
     241.74,
-    255.98
+    249.08
    ],
    [
-    258.98,
+    250.55,
+    255.97
+   ],
+   [
+    258.99,
     265.32
    ]
   ],
   "start": 210.05,
   "end": 265.32,
-  "duration": 39.49,
-  "splices": 5,
-  "hook_line": "Problem jest gdzie indziej. AI przyznaje Ci rację cokolwiek go o cokolwiek poprosisz w",
-  "transcript": "Problem jest gdzie indziej. AI przyznaje Ci rację cokolwiek go o cokolwiek poprosisz w 90 -90 % zrobi to i jeszcze Ci powie, że to jest super pomysł że na pewno tym razem to będzie świetnie działało i że jesteś niespaniałszym programistą na świecie i to jest bardzo miłe jest dokładnie ten problem, bo przy pustym projekcie agent musi podjąć setki decyzji architektonicznych, żeby zbudować fundamenty, zbudować infrastrukturę. A skoro nikt mu nie powiedział jak, to podejmuje je za każdym razem inaczej.",
+  "duration": 37.91,
+  "splices": 6,
+  "hook_line": "Problem jest gdzie indziej. AI przyznaje Ci rację",
+  "transcript": "Problem jest gdzie indziej. AI przyznaje Ci rację cokolwiek go poprosisz w 90 -90 % to zrobi i jeszcze Ci powie, że to jest super pomysł że na pewno tym razem to będzie świetnie działało i że jesteś niespaniałszym programistą na świecie i to jest bardzo miłe jest dokładnie ten problem, bo przy pustym projekcie agent musi podjąć setki decyzji architektonicznych, żeby zbudować fundamenty, zbudować infrastrukturę. A skoro nikt mu nie powiedział jak, to podejmuje je za każdym razem inaczej.",
   "scores": {
    "hook": 5,
    "delivery": 3,
@@ -3581,13 +3585,13 @@
   "brand": "flowbiz",
   "ranges": [
    [
-    279.17,
+    279.62,
     327.54
    ]
   ],
-  "start": 279.17,
+  "start": 279.62,
   "end": 327.54,
-  "duration": 48.37,
+  "duration": 47.92,
   "splices": 0,
   "hook_line": "Open Mercato to jest w pewnym uproszczeniu framework we frameworku. Podłączasz swojego cloud 'a",
   "transcript": "Open Mercato to jest w pewnym uproszczeniu framework we frameworku. Podłączasz swojego cloud 'a albo kodeksa i on nie zaczyna od pustej kartki. On wpada w pewną strukturę, już przygotowane fundamenty i architekturę. I ta struktura mu mówi, hej, w tym, co chcesz zrobić, brakuje tego i jeszcze innej rzeczy. Tego nie możesz zrobić. Jeśli to zrobisz, to na własne ryzyko i coś się może zepsuć. A jeśli chcesz zrobić, żeby to było zrobione dobrze, to zrób w ten sposób, jak my to Ci zalecamy. I teraz wróćmy do mojego kolegi. Czy on popełni ten sam błąd tutaj przy Open Mercato? No właśnie nie, bo pod spodem odpalają się mechanizmy, które wiedzą, co mają robić.",
@@ -3617,19 +3621,19 @@
   "ranges": [
    [
     415.14,
-    441.64
+    442.55
    ],
    [
-    448.66,
+    450.36,
     463.16
    ]
   ],
   "start": 415.14,
   "end": 463.16,
-  "duration": 41.0,
+  "duration": 40.21,
   "splices": 1,
   "hook_line": "Jeśli nie znasz cyklu wytwarzania oprogramowania, to i tak na Open Mercatus budujesz system.",
-  "transcript": "Jeśli nie znasz cyklu wytwarzania oprogramowania, to i tak na Open Mercatus budujesz system. W przypadku tworzenia od postaw systemu i bez wiedzy na temat cyklu wytwarzania oprogramowania Twój soft wywali się na pierwszym zakręcie, którym jest produkcja. Taki system stoi na glinianych nogach. Dopóki bawisz się lokalnie, wszystko w porządku. Zabawa zaczyna się, kiedy ma działać na produkcji. W przypadku budowania za pomocą Open Mercato te fundamenty Nie są gliniane, ale są to mocne fundamenty, które pilnują tego, jak to robić zgodnie ze sztuką. Ma być stabilne, bez błędów, a jak będą błędy, to musisz wiedzieć, gdzie te błędy są.",
+  "transcript": "Jeśli nie znasz cyklu wytwarzania oprogramowania, to i tak na Open Mercatus budujesz system. W przypadku tworzenia od postaw systemu i bez wiedzy na temat cyklu wytwarzania oprogramowania Twój soft wywali się na pierwszym zakręcie, którym jest produkcja. Taki system stoi na glinianych nogach. Dopóki bawisz się lokalnie, wszystko w porządku. Zabawa zaczyna się, kiedy ma działać na produkcji. W przypadku budowania za pomocą Open Mercato te fundamenty nie są gliniane i ale są to mocne fundamenty, które pilnują tego, jak to robić zgodnie ze sztuką. Ma być stabilne, bez błędów, a jak będą błędy, to musisz wiedzieć, gdzie te błędy są.",
   "scores": {
    "hook": 4,
    "delivery": 4,
@@ -4742,219 +4746,215 @@
    ],
    [
     89.23,
-    94.97
+    92.9
    ],
    [
-    95.49,
-    96.65
+    97.52,
+    99.76
    ],
    [
-    97.23,
-    99.75
+    100.5,
+    103.2
    ],
    [
-    100.49,
-    103.19
+    103.66,
+    111.66
    ],
    [
-    103.67,
-    111.67
+    112.04,
+    114.56
    ],
    [
-    112.03,
-    114.57
+    114.94,
+    141.76
    ],
    [
-    114.93,
-    141.75
+    142.38,
+    146.46
    ],
    [
-    142.39,
-    146.45
+    146.78,
+    171.04
    ],
    [
-    146.79,
-    171.01
+    171.36,
+    214.96
    ],
    [
-    171.35,
-    214.99
+    215.38,
+    237.94
    ],
    [
-    215.39,
-    227.47
+    238.32,
+    239.56
    ],
    [
-    227.83,
-    237.95
+    239.9,
+    246.52
    ],
    [
-    238.33,
-    246.53
+    246.84,
+    255.62
    ],
    [
-    246.85,
-    258.65
+    255.96,
+    258.66
    ],
    [
-    259.05,
-    270.11
+    259.06,
+    270.1
    ],
    [
-    270.79,
-    290.63
+    270.8,
+    295.88
    ],
    [
-    290.95,
-    295.89
+    296.34,
+    308.94
    ],
    [
-    296.33,
-    315.39
+    309.26,
+    315.38
    ],
    [
-    315.73,
-    316.15
+    315.72,
+    341.64
    ],
    [
-    316.45,
-    341.63
+    341.98,
+    356.76
    ],
    [
-    341.95,
-    356.75
+    357.12,
+    366.4
    ],
    [
-    357.11,
-    366.39
+    366.82,
+    367.76
    ],
    [
-    366.81,
-    367.75
+    368.1,
+    369.54
    ],
    [
-    368.11,
-    369.53
+    370.06,
+    375.0
    ],
    [
-    370.07,
-    375.01
+    375.78,
+    378.04
    ],
    [
-    375.77,
-    378.03
+    378.64,
+    383.94
    ],
    [
-    378.63,
-    383.95
+    384.32,
+    387.06
    ],
    [
-    384.31,
-    387.05
+    387.5,
+    393.78
    ],
    [
-    387.51,
-    393.77
+    394.68,
+    415.22
    ],
    [
-    394.69,
-    415.21
+    415.54,
+    427.2
    ],
    [
-    415.55,
-    427.21
+    427.58,
+    451.26
    ],
    [
-    427.57,
-    451.25
+    451.76,
+    452.26
    ],
    [
-    451.77,
-    452.27
+    453.14,
+    485.12
    ],
    [
-    453.13,
-    485.13
+    485.58,
+    486.58
    ],
    [
-    485.59,
-    486.57
+    486.9,
+    499.96
    ],
    [
-    486.91,
-    499.95
+    500.42,
+    507.82
    ],
    [
-    500.41,
-    507.81
+    508.28,
+    514.64
    ],
    [
-    508.27,
-    514.63
+    515.44,
+    525.96
    ],
    [
-    515.45,
-    525.97
+    526.3,
+    548.58
    ],
    [
-    526.31,
-    548.57
+    548.9,
+    552.04
    ],
    [
-    548.91,
-    552.03
+    553.22,
+    568.46
    ],
    [
-    553.21,
-    568.45
+    568.88,
+    581.02
    ],
    [
-    568.87,
-    581.03
+    581.38,
+    594.34
    ],
    [
-    581.37,
-    594.33
+    594.76,
+    597.16
    ],
    [
-    594.75,
-    597.15
+    597.62,
+    601.74
    ],
    [
-    597.63,
-    601.75
+    602.86,
+    609.84
    ],
    [
-    602.87,
-    609.85
+    610.18,
+    614.62
    ],
    [
-    610.19,
-    614.63
+    615.8,
+    628.26
    ],
    [
-    615.79,
-    628.25
+    628.78,
+    667.1
    ],
    [
-    628.77,
-    667.11
+    667.74,
+    675.44
    ],
    [
-    667.75,
-    675.43
-   ],
-   [
-    676.45,
+    676.46,
     683.96
    ]
   ],
   "start": 6.05,
   "end": 683.96,
-  "duration": 644.23,
-  "splices": 63,
+  "duration": 640.73,
+  "splices": 62,
   "hook_line": "No dobra, lecimy z kolejnymi praktycznymi użyciami AI w firmach. Teraz na warsztat możemy",
-  "transcript": "No dobra, lecimy z kolejnymi praktycznymi użyciami AI w firmach. Teraz na warsztat możemy wziąć firmę produkcyjną meble ogrodowe i opowiem Wam trochę, gdzie był problem, jak go rozwiązaliśmy, jak on wyglądał przed i jak wygląda teraz. Klient dostawał od swoich kontrahentów niemieckich zamówienia w Excelu. Długoletni kontrahenci współpracowali już, jakieś Excele mieli dopracowane, jakiś szablon, jakieś kolumny, wyglądało to nie tak źle. Jednak diabeł tutaj tkwi w szczegółach, bo klient, kontrahent, który zamawiał, potrafił tą samą rzecz nazwać na kilkanaście różnych sposobów. Potrafił raz napisać po niemiecku, raz po angielsku. I rozszyfrowanie tych rzeczy było bardzo czasochłonne. Tutaj od klienta z Podsłupska, który miał ten problem, była dość duża frustracja i co najważniejsze, to nie była tylko samego właściciela frustracja, ale też osób, które to wykonywały. Dlaczego? Bo robiły rzeczy, których... Dlaczego? Bo robiły rzeczy niewłaściwe. Niewłaściwe dlatego, bo takie klepanie potrafiło im zająć nawet kilka dni, żeby takie zamówienie z setką pozycji po prostu obrobić, znaleźć. A dlaczego teraz nazwał tak? A dlaczego nazwał tak? Ten dany kontrahent, a kogoś nie było na przykład w firmie, kto miałem na ten temat wiedzę i cała praca na tych Excelach naprawdę była bardzo mocno frustrująca i przyznam szczerze, że dawno też nie widziałem takiej radości i w głosi właściciela i osób, które to robiły, takiego entuzjazmu do tego, jak system, który wdrożyliśmy właśnie z tą nakładką AI spowodował, że ten czas skrócił się do dosłownie 10 minut. A teraz dlaczego ten proces tak długo trwał? Ten proces trwał, tak jak wcześniej powiedziałem, dlatego, że musieliśmy dopasować różne nazwy. Musieliśmy też sprawdzić, czy te ceny się zgadzają z cenami w naszym katalogu, który był też rozproszony na różne Excel. Musieliśmy dopisać swoje kolumny, które były po prostu takim procesem, gdzie zawsze to robiliśmy. Okazało się, że klient ma trzech różnych kontrahentów głównych i każdy z tych kontrahentów jednak trochę inaczej te Excel przygotowywał. Nie wiadomo, ale nie chciał się dostosować. No wiadomo, długoletnia współpraca i po prostu pewne utarte schematy i ciężko to zmienić u siebie w firmie, a co dopiero u zewnętrznej firmy, która jest naszym kontrahentem. Więc po prostu braliśmy jak było. Tak, żeby nie odkładać dodatkowych problemów. I wiem, że były próby tego, żeby te Excel ujednolicić, ale one po prostu kończyły się po tygodniu. Były drobne zmiany, ale to nie były na tyle znaczące zmiany, żeby faktycznie coś się zmieniło w sposobie pracy między firmą, a produkcyjną, a tymi kontrahentami. Dużo też czasu w tym wszystkim zajmowało przygotowanie dla osoby, która była w biurze, w tych pracach administracyjnych, generowanie kodów kreskowych. Trzeba było wygenerować kod całego zamówienia, trzeba było wygenerować kod konkretnego produktu i jeszcze części konkretnych do tego, aby te paczki popakować. To powodowało, że to było moje też bardzo ciekawe doświadczenie, a już coraz mniej zaskakujące, że ta osoba, która to robiła, brała te wszystkie numery, które przychodziły w tych Excelach, wklejała do innego specjalnego Excela, w którym generował się kod kreskowy i ten kod kreskowy drukowała i przechodziła do kolejnej pozycji, przeklejała, drukowała, przeklejała, drukowała, przeklejała, drukowała. No przy setce zamówień ciężko tutaj się dziwić, że to trwało na przykład trzy dni, no bo jak wiadomo, robimy to jedno zamówienie, a jeszcze ktoś nas odciąga od tych zadań, chce, żebyśmy robili coś innego, awarię, gaszenie pożarów, więc no to była dla tej osoby też bardzo czasochłonna, frustrująca, frustrujący proces. I teraz jak to uprościliśmy, tak? No dzięki całej tutaj mocy AI, jakie nam daje, pozwoliliśmy sobie na to, żeby po pierwsze trzeba było tą bazę scentralizować, trzeba było wszystkie Excel wgrać do jednej bazy, do jednego systemu. To zajęło dość długo czasu, to tutaj to nie ukrywam, ale to po prostu bolało, ale to trzeba było zrobić. Bez tych fundamentów AI nie będzie wiedziało, jak się po tym poruszać, nie będzie wiedziało, jaka jest struktura, jak dana firma po prostu pracuje i w jakich schematach. I przez to też, no te początki nie były łatwe, żeby to wszystko zrobić, ale finałem tego było naprawdę praca na jedno tak zwane kliknięcie, no może na dwa kliknięcia. Z początku może też to było trochę więcej niż dwa kliknięcia, może pięć, dziesięć, ciężko mi to też tutaj ocenić, ale już Wam mówię, dlaczego to mogło być nawet dziesięć kliknięć. O tym to było ciekawe, że w momencie, kiedy wprowadziliśmy te wszystkie produkty już do bazy, klient zaciągał tego Excela wyjściowego, przepraszam, tego Excela wyjściowego od kontrahenta, klient to zaciągał i musiał zbudować tak zwaną pamięć dla sztucznej inteligencji. Pamięć dla sztucznej inteligencji to jest coś, co powoduje, że na przykład ten sam produkt, uczymy naszą sztuczną inteligencję za pomocą wkładania tutaj jakby pamięci, to, że ten produkt może i dla tego kontrahenta może się nazywać w trzech różnych wariantach, w pięciu różnych wariantach, bo my nie do końca wiemy, który wariant będzie tutaj dopasowany, a sztuczna inteligencja dzięki tutaj swojej tutaj jakby możliwości analizowania tekstu danych powodowało, że przy wgraniu takiego dokumentu mieliśmy możliwość zobaczenia, że prawdopodobieństwa, że ten produkt, który tutaj ten klient tak nazwał, to jest prawdopodobnie to i na przykład to mogło być pokazywane w kilku różnych kolorach, tak, czyli nie wiem, nie dopasowałem, na 80 % wydaje mi się, że to jest ten produkt albo na 100%, że to jest ten produkt i oczywiście pierwsze zamówienia były takie, że trochę klient był nie do końca, czuł ten efekt, a to dlatego też jest często tak we wdrożeniach AI, że oczekujemy, no taka ta inteligencja AI jest takie mądre, to to powinno od razu wejść w naszą firmę i powinniśmy to wszystko robić i trochę tak to też działa, że no znowu to powtórzę, AI po prostu wymaga chwilę czasu, nad nim trzeba iteracyjnie, czyli co jakiś czas uczyć go jak ten proces ma działać, tak, nawet jak sobie zobaczycie jak działacie na przykład z jakimś czatem GPT albo Gmini i poprawiacie go błędy, to nawet jak to jest zwykły czat i te okno jest dosyć tutaj krótkie, jeżeli chodzi o pamięć, jeżeli chodzi, mówimy o tych popularnych narzędziach, to z czasem czat GPT już wie jak my chcemy, żeby te odpowiedzi wyglądały, jak nie chcemy, żeby te odpowiedzi wyglądały, dzięki temu po wrzuceniu danego polecenia albo danego wycinku na przykład maila, dostajemy od razu to, co byśmy chcieli, tak, no bo się nauczył, potrzebował ileś tygodni na przykład czasu i naszych prób do tego, żeby ta wiedza po prostu mu się ustrukturyzowała, tak, że chcemy, żeby to było robione w ten sposób, ale nie w ten, albo taki układ zdań jest dobry, a taki nie jest dobry, tak, taki jakby nastrój, taka jakby forma maila jest okej, a ta inna nie jest okej, dzięki temu to uczymy. I w tym przypadku do tego klienta, już wracając znowu do brzegu, polegało to na tym, żeby AI się nauczyło tego wszystkiego, że dany produkt może być nazwany w różnych momentach, więc nawet jeżeli zrobiliśmy miernik i wyliczaliśmy tutaj też, żeby mieć te dane, jak AI wpłynęło na pracę tej firmy, to powodowało, że z początku prawdopodobieństwo znajdywania i dopasowywania zamówień do tego, co mamy, było na poziomie 70%. Po miesiącu osiągnęliśmy 94%, czyli jeżeli zamówienie wcześniej, musieliśmy po prostu ręcznie jeszcze, dlatego mówiłem też o tych kilkunastu kliknięciach, powiedzieć mu, hej, ten produkt, to tak naprawdę to jest ten produkt i z taką i z taką tkaniną, tak, bo tam dużo też rzeczy było o samej tkaninie, więc dopasowaliśmy go, zapisaliśmy, AI to zapamiętało, system baza danych też to zapamiętała i nagle później dostajemy kolejne zamówienie do tego kontrahenta w podobnym po prostu tutaj jakby nazwach i lekko się różniącym i nagle AI dopasowuje to w 95%. Zostają nam jakieś bardzo marginalne przypadki tego wszystkiego. Jeżeli chodzi o tą część taką jeszcze bardzo czasochłoną, czy generowanie samych kodów kreskowych, no to tutaj to nie było tutaj żadnej magii, żadnego AI, po prostu program, system bierze cztery numery, które potrzebujemy, generuje z nich po prostu PDF -a od razu gotowego, po kliknięciu, po minucie, masz gotowego PDF -a z 40 stronami, etykiet, który po prostu trzeba tylko wydrukować, przykleić i nagle z kilku dni pracy dostajemy 15 minut pracy, więc to by było na razie na tyle. W tej firmie dalej automatyzujemy, dalej wdrażamy AI. Będą pewnie kolejne przypadki, jak to, do czego doszliśmy i jakie tutaj kolejne oszczędności wyszły w tym wszystkim, więc mam nadzieję, że będziecie to śledzić, a ja na pewno wrócę do Was z informacjami, jak to wyglądało przed, po i jak to może wyglądać też w Waszej firmie, więc dziękuję Wam na dzisiaj i zapraszam do oglądania i subskrybowania kanału i zostawienia też komentarza, z jakimi problemami Wy się borykacie, jakie Wy rzeczy byście chcieli zautomazować w swojej firmie albo zadajcie jakiekolwiek pytanie związane z tą tematyką, a z chęcią na nie odpowiem. Dzięki i do usłyszenia.",
+  "transcript": "No dobra, lecimy z kolejnymi praktycznymi użyciami AI w firmach. Teraz na warsztat możemy wziąć firmę produkcyjną meble ogrodowe i opowiem Wam trochę, gdzie był problem, jak go rozwiązaliśmy, jak on wyglądał przed i jak wygląda teraz. Klient dostawał od swoich kontrahentów niemieckich zamówienia w Excelu. Długoletni kontrahenci współpracowali już, jakieś Excele mieli dopracowane, jakiś szablon, jakieś kolumny, wyglądało to nie tak źle. Jednak diabeł tutaj tkwi w szczegółach, bo klient, kontrahent, który zamawiał, potrafił tą samą rzecz nazwać na kilkanaście różnych sposobów. Potrafił raz napisać po niemiecku, raz po angielsku. I rozszyfrowanie tych rzeczy było bardzo czasochłonne. Tutaj od klienta z Podsłupska, który miał ten problem, była dość duża frustracja i co najważniejsze, to nie była tylko samego właściciela frustracja, ale też osób, które to wykonywały. Dlaczego? Bo robiły rzeczy niewłaściwe. Niewłaściwe dlatego, bo takie klepanie potrafiło im zająć nawet kilka dni, żeby takie zamówienie z setką pozycji po prostu obrobić, znaleźć. A dlaczego teraz nazwał tak? A dlaczego nazwał tak? Ten dany kontrahent, a kogoś nie było na przykład w firmie, kto miałem na ten temat wiedzę i cała praca na tych Excelach naprawdę była bardzo mocno frustrująca i przyznam szczerze, że dawno też nie widziałem takiej radości i w głosi właściciela i osób, które to robiły, takiego entuzjazmu do tego, jak system, który wdrożyliśmy właśnie z tą nakładką AI spowodował, że ten czas skrócił się do dosłownie 10 minut. A teraz dlaczego ten proces tak długo trwał? Ten proces trwał, tak jak wcześniej powiedziałem, dlatego, że musieliśmy dopasować różne nazwy. Musieliśmy też sprawdzić, czy te ceny się zgadzają z cenami w naszym katalogu, który był też rozproszony na różne Excel. Musieliśmy dopisać swoje kolumny, które były po prostu takim procesem, gdzie zawsze to robiliśmy. Okazało się, że klient ma trzech różnych kontrahentów głównych i każdy z tych kontrahentów jednak trochę inaczej te Excel przygotowywał. Nie wiadomo, ale nie chciał się dostosować. No wiadomo, długoletnia współpraca i po prostu pewne utarte schematy i ciężko to zmienić u siebie w firmie, a co dopiero u zewnętrznej firmy, która jest naszym kontrahentem. Więc po prostu braliśmy jak było. Tak, żeby nie odkładać dodatkowych problemów. I wiem, że były próby tego, żeby te Excel ujednolicić, ale one po prostu kończyły się po tygodniu. Były drobne zmiany, ale to nie były na tyle znaczące zmiany, żeby faktycznie coś się zmieniło w sposobie pracy między firmą, a produkcyjną, a tymi kontrahentami. Dużo też czasu w tym wszystkim zajmowało przygotowanie dla osoby, która była w biurze, w tych pracach administracyjnych, generowanie kodów kreskowych. Trzeba było wygenerować kod całego zamówienia, trzeba było wygenerować kod konkretnego produktu i jeszcze części konkretnych do tego, aby te paczki popakować. To powodowało, że to było moje też bardzo ciekawe doświadczenie, a już coraz mniej zaskakujące, że ta osoba, która to robiła, brała te wszystkie numery, które przychodziły w tych Excelach, wklejała do innego specjalnego Excela, w którym generował się kod kreskowy i ten kod kreskowy drukowała i przechodziła do kolejnej pozycji, przeklejała, drukowała, przeklejała, drukowała, przeklejała, drukowała. No przy setce zamówień ciężko tutaj się dziwić, że to trwało na przykład trzy dni, no bo jak wiadomo, robimy to jedno zamówienie, a jeszcze ktoś nas odciąga od tych zadań, chce, żebyśmy robili coś innego, awarię, gaszenie pożarów, więc no to była dla tej osoby też bardzo czasochłonna, frustrująca, frustrujący proces. I teraz jak to uprościliśmy, tak? No dzięki całej tutaj mocy AI, jakie nam daje, pozwoliliśmy sobie na to, żeby po pierwsze trzeba było tą bazę scentralizować, trzeba było wszystkie Excel wgrać do jednej bazy, do jednego systemu. To zajęło dość długo czasu, to tutaj to nie ukrywam, ale to po prostu bolało, ale to trzeba było zrobić. Bez tych fundamentów AI nie będzie wiedziało, jak się po tym poruszać, nie będzie wiedziało, jaka jest struktura, jak dana firma po prostu pracuje i w jakich schematach. I przez to też, no te początki nie były łatwe, żeby to wszystko zrobić, ale finałem tego było naprawdę praca na jedno tak zwane kliknięcie, no może na dwa kliknięcia. Z początku może też to było trochę więcej niż dwa kliknięcia, może pięć, dziesięć, ciężko mi to też tutaj ocenić, ale już Wam mówię, dlaczego to mogło być nawet dziesięć kliknięć. O tym to było ciekawe, że w momencie, kiedy wprowadziliśmy te wszystkie produkty już do bazy, klient zaciągał tego Excela wyjściowego, przepraszam, tego Excela wyjściowego od kontrahenta, klient to zaciągał i musiał zbudować tak zwaną pamięć dla sztucznej inteligencji. Pamięć dla sztucznej inteligencji to jest coś, co powoduje, że na przykład ten sam produkt, uczymy naszą sztuczną inteligencję za pomocą wkładania tutaj jakby pamięci, to, że ten produkt może i dla tego kontrahenta może się nazywać w trzech różnych wariantach, w pięciu różnych wariantach, bo my nie do końca wiemy, który wariant będzie tutaj dopasowany, a sztuczna inteligencja dzięki tutaj swojej tutaj jakby możliwości analizowania tekstu danych powodowało, że przy wgraniu takiego dokumentu mieliśmy możliwość zobaczenia, że prawdopodobieństwa, że ten produkt, który tutaj ten klient tak nazwał, to jest prawdopodobnie to i na przykład to mogło być pokazywane w kilku różnych kolorach, tak, czyli nie wiem, nie dopasowałem, na 80 % wydaje mi się, że to jest ten produkt albo na 100%, że to jest ten produkt i oczywiście pierwsze zamówienia były takie, że trochę klient był nie do końca, czuł ten efekt, a to dlatego też jest często tak we wdrożeniach AI, że oczekujemy, no taka ta inteligencja AI jest takie mądre, to to powinno od razu wejść w naszą firmę i powinniśmy to wszystko robić i trochę tak to też działa, że no znowu to powtórzę, AI po prostu wymaga chwilę czasu, nad nim trzeba iteracyjnie, czyli co jakiś czas uczyć go jak ten proces ma działać, tak, nawet jak sobie zobaczycie jak działacie na przykład z jakimś czatem GPT albo Gmini i poprawiacie go błędy, to nawet jak to jest zwykły czat i te okno jest dosyć tutaj krótkie, jeżeli chodzi o pamięć, jeżeli chodzi, mówimy o tych popularnych narzędziach, to z czasem czat GPT już wie jak my chcemy, żeby te odpowiedzi wyglądały, jak nie chcemy, żeby te odpowiedzi wyglądały, dzięki temu po wrzuceniu danego polecenia albo danego wycinku na przykład maila, dostajemy od razu to, co byśmy chcieli, tak, no bo się nauczył, potrzebował ileś tygodni na przykład czasu i naszych prób do tego, żeby ta wiedza po prostu mu się ustrukturyzowała, tak, że chcemy, żeby to było robione w ten sposób, ale nie w ten, albo taki układ zdań jest dobry, a taki nie jest dobry, tak, taki jakby nastrój, taka jakby forma maila jest okej, a ta inna nie jest okej, dzięki temu to uczymy. I w tym przypadku do tego klienta, już wracając znowu do brzegu, polegało to na tym, żeby AI się nauczyło tego wszystkiego, że dany produkt może być nazwany w różnych momentach, więc nawet jeżeli zrobiliśmy miernik i wyliczaliśmy tutaj też, żeby mieć te dane, jak AI wpłynęło na pracę tej firmy, to powodowało, że z początku prawdopodobieństwo znajdywania i dopasowywania zamówień do tego, co mamy, było na poziomie 70%. Po miesiącu osiągnęliśmy 94%, czyli jeżeli zamówienie wcześniej, musieliśmy po prostu ręcznie jeszcze, dlatego mówiłem też o tych kilkunastu kliknięciach, powiedzieć mu, hej, ten produkt, to tak naprawdę to jest ten produkt i z taką i z taką tkaniną, tak, bo tam dużo też rzeczy było o samej tkaninie, więc dopasowaliśmy go, zapisaliśmy, AI to zapamiętało, system baza danych też to zapamiętała i nagle później dostajemy kolejne zamówienie do tego kontrahenta w podobnym po prostu tutaj jakby nazwach i lekko się różniącym i nagle AI dopasowuje to w 95%. Zostają nam jakieś bardzo marginalne przypadki tego wszystkiego. Jeżeli chodzi o tą część taką jeszcze bardzo czasochłoną, czy generowanie samych kodów kreskowych, no to tutaj to nie było tutaj żadnej magii, żadnego AI, po prostu program, system bierze cztery numery, które potrzebujemy, generuje z nich po prostu PDF -a od razu gotowego, po kliknięciu, po minucie, masz gotowego PDF -a z 40 stronami, etykiet, który po prostu trzeba tylko wydrukować, przykleić i nagle z kilku dni pracy dostajemy 15 minut pracy, więc to by było na razie na tyle. W tej firmie dalej automatyzujemy, dalej wdrażamy AI. Będą pewnie kolejne przypadki, jak to, do czego doszliśmy i jakie tutaj kolejne oszczędności wyszły w tym wszystkim, więc mam nadzieję, że będziecie to śledzić, a ja na pewno wrócę do Was z informacjami, jak to wyglądało przed, po i jak to może wyglądać też w Waszej firmie, więc dziękuję Wam na dzisiaj i zapraszam do oglądania i subskrybowania kanału i zostawienia też komentarza, z jakimi problemami Wy się borykacie, jakie Wy rzeczy byście chcieli zautomazować w swojej firmie albo zadajcie jakiekolwiek pytanie związane z tą tematyką, a z chęcią na nie odpowiem. Dzięki i do usłyszenia.",
   "scores": {
    "hook": 3,
    "delivery": 3,
@@ -6033,10 +6033,10 @@
    ],
    [
     113.1,
-    159.76
+    156.48
    ],
    [
-    161.46,
+    161.5,
     173.94
    ],
    [
@@ -6053,30 +6053,34 @@
    ],
    [
     212.62,
-    220.04
+    215.15
    ],
    [
-    231.2,
+    226.4,
     241.38
    ],
    [
     241.74,
-    255.98
+    249.08
    ],
    [
-    258.98,
+    250.55,
+    255.97
+   ],
+   [
+    258.99,
     264.7
    ],
    [
     267.38,
+    268.97
+   ],
+   [
+    270.42,
     272.62
    ],
    [
-    279.34,
-    323.5
-   ],
-   [
-    323.8,
+    279.62,
     329.12
    ],
    [
@@ -6100,11 +6104,11 @@
     388.64
    ],
    [
-    414.02,
-    441.64
+    415.14,
+    442.55
    ],
    [
-    448.66,
+    450.36,
     462.54
    ],
    [
@@ -6141,10 +6145,10 @@
    ],
    [
     657.72,
-    673.32
+    673.3
    ],
    [
-    677.66,
+    677.58,
     681.22
    ],
    [
@@ -6153,15 +6157,27 @@
    ],
    [
     685.8,
-    689.2
+    688.58
+   ],
+   [
+    697.1,
+    712.88
+   ],
+   [
+    713.94,
+    715.58
+   ],
+   [
+    715.9,
+    717.3
    ]
   ],
   "start": 27.21,
-  "end": 689.2,
-  "duration": 474.21,
-  "splices": 37,
+  "end": 717.3,
+  "duration": 484.23,
+  "splices": 41,
   "hook_line": "Kolega pokazał mi ostatnio system, który zrobił sam dla swojej firmy vibe kodując razem",
-  "transcript": "Kolega pokazał mi ostatnio system, który zrobił sam dla swojej firmy vibe kodując razem z kodeksem. Zarządzanie pracownikami Europy i wszystko ładnie klikane. Zrobił to z agentem sam, bez programisty za pomocą kodeksa. Patrzył i mówię super, a ja mówię, a jak zrobiłeś tą bazę danych, która tam pod spodem działa? A on po chwili pyta, ale jaką danych. I tutaj się lekko uśmiecham, bo musiałem mu powiedzieć, że w momencie, kiedy wyczyści cash przeglądarki, cała jego praca po prostu pójdzie na marne, zniknie. Wszystkie dane pracowników, historia, po prostu wszystko. I będzie wielka frustracja. I teraz uwaga, bo to nie jest odcinek o tym, że kolega czegoś nie umie. Ja jestem wielkim entuzjastą tego, żeby ludzie biznesu zaczynali programować. Naprawdę, serio. To skraca dystans między biznesem a software housem i osobami, które tworzą oprogramowanie. Robi się to szybciej, taniej i bliżej tego, co naprawdę jest potrzebne dla biznesu. Tylko, że przy takim budowaniu jest jeden moment, w którym wszystko się wywraca. I ten moment nie ma nic wspólnego z tym, jak dobry jest model. Kiedy zaczynasz budować z agentem AI pierwsze dwie sesje wyglądają magiczne. Prosisz o ekran, dostajesz ekran. Prosisz o formularz, jest formularz. I pojawia się ekscytacja. Widzę to bardzo często u osób nietechnicznych. Jeszcze bym chciał to, jeszcze bym chciał kolejny moduł i jeszcze kolejny moduł. I nagle się okazuje, że zainstalowały się paczki i moduły, które ze sobą po prostu nie grają, nie gadają. Nie gadają ze sobą i nie są w stanie współpracować. Powstaje coś, co działa i wygląda jak system, ale to jest rozwiązanie do jednorazowego użytku, potocznie mówiąc vibe coding. Na lokalnym komputerze to wszystko działa pięknie. Produkcyjnie już nie, bo dowolna zmiana, którą zrobisz, może wywalić całą resztę. Najgorsze jest to, że sam się o tym nie dowiesz. Nie masz jak, nie wiesz czego szukać. Nie wiesz jakich słów używać, żeby dostać dobrą odpowiedź. I teraz dlaczego to się dzieje? Nie dlatego, że model jest słaby. i naprawdę przyspieszają pracę programistom kilkukrotnie. AI zrobiło mocnego fikołka w tym, jak się dzisiaj tworzy oprogramowanie. Dwa lata temu agent podpowiadał linijkę i podnosił produktywność o 10%. Dzisiaj to jest razy 5, może nawet razy 10. I może nawet trochę przesadzam, ale rząd wielkości jest na pewno kilkukrotny. Problem jest gdzie indziej. AI przyznaje Ci rację cokolwiek go o cokolwiek poprosisz w 90 -90 % zrobi to i jeszcze Ci powie, że to jest super pomysł że na pewno tym razem to będzie świetnie działało i że jesteś niespaniałszym programistą na świecie i to jest bardzo miłe jest dokładnie ten problem, bo przy pustym projekcie agent musi podjąć setki decyzji architektonicznych, żeby zbudować fundamenty, zbudować infrastrukturę. A skoro nikt mu nie powiedział jak, to podejmuje je za każdym razem inaczej. I tutaj wchodzi rzecz, przez którą w ogóle Wam ten odcinek. Open Mercato to jest w pewnym uproszczeniu framework we frameworku. Podłączasz swojego cloud 'a albo kodeksa i on nie zaczyna od pustej kartki. On wpada w pewną strukturę, już przygotowane fundamenty i architekturę. I ta struktura mu mówi, hej, w tym, co chcesz zrobić, brakuje tego i jeszcze innej rzeczy. Tego nie możesz zrobić. Jeśli to zrobisz, to na własne ryzyko i coś się może zepsuć. A jeśli chcesz zrobić, żeby to było zrobione dobrze, to zrób w ten sposób, jak my to Ci zalecamy. I teraz wróćmy do mojego kolegi. Czy on popełni ten sam błąd tutaj przy Open Mercato? No właśnie nie, bo pod spodem odpalają się mechanizmy, które wiedzą, co mają robić. To jest ten drugi framework. Wiedząc, jakie dane mogą zostać w pamięci przeglądarki, a jakie muszą trafić do bazy danych. I to nie są dwie warstwy. Tych warstw jest dużo więcej. Są użytkownicy, jeśli użytkownicy, to role. Jeśli role, to uprawnienia. a jeżeli uprawnienia, to stoją za nimi konkretne moduły i funkcjonalności. Cała ta siatka matryca powstaje wokół modułu od razu, a nie po roku. Ta struktura ma w repozytorium konkretne miejsce, specyfikacja powstaje zanim powstanie kod, a każdy moduł na osobny plik z zasadami dla agenta. I teraz rzecz, której nie powie Ci nikt, kto sprzedaje oprogramowanie. To nie jest narzędzie dla każdego. to zrobić bez zespołu deweloperskiego, to Ci od razu powiem, że raczej nie. To jest narzędzie dla programistów, to jest narzędzie dla osób technicznych. Druga rzecz. Jeśli nie znasz cyklu wytwarzania oprogramowania, to i tak na Open Mercatus budujesz system. W przypadku tworzenia od postaw systemu i bez wiedzy na temat cyklu wytwarzania oprogramowania Twój soft wywali się na pierwszym zakręcie, którym jest produkcja. Taki system stoi na glinianych nogach. Dopóki bawisz się lokalnie, wszystko w porządku. Zabawa zaczyna się, kiedy ma działać na produkcji. W przypadku budowania za pomocą Open Mercato te fundamenty Nie są gliniane, ale są to mocne fundamenty, które pilnują tego, jak to robić zgodnie ze sztuką. Ma być stabilne, bez błędów, a jak będą błędy, to musisz wiedzieć, gdzie te błędy są. I teraz kolejna rzecz, najbardziej uczciwa. Utrzymanie masz na własnych barkach. aktualizacje, serwer, błędy na tym serwerze, to wszystko jest po Twojej stronie, w gotowym sasie oczywiście płacisz za to, żeby ktoś inny się tym martwił i chciałbym Cię zostawić właśnie z tą myślą i taką puentą tego odcinka. AI obniżyło mocno barierę, jeżeli chodzi o wytwarzanie kodu. Bardzo mocno. ale nie obniżyło bariery projektowania i decyzji architektonicznych. Agent nie gubi się dlatego, że jest słaby. Gubi się dlatego, że przy pustym projekcie musi wymyślać wszystko od nowa. Za każdym razem inaczej. Framework nie robi go mądrzejszym. Framework zabiera mu wybór, narzuca mu pewne granice. I to jest różnica między czymś, co działa u Ciebie na laptopie lokalnie, a czymś, co można oddać w firmie. A jeśli chcesz zobaczyć, jak to wygląda od strony biznesu, czym w ogóle jest moduł i co dostajesz gotowe, a co musisz dopisać, to jest o tym mój inny odcinek, do którego zachęcam Cię oglądać. A jeśli sam coś budujesz z agentem i masz wrażenie, że zaczyna Ci się to rozjeżdżać, to napisz w komentarzu, na czym się wyłożyłeś. Jestem bardzo ciekawy, z jakimi wyzwaniami się u siebie mierzysz. A jeżeli potrzebujesz jeszcze większego pogłębienia tematu i porozmawiania na przykład ze mną o tym, to zapraszam Cię na moją stronę, która tutaj właśnie się wyświetla. Mam możliwość umówienia się na bezpłatną konsultację 30 minut, godzina, w zależności od tego, ile będziesz potrzebował. Pomogę zrozumieć ten proces, który macie w firmie. Pomogę dopasować też narzędzie.",
+  "transcript": "Kolega pokazał mi ostatnio system, który zrobił sam dla swojej firmy vibe kodując razem z kodeksem. Zarządzanie pracownikami Europy i wszystko ładnie klikane. Zrobił to z agentem sam, bez programisty za pomocą kodeksa. Patrzył i mówię super, a ja mówię, a jak zrobiłeś tą bazę danych, która tam pod spodem działa? A on po chwili pyta, ale jaką danych. I tutaj się lekko uśmiecham, bo musiałem mu powiedzieć, że w momencie, kiedy wyczyści cash przeglądarki, cała jego praca po prostu pójdzie na marne, zniknie. Wszystkie dane pracowników, historia, po prostu wszystko. I będzie wielka frustracja. I teraz uwaga, bo to nie jest odcinek o tym, że kolega czegoś nie umie. Ja jestem wielkim entuzjastą tego, żeby ludzie biznesu zaczynali programować. Naprawdę, serio. To skraca dystans między biznesem a software housem i osobami, które tworzą oprogramowanie. Robi się to szybciej, taniej i bliżej tego, co naprawdę jest potrzebne dla biznesu. Tylko, że przy takim budowaniu jest jeden moment, w którym wszystko się wywraca. I ten moment nie ma nic wspólnego z tym, jak dobry jest model. Kiedy zaczynasz budować z agentem AI pierwsze dwie sesje wyglądają magiczne. Prosisz o ekran, dostajesz ekran. Prosisz o formularz, jest formularz. I pojawia się ekscytacja. Widzę to bardzo często u osób nietechnicznych. Jeszcze bym chciał to, jeszcze bym chciał kolejny moduł i jeszcze kolejny moduł. I nagle się okazuje, że zainstalowały się paczki i moduły, które ze sobą po prostu nie grają, nie gadają. Nie gadają ze sobą i nie są w stanie współpracować. Powstaje coś, co działa i wygląda jak system, ale to jest rozwiązanie do jednorazowego użytku, potocznie mówiąc vibe coding. Na lokalnym komputerze to wszystko działa pięknie. Produkcyjnie już nie, którą zrobisz, może wywalić całą resztę. Najgorsze jest to, że sam się o tym nie dowiesz. Nie masz jak, nie wiesz czego szukać. Nie wiesz jakich słów używać, żeby dostać dobrą odpowiedź. I teraz dlaczego to się dzieje? Nie dlatego, że model jest słaby. i naprawdę przyspieszają pracę programistom kilkukrotnie. AI zrobiło mocnego fikołka w tym, jak się dzisiaj tworzy oprogramowanie. Dwa lata temu agent podpowiadał linijkę i podnosił produktywność o 10%. Dzisiaj to jest razy 5, może nawet razy 10. I może nawet trochę przesadzam, ale rząd wielkości jest na pewno kilkukrotny. Problem jest gdzie indziej. AI przyznaje Ci rację cokolwiek go poprosisz w 90 -90 % to zrobi i jeszcze Ci powie, że to jest super pomysł że na pewno tym razem to będzie świetnie działało i że jesteś niespaniałszym programistą na świecie i to jest bardzo miłe jest dokładnie ten problem, bo przy pustym projekcie agent musi podjąć setki decyzji architektonicznych, żeby zbudować fundamenty, zbudować infrastrukturę. A skoro nikt mu nie powiedział jak, to podejmuje je za każdym razem inaczej. I tutaj wchodzi rzecz, Wam ten odcinek. Open Mercato to jest w pewnym uproszczeniu framework we frameworku. Podłączasz swojego cloud 'a albo kodeksa i on nie zaczyna od pustej kartki. On wpada w pewną strukturę, już przygotowane fundamenty i architekturę. I ta struktura mu mówi, hej, w tym, co chcesz zrobić, brakuje tego i jeszcze innej rzeczy. Tego nie możesz zrobić. Jeśli to zrobisz, to na własne ryzyko i coś się może zepsuć. A jeśli chcesz zrobić, żeby to było zrobione dobrze, to zrób w ten sposób, jak my to Ci zalecamy. I teraz wróćmy do mojego kolegi. Czy on popełni ten sam błąd tutaj przy Open Mercato? No właśnie nie, bo pod spodem odpalają się mechanizmy, które wiedzą, co mają robić. To jest ten drugi framework. Wiedząc, jakie dane mogą zostać w pamięci przeglądarki, a jakie muszą trafić do bazy danych. I to nie są dwie warstwy. Tych warstw jest dużo więcej. Są użytkownicy, jeśli użytkownicy, to role. Jeśli role, to uprawnienia. a jeżeli uprawnienia, to stoją za nimi konkretne moduły i funkcjonalności. Cała ta siatka matryca powstaje wokół modułu od razu, a nie po roku. Ta struktura ma w repozytorium konkretne miejsce, specyfikacja powstaje zanim powstanie kod, a każdy moduł na osobny plik z zasadami dla agenta. I teraz rzecz, której nie powie Ci nikt, kto sprzedaje oprogramowanie. To nie jest narzędzie dla każdego. to zrobić bez zespołu deweloperskiego, to Ci od razu powiem, że raczej nie. To jest narzędzie dla programistów, to jest narzędzie dla osób technicznych. Jeśli nie znasz cyklu wytwarzania oprogramowania, to i tak na Open Mercatus budujesz system. W przypadku tworzenia od postaw systemu i bez wiedzy na temat cyklu wytwarzania oprogramowania Twój soft wywali się na pierwszym zakręcie, którym jest produkcja. Taki system stoi na glinianych nogach. Dopóki bawisz się lokalnie, wszystko w porządku. Zabawa zaczyna się, kiedy ma działać na produkcji. W przypadku budowania za pomocą Open Mercato te fundamenty nie są gliniane i ale są to mocne fundamenty, które pilnują tego, jak to robić zgodnie ze sztuką. Ma być stabilne, bez błędów, a jak będą błędy, to musisz wiedzieć, gdzie te błędy są. I teraz kolejna rzecz, najbardziej uczciwa. Utrzymanie masz na własnych barkach. aktualizacje, serwer, błędy na tym serwerze, to wszystko jest po Twojej stronie, w gotowym sasie oczywiście płacisz za to, żeby ktoś inny się tym martwił i chciałbym Cię zostawić właśnie z tą myślą i taką puentą tego odcinka. AI obniżyło mocno barierę, jeżeli chodzi o wytwarzanie kodu. Bardzo mocno. ale nie obniżyło bariery projektowania i decyzji architektonicznych. Agent nie gubi się dlatego, że jest słaby. Gubi się dlatego, że przy pustym projekcie musi wymyślać wszystko od nowa. Za każdym razem inaczej. Framework nie robi go mądrzejszym. Framework zabiera mu wybór, narzuca mu pewne granice. I to jest różnica między czymś, co działa u Ciebie na laptopie lokalnie, a czymś, co można oddać w firmie. A jeśli chcesz zobaczyć, jak to wygląda od strony biznesu, czym w ogóle jest moduł i co dostajesz gotowe, a co musisz dopisać, to jest o tym mój inny odcinek, do którego zachęcam Cię oglądać. A jeśli sam coś budujesz z agentem i masz wrażenie, że zaczyna Ci się to rozjeżdżać, to napisz w komentarzu, na czym się wyłożyłeś. Jestem bardzo ciekawy, z jakimi wyzwaniami się u siebie mierzysz. A jeżeli potrzebujesz jeszcze większego pogłębienia tematu i porozmawiania na przykład ze mną o tym, to zapraszam Cię na moją stronę, która tutaj właśnie się wyświetla. Mam możliwość umówienia się na bezpłatną konsultację 30 minut, godzina, w zależności od tego, ile będziesz potrzebował. Pomogę zrozumieć ten proces, który macie w firmie. Pomogę dopasować też narzędzie. podpowiem Ci w którym miejscu warto Open Mercato wykorzystać w jaki sposób do tego można w ogóle zacząć i od czego zacząć, więc zachęcam Cię do kontaktu i dziękuję za wysłuchanie tego odcinka do usłyszenia",
   "scores": {
    "hook": 4,
    "delivery": 3,

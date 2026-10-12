@@ -87,6 +87,14 @@
    "text": "Ludzie biznesu *programują"
   },
   {
+   "type": "broll",
+   "at": "oprogramowanie",
+   "until": "+3.0",
+   "src": "build/broll-real/stock-zespol-laptop.mp4",
+   "ai": false,
+   "label": "Biznes bliżej programistów"
+  },
+  {
    "type": "list",
    "at": "szybciej",
    "until": "Tylko",

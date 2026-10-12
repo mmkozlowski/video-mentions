@@ -145,7 +145,8 @@ ADS = [
 # Nazwy klientów tylko tu, wewnętrznie. Na nagraniach nazwy nie padają.
 EPISODES = [
     dict(id="ep-doram", source="doram", client="Doram", title="Meble ogrodowe: zamówienia z Niemiec",
-         ranges=[(6.0, 688.0)], hook=3, delivery=3, brand="flowbiz",
+         # Mateusz 12.10: drugie „Dlaczego?” (restart 92,9–97,5 s) wycięte, zostaje pierwsze + dokończona próba
+         ranges=[(6.0, 92.95, None, 92.90), (93.0, 688.0, 97.52, None)], hook=3, delivery=3, brand="flowbiz",
          notes="Zamówienia od niemieckich kontrahentów w Excelu, dopasowanie AI 70% → 94% "
                "po miesiącu, kody kreskowe z kilku dni do 15 minut. Restart zdania w 92 s."),
     dict(id="ep-vacuactiv", source="vacuactiv", client="Vacuactiv", title="Agent AI dla właściciela firmy",
@@ -233,9 +234,15 @@ RAW = [
 EPISODES += [
     dict(id="ep-vibecoding", source="vibecoding", client="(kanał)",
          title="Vibe coding vs framework: dlaczego system z agentem sypie się na produkcji",
-         ranges=[(27.5, 85.0), (89.8, 211.6), (212.7, 220.05), (231.1, 264.0), (267.5, 272.6),
-                 (279.4, 388.2), (414.1, 441.65), (448.8, 462.3), (464.0, 469.9), (502.4, 512.5),
-                 (523.3, 528.9), (539.8, 574.5), (577.7, 592.6), (637.2, 673.3), (677.6, 687.4)],
+         # poprawki Mateusza 12.10: drugi dubel „bo dowolna zmiana” (161,5), czysta druga próba
+         # „o cokolwiek go poprosisz” (226,4), trzecia próba „architektonicznych” (250,55), bez ciszy
+         # przed „Open Mercato”, bez „Druga rzecz.” (wycieranie twarzy), „gliniane, | ale są to mocne”,
+         # bez ogona porzuconej próby przed „Pomogę zrozumieć”, zakończenie „do usłyszenia” z 697 s
+         ranges=[(27.5, 85.0), (89.8, 156.4, None, 156.48), (156.4, 211.6, 161.50, None), (212.7, 214.85, None, 215.15),
+                 (221.4, 249.5, 226.40, 249.08), (249.5, 264.0, 250.55, None), (267.5, 268.95, None, 268.97), (269.0, 272.6, 270.42, None), (279.3, 388.2, 279.62, None),
+                 (415.2, 442.6, None, 442.55), (450.4, 462.3), (464.0, 469.9), (502.4, 512.5),
+                 (523.3, 528.9), (539.8, 574.5), (577.7, 592.6), (637.2, 673.3, None, 673.30), (677.5, 687.4, 677.58, None),
+                 (697.0, 716.2)],
          hook=4, delivery=3, brand="flowbiz",
          notes="Kolega zrobił system z Codexem — dane w pamięci przeglądarki. Magiczne pierwsze sesje, "
                "paczki, które ze sobą nie gadają, AI przyznaje Ci rację, framework we frameworku, "
@@ -258,14 +265,14 @@ CHAPTERS += [
     dict(id="ch-vibe-1-baza-danych", source="vibecoding", parent="ep-vibecoding",
          title="Wyczyści cache i system znika", ranges=[(27.5, 68.3)], hook=5, delivery=4, cta="none"),
     dict(id="ch-vibe-2-magiczne-sesje", source="vibecoding", parent="ep-vibecoding",
-         title="Dwie magiczne sesje z agentem", ranges=[(109.1, 173.0)], hook=4, delivery=4, cta="none"),
+         title="Dwie magiczne sesje z agentem", ranges=[(109.1, 156.4, None, 156.48), (156.4, 173.0, 161.50, None)], hook=4, delivery=4, cta="none"),
     dict(id="ch-vibe-3-przyznaje-racje", source="vibecoding", parent="ep-vibecoding",
-         title="AI zawsze przyzna Ci rację", ranges=[(210.3, 220.05), (231.1, 264.0)], hook=5, delivery=3,
+         title="AI zawsze przyzna Ci rację", ranges=[(210.3, 214.85, None, 215.15), (221.4, 249.5, 226.40, 249.08), (249.5, 264.0, 250.55, None)], hook=5, delivery=3,
          cta="none"),
     dict(id="ch-vibe-4-framework", source="vibecoding", parent="ep-vibecoding",
-         title="Framework we frameworku", ranges=[(279.4, 327.2)], hook=3, delivery=4, cta="none"),
+         title="Framework we frameworku", ranges=[(279.3, 327.2, 279.62, None)], hook=3, delivery=4, cta="none"),
     dict(id="ch-vibe-5-gliniane-nogi", source="vibecoding", parent="ep-vibecoding",
-         title="System na glinianych nogach", ranges=[(415.2, 441.65), (448.8, 462.3)], hook=4, delivery=4,
+         title="System na glinianych nogach", ranges=[(415.2, 442.6, None, 442.55), (450.4, 462.3)], hook=4, delivery=4,
          cta="none"),
     dict(id="ch-vibe-6-puenta", source="vibecoding", parent="ep-vibecoding",
          title="Bariera budowania spadła, projektowania nie", ranges=[(539.8, 574.5)], hook=5, delivery=4,

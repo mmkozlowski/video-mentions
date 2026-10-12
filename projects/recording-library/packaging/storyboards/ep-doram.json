@@ -88,18 +88,18 @@
    "type": "list",
    "at": "diabeł",
    "until": "+14",
-   "kicker": "Jedna pozycja, różne nazwy",
+   "kicker": "Jeden produkt, trzy nazwy",
    "items": [
     {
-     "text": "Gartenstuhl Alu, grau",
+     "text": "Nazwa handlowa",
      "at": "nazwać"
     },
     {
-     "text": "Garden chair alu",
+     "text": "Nazwa produkcyjna",
      "at": "angielsku"
     },
     {
-     "text": "Stuhl Alu grau",
+     "text": "Nazwa kontrahenta",
      "at": "rozszyfrowanie"
     }
    ]

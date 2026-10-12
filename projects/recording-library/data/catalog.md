@@ -73,7 +73,7 @@ Ranking: `hook × 2 + delivery` (max 15). A ≥ 13, B ≥ 11. Oceny redakcyjne �
 | A | 14 | `ch-om-8-komu-odradzam` | Komu odradzam Open Mercato | ep-om-intro | 48 | Więc uczciwie, komu to odradzam? Jeśli nie masz w firmie osoby technicznej, to nie |
 | A | 14 | `ch-offers-1-oferta-5-minut` | Oferta w 5 minut zamiast kilkunastu godzin | ep-open-mercato-offers | 61 | A jak to działa w praktyce? U jednego producenta maszyn sportowych wdrożyliśmy asystenta AI, |
 | A | 14 | `ch-doram-3-przeklejala-drukowala` | Przeklejała, drukowała, przeklejała… | ep-doram | 75 | Dużo też czasu w tym wszystkim zajmowało przygotowanie dla osoby, która była w biurze, |
-| A | 13 | `ch-vibe-3-przyznaje-racje` | AI zawsze przyzna Ci rację | ep-vibecoding | 39 | Problem jest gdzie indziej. AI przyznaje Ci rację cokolwiek go o cokolwiek poprosisz w |
+| A | 13 | `ch-vibe-3-przyznaje-racje` | AI zawsze przyzna Ci rację | ep-vibecoding | 38 | Problem jest gdzie indziej. AI przyznaje Ci rację |
 | A | 13 | `ch-om-2-excel-wersje` | Ten sam Excel w kilku wersjach | ep-om-intro | 65 | Zacznijmy od tego, co widzę u klientów. Wchodzę do firm i widzę Excela. Nie |
 | A | 13 | `ch-doram-5-70-94` | Pamięć dla AI: 70% → 94% w miesiąc | ep-doram | 77 | I w tym przypadku do tego klienta, już wracając znowu do brzegu, polegało to |
 | A | 13 | `ch-vacu-1-chatgpt-zapomina` | ChatGPT przestaje pamiętać Twoje wytyczne | ep-vacuactiv | 83 | Jaki był problem? Problem był taki, że właściciel tutaj korzystając z tych narzędzi najbardziej |
@@ -81,12 +81,12 @@ Ranking: `hook × 2 + delivery` (max 15). A ≥ 13, B ≥ 11. Oceny redakcyjne �
 | B | 12 | `ch-module-7-slownik` | Zamówienie u handlowca ≠ zamówienie na produkcji | ep-module | 25 | I słownik pojęć to jest rzecz, która bardzo często wspomniana, a która potrafi wywrócić |
 | B | 12 | `ch-om-4-nie-zapier` | To nie jest Make, n8n ani Zapier | ep-om-intro | 25 | z czym Open Mercato jest mylone, bo to jest ważne to nie jest Make, |
 | B | 12 | `ch-marpasz-4-srubki` | AI to dokręcanie śrubek | ep-marpasz | 38 | I teraz pytanie, czy to działa idealnie? No nie, pamiętajmy, że systemy oparte o |
-| B | 12 | `ch-vibe-5-gliniane-nogi` | System na glinianych nogach | ep-vibecoding | 41 | Jeśli nie znasz cyklu wytwarzania oprogramowania, to i tak na Open Mercatus budujesz system. |
+| B | 12 | `ch-vibe-5-gliniane-nogi` | System na glinianych nogach | ep-vibecoding | 40 | Jeśli nie znasz cyklu wytwarzania oprogramowania, to i tak na Open Mercatus budujesz system. |
 | B | 12 | `ch-doram-1-nazwy` | Ten sam produkt na kilkanaście sposobów | ep-doram | 43 | Klient dostawał od swoich kontrahentów niemieckich zamówienia w Excelu. Długoletni kontrahenci współpracowali już, jakieś |
 | B | 12 | `ch-module-2-druga-strona` | Warsztat: 70 pytań po rolach | ep-module | 47 | Mówię o tym, bo widzę, jak ludzie zaczynają od drugiej strony. Odpalają agenta, proszą |
 | B | 12 | `ch-module-10-powtarzalnosc` | Jedno słowo: powtarzalność | ep-module | 54 | Jest jedno słowo, które to wszystko spina. Powtarzalność. I nie chodzi o to, żeby |
 | B | 12 | `ch-module-4-droga-kartki` | Jedną kartkę dotyka kilkanaście osób | ep-module | 56 | Idziemy z tą kartką, zaczyna się od handlowca albo od razu od klienta. Zamówienie |
-| B | 12 | `ch-vibe-2-magiczne-sesje` | Dwie magiczne sesje z agentem | ep-vibecoding | 64 | Kiedy zaczynasz budować z agentem AI pierwsze dwie sesje wyglądają magiczne. Prosisz o ekran, |
+| B | 12 | `ch-vibe-2-magiczne-sesje` | Dwie magiczne sesje z agentem | ep-vibecoding | 61 | Kiedy zaczynasz budować z agentem AI pierwsze dwie sesje wyglądają magiczne. Prosisz o ekran, |
 | B | 12 | `ch-vacu-3-mozg-firmy` | Mózg firmy ze 150 GB danych | ep-vacuactiv | 68 | I idąc tym tropem, no poszliśmy w tym kierunku, ok, tworzymy mózg firmy. Mózg |
 | B | 11 | `ch-om-6-najtrudniejsze` | Najtrudniejsze rzeczy w programowaniu już są | ep-om-intro | 33 | Każdy proces biznesowy potrzebuje mniej więcej tego samego. Potrzebuje pól, potrzebuje uprawnień, potrzebuje danych |
 | B | 11 | `ch-vacu-7-narzedzie-to-nie-wdrozenie` | Licencja to nie wdrożenie | ep-vacuactiv | 34 | samo rozwiązanie techniczne często, jak widzimy po tych różnych wdrożeniach nieudanych, po prostu samo |
@@ -117,7 +117,7 @@ Ranking: `hook × 2 + delivery` (max 15). A ≥ 13, B ≥ 11. Oceny redakcyjne �
 | id | klient (wewn.) | tytuł | min | o czym |
 |---|---|---|---|---|
 | `ep-module-1` | (kanał) | Jak składam moduł — cz. 1 | 4.3 | Kartka papieru zamiast kodu, warsztat 6 h z ~70 pytaniami po rolach, droga zamówienia przez firmę, nagrana rozmowa z programistą → specyfikacja. |
-| `ep-vibecoding` | (kanał) | Vibe coding vs framework: dlaczego system z agentem sypie się na produkcji | 7.9 | Kolega zrobił system z Codexem — dane w pamięci przeglądarki. Magiczne pierwsze sesje, paczki, które ze sobą nie gadają, AI przyznaje Ci rację, framework we frameworku, trzy uczciwe zastrzeżenia, puenta: AI obniżyło barierę budowania, nie projektowania. |
+| `ep-vibecoding` | (kanał) | Vibe coding vs framework: dlaczego system z agentem sypie się na produkcji | 8.1 | Kolega zrobił system z Codexem — dane w pamięci przeglądarki. Magiczne pierwsze sesje, paczki, które ze sobą nie gadają, AI przyznaje Ci rację, framework we frameworku, trzy uczciwe zastrzeżenia, puenta: AI obniżyło barierę budowania, nie projektowania. |
 | `ep-open-mercato-offers` | (wiele) | 8 wdrożeń Open Mercato — oferty | 3.3 | Krótki odcinek: chaos w ofertach, konwersja handlowców, asystent czytający maile (producent sprzętu sportowego) — oferta w 5 min zamiast kilkunastu godzin. |
 | `ep-module-2` | (kanał) | Jak składam moduł — cz. 2 | 3.8 | Trzy warstwy specyfikacji (40 minut dziennie, 3 faktury), słownik pojęć, checklista, trafność 70–90%, granice modułu, wzorce vs wyjątki, powtarzalność, CTA w komentarzu. |
 | `ep-rezon` | Rezon | Pamiątki znad morza: system B2B | 7.0 | Firma z Kołobrzegu, proces na kartkach, integracja z PC Business, handlowiec z tabletem, produkcja na zamówienie, panel klienta na Open Mercato. |
