@@ -76,3 +76,7 @@ http://localhost:8765, pełne filmy z `final/samples` (Range — da się przewij
 w `data/board-state.json` (w repo, Claude czyta uwagi wprost z pliku), historia zmian filmu na karcie,
 przycisk „Wstaw czas” bierze moment z odtwarzacza. `--lan` udostępnia planszę w sieci lokalnej.
 Artefakt Cd35tVFfQoR53XmTEkYDgW zostaje jako wersja do wysłania poza biuro (tylko 15-sekundowe podglądy).
+
+Panel (12.10, wieczór): plansza przeniesiona do FlowBiz Studio, zakładka „Filmy” — `tools/export_studio.py` pisze
+`studio-index.json` + `exports/studio-manifest.json`, studio czyta je i strumieniuje wideo; decyzje w
+`flowbiz-ads-studio/data/videos/`. `board_server.py` wyłączony (zapas). ADR: `flowbiz-ads-studio/ai/decisions/2026-10-12-zakladka-filmy-zrodla-z-innych-repo.md`.

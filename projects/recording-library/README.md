@@ -154,7 +154,7 @@ Każdy punkt jest niezależny i da się go puścić bez nadzoru:
 ## Połączenia z repo
 
 - `~/Repo/flowbiz-automation-unlocked` — brandbook FlowBiz: paleta i font w `.ai/memory/project-rebrand-palette-font.md`, tokeny w `src/app/globals.css` (teal `#1C9E7A`, amber `#F5A623`, Plus Jakarta Sans) — paleta B w `tools/package.py` (`PALETTES`) to **kopia** tokenów strony; zmiana na stronie wymaga ręcznej zmiany tutaj
-- `~/Repo/flowbiz-ads-studio` — panel marketingu (localhost:4317): reklamy, Meta/Google Ads, zakładka YouTube (`data/episodes/<id>.json`) — odcinki YouTube publikujemy z panelu; plan: zakładka „Filmy” czytająca `data/scorecard.json`, `data/board-state.json`, `data/video-history.json` i wideo z `final/samples` (zamiast `tools/board_server.py`)
+- `~/Repo/flowbiz-ads-studio` — panel marketingu (localhost:4317): reklamy, Meta/Google Ads, zakładka YouTube (`data/episodes/<id>.json`) — zakładka **Filmy** czyta `studio-index.json` → `exports/studio-manifest.json` (generuje `tools/export_studio.py` — uruchom po renderze), wideo strumieniuje z `final/samples`; decyzje i uwagi agencji zapisuje u siebie w `data/videos/` (stamtąd je czytam przy poprawkach). Zakładka YouTube = tytuły, opisy, rozdziały odcinków
 - Źródła nagrań: `~/Youtube Projects/` (poza gitem, ścieżki w `tools/sources.py`)
 - Repo klientów z case studies (fakty do copy sprawdzamy tam): Doram `~/Repo/doram-erp`, Marpasz `~/Repo/marpasz-system`, Rezon `~/Repo/rezon-erp-openmercato`, Vacuactiv `~/Repo/vacuactiv-mercato`
 - `projects/youtube` — efekty uderzeń (`beat`) i `logos.css` pochodzą z systemu wstawek YouTube

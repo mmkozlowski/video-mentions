@@ -1,7 +1,7 @@
 # Podział wiedzy: montaż tutaj, marka w FlowBiz, panel w studiu
 
 **Data:** 2026-10-12
-**Status:** ✅ wdrożone (dokumenty, połączenia) · plan (zakładka „Filmy” w studiu, `brand.json`)
+**Status:** ✅ wdrożone (dokumenty, połączenia, zakładka „Filmy” w studiu) · plan (`brand.json`)
 
 ## Problem
 
@@ -19,8 +19,8 @@ w `flowbiz-ads-studio`, a pipeline wideo tutaj. Mateusz: „muszę te dwa repo j
   tylko w `flowbiz-automation-unlocked` (`.ai/memory/project-rebrand-palette-font.md`,
   `src/app/globals.css`).
 - **Każdy projekt ma w README sekcję „Połączenia z repo”**, a README główne — tabelę.
-- Plan: zakładka „Filmy” w studiu czyta pliki tego repo (ścieżka w `.env`), plansza
-  `board_server.py` znika; marka eksportowana do `brand.json` czytanego przez `package.py`.
+- Zakładka „Filmy” w studiu czyta `studio-index.json` tego repo (źródło w `flowbiz-ads-studio/data/sources.json`,
+  ścieżka na maszynie w `.env`), plansza `board_server.py` wyłączona. Plan: marka eksportowana do `brand.json` czytanego przez `package.py`.
 
 ## Pułapki
 

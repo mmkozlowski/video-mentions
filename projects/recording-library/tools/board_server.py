@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Plansza filmów na localhost — pełne filmy z final/samples, decyzje i uwagi w data/board-state.json.
+"""ZASTĄPIONE 12.10.2026 zakładką „Filmy” w FlowBiz Studio (~/Repo/flowbiz-ads-studio, tools/export_studio.py).
+Zostaje jako zapas bez studia; decyzje z data/board-state.json NIE synchronizują się ze studiem.
+
+Plansza filmów na localhost — pełne filmy z final/samples, decyzje i uwagi w data/board-state.json.
 
 Mateusz 12.10: „wolę to mieć na localhost” (artefakt miał tylko 15-sekundowe podglądy). Ta sama
 plansza co artefakt (sekcje, ocena, uwagi z czasem, plan pracy), ale wideo grają w pełnej jakości,
