@@ -169,6 +169,30 @@ Na planszy filmów (zakładka „Filmy” / http://localhost:8765): zatrzymaj fi
 które nie gra, „Wstaw czas”, opisz **co jest źle**, nie jak naprawić — np. „1:23 drugi raz
 pada «dlaczego»”, „5:41 słowa się zlewają”. Każda poprawka trafia do historii zmian filmu.
 
+## 13. Miniatury YouTube
+
+Wzór: `~/Youtube Projects/S-10 - czym jest OM/Miniatura VS - AI-first-selection.png` (projekt w Claude Design
+„Miniatura VS - AI-first”). Klimat jak w reklamach: ciemna zieleń + mięta, prawdziwa twarz, jedna myśl.
+
+- **Układ „przed → po”:** lewa strona czerwona („dziś w firmie” — przekreślone Excel / no-code / SaaS),
+  prawa zielona (rozwiązanie: karta z modułami albo wynik). Mateusz na środku, wycięty z tła, wskazuje.
+- **Hasło 1–4 słowa w dwóch polach** (białe + zielone), które **dopowiada tytuł**, nie powtarza go.
+  Tytuł „Zamówienie ze 100 pozycjami w 10 minut” → miniatura „KILKA DNI → 10 MIN”, nie to samo zdanie.
+- **Ból albo liczba z wdrożenia bije opis** (pamięć: copy-i-hook) — „5 NAZW, 1 PRODUKT”, nie „Automatyzacja zamówień”.
+- **Co najmniej dwa warianty do testu:** z twarzą i z samym wynikiem/makietą. Dane: twarz nie wygrywa
+  zawsze, różnice zależą od niszy (zbiór 300 tys. filmów, Search Engine Journal).
+- **Bez clickbaitu:** YouTube wybiera zwycięską miniaturę w Test & Compare po **czasie oglądania**, nie po
+  kliknięciach — obietnica z miniatury musi paść w pierwszej minucie odcinka. W B2B przesada kosztuje wiarygodność.
+- **Prawy dolny róg pusty** — YouTube kładzie tam czas trwania. Tekst czytelny na telefonie (miniatura ~170 px
+  szerokości): najwyżej dwie linie, gruby font.
+- **Odznaki narzędzi** (Open Mercato, Claude Code, Excel) z oryginalnymi logo — rozpoznawalne w wynikach wyszukiwania.
+- **Zdjęcia twarzy:** `~/Youtube Projects/Mój ryj` (zatwierdzone przez Mateusza). Część to generacje Gemini —
+  przy takiej miniaturze włącz w YouTube Studio „zmienione lub syntetyczne treści”.
+- Format: 1280×720 PNG/JPG < 2 MB; pion 1080×1920 jako okładka rolki.
+
+Źródła danych: [Search Engine Journal — czy twarze pomagają](https://www.searchenginejournal.com/do-faces-help-youtube-thumbnails-heres-what-the-data-says/563944/),
+[vidIQ — miniatury a CTR](https://vidiq.com/blog/post/youtube-custom-thumbnails-ctr/).
+
 ---
 
 # Część II — załącznik techniczny
