@@ -187,8 +187,35 @@ Wzór: `~/Youtube Projects/S-10 - czym jest OM/Miniatura VS - AI-first-selection
   szerokości): najwyżej dwie linie, gruby font.
 - **Odznaki narzędzi** (Open Mercato, Claude Code, Excel) z oryginalnymi logo — rozpoznawalne w wynikach wyszukiwania.
 - **Zdjęcia twarzy:** `~/Youtube Projects/Mój ryj` (zatwierdzone przez Mateusza). Część to generacje Gemini —
-  przy takiej miniaturze włącz w YouTube Studio „zmienione lub syntetyczne treści”.
+  wtedy dopisek w stopce opisu (niżej, „Oznaczanie AI”).
 - Format: 1280×720 PNG/JPG < 2 MB; pion 1080×1920 jako okładka rolki.
+
+**Przegląd kanałów (12.10.2026, 64 miniatury: Szymon Negacz, WiseConnect, Kanał Zero, Podcast Biznesowy).**
+Zestawienia: `~/Youtube Projects/inspiracje/miniatury-kanaly-2026-10-12/`. Wspólny mianownik:
+
+1. **Stały szablon kanału** — jedno tło, jeden kolor wyróżnienia, ten sam font, logo w rogu. Kanał
+   rozpoznaje się w wynikach bez czytania (Negacz: fiolet; Wise: grafit + beż; Podcast: czerń + pomarańcz).
+2. **Trzy elementy, nie więcej:** duża twarz (40–50% kadru, wycięta, wyraźna emocja: zdziwienie,
+   sceptycyzm, ręka przy brodzie, wskazanie) + tekst + **jeden rekwizyt** (logo firmy, telefon, kalkulator, wykres).
+3. **Tekst 2–4 linie, 3–8 słów, podświetlone 1–2 słowa** — prawie zawsze liczba z jednostką
+   („22 miliardy”, „87 000”, „75 mln zł”, „w 47 minut”) albo słowo-klucz.
+4. **Pytanie albo teza** („Jak mierzę zwrot z AI?”, „Kim jest nowy prezes?”). B2B (Negacz, Wise) pyta spokojnie;
+   „!?” i krzyk to styl newsowy (Zero, Podcast) — nie dla nas.
+5. **Rozpoznawalne marki w kadrze** (Fakro/Velux, Apple, BMW, Uber, OpenAI) mówią „o kim” w pół sekundy —
+   u nas: Excel, Claude, Open Mercato, logo klienta (za zgodą).
+6. **Seria** oznaczona w rogu („3/5”, „4/5”).
+7. Tekst często **skraca tytuł** zamiast go dopowiadać — tytuły są długie, miniatura niesie ich rdzeń + liczbę.
+
+**Dla nas:** szablon jak wzór „Miniatura VS”, ale uproszczony do trzech elementów (twarz + 2–3 linie z
+podświetloną liczbą + jeden rekwizyt). Lewa lista przekreśleń i karta modułów — tylko gdy to jest temat odcinka.
+
+**Oznaczanie AI:** żaden z kanałów nie oznacza miniatur, choć część jest wyraźnie generowana lub mocno
+retuszowana. Zasady YouTube dotyczą realistycznych treści **w filmie**, o miniaturach milczą
+([YouTube: zmienione lub syntetyczne treści](https://support.google.com/youtube/answer/14328491)). AI Act art. 50 ust. 4
+(deepfake realnej osoby) przy celu komercyjnym nie daje wyjątku „artystycznego”
+([SRD Rechtsanwälte o wytycznych KE](https://www.srd-rechtsanwaelte.de/en/blog/deepfake-labelling-under-the-ai-act-what-the-new-eu-guidance-clarifies)).
+Praktycznie: na miniaturze **bez znaczka**; w stopce opisu „Miniatura i część ujęć wygenerowane z pomocą AI”
+— tanie, nie psuje kliknięć, zamyka ryzyko. Prawdziwe zdjęcie albo klatka z nagrania nie wymaga niczego.
 
 Źródła danych: [Search Engine Journal — czy twarze pomagają](https://www.searchenginejournal.com/do-faces-help-youtube-thumbnails-heres-what-the-data-says/563944/),
 [vidIQ — miniatury a CTR](https://vidiq.com/blog/post/youtube-custom-thumbnails-ctr/).
