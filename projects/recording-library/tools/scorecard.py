@@ -23,7 +23,7 @@ import json
 import re
 from pathlib import Path
 
-from package import FINAL, PACK, output_name
+from package import FINAL, PACK, output_name, tempo_for
 from sources import DATA, LIBRARY, load_clips
 
 PREDICTOR = DATA / "predictor.json"     # wyniki Higgsfield Virality Predictor (dopisywane ręcznie/skryptem)
@@ -89,12 +89,15 @@ def main():
         fmt = "ad" if board.get("variant") and "ad" in fmts else fmts[0]
         if not list(FINAL.glob(f"{name}__{fmt}-*.mp4")):
             continue
-        words = json.load(open(LIBRARY / clip["id"] / "words.json"))
+        speed = tempo_for(board, fmt)   # oś gotowego filmu, nie nagrania
+        words = [dict(w, start=w["start"] / speed, end=w["end"] / speed)
+                 for w in json.load(open(LIBRARY / clip["id"] / "words.json"))]
+        length = clip["duration"] / speed
         kind = kind_of(clip, board, fmt)
         cover = board.get("cover", {}).get("dur", 2.2) if board.get("cover") and board["cover"].get("style") != "callout" else 0
         first = words[0]["start"] if words else 0
         events = len(board.get("events", []))
-        epm = events / (clip["duration"] / 60)
+        epm = events / (length / 60)
         cta = board.get("cta", {})
         has_cta = bool(cta.get("reels") or cta.get("ad")) or kind in ("zajawka", "odcinek")
         scores = clip.get("scores", {})
@@ -111,7 +114,7 @@ def main():
             "hook": (hook_ed - 1) / 4,
             "delivery": (delivery_ed - 1) / 4,
             "opening": opening,
-            "length": length_score(kind, clip["duration"]),
+            "length": length_score(kind, length),
             "specific": specific,
             "dynamics": min(1.0, epm / 8),
             "cta": 1.0 if has_cta else 0.0,
@@ -120,7 +123,7 @@ def main():
         p = predictor.get(name)
         rows.append({
             "id": name, "clip": clip["id"], "title": clip["title"], "kind": kind, "format": fmt,
-            "brand": board.get("brand", clip["brand"]), "duration": round(clip["duration"], 1),
+            "brand": board.get("brand", clip["brand"]), "duration": round(length, 1),
             "series": clip.get("parent") or clip.get("block") or clip["source"],
             "seriesName": series_name(name, board.get("brand", clip["brand"])),
             "hook_text": board.get("hook", {}).get("text", "").replace("*", ""),

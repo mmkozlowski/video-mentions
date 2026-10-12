@@ -38,6 +38,16 @@ FINAL = PROJECT / "final" / "samples"
 GSAP = Path.home() / ".claude/skills/talking-head-recut/assets/vendor/gsap.min.js"
 NODE22 = Path.home() / ".nvm/versions/node/v22.22.2/bin"
 FPS = 30
+# Tempo mowy w formatach krótkich (rolka, reklama, zajawka 4:5) — Mateusz 12.10: noc z kolorem
+# i tempem, wybrane 1,05× (rekomendacja: żwawiej, ale bez „wiewiórki”; wysokość głosu zostaje).
+# Odcinki 16:9 zostają 1,00× — ich rozdziały siedzą w opisach YouTube w studiu jako sekundy.
+# Storyboard „tempo” nadpisuje. Kotwice słowne przesuwają się same, liczby w storyboardzie
+# (sekundy osi klipu) przelicza Clock.at, czasy względne „+3” zostają czasem ekranowym.
+TEMPO_SHORT = 1.05
+
+
+def tempo_for(board, fmt):
+    return float(board.get("tempo", 1.0 if fmt == "youtube" else TEMPO_SHORT))
 
 PALETTES = {
     # Kanał YouTube — ta sama paleta co system wstawek (scene-shell.css).
@@ -120,9 +130,10 @@ class Clock:
         text, prefix = target
         return norm(word).startswith(text) if prefix else norm(word) == text
 
-    def __init__(self, words, fixes):
+    def __init__(self, words, fixes, tempo=1.0):
         self.words = words
         self.fixes = fixes
+        self.tempo = tempo
         self.cursor = 0.0
 
     def at(self, value, base=None, floor=None):
@@ -132,7 +143,7 @@ class Clock:
         inaczej „Siedzi” trafia w pierwsze „siedzi” z hooka i czas wychodzi ujemny."""
         floor = self.cursor if floor is None else floor
         if isinstance(value, (int, float)):
-            return float(value)
+            return float(value) / self.tempo
         if value.startswith("+"):
             return (base if base is not None else self.cursor) + float(value[1:])
         phrase, _, nth = value.partition("#")
@@ -231,12 +242,14 @@ class Composition:
         self.geo = FORMATS[fmt]
         self.vertical = fmt != "youtube"
         self.brand = BRANDS[board.get("brand", clip["brand"])]
+        self.tempo = tempo_for(board, fmt)
         words = json.load(open(LIBRARY / clip["id"] / "words.json"))
         self.splices_file = LIBRARY / clip["id"] / "splices.json"
         fixes = json.load(open(DATA / "caption-fixes.json"))
-        self.words = [dict(w, word=self.fix(w["word"], fixes)) for w in words]
-        self.clock = Clock(self.words, fixes)
-        self.clip_len = round(clip["duration"], 3)
+        self.words = [dict(w, word=self.fix(w["word"], fixes), start=round(w["start"] / self.tempo, 3),
+                           end=round(w["end"] / self.tempo, 3)) for w in words]
+        self.clock = Clock(self.words, fixes, self.tempo)
+        self.clip_len = round(clip["duration"] / self.tempo, 3)
         self.end_len = board.get("endcard", {}).get(fmt, {"ad": 3.5, "reels": 2.6, "youtube": 2.5, "feed": 3.5}[fmt])
         self.total = round(self.clip_len + self.end_len, 3)
         self.html, self.js, self.media = [], [], {}
@@ -271,7 +284,7 @@ class Composition:
     def base(self):
         g, p = self.geo, self.pal
         face_x = FACE_CENTER_X[self.clip["source"]] / SOURCE_W * 100
-        self.media["face.mp4"] = LIBRARY / self.clip["id"] / "master.mp4"
+        self.media["face.mp4"] = face_video(self.clip["id"], self.tempo)
         if self.vertical:
             self.html.append(
                 f'<div id="video-wrap" style="left:0;top:0;width:{g["w"]}px;height:{g["face_h"]}px">'
@@ -888,7 +901,7 @@ class Composition:
         """Ruch kamery na twarzy: plan zmienia się skokiem na każdej sklejce (maskuje
         wycięte pauzy) i co kilka zdań, a między cięciami obraz powoli dryfuje.
         Pod hookiem mniejsze skoki — twarz na pełnym ekranie jest już mocno powiększona."""
-        splices = json.load(open(self.splices_file)) if self.splices_file.exists() else []
+        splices = [t / self.tempo for t in json.load(open(self.splices_file))] if self.splices_file.exists() else []
         marks = [(t, "cut") for t in splices if 0.3 < t < self.clip_len - 0.3]
         last = 0.0
         for prev, w in zip(self.words, self.words[1:]):
@@ -970,7 +983,7 @@ class Composition:
         for ev in self.board["events"]:
             if self.fmt in ev.get("skip", []):
                 continue
-            start = self.clock.at(ev["at"], floor=ev.get("floor", self.clock.cursor))
+            start = self.clock.at(ev["at"], floor=ev["floor"] / self.tempo if "floor" in ev else self.clock.cursor)
             self.clock.cursor = start
             end = self.clock.at(ev["until"], base=start) if "until" in ev else start + ev.get("dur", 3.0)
             end = min(end, self.clip_len)
@@ -1187,6 +1200,22 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 """
 
 
+def face_video(clip_id, tempo):
+    """Nagranie twarzy w tempie formatu: setpts + atempo (wysokość głosu bez zmian), w cache
+    obok master.mp4 — odświeżane, gdy master jest nowszy (nowe cięcie albo kolor)."""
+    master = LIBRARY / clip_id / "master.mp4"
+    if tempo == 1.0:
+        return master
+    sped = master.with_name(f"master-x{tempo:.2f}.mp4")
+    if not sped.exists() or sped.stat().st_mtime < master.stat().st_mtime:
+        subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", str(master), "-filter_complex",
+                        f"[0:v]setpts=PTS/{tempo}[v];[0:a]atempo={tempo}[a]", "-map", "[v]", "-map", "[a]",
+                        "-c:v", "libx264", "-preset", "medium", "-crf", "17", "-pix_fmt", "yuv420p", "-r", str(FPS),
+                        "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-movflags", "+faststart", str(sped)],
+                       check=True, stdin=subprocess.DEVNULL)
+    return sped
+
+
 def reject_hdr(path):
     """Nagranie z iPhone'a w HLG przełącza HyperFrames na render HDR całego klipu (16 bit,
     x265 slow, kolory HDR na zwykłym telefonie) — najpierw tools/real_broll.py (SDR)."""
@@ -1325,7 +1354,7 @@ def main():
             if a.finalize_only:
                 if (folder / "render.mp4").exists():
                     FINAL.mkdir(parents=True, exist_ok=True)
-                    print("  →", finalize(folder / "render.mp4", FINAL / f"{name}__{fmt}-{pal}.mp4", music=music_plan(board, clip["duration"])), flush=True)
+                    print("  →", finalize(folder / "render.mp4", FINAL / f"{name}__{fmt}-{pal}.mp4", music=music_plan(board, clip["duration"] / tempo_for(board, fmt))), flush=True)
                 continue
             comp = Composition(clip, board, fmt, pal)
             stage(comp, folder)
@@ -1344,7 +1373,7 @@ def main():
                     continue
                 FINAL.mkdir(parents=True, exist_ok=True)
                 out = FINAL / f"{name}__{fmt}-{pal}.mp4"
-                print("  →", finalize(raw, out, music=music_plan(board, clip["duration"])), flush=True)
+                print("  →", finalize(raw, out, music=music_plan(board, comp.clip_len)), flush=True)
 
 
 if __name__ == "__main__":
