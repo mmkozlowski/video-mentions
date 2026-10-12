@@ -30,6 +30,13 @@
     "3:24 — wycięty falstart „przez którą w ogóle, przez którą w ogóle nagrywam” (złączenie 270,42 s)",
     "2:00 / 2:52 — granice z sygnału, bo Whisper uciął „nie” i „rację”"
    ]
+  },
+  {
+   "date": "2026-10-12",
+   "by": "Claude",
+   "changes": [
+    "rozdziały przeliczone po cięciach (od 2:14 wcześniej o 3–8 s), długość 8:04 — zaktualizowane na stronie publikacji"
+   ]
   }
  ],
  "ep-doram": [
@@ -40,6 +47,13 @@
     "0:56 — lista: Nazwa handlowa / Nazwa produkcyjna / Nazwa kontrahenta (zamiast niemieckich nazw produktu)",
     "1:23 — wycięte drugie „Dlaczego?” (restart 92,9–97,5 s); dalsza część odcinka ok. 4 s wcześniej",
     "1:32 — przekreślenie „KILKA DNI” leży na napisie, nie na całej planszy"
+   ]
+  },
+  {
+   "date": "2026-10-12",
+   "by": "Claude",
+   "changes": [
+    "rozdziały przeliczone po cięciu (od 1:27 wcześniej o ~4 s), długość 10:41 — zaktualizowane na stronie publikacji"
    ]
   }
  ],
