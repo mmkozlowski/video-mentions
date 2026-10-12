@@ -1,6 +1,7 @@
 # Index pamięci — video-mentions (.ai/memory)
 
-Wiedza **cross-project** o produkcji wideo reklamowego. Rzeczy specyficzne dla
+Wiedza **cross-project** o produkcji wideo reklamowego. Zasady montażu zebrane dla ludzi:
+[`WYTYCZNE-MONTAZU.md`](../WYTYCZNE-MONTAZU.md) — nowa ogólna poprawka Mateusza trafia też tam. Rzeczy specyficzne dla
 jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 
 - [Higgsfield MCP: limity](memory/higgsfield-mcp-limity.md) — trial „unlimited" nie działa przez MCP (liczą się tylko kredyty); `veo3_1_lite` wymusza 8 s przy start+end frame; polski TTS tylko przez `text2speech_v2`/elevenlabs

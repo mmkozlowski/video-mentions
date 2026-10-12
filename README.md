@@ -4,6 +4,9 @@ Produkcja wideo reklamowego — pipeline, materiał i wiedza. Jedno repo na wszy
 projekty, żeby to, czego nauczyliśmy się na jednym kliencie, działało od razu na
 następnym.
 
+**Jak montujemy (cięcia, przeskoki, hook, formaty, kontrola): [`WYTYCZNE-MONTAZU.md`](WYTYCZNE-MONTAZU.md).**
+Kolory, fonty, logo i ton marki są w brandbooku w repo FlowBiz, nie tutaj.
+
 ## Struktura
 
 ```
