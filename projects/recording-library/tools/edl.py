@@ -155,7 +155,8 @@ EPISODES = [
                "(100–150 GB danych), Open Mercato na produkcji, brief w Telegramie, "
                "Obsidian + Hermes + Codex. Najdłuższy, do skrócenia w montażu."),
     dict(id="ep-open-mercato-offers", source="session", client="(wiele)",
-         title="8 wdrożeń Open Mercato — oferty", ranges=[(2557.1, 2767.6)], hook=3, delivery=3,
+         title="8 wdrożeń Open Mercato — oferty",
+         ranges=[(2557.1, 2716.2, None, 2716.10), (2719.3, 2767.6, 2719.42, 2768.20)], hook=3, delivery=3,   # ten sam dubel co ch-offers-1
          brand="flowbiz",
          notes="Krótki odcinek: chaos w ofertach, konwersja handlowców, asystent czytający maile "
                "(producent sprzętu sportowego) — oferta w 5 min zamiast kilkunastu godzin."),
@@ -202,7 +203,10 @@ CHAPTERS = [
     dict(id="ch-vacu-7-narzedzie-to-nie-wdrozenie", source="vacuactiv", parent="ep-vacuactiv",
          title="Licencja to nie wdrożenie", ranges=[(1063.9, 1100.1)], hook=4, delivery=3),
     dict(id="ch-offers-1-oferta-5-minut", source="session", parent="ep-open-mercato-offers",
-         title="Oferta w 5 minut zamiast kilkunastu godzin", ranges=[(2703.0, 2767.6)], hook=5, delivery=4),
+         title="Oferta w 5 minut zamiast kilkunastu godzin",
+         # 12.10 uwagi Mateusza ze studia: start łapał „…chwili” i ucinał „A”; dubel „zbiera z nich informacje
+         # na temat wycen” — pierwsze podejście urwane na „na temat”, zostaje drugie od 2719,42; koniec ucinał „pójdzie”
+         ranges=[(2703.0, 2716.2, 2703.56, 2716.10), (2719.3, 2767.6, 2719.42, 2768.20)], hook=5, delivery=4),
     dict(id="ch-rezon-1-ksiegowosc-po-fakcie", source="session", parent="ep-rezon",
          title="Dane z księgowości to dane po fakcie", ranges=[(2803.5, 2877.1)], hook=4, delivery=3),
     dict(id="ch-rezon-2-ustka-rowy", source="session", parent="ep-rezon",

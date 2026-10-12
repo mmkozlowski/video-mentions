@@ -131,7 +131,9 @@ Wszystkie układy z klatkami i podpowiedzią, kiedy którego użyć: [`KATALOG-U
 
 - **Dźwięk:** wyrównana głośność (−14 LUFS na platformy), lekkie uwydatnienie mowy,
   bez trzasków na sklejkach.
-- **Muzyka:** cichy podkład pod mową, wyraźnie ciszej niż głos, ściszany pod słowami.
+- **Muzyka (✅ 12.10):** krótkie wejście na starcie, potem **ciche tło przez cały film** (żadnej pustej ciszy),
+  głośniej na planszy końcowej. Tło ok. 25 dB pod głosem i dodatkowo ściszane pod słowami — pierwsza wersja
+  (~15 dB pod głosem) „zagłuszała mówienie”. Utwory z folderu Mateusza `music/` (oznaczone „dobre”).
   Tylko z biblioteki z licencją do użytku komercyjnego bez roszczeń Content ID (YouTube
   Audio Library i podobne) — inaczej YouTube obcina zasięg albo zarabia na filmie ktoś inny.
 - **Kolor:** korekta „średnia” (decyzja Mateusza 12.10): kontrast +10%, nasycenie +18%, lekkie
@@ -270,8 +272,10 @@ na czas sklejki.
   na materiale z kamery przed grafikami; wchodzi przy ponownym cięciu (`cut.py --force`)
 - dźwięk: highpass 80 Hz, −2 dB @ 250 Hz, +2,5 dB @ 3,2 kHz, kompresor, `loudnorm` −14 LUFS
 - tempo: `atempo=1.05` + `setpts` (ton bez zmian)
-- muzyka: `loudnorm` −31 LUFS + `sidechaincompress` pod mową; biblioteka
-  `projects/adresflow/assets/music/library/` (YouTube Audio Library)
+- muzyka (✅ 12.10): `package.py` `finalize()` → `mix_music()`: ścieżka −28 LUFS, wejście do 2,2 s, zejście 1 s
+  do tła −10 dB, `sidechaincompress` (0,03 / 4:1) pod głosem, plansza końcowa −2 dB; utwory w
+  `projects/recording-library/assets/music/` (Pixabay), domyślny `the-mountain-technology-562622.mp3`,
+  storyboard nadpisuje polem `music` (plik albo `false`). Nakładanie bez renderu grafiki: `package.py <id> --finalize-only`
 
 ## Szczegóły i historia ustaleń
 

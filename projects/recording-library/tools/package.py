@@ -1231,28 +1231,71 @@ def probe_duration(path, stream):
     return float(found.group()) if found else 0.0
 
 
-def finalize(raw, out, target=-14.0):
-    """Render → plik do publikacji: −14 LUFS (cel IG/TikTok), x264 CRF 20, a/v równe.
+# Muzyka (Mateusz 12.10: „brakuje muzyki na wejściu i cichego tła, żeby nie było pustej ciszy”).
+# Utwory wybrane przez niego w ~/Repo/video-mentions/music („dobre”), kopie w assets/music/ (Pixabay).
+# Poziomy względem mowy na −14 LUFS: wejście ~14 dB pod głosem, tło ~24 dB pod głosem i dodatkowo
+# ściszane pod słowami (sidechain), plansza końcowa znów głośniej. Storyboard może nadpisać:
+# "music": "plik.mp3" albo false.
+MUSIC_DIR = PROJECT / "assets" / "music"
+MUSIC_DEFAULT = "the-mountain-technology-562622.mp3"
+MUSIC_OFFSET = {"the-mountain-technology-562622.mp3": 1.5, "verclub-technology-550887.mp3": 1.5,
+                "jonasblakewood-technology-startup-533868.mp3": 1.0}   # ciche intro utworów (zmierzone RMS)
+MUSIC_LUFS = -28.0        # poziom ścieżki muzycznej przed automatyką; 12.10 −22 → −28 (−6 dB): „za głośno, zagłusza mówienie”
+MUSIC_INTRO = (2.2, 1.0)  # (do której sekundy pełne wejście, czas zejścia do tła)
+MUSIC_BED_DB = -10.0      # tło względem wejścia → ok. −32 LUFS, ~18 dB pod mową
+MUSIC_OUTRO_DB = -2.0     # plansza końcowa
+
+
+def music_plan(board, clip_len):
+    track = board.get("music", MUSIC_DEFAULT)
+    if not track:
+        return None
+    return {"file": MUSIC_DIR / track, "offset": MUSIC_OFFSET.get(track, 0.0), "clip_len": clip_len}
+
+
+def mix_music(raw, music, out_wav):
+    """Głos z renderu + muzyka: wejście → ciche tło (ściszane pod słowami) → głośniej na planszy końcowej."""
+    total = probe_duration(raw, "v:0")
+    intro_end, ramp = MUSIC_INTRO
+    bed, outro = 10 ** (MUSIC_BED_DB / 20), 10 ** (MUSIC_OUTRO_DB / 20)
+    outro_at = max(intro_end + ramp, music["clip_len"] - 0.3)
+    gain = (f"if(lt(t,{intro_end}),1,if(lt(t,{intro_end + ramp}),1-(1-{bed:.3f})*(t-{intro_end})/{ramp},"
+            f"if(lt(t,{outro_at:.3f}),{bed:.3f},min({outro:.3f},{bed:.3f}+({outro:.3f}-{bed:.3f})*(t-{outro_at:.3f})/0.6))))")
+    graph = (f"[1:a]atrim=0:{total:.3f},asetpts=PTS-STARTPTS,aresample=48000,loudnorm=I={MUSIC_LUFS}:TP=-3:LRA=7,"
+             f"volume=eval=frame:volume='{gain}',afade=t=out:st={max(0, total - 1.0):.3f}:d=1.0[m];"
+             f"[0:a]aresample=48000,asplit[v][key];"
+             f"[m][key]sidechaincompress=threshold=0.03:ratio=4:attack=20:release=500[md];"
+             f"[v][md]amix=inputs=2:normalize=0:duration=first[a]")
+    subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", str(raw), "-stream_loop", "-1", "-ss", f"{music['offset']:.2f}",
+                    "-i", str(music["file"]), "-filter_complex", graph, "-map", "[a]", "-c:a", "pcm_s16le", str(out_wav)],
+                   check=True)
+    return out_wav
+
+
+def finalize(raw, out, target=-14.0, music=None):
+    """Render → plik do publikacji: (muzyka) + −14 LUFS (cel IG/TikTok), x264 CRF 20, a/v równe.
 
     Dwa przebiegi loudnorm (pomiar, potem liniowa korekta) — jednoprzebiegowy pompuje.
     loudnorm potrafi wydłużyć ścieżkę (.ai/memory/montaz-pulapki-synchronizacji),
     dlatego atrim do długości obrazu i kontrola na końcu.
     """
     video_len = probe_duration(raw, "v:0")
-    measure = subprocess.run(["ffmpeg", "-v", "info", "-i", str(raw), "-vn", "-af",
+    audio = mix_music(raw, music, raw.with_name("mix.wav")) if music else raw
+    measure = subprocess.run(["ffmpeg", "-v", "info", "-i", str(audio), "-vn", "-af",
                               f"loudnorm=I={target}:TP=-1.5:LRA=11:print_format=json", "-f", "null", "-"],
                              capture_output=True, text=True).stderr
     m = json.loads(measure[measure.rindex("{"):measure.rindex("}") + 1])
     chain = (f"loudnorm=I={target}:TP=-1.5:LRA=11:measured_I={m['input_i']}:measured_TP={m['input_tp']}:"
              f"measured_LRA={m['input_lra']}:measured_thresh={m['input_thresh']}:offset={m['target_offset']}:"
              f"linear=true,aresample=48000,atrim=0:{video_len:.3f}")
-    subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", str(raw), "-af", chain, "-c:v", "libx264",
-                    "-preset", "medium", "-crf", "20", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k",
-                    "-movflags", "+faststart", str(out)], check=True)
+    subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", str(raw), "-i", str(audio), "-map", "0:v:0", "-map", "1:a:0",
+                    "-af", chain, "-c:v", "libx264", "-preset", "medium", "-crf", "20", "-pix_fmt", "yuv420p",
+                    "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", str(out)], check=True)
     drift = abs(probe_duration(out, "a:0") - probe_duration(out, "v:0"))
     if drift > 0.1:
         raise SystemExit(f"{out.name}: dźwięk i obraz różnią się o {drift:.2f} s")
-    return f"{out.name} ({out.stat().st_size / 1e6:.1f} MB, {m['input_i']} → {target} LUFS, a/v {drift:.3f} s)"
+    note = f", muzyka {music['file'].stem}" if music else ""
+    return f"{out.name} ({out.stat().st_size / 1e6:.1f} MB, {m['input_i']} → {target} LUFS{note}, a/v {drift:.3f} s)"
 
 
 def main():
@@ -1282,7 +1325,7 @@ def main():
             if a.finalize_only:
                 if (folder / "render.mp4").exists():
                     FINAL.mkdir(parents=True, exist_ok=True)
-                    print("  →", finalize(folder / "render.mp4", FINAL / f"{name}__{fmt}-{pal}.mp4"), flush=True)
+                    print("  →", finalize(folder / "render.mp4", FINAL / f"{name}__{fmt}-{pal}.mp4", music=music_plan(board, clip["duration"])), flush=True)
                 continue
             comp = Composition(clip, board, fmt, pal)
             stage(comp, folder)
@@ -1301,7 +1344,7 @@ def main():
                     continue
                 FINAL.mkdir(parents=True, exist_ok=True)
                 out = FINAL / f"{name}__{fmt}-{pal}.mp4"
-                print("  →", finalize(raw, out), flush=True)
+                print("  →", finalize(raw, out, music=music_plan(board, clip["duration"])), flush=True)
 
 
 if __name__ == "__main__":

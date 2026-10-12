@@ -28,3 +28,6 @@ następny krok, gdyby był potrzebny — wtedy kolejna prośba przychodzi już
 w kalibrowanych jednostkach. Aktualne poziomy i historia dojścia do nich:
 komentarz przy `MUS_VOL` w `projects/shorts IG/tools/music.py`. Powiązane:
 [[audio-lektor-muzyka]].
+
+12.10.2026 (recording-library): „muzyka za głośno, zagłusza moje mówienie” przy tle ~15 dB pod głosem →
+ściszone o 6 dB (ścieżka −22 → −28 LUFS), tło ~25 dB pod głosem. Dla gadanej głowy to jest punkt startowy.

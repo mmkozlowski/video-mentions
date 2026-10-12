@@ -71,7 +71,7 @@ Ranking: `hook × 2 + delivery` (max 15). A ≥ 13, B ≥ 11. Oceny redakcyjne �
 | A | 14 | `ch-vibe-1-baza-danych` | Wyczyści cache i system znika | ep-vibecoding | 39 | Kolega pokazał mi ostatnio system, który zrobił sam dla swojej firmy vibe kodując razem |
 | A | 14 | `ch-om-10-excel-dziala` | Excel działa. Po co mi Open Mercato? | ep-om-intro | 46 | Excel działa, no -cody, low -cody działają, Sasy działają, a i też pisze już |
 | A | 14 | `ch-om-8-komu-odradzam` | Komu odradzam Open Mercato | ep-om-intro | 48 | Więc uczciwie, komu to odradzam? Jeśli nie masz w firmie osoby technicznej, to nie |
-| A | 14 | `ch-offers-1-oferta-5-minut` | Oferta w 5 minut zamiast kilkunastu godzin | ep-open-mercato-offers | 61 | A jak to działa w praktyce? U jednego producenta maszyn sportowych wdrożyliśmy asystenta AI, |
+| A | 14 | `ch-offers-1-oferta-5-minut` | Oferta w 5 minut zamiast kilkunastu godzin | ep-open-mercato-offers | 59 | A jak to działa w praktyce? U jednego producenta maszyn sportowych wdrożyliśmy asystenta AI, |
 | A | 14 | `ch-doram-3-przeklejala-drukowala` | Przeklejała, drukowała, przeklejała… | ep-doram | 75 | Dużo też czasu w tym wszystkim zajmowało przygotowanie dla osoby, która była w biurze, |
 | A | 13 | `ch-vibe-3-przyznaje-racje` | AI zawsze przyzna Ci rację | ep-vibecoding | 38 | Problem jest gdzie indziej. AI przyznaje Ci rację |
 | A | 13 | `ch-om-2-excel-wersje` | Ten sam Excel w kilku wersjach | ep-om-intro | 65 | Zacznijmy od tego, co widzę u klientów. Wchodzę do firm i widzę Excela. Nie |
