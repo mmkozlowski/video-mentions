@@ -46,3 +46,11 @@ układzie co sesja 8.10 (720p, zielone polo), ale:
   Zostały znane potknięcia słowne w samych nagraniach (np. „a i też pisze aplikację” = „AI też”,
   „w 90-90%” = 99%) — w napisach tak, jak powiedziane.
 - `ch-om-5` wymienia z nazwy ERP Symfonia („koszmar”) — przed płatną promocją rozważ wersję bez nazwy.
+
+## Dopisek 12.10 — poprawki z czasem i historia zmian
+
+Pierwsza runda uwag Mateusza (13 punktów, ep-vibecoding + ep-doram) zrobiona przez `locate.py`
+i granice z sygnału; kontrola transkrypcją znalazła przy tym jeszcze jeden falstart (3:24).
+Od teraz każda zmiana filmu ląduje w `data/video-history.json` (`tools/history.py`), a galeria
+pokazuje historię pod filmem. Styl: przekreślenie `strike` leży na napisie (nie na planszy),
+`slam` w 16:9 o 30% mniejszy i bez łamania linii.

@@ -46,6 +46,20 @@ FORMATS = [("reels", "Reels / TikTok 9:16 — organiczne, CTA w komentarzu"),
            ("feed", "Zajawka 4:5 — LinkedIn / Facebook, link do pełnego odcinka")]
 
 
+HISTORY_CSS = (".hist{margin:8px 0;color:#9A938A;font-size:13px} .hist summary{cursor:pointer;color:#F5A623}"
+               " .hist b{color:#FAF8F0} .hist ul{margin:4px 0 8px;padding-left:18px}")
+
+
+def history_html(video):
+    """Historia zmian filmu (data/video-history.json, tools/history.py) — najnowsze na górze."""
+    entries = json.load(open(DATA / "video-history.json")).get(video, []) if (DATA / "video-history.json").exists() else []
+    if not entries:
+        return ""
+    body = "".join(f'<b>{e["date"]} · {html.escape(e["by"])}</b><ul>' + "".join(f"<li>{html.escape(c)}</li>" for c in e["changes"]) + "</ul>"
+                   for e in reversed(entries))
+    return f'<details class="hist"><summary>Historia zmian ({sum(len(e["changes"]) for e in entries)})</summary>{body}</details>'
+
+
 def main():
     clips = {c["id"]: c for c in load_clips()}
     boards = sorted(PACK.glob("storyboards/*.json"))
@@ -68,6 +82,7 @@ def main():
         cta = board.get("cta", {})
         rows.append(f'''<section><header><span class="prio prio-{clip["priority"]}">{clip["priority"]} · {clip["scores"]["total"]}</span>
 <h2>{html.escape(clip["title"])}</h2><code>{clip["id"]}</code>{f'<span class="brand">test A/B: hasło {html.escape(board["cover"]["text"].replace("*", ""))}</span>' if board.get("variant") else ""}<span class="brand">{board.get("brand", clip["brand"])}</span></header>
+{history_html(output_name(clip, board))}
 <p class="hook">Hook: „{html.escape(board.get("hook", {}).get("text", "").replace("*", ""))}”</p>
 <p class="cta">CTA reels: {html.escape(cta.get("reels", {}).get("title", "—").replace("*", ""))} — {html.escape(cta.get("reels", {}).get("sub", ""))}<br>
 CTA reklama: {html.escape(cta.get("ad", {}).get("title", "—").replace("*", ""))} → {html.escape(cta.get("ad", {}).get("button", ""))}</p>
@@ -88,7 +103,7 @@ code{{color:var(--mut)}} .brand{{border:1px solid var(--line);border-radius:20px
 .fmt-reels video,.fmt-ad video{{width:300px;aspect-ratio:9/16;background:#000;border-radius:10px}}
 .fmt-feed video{{width:340px;aspect-ratio:4/5;background:#000;border-radius:10px}}
 .fmt-youtube video{{width:min(620px,100%);aspect-ratio:16/9;background:#000;border-radius:10px}}
-.none{{color:var(--mut)}}
+.none{{color:var(--mut)}} {HISTORY_CSS}
 </style></head><body><main><h1>Próbki opakowania klipów</h1>
 <p class="lead"><a href="odcinki-i-grafiki.html" style="color:#F5A623">→ odcinki YouTube i grafiki statyczne</a> · <a href="starsze-odcinki.html" style="color:#F5A623">→ starsze odcinki kanału: Claude vs Open Mercato, Jak składam moduł, Po co Open Mercato</a><br>Sesja 8.10.2026 · paleta A (bursztyn) · ujęcia oznaczone „AI” są generowane (art. 50 AI Act — przy publikacji włącz też przełącznik na platformie).</p>
 {"".join(rows)}</main>'''+NOTES+'''</body></html>'''
@@ -111,7 +126,7 @@ def episodes_and_static(clips):
         chap = html.escape(chapters.read_text()) if chapters.exists() else ""
         eps.append(f'<section><h2>{html.escape(clip["title"])}</h2><code>{clip["id"]} · {int(clip["duration"] // 60)}:{int(clip["duration"] % 60):02d}</code>'
                    f'<div class="ep"><figure style="margin:0;width:min(900px,100%)"><video src="{f.name}?v={int(f.stat().st_mtime)}" controls preload="metadata" style="width:100%"></video></figure>'
-                   f'<pre>{chap}</pre></div></section>')
+                   f'<pre>{chap}</pre></div>{history_html(clip["id"])}</section>')
     static = FINAL.parent / "static"
     shots = []
     for feed in sorted(static.glob("*__feed.png")):
@@ -130,7 +145,7 @@ section{{border-top:1px solid var(--line);padding:24px 0}} h2{{margin:0 0 4px;fo
 pre{{margin:0;color:var(--mut);font-size:14px;white-space:pre-wrap}}
 .grid{{display:flex;flex-wrap:wrap;gap:24px}} figure{{margin:0;display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap}}
 img.feed{{width:280px;border-radius:8px}} img.story{{width:180px;border-radius:8px}} figcaption{{width:100%;color:var(--mut);font-size:13px}}
-nav a{{color:var(--acc)}}
+nav a{{color:var(--acc)}} {HISTORY_CSS}
 </style></head><body><main><h1>Odcinki YouTube i grafiki statyczne</h1>
 <p class="lead"><nav><a href="index.html">← krótkie klipy i reklamy wideo</a></nav></p>
 <h2 style="margin-top:28px">Odcinki YouTube 16:9</h2>{"".join(eps) or "<p>jeszcze bez renderu</p>"}
@@ -158,9 +173,9 @@ def series_page(clips):
         reels = sorted((c for c in clips.values() if c["id"].startswith(prefix)), key=lambda c: int(c["id"].split("-")[2]))
         chapters = FINAL / f"{episode}__chapters.txt" if episode else None
         ep = (f'<h3>Pełny odcinek YouTube 16:9 · {int(clips[episode]["duration"] // 60)}:{int(clips[episode]["duration"] % 60):02d}</h3><div class="ep">{video(f"{episode}__youtube-A.mp4", "yt")}'
-              + (f'<pre>{html.escape(chapters.read_text())}</pre>' if chapters and chapters.exists() else "") + '</div>') if episode else ""
-        cards = "".join(f'<div class="reel"><b>{html.escape(c["title"])}</b><code>{c["id"]} · {round(c["duration"])} s</code>{video(c["id"] + "__reels-A.mp4", "v")}</div>' for c in reels)
-        blocks.append(f'<section><h2>{html.escape(title)}</h2><h3>Zajawka 4:5 — LinkedIn / Facebook</h3>{video(teaser + "__feed-A.mp4", "feed")}'
+              + (f'<pre>{html.escape(chapters.read_text())}</pre>' if chapters and chapters.exists() else "") + '</div>' + history_html(episode)) if episode else ""
+        cards = "".join(f'<div class="reel"><b>{html.escape(c["title"])}</b><code>{c["id"]} · {round(c["duration"])} s</code>{video(c["id"] + "__reels-A.mp4", "v")}{history_html(c["id"])}</div>' for c in reels)
+        blocks.append(f'<section><h2>{html.escape(title)}</h2><h3>Zajawka 4:5 — LinkedIn / Facebook</h3>{video(teaser + "__feed-A.mp4", "feed")}{history_html(teaser)}'
                       f'{ep}<h3>Rolki i shorty 9:16 — Reels, Shorts, TikTok ({len(reels)})</h3><div class="grid">{cards}</div></section>')
     page = f'''<!doctype html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Starsze odcinki</title><style>
@@ -171,7 +186,7 @@ section{{border-top:1px solid var(--line);padding:24px 0}} h2{{margin:0 0 4px;fo
 .ep{{display:flex;gap:20px;flex-wrap:wrap}} .yt video{{width:min(900px,100%);aspect-ratio:16/9;background:#000;border-radius:10px}}
 .feed video{{width:340px;max-width:100%;aspect-ratio:4/5;background:#000;border-radius:10px}}
 .grid{{display:flex;flex-wrap:wrap;gap:22px}} .reel{{width:270px}} .reel b{{display:block;min-height:42px}} .v video{{width:270px;aspect-ratio:9/16;background:#000;border-radius:10px}}
-figure{{margin:6px 0 0}} figcaption{{display:none}} pre{{margin:0;color:var(--mut);font-size:14px;white-space:pre-wrap}} .none{{color:var(--mut)}} nav a{{color:var(--acc)}}
+figure{{margin:6px 0 0}} figcaption{{display:none}} pre{{margin:0;color:var(--mut);font-size:14px;white-space:pre-wrap}} .none{{color:var(--mut)}} nav a{{color:var(--acc)}} {HISTORY_CSS}
 </style></head><body><main><h1>Starsze odcinki kanału — zajawki, odcinki, rolki</h1>
 <p class="lead"><nav><a href="index.html">← klipy z sesji 8.10</a> · <a href="odcinki-i-grafiki.html">odcinki z sesji 8.10</a></nav>
 Ujęcia oznaczone „AI” są generowane (art. 50 AI Act — przy publikacji włącz też przełącznik na platformie).</p>

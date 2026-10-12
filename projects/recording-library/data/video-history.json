@@ -1,0 +1,229 @@
+{
+ "ep-vibecoding": [
+  {
+   "date": "2026-10-11",
+   "by": "Claude",
+   "changes": [
+    "Pierwsza wersja: 7:57, 12 rozdziałów, 30 wstawek (makiety: dane w przeglądarce, moduły, warstwy, repozytorium)"
+   ]
+  },
+  {
+   "date": "2026-10-12",
+   "by": "Mateusz",
+   "changes": [
+    "0:54 — przebitka na sklejce (wycięty restart „szybsze, tańsze”) zamiast skoku obrazu",
+    "1:05 — uderzenie „JEDEN MOMENT / SIĘ WYWRACA” o 30% mniejsze, bez łamania linii",
+    "2:00 — zostaje drugi dubel „bo dowolna zmiana” (161,5 s źródła)",
+    "2:52 — czysta druga próba „o cokolwiek go poprosisz” zamiast zaciętej pierwszej",
+    "3:13 — zostaje trzecia próba „architektonicznych” (wycięte 249,1–250,6 s)",
+    "3:28 — bez ciszy przed „Open Mercato”",
+    "5:14 — wycięte „Druga rzecz.” (wycieranie twarzy)",
+    "5:41 — „te fundamenty nie są gliniane, | ale są to mocne fundamenty” zamiast dwóch zmieszanych prób",
+    "7:44 — bez ogona porzuconej próby przed „Pomogę zrozumieć”",
+    "7:54 — dołożone zakończenie „…dziękuję za wysłuchanie, do usłyszenia” (697–716 s źródła)"
+   ]
+  },
+  {
+   "date": "2026-10-12",
+   "by": "kontrola",
+   "changes": [
+    "3:24 — wycięty falstart „przez którą w ogóle, przez którą w ogóle nagrywam” (złączenie 270,42 s)",
+    "2:00 / 2:52 — granice z sygnału, bo Whisper uciął „nie” i „rację”"
+   ]
+  }
+ ],
+ "ep-doram": [
+  {
+   "date": "2026-10-12",
+   "by": "Mateusz",
+   "changes": [
+    "0:56 — lista: Nazwa handlowa / Nazwa produkcyjna / Nazwa kontrahenta (zamiast niemieckich nazw produktu)",
+    "1:23 — wycięte drugie „Dlaczego?” (restart 92,9–97,5 s); dalsza część odcinka ok. 4 s wcześniej",
+    "1:32 — przekreślenie „KILKA DNI” leży na napisie, nie na całej planszy"
+   ]
+  }
+ ],
+ "ch-vibe-2-magiczne-sesje": [
+  {
+   "date": "2026-10-12",
+   "by": "Mateusz",
+   "changes": [
+    "drugi dubel „bo dowolna zmiana” jak w odcinku"
+   ]
+  }
+ ],
+ "ch-vibe-3-przyznaje-racje": [
+  {
+   "date": "2026-10-12",
+   "by": "Mateusz",
+   "changes": [
+    "czysta próba „o cokolwiek go poprosisz” + trzecia próba „architektonicznych” jak w odcinku"
+   ]
+  },
+  {
+   "date": "2026-10-11",
+   "by": "Claude",
+   "changes": [
+    "tytuły w panelu zamiast strefy lower — wychodziły za prawą krawędź i nachodziły na kartę tematu"
+   ]
+  }
+ ],
+ "ch-vibe-4-framework": [
+  {
+   "date": "2026-10-12",
+   "by": "Mateusz",
+   "changes": [
+    "bez ciszy przed „Open Mercato” jak w odcinku"
+   ]
+  },
+  {
+   "date": "2026-10-11",
+   "by": "Claude",
+   "changes": [
+    "tytuły w panelu zamiast strefy lower — wychodziły za prawą krawędź i nachodziły na kartę tematu"
+   ]
+  }
+ ],
+ "ch-vibe-5-gliniane-nogi": [
+  {
+   "date": "2026-10-12",
+   "by": "Mateusz",
+   "changes": [
+    "„nie są gliniane, | ale są to mocne fundamenty” jak w odcinku"
+   ]
+  },
+  {
+   "date": "2026-10-11",
+   "by": "Claude",
+   "changes": [
+    "tytuły w panelu zamiast strefy lower — wychodziły za prawą krawędź i nachodziły na kartę tematu"
+   ]
+  }
+ ],
+ "ch-module-3-wtorek-rano": [
+  {
+   "date": "2026-10-11",
+   "by": "kontrola",
+   "changes": [
+    "wycięty drugi dubel „…a nie jak wygląda w głowie właściciela” (Whisper przykrył go jednym słowem)"
+   ]
+  }
+ ],
+ "ep-module": [
+  {
+   "date": "2026-10-11",
+   "by": "kontrola",
+   "changes": [
+    "wycięty drugi dubel „…w głowie właściciela” (jak w ch-module-3); plansza łączenia przesunięta na 4:16"
+   ]
+  }
+ ],
+ "ch-module-10-powtarzalnosc": [
+  {
+   "date": "2026-10-11",
+   "by": "Claude",
+   "changes": [
+    "tytuły w panelu zamiast strefy lower — wychodziły za prawą krawędź i nachodziły na kartę tematu"
+   ]
+  }
+ ],
+ "ch-module-4-droga-kartki": [
+  {
+   "date": "2026-10-11",
+   "by": "Claude",
+   "changes": [
+    "tytuły w panelu zamiast strefy lower — wychodziły za prawą krawędź i nachodziły na kartę tematu"
+   ]
+  }
+ ],
+ "ch-module-8-70-90": [
+  {
+   "date": "2026-10-11",
+   "by": "Claude",
+   "changes": [
+    "tytuły w panelu zamiast strefy lower — wychodziły za prawą krawędź i nachodziły na kartę tematu"
+   ]
+  }
+ ],
+ "ch-om-2-excel-wersje": [
+  {
+   "date": "2026-10-11",
+   "by": "Claude",
+   "changes": [
+    "tytuły w panelu zamiast strefy lower — wychodziły za prawą krawędź i nachodziły na kartę tematu"
+   ]
+  }
+ ],
+ "ch-om-4-nie-zapier": [
+  {
+   "date": "2026-10-11",
+   "by": "Claude",
+   "changes": [
+    "tytuły w panelu zamiast strefy lower — wychodziły za prawą krawędź i nachodziły na kartę tematu"
+   ]
+  }
+ ],
+ "ch-om-5-erp-lat-90": [
+  {
+   "date": "2026-10-11",
+   "by": "Claude",
+   "changes": [
+    "tytuły w panelu zamiast strefy lower — wychodziły za prawą krawędź i nachodziły na kartę tematu"
+   ]
+  }
+ ],
+ "ch-om-7-trzy-zarzuty": [
+  {
+   "date": "2026-10-11",
+   "by": "Claude",
+   "changes": [
+    "tytuły w panelu zamiast strefy lower — wychodziły za prawą krawędź i nachodziły na kartę tematu"
+   ]
+  }
+ ],
+ "ch-om-8-komu-odradzam": [
+  {
+   "date": "2026-10-11",
+   "by": "Claude",
+   "changes": [
+    "tytuły w panelu zamiast strefy lower — wychodziły za prawą krawędź i nachodziły na kartę tematu"
+   ]
+  }
+ ],
+ "ch-vibe-6-puenta": [
+  {
+   "date": "2026-10-11",
+   "by": "Claude",
+   "changes": [
+    "tytuły w panelu zamiast strefy lower — wychodziły za prawą krawędź i nachodziły na kartę tematu"
+   ]
+  }
+ ],
+ "ch-vibe-7-nie-dla-kazdego": [
+  {
+   "date": "2026-10-11",
+   "by": "Claude",
+   "changes": [
+    "tytuły w panelu zamiast strefy lower — wychodziły za prawą krawędź i nachodziły na kartę tematu"
+   ]
+  }
+ ],
+ "ch-vibe-1-baza-danych": [
+  {
+   "date": "2026-10-11",
+   "by": "Claude",
+   "changes": [
+    "hook bez „po godzinach” (nie pada w nagraniu): „System zrobiony sam, z agentem AI. Bez bazy danych.”"
+   ]
+  }
+ ],
+ "zaj-vibecoding": [
+  {
+   "date": "2026-10-11",
+   "by": "Claude",
+   "changes": [
+    "okładka bez „w weekend” (nie pada w nagraniu): „Zbudował system sam, z agentem AI. Zapomniał o bazie danych.”"
+   ]
+  }
+ ]
+}

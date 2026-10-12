@@ -24,6 +24,7 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 
 - [Veo i Nano Banana przez Gemini API](memory/veo-gemini-api.md) — kadr → ożywienie; klucz `GEMINI_API=`, JPEG zamiast PNG, „jeden kadr” bywa tryptykiem, image-to-video 4–5 min
 - [Pion: strefy zakazane Reels](memory/pion-strefy-zakazane-reels.md) — góra ~230, prawa ~130, dół ~260 px; wszystko u góry wchodzi po hooku
+- [Historia zmian per film](memory/historia-zmian-per-film.md) — każda poprawka (też z kontroli i zmian stylu) → tools/history.py przed renderem; galeria pokazuje ją pod filmem
 - [Pion: jedno na raz](memory/pion-jedno-na-raz.md) — jedno zdanie = jedno tło, zdania po kolei, hook z grafiką i jako nagłówek, nic na głowie, tylko paleta A
 - [Whisper dokleja „yyy” do słowa](memory/whisper-dokleja-yyy-do-slowa.md) — „yyy” i cisza w środku słowa: wykrywaj w audio (fillers.py); tnij tylko po sygnale, słowa chronią; pauzy zostawiaj ~0,4 s (za mocne cięcie = skarga)
 - [Sprawdź ostrość źródła](memory/sprawdz-ostrosc-zrodla.md) — surówka z kanału bywa rozmyta przez kilka minut (twarde cięcie); pomiar edgedetect przed EDL, szukaj dogrywki/czystej wersji
