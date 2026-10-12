@@ -191,20 +191,24 @@ Wzór: `~/Youtube Projects/S-10 - czym jest OM/Miniatura VS - AI-first-selection
 - Format: 1280×720 PNG/JPG < 2 MB; pion 1080×1920 jako okładka rolki.
 
 **Przegląd kanałów (12.10.2026, 64 miniatury: Szymon Negacz, WiseConnect, Kanał Zero, Podcast Biznesowy).**
-Zestawienia: `~/Youtube Projects/inspiracje/miniatury-kanaly-2026-10-12/`. Wspólny mianownik:
+Bierzemy wyłącznie **konstrukcję** miniatur — treść części tych kanałów (spekulacje, cudze materiały) nas nie
+dotyczy. Zestawienia: `~/Youtube Projects/inspiracje/miniatury-kanaly-2026-10-12/`.
 
-1. **Stały szablon kanału** — jedno tło, jeden kolor wyróżnienia, ten sam font, logo w rogu. Kanał
-   rozpoznaje się w wynikach bez czytania (Negacz: fiolet; Wise: grafit + beż; Podcast: czerń + pomarańcz).
-2. **Trzy elementy, nie więcej:** duża twarz (40–50% kadru, wycięta, wyraźna emocja: zdziwienie,
-   sceptycyzm, ręka przy brodzie, wskazanie) + tekst + **jeden rekwizyt** (logo firmy, telefon, kalkulator, wykres).
-3. **Tekst 2–4 linie, 3–8 słów, podświetlone 1–2 słowa** — prawie zawsze liczba z jednostką
-   („22 miliardy”, „87 000”, „75 mln zł”, „w 47 minut”) albo słowo-klucz.
-4. **Pytanie albo teza** („Jak mierzę zwrot z AI?”, „Kim jest nowy prezes?”). B2B (Negacz, Wise) pyta spokojnie;
-   „!?” i krzyk to styl newsowy (Zero, Podcast) — nie dla nas.
-5. **Rozpoznawalne marki w kadrze** (Fakro/Velux, Apple, BMW, Uber, OpenAI) mówią „o kim” w pół sekundy —
-   u nas: Excel, Claude, Open Mercato, logo klienta (za zgodą).
-6. **Seria** oznaczona w rogu („3/5”, „4/5”).
-7. Tekst często **skraca tytuł** zamiast go dopowiadać — tytuły są długie, miniatura niesie ich rdzeń + liczbę.
+Anatomia (wspólna dla wszystkich czterech):
+
+| Element | Konstrukcja |
+|---|---|
+| Siatka | twarz po jednej stronie (~40–45% szerokości), tekst po drugiej (~50–55%); przy dwóch osobach — twarze przy krawędziach, tekst w środku |
+| Twarz | wycięta z tła, kadr od czoła do piersi, oczy na ~35–40% wysokości, oddzielona od tła poświatą/obrysem światła; jedna wyraźna emocja albo gest (wskazanie, ręka przy brodzie) |
+| Tekst | 2–4 linie, 3–8 słów, gruby bezszeryfowy (800–900), najważniejsze słowo ~12–18% wysokości kadru, ciasna interlinia |
+| Wyróżnienie | 1–2 słowa na pełnym bloku w kolorze akcentu (liczba z jednostką albo słowo-klucz); albo każda linia we własnym polu (Negacz, Zero) |
+| Rekwizyt | jeden, nad tekstem albo między tekstem a twarzą, ~20–25% kadru: rozpoznawalne logo, telefon, wykres, dokument |
+| Tło | jeden kolor kanału + miękki gradient/winieta, ciemniejsze niż twarz i tekst |
+| Znak kanału | mały, w górnym rogu, zawsze w tym samym miejscu |
+| Stałość | ten sam szablon w każdym odcinku — kanał rozpoznaje się w wynikach, zanim ktoś przeczyta tekst |
+| Seria | numer odcinka serii w rogu („3/5”) |
+
+Tekst częściej **skraca tytuł** niż go dopowiada — miniatura niesie rdzeń tytułu + liczbę.
 
 **Dla nas:** szablon jak wzór „Miniatura VS”, ale uproszczony do trzech elementów (twarz + 2–3 linie z
 podświetloną liczbą + jeden rekwizyt). Lewa lista przekreśleń i karta modułów — tylko gdy to jest temat odcinka.
