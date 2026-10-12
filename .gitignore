@@ -63,3 +63,7 @@ projects/youtube/final/**/zgrubny/
 *.MP4
 *.mov
 *.MOV
+
+# Spisy dla FlowBiz Studio — odtwarzalne (tools/export_studio.py) i lokalne, jak final/samples
+studio-index.json
+projects/*/exports/
