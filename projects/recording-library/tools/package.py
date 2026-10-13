@@ -1302,6 +1302,10 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .pal-F .kicker,.pal-F .end-kicker{{color:{accent2}}}
 .pal-F .slate.mock .slate-body>*:not(.series-tag){{background:#E8F0EC;color:#0E1F1A;border-radius:32px;padding:40px 44px;box-shadow:0 30px 80px rgba(0,0,0,.35)}}
 .pal-F .slate.mock .kicker{{color:#B86E00}}
+.pal-F .phone{{background:#FFFFFF;border-color:#D3DED9;color:#0E1F1A;box-shadow:0 24px 60px rgba(0,0,0,.35)}}
+.pal-F .phone-head{{background:#EEF4F1}} .pal-F .phone-head span{{color:#5E6E68}}
+.pal-F .msg.bot{{background:#EEF4F1;color:#0E1F1A}} .pal-F .msg.me{{background:#2FD3A0;color:#0E1F1A}}
+.pal-F .btns span{{border-color:#14795E;color:#14795E}} .pal-F .btns span:first-child{{background:#14795E;color:#FFFFFF}}
 .pal-F .pn,.pal-B .pn{{letter-spacing:0;margin-left:-.1em}}
 .pal-F .pbox{{background:none;color:{accent};padding:0 .04em;position:relative;border-radius:0}}
 .pal-F .pbox::after{{content:"";position:absolute;left:-3%;right:-3%;bottom:-.16em;height:.26em;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 24' preserveAspectRatio='none'%3E%3Cpath d='M4 17 C 55 7, 130 5, 196 11' stroke='%23F4A72A' stroke-width='7' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") center/100% 100% no-repeat}}
