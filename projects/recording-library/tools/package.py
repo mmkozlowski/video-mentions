@@ -542,10 +542,10 @@ class Composition:
         label = f'<div class="bt-label">{esc(ev.get("label", ""))}</div>' if ev.get("label") else ""
         if style == "strike":
             big = fit(ev["main"], width, 280 if not self.vertical else 200, 1, 90)
-            # przekreślenie leży NA napisie (Mateusz 12.10: „ma być nad tekstem”), nie na całej planszy
+            # przekreślenie leży NA napisie (Mateusz 12.10: „ma być nad tekstem”), nie na całej planszy;
+            # 13.10: końce w obrysie liter (z zaokrągleniem nie wystają przed i za napis)
             inner = (label + f'<div class="bt-main bt-acc" style="font-size:{big}px"><span class="bt-struck">{esc(ev["main"])}'
-                     + '<svg class="bt-strike" viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="-2" y1="62" x2="102" y2="40" '
-                       'pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" vector-effect="non-scaling-stroke"/></svg></span></div>'
+                     + '<i class="bt-strike"></i></span></div>'
                      + '<div class="bt-sub">' + "".join(f'<span class="w">{esc(w)}</span>' for w in ev.get("sub", [])) + '</div>')
         elif style == "burst":
             big = fit(ev["num"], width, 420 if not self.vertical else 300, 1, 120)
@@ -566,7 +566,7 @@ class Composition:
         if style == "strike":
             self.js.append(f'tl.fromTo("#{sid} .bt-main",{{opacity:0,x:120}},{{opacity:1,x:0,duration:0.45,ease:"back.out(1.7)"}},{q(t + 0.2)});')
             self.js.append(f'tl.fromTo("#{sid} .bt-sub .w",{{opacity:0,y:15}},{{opacity:1,y:0,duration:0.35,stagger:0.08}},{q(t + 0.7)});')
-            self.js.append(f'tl.to("#{sid} .bt-strike line",{{strokeDashoffset:0,duration:0.25,ease:"power2.out"}},{q(t + 1.4)});')
+            self.js.append(f'tl.fromTo("#{sid} .bt-strike",{{scaleX:0}},{{scaleX:1,duration:0.25,ease:"power2.out"}},{q(t + 1.4)});')
         elif style == "burst":
             self.js.append(f'tl.fromTo("#{sid} .bt-num",{{opacity:0,scale:0}},{{opacity:1,scale:1.08,duration:0.55,ease:"power3.out"}},{q(t + 0.15)});')
             self.js.append(f'tl.to("#{sid} .bt-num",{{scale:1,duration:0.15}},{q(t + 0.7)});')
@@ -1202,7 +1202,7 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .bt-main,.bt-num,.bt-l1,.bt-l3{{font-weight:900;line-height:1;letter-spacing:-.03em}}
 .bt-acc,.bt-num{{color:{accent}}} .bt-l1{{color:{text}}} .bt-l2{{font-weight:700;color:{muted}}} .bt-l3{{color:{danger}}}
 .bt-sub{{font-size:48px;font-weight:600;color:{muted};display:flex;gap:18px}} .bt-sub .w{{display:inline-block}}
-.bt-struck{{position:relative;display:inline-block}} .bt-strike{{position:absolute;inset:0;width:100%;height:100%;overflow:visible}} .bt-l1,.bt-l3{{white-space:nowrap}} .bt-strike line{{stroke:{danger};stroke-width:10;stroke-linecap:round}}
+.bt-struck{{position:relative;display:inline-block}} .bt-strike{{position:absolute;left:2.5%;right:2%;top:50%;height:.07em;margin-top:-.035em;background:{danger};border-radius:.04em;transform:rotate(-2deg) scaleX(0);transform-origin:left center}} .bt-l1,.bt-l3{{white-space:nowrap}}
 .bt-num{{position:relative;filter:drop-shadow(0 0 70px {accent}55)}}
 .bt-burst{{position:absolute;left:50%;top:50%;width:0;height:0}} .bt-burst i{{position:absolute;left:-7px;top:-7px;width:14px;height:14px;border-radius:50%;background:{accent};opacity:0}}
 .bt-bottom{{font-size:46px;font-weight:600;color:{text}}}
