@@ -16,7 +16,10 @@
     "label": "6 godzin",
     "accent": true
    }
-  }
+  },
+  "poster": "Ile trwa przepisanie [11 stron] zamówienia?",
+  "poster_sub": "U nas 6 godzin ręcznie. Dziś system wczytuje je sam.",
+  "kicker": "Case study · producent mebli ogrodowych"
  },
  "topic": {
   "kicker": "Producent mebli ogrodowych",

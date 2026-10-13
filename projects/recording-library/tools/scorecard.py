@@ -77,6 +77,16 @@ def length_score(kind, seconds):
     return max(0.0, 1 - off * 2)
 
 
+def current_file(name, fmt, palette):
+    """Plik w obecnej palecie, a gdy jeszcze się renderuje — najnowszy istniejący (studio nie
+    traci filmu na czas kilkugodzinnego przeliczania)."""
+    wanted = FINAL / f"{name}__{fmt}-{palette}.mp4"
+    if wanted.exists():
+        return wanted.name
+    existing = sorted(FINAL.glob(f"{name}__{fmt}-*.mp4"), key=lambda f: f.stat().st_mtime)
+    return existing[-1].name if existing else wanted.name
+
+
 def main():
     clips = {c["id"]: c for c in load_clips()}
     predictor = json.load(open(PREDICTOR)) if PREDICTOR.exists() else {}
@@ -135,7 +145,7 @@ def main():
             "syl_s": round(tempo(words), 2), "events": events, "events_per_min": round(epm, 1),
             "parts": {k: round(v, 2) for k, v in parts.items()}, "score": score,
             "predictor": p,
-            "file": f"{name}__{fmt}-{palettes_for(board, clip, fmt)[0]}.mp4",
+            "file": current_file(name, fmt, palettes_for(board, clip, fmt)[0]),
         })
     ranked = sorted(rows, key=lambda r: -r["score"])
     for i, r in enumerate(ranked):
