@@ -810,7 +810,8 @@ class Composition:
             f'{self.series_tag()}'
             + (f'<div class="pkicker" style="font-size:{kicker_size}px">{esc(kicker)}</div>' if kicker else "")
             + f'<div class="phead" style="font-size:{size}px">{self.poster_headline(head)}</div>'
-            + (f'<div class="psub">{esc(sub.replace("*", ""))}</div>' if sub else "")
+            # dwa ostatnie słowa razem — bez wdowy („je / sam.”)
+            + (f'<div class="psub">{"&nbsp;".join(esc(sub.replace("*", "")).rsplit(" ", 1))}</div>' if sub else "")
             + '</div>')
         self.js.append(f'tl.fromTo("#{cid} .pbox",{{scale:1}},{{scale:1.06,duration:0.18,yoyo:true,repeat:1,ease:"power2.out"}},0.35);')
         self.js.append(f'tl.to(["#{cid}","#{cid}-s"],{{opacity:0,duration:0.25}},{self.q(end - 0.25)});')
