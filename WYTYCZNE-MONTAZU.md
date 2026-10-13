@@ -143,12 +143,11 @@ Wszystkie układy z klatkami i podpowiedzią, kiedy którego użyć: [`KATALOG-U
   (~15 dB pod głosem) „zagłuszała mówienie”. Utwory z folderu Mateusza `music/` (oznaczone „dobre”).
   Tylko z biblioteki z licencją do użytku komercyjnego bez roszczeń Content ID (YouTube
   Audio Library i podobne) — inaczej YouTube obcina zasięg albo zarabia na filmie ktoś inny.
-- **Oprawa graficzna (✅ 13.10): zieleń jak w reklamach („forest”)** — tło #071B15 z siatką, mięta
-  #2FD3A0 na wyróżnieniach i przycisku, **pomarańcz #F4A72A** na etykiecie serii, nadtytułach
-  (Space Mono), podkreśleniu liczby i przekreśleniach; logo forest. Wszystkie formaty. Zieleń ze strony
-  (teal #1C9E7A na zielonym tle) odrzucona — „nie siedzi”. Wzór: grafiki w `flowbiz-ads-studio`.
-- **Etykieta serii „AI w praktyce · w firmie”** na każdej planszy (pomarańczowa, biały tekst) — od razu
-  skojarzenie z AI. Celowo inna niż znak „AI · Ujęcie wygenerowane przez AI” (AI Act).
+- **Oprawa graficzna i marka → brandbook wideo w repo marki** (jedno źródło prawdy, 13.10):
+  `flowbiz-automation-unlocked/docs/brand/wideo-i-reklamy.md` + tokeny `docs/brand/brand.json`.
+  Tam: paleta „forest”, typografia, etykieta serii „AI w praktyce · w firmie”, okna systemu,
+  przekreślenie, pierwszy ekran i plansza końcowa. Tutaj tylko jak montujemy. Kolorów nie
+  powtarzamy, żeby się nie rozjechały.
 - **Kolor:** korekta „średnia” (decyzja Mateusza 12.10): kontrast +10%, nasycenie +18%, lekkie
   wyostrzenie — obraz żywszy, twarz naturalna. Tylko na nagraniu, grafiki zostają w kolorach marki.
 - **Tempo mowy (✅ 12.10):** Mateusz mówi wolniej niż swobodna polszczyzna (4,2–4,9 sylaby/s wobec

@@ -16,7 +16,10 @@ następnym.
 
 ## Połączenia z repo
 
-Każdy projekt ma w swoim README sekcję **„Połączenia z repo”** — z czego czyta i dokąd oddaje.
+Każdy projekt ma w swoim README sekcję **„Połączenia z repo”**: z czego czyta i dokąd oddaje.
+
+**Marka w wideo i reklamach** (kolory, kroje, etykieta serii, plansze): jedno źródło prawdy w
+`flowbiz-automation-unlocked/docs/brand/wideo-i-reklamy.md` + `brand.json`. Tutaj tylko montaż.
 
 | Projekt | Połączony z |
 |---|---|

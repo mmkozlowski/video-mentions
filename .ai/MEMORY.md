@@ -57,3 +57,4 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 - [Ustalenia z 12.10: postprodukcja, panel, miniatury](decisions/2026-10-12-ustalenia-dnia-postprodukcja-panel-miniatury.md) — 2026-10-12
 - [Podział wiedzy: montaż tutaj, marka w FlowBiz, panel w studiu](decisions/2026-10-12-podzial-wiedzy-montaz-marka-panel.md) — 2026-10-12
 - [Starsze odcinki kanału w bibliotece (ADR projektowy)](../projects/recording-library/ai/decisions/2026-10-11-starsze-odcinki-kanalu.md) — 2026-10-11
+- [Marka wideo w repo marki](memory/marka-wideo-w-repo-marki.md) — kolory i elementy z flowbiz-automation-unlocked/docs/brand, nie z wytycznych

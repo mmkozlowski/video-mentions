@@ -30,3 +30,8 @@ w `flowbiz-ads-studio`, a pipeline wideo tutaj. Mateusz: „muszę te dwa repo j
 - Ogólna poprawka Mateusza do filmu trafia do pamięci **i** do `WYTYCZNE-MONTAZU.md`.
 
 Powiązane: [Starsze odcinki kanału](../../projects/recording-library/ai/decisions/2026-10-11-starsze-odcinki-kanalu.md).
+
+## Dopisek 13.10
+
+Brandbook wideo i reklam powstał w repo marki: `flowbiz-automation-unlocked/docs/brand/wideo-i-reklamy.md` + `brand.json`
+(ADR tam: `ai/decisions/2026-10-13-brandbook-wideo-forest.md`). Wytyczne montażu tylko do niego odsyłają.

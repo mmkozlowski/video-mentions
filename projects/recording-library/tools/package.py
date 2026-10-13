@@ -74,6 +74,7 @@ PALETTES = {
               font="Plus Jakarta Sans", grid="rgba(255,51,136,0.07)", tag="#FF3388", tag_text="#FFFFFF", mono="Plus Jakarta Sans", kicker_color="#FFFFFF",
               box_bg="#FF3388", box_fg="#FFFFFF", logo="flowbiz-ai.png", heading_style="italic", word_gap="0.1em",
               bg_fill="linear-gradient(135deg,#160A2E 0%,#0F173D 50%,#261745 100%)"),
+    # Źródło prawdy: flowbiz-automation-unlocked/docs/brand/wideo-i-reklamy.md + brand.json — tu kopia do czasu odczytu z pliku.
     # Reklamy FlowBiz („forest”, flowbiz-ads-studio/tools/templates): prawie czarne zielone tło z siatką,
     # mięta jako akcent i przycisk z ciemnym tekstem, nadtytuły Space Mono w bursztynie, liczba na
     # białej karcie w ciemnej zieleni, logo w wersji forest. 13.10 — próba po odrzuceniu B.
