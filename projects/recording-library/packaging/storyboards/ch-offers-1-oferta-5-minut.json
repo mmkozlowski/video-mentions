@@ -17,7 +17,9 @@
     "label": "5 minut",
     "accent": true
    }
-  }
+  },
+  "poster": "Oferta w [5 minut] zamiast kilkunastu godzin",
+  "poster_sub": "Asystent AI czyta maile i szykuje szkic oferty."
  },
  "topic": {
   "kicker": "Case study · producent sprzętu sportowego",

@@ -58,18 +58,18 @@ PALETTES = {
     "A": dict(name="kanał YouTube", bg="#0A0A08", panel="#0D0D0B", raised="#16140F",
               line="#2E2C28", text="#FAF8F0", muted="#9A938A", accent="#F5A623",
               accent2="#6BAA6B", danger="#C0553A", on_accent="#0A0A08",
-              font="DM Sans", grid="rgba(245,166,35,0.06)"),
+              font="DM Sans", grid="rgba(245,166,35,0.06)", tag="#F5A623"),
     # Strona flowbiz.pl — tryb ciemny strony (hsl 165 40% 8%) + marka #1C9E7A.
     "B": dict(name="strona flowbiz.pl", bg="#0C1D18", panel="#10241E", raised="#163029",
               line="#24413A", text="#F4FAF7", muted="#8FB0A6", accent="#1C9E7A",
               accent2="#F5A623", danger="#E5604A", on_accent="#FFFFFF",
-              font="Plus Jakarta Sans", grid="rgba(28,158,122,0.08)"),
+              font="Plus Jakarta Sans", grid="rgba(28,158,122,0.08)", tag="#F5A623"),
     # AI Słupsk — tokeny ze strony aislupsk.pl (src/index.css): granat-fiolet, róż,
     # nagłówki pochyłe (Mateusz 9.10: „pod aislupsk idź w tym kierunku wizualnym”).
     "S": dict(name="AI Słupsk", bg="#160A2E", panel="#1A0D36", raised="#2C1F47",
               line="#392D53", text="#FFFFFF", muted="#ADA3C2", accent="#FF3388",
               accent2="#A219E6", danger="#FF5A5A", on_accent="#FFFFFF",
-              font="Plus Jakarta Sans", grid="rgba(255,51,136,0.07)", heading_style="italic", word_gap="0.1em",
+              font="Plus Jakarta Sans", grid="rgba(255,51,136,0.07)", tag="#FF3388", heading_style="italic", word_gap="0.1em",
               bg_fill="linear-gradient(135deg,#160A2E 0%,#0F173D 50%,#261745 100%)"),
 }
 for palette in PALETTES.values():
@@ -422,6 +422,9 @@ class Composition:
         if not cover:
             return
         self.cover_end = cover.get("dur", 2.2)
+        if self.poster_mode():
+            self.cover_end = 0.0   # plakat siedzi na twarzy od pierwszej klatki (hook())
+            return
         if cover.get("style") == "callout":
             # duże hasło na start (Mateusz 10.10: „AI W PRODUKCJI”, „AI SŁUPSK”) — 1,2 s,
             # potem od razu twarz z hookiem; test A/B wobec wersji bez hasła
@@ -688,6 +691,9 @@ class Composition:
             return
         end = max(self.clock.at(hook.get("until", 3.0), floor=0), self.cover_end + 2.5)
         self.hook_end = end
+        if self.poster_mode():
+            self.poster(hook, end)
+            return
         parts = sentences(hook["text"])
         times = self.sentence_times(parts, self.cover_end, end)
         # jeden rozmiar dla wszystkich zdań — bez przeskoku fontu przy zmianie
@@ -712,6 +718,58 @@ class Composition:
                 self.js.append(f'tl.set("{sel}",{{opacity:1}},{self.q(start)});')
             self.js.append(f'tl.fromTo("{sel} .w",{{opacity:0.25}},{{opacity:1,duration:0.2,stagger:0.07}},{self.q(start + 0.15)});')
         self.js.append(f'tl.to("#{cid} .hook-in",{{opacity:0,duration:0.25}},{self.q(end - 0.25)});')
+
+    def poster_mode(self):
+        """Pierwszy ekran pionu jak grafika reklamowa (Mateusz 13.10: „żeby pierwszy ekran bardziej
+        konwertował, był lepiej ułożony i zachęcał do obejrzenia”): twarz od pierwszej klatki,
+        na dole etykieta serii, nadtytuł w jednej linii, nagłówek z liczbą w ramce, jedno
+        dopowiedzenie. Zastępuje czarną okładkę i kartę hooka; „callout” (test A/B) zostaje."""
+        return (self.vertical and bool(self.board.get("hook")) and self.board.get("poster", True)
+                and self.board.get("cover", {}).get("style") != "callout")
+
+    def poster_headline(self, text):
+        """[fraza] = ramka w kolorze akcentu (jedna na nagłówek, bez łamania); bez nawiasów ramkę
+        dostaje pierwsze słowo z gwiazdką — z następnym, gdy to liczba („*5 minut”)."""
+        if "[" not in text:
+            words = text.split()
+            for i, w in enumerate(words):
+                if w.startswith("*"):
+                    span = 2 if re.match(r"\*\d", w) and i + 1 < len(words) else 1
+                    words[i:i + span] = ["[" + " ".join(x.lstrip("*") for x in words[i:i + span]) + "]"]
+                    break
+            text = " ".join(words)
+        out = []
+        for part in re.split(r"(\[[^\]]+\])", text):
+            if part.startswith("["):
+                out.append(f'<span class="pbox">{esc(part[1:-1].replace("*", ""))}</span>')
+            elif part.strip():
+                out.append(self.words_html(part.strip()))
+        # „z”, „w”, „i” nie zostają same na końcu linii — sklejone z następnym słowem albo ramką
+        return re.sub(r'(<span class="w">[wWzZiIoOaAuU]</span>) (<span class="(?:w|pbox)[^"]*">[^<]*</span>)',
+                      r'<span class="nb">\1&nbsp;\2</span>', " ".join(out))
+
+    def poster(self, hook, end):
+        g = self.geo
+        cover = self.board.get("cover", {})
+        parts = sentences(hook["text"])
+        head = hook.get("poster", parts[0])
+        sub = hook.get("poster_sub", " ".join(parts[1:]) if len(parts) > 1 else "")
+        width = g["w"] - 44 - 132
+        size = fit(head.replace("[", "").replace("]", ""), width - 40, 100 if g["h"] > 1500 else 84, 3, 56)
+        kicker = cover.get("kicker") or hook.get("kicker", "")
+        kicker_size = int(min(30, (width - 10) / (0.74 * max(len(kicker), 1))))
+        cid = self.uid("p")
+        self.hook_words = {norm(w) for w in hook["text"].replace("*", "").split() if len(norm(w)) >= 4}
+        self.html.append(
+            f'<div class="poster-scrim clip" id="{cid}-s" data-start="0" data-duration="{self.q(end)}" data-track-index="4"></div>'
+            f'<div class="poster clip" id="{cid}" data-start="0" data-duration="{self.q(end)}" data-track-index="5">'
+            f'{self.series_tag()}'
+            + (f'<div class="pkicker" style="font-size:{kicker_size}px">{esc(kicker)}</div>' if kicker else "")
+            + f'<div class="phead" style="font-size:{size}px">{self.poster_headline(head)}</div>'
+            + (f'<div class="psub">{esc(sub.replace("*", ""))}</div>' if sub else "")
+            + '</div>')
+        self.js.append(f'tl.fromTo("#{cid} .pbox",{{scale:1}},{{scale:1.06,duration:0.18,yoyo:true,repeat:1,ease:"power2.out"}},0.35);')
+        self.js.append(f'tl.to(["#{cid}","#{cid}-s"],{{opacity:0,duration:0.25}},{self.q(end - 0.25)});')
 
     def hook_visual(self, visual):
         """Grafika nad zdaniem hooka: ikona, A vs B, przepływ, logo narzędzi albo licznik."""
@@ -987,6 +1045,8 @@ class Composition:
     def build(self):
         hook = self.board.get("hook")
         self.cover_end = self.board.get("cover", {}).get("dur", 2.2) if self.board.get("cover") else 0.0
+        if self.poster_mode():
+            self.cover_end = 0.0
         if hook and self.fmt != "youtube":
             self.hook_end = max(self.clock.at(hook.get("until", 3.0), floor=0), self.cover_end + 2.5)
             if self.hook_end > 4.0 * max(2, len(sentences(hook["text"]))):   # ~4 s na zdanie
@@ -1004,6 +1064,12 @@ class Composition:
             end = min(end, self.clip_len)
             if end - start < 0.5:
                 raise SystemExit(f"zdarzenie {ev['type']} @ {ev['at']}: {start:.2f}–{end:.2f} — za krótkie")
+            if self.poster_mode() and start < self.hook_end:
+                # plakat pierwszego ekranu nie ustępuje nikomu — to on ma zatrzymać przewijanie
+                start = self.hook_end
+                if end - start < 0.8:
+                    print(f"  ⚠ {ev['type']} @ {ev['at']} pominięte — mieściło się pod plakatem")
+                    continue
             if ev["type"] not in ("broll", "logos", "slate", "mockup", "beat") and ev.get("zone", self.default_zone()) == "panel":
                 start = max(start, self.panel_from())   # panel wjeżdża dopiero po hooku
                 if end - start < 0.8:
@@ -1060,7 +1126,7 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 #side-plate{{position:absolute;right:0;top:0;width:800px;height:{H}px;background:{bg};border-left:6px solid {accent};z-index:2}}
 
 .card-host{{position:absolute;pointer-events:none;z-index:3;overflow:hidden}}
-.brand-mark,.cta-chip,.lower-third{{z-index:5}} .cap,.hook,.ai-label{{z-index:6}} .endcard{{z-index:9}}
+.brand-mark,.cta-chip,.lower-third{{z-index:5}} .cap,.hook,.ai-label,.poster-scrim,.poster{{z-index:6}} .endcard{{z-index:9}}
 .zone-panel{{left:44px;right:132px;top:{FH}px;height:500px;padding-top:46px}}
 .zone-side{{right:40px;top:90px;width:700px;height:900px;display:flex;align-items:center}}
 .zone-full{{inset:0}}
@@ -1094,8 +1160,8 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .slate.pip .slate-body{{width:1240px;margin-right:560px}}
 .card{{width:100%;color:{text}}}
 .fmt-v .card{{padding:0 8px}}
-.series-tag{{display:inline-flex;align-items:center;font-size:22px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:{text};border:2px solid {accent}80;border-radius:999px;padding:7px 18px;margin-bottom:16px;background:{bg}B3}}
-.series-tag b{{color:{accent};margin-right:.45em}}
+.series-tag{{display:inline-flex;align-items:center;font-size:22px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#FFFFFF;background:{tag};border-radius:999px;padding:7px 18px;margin-bottom:16px;text-shadow:0 1px 2px rgba(0,0,0,.35)}}
+.series-tag b{{margin-right:.45em}}
 .fmt-v .series-tag{{font-size:28px;padding:8px 22px}}
 .slate .series-tag{{font-size:30px;margin-bottom:26px}}
 .kicker{{font-size:30px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:{accent};margin-bottom:18px}}
@@ -1164,6 +1230,16 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .ai-dot{{background:#fff;color:#000;font-weight:800;font-size:20px;padding:4px 10px;border-radius:20px}}
 
 .hook{{position:absolute;left:44px;right:132px;bottom:430px}}
+.poster-scrim{{position:absolute;left:0;right:0;bottom:0;height:62%;background:linear-gradient(180deg,rgba(0,0,0,0) 0%,{bg}C0 32%,{bg}F2 62%,{bg} 100%)}}
+.poster{{position:absolute;left:44px;right:132px;bottom:290px;color:{text}}}
+.fmt-feed .poster{{bottom:70px}}
+.pkicker{{font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:{accent};white-space:nowrap;margin:2px 0 18px;line-height:1.2}}
+.phead{{font-weight:800;line-height:1.08;letter-spacing:-.02em}}
+.phead .w{{display:inline-block}} .phead .nb{{display:inline-block;white-space:nowrap}}
+.phead .acc{{color:{accent}}}
+.pbox{{display:inline-block;white-space:nowrap;background:{accent};color:{on_accent};padding:0 .22em .04em;border-radius:.18em;margin:.06em 0;transform-origin:50% 50%}}
+.psub{{font-size:38px;font-weight:500;line-height:1.3;color:{text};opacity:.86;margin-top:22px}}
+.fmt-feed .psub{{font-size:32px}}
 .hook-in{{display:flex;flex-direction:column;gap:22px;font-weight:800;line-height:1.06;letter-spacing:-.02em;color:{text};background:{bg}F2;padding:30px 34px 32px;border-radius:30px;border-left:8px solid {accent};box-shadow:0 18px 50px rgba(0,0,0,.45)}}
 .hook-text{{display:grid}} .hook-sent{{grid-area:1/1}}
 .hv{{display:flex;align-items:center;justify-content:center;gap:26px;min-height:230px}}
