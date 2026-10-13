@@ -119,7 +119,7 @@
   "brand": "flowbiz",
   "kind": "episode",
   "source": "session",
-  "duration": 783.03,
+  "duration": 781.77,
   "priority": "A",
   "scores": {
    "total": 0
@@ -131,31 +131,31 @@
    },
    {
     "clip": "ch-doram-5-70-94",
-    "start": 197.7
+    "start": 196.44
    },
    {
     "clip": "ch-doram-6-kody-15-minut",
-    "start": 274.713
+    "start": 273.453
    },
    {
     "clip": "ch-marpasz-2-100-godzin",
-    "start": 308.13
+    "start": 306.87
    },
    {
     "clip": "ch-marpasz-3-katalog-ai",
-    "start": 400.963
+    "start": 399.703
    },
    {
     "clip": "ch-rezon-3-panel-klienta",
-    "start": 518.597
+    "start": 517.337
    },
    {
     "clip": "ch-vacu-5-kierownik-w-godzine",
-    "start": 625.763
+    "start": 624.503
    },
    {
     "clip": "ch-marpasz-4-srubki",
-    "start": 744.63
+    "start": 743.37
    }
   ]
  }

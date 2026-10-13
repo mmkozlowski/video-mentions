@@ -45,6 +45,7 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 
 - [Nasycony kolor tekstu na materiale](memory/tekst-nasycony-kolor-na-materiale.md) — h.264 4:2:0 zabija krawędź bursztynu; mały kolorowy tekst na ciemną pigułkę, weryfikuj PO kompresji nie na PNG
 - [HyperFrames check: zasłanianie](memory/hyperframes-check-zaslanianie.md) — `data-layout-allow-occlusion` tylko na zasłanianym tekście, nie na nakładce i bez dziedziczenia; scrim ≥ 0,6 krycia to zasłonięcie
+- [Poprawki napisów globalne psują kotwice](memory/poprawki-napisow-globalne-psuja-kotwice.md) — słownik działa wszędzie; kontekst „poprzednie|słowo”
 
 ## Decyzje (ADR)
 

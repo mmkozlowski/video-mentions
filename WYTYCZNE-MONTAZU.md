@@ -138,10 +138,10 @@ Wszystkie układy z klatkami i podpowiedzią, kiedy którego użyć: [`KATALOG-U
   Audio Library i podobne) — inaczej YouTube obcina zasięg albo zarabia na filmie ktoś inny.
 - **Kolor:** korekta „średnia” (decyzja Mateusza 12.10): kontrast +10%, nasycenie +18%, lekkie
   wyostrzenie — obraz żywszy, twarz naturalna. Tylko na nagraniu, grafiki zostają w kolorach marki.
-- **Tempo mowy:** Mateusz mówi wolniej niż swobodna polszczyzna (4,2–4,9 sylaby/s wobec
-  ~5,5–6). Propozycja: przyspieszenie o 5% (1,05×), ton głosu bez zmian.
-  *Status: do decyzji Mateusza na podstawie próbek w
-  `projects/recording-library/final/samples/postprodukcja/`.*
+- **Tempo mowy (✅ 12.10):** Mateusz mówi wolniej niż swobodna polszczyzna (4,2–4,9 sylaby/s wobec
+  ~5,5–6). Rolki, reklamy i zajawki: **1,05×**, ton głosu bez zmian. Odcinki 16:9 zostają w 1,00× —
+  ich rozdziały są już w opisach YouTube jako czasy. Mateusz zlecił noc „ze wszystkimi” bez
+  wskazania wartości — wzięta rekomendacja; do korekty po obejrzeniu.
 - Prośby o głośność w procentach traktujemy jako kierunek: „trochę” ≈ 2–3 dB,
   „wyraźnie” ≈ 4–6 dB. Zmiana poniżej 1 dB jest niesłyszalna.
 
@@ -271,7 +271,9 @@ na czas sklejki.
 - obraz (✅ 12.10): `eq=contrast=1.10:saturation=1.18:brightness=0.01,unsharp=5:5:0.3` — `cut.py` `COLOR_GRADE`,
   na materiale z kamery przed grafikami; wchodzi przy ponownym cięciu (`cut.py --force`)
 - dźwięk: highpass 80 Hz, −2 dB @ 250 Hz, +2,5 dB @ 3,2 kHz, kompresor, `loudnorm` −14 LUFS
-- tempo: `atempo=1.05` + `setpts` (ton bez zmian)
+- tempo (✅ 12.10): `package.py` `TEMPO_SHORT = 1.05` dla formatów innych niż `youtube` (storyboard nadpisuje
+  polem `tempo`); `face_video()` robi `master-x1.05.mp4` (`setpts` + `atempo`, ton bez zmian), słowa, sklejki,
+  długość klipu i liczby ze storyboardu dzielone przez tempo, `+N` zostaje czasem ekranowym
 - muzyka (✅ 12.10): `package.py` `finalize()` → `mix_music()`: ścieżka −28 LUFS, wejście do 2,2 s, zejście 1 s
   do tła −10 dB, `sidechaincompress` (0,03 / 4:1) pod głosem, plansza końcowa −2 dB; utwory w
   `projects/recording-library/assets/music/` (Pixabay), domyślny `the-mountain-technology-562622.mp3`,

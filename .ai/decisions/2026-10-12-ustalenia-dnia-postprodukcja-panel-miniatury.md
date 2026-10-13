@@ -17,7 +17,7 @@ Zbiorcza lista decyzji Mateusza z jednego dnia pracy — każda ma szczegóły w
 | YouTube w studiu | Osobna zakładka połączona z Filmami — publikacja odcinka w jego karcie, bogatsze pola, lista „gotowe do publikacji?” | jw. |
 | Dostęp | Studio przez Tailscale (tailnet only), agencja po zaproszeniu do tailnetu | `flowbiz-ads-studio/README.md` |
 | Kolor | Poziom **„średnio”** (kontrast +10%, nasycenie +18%, lekkie wyostrzenie), tylko na nagraniu, nie na grafikach | `cut.py` `COLOR_GRADE`, wytyczne §9 |
-| Tempo mowy | **Otwarte** — 1,00× / 1,05× / 1,08× (rekomendacja 1,05×); render całości po decyzji, razem z kolorem | próbki `final/samples/postprodukcja/` |
+| Tempo mowy | ✅ **1,05×** w rolkach, reklamach i zajawkach; odcinki 16:9 1,00× (rozdziały w opisach YouTube). Nałożone w `package.py` per format, nie w cięciu — `ep-8-wdrozen` jest sklejony z klipów rozdziałów | próbki `final/samples/postprodukcja/` |
 | Miniatury — źródła wiedzy | Bez zewnętrznych skilli „noname”; opieramy się na danych z sieci, własnych wytycznych i wzorze z Claude Design | wytyczne §13 |
 | Miniatury — konstrukcja | Z przeglądu 4 kanałów bierzemy tylko konstrukcję: 3 elementy (twarz + 2–4 linie z podświetloną liczbą + jeden rekwizyt), stały szablon kanału | wytyczne §13, `~/Youtube Projects/inspiracje/miniatury-kanaly-2026-10-12/` |
 | Miniatury — styl | Klimat reklam i wzoru „Miniatura VS - AI-first” (zieleń + mięta, białe/zielone pole hasła) | wytyczne §13 |
@@ -26,7 +26,7 @@ Zbiorcza lista decyzji Mateusza z jednego dnia pracy — każda ma szczegóły w
 
 ## Do zrobienia
 
-- Decyzja o tempie → przecięcie i render 66 filmów (kolor + tempo), `verify.py`, historia, `export_studio.py`.
+- ✅ Noc 12→13.10: przecięcie z kolorem i render 66 filmów (kolor + tempo + muzyka), `verify.py`, historia, `export_studio.py`.
 - Szablon miniatury + przycisk „Generuj miniatury” w karcie odcinka; miniatury 8 odcinków.
   Plik HTML z Claude Design („Miniatura VS - AI-first.html”) pozwoli odwzorować 1:1.
 - `brand.json` w repo strony zamiast palet wpisanych w `package.py`.
