@@ -80,9 +80,9 @@ for palette in PALETTES.values():
 # Mateusz 9.10: zostajemy przy A (bursztyn) — zieleń B wygląda kiepsko na wideo.
 # B zostaje w słowniku do ręcznego --palette B, ale nie renderuje się domyślnie.
 ACTIVE_PALETTES = ["A"]
-# 13.10: rolki i reklamy (pion, 4:5) w palecie strony flowbiz.pl (brandbook: ciemna zieleń + teal),
-# odcinki 16:9 zostają w palecie kanału — decyzja Mateusza po porównaniu A/B pierwszego ekranu.
-FORMAT_PALETTE = {"reels": "B", "ad": "B", "feed": "B", "youtube": "A"}
+# 13.10: próba zieleni z brandbooka (B) w pionie odrzucona po obejrzeniu („zieleń mi tu nie siedzi
+# w ogóle”) — wszystkie formaty w palecie kanału (A). Mapa zostaje, gdyby format miał dostać inną.
+FORMAT_PALETTE = {"reels": "A", "ad": "A", "feed": "A", "youtube": "A"}
 
 # Plansza końcowa rolki (Mateusz 13.10): zamiast „Napisz SŁOWO w komentarzu” (30 różnych słów,
 # obiecane materiały, za którymi nic nie stało) — bezpłatna konsultacja online z przyciskiem
