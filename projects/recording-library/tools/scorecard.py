@@ -23,7 +23,7 @@ import json
 import re
 from pathlib import Path
 
-from package import FINAL, PACK, output_name, tempo_for
+from package import FINAL, PACK, output_name, palettes_for, tempo_for
 from sources import DATA, LIBRARY, load_clips
 
 PREDICTOR = DATA / "predictor.json"     # wyniki Higgsfield Virality Predictor (dopisywane ręcznie/skryptem)
@@ -135,7 +135,7 @@ def main():
             "syl_s": round(tempo(words), 2), "events": events, "events_per_min": round(epm, 1),
             "parts": {k: round(v, 2) for k, v in parts.items()}, "score": score,
             "predictor": p,
-            "file": f"{name}__{fmt}-{'S' if board.get('brand', clip['brand']) == 'aislupsk' else 'A'}.mp4",
+            "file": f"{name}__{fmt}-{palettes_for(board, clip, fmt)[0]}.mp4",
         })
     ranked = sorted(rows, key=lambda r: -r["score"])
     for i, r in enumerate(ranked):

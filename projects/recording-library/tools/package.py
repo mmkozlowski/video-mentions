@@ -80,6 +80,18 @@ for palette in PALETTES.values():
 # Mateusz 9.10: zostajemy przy A (bursztyn) — zieleń B wygląda kiepsko na wideo.
 # B zostaje w słowniku do ręcznego --palette B, ale nie renderuje się domyślnie.
 ACTIVE_PALETTES = ["A"]
+# 13.10: rolki i reklamy (pion, 4:5) w palecie strony flowbiz.pl (brandbook: ciemna zieleń + teal),
+# odcinki 16:9 zostają w palecie kanału — decyzja Mateusza po porównaniu A/B pierwszego ekranu.
+FORMAT_PALETTE = {"reels": "B", "ad": "B", "feed": "B", "youtube": "A"}
+
+# Plansza końcowa rolki (Mateusz 13.10): zamiast „Napisz SŁOWO w komentarzu” (30 różnych słów,
+# obiecane materiały, za którymi nic nie stało) — bezpłatna konsultacja online z przyciskiem
+# i telefonem oraz zachęta do kanału YouTube. Zmieniasz tutaj, nie w storyboardach.
+REELS_CTA = {
+    "flowbiz": dict(kicker="Bezpłatna konsultacja online", title="Pokażę, jak to wygląda *u *Ciebie",
+                    youtube="Całe case study na kanale YouTube"),
+    "aislupsk": dict(kicker="Warsztaty AI dla firm", title="Zapisz się na *najbliższe warsztaty"),
+}
 
 
 def output_name(clip, board):
@@ -87,10 +99,16 @@ def output_name(clip, board):
     return clip["id"] + (f"--{board['variant']}" if board.get("variant") else "")
 
 
-def palettes_for(board, clip):
-    """Marka ma swoją paletę (AI Słupsk → S); flowbiz jedzie na ACTIVE_PALETTES."""
+def board_brand(board, clip):
+    return board.get("brand", clip["brand"])
+
+
+def palettes_for(board, clip, fmt=None):
+    """Marka ma swoją paletę (AI Słupsk → S); flowbiz — paleta formatu (FORMAT_PALETTE)."""
     brand = BRANDS[board.get("brand", clip["brand"])]
-    return [brand["palette"]] if brand.get("palette") else ACTIVE_PALETTES
+    if brand.get("palette"):
+        return [brand["palette"]]
+    return [FORMAT_PALETTE[fmt]] if fmt else ACTIVE_PALETTES
 
 # Kolor marki w wersji czytelnej na ciemnym tle (jak w projects/youtube).
 LOGO_COLORS = {
@@ -255,7 +273,7 @@ class Composition:
                       for i, w in enumerate(words)]
         self.clock = Clock(self.words, fixes, self.tempo)
         self.clip_len = round(clip["duration"] / self.tempo, 3)
-        self.end_len = board.get("endcard", {}).get(fmt, {"ad": 3.5, "reels": 2.6, "youtube": 2.5, "feed": 3.5}[fmt])
+        self.end_len = board.get("endcard", {}).get(fmt, {"ad": 3.5, "reels": 3.5, "youtube": 2.5, "feed": 3.5}[fmt])
         self.total = round(self.clip_len + self.end_len, 3)
         self.html, self.js, self.media = [], [], {}
         self.n = 0
@@ -926,9 +944,17 @@ class Composition:
                     f'<div class="end-phone">tel. {esc(self.brand["phone"])}</div>')
         else:
             lines = cta.get("reels", {})
-            body = (f'<div class="end-kicker">{esc(lines.get("kicker", "Chcesz to u siebie?"))}</div>'
-                    + self.end_title(lines.get("title", "Napisz „AGENT” w komentarzu")) +
-                    f'<div class="end-sub">{esc(lines.get("sub", "Wyślę Ci materiał, jak zacząć"))}</div>')
+            if not lines or "komentarz" in (lines.get("title", "") + lines.get("kicker", "")).lower():
+                lines = REELS_CTA[board_brand(self.board, self.clip)]
+                body = (f'<div class="end-kicker">{esc(lines["kicker"])}</div>' + self.end_title(lines["title"])
+                        + f'<div class="end-btn">{esc(self.brand["web"])}</div>'
+                        f'<div class="end-phone">tel. {esc(self.brand["phone"])}</div>'
+                        + (f'<div class="end-yt end-yt-small">{logo("youtube", 64, "#FF0000")}<span>{esc(lines["youtube"])}</span></div>'
+                           if lines.get("youtube") else ""))
+            else:
+                body = (f'<div class="end-kicker">{esc(lines.get("kicker", "Chcesz to u siebie?"))}</div>'
+                        + self.end_title(lines["title"]) +
+                        f'<div class="end-sub">{esc(lines.get("sub", ""))}</div>')
         cutout = ""
         if self.brand.get("cutout"):
             # sylwetka z ratuszem jak na aislupsk.pl — prawdziwe zdjęcie, nie AI
@@ -939,7 +965,7 @@ class Composition:
                          f'<div class="end-mark">{self.brand_mark()}</div><div class="end-body">{body}</div></div></div>')
         self.js.append(f'tl.fromTo("#{cid} .end-mark",{{opacity:0,scale:0.9}},{{opacity:1,scale:1,duration:0.6,ease:"power3.out"}},{self.q(start)});')
         self.js.append(f'tl.fromTo("#{cid} .end-body > *",{{opacity:0,y:30}},{{opacity:1,y:0,duration:0.45,stagger:0.12,ease:"power3.out"}},{self.q(start + 0.1)});')
-        if self.fmt == "ad":
+        if self.fmt in ("ad", "reels"):
             self.js.append(f'tl.fromTo("#{cid} .end-btn",{{scale:1}},{{scale:1.05,duration:0.5,yoyo:true,repeat:3,ease:"sine.inOut"}},{self.q(start + 0.9)});')
 
     def yt_badge(self):
@@ -1135,6 +1161,7 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .fmt-feed .hook{{bottom:90px}} .fmt-feed .hv{{min-height:170px}} .fmt-feed .hv-img,.fmt-feed .hv-logo{{width:170px;height:170px}}
 .yt-badge{{position:absolute;left:32px;top:32px;display:flex;align-items:center;gap:12px;padding:10px 18px 10px 14px;border-radius:40px;background:rgba(0,0,0,.72);color:#fff;font-size:26px;font-weight:700;z-index:6}}
 .end-yt{{display:flex;align-items:center;gap:22px;font-size:40px;font-weight:800;color:{text}}}
+.end-yt-small{{font-size:30px;gap:16px;margin-top:22px;font-weight:700;opacity:.92}}
 .flash{{position:absolute;inset:0;background:#fff;opacity:0;z-index:10;pointer-events:none}}
 .broll-full{{position:absolute;inset:0;z-index:7;background:#000}} .broll-full video{{width:100%;height:100%;object-fit:cover}}
 .beat{{position:relative;width:100%;text-align:center;display:flex;flex-direction:column;align-items:center;gap:26px}}
@@ -1233,7 +1260,7 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .poster-scrim{{position:absolute;left:0;right:0;bottom:0;height:62%;background:linear-gradient(180deg,rgba(0,0,0,0) 0%,{bg}C0 32%,{bg}F2 62%,{bg} 100%)}}
 .poster{{position:absolute;left:44px;right:132px;bottom:290px;color:{text}}}
 .fmt-feed .poster{{bottom:70px}}
-.pkicker{{font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:{accent};white-space:nowrap;margin:2px 0 18px;line-height:1.2}}
+.pkicker{{font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:{text};opacity:.9;white-space:nowrap;margin:2px 0 18px;line-height:1.2}}
 .phead{{font-weight:800;line-height:1.08;letter-spacing:-.02em}}
 .phead .w{{display:inline-block}} .phead .nb{{display:inline-block;white-space:nowrap}}
 .phead .acc{{color:{accent}}}
@@ -1447,7 +1474,7 @@ def main():
         board = json.load(open(PACK / "storyboards" / f"{clip['id']}.json"))
     name = output_name(clip, board)
     for fmt in a.format or board.get("formats", ["reels", "ad", "youtube"]):
-        for pal in a.palette or palettes_for(board, clip):
+        for pal in a.palette or palettes_for(board, clip, fmt):
             folder = OUT / name / f"{fmt}-{pal}"
             if a.finalize_only:
                 if (folder / "render.mp4").exists():
