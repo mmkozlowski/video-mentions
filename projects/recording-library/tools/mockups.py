@@ -34,6 +34,10 @@ def badge(score):
     return '<span class="mk-badge no">brak</span>'
 
 
+def mock_slate(comp, *args, **kwargs):
+    """Plansza makiety — klasa „mock”: w palecie forest makieta stoi na jasnej karcie (13.10)."""
+    return comp.slate(*args, cls="mock", **kwargs)
+
 def match(comp, ev, start, end):
     rows = []
     for i, (theirs, ours, score) in enumerate(MATCH_ROWS):
@@ -49,7 +53,7 @@ def match(comp, ev, start, end):
              f'<div class="mk-head"><span>Pozycja od kontrahenta</span><span>Produkt w systemie</span><span>Pewność</span></div>'
              f'{"".join(rows)}'
              f'<div class="mk-foot"><b>4 z 5</b> dopasowane automatycznie · <b class="mk-foot-fix">1 poprawka → zapamiętana</b></div></div>')
-    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    sid = mock_slate(comp, start, end, inner, pip=ev.get("pip", True))
     q = comp.q
     comp.js.append(f'tl.fromTo("#{sid} .mk-row",{{opacity:0,x:-30}},{{opacity:1,x:0,duration:0.35,stagger:0.18,ease:"power2.out"}},{q(start + 0.3)});')
     comp.js.append(f'tl.fromTo("#{sid} .mk-badge",{{scale:0}},{{scale:1,duration:0.3,stagger:0.18,ease:"back.out(2)"}},{q(start + 0.6)});')
@@ -109,7 +113,7 @@ def telegram(comp, ev, start, end):
     inner = (f'<div class="tg-phone"><div class="tg-top">{logo("telegram", 46, "#26A5E4")}'
              f'<div><b>Asystent firmy</b><span>bot · online</span></div></div>'
              f'<div class="tg-chat">{"".join(bubbles)}</div></div>')
-    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    sid = mock_slate(comp, start, end, inner, pip=ev.get("pip", True))
     step = min(1.1, max(0.45, (end - start - 1.2) / len(lines)))
     for i in range(len(lines)):
         comp.js.append(f'tl.fromTo("#{sid} .tg-msg[data-i=\'{i}\']",{{opacity:0,y:24,scale:0.96}},'
@@ -134,7 +138,7 @@ def b2b_rep(comp, ev, start, end):
                    for i, (c, n, st, cls) in enumerate(B2B_REP))
     inner = (f'<div class="mk-window b2b"><div class="mk-bar"><i></i><i></i><i></i><span>Panel handlowca · moi klienci</span></div>'
              f'<div class="b2b-side b2b-rep">{rows}<div class="b2b-btn">+ Zamów za klienta</div></div></div>')
-    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    sid = mock_slate(comp, start, end, inner, pip=ev.get("pip", True))
     comp.js.append(f'tl.fromTo("#{sid} .b2b-order",{{opacity:0,x:-40}},{{opacity:1,x:0,duration:0.35,stagger:0.25}},{comp.q(start + 0.3)});')
     comp.js.append(f'tl.fromTo("#{sid} .b2b-btn",{{opacity:0,scale:0.8}},{{opacity:1,scale:1,duration:0.35,ease:"back.out(2)"}},{comp.q(start + 1.4)});')
 
@@ -153,7 +157,7 @@ def b2b(comp, ev, start, end):
              f'<div class="b2b-side"><div class="b2b-h">Moje zamówienia</div>'
              f'<div class="b2b-order b2b-new"><b>#1049</b><span class="mk-badge no b2b-new-badge">Nowe</span></div>{orders}</div></div>'
              f'<div class="b2b-toast">🔔 Biuro: wpadło nowe zamówienie #1049</div></div>')
-    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    sid = mock_slate(comp, start, end, inner, pip=ev.get("pip", True))
     q, span = comp.q, end - start
     if span < 4.0:
         raise SystemExit(f"makieta b2b @ {start:.1f}: {span:.1f} s — za krótko na zamówienie i zmianę statusu (min. 4 s)")
@@ -188,7 +192,7 @@ def excels(comp, ev, start, end):
                       f'<div class="xl-row xl-head">{cols}</div><div class="xl-row xl-hit">{cells}</div>'
                       f'<div class="xl-row"><span></span></div><div class="xl-row"><span></span></div></div>')
     inner = f'<div class="xl-wrap">{"".join(sheets)}</div><div class="xl-foot">ta sama pozycja · <b>3 układy kolumn</b> · 3 nazwy</div>'
-    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    sid = mock_slate(comp, start, end, inner, pip=ev.get("pip", True))
     q = comp.q
     comp.js.append(f'tl.fromTo("#{sid} .xl",{{opacity:0,y:50,rotation:-2}},{{opacity:1,y:0,rotation:0,duration:0.45,stagger:0.25,ease:"back.out(1.5)"}},{q(start + 0.3)});')
     comp.js.append(f'tl.fromTo("#{sid} .xl-hit",{{backgroundColor:"rgba(245,166,35,0)"}},{{backgroundColor:"rgba(245,166,35,0.22)",duration:0.3,stagger:0.25}},{q(start + 1.4)});')
@@ -205,7 +209,7 @@ def labels(comp, ev, start, end):
              f'<div class="lb-nums"><span>ZAM 0418</span><span>PROD 114</span><span>CZ 07</span><span>PACZ 40</span></div>'
              f'<div class="b2b-btn lb-btn">Generuj etykiety</div><div class="lb-done">✓ PDF gotowy · 40 stron</div></div>'
              f'<div class="lb-stack">{pages}</div></div>')
-    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    sid = mock_slate(comp, start, end, inner, pip=ev.get("pip", True))
     q, click = comp.q, start + 1.2
     comp.js.append(f'tl.set("#{sid} .lb-page, #{sid} .lb-done",{{opacity:0}},{q(start)});')
     comp.js.append(f'tl.to("#{sid} .lb-btn",{{scale:0.94,duration:0.12,yoyo:true,repeat:1}},{q(click)});')
@@ -224,7 +228,7 @@ def sync(comp, ev, start, end):
              f'<div class="sy-pipe"><div class="sy-line"></div>{chips}<div class="sy-clock">↻ raz na dobę</div></div>'
              f'<div class="sy-box sy-om">{logo("openmercato", 64)}<span>jedno źródło prawdy</span></div></div>'
              f'<div class="sy-users">{users}</div></div>')
-    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    sid = mock_slate(comp, start, end, inner, pip=ev.get("pip", True))
     q = comp.q
     comp.js.append(f'tl.fromTo("#{sid} .sy-box",{{opacity:0,y:30}},{{opacity:1,y:0,duration:0.4,stagger:0.2}},{q(start + 0.2)});')
     comp.js.append(f'tl.fromTo("#{sid} .sy-line",{{scaleX:0}},{{scaleX:1,duration:0.5,ease:"power2.out"}},{q(start + 0.8)});')
@@ -247,7 +251,7 @@ def coast(comp, ev, start, end):
              f'<path class="co-route" d="M 120 300 C 300 260, 430 225, 560 200 S 820 160, 900 150" pathLength="1"/>{towns}'
              f'<g class="co-van"><rect x="-26" y="-16" width="52" height="30" rx="6"/></g></svg>'
              f'<div class="co-note">Towar wyprodukowany „na zapas” — <b>dowiadujesz się o nadwyżce na końcu sezonu</b></div></div>')
-    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    sid = mock_slate(comp, start, end, inner, pip=ev.get("pip", True))
     q, run = comp.q, max(2.0, (end - start) - 2.0)
     comp.js.append(f'tl.fromTo("#{sid} .co-route",{{strokeDashoffset:1}},{{strokeDashoffset:0,duration:{run},ease:"none"}},{q(start + 0.4)});')
     comp.js.append(f'tl.fromTo("#{sid} .co-town",{{opacity:0,scale:0.4,transformOrigin:"50% 50%"}},{{opacity:1,scale:1,duration:0.3,stagger:{run / 4}}},{q(start + 0.4)});')
@@ -269,7 +273,7 @@ def parcels(comp, ev, start, end):
                 '<div class="pc-step">Drukuj etykietę</div><div class="pc-loop">↻ × 4 na jedno zamówienie</div></div>')
         title = "Wcześniej · ręcznie"
     inner = (f'<div class="pc"><div class="co-kicker">{title}</div><div class="pc-row"><div class="pc-sacks">{sacks}</div>{side}</div></div>')
-    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    sid = mock_slate(comp, start, end, inner, pip=ev.get("pip", True))
     q = comp.q
     comp.js.append(f'tl.fromTo("#{sid} .pc-sack",{{opacity:0,y:40}},{{opacity:1,y:0,duration:0.35,stagger:0.15}},{q(start + 0.2)});')
     comp.js.append(f'tl.set("#{sid} .pc-label",{{opacity:0}},{q(start)});')
@@ -298,7 +302,7 @@ def catalog(comp, ev, start, end):
              f'<div class="ct-col"><div class="b2b-h">AI · lista produktów</div>{items}</div>'
              f'<div class="sy-line ct-arrow"></div>'
              f'<div class="ct-col"><div class="b2b-h">Opisy pod platformy</div>{chans}<div class="b2b-btn ct-btn">Dodaj do magazynu</div></div></div>')
-    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    sid = mock_slate(comp, start, end, inner, pip=ev.get("pip", True))
     q = comp.q
     comp.js.append(f'tl.fromTo("#{sid} .ct-doc",{{opacity:0,y:30}},{{opacity:1,y:0,duration:0.4}},{q(start + 0.2)});')
     comp.js.append(f'tl.fromTo("#{sid} .ct-arrow",{{scaleX:0}},{{scaleX:1,duration:0.4,stagger:1.4}},{q(start + 0.7)});')
@@ -315,7 +319,7 @@ def pdfs(comp, ev, start, end):
                    f'<div class="pf-head"><i></i><b>{esc(t)}</b></div><div class="pf-lines"><i></i><i></i><i></i><i></i><i></i></div></div>'
                    for i, (c, t, r) in enumerate(looks))
     inner = f'<div class="pfs"><div class="co-kicker">Każdy ma swoją wersję oferty</div><div class="pf-table">{docs}</div><div class="xl-foot">5 handlowców · <b>5 szablonów</b> · 5 sposobów wyceny</div></div>'
-    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    sid = mock_slate(comp, start, end, inner, pip=ev.get("pip", True))
     comp.js.append(f'tl.fromTo("#{sid} .pf",{{opacity:0,y:-200,rotation:0}},{{opacity:1,y:0,rotation:function(i,el){{return getComputedStyle(el).getPropertyValue("--r")}},duration:0.45,stagger:0.22,ease:"back.out(1.4)"}},{comp.q(start + 0.3)});')
     comp.js.append(f'tl.fromTo("#{sid} .xl-foot",{{opacity:0}},{{opacity:1,duration:0.3}},{comp.q(start + 1.8)});')
 
@@ -325,7 +329,7 @@ def funnel(comp, ev, start, end):
     dots = "".join(f'<i class="fn-dot{" fn-win" if i in (3, 11, 17) else ""}" data-i="{i}"></i>' for i in range(20))
     inner = (f'<div class="fn"><div class="co-kicker">Wystawione oferty</div><div class="fn-dots">{dots}</div>'
              f'<div class="fn-result"><b class="fn-num">3</b><span>zamówienia z 20 ofert — <b>dlaczego?</b></span></div></div>')
-    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    sid = mock_slate(comp, start, end, inner, pip=ev.get("pip", True))
     q = comp.q
     comp.js.append(f'tl.fromTo("#{sid} .fn-dot",{{opacity:0,scale:0}},{{opacity:1,scale:1,duration:0.2,stagger:0.05}},{q(start + 0.3)});')
     comp.js.append(f'tl.to("#{sid} .fn-dot:not(.fn-win)",{{opacity:0.18,duration:0.4}},{q(start + 1.8)});')
@@ -343,12 +347,12 @@ def context(comp, ev, start, end):
              f'<div class="cx-feed"><div class="cx-track">{rows}</div></div>'
              f'<div class="cx-meter"><span>Pamięć rozmowy</span><div class="hv-bar"><i></i></div></div></div>'
              f'<div class="cx-warn">⚠ „Rabat 15%? Oczywiście!” — wytyczne wypadły z pamięci</div></div>')
-    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    sid = mock_slate(comp, start, end, inner, pip=ev.get("pip", True))
     q, span = comp.q, end - start
     comp.js.append(f'tl.fromTo("#{sid} .cx-msg",{{opacity:0,y:20}},{{opacity:1,y:0,duration:0.25,stagger:{min(0.5, span / 14)}}},{q(start + 0.3)});')
     comp.js.append(f'tl.fromTo("#{sid} .cx-meter i",{{width:"20%"}},{{width:"100%",duration:{q(span * 0.55)},ease:"none"}},{q(start + 0.3)});')
     comp.js.append(f'tl.to("#{sid} .cx-track",{{y:-230,duration:{q(span * 0.35)},ease:"power1.in"}},{q(start + span * 0.35)});')
-    comp.js.append(f'tl.to("#{sid} .cx-meter i",{{backgroundColor:"{comp.pal["danger"]}",duration:0.3}},{q(start + span * 0.55)});')
+    comp.js.append(f'tl.to("#{sid} .cx-meter i",{{backgroundColor:"{comp.mock_pal["danger"]}",duration:0.3}},{q(start + span * 0.55)});')
     comp.js.append(f'tl.fromTo("#{sid} .cx-warn",{{opacity:0,y:20}},{{opacity:1,y:0,duration:0.4}},{q(start + span * 0.62)});')
 
 
@@ -358,7 +362,7 @@ def sources(comp, ev, start, end):
     srcs = "".join(f'<div class="sr-src" data-i="{i}"><b>{icon}</b>{esc(t)}</div>' for i, (icon, t) in enumerate([("🧠", "w głowach"), ("📝", "na kartkach"), ("✉️", "w mailach")]))
     inner = (f'<div class="sr"><div class="sr-srcs">{srcs}</div><div class="sr-gap">✕ brak połączenia</div>'
              f'<div class="sr-agent"><div class="tg-msg tg-me">Ile mamy opóźnionych zleceń?</div><div class="tg-msg tg-bot">Nie wiem. Nie mam dostępu do tych danych.</div></div></div>')
-    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    sid = mock_slate(comp, start, end, inner, pip=ev.get("pip", True))
     q = comp.q
     comp.js.append(f'tl.fromTo("#{sid} .sr-src",{{opacity:0,y:30}},{{opacity:1,y:0,duration:0.35,stagger:0.25}},{q(start + 0.2)});')
     comp.js.append(f'tl.fromTo("#{sid} .sr-gap",{{opacity:0,scale:0.6}},{{opacity:1,scale:1,duration:0.35,ease:"back.out(2)"}},{q(start + 1.2)});')
@@ -379,7 +383,7 @@ def board(comp, ev, start, end):
              f'<div class="bd-arrow">→</div>'
              f'<div class="mk-window bd-sys"><div class="mk-bar"><i></i><i></i><i></i><span>Tablica produkcji</span></div>{sysr}'
              f'<div class="bd-foot">✓ historia każdego etapu · nauka: <b>1 godzina</b></div></div></div>')
-    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    sid = mock_slate(comp, start, end, inner, pip=ev.get("pip", True))
     q = comp.q
     comp.js.append(f'tl.fromTo("#{sid} .xl",{{opacity:0,x:-40}},{{opacity:1,x:0,duration:0.4}},{q(start + 0.2)});')
     comp.js.append(f'tl.fromTo("#{sid} .bd-arrow",{{opacity:0}},{{opacity:1,duration:0.3}},{q(start + 0.9)});')
@@ -525,7 +529,7 @@ def storage(comp, ev, start, end):
              f'<div class="st-list">{rows}<div class="st-empty">0 pracowników</div></div>'
              f'<div class="st-dialog">Wyczyść dane przeglądania<small>pliki cookie i dane witryn</small><b>Wyczyść</b></div>'
              f'<div class="mk-foot st-foot">dane były zapisane <b>tylko w przeglądarce</b> — bez bazy danych</div></div>')
-    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    sid = mock_slate(comp, start, end, inner, pip=ev.get("pip", True))
     q, span = comp.q, end - start
     wipe = start + max(2.2, span * 0.45)
     appear(comp, sid, ".st-row", start + 0.3, 0.15)
@@ -550,13 +554,13 @@ def deps(comp, ev, start, end):
     inner = (f'<div class="dp"><div class="dp-grid">{tiles}</div>'
              f'<div class="dp-env"><span class="dp-local">laptop: <b>działa ✓</b></span><span class="dp-prod">produkcja: <b>✕</b></span></div>'
              f'<div class="dp-log">{log}</div></div>')
-    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    sid = mock_slate(comp, start, end, inner, pip=ev.get("pip", True))
     q, span = comp.q, end - start
     brk = start + max(2.0, span * 0.45)
     comp.js.append(f'tl.fromTo("#{sid} .dp-tile",{{opacity:0,scale:0.6}},{{opacity:1,scale:1,duration:0.3,stagger:0.22,ease:"back.out(2)"}},{q(start + 0.2)});')
     comp.js.append(f'tl.set("#{sid} .dp-x, #{sid} .dp-prod, #{sid} .dp-err",{{opacity:0}},{q(start)});')
     comp.js.append(f'tl.fromTo("#{sid} .dp-local",{{opacity:0}},{{opacity:1,duration:0.3}},{q(start + 1.6)});')
-    comp.js.append(f'tl.to("#{sid} .dp-tile",{{borderColor:"{{danger}}",duration:0.2,stagger:0.1}},{q(brk)});'.replace("{danger}", comp.pal["danger"]))
+    comp.js.append(f'tl.to("#{sid} .dp-tile",{{borderColor:"{{danger}}",duration:0.2,stagger:0.1}},{q(brk)});'.replace("{danger}", comp.mock_pal["danger"]))
     comp.js.append(f'tl.to("#{sid} .dp-x",{{opacity:1,duration:0.2,stagger:0.1}},{q(brk)});')
     comp.js.append(f'tl.to("#{sid} .dp-prod",{{opacity:1,duration:0.3}},{q(brk + 0.4)});')
     comp.js.append(f'tl.to("#{sid} .dp-err",{{opacity:1,duration:0.2,stagger:0.25}},{q(brk + 0.6)});')
@@ -574,7 +578,7 @@ def layers(comp, ev, start, end):
     rows = "".join(f'<div class="ly-row" data-i="{i}"><b>{esc(n)}</b><span>{esc(d)}</span></div>'
                    + ('<div class="ly-arrow">↓</div>' if i < len(LAYERS) - 1 else "") for i, (n, d) in enumerate(LAYERS))
     inner = f'<div class="ly">{rows}<div class="ly-foot">powstaje razem z modułem — <b>od razu, nie po roku</b></div></div>'
-    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    sid = mock_slate(comp, start, end, inner, pip=ev.get("pip", True))
     step = min(0.9, max(0.35, (end - start - 1.5) / 5))
     appear(comp, sid, ".ly-row", start + 0.2, step)
     appear(comp, sid, ".ly-arrow", start + 0.2 + step * 0.6, step, 0)
@@ -591,7 +595,7 @@ def route(comp, ev, start, end):
     nodes = "".join(f'<div class="rt-node" data-i="{i}"><i>{i + 1}</i><b>{esc(n)}</b><span>{esc(d)}</span></div>' for i, (n, d) in enumerate(ROUTE))
     inner = (f'<div class="rt"><div class="rt-line"></div>{nodes}<div class="rt-card">ZAM 0418</div></div>'
              f'<div class="rt-count">osoby przy jednej kartce: <b class="rt-n">1</b></div>')
-    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    sid = mock_slate(comp, start, end, inner, pip=ev.get("pip", True))
     q, span = comp.q, end - start
     step = min(1.6, max(0.6, (span - 2.0) / len(ROUTE)))
     appear(comp, sid, ".rt-node", start + 0.2, 0.12)
@@ -599,7 +603,7 @@ def route(comp, ev, start, end):
     for i in range(len(ROUTE)):
         t = q(start + 0.9 + i * step)
         comp.js.append(f'tl.to("#{sid} .rt-card",{{"--i":{i},duration:0.45,ease:"power2.inOut"}},{t});')
-        comp.js.append(f'tl.to("#{sid} .rt-node[data-i=\'{i}\'] i",{{backgroundColor:"{comp.pal["accent"]}",color:"{comp.pal["on_accent"]}",duration:0.2}},{t});')
+        comp.js.append(f'tl.to("#{sid} .rt-node[data-i=\'{i}\'] i",{{backgroundColor:"{comp.mock_pal["accent"]}",color:"{comp.mock_pal["on_accent"]}",duration:0.2}},{t});')
         comp.js.append(f'tl.call(function(){{var e=document.querySelector("#{sid} .rt-n");if(e)e.textContent="{(1, 2, 4, 6, 8)[i]}";}},null,{t});')
     comp.js.append(f'tl.call(function(){{var e=document.querySelector("#{sid} .rt-n");if(e)e.textContent="kilkanaście";}},null,{q(start + 0.9 + len(ROUTE) * step)});')
 
@@ -613,10 +617,10 @@ def spec(comp, ev, start, end):
     body = "".join(f'<div class="sp-sec" data-i="{i}"><div class="sp-h"><i>{n}</i>{esc(t)}</div>'
                    + "".join(f'<div class="sp-li">{li}</div>' for li in lis) + '</div>' for i, (n, t, lis) in enumerate(secs))
     inner = f'<div class="mk-window sp"><div class="mk-bar"><i></i><i></i><i></i><span>specyfikacja · moduł zamówień.md</span></div><div class="sp-body">{body}</div></div>'
-    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    sid = mock_slate(comp, start, end, inner, pip=ev.get("pip", True))
     step = min(1.4, max(0.5, (end - start - 1.2) / 3))
     appear(comp, sid, ".sp-sec", start + 0.3, step)
-    comp.js.append(f'tl.fromTo("#{sid} .sp-sec[data-i=\'0\'] b",{{color:"{comp.pal["text"]}"}},{{color:"{comp.pal["accent"]}",duration:0.3}},{comp.q(start + 0.9)});')
+    comp.js.append(f'tl.fromTo("#{sid} .sp-sec[data-i=\'0\'] b",{{color:"{comp.mock_pal["text"]}"}},{{color:"{comp.mock_pal["accent"]}",duration:0.3}},{comp.q(start + 0.9)});')
 
 
 # Słownik pojęć z ep-module (~11:30): „zamówienie u handlowca to jedno, zamówienie na produkcji
@@ -627,7 +631,7 @@ def glossary(comp, ev, start, end):
     body = "".join(f'<div class="gl-card" data-i="{i}"><div class="gl-word">Zamówienie</div><div class="gl-where">{esc(w)}</div>'
                    + "".join(f'<div class="gl-f">{esc(f)}</div>' for f in fs) + '</div>' for i, (w, fs) in enumerate(cards))
     inner = f'<div class="gl"><div class="gl-row">{body}<div class="gl-ne">≠</div></div><div class="gl-foot">to samo słowo · <b>inne pola</b> · spisz to w słowniku pojęć</div></div>'
-    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    sid = mock_slate(comp, start, end, inner, pip=ev.get("pip", True))
     appear(comp, sid, ".gl-card", start + 0.2, 0.6, 40)
     comp.js.append(f'tl.fromTo("#{sid} .gl-ne",{{opacity:0,scale:0.3}},{{opacity:1,scale:1,duration:0.4,ease:"back.out(2.5)"}},{comp.q(start + 1.4)});')
     appear(comp, sid, ".gl-foot", start + 2.0, 0)
@@ -640,7 +644,7 @@ def checklist(comp, ev, start, end):
     rows = "".join(f'<div class="ck-row" data-i="{i}"><i>✓</i>{esc(t)}</div>' for i, t in enumerate(items))
     inner = (f'<div class="ck"><div class="mk-window ck-list"><div class="mk-bar"><i></i><i></i><i></i><span>checklista specyfikacji</span></div>{rows}</div>'
              f'<div class="ck-gauge"><span>trafność modułu</span><div class="hv-bar"><i></i></div><b>70–90%</b></div></div>')
-    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    sid = mock_slate(comp, start, end, inner, pip=ev.get("pip", True))
     q, span = comp.q, end - start
     step = min(0.7, max(0.3, (span - 2.5) / 6))
     appear(comp, sid, ".ck-row", start + 0.3, step, 0)
@@ -662,7 +666,7 @@ def copies(comp, ev, start, end):
                      + "".join(f'<span class="{"xc-hid" if k in hidden else ""}">{esc(c)}</span>' for k, c in enumerate(cols))
                      + '</div></div>' for i, (n, cols, hidden) in enumerate(COPIES))
     inner = f'<div class="xc-wrap">{sheets}</div><div class="xl-foot">1 proces · <b>3 kopie pliku</b> · 3 wersje prawdy</div>'
-    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    sid = mock_slate(comp, start, end, inner, pip=ev.get("pip", True))
     q = comp.q
     comp.js.append(f'tl.fromTo("#{sid} .xc",{{opacity:0,y:50,rotation:-2}},{{opacity:1,y:0,rotation:0,duration:0.45,stagger:0.35,ease:"back.out(1.5)"}},{q(start + 0.3)});')
     comp.js.append(f'tl.fromTo("#{sid} .xc-hid",{{opacity:1}},{{opacity:0.12,duration:0.3,stagger:0.12}},{q(start + 1.7)});')
@@ -680,7 +684,7 @@ def history(comp, ev, start, end):
                    for i, (w, r, a, t) in enumerate(HISTORY))
     inner = (f'<div class="mk-window hs"><div class="mk-bar"><i></i><i></i><i></i><span>Zamówienie ZAM 0418 · historia zmian</span></div>'
              f'{rows}<div class="mk-foot">kto · co · kiedy — <b>bez szukania po mailach</b></div></div>')
-    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    sid = mock_slate(comp, start, end, inner, pip=ev.get("pip", True))
     appear(comp, sid, ".hs-row", start + 0.3, min(0.7, max(0.25, (end - start - 1.5) / 5)), 0)
     appear(comp, sid, ".mk-foot", start + 2.4, 0)
 
@@ -694,7 +698,7 @@ def questions(comp, ev, start, end):
     rows = "".join(f'<div class="qs-row" data-i="{i}"><b>{esc(r)}</b><span>{n} pytań</span></div>' for i, (r, n) in enumerate(ROLES_Q))
     inner = (f'<div class="qs"><div class="co-kicker">Warsztat · 6 godzin · 1 dzień</div><div class="qs-list">{rows}</div>'
              f'<div class="qs-total"><b class="qs-n">0</b> pytań — po ludziach, nie po tematach</div></div>')
-    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    sid = mock_slate(comp, start, end, inner, pip=ev.get("pip", True))
     q = comp.q
     step = min(0.6, max(0.25, (end - start - 2) / 7))
     appear(comp, sid, ".qs-row", start + 0.3, step, 0)
@@ -716,7 +720,7 @@ def modules(comp, ev, start, end):
     inner = (f'<div class="om"><div class="om-head">{logo("openmercato", 56)}<span>{esc(ev.get("title", "gotowe moduły"))}</span></div>'
              f'<div class="om-grid">{tiles}{own}</div>'
              f'<div class="om-foot"><b>~80%</b> gotowe · resztę dopisujesz pod swoją firmę</div></div>')
-    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    sid = mock_slate(comp, start, end, inner, pip=ev.get("pip", True))
     q = comp.q
     comp.js.append(f'tl.fromTo("#{sid} .om-tile",{{opacity:0,scale:0.7}},{{opacity:1,scale:1,duration:0.3,stagger:0.12,ease:"back.out(2)"}},{q(start + 0.3)});')
     if fresh:
@@ -734,7 +738,7 @@ def repo(comp, ev, start, end):
     rows = "".join(f'<div class="rp-row" data-i="{i}" style="padding-left:{40 + d * 52}px"><b>{esc(n)}</b>'
                    + (f'<span>{esc(note)}</span>' if note else "") + '</div>' for i, (n, d, note) in enumerate(REPO))
     inner = f'<div class="mk-window rp"><div class="mk-bar"><i></i><i></i><i></i><span>repozytorium · Open Mercato</span></div>{rows}</div>'
-    sid = comp.slate(start, end, inner, pip=ev.get("pip", True))
+    sid = mock_slate(comp, start, end, inner, pip=ev.get("pip", True))
     appear(comp, sid, ".rp-row", start + 0.3, min(0.45, max(0.18, (end - start - 1.5) / 9)), 0)
 
 

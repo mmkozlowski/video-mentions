@@ -58,20 +58,20 @@ PALETTES = {
     "A": dict(name="kanał YouTube", bg="#0A0A08", panel="#0D0D0B", raised="#16140F",
               line="#2E2C28", text="#FAF8F0", muted="#9A938A", accent="#F5A623",
               accent2="#6BAA6B", danger="#C0553A", on_accent="#0A0A08",
-              font="DM Sans", grid="rgba(245,166,35,0.06)", tag="#F5A623",
+              font="DM Sans", grid="rgba(245,166,35,0.06)", tag="#F5A623", tag_text="#FFFFFF",
               mono="DM Sans", kicker_color="#FAF8F0", box_bg="#F5A623", box_fg="#0A0A08", logo="flowbiz-ai.png"),
     # Strona flowbiz.pl — tryb ciemny strony (hsl 165 40% 8%) + marka #1C9E7A.
     "B": dict(name="strona flowbiz.pl", bg="#0C1D18", panel="#10241E", raised="#163029",
               line="#24413A", text="#F4FAF7", muted="#8FB0A6", accent="#1C9E7A",
               accent2="#F5A623", danger="#E5604A", on_accent="#FFFFFF",
-              font="Plus Jakarta Sans", grid="rgba(28,158,122,0.08)", tag="#F5A623",
+              font="Plus Jakarta Sans", grid="rgba(28,158,122,0.08)", tag="#F5A623", tag_text="#FFFFFF",
               mono="Plus Jakarta Sans", kicker_color="#F4FAF7", box_bg="#1C9E7A", box_fg="#FFFFFF", logo="flowbiz-ai.png"),
     # AI Słupsk — tokeny ze strony aislupsk.pl (src/index.css): granat-fiolet, róż,
     # nagłówki pochyłe (Mateusz 9.10: „pod aislupsk idź w tym kierunku wizualnym”).
     "S": dict(name="AI Słupsk", bg="#160A2E", panel="#1A0D36", raised="#2C1F47",
               line="#392D53", text="#FFFFFF", muted="#ADA3C2", accent="#FF3388",
               accent2="#A219E6", danger="#FF5A5A", on_accent="#FFFFFF",
-              font="Plus Jakarta Sans", grid="rgba(255,51,136,0.07)", tag="#FF3388", mono="Plus Jakarta Sans", kicker_color="#FFFFFF",
+              font="Plus Jakarta Sans", grid="rgba(255,51,136,0.07)", tag="#FF3388", tag_text="#FFFFFF", mono="Plus Jakarta Sans", kicker_color="#FFFFFF",
               box_bg="#FF3388", box_fg="#FFFFFF", logo="flowbiz-ai.png", heading_style="italic", word_gap="0.1em",
               bg_fill="linear-gradient(135deg,#160A2E 0%,#0F173D 50%,#261745 100%)"),
     # Reklamy FlowBiz („forest”, flowbiz-ads-studio/tools/templates): prawie czarne zielone tło z siatką,
@@ -79,10 +79,14 @@ PALETTES = {
     # białej karcie w ciemnej zieleni, logo w wersji forest. 13.10 — próba po odrzuceniu B.
     "F": dict(name="reklamy FlowBiz (forest)", bg="#071B15", panel="#09211A", raised="#0E2A22",
               line="#1F4A3E", text="#FFFFFF", muted="#A7B8B1", accent="#2FD3A0",
-              accent2="#F4A72A", danger="#F4A72A", on_accent="#0E1F1A",   # przekreślenia pomarańczowe jak „MIESIĄC” w reklamie
-              font="Plus Jakarta Sans", grid="rgba(47,211,160,0.06)", tag="#F4A72A",
+              accent2="#F4A72A", danger="#FFFFFF", on_accent="#0E1F1A",   # 13.10: pomarańczowe przekreślenie „nie pasuje”
+              font="Plus Jakarta Sans", grid="rgba(47,211,160,0.06)", tag="#F4A72A", tag_text="#0E1F1A",
               mono="Space Mono", kicker_color="#F4A72A", box_bg="#FFFFFF", box_fg="#14795E",
-              logo="flowbiz-ai-forest.svg"),
+              logo="flowbiz-ai-forest.svg",
+              # okna systemu (makiety, Telegram, czat) jasne jak biała karta w reklamach — zielone
+              # „zlewały się z tłem” (Mateusz 13.10, ch-vacu-1 zajawka)
+              mockup=dict(panel="#FFFFFF", raised="#EEF4F1", line="#D3DED9", text="#0E1F1A", muted="#5E6E68",
+                          accent="#14795E", accent2="#B86E00", danger="#C2410C", on_accent="#FFFFFF")),
 }
 for palette in PALETTES.values():
     palette.setdefault("heading_style", "normal")
@@ -280,6 +284,7 @@ class Composition:
     def __init__(self, clip, board, fmt, palette):
         self.clip, self.board, self.fmt, self.pal = clip, board, fmt, PALETTES[palette]
         self.palette_key = palette
+        self.mock_pal = {**self.pal, **self.pal.get("mockup", {})}
         self.geo = FORMATS[fmt]
         self.vertical = fmt != "youtube"
         self.brand = BRANDS[board.get("brand", clip["brand"])]
@@ -501,7 +506,7 @@ class Composition:
                          + (f'<div class="sub">{esc(ev["sub"])}</div>' if ev.get("sub") else ""), pip=ev.get("pip", False))
         self.stagger(f"#{sid} .slate-text .w", start + 0.12, 0.06, 18)
 
-    def slate(self, start, end, inner, instant=False, pip=False):
+    def slate(self, start, end, inner, instant=False, pip=False, cls=""):
         sid = self.uid("s")
         start, end = self.q(start), self.q(end)
         self.slates.append((start, end))
@@ -514,7 +519,7 @@ class Composition:
                            f'duration:0.5,ease:"power3.inOut"}},{start});')
             self.js.append(f'tl.to("#video-wrap",{{scale:1,x:0,y:0,borderRadius:0,duration:0.5,ease:"power3.inOut"}},{round(end - 0.5, 4)});')
             self.js.append(f'tl.set("#video-wrap",{{zIndex:1}},{end});')
-        self.html.append(f'<div class="slate clip{" pip" if pip else ""}" id="{sid}" style="opacity:0" data-start="{start}" data-duration="{round(end - start, 4)}" '
+        self.html.append(f'<div class="slate clip{" pip" if pip else ""}{" " + cls if cls else ""}" id="{sid}" style="opacity:0" data-start="{start}" data-duration="{round(end - start, 4)}" '
                          f'data-track-index="8"><div class="end-grid"></div><div class="slate-body">{self.series_tag()}{inner}</div></div>')
         self.js.append(f'tl.set("#{sid}",{{opacity:1}},{start});' if instant else
                        f'tl.fromTo("#{sid}",{{opacity:0}},{{opacity:1,duration:0.22}},{start});')
@@ -1149,9 +1154,9 @@ class Composition:
     def document(self):
         g, p = self.geo, self.pal
         from mockups import MOCKUP_STYLE
-        css = (BRAND / "fonts" / "fonts.css").read_text() + logos_css() + (STYLE + MOCKUP_STYLE).format(
+        css = (BRAND / "fonts" / "fonts.css").read_text() + logos_css() + STYLE.format(
             W=g["w"], H=g["h"], FH=g["face_h"], SW=900 if self.vertical else 1500, EL=640 if self.vertical else 1000, ST=282 if self.vertical else 330, SF=110 if self.vertical else 120, LBL=404 if self.vertical else 60, PH=g["h"] - g["face_h"], CHIP=g["face_h"] - 250, CUT=760 if self.vertical else 900, **p,
-            V="1" if self.vertical else "0")
+            V="1" if self.vertical else "0") + MOCKUP_STYLE.format(**self.mock_pal)
         cls = ("fmt-v" if self.vertical else "fmt-h") + f" fmt-{self.fmt} pal-{self.palette_key}"
         return (f'<!doctype html><html lang="pl"><head><meta charset="utf-8">'
                 f'<meta name="viewport" content="width={g["w"]}, height={g["h"]}"><style>{css}</style></head>'
@@ -1215,7 +1220,7 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .slate.pip .slate-body{{width:1240px;margin-right:560px}}
 .card{{width:100%;color:{text}}}
 .fmt-v .card{{padding:0 8px}}
-.series-tag{{display:inline-flex;align-items:center;font-size:22px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#FFFFFF;background:{tag};border-radius:999px;padding:7px 18px;margin-bottom:16px;text-shadow:0 1px 2px rgba(0,0,0,.35)}}
+.series-tag{{display:inline-flex;align-items:center;font-size:22px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:{tag_text};background:{tag};border-radius:999px;padding:7px 18px;margin-bottom:16px}}
 .series-tag b{{margin-right:.45em}}
 .fmt-v .series-tag{{font-size:28px;padding:8px 22px}}
 .slate .series-tag{{font-size:30px;margin-bottom:26px}}
@@ -1294,6 +1299,8 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .phead .acc{{color:{accent}}}
 .pbox{{display:inline-block;white-space:nowrap;background:{box_bg};color:{box_fg};padding:0 .22em .04em;border-radius:.18em;margin:.06em 0;transform-origin:50% 50%}}
 .pal-F .kicker,.pal-F .end-kicker{{color:{accent2}}}
+.pal-F .slate.mock .slate-body>*:not(.series-tag){{background:#E8F0EC;color:#0E1F1A;border-radius:32px;padding:40px 44px;box-shadow:0 30px 80px rgba(0,0,0,.35)}}
+.pal-F .slate.mock .kicker{{color:#B86E00}}
 .pal-F .pn,.pal-B .pn{{letter-spacing:0;margin-left:-.1em}}
 .pal-F .pbox{{background:none;color:{accent};padding:0 .04em;position:relative;border-radius:0}}
 .pal-F .pbox::after{{content:"";position:absolute;left:-3%;right:-3%;bottom:-.16em;height:.26em;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 24' preserveAspectRatio='none'%3E%3Cpath d='M4 17 C 55 7, 130 5, 196 11' stroke='%23F4A72A' stroke-width='7' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") center/100% 100% no-repeat}}
