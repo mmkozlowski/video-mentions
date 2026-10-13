@@ -7,7 +7,8 @@
   "visual": {
    "kind": "icon",
    "art": "h-warning-gear"
-  }
+  },
+  "poster": "Wdrażasz AI i [nie działa]?"
  },
  "cta": {
   "chip": "Wdrożenia AI · flowbiz.pl",
