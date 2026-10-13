@@ -32,3 +32,15 @@ Zbiorcza lista decyzji Mateusza z jednego dnia pracy — każda ma szczegóły w
 - `brand.json` w repo strony zamiast palet wpisanych w `package.py`.
 - Tagi, przypięte komentarze i daty publikacji 8 odcinków (lista kontrolna w studiu).
 - Storyboard `ad-33-g1`: kotwica „Programista” nie istnieje po przecięciu.
+
+## Dopisek 13.10 — pierwszy ekran, zakończenie, oprawa
+
+| Temat | Decyzja |
+|---|---|
+| Pierwszy ekran pionu | Plakat jak grafika reklamowa (twarz od 1. klatki, etykieta serii, nadtytuł w jednej linii, liczba wyróżniona); zastępuje czarną okładkę 2,2 s i kartę hooka. `package.py` `poster()`; pole `hook.poster` z `[ramką]` |
+| Etykieta serii | „AI w praktyce · w firmie”, pomarańczowa z białym tekstem, na każdej planszy (`SERIES_TAG`) |
+| Zakończenie rolki | Bezpłatna konsultacja online + ✓ lista + przycisk + telefon + YouTube (`REELS_CTA`); koniec z „Napisz SŁOWO w komentarzu” |
+| Oprawa | Paleta F „forest” 1:1 z reklam na wszystkich formatach; B (zieleń strony) i A (czerń) odrzucone po porównaniu |
+| Muzyka | Wejście −4 dB, narastanie 0,6 s |
+| Poprawki napisów | Kontekst `poprzednie|słowo` (globalne „Programista → programiści” psuło ad-33-g1) |
+| Tempo | 1,05× w pionie, odcinki 1,00× (12→13.10) |

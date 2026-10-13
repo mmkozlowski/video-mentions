@@ -68,16 +68,23 @@ mu zabrano („mylący przeskok”).
   (liczba, czas, kwota) wzmacnia — „40 minut dziennie” zamiast „dużo czasu”.
 - **Hook mówi tylko to, co pada w nagraniu.** Żadnych dopisanych faktów („w weekend”,
   „po godzinach”), których autor nie powiedział.
-- Rolka wycięta z dłuższego odcinka dostaje **okładkę**: jedno zdanie kontekstu na
-  pierwszym ekranie — bez niej „dobrze się słucha, ale nie wiadomo, o czym mowa”.
+- Rolka wycięta z dłuższego odcinka dostaje **kontekst na pierwszym ekranie** — bez niego
+  „dobrze się słucha, ale nie wiadomo, o czym mowa”.
+- **Pierwszy ekran pionu = plakat jak grafika reklamowa (✅ 13.10).** Twarz od pierwszej klatki
+  (żadnej czarnej planszy), na dole: etykieta serii „AI w praktyce · w firmie”, nadtytuł
+  „Case study · branża” **w jednej linii**, nagłówek z liczbą wyróżnioną miętą i pomarańczowym
+  podkreśleniem, jedno zdanie dopowiedzenia. Plakat jest pełny już w 1. klatce — ona jest okładką
+  rolki. Nic pełnoekranowego (przebitka, plansza) nie wchodzi, dopóki plakat stoi.
 
 ## 5. Zakończenie
 
 - **Odcinek kończy się pożegnaniem** („do zobaczenia”). Nie ucinamy w pół myśli. Jeśli
   w nagraniu go brakuje, bierzemy pożegnanie z innego nagrania, **w którym autor jest
   tak samo ubrany**.
-- Rolka kończy się wezwaniem (komentarz, link, pytanie) i dużym logo na ostatnim ekranie,
-  nie małym znakiem w rogu.
+- Rolka kończy się dużym logo i **jednym wezwaniem: bezpłatna konsultacja online** (✅ 13.10) —
+  „Pokażę, jak to wygląda u Ciebie”, ✓ 30 minut ✓ bezpłatnie ✓ jeden proces, przycisk flowbiz.pl,
+  telefon i wiersz „Całe case study na kanale YouTube”. **Nie** „Napisz SŁOWO w komentarzu”:
+  słowo bez automatu, który odsyła materiał, to obietnica bez pokrycia (było 30 różnych słów).
 - Zakończenie mówi jedną rzecz do zrobienia — nie trzy.
 
 ## 6. Formaty
@@ -131,11 +138,17 @@ Wszystkie układy z klatkami i podpowiedzią, kiedy którego użyć: [`KATALOG-U
 
 - **Dźwięk:** wyrównana głośność (−14 LUFS na platformy), lekkie uwydatnienie mowy,
   bez trzasków na sklejkach.
-- **Muzyka (✅ 12.10):** krótkie wejście na starcie, potem **ciche tło przez cały film** (żadnej pustej ciszy),
+- **Muzyka (✅ 12.10, 13.10):** krótkie, łagodne wejście na starcie (−4 dB, narasta 0,6 s — „mocno wjeżdżało”), potem **ciche tło przez cały film** (żadnej pustej ciszy),
   głośniej na planszy końcowej. Tło ok. 25 dB pod głosem i dodatkowo ściszane pod słowami — pierwsza wersja
   (~15 dB pod głosem) „zagłuszała mówienie”. Utwory z folderu Mateusza `music/` (oznaczone „dobre”).
   Tylko z biblioteki z licencją do użytku komercyjnego bez roszczeń Content ID (YouTube
   Audio Library i podobne) — inaczej YouTube obcina zasięg albo zarabia na filmie ktoś inny.
+- **Oprawa graficzna (✅ 13.10): zieleń jak w reklamach („forest”)** — tło #071B15 z siatką, mięta
+  #2FD3A0 na wyróżnieniach i przycisku, **pomarańcz #F4A72A** na etykiecie serii, nadtytułach
+  (Space Mono), podkreśleniu liczby i przekreśleniach; logo forest. Wszystkie formaty. Zieleń ze strony
+  (teal #1C9E7A na zielonym tle) odrzucona — „nie siedzi”. Wzór: grafiki w `flowbiz-ads-studio`.
+- **Etykieta serii „AI w praktyce · w firmie”** na każdej planszy (pomarańczowa, biały tekst) — od razu
+  skojarzenie z AI. Celowo inna niż znak „AI · Ujęcie wygenerowane przez AI” (AI Act).
 - **Kolor:** korekta „średnia” (decyzja Mateusza 12.10): kontrast +10%, nasycenie +18%, lekkie
   wyostrzenie — obraz żywszy, twarz naturalna. Tylko na nagraniu, grafiki zostają w kolorach marki.
 - **Tempo mowy (✅ 12.10):** Mateusz mówi wolniej niż swobodna polszczyzna (4,2–4,9 sylaby/s wobec
