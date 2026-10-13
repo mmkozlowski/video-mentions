@@ -784,7 +784,8 @@ class Composition:
                 out.append(f'<span class="pbox">{esc(part[1:-1].replace("*", ""))}</span>')
             elif part.strip():
                 out.append(self.words_html(part.strip()))
-        return glue_short_words(" ".join(out))
+        joined = re.sub(r'</span> <span class="w">([.,?!:;…]+)</span>', r'</span><span class="w pn">\1</span>', " ".join(out))
+        return glue_short_words(joined)
 
     def poster(self, hook, end):
         g = self.geo
@@ -1086,7 +1087,11 @@ class Composition:
         out = []
         for word in tokens(text):
             cls = "w acc" if norm(word) in [norm(a) for a in accent] or word.startswith("*") else "w"
-            out.append(f'<span class="{cls}">{esc(word.lstrip("*"))}</span>')
+            # Plus Jakarta 800 zostawia dziurę przed kropką/przecinkiem („zamówienia .”) — znak
+            # końcowy w osobnym spanie z ujemnym marginesem, jak w szablonach reklam
+            core, mark = re.match(r"^(.*?)([.,?!:;…]*)$", esc(word.lstrip("*"))).groups()
+            mark = f'<span class="pn">{mark}</span>' if mark and core else mark
+            out.append(f'<span class="{cls}">{core}{mark}</span>')
         return " ".join(out)
 
     # ── składanie ───────────────────────────────────────────────────────────
@@ -1289,6 +1294,7 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .phead .acc{{color:{accent}}}
 .pbox{{display:inline-block;white-space:nowrap;background:{box_bg};color:{box_fg};padding:0 .22em .04em;border-radius:.18em;margin:.06em 0;transform-origin:50% 50%}}
 .pal-F .kicker,.pal-F .end-kicker{{color:{accent2}}}
+.pal-F .pn,.pal-B .pn{{letter-spacing:0;margin-left:-.1em}}
 .pal-F .pbox{{background:none;color:{accent};padding:0 .04em;position:relative;border-radius:0}}
 .pal-F .pbox::after{{content:"";position:absolute;left:-3%;right:-3%;bottom:-.16em;height:.26em;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 24' preserveAspectRatio='none'%3E%3Cpath d='M4 17 C 55 7, 130 5, 196 11' stroke='%23F4A72A' stroke-width='7' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") center/100% 100% no-repeat}}
 .psub{{font-size:38px;font-weight:500;line-height:1.3;color:{text};opacity:.86;margin-top:22px}}
