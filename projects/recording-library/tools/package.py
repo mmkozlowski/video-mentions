@@ -91,10 +91,10 @@ for palette in PALETTES.values():
 
 # Mateusz 9.10: zostajemy przy A (bursztyn) — zieleń B wygląda kiepsko na wideo.
 # B zostaje w słowniku do ręcznego --palette B, ale nie renderuje się domyślnie.
-ACTIVE_PALETTES = ["A"]
-# 13.10: próba zieleni z brandbooka (B) w pionie odrzucona po obejrzeniu („zieleń mi tu nie siedzi
-# w ogóle”) — wszystkie formaty w palecie kanału (A). Mapa zostaje, gdyby format miał dostać inną.
-FORMAT_PALETTE = {"reels": "A", "ad": "A", "feed": "A", "youtube": "A"}
+ACTIVE_PALETTES = ["F"]
+# 13.10: zieleń ze strony (B) odrzucona („zieleń mi tu nie siedzi w ogóle”), zieleń jak w reklamach
+# (F „forest”) wybrana po porównaniu z czernią (A) — wszystkie formaty, odcinki 16:9 też.
+FORMAT_PALETTE = {"reels": "F", "ad": "F", "feed": "F", "youtube": "F"}
 
 # Plansza końcowa rolki (Mateusz 13.10): zamiast „Napisz SŁOWO w komentarzu” (30 różnych słów,
 # obiecane materiały, za którymi nic nie stało) — bezpłatna konsultacja online z przyciskiem
