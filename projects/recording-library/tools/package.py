@@ -58,19 +58,31 @@ PALETTES = {
     "A": dict(name="kanał YouTube", bg="#0A0A08", panel="#0D0D0B", raised="#16140F",
               line="#2E2C28", text="#FAF8F0", muted="#9A938A", accent="#F5A623",
               accent2="#6BAA6B", danger="#C0553A", on_accent="#0A0A08",
-              font="DM Sans", grid="rgba(245,166,35,0.06)", tag="#F5A623"),
+              font="DM Sans", grid="rgba(245,166,35,0.06)", tag="#F5A623",
+              mono="DM Sans", kicker_color="#FAF8F0", box_bg="#F5A623", box_fg="#0A0A08", logo="flowbiz-ai.png"),
     # Strona flowbiz.pl — tryb ciemny strony (hsl 165 40% 8%) + marka #1C9E7A.
     "B": dict(name="strona flowbiz.pl", bg="#0C1D18", panel="#10241E", raised="#163029",
               line="#24413A", text="#F4FAF7", muted="#8FB0A6", accent="#1C9E7A",
               accent2="#F5A623", danger="#E5604A", on_accent="#FFFFFF",
-              font="Plus Jakarta Sans", grid="rgba(28,158,122,0.08)", tag="#F5A623"),
+              font="Plus Jakarta Sans", grid="rgba(28,158,122,0.08)", tag="#F5A623",
+              mono="Plus Jakarta Sans", kicker_color="#F4FAF7", box_bg="#1C9E7A", box_fg="#FFFFFF", logo="flowbiz-ai.png"),
     # AI Słupsk — tokeny ze strony aislupsk.pl (src/index.css): granat-fiolet, róż,
     # nagłówki pochyłe (Mateusz 9.10: „pod aislupsk idź w tym kierunku wizualnym”).
     "S": dict(name="AI Słupsk", bg="#160A2E", panel="#1A0D36", raised="#2C1F47",
               line="#392D53", text="#FFFFFF", muted="#ADA3C2", accent="#FF3388",
               accent2="#A219E6", danger="#FF5A5A", on_accent="#FFFFFF",
-              font="Plus Jakarta Sans", grid="rgba(255,51,136,0.07)", tag="#FF3388", heading_style="italic", word_gap="0.1em",
+              font="Plus Jakarta Sans", grid="rgba(255,51,136,0.07)", tag="#FF3388", mono="Plus Jakarta Sans", kicker_color="#FFFFFF",
+              box_bg="#FF3388", box_fg="#FFFFFF", logo="flowbiz-ai.png", heading_style="italic", word_gap="0.1em",
               bg_fill="linear-gradient(135deg,#160A2E 0%,#0F173D 50%,#261745 100%)"),
+    # Reklamy FlowBiz („forest”, flowbiz-ads-studio/tools/templates): prawie czarne zielone tło z siatką,
+    # mięta jako akcent i przycisk z ciemnym tekstem, nadtytuły Space Mono w bursztynie, liczba na
+    # białej karcie w ciemnej zieleni, logo w wersji forest. 13.10 — próba po odrzuceniu B.
+    "F": dict(name="reklamy FlowBiz (forest)", bg="#071B15", panel="#09211A", raised="#0E2A22",
+              line="#1F4A3E", text="#FFFFFF", muted="#A7B8B1", accent="#2FD3A0",
+              accent2="#F4A72A", danger="#E5604A", on_accent="#0E1F1A",
+              font="Plus Jakarta Sans", grid="rgba(47,211,160,0.06)", tag="#F4A72A",
+              mono="Space Mono", kicker_color="#F4A72A", box_bg="#FFFFFF", box_fg="#14795E",
+              logo="flowbiz-ai-forest.svg"),
 }
 for palette in PALETTES.values():
     palette.setdefault("heading_style", "normal")
@@ -89,6 +101,7 @@ FORMAT_PALETTE = {"reels": "A", "ad": "A", "feed": "A", "youtube": "A"}
 # i telefonem oraz zachęta do kanału YouTube. Zmieniasz tutaj, nie w storyboardach.
 REELS_CTA = {
     "flowbiz": dict(kicker="Bezpłatna konsultacja online", title="Pokażę, jak to wygląda *u *Ciebie",
+                    checks=["30 minut", "bezpłatnie", "jeden proces"],
                     youtube="Całe case study na kanale YouTube"),
     "aislupsk": dict(kicker="Warsztaty AI dla firm", title="Zapisz się na *najbliższe warsztaty"),
 }
@@ -251,6 +264,12 @@ def fit(text, width, largest, lines=1, smallest=34):
     return max(smallest, int(size))
 
 
+def glue_short_words(markup):
+    """„z”, „w”, „u” nie zostają same na końcu linii — sklejone z następnym słowem albo ramką."""
+    return re.sub(r'(<span class="w(?: acc)?">[wWzZiIoOaAuU]</span>) (<span class="(?:w|pbox)[^"]*">[^<]*</span>)',
+                  r'<span class="nb">\1&nbsp;\2</span>', markup)
+
+
 def esc(text):
     return html.escape(text, quote=True)
 
@@ -334,7 +353,10 @@ class Composition:
 
     def brand_mark(self):
         if self.brand["mark"] == "flowbiz":
-            return '<img src="media/flowbiz-ai.png" alt="flowbiz AI" class="mark-img">'
+            logo = self.pal["logo"]
+            if logo != "flowbiz-ai.png":
+                self.media[logo] = BRAND / logo
+            return f'<img src="media/{logo}" alt="flowbiz AI" class="mark-img">'
         return f'<span class="mark-text"><b>AI</b> Słupsk</span>'
 
     def series_tag(self):
@@ -762,9 +784,7 @@ class Composition:
                 out.append(f'<span class="pbox">{esc(part[1:-1].replace("*", ""))}</span>')
             elif part.strip():
                 out.append(self.words_html(part.strip()))
-        # „z”, „w”, „i” nie zostają same na końcu linii — sklejone z następnym słowem albo ramką
-        return re.sub(r'(<span class="w">[wWzZiIoOaAuU]</span>) (<span class="(?:w|pbox)[^"]*">[^<]*</span>)',
-                      r'<span class="nb">\1&nbsp;\2</span>', " ".join(out))
+        return glue_short_words(" ".join(out))
 
     def poster(self, hook, end):
         g = self.geo
@@ -920,7 +940,7 @@ class Composition:
                     self.js.append(f'tl.to("#{cid} .chip-w[data-i=\'{i}\']",{{opacity:0,y:-18,duration:0.2,ease:"power2.in"}},{self.q(t + step - 0.2)});')
 
     def end_title(self, text):
-        return f'<div class="end-title" style="font-size:{fit(text, 900, 124, 3, 72)}px">{self.words_html(text)}</div>'
+        return f'<div class="end-title" style="font-size:{fit(text, 900, 124, 3, 72)}px">{glue_short_words(self.words_html(text))}</div>'
 
     def endcard(self):
         if not self.end_len:
@@ -947,6 +967,8 @@ class Composition:
             if not lines or "komentarz" in (lines.get("title", "") + lines.get("kicker", "")).lower():
                 lines = REELS_CTA[board_brand(self.board, self.clip)]
                 body = (f'<div class="end-kicker">{esc(lines["kicker"])}</div>' + self.end_title(lines["title"])
+                        + ('<div class="end-checks">' + "".join(f'<span><b>✓</b>{esc(c)}</span>' for c in lines.get("checks", [])) + '</div>'
+                           if lines.get("checks") else "")
                         + f'<div class="end-btn">{esc(self.brand["web"])}</div>'
                         f'<div class="end-phone">tel. {esc(self.brand["phone"])}</div>'
                         + (f'<div class="end-yt end-yt-small">{logo("youtube", 64, "#FF0000")}<span>{esc(lines["youtube"])}</span></div>'
@@ -1161,6 +1183,7 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .fmt-feed .hook{{bottom:90px}} .fmt-feed .hv{{min-height:170px}} .fmt-feed .hv-img,.fmt-feed .hv-logo{{width:170px;height:170px}}
 .yt-badge{{position:absolute;left:32px;top:32px;display:flex;align-items:center;gap:12px;padding:10px 18px 10px 14px;border-radius:40px;background:rgba(0,0,0,.72);color:#fff;font-size:26px;font-weight:700;z-index:6}}
 .end-yt{{display:flex;align-items:center;gap:22px;font-size:40px;font-weight:800;color:{text}}}
+.end-checks{{display:flex;flex-wrap:wrap;gap:10px 30px;font-size:36px;font-weight:700}} .end-checks b{{color:{accent};margin-right:10px}}
 .end-yt-small{{font-size:30px;gap:16px;margin-top:22px;font-weight:700;opacity:.92}}
 .flash{{position:absolute;inset:0;background:#fff;opacity:0;z-index:10;pointer-events:none}}
 .broll-full{{position:absolute;inset:0;z-index:7;background:#000}} .broll-full video{{width:100%;height:100%;object-fit:cover}}
@@ -1191,7 +1214,7 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .series-tag b{{margin-right:.45em}}
 .fmt-v .series-tag{{font-size:28px;padding:8px 22px}}
 .slate .series-tag{{font-size:30px;margin-bottom:26px}}
-.kicker{{font-size:30px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:{accent};margin-bottom:18px}}
+.kicker{{font-family:'{mono}',sans-serif;font-size:30px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:{accent};margin-bottom:18px}}
 .title{{font-size:92px;font-weight:800;line-height:1.02;letter-spacing:-.02em}}
 .fmt-h .title{{font-size:76px}}
 .fmt-h .msg{{font-size:32px}}
@@ -1260,11 +1283,11 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .poster-scrim{{position:absolute;left:0;right:0;bottom:0;height:62%;background:linear-gradient(180deg,rgba(0,0,0,0) 0%,{bg}C0 32%,{bg}F2 62%,{bg} 100%)}}
 .poster{{position:absolute;left:44px;right:132px;bottom:290px;color:{text}}}
 .fmt-feed .poster{{bottom:70px}}
-.pkicker{{font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:{text};opacity:.9;white-space:nowrap;margin:2px 0 18px;line-height:1.2}}
+.pkicker{{font-family:'{mono}',sans-serif;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:{kicker_color};opacity:.95;white-space:nowrap;margin:2px 0 18px;line-height:1.2}}
 .phead{{font-weight:800;line-height:1.08;letter-spacing:-.02em}}
-.phead .w{{display:inline-block}} .phead .nb{{display:inline-block;white-space:nowrap}}
+.phead .w{{display:inline-block}} .nb{{display:inline-block;white-space:nowrap}}
 .phead .acc{{color:{accent}}}
-.pbox{{display:inline-block;white-space:nowrap;background:{accent};color:{on_accent};padding:0 .22em .04em;border-radius:.18em;margin:.06em 0;transform-origin:50% 50%}}
+.pbox{{display:inline-block;white-space:nowrap;background:{box_bg};color:{box_fg};padding:0 .22em .04em;border-radius:.18em;margin:.06em 0;transform-origin:50% 50%}}
 .psub{{font-size:38px;font-weight:500;line-height:1.3;color:{text};opacity:.86;margin-top:22px}}
 .fmt-feed .psub{{font-size:32px}}
 .hook-in{{display:flex;flex-direction:column;gap:22px;font-weight:800;line-height:1.06;letter-spacing:-.02em;color:{text};background:{bg}F2;padding:30px 34px 32px;border-radius:30px;border-left:8px solid {accent};box-shadow:0 18px 50px rgba(0,0,0,.45)}}
@@ -1314,7 +1337,7 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .end-mark .mark-text{{font-size:130px;font-weight:800}}
 .end-body{{position:relative;display:flex;flex-direction:column;gap:34px}}
 .end-tag{{font-size:40px;text-align:center}}
-.end-kicker{{font-size:34px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:{accent}}}
+.end-kicker{{font-family:'{mono}',sans-serif;font-size:34px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:{accent}}}
 .end-title{{font-size:124px;font-weight:800;line-height:1.02;letter-spacing:-.02em}}
 .end-sub{{font-size:44px;color:{muted};line-height:1.3}}
 .end-btn{{align-self:flex-start;font-size:48px;font-weight:800;padding:26px 44px;border-radius:24px;background:{accent};color:{on_accent};transform-origin:left center}}
@@ -1356,7 +1379,7 @@ def stage(comp, folder):
     (folder / "vendor").mkdir(exist_ok=True)
     (folder / "fonts").mkdir(exist_ok=True)
     shutil.copy(GSAP, folder / "vendor" / "gsap.min.js")
-    for font in (BRAND / "fonts").glob("*.woff2"):
+    for font in [*(BRAND / "fonts").glob("*.woff2"), *(BRAND / "fonts").glob("*.ttf")]:
         shutil.copy(font, folder / "fonts" / font.name)
     shutil.copy(BRAND / "logos" / "flowbiz-ai.png", folder / "media" / "flowbiz-ai.png")
     (folder / "index.html").write_text(comp.build())
