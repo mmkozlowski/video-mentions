@@ -79,7 +79,7 @@ PALETTES = {
     # białej karcie w ciemnej zieleni, logo w wersji forest. 13.10 — próba po odrzuceniu B.
     "F": dict(name="reklamy FlowBiz (forest)", bg="#071B15", panel="#09211A", raised="#0E2A22",
               line="#1F4A3E", text="#FFFFFF", muted="#A7B8B1", accent="#2FD3A0",
-              accent2="#F4A72A", danger="#E5604A", on_accent="#0E1F1A",
+              accent2="#F4A72A", danger="#F4A72A", on_accent="#0E1F1A",   # przekreślenia pomarańczowe jak „MIESIĄC” w reklamie
               font="Plus Jakarta Sans", grid="rgba(47,211,160,0.06)", tag="#F4A72A",
               mono="Space Mono", kicker_color="#F4A72A", box_bg="#FFFFFF", box_fg="#14795E",
               logo="flowbiz-ai-forest.svg"),
@@ -1147,7 +1147,7 @@ class Composition:
         css = (BRAND / "fonts" / "fonts.css").read_text() + logos_css() + (STYLE + MOCKUP_STYLE).format(
             W=g["w"], H=g["h"], FH=g["face_h"], SW=900 if self.vertical else 1500, EL=640 if self.vertical else 1000, ST=282 if self.vertical else 330, SF=110 if self.vertical else 120, LBL=404 if self.vertical else 60, PH=g["h"] - g["face_h"], CHIP=g["face_h"] - 250, CUT=760 if self.vertical else 900, **p,
             V="1" if self.vertical else "0")
-        cls = ("fmt-v" if self.vertical else "fmt-h") + f" fmt-{self.fmt}"
+        cls = ("fmt-v" if self.vertical else "fmt-h") + f" fmt-{self.fmt} pal-{self.palette_key}"
         return (f'<!doctype html><html lang="pl"><head><meta charset="utf-8">'
                 f'<meta name="viewport" content="width={g["w"]}, height={g["h"]}"><style>{css}</style></head>'
                 f'<body><div id="root" class="{cls}" data-composition-id="pack" data-start="0" data-width="{g["w"]}" '
@@ -1288,6 +1288,9 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .phead .w{{display:inline-block}} .nb{{display:inline-block;white-space:nowrap}}
 .phead .acc{{color:{accent}}}
 .pbox{{display:inline-block;white-space:nowrap;background:{box_bg};color:{box_fg};padding:0 .22em .04em;border-radius:.18em;margin:.06em 0;transform-origin:50% 50%}}
+.pal-F .kicker,.pal-F .end-kicker{{color:{accent2}}}
+.pal-F .pbox{{background:none;color:{accent};padding:0 .04em;position:relative;border-radius:0}}
+.pal-F .pbox::after{{content:"";position:absolute;left:-3%;right:-3%;bottom:-.16em;height:.26em;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 24' preserveAspectRatio='none'%3E%3Cpath d='M4 17 C 55 7, 130 5, 196 11' stroke='%23F4A72A' stroke-width='7' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") center/100% 100% no-repeat}}
 .psub{{font-size:38px;font-weight:500;line-height:1.3;color:{text};opacity:.86;margin-top:22px}}
 .fmt-feed .psub{{font-size:32px}}
 .hook-in{{display:flex;flex-direction:column;gap:22px;font-weight:800;line-height:1.06;letter-spacing:-.02em;color:{text};background:{bg}F2;padding:30px 34px 32px;border-radius:30px;border-left:8px solid {accent};box-shadow:0 18px 50px rgba(0,0,0,.45)}}
