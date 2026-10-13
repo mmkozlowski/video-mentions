@@ -44,6 +44,10 @@ FPS = 30
 # Storyboard „tempo” nadpisuje. Kotwice słowne przesuwają się same, liczby w storyboardzie
 # (sekundy osi klipu) przelicza Clock.at, czasy względne „+3” zostają czasem ekranowym.
 TEMPO_SHORT = 1.05
+# Etykieta serii na każdej planszy (Mateusz 13.10: „label AI w praktyce w firmie — żeby od razu
+# było skojarzenie z AI”). Obramowana pigułka nad nadtytułem — celowo inna niż znak treści
+# wygenerowanej („AI · Ujęcie wygenerowane przez AI”), żeby seria nie udawała oznaczenia AI Act.
+SERIES_TAG = "<b>AI</b> w praktyce · w firmie"
 
 
 def tempo_for(board, fmt):
@@ -315,6 +319,11 @@ class Composition:
             return '<img src="media/flowbiz-ai.png" alt="flowbiz AI" class="mark-img">'
         return f'<span class="mark-text"><b>AI</b> Słupsk</span>'
 
+    def series_tag(self):
+        if self.brand["mark"] != "flowbiz" or self.board.get("series_tag") is False:
+            return ""
+        return f'<div class="series-tag">{self.board.get("series_tag", SERIES_TAG)}</div>'
+
     # ── karty ───────────────────────────────────────────────────────────────
     def host(self, start, end, inner, zone="panel", track=2):
         """Karta w strefie: panel (9:16 dół) / side (16:9 prawa) / full / top."""
@@ -325,7 +334,7 @@ class Composition:
         self.cards.append((start, end, re.sub(r"<[^>]+>", " ", inner)))
         self.html.append(f'<div class="card-host clip zone-{zone}" id="{cid}" data-start="{start}" '
                          f'data-duration="{round(end - start, 4)}" data-track-index="{track}">'
-                         f'<div class="card" id="{cid}-in">{inner}</div></div>')
+                         f'<div class="card" id="{cid}-in">{self.series_tag()}{inner}</div></div>')
         rise = self.vertical or zone == "lower"
         self.js.append(f'tl.fromTo("#{cid}-in",{{opacity:0,y:{30 if rise else 0},x:{0 if rise else 60}}},'
                        f'{{opacity:1,y:0,x:0,duration:0.45,ease:"power3.out"}},{start});')
@@ -463,7 +472,7 @@ class Composition:
             self.js.append(f'tl.to("#video-wrap",{{scale:1,x:0,y:0,borderRadius:0,duration:0.5,ease:"power3.inOut"}},{round(end - 0.5, 4)});')
             self.js.append(f'tl.set("#video-wrap",{{zIndex:1}},{end});')
         self.html.append(f'<div class="slate clip{" pip" if pip else ""}" id="{sid}" style="opacity:0" data-start="{start}" data-duration="{round(end - start, 4)}" '
-                         f'data-track-index="8"><div class="end-grid"></div><div class="slate-body">{inner}</div></div>')
+                         f'data-track-index="8"><div class="end-grid"></div><div class="slate-body">{self.series_tag()}{inner}</div></div>')
         self.js.append(f'tl.set("#{sid}",{{opacity:1}},{start});' if instant else
                        f'tl.fromTo("#{sid}",{{opacity:0}},{{opacity:1,duration:0.22}},{start});')
         self.js.append(f'tl.fromTo("#{sid} .slate-body",{{scale:0.94}},{{scale:1,duration:0.5,ease:"power3.out"}},{start});')
@@ -1085,6 +1094,10 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .slate.pip .slate-body{{width:1240px;margin-right:560px}}
 .card{{width:100%;color:{text}}}
 .fmt-v .card{{padding:0 8px}}
+.series-tag{{display:inline-flex;align-items:center;font-size:22px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:{text};border:2px solid {accent}80;border-radius:999px;padding:7px 18px;margin-bottom:16px;background:{bg}B3}}
+.series-tag b{{color:{accent};margin-right:.45em}}
+.fmt-v .series-tag{{font-size:28px;padding:8px 22px}}
+.slate .series-tag{{font-size:30px;margin-bottom:26px}}
 .kicker{{font-size:30px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:{accent};margin-bottom:18px}}
 .title{{font-size:92px;font-weight:800;line-height:1.02;letter-spacing:-.02em}}
 .fmt-h .title{{font-size:76px}}
@@ -1277,6 +1290,8 @@ MUSIC_OFFSET = {"the-mountain-technology-562622.mp3": 1.5, "verclub-technology-5
                 "jonasblakewood-technology-startup-533868.mp3": 1.0}   # ciche intro utworów (zmierzone RMS)
 MUSIC_LUFS = -28.0        # poziom ścieżki muzycznej przed automatyką; 12.10 −22 → −28 (−6 dB): „za głośno, zagłusza mówienie”
 MUSIC_INTRO = (2.2, 1.0)  # (do której sekundy pełne wejście, czas zejścia do tła)
+MUSIC_INTRO_DB = -4.0     # 13.10 „początek mocno wjeżdża” — wejście −4 dB i narastanie 0,6 s
+MUSIC_FADE_IN = 0.6
 MUSIC_BED_DB = -10.0      # tło względem wejścia → ok. −32 LUFS, ~18 dB pod mową
 MUSIC_OUTRO_DB = -2.0     # plansza końcowa
 
@@ -1292,12 +1307,13 @@ def mix_music(raw, music, out_wav):
     """Głos z renderu + muzyka: wejście → ciche tło (ściszane pod słowami) → głośniej na planszy końcowej."""
     total = probe_duration(raw, "v:0")
     intro_end, ramp = MUSIC_INTRO
+    intro = 10 ** (MUSIC_INTRO_DB / 20)
     bed, outro = 10 ** (MUSIC_BED_DB / 20), 10 ** (MUSIC_OUTRO_DB / 20)
     outro_at = max(intro_end + ramp, music["clip_len"] - 0.3)
-    gain = (f"if(lt(t,{intro_end}),1,if(lt(t,{intro_end + ramp}),1-(1-{bed:.3f})*(t-{intro_end})/{ramp},"
+    gain = (f"if(lt(t,{intro_end}),{intro:.3f},if(lt(t,{intro_end + ramp}),{intro:.3f}-({intro:.3f}-{bed:.3f})*(t-{intro_end})/{ramp},"
             f"if(lt(t,{outro_at:.3f}),{bed:.3f},min({outro:.3f},{bed:.3f}+({outro:.3f}-{bed:.3f})*(t-{outro_at:.3f})/0.6))))")
     graph = (f"[1:a]atrim=0:{total:.3f},asetpts=PTS-STARTPTS,aresample=48000,loudnorm=I={MUSIC_LUFS}:TP=-3:LRA=7,"
-             f"volume=eval=frame:volume='{gain}',afade=t=out:st={max(0, total - 1.0):.3f}:d=1.0[m];"
+             f"volume=eval=frame:volume='{gain}',afade=t=in:d={MUSIC_FADE_IN},afade=t=out:st={max(0, total - 1.0):.3f}:d=1.0[m];"
              f"[0:a]aresample=48000,asplit[v][key];"
              f"[m][key]sidechaincompress=threshold=0.03:ratio=4:attack=20:release=500[md];"
              f"[v][md]amix=inputs=2:normalize=0:duration=first[a]")
