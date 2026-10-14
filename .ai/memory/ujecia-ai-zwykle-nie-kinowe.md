@@ -14,6 +14,10 @@ magazyn, etykiety, PPWR) w trzech stylach:
 - **zdjęcie z telefonu** (świetlówki, bałagan, starsze meble, przeciętni ludzie, lekko krzywy
   kadr, szum) — kierunek, który został.
 
+Sprzęt współczesny, nie z lat 90.: laptopy służbowe w typie Dell Latitude / Lenovo ThinkPad
+(bez logo), monitory 24", smartfony — klienci rozmawiają przez komórkę. **Przedsiębiorca
+(właściciel) jest w kadrze**, nie tylko pracownicy.
+
 Rynek polski: polskie realia i ludzie z rynku polskiego, region, w którym Mateusz pracuje —
 Słupsk, Koszalin, Gdańsk, Gdynia, też Bydgoszcz i Toruń. Miasta **opisujemy w poleceniu**
 (ratusz w Słupsku, Baszta Czarownic, Żuraw, port w Gdyni, spichrze nad Brdą), nie bierzemy
