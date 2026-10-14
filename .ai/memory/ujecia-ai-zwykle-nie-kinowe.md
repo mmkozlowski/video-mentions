@@ -1,6 +1,6 @@
 ---
 name: ujecia-ai-zwykle-nie-kinowe
-description: Ujęcia AI do reklam FlowBiz mają wyglądać jak zdjęcie z telefonu w zwykłej polskiej firmie z Pomorza — nie kino, nie stock; miasta z opisu, nie ze zdjęć z Google
+description: Ujęcia AI do reklam FlowBiz mają wyglądać jak zdjęcie z telefonu w zwykłej polskiej firmie z Pomorza — nie kino, nie stock; bez konkretnych miast (AI je zmyśla), miasto tylko z prawdziwego nagrania
 metadata:
   type: feedback
 ---
@@ -19,9 +19,13 @@ Sprzęt współczesny, nie z lat 90.: laptopy służbowe w typie Dell Latitude /
 (właściciel) jest w kadrze**, nie tylko pracownicy.
 
 Rynek polski: polskie realia i ludzie z rynku polskiego, region, w którym Mateusz pracuje —
-Słupsk, Koszalin, Gdańsk, Gdynia, też Bydgoszcz i Toruń. Miasta **opisujemy w poleceniu**
-(ratusz w Słupsku, Baszta Czarownic, Żuraw, port w Gdyni, spichrze nad Brdą), nie bierzemy
-zdjęć z wyszukiwarki jako referencji — cudze prawa autorskie w reklamie.
+Słupsk, Koszalin, Gdańsk, Gdynia, też Bydgoszcz i Toruń. **AI nie pokazuje konkretnych miast.**
+Test 14.10 (ratusz w Słupsku, Baszta Czarownic, Żuraw, port w Gdyni, spichrze nad Brdą):
+Mateusz: „mija się z prawdą”. Generator nie zna tych miejsc i zmyśla, a widz z regionu
+od razu widzi fałszywy Słupsk. W AI zostają anonimowe wnętrza i hale, bez nazwanego miasta
+i bez rozpoznawalnych budynków za oknem. Miasto w reklamie = prawdziwe nagranie (telefon
+Mateusza w terenie) albo zdjęcie na wolnej licencji z podpisem, nigdy zdjęcia z wyszukiwarki
+(cudze prawa autorskie).
 
 Scenariusze scen bierzemy z prawdziwych problemów klientów z vaulta (notatki ze spotkań,
 karty leadów), nie z głowy. Podgląd testów: `final/podglad/kadry-oferty/`.
@@ -29,6 +33,6 @@ karty leadów), nie z głowy. Podgląd testów: `final/podglad/kadry-oferty/`.
 **Why:** ujęcie ma wyglądać jak firma widza, inaczej nie rozpozna w nim swojego problemu.
 Ta sama zasada co przy montażu: [[autentycznosc-bije-gladkosc]].
 **How to apply:** w poleceniu „candid phone photo, fluorescent light, ordinary people, cluttered,
-slightly tilted, not stock, not a commercial” + konkretna scena z vaulta + miejsce z regionu.
+slightly tilted, not stock, not a commercial” + konkretna scena z vaulta, bez nazwy miasta i zabytków.
 Kling 3.0 Pro 5 s bez dźwięku = 8,75 kr.; kadr GPT Image = 0,25 kr. Każde ujęcie dostaje
 oznaczenie treści AI.

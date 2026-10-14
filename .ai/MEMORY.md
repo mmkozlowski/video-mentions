@@ -58,4 +58,4 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 - [Podział wiedzy: montaż tutaj, marka w FlowBiz, panel w studiu](decisions/2026-10-12-podzial-wiedzy-montaz-marka-panel.md) — 2026-10-12
 - [Starsze odcinki kanału w bibliotece (ADR projektowy)](../projects/recording-library/ai/decisions/2026-10-11-starsze-odcinki-kanalu.md) — 2026-10-11
 - [Marka wideo w repo marki](memory/marka-wideo-w-repo-marki.md) — kolory i elementy z flowbiz-automation-unlocked/docs/brand, nie z wytycznych
-- [Ujęcia AI: zwykłe, nie kinowe](memory/ujecia-ai-zwykle-nie-kinowe.md) — styl „zdjęcie z telefonu”, polskie realia i region Pomorza, sceny z problemów z vaulta
+- [Ujęcia AI: zwykłe, nie kinowe](memory/ujecia-ai-zwykle-nie-kinowe.md) — styl „zdjęcie z telefonu”, polskie realia, bez konkretnych miast (AI je zmyśla), sceny z problemów z vaulta
