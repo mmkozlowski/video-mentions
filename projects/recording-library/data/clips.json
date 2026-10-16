@@ -509,7 +509,7 @@
   "ranges": [
    [
     730.45,
-    734.06
+    734.24
    ],
    [
     737.06,
@@ -526,7 +526,7 @@
   ],
   "start": 730.45,
   "end": 775.12,
-  "duration": 37.73,
+  "duration": 37.91,
   "splices": 3,
   "hook_line": "11 stron zamówienia w Excelu.",
   "transcript": "11 stron zamówienia w Excelu. 6 godzin ręcznego przepisywania. u producenta mebli ogrodowych, z którym pracuję. Dziś system wczytuje takie zamówienie sam. Nie zaczynaliśmy od wielkiego systemu ERP. Zaczęliśmy od jednego bólu zamówień. Kolejne moduły dokładamy etapami w tempie firmy, tak aby pracownicy też mieli czas się tego uczyć. Jestem Mateusz Kozowski i prowadzę firmę Flobi ze Słupska, gdzie budujemy systemy i automatyzacje dla firm produkcyjnych. Ciebie na konsultacje i porozmawiamy o Twoich największych bolączkach.",
@@ -541,7 +541,7 @@
    "meta-ads",
    "reels-organic"
   ],
-  "notes": "Mateusz poprawił się na nagraniu: 6 godzin, nie 3 — zostawiony dubel z 6 h. Zaproszenie bez telefonu."
+  "notes": "Mateusz poprawił się na nagraniu: 6 godzin, nie 3 — zostawiony dubel z 6 h. Zaproszenie bez telefonu. 16.10 (Agata): koniec 1. przedziału po sygnale — Whisper kończył „Excelu” 0,25 s za wcześnie i cięcie urywało końcówkę „-lu” (zamknięcie „trzy” od 734,21)."
  },
  {
   "id": "ad-12-r2",
@@ -1836,23 +1836,19 @@
    ],
    [
     2263.18,
-    2267.46
+    2267.4
    ],
    [
-    2268.5,
-    2272.84
-   ],
-   [
-    2273.2,
+    2273.18,
     2276.8
    ]
   ],
   "start": 2225.79,
   "end": 2276.8,
-  "duration": 40.01,
-  "splices": 7,
+  "duration": 35.63,
+  "splices": 6,
   "hook_line": "Programista mówi 3 miesiące, chat GPT mówi 3 dni. Kto kłamie? Nikt. Mówią o",
-  "transcript": "Programista mówi 3 miesiące, chat GPT mówi 3 dni. Kto kłamie? Nikt. Mówią o dwóch różnych rzeczach. 3 dni AI zrobi Ci prototyp, coś co wygląda jak system, ale uprawnienia daje dane klientów, historia zmian, To jest długi czas pracy. To jest kilka miesięcy pracy. Ja robię to drugie, tylko z AI w ręku, więc szybciej niż tradycyjny software house. Jeżeli chcesz zobaczyć, co można uzyskać w swojej firmie po kilku tygodniach pracy, co można uzyskać po kilku tygodniach z nami, daj znać, wejdź na flobis .pl i zostaw do siebie kontakt.",
+  "transcript": "Programista mówi 3 miesiące, chat GPT mówi 3 dni. Kto kłamie? Nikt. Mówią o dwóch różnych rzeczach. 3 dni AI zrobi Ci prototyp, coś co wygląda jak system, ale uprawnienia daje dane klientów, historia zmian, To jest długi czas pracy. To jest kilka miesięcy pracy. Ja robię to drugie, tylko z AI w ręku, więc szybciej niż tradycyjny software house. Jeżeli chcesz zobaczyć, co można uzyskać w swojej firmie po kilku tygodniach pracy, daj znać, wejdź na flobis .pl i zostaw do siebie kontakt.",
   "scores": {
    "hook": 5,
    "delivery": 3,
@@ -1863,7 +1859,7 @@
   "uses": [
    "reels-organic"
   ],
-  "notes": ""
+  "notes": "16.10 (Agata, 0:30–0:34): wycięta powtórka „co można uzyskać po kilku tygodniach z nas z nami” — zostaje „…po kilku tygodniach pracy, daj znać”. Granice po ciszy w sygnale (Whisper dokleja „daj” do pauzy)."
  },
  {
   "id": "ad-34-e4",
@@ -1942,10 +1938,10 @@
    ],
    [
     2331.4,
-    2348.8
+    2342.62
    ],
    [
-    2351.58,
+    2351.62,
     2355.8
    ],
    [
@@ -1963,7 +1959,7 @@
   ],
   "start": 2324.12,
   "end": 2370.64,
-  "duration": 40.76,
+  "duration": 34.54,
   "splices": 6,
   "hook_line": "Twój pracownik właśnie wkleił umowę klienta do chat GPT. Czy zdawałeś sobie o tym",
   "transcript": "Twój pracownik właśnie wkleił umowę klienta do chat GPT. Czy zdawałeś sobie o tym sprawę? Czy wiesz o tym? Na warsztatach AI subsk uczy menadżerów i szefów firm, jak korzystać z AI bezpiecznie, jakie dane wolno dać AI, a jak ich nie, jak ustawić zasady w zespole, plus konkretne zastosowania, które oszczędzają czas w Twojej firmie. Najbliższy termin wejdź na AI subsk i zapisz się na listę, a skontaktuj się z osobami, a skontaktuj się z Wami do dokładnym miejscem i terminem. Liczba miejsc jest ograniczona.",
@@ -1978,7 +1974,7 @@
    "aislupsk-listopad",
    "reels-organic"
   ],
-  "notes": ""
+  "notes": "16.10 (Agata, 0:17–0:23): „plus konkretne zastosowania, które oszczędzają” padało 3 razy — zostaje trzeci, pełny dubel (od 2351,7). Whisper zgubił dwa pierwsze w jednym słowie — czasy słów 2342–2356 w transkrypcji poprawione ponownym przebiegiem na krótkich odcinkach."
  },
  {
   "id": "ad-36-w7",

@@ -74,12 +74,10 @@
    ]
   },
   {
-   "type": "broll",
+   "type": "mockup",
+   "name": "orders",
    "at": "produkcyjnych",
-   "until": "Siedzi",
-   "src": "assets/broll/stills/s11-hala-sprzet-sportowy.jpg",
-   "label": "Agent AI dla zarządu",
-   "ai": true
+   "until": "Siedzi"
   },
   {
    "type": "logos",

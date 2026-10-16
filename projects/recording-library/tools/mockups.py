@@ -826,3 +826,48 @@ MOCKUP_STYLE += """
 .fmt-v .dp,.fmt-v .ly,.fmt-v .sp,.fmt-v .gl,.fmt-v .ck,.fmt-v .xc-wrap,.fmt-v .hs,.fmt-v .qs,.fmt-v .om,.fmt-v .rp{{zoom:1.3;width:692px;align-self:center}}
 .fmt-v .rt{{zoom:1.25;width:720px;align-self:center}} .fmt-v .rt-count{{font-size:52px}} .fmt-v .xl-foot{{font-size:40px}}
 """
+
+
+# Panel zamówień i produkcji — „widok systemu” do reklam (Agata 15.10, ad-11-r1 0:29 i ad-19-ra1 0:12):
+# zamiast zdjęcia spawacza przy „budujemy systemy … dla firm produkcyjnych” — jasne okno systemu
+# z przykładowymi danymi (ADR flowbiz-automation-unlocked 2026-10-12-reklamy-widok-systemu-jasny).
+# Kontrahenci, numery i ilości są FIKCYJNE — bez nazw prawdziwych klientów.
+ORDERS_KPI = [("4", "nowe dziś"), ("9", "w produkcji"), ("3", "do wysyłki")]
+ORDERS = [("ZAM 0412", "Nordwind GmbH", "48 szt.", "W produkcji", "mid", "24.10"),
+          ("ZAM 0413", "Gartenhaus Weber", "120 szt.", "Nowe · z maila", "ok", "31.10"),
+          ("ZAM 0414", "Studio Lato", "16 szt.", "Do wysyłki", "mid", "jutro"),
+          ("ZAM 0415", "Meble Brzoza", "30 szt.", "Opóźnione 2 dni", "no", "22.10")]
+
+
+def orders(comp, ev, start, end):
+    kpis = "".join(f'<div class="or-kpi"><b>{esc(n)}</b><span>{esc(t)}</span></div>' for n, t in ORDERS_KPI)
+    rows = "".join(f'<div class="or-row" data-i="{i}"><b>{esc(no)}</b><span class="or-client">{esc(c)}</span><span class="or-qty">{esc(q)}</span>'
+                   f'<span class="mk-badge {cls}">{esc(st)}</span><em>{esc(due)}</em></div>'
+                   for i, (no, c, q, st, cls, due) in enumerate(ORDERS))
+    inner = (f'<div class="mk-window or"><div class="mk-bar"><i></i><i></i><i></i><span>{esc(ev.get("title", "Panel firmy · zamówienia i produkcja"))}</span></div>'
+             f'<div class="or-kpis">{kpis}</div>'
+             f'<div class="or-row or-head"><b>Zamówienie</b><span class="or-client">Kontrahent</span><span class="or-qty">Ilość</span><span>Status</span><em>Termin</em></div>{rows}'
+             f'<div class="mk-foot">przykładowe dane · <b>wszystko w jednym miejscu</b></div></div>')
+    sid = mock_slate(comp, start, end, inner, pip=ev.get("pip", True))
+    q = comp.q
+    comp.js.append(f'tl.fromTo("#{sid} .or-kpi",{{opacity:0,y:20}},{{opacity:1,y:0,duration:0.3,stagger:0.1,ease:"power2.out"}},{q(start + 0.2)});')
+    appear(comp, sid, ".or-row[data-i]", start + 0.5, min(0.3, max(0.12, (end - start - 1.5) / 6)), 0)
+    comp.js.append(f'tl.fromTo("#{sid} .or-row .mk-badge",{{scale:0.6}},{{scale:1,duration:0.25,stagger:0.12,ease:"back.out(2.5)"}},{q(start + 0.6)});')
+    appear(comp, sid, ".mk-foot", start + min(1.6, end - start - 0.8), 0)
+
+
+MOCKUPS["orders"] = orders
+
+MOCKUP_STYLE += """
+.or-kpis{{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:26px 34px 10px}}
+.or-kpi{{background:{raised};border-radius:20px;padding:18px 24px;display:flex;align-items:baseline;gap:16px;text-align:left}}
+.or-kpi b{{font-size:58px;font-weight:900;color:{accent};line-height:1}} .or-kpi span{{font-size:26px;color:{muted};font-weight:600}}
+.or-row{{display:grid;grid-template-columns:170px 1.4fr 130px 280px 110px;gap:20px;align-items:center;padding:0 34px;min-height:88px;font-size:28px;border-bottom:1px solid {line};text-align:left}}
+.or-row em{{font-style:normal;color:{muted}}} .or-row .mk-badge{{font-size:22px;justify-self:start;white-space:nowrap}}
+.or-head{{min-height:60px;font-size:20px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:{muted};border-bottom:2px solid {line}}}
+.or-head b{{font-weight:700}} .or-qty{{color:{muted}}}
+.fmt-v .or{{width:860px;align-self:center}} .fmt-v .mk-window.or .mk-bar{{font-size:30px}} .fmt-v .or .mk-foot{{font-size:30px}}
+.fmt-v .or-row{{grid-template-columns:1fr auto;row-gap:4px;padding:18px 32px;font-size:38px}} .fmt-v .or-row .mk-badge{{font-size:28px;grid-column:2;grid-row:1;justify-self:end}}
+.fmt-v .or-row .or-client{{grid-column:1/3;color:{muted};font-size:32px}} .fmt-v .or-row .or-qty,.fmt-v .or-row em,.fmt-v .or-head{{display:none}}
+.fmt-v .or-kpis{{padding:22px 24px 8px;gap:12px}} .fmt-v .or-kpi{{flex-direction:column;gap:4px;padding:16px 18px}} .fmt-v .or-kpi b{{font-size:64px}} .fmt-v .or-kpi span{{font-size:26px}}
+"""

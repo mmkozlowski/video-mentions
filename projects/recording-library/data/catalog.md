@@ -10,14 +10,14 @@ Ranking: `hook × 2 + delivery` (max 15). A ≥ 13, B ≥ 11. Oceny redakcyjne �
 |---|---|---|---|---|---|---|---|---|---|
 | A | 15 | `ad-19-ra1` | Prezes na lotnisku | flowbiz | 34 | none | 2 | meta-ads, reels-organic | Prezes firmy siedzi na lotnisku i wie co się dzieje na produkcji z telefonu, |
 | A | 14 | `ad-28-w1` | Szefie, Twoi ludzie już używają AI | aislupsk | 32 | aislupsk | 5 | aislupsk-listopad, reels-organic | Szefie, Twoi ludzie już używają AI. Wiesz do czego? Wklejają maile klientów, umowy, cenniki |
+| A | 14 | `ad-35-w9` | Umowa w ChatGPT | aislupsk | 35 | aislupsk | 6 | aislupsk-listopad, reels-organic | Twój pracownik właśnie wkleił umowę klienta do chat GPT. Czy zdawałeś sobie o tym |
 | A | 14 | `ad-11-r1` | Zamówienie na 11 stron | flowbiz | 38 | none | 3 | meta-ads, reels-organic | 11 stron zamówienia w Excelu. |
-| A | 14 | `ad-35-w9` | Umowa w ChatGPT | aislupsk | 41 | aislupsk | 6 | aislupsk-listopad, reels-organic | Twój pracownik właśnie wkleił umowę klienta do chat GPT. Czy zdawałeś sobie o tym |
 | A | 14 | `ad-25-e5` | 4 błędy przy wdrożeniu AI | flowbiz | 43 | comment | 9 | reels-organic | Wdrażasz AI w firmie i nie działa? Pewnie popełniasz jeden z tych czterech błędów. |
 | A | 14 | `ad-04-02-4` | AI skasuje mi pół bazy | flowbiz | 49 | youtube | 4 | reels-organic | A co, jak AI skasuje mi pół bazy? |
 | A | 14 | `ad-12-r2` | Zeszyt i emerytura | flowbiz | 51 | web | 2 | meta-ads, reels-organic | Co się stanie z Twoją produkcją, jak jedna osoba, która wie, jak to robić, |
 | A | 13 | `ad-34-e4` | Gdzie AI ma sens — 3 na tak, 3 na nie | flowbiz | 31 | none | 5 | reels-organic | Gdzie AI w firmie ma sens, a gdzie to wyrzucone pieniądze? 3 na tak, |
 | A | 13 | `ad-31-l9` | ChatGPT dla pracowników | flowbiz | 35 | web | 6 | reels-organic | Kupiłeś chat GPT dla pracowników i nic się nie zmieniło? Bo dostęp do narzędzia |
-| A | 13 | `ad-33-g1` | Programista kontra ChatGPT | flowbiz | 40 | web | 7 | reels-organic | Programista mówi 3 miesiące, chat GPT mówi 3 dni. Kto kłamie? Nikt. Mówią o |
+| A | 13 | `ad-33-g1` | Programista kontra ChatGPT | flowbiz | 36 | web | 6 | reels-organic | Programista mówi 3 miesiące, chat GPT mówi 3 dni. Kto kłamie? Nikt. Mówią o |
 | A | 13 | `ad-14-r4` | ERP kontra hala | flowbiz | 42 | web | 5 | meta-ads, reels-organic | Twój ERP mówi jedną, hala robi drugie W systemie wszystko się zgadza |
 | A | 13 | `ad-02-01-1` | Kto zmienił cenę | flowbiz | 48 | youtube | 3 | reels-organic | Kto kurwa zmienił cenę tego produktu? kolokwializm, ale nieraz padały takie słowa od szefów |
 | A | 13 | `ad-01-01-3` | AI zobaczy wypłaty | flowbiz | 48 | youtube | 6 | reels-organic | Pracownik pyta AI ile zarabia jego szef na danym zleceniu i dostaje odpowiedź. To |
@@ -50,7 +50,7 @@ Ranking: `hook × 2 + delivery` (max 15). A ≥ 13, B ≥ 11. Oceny redakcyjne �
 | # | pkt | id | tytuł | s |
 |---|---|---|---|---|
 | A | 14 | `ad-28-w1` | Szefie, Twoi ludzie już używają AI | 32 |
-| A | 14 | `ad-35-w9` | Umowa w ChatGPT | 41 |
+| A | 14 | `ad-35-w9` | Umowa w ChatGPT | 35 |
 | B | 12 | `ad-27-w11` | Pizza i networking | 28 |
 | B | 12 | `ad-36-w7` | Przynieś swój problem | 31 |
 | B | 12 | `ad-24-e7` | Agent AI dla prezesa — co robi | 55 |
@@ -139,7 +139,7 @@ Ranking: `hook × 2 + delivery` (max 15). A ≥ 13, B ≥ 11. Oceny redakcyjne �
 | `ad-08-m4` | Przejęzyczenie „porozmawianym”. CTA: flowbiz.pl + krótka notka. |
 | `ad-09-m5` | Wtrącenie o S6 jest niewyraźne. Telefon dołożyć grafiką. |
 | `ad-10-m6` | Dubel z Sopotem. CTA ogólne „porozmawiajmy” — kontakt grafiką. |
-| `ad-11-r1` | Mateusz poprawił się na nagraniu: 6 godzin, nie 3 — zostawiony dubel z 6 h. Zaproszenie bez telefonu. |
+| `ad-11-r1` | Mateusz poprawił się na nagraniu: 6 godzin, nie 3 — zostawiony dubel z 6 h. Zaproszenie bez telefonu. 16.10 (Agata): koniec 1. przedziału po sygnale — Whisper kończył „Excelu” 0,25 s za wcześnie i cięcie urywało końcówkę „-lu” (zamknięcie „trzy” od 734,21). |
 | `ad-12-r2` | Jedno ujęcie, najmocniejsza emocja w bloku. CTA: bezpłatna konsultacja na flowbiz.pl. |
 | `ad-13-r3` | Wersja z panelem klienta zamiast archiwum. Dygresja o komunikacji 927–935 s do rozważenia. Niszowe: branża opakowań, PPWR. |
 | `ad-14-r4` | Czasy słów Whispera przesunięte w 964–971 s (trzy próby „A na hali”) — sklejka ustawiona po transkrypcji samego wycinka i ciszy w sygnale (970,55 s). |
@@ -154,7 +154,9 @@ Ranking: `hook × 2 + delivery` (max 15). A ≥ 13, B ≥ 11. Oceny redakcyjne �
 | `ad-26-w10` | Doszły narzędzia: Claude, Grok-bot. Pizza i ludzie z regionu. |
 | `ad-28-w1` | Region w nagraniu: Słupsk, Lębork, Koszalin. |
 | `ad-29-w4` | Pierwszy start („osoby decyzyjne”, 2000,6–2004,4 s) wycięty po ciszy — Whisper go pominął. Format śniadaniowy, bezpłatne, ograniczona liczba miejsc. |
+| `ad-33-g1` | 16.10 (Agata, 0:30–0:34): wycięta powtórka „co można uzyskać po kilku tygodniach z nas z nami” — zostaje „…po kilku tygodniach pracy, daj znać”. Granice po ciszy w sygnale (Whisper dokleja „daj” do pauzy). |
 | `ad-34-e4` | Jedno czyste ujęcie, pointa „AI przygotowuje, człowiek decyduje”. |
+| `ad-35-w9` | 16.10 (Agata, 0:17–0:23): „plus konkretne zastosowania, które oszczędzają” padało 3 razy — zostaje trzeci, pełny dubel (od 2351,7). Whisper zgubił dwa pierwsze w jednym słowie — czasy słów 2342–2356 w transkrypcji poprawione ponownym przebiegiem na krótkich odcinkach. |
 | `ad-36-w7` | Region w nagraniu: Słupsk, Gdańsk i okolice. |
 | `ch-doram-3-przeklejala-drukowala` | Rytm „przeklejała, drukowała” ×3 to gotowy hook — można zacząć od niego (264 s). |
 | `ch-doram-6-kody-15-minut` | „Żadnej magii, żadnego AI” — wiarygodność. |

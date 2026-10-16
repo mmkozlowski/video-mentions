@@ -130,12 +130,11 @@
    "text": "Przyjadę na *konsultację do Twojej firmy"
   },
   {
-   "type": "broll",
+   "type": "mockup",
+   "name": "orders",
    "at": "budujemy",
    "until": "+2.6",
-   "src": "assets/broll/stills/s11-hala-sprzet-sportowy.jpg",
-   "label": "Systemy dla firm produkcyjnych",
-   "ai": true
+   "pip": false
   },
   {
    "type": "broll",

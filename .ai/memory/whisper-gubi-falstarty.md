@@ -20,6 +20,15 @@ ustawiona po czasach słów zostawiła powtórzenie.
   raz — ostatnie „właściciela” trwało 4 s i przykryło drugi dubel. Cięcie
   „na końcu słowa” wpuściło oba. Wykryło to dopiero `verify.py`.
 
+- **Koniec słowa za wcześnie** (16.10, ad-11-r1, uwaga Agaty „ucięte Excel”):
+  Whisper kończył „Excelu” na 733,98, a głos trwał do 734,21 (potem zwarcie „t”
+  z „trzy”). Sklejka na 734,06 urywała „-lu”. Przy mowie bez pauzy granica
+  z obwiedni RMS co 10 ms — szukaj zwarcia spółgłoski następnego słowa.
+- **Trzy duble w jednym słowie** (16.10, ad-35-w9, 2342–2356 s): „plus konkretne
+  zastosowania…” padło 3 razy, transkrypcja miała je raz, z „w” trwającym 6,4 s.
+  Napisy brały się z tych złych czasów, więc po cięciu poprawiono też czasy słów
+  w `data/transcripts/session.json` (transkrypcja 3–4-sekundowych wycinków).
+
 Lek: granica z **ciszy w sygnale** (`silencedetect` na wycinku ±5 s,
 `-32…-38 dB`, `d=0.1–0.25`) i ewentualnie transkrypcja samego 2-sekundowego
 wycinka. W EDL `projects/recording-library` takie miejsce zapisuje się jako

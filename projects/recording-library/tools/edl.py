@@ -58,9 +58,10 @@ ADS = [
 
     # ── Blok 3 — reklamy produkcyjne ─────────────────────────────────────────
     dict(n=11, code="R1", title="Zamówienie na 11 stron", brand="flowbiz", block="production",
-         ranges=[(730.5, 733.9), (737.0, 784.0)], hook=5, delivery=4, cta="none",
+         ranges=[(730.5, 733.9, None, 734.24), (737.0, 784.0)], hook=5, delivery=4, cta="none",
          notes="Mateusz poprawił się na nagraniu: 6 godzin, nie 3 — zostawiony dubel z 6 h. "
-               "Zaproszenie bez telefonu."),
+               "Zaproszenie bez telefonu. 16.10 (Agata): koniec 1. przedziału po sygnale — Whisper kończył "
+               "„Excelu” 0,25 s za wcześnie i cięcie urywało końcówkę „-lu” (zamknięcie „trzy” od 734,21)."),
     dict(n=12, code="R2", title="Zeszyt i emerytura", brand="flowbiz", block="production",
          ranges=[(784.0, 838.0)], hook=5, delivery=4, cta="web",
          notes="Jedno ujęcie, najmocniejsza emocja w bloku. CTA: bezpłatna konsultacja na flowbiz.pl."),
@@ -130,12 +131,17 @@ ADS = [
     dict(n=32, code="L1", title="Najlepsza osoba przepisuje maile", brand="flowbiz", block="extra",
          ranges=[(2162.5, 2182.6), (2189.3, 2220.0)], hook=4, delivery=3, cta="none"),
     dict(n=33, code="G1", title="Programista kontra ChatGPT", brand="flowbiz", block="extra",
-         ranges=[(2225.9, 2249.6), (2254.7, 2278.0)], hook=5, delivery=3, cta="web"),
+         ranges=[(2225.9, 2249.6), (2254.7, 2267.0, None, 2267.40), (2272.3, 2278.0, 2273.18, None)], hook=5, delivery=3, cta="web",
+         notes="16.10 (Agata, 0:30–0:34): wycięta powtórka „co można uzyskać po kilku tygodniach z nas z nami” — "
+               "zostaje „…po kilku tygodniach pracy, daj znać”. Granice po ciszy w sygnale (Whisper dokleja „daj” do pauzy)."),
     dict(n=34, code="E4", title="Gdzie AI ma sens — 3 na tak, 3 na nie", brand="flowbiz", block="extra",
          ranges=[(2282.8, 2319.0)], hook=4, delivery=5, cta="none",
          notes="Jedno czyste ujęcie, pointa „AI przygotowuje, człowiek decyduje”."),
     dict(n=35, code="W9", title="Umowa w ChatGPT", brand="aislupsk", block="extra",
-         ranges=[(2324.2, 2371.0)], hook=5, delivery=4, cta="aislupsk"),
+         ranges=[(2324.2, 2342.4, None, 2342.62), (2351.4, 2371.0, 2351.62, None)], hook=5, delivery=4, cta="aislupsk",
+         notes="16.10 (Agata, 0:17–0:23): „plus konkretne zastosowania, które oszczędzają” padało 3 razy — "
+               "zostaje trzeci, pełny dubel (od 2351,7). Whisper zgubił dwa pierwsze w jednym słowie — czasy "
+               "słów 2342–2356 w transkrypcji poprawione ponownym przebiegiem na krótkich odcinkach."),
     dict(n=36, code="W7", title="Przynieś swój problem", brand="aislupsk", block="extra",
          ranges=[(2377.4, 2415.0)], hook=4, delivery=4, cta="aislupsk",
          notes="Region w nagraniu: Słupsk, Gdańsk i okolice."),
