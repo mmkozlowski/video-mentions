@@ -27,6 +27,8 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 
 - [Nasycony kolor tekstu na materiale](memory/tekst-nasycony-kolor-na-materiale.md) — h.264 4:2:0 zabija krawędź bursztynu; mały kolorowy tekst na ciemną pigułkę, weryfikuj PO kompresji nie na PNG
 - [HyperFrames check: zasłanianie](memory/hyperframes-check-zaslanianie.md) — `data-layout-allow-occlusion` tylko na zasłanianym tekście, nie na nakładce i bez dziedziczenia; scrim ≥ 0,6 krycia to zasłonięcie
+- [Ekran produktu: nagranie z kursorem](memory/ekran-produktu-nagranie-z-kursorem.md) — gdy jest prototyp, nagraj prawdziwą pracę w dwóch oknach z kursorem (Playwright); zrzuty z najazdem odbierane są jako „slajdy”
+- [Ilustracja AI ożywiona w Kling](memory/ilustracja-ai-ozywiona-kling.md) — Kling 3.0 Pro ożywia płaską ilustrację bez psucia napisów (8/8), jeśli prompt nazywa konkretny ruch; stopklatka z najazdem to nie animacja
 
 ## Decyzje (ADR)
 
