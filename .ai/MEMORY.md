@@ -59,3 +59,4 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 - [Starsze odcinki kanału w bibliotece (ADR projektowy)](../projects/recording-library/ai/decisions/2026-10-11-starsze-odcinki-kanalu.md) — 2026-10-11
 - [Marka wideo w repo marki](memory/marka-wideo-w-repo-marki.md) — kolory i elementy z flowbiz-automation-unlocked/docs/brand, nie z wytycznych
 - [Ujęcia AI: zwykłe, nie kinowe](memory/ujecia-ai-zwykle-nie-kinowe.md) — styl „zdjęcie z telefonu”, polskie realia, bez konkretnych miast (AI je zmyśla), sceny z problemów z vaulta
+- [Miniatura: napis składamy sami](memory/miniatura-napis-skladamy-sami.md) — generator rysuje własny krój; napis w Plus Jakarta 800 w HTML
