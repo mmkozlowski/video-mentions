@@ -19,6 +19,11 @@ html,body{overflow:hidden;background:var(--green2);font-family:"Helvetica Neue",
 .board{background:var(--green)}
 .board .big{position:absolute;left:0;right:0;text-align:center;color:var(--gold);font-weight:700;line-height:1.2}
 .end{background:var(--green)}
+.modules{background:var(--green)}
+.modules .ttl{position:absolute;left:0;right:0;text-align:center;color:var(--gold);font-weight:700;letter-spacing:3px;text-transform:uppercase}
+.modules .grid{position:absolute;display:grid;gap:22px}
+.modules .tile{background:rgba(245,240,231,.07);border:2px solid rgba(200,165,90,.55);border-radius:18px;color:var(--cream);font-weight:700;display:flex;align-items:center;gap:18px;line-height:1.15}
+.modules .tile i{flex:none;border-radius:50%;background:var(--gold);color:var(--green2);display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:800}
 .end .in{position:absolute;left:0;right:0;display:flex;flex-direction:column;align-items:center;text-align:center;color:var(--cream)}
 .end .slogan{font-weight:700;line-height:1.2}
 .end .slogan b{color:var(--gold)}
@@ -41,6 +46,10 @@ html,body{overflow:hidden;background:var(--green2);font-family:"Helvetica Neue",
 .f16 .end .url{font-size:46px}
 .f16 #brand{right:60px;bottom:200px;height:44px;display:none}
 .f16 #ai{right:40px;top:34px;font-size:20px;padding:8px 14px}
+.f16 .modules .ttl{top:110px;font-size:30px}
+.f16 .modules .grid{left:150px;right:150px;top:200px;grid-template-columns:1fr 1fr;gap:26px}
+.f16 .modules .tile{font-size:40px;padding:26px 30px;min-height:120px}
+.f16 .modules .tile i{width:52px;height:52px;font-size:26px}
 /* 9:16 */
 .f9 .top{position:absolute;left:0;right:0;top:0;height:560px;background:var(--green2)}
 .f9 .chip{left:64px;top:170px;font-size:26px}
@@ -52,6 +61,10 @@ html,body{overflow:hidden;background:var(--green2);font-family:"Helvetica Neue",
 .f9 .end .offer{font-size:40px;padding:0 70px}
 .f9 .end .url{font-size:52px}
 .f9 #brand{left:64px;top:64px;height:52px}
+.f9 .modules .ttl{top:230px;font-size:30px}
+.f9 .modules .grid{left:64px;right:64px;top:330px;grid-template-columns:1fr;gap:26px}
+.f9 .modules .tile{font-size:50px;padding:30px 34px;min-height:156px}
+.f9 .modules .tile i{width:60px;height:60px;font-size:30px}
 .f9 #ai{right:40px;top:70px;font-size:22px;padding:8px 14px}
 </style></head><body>
 <div id="stage"></div>
@@ -81,6 +94,7 @@ const stage = document.getElementById('stage');
 for (const [i, s] of scenes.entries()) {
   const el = document.createElement('div'); el.className = 'scene ' + s.kind;
   if (s.kind === 'board') el.innerHTML = `<div class="big">${s.big}</div>`;
+  else if (s.kind === 'modules') el.innerHTML = `<div class="ttl">${s.title}</div><div class="grid">${s.items.map((m, k) => `<div class="tile"><i>${k + 1}</i><span>${m}</span></div>`).join('')}</div>`;
   else if (s.kind === 'end') el.innerHTML = `<div class="in"><img class="logo" src="${SPEC.logoInverse}"><div class="slogan">${s.slogan}</div><div class="offer">${s.offer}</div><div class="url">${s.url}</div></div>`;
   else {
     const b = boxFor(s);
@@ -143,6 +157,11 @@ window.seek = async function (t) {
       const chip = s.el.querySelector('.chip'); if (chip) chip.style.opacity = ease(clamp((lt - 0.1) / 0.5));
     } else if (s.kind === 'board') {
       const bp = ease(clamp((lt - 0.2) / 0.8)); const big = s.el.querySelector('.big'); big.style.opacity = bp; big.style.transform = `translateY(calc(-50% + ${(1 - bp) * 24}px))`;
+    } else if (s.kind === 'modules') {
+      // tiles come in one by one across the first ~70% of the scene, in step with the voice listing them
+      const tiles = s.el.querySelectorAll('.tile'), span = s.d * 0.7 / tiles.length;
+      tiles.forEach((el, k) => { const p = ease(clamp((lt - 0.3 - k * span) / 0.45)); el.style.opacity = p; el.style.transform = `translateY(${(1 - p) * 26}px)`; });
+      s.el.querySelector('.ttl').style.opacity = ease(clamp(lt / 0.5));
     } else if (s.kind === 'end') {
       const bp = ease(clamp((lt - 0.1) / 0.8)); const inn = s.el.querySelector('.in'); inn.style.opacity = bp;
     }
@@ -151,6 +170,7 @@ window.seek = async function (t) {
   aiTag.style.opacity = t < 4 ? 1 : clamp((4.5 - t) / 0.5);
   const cur = scenes.find(s => t >= s.start && t <= s.start + s.d);
   brand.style.opacity = cur && (cur.kind === 'end' || cur.kind === 'board') ? 0 : 1;
+  if (cur && cur.kind === 'modules' && !F9) brand.style.opacity = 0;
   document.body.style.filter = t > TOTAL - 0.8 ? `brightness(${clamp((TOTAL - t) / 0.8)})` : '';
   await Promise.all(waits);
 };

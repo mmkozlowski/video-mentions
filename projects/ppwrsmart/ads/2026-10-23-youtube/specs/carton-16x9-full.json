@@ -27,7 +27,7 @@
    "kind": "clip",
    "src": "../../../assets/clips-ads/k3-raw-materials.mp4",
    "vo": "../voice/carton-raw-materials.mp3",
-   "cap": "Papiernia, klej, farby — <b>każdy surowiec</b> z osobną dokumentacją.",
+   "cap": "Tektura, klej, farby — <b>każdy surowiec</b> z osobną dokumentacją.",
    "chip": {
     "tone": "bad",
     "text": "Dziś, bez systemu"
@@ -38,7 +38,7 @@
    "kind": "clip",
    "src": "../../../assets/clips-ads/k4-board-change.mp4",
    "vo": "../voice/carton-board-change.mp3",
-   "cap": "Papiernia zmienia tekturę. Deklaracja o tym nie wie.",
+   "cap": "Dostawca tektury zmienia jej skład. Deklaracja o tym nie wie.",
    "chip": {
     "tone": "bad",
     "text": "Dziś, bez systemu"
@@ -47,9 +47,9 @@
   },
   {
    "kind": "clip",
-   "src": "../../../assets/clips-ads/k5-word-20-min.mp4",
-   "vo": "../voice/carton-manual-20-min.mp3",
-   "cap": "Deklaracja ręcznie, w Wordzie — nawet <b>20 minut</b> na jedną.",
+   "src": "../../../assets/clips-ads/k5-word-60-min.mp4",
+   "vo": "../voice/carton-manual-hour.mp3",
+   "cap": "Deklaracja ręcznie, w Wordzie — nawet <b>godzina</b> na jedną.",
    "chip": {
     "tone": "bad",
     "text": "Dziś, bez systemu"
@@ -76,7 +76,7 @@
   {
    "kind": "clip",
    "src": "../../../assets/clips/07-przejscie.mp4",
-   "vo": "../voice/tago-film-8.mp3",
+   "vo": "../voice/transition.mp3",
    "cap": "Dokument wpada — system sam go przypisuje.",
    "chip": {
     "tone": "good",
@@ -139,13 +139,27 @@
   {
    "kind": "clip",
    "src": "../../../assets/clips-ads/k7-card-declaration.mp4",
-   "vo": "../voice/carton-3-min.mp3",
-   "cap": "<b>3 minuty</b> zamiast 20 — zmierzone u producenta kartonów.",
+   "vo": "../voice/carton-3-min-no-hires.mp3",
+   "cap": "<b>3 minuty</b> na deklarację — zmierzone u producenta kartonów. <b>Bez nowych etatów.</b>",
    "chip": {
     "tone": "good",
     "text": "Z PPWR Smart"
    },
    "focus": 0.45
+  },
+  {
+   "kind": "modules",
+   "vo": "../voice/modules.mp3",
+   "title": "PPWR Smart — moduły",
+   "items": [
+    "Import z Twojego ERP",
+    "Portal dostawcy",
+    "Receptury opakowań",
+    "Reguły PPWR i blokady",
+    "Deklaracje zgodności UE",
+    "Karty techniczne",
+    "Wersje i archiwum"
+   ]
   },
   {
    "kind": "clip",

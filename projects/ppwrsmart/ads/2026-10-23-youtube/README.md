@@ -168,3 +168,15 @@ Każdy hook w nagłówku i w pierwszym zdaniu lektora przywołuje PPWR i datę 1
 | 8 klatek reklamowych + 7 klatek kartonowych (GPT Image 2.5) | ~60 |
 | 12 klipów Kling 3.0 Pro (4 hooki, 7 kartonowych, hasło) | ~105 |
 | 21 kwestii lektora | ~10 |
+
+### Poprawki po uwagach z 23.10, późny wieczór
+
+- **Wymowa PPWR:** lektor czyta „pe-pe-wu-er”, a hasło „pepewuer”. Wszystkie hooki zaczynają się od „Od dwunastego sierpnia obowiązuje pe-pe-wu-er…”, bo akronim na początku zdania zawsze psuł się w TTS. Próby są w `voice-tests/`, a pamięć w `.ai/memory/wymowa-ppwr-lektor.md`.
+- **„Tektura” zamiast „papierni”:** zmiana objęła lektora, napisy, klatkę `k3-surowce` (ciężarówka TEKTURA) i kartę techniczną („Dostawca tektury”).
+- **Czas pracy:**
+  - wersja dla żywności: „Ręcznie jedna deklaracja potrafi zająć nawet godzinę. Z PPWR Smart to kilka minut”;
+  - wersja dla kartonów: „nawet godzina” na klatce `k5` (stoper 60 MIN) oraz zmierzone „3 minuty” na końcu.
+  - „Nawet godzina” to ogólna obserwacja, bez przypisania komukolwiek (decyzja Mateusza 23.10). Wymiana na liczbę wymaga źródła.
+- **„Nie musisz zatrudniać do tego nowych ludzi”:** dopisane w obu wersjach, napis „Bez nowych etatów”.
+- **Plansza modułów** (zakres etapu 1 z planu dla TAGO, bez nazwy klienta): import z ERP, portal dostawcy, receptury opakowań, reguły PPWR i blokady, deklaracje zgodności UE, karty techniczne, wersje i archiwum. Stoi przed hasłem we wszystkich wersjach.
+- **Reelsy spożywcze:** wypadła scena „obchód miesięczny”. Długość wraca do ~55 s mimo dwóch nowych scen.

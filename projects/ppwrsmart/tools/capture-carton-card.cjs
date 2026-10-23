@@ -14,7 +14,7 @@ const replacements = [
   [/\d{3} \d{3} \d{3}/g, '000 000 000'], [/\b\d{10}\b/g, '000-000-00-00'],
   [/Przykładowy Odbiorca Sp\. z o\.o\./g, 'Odbiorca (marka spożywcza)'],
   [/Indeks IBiz/g, 'Indeks ERP'], [/IBIZ-/g, 'ERP-'], [/\bIBiz\b/g, 'ERP'],
-  [/AQL-/g, 'TEK-'], [/>AQL</g, '>Papiernia A<'], [/\bAQL\b/g, 'Papiernia A'], [/Czeczewo/g, 'Miasto'],
+  [/AQL-/g, 'TEK-'], [/>AQL</g, '>Dostawca tektury<'], [/\bAQL\b/g, 'Dostawca tektury'], [/Czeczewo/g, 'Miasto'],
 ];
 const LEAK = /\bOPAK\b|Kreft|AQL|IBiz|IBIZ|Puzdrowsk|Witanowsk|Jarosz|Kieleńsk|Czeczew|Gdańsk|przyklad\.pl/g;
 const mark = `<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128"><rect x="8" y="8" width="112" height="112" rx="26" fill="#0c3b2e"/><path d="M38 66l18 18 34-38" stroke="#c8a55a" stroke-width="12" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`;

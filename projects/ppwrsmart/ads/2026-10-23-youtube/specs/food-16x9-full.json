@@ -72,7 +72,7 @@
   {
    "kind": "clip",
    "src": "../../../assets/clips/07-przejscie.mp4",
-   "vo": "../voice/tago-film-8.mp3",
+   "vo": "../voice/transition.mp3",
    "cap": "Dokument wpada — system sam go przypisuje.",
    "chip": {
     "tone": "good",
@@ -142,12 +142,27 @@
   {
    "kind": "clip",
    "src": "../../../assets/clips/08-system-pilnuje.mp4",
-   "vo": "../voice/food-system-watches.mp3",
-   "cap": "System pilnuje dostawców za Ciebie.",
+   "vo": "../voice/food-time-no-hires.mp3",
+   "cap": "Ręcznie nawet <b>godzina</b> na deklarację. Z PPWR Smart — <b>kilka minut</b>. Bez nowych etatów.",
    "chip": {
     "tone": "good",
     "text": "Z PPWR Smart"
-   }
+   },
+   "focus": 0.5
+  },
+  {
+   "kind": "modules",
+   "vo": "../voice/modules.mp3",
+   "title": "PPWR Smart — moduły",
+   "items": [
+    "Import z Twojego ERP",
+    "Portal dostawcy",
+    "Receptury opakowań",
+    "Reguły PPWR i blokady",
+    "Deklaracje zgodności UE",
+    "Karty techniczne",
+    "Wersje i archiwum"
+   ]
   },
   {
    "kind": "clip",

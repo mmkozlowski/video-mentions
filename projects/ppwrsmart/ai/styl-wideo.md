@@ -65,7 +65,7 @@ Mateusza („super to wyszło”). Każdy kolejny film PPWR Smart startuje od te
 
 - **ElevenLabs v4** przez Higgsfield (`elevenlabs_v4`, parametr `dialogue`), głos **Callum**
   `858499d9-fef5-40e1-bc29-b4dc661dc283` (preset). Spokojny, męski, rzeczowy.
-- Nazwę marki zapisuj fonetycznie: **„Pe Pe Wu Er Smart”** — inaczej TTS czyta PPWR po angielsku.
+- Nazwę marki zapisuj fonetycznie **„pe-pe-wu-er smart”**, w środku zdania, nigdy na jego początku. Bez tego TTS czyta PPWR po angielsku, a stary zapis „Pe Pe Wu Er” daje „PPUR”. Szczegóły i test Whisperem: `.ai/memory/wymowa-ppwr-lektor.md` (23.10.2026).
 - Zdania krótkie, 1–2 na scenę; scena trwa = długość kwestii + 0,6 s; kwestia startuje 0,3 s po
   początku sceny. Głośność końcowa `loudnorm I=-16, TP=-1.5`.
 - ⚠️ Film TAGO ma 15 kwestii generowanych **osobno** (żeby łatwo ciąć sceny pod spotkanie). To ryzyko

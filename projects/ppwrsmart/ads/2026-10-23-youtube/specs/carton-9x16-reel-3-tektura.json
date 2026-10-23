@@ -5,7 +5,7 @@
    "kind": "clip",
    "src": "../../../assets/clips-ads/k4-board-change.mp4",
    "vo": "../voice/hook-carton-3-board-change.mp3",
-   "cap": "PPWR obowiązuje od <b>12.08.2026</b>. Papiernia zmieniła tekturę — Twoja deklaracja o tym nie wie.",
+   "cap": "PPWR obowiązuje od <b>12.08.2026</b>. Dostawca tektury zmienił jej skład — Twoja deklaracja o tym nie wie.",
    "chip": {
     "tone": "ppwr",
     "text": "PPWR · od 12.08.2026"
@@ -16,7 +16,7 @@
    "kind": "clip",
    "src": "../../../assets/clips-ads/k3-raw-materials.mp4",
    "vo": "../voice/carton-raw-materials.mp3",
-   "cap": "Papiernia, klej, farby — <b>każdy surowiec</b> z osobną dokumentacją.",
+   "cap": "Tektura, klej, farby — <b>każdy surowiec</b> z osobną dokumentacją.",
    "chip": {
     "tone": "bad",
     "text": "Dziś, bez systemu"
@@ -26,7 +26,7 @@
   {
    "kind": "clip",
    "src": "../../../assets/clips/07-przejscie.mp4",
-   "vo": "../voice/tago-film-8.mp3",
+   "vo": "../voice/transition.mp3",
    "cap": "Dokument wpada — system sam go przypisuje.",
    "chip": {
     "tone": "good",
@@ -54,13 +54,27 @@
   {
    "kind": "clip",
    "src": "../../../assets/clips-ads/k7-card-declaration.mp4",
-   "vo": "../voice/carton-3-min.mp3",
-   "cap": "<b>3 minuty</b> zamiast 20 — zmierzone u producenta kartonów.",
+   "vo": "../voice/carton-3-min-no-hires.mp3",
+   "cap": "<b>3 minuty</b> na deklarację — zmierzone u producenta kartonów. <b>Bez nowych etatów.</b>",
    "chip": {
     "tone": "good",
     "text": "Z PPWR Smart"
    },
    "focus": 0.45
+  },
+  {
+   "kind": "modules",
+   "vo": "../voice/modules.mp3",
+   "title": "PPWR Smart — moduły",
+   "items": [
+    "Import z Twojego ERP",
+    "Portal dostawcy",
+    "Receptury opakowań",
+    "Reguły PPWR i blokady",
+    "Deklaracje zgodności UE",
+    "Karty techniczne",
+    "Wersje i archiwum"
+   ]
   },
   {
    "kind": "clip",
