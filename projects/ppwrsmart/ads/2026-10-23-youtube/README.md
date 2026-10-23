@@ -102,3 +102,69 @@ Na koniec skrypt sprawdza tekst każdego ekranu pod kątem pozostałości: wynik
 Stan konta po tym etapie: ~380 kr. (przed: 414,7).
 
 **Oznaczenie AI** (`.ai/memory/oznaczanie-tresci-ai.md`): ilustracje i lektor to treść AI, więc potrzebny znak u góry kadru przez pierwsze ~4 s i przełącznik „zmienione lub syntetyczne treści” w YouTube przy każdej publikacji. Ekrany systemu, plansze i napisy nie są treścią AI.
+
+---
+
+## 7. Filmy z lektorem: wersja „chaos → system” bez klienta (23.10, wieczór)
+
+**Uwagi Mateusza:**
+- film TAGO „chaos → system” się podoba, ale nie może być w nim mowy o TAGO;
+- **żadnych nazw własnych** (firm, osób, miast);
+- logo PPWRsmart;
+- wersje pionowe na Reels, Shorts i TikToka;
+- różne hooki odwołujące się do **PPWR i daty 12 sierpnia**;
+- dwie grupy odbiorców: **producent żywności** i **producent kartonów (opakowań)**.
+
+### Wersje (`final/`)
+
+| Plik | Format | Odbiorca | Hook (0–8 s) |
+|---|---|---|---|
+| `food-16x9-full.mp4` | 16:9, ~95 s | żywność | „PPWR obowiązuje od 12 sierpnia 2026. Masz deklaracje do wszystkich opakowań?” |
+| `food-9x16-reel-1-data.mp4` | 9:16, ~45 s | żywność | kalendarz 12.08.2026 + pieczątka PPWR |
+| `food-9x16-reel-2-folia.mp4` | 9:16 | żywność | „PPWR od 12.08. A Twój dostawca właśnie zmienił folię.” |
+| `food-9x16-reel-3-kontrola.mp4` | 9:16 | żywność | „PPWR już obowiązuje. Kontrola zapyta o deklaracje, nie o plany.” |
+| `food-9x16-reel-4-kazde-opakowanie.mp4` | 9:16 | żywność | „Od 12 sierpnia każde opakowanie potrzebuje dokumentacji zgodności. Każde.” |
+| `carton-16x9-full.mp4` | 16:9, ~85 s | kartony | „PPWR od 12 sierpnia. Klient pyta o deklarację do każdego zamówienia.” |
+| `carton-9x16-reel-1-klient-pyta.mp4` | 9:16 | kartony | jw. |
+| `carton-9x16-reel-2-word.mp4` | 9:16 | kartony | „A Ty wciąż składasz deklaracje ręcznie, w Wordzie?” |
+| `carton-9x16-reel-3-tektura.mp4` | 9:16 | kartony | „Papiernia zmieniła tekturę — Twoja deklaracja o tym nie wie.” |
+
+Każdy hook w nagłówku i w pierwszym zdaniu lektora przywołuje PPWR i datę 12 sierpnia. Kąt jest inny w każdej wersji: termin, cicha zmiana u dostawcy, kontrola, skala, klient, ręczna praca.
+
+### Jak to jest złożone
+
+- **Opis scen** generuje `specs/build-specs.py`, a wynik ląduje w `specs/*.json`. Hooki są wymienne, a korpus jest wspólny dla danej grupy odbiorców.
+  - Nowy hook dodajesz jako nowy wpis w `FOOD_HOOKS` / `CARTON_HOOKS`, potem `python3 build-specs.py && ./render-all.sh <spec>.json`.
+- **Montaż:** `../../tools/render-ad.mjs` + `../../tools/ad-composer.html`.
+  - Długość sceny wynika z długości kwestii lektora.
+  - 9:16 = nagłówek u góry, obraz kwadratowy (ilustracje) albo jedno okno prototypu (nagranie).
+  - Dolne ~15% kadru jest puste, bo zasłania je interfejs Reels/TikToka.
+  - Oznaczenie „Treści wygenerowane z użyciem AI” jest u góry przez pierwsze 4 s.
+  - Logo `assets/brand/lockup-inverse.svg` jest w rogu i na planszy końcowej.
+- **System bez klienta:**
+  - Nagranie: `tools/record-prototype-neutral.cjs`. To prawdziwa praca w prototypie, dwa okna i kursor.
+  - Zrzuty: `tools/capture-neutral-screens.cjs`.
+  - Oba korzystają z `tools/neutralize-prototype.cjs`, który podmienia w locie logo, nazwę klienta, ERP, indeksy, dostawców, osoby, miasta, domeny i zdjęcia produktów. Na końcu sprawdza tekst każdego ekranu pod kątem pozostałości.
+  - Karta techniczna dla kartonów: `tools/capture-carton-card.cjs` (podgląd karty z `ppwrsmart-demo`, dane producenta i osób zamazane).
+- **Lektor:**
+  - Głos Callum (ElevenLabs v4) jak w filmie TAGO.
+  - Nowe kwestie leżą w `voice/`. Kwestie z filmu TAGO bez nazw i liczb klienta są użyte ponownie jako `voice/tago-film-*.mp3`.
+- **Klipy Kling** (`assets/clips*/`, poza gitem):
+  - 8 z filmu TAGO;
+  - 4 hooki dla żywności (h1, h2, h3, h5);
+  - 7 klatek kartonowych (k1–k7);
+  - hasło (h6).
+
+### Pułapki, które wyszły po drodze
+
+- Klatka `01-skrzynka` z filmu TAGO ma na monitorze **wymyślone przez AI nazwy firm**, a do tego „40 dostawców”. Wypadła ze wszystkich wersji. Przy nowych klatkach w promptach dopisuj „no readable company names”.
+- Klatka `b2-deklaracje-pl-en` obiecuje wersję EN, więc nie ma jej w filmach.
+- „3 minuty zamiast 20” to pomiar OPAK KREFT, opublikowany na ppwrsmart.com. W filmie nie pada nazwa producenta, a pomiar musi zostać opisany na landingu jako źródło.
+
+### Koszt (kredyty Higgsfield)
+
+| Pozycja | Kr. |
+|---|---|
+| 8 klatek reklamowych + 7 klatek kartonowych (GPT Image 2.5) | ~60 |
+| 12 klipów Kling 3.0 Pro (4 hooki, 7 kartonowych, hasło) | ~105 |
+| 21 kwestii lektora | ~10 |
