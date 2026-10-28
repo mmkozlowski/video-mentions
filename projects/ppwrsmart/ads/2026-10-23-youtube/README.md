@@ -117,17 +117,19 @@ Stan konta po tym etapie: ~380 kr. (przed: 414,7).
 
 ### Wersje (`final/`)
 
-| Plik | Format | Odbiorca | Hook (0–8 s) |
+| Plik | Format | Odbiorca | Napis hooka (0–8 s) |
 |---|---|---|---|
-| `food-16x9-full.mp4` | 16:9, ~95 s | żywność | „PPWR obowiązuje od 12 sierpnia 2026. Masz deklaracje do wszystkich opakowań?” |
-| `food-9x16-reel-1-data.mp4` | 9:16, ~45 s | żywność | kalendarz 12.08.2026 + pieczątka PPWR |
-| `food-9x16-reel-2-folia.mp4` | 9:16 | żywność | „PPWR od 12.08. A Twój dostawca właśnie zmienił folię.” |
-| `food-9x16-reel-3-kontrola.mp4` | 9:16 | żywność | „PPWR już obowiązuje. Kontrola zapyta o deklaracje, nie o plany.” |
-| `food-9x16-reel-4-kazde-opakowanie.mp4` | 9:16 | żywność | „Od 12 sierpnia każde opakowanie potrzebuje dokumentacji zgodności. Każde.” |
-| `carton-16x9-full.mp4` | 16:9, ~85 s | kartony | „PPWR od 12 sierpnia. Klient pyta o deklarację do każdego zamówienia.” |
-| `carton-9x16-reel-1-klient-pyta.mp4` | 9:16 | kartony | jw. |
-| `carton-9x16-reel-2-word.mp4` | 9:16 | kartony | „A Ty wciąż składasz deklaracje ręcznie, w Wordzie?” |
-| `carton-9x16-reel-3-tektura.mp4` | 9:16 | kartony | „Papiernia zmieniła tekturę — Twoja deklaracja o tym nie wie.” |
+| `food-16x9-full.mp4` | 16:9, 120 s | żywność | „PPWR obowiązuje od 12 sierpnia 2026. Masz deklaracje do wszystkich opakowań?” |
+| `food-9x16-reel-1-data.mp4` | 9:16, 69 s | żywność | jw. (kalendarz 12.08.2026 + pieczątka PPWR) |
+| `food-9x16-reel-2-folia.mp4` | 9:16, 68 s | żywność | „PPWR obowiązuje od 12.08.2026. A Twój dostawca właśnie zmienił folię.” |
+| `food-9x16-reel-3-kontrola.mp4` | 9:16, 69 s | żywność | „PPWR już obowiązuje. Kontrola zapyta o deklaracje, nie o plany.” |
+| `food-9x16-reel-4-kazde-opakowanie.mp4` | 9:16, 71 s | żywność | „Od 12 sierpnia każde opakowanie w Twoim wyrobie potrzebuje dokumentacji zgodności. Każde.” |
+| `carton-16x9-full.mp4` | 16:9, 108 s | kartony | „PPWR obowiązuje od 12 sierpnia 2026. Klient pyta o deklarację do każdego zamówienia.” |
+| `carton-9x16-reel-1-klient-pyta.mp4` | 9:16, 65 s | kartony | jw. |
+| `carton-9x16-reel-2-word.mp4` | 9:16, 63 s | kartony | „PPWR obowiązuje od 12.08.2026. A Ty wciąż składasz deklaracje ręcznie, w Wordzie?” |
+| `carton-9x16-reel-3-tektura.mp4` | 9:16, 66 s | kartony | „PPWR obowiązuje od 12.08.2026. Dostawca tektury zmienił jej skład — Twoja deklaracja o tym nie wie.” |
+
+Napisy są skrócone, a lektor w każdej wersji zaczyna od „Od dwunastego sierpnia obowiązuje pe-pe-wu-er…” (patrz poprawki niżej). Źródłem prawdy dla tekstów jest `specs/build-specs.py`.
 
 Każdy hook w nagłówku i w pierwszym zdaniu lektora przywołuje PPWR i datę 12 sierpnia. Kąt jest inny w każdej wersji: termin, cicha zmiana u dostawcy, kontrola, skala, klient, ręczna praca.
 
@@ -179,4 +181,14 @@ Każdy hook w nagłówku i w pierwszym zdaniu lektora przywołuje PPWR i datę 1
   - „Nawet godzina” to ogólna obserwacja, bez przypisania komukolwiek (decyzja Mateusza 23.10). Wymiana na liczbę wymaga źródła.
 - **„Nie musisz zatrudniać do tego nowych ludzi”:** dopisane w obu wersjach, napis „Bez nowych etatów”.
 - **Plansza modułów** (zakres etapu 1 z planu dla TAGO, bez nazwy klienta): import z ERP, portal dostawcy, receptury opakowań, reguły PPWR i blokady, deklaracje zgodności UE, karty techniczne, wersje i archiwum. Stoi przed hasłem we wszystkich wersjach.
-- **Reelsy spożywcze:** wypadła scena „obchód miesięczny”. Długość wraca do ~55 s mimo dwóch nowych scen.
+- **Reelsy spożywcze:** wypadła scena „obchód miesięczny”. Reelsy mają ~65–70 s (scena modułów i czas pracy doszły).
+
+### Stan na 28.10 i co dalej
+
+- **Gdzie są filmy:** `final/` w tym folderze (poza gitem) oraz kopia na Google Drive: `Mój dysk/Firmowe/Marketing/PPWR Smart/2026-10-23 reklamy wideo/` (podfoldery „Producent żywności”, „Producent kartonów”). 28.10 synchronizacja Drive z chmurą nie szła — przed usunięciem worktree sprawdź, czy pliki są w chmurze.
+- **Wymowa:** Mateusz odsłuchał próbki w `voice-tests/` i zostawił wariant 0 (obecny). Hasło czyta „pepewuer”; porównanie z próbkami 7 i 8 czeka na decyzję.
+- **Otwarte, do decyzji Mateusza:**
+  - krótsze reelsy 30–45 s (obecne ~65–70 s);
+  - wariant hooka z realistycznymi zdjęciami z polskich firm (pani 55+), źródło i przepis w `recording-library/assets/broll/hf/stills/` i `tools/broll_gen.py`;
+  - przy publikacji włączyć oznaczenie treści AI w ustawieniach platformy.
+
