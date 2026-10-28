@@ -74,6 +74,7 @@ w `tools/story.py`.
 | `adresflow` | AdresFlow | wizualizacje nieruchomości — rzut 3D z kartki, home staging |
 | `granit` | Granit Kończewo × FlowBiz AI | kampania sponsorska klubu; sponsor dostaje bezpłatny audyt AI |
 | `shorts IG` | FlowBiz (kanał Mateusza) | pionowe shorty z nagrań telefonem — gadana głowa, przebitki, filmowany ekran |
+| `ppwrsmart` | PPWR Smart (FlowBiz) | filmy sprzedażowe: ilustracje AI ożywione w Kling + nagranie prawdziwego prototypu + lektor PL; styl w `ai/styl-wideo.md` |
 
 ## Powiązane repo
 

@@ -1,0 +1,99 @@
+{
+ "format": "9x16",
+ "scenes": [
+  {
+   "kind": "clip",
+   "src": "../../../assets/clips-ads/k5-word-60-min.mp4",
+   "vo": "../voice/hook-carton-2-word.mp3",
+   "cap": "PPWR obowiązuje od <b>12.08.2026</b>. A Ty wciąż składasz deklaracje ręcznie, w Wordzie?",
+   "chip": {
+    "tone": "ppwr",
+    "text": "PPWR · od 12.08.2026"
+   },
+   "focus": 0.5
+  },
+  {
+   "kind": "clip",
+   "src": "../../../assets/clips-ads/k2-every-order.mp4",
+   "vo": "../voice/carton-every-order.mp3",
+   "cap": "Każde zamówienie to <b>inny karton</b>.",
+   "chip": {
+    "tone": "bad",
+    "text": "Dziś, bez systemu"
+   },
+   "focus": 0.5
+  },
+  {
+   "kind": "clip",
+   "src": "../../../assets/clips/07-przejscie.mp4",
+   "vo": "../voice/transition.mp3",
+   "cap": "Dokument wpada — system sam go przypisuje.",
+   "chip": {
+    "tone": "good",
+    "text": "Z PPWR Smart"
+   },
+   "focus": 0.55
+  },
+  {
+   "kind": "still",
+   "src": "../screens/card-karta-robocza-maksymalna.png",
+   "vo": "../voice/carton-system-card.mp3",
+   "step": "PPWR SMART · 1",
+   "cap": "Tektura z kartoteki surowców — karta techniczna składa się sama.",
+   "chip": {
+    "tone": "good",
+    "text": "Z PPWR Smart"
+   },
+   "cropX": [
+    0.2,
+    0.8
+   ],
+   "panFrom": 0,
+   "panTo": 0.45
+  },
+  {
+   "kind": "clip",
+   "src": "../../../assets/clips-ads/k7-card-declaration.mp4",
+   "vo": "../voice/carton-3-min-no-hires.mp3",
+   "cap": "<b>3 minuty</b> na deklarację — zmierzone u producenta kartonów. <b>Bez nowych etatów.</b>",
+   "chip": {
+    "tone": "good",
+    "text": "Z PPWR Smart"
+   },
+   "focus": 0.45
+  },
+  {
+   "kind": "modules",
+   "vo": "../voice/modules.mp3",
+   "title": "PPWR Smart — moduły",
+   "items": [
+    "Import z Twojego ERP",
+    "Portal dostawcy",
+    "Receptury opakowań",
+    "Reguły PPWR i blokady",
+    "Deklaracje zgodności UE",
+    "Karty techniczne",
+    "Wersje i archiwum"
+   ]
+  },
+  {
+   "kind": "clip",
+   "src": "../../../assets/clips-ads/h6-tailored.mp4",
+   "vo": "../voice/slogan.mp3",
+   "cap": "Automatyzacja deklaracji PPWR <b>szyta na miarę</b> Twojego przedsiębiorstwa.",
+   "chip": {
+    "tone": "good",
+    "text": "Z PPWR Smart"
+   },
+   "focus": 0.6
+  },
+  {
+   "kind": "end",
+   "vo": "../voice/cta.mp3",
+   "minD": 5,
+   "slogan": "Automatyzacja deklaracji PPWR<br><b>szyta na miarę</b> Twojego przedsiębiorstwa",
+   "offer": "Bezpłatny przegląd dokumentacji · 30 min",
+   "url": "ppwrsmart.com"
+  }
+ ]
+}

@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="utf-8"><title>PPWR Smart — kompozycja reklamy</title>
+<!-- Kompozycja deterministyczna dla render-ad.mjs: await window.seek(t) ustawia klatkę dla czasu t (s).
+     Ten sam opis scen (spec JSON) składa film 16:9 albo pionowy 9:16. Warstwy ruchome to sekwencje JPG
+     przygotowane przez render-ad.mjs; każda scena ma swój katalog <frames>/<i>/. -->
+<style>
+:root{--green:#0c3b2e;--green2:#082a21;--gold:#c8a55a;--cream:#f5f0e7;--red:#c0392b}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow:hidden;background:var(--green2);font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.scene{position:absolute;inset:0;opacity:0;overflow:hidden}
+.box{position:absolute;overflow:hidden;background:var(--green2)}
+.box img{position:absolute;left:0;top:0;transform-origin:0 0}
+.chip{position:absolute;padding:12px 24px;border-radius:999px;font-weight:700;letter-spacing:3px;text-transform:uppercase;white-space:nowrap}
+.chip.bad{background:rgba(192,57,43,.94);color:#fff}
+.chip.good{background:var(--gold);color:var(--green2)}
+.chip.ppwr{background:var(--cream);color:var(--green2)}
+.cap{position:absolute;color:var(--cream);font-weight:700;letter-spacing:-.5px}
+.cap b{color:var(--gold);font-weight:700}
+.board{background:var(--green)}
+.board .big{position:absolute;left:0;right:0;text-align:center;color:var(--gold);font-weight:700;line-height:1.2}
+.end{background:var(--green)}
+.modules{background:var(--green)}
+.modules .ttl{position:absolute;left:0;right:0;text-align:center;color:var(--gold);font-weight:700;letter-spacing:3px;text-transform:uppercase}
+.modules .grid{position:absolute;display:grid;gap:22px}
+.modules .tile{background:rgba(245,240,231,.07);border:2px solid rgba(200,165,90,.55);border-radius:18px;color:var(--cream);font-weight:700;display:flex;align-items:center;gap:18px;line-height:1.15}
+.modules .tile i{flex:none;border-radius:50%;background:var(--gold);color:var(--green2);display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:800}
+.end .in{position:absolute;left:0;right:0;display:flex;flex-direction:column;align-items:center;text-align:center;color:var(--cream)}
+.end .slogan{font-weight:700;line-height:1.2}
+.end .slogan b{color:var(--gold)}
+.end .offer{opacity:.92}
+.end .url{color:var(--gold);font-weight:700;letter-spacing:1px}
+#brand{position:absolute;z-index:5}
+#ai{position:absolute;z-index:6;color:var(--cream);background:rgba(8,42,33,.72);border-radius:8px;font-weight:600}
+/* 16:9 */
+.f16 .lower{position:absolute;left:0;right:0;bottom:0;height:320px;background:linear-gradient(to top,rgba(8,42,33,.96) 0%,rgba(8,42,33,.82) 45%,rgba(8,42,33,0) 100%)}
+.f16 .chip{left:110px;top:70px;font-size:24px}
+.f16 .cap{left:110px;right:110px;bottom:80px;font-size:56px;line-height:1.15}
+.f16 .bar{position:absolute;left:0;right:0;bottom:0;height:160px;background:rgba(8,42,33,.95);display:flex;align-items:center;gap:30px;padding:0 70px}
+.f16 .bar .step{color:var(--gold);font-size:24px;font-weight:700;letter-spacing:3px;white-space:nowrap}
+.f16 .bar .t{color:var(--cream);font-size:44px;font-weight:700;line-height:1.15}
+.f16 .board .big{top:50%;transform:translateY(-50%);font-size:76px;padding:0 160px}
+.f16 .end .in{top:50%;transform:translateY(-50%);gap:34px}
+.f16 .end .logo{height:110px}
+.f16 .end .slogan{font-size:52px;padding:0 160px}
+.f16 .end .offer{font-size:34px}
+.f16 .end .url{font-size:46px}
+.f16 #brand{right:60px;bottom:200px;height:44px;display:none}
+.f16 #ai{right:40px;top:34px;font-size:20px;padding:8px 14px}
+.f16 .modules .ttl{top:110px;font-size:30px}
+.f16 .modules .grid{left:150px;right:150px;top:200px;grid-template-columns:1fr 1fr;gap:26px}
+.f16 .modules .tile{font-size:40px;padding:26px 30px;min-height:120px}
+.f16 .modules .tile i{width:52px;height:52px;font-size:26px}
+/* 9:16 */
+.f9 .top{position:absolute;left:0;right:0;top:0;height:560px;background:var(--green2)}
+.f9 .chip{left:64px;top:170px;font-size:26px}
+.f9 .cap{left:64px;right:64px;top:250px;font-size:62px;line-height:1.14}
+.f9 .board .big{top:50%;transform:translateY(-50%);font-size:84px;padding:0 70px}
+.f9 .end .in{top:44%;transform:translateY(-50%);gap:44px}
+.f9 .end .logo{height:96px}
+.f9 .end .slogan{font-size:64px;padding:0 70px}
+.f9 .end .offer{font-size:40px;padding:0 70px}
+.f9 .end .url{font-size:52px}
+.f9 #brand{left:64px;top:64px;height:52px}
+.f9 .modules .ttl{top:230px;font-size:30px}
+.f9 .modules .grid{left:64px;right:64px;top:330px;grid-template-columns:1fr;gap:26px}
+.f9 .modules .tile{font-size:50px;padding:30px 34px;min-height:156px}
+.f9 .modules .tile i{width:60px;height:60px;font-size:30px}
+.f9 #ai{right:40px;top:70px;font-size:22px;padding:8px 14px}
+</style></head><body>
+<div id="stage"></div>
+<img id="brand" alt="">
+<div id="ai">Treści wygenerowane z użyciem AI</div>
+<script>
+const Q = new URLSearchParams(location.search);
+const FR = Q.get('frames').replace(/\/?$/, '/');
+const SPEC = JSON.parse(Q.get('spec'));
+const F9 = SPEC.format === '9x16';
+const W = F9 ? 1080 : 1920, H = F9 ? 1920 : 1080;
+const FPS = 30, FADE = 0.5;
+document.body.className = F9 ? 'f9' : 'f16';
+document.documentElement.style.width = document.body.style.width = W + 'px';
+document.documentElement.style.height = document.body.style.height = H + 'px';
+const brand = document.getElementById('brand'); brand.src = SPEC.logoInverse;
+const aiTag = document.getElementById('ai');
+
+// media box: where the moving picture sits. Source frames are always 1920 px wide (stills: any height).
+function boxFor(s) {
+  if (!F9) return { x: 0, y: 0, w: 1920, h: 1080 };
+  if (s.kind === 'rec') return { x: 0, y: 520, w: 1080, h: 1400 };
+  return { x: 0, y: 560, w: 1080, h: 1080 };
+}
+const scenes = SPEC.scenes;
+const stage = document.getElementById('stage');
+for (const [i, s] of scenes.entries()) {
+  const el = document.createElement('div'); el.className = 'scene ' + s.kind;
+  if (s.kind === 'board') el.innerHTML = `<div class="big">${s.big}</div>`;
+  else if (s.kind === 'modules') el.innerHTML = `<div class="ttl">${s.title}</div><div class="grid">${s.items.map((m, k) => `<div class="tile"><i>${k + 1}</i><span>${m}</span></div>`).join('')}</div>`;
+  else if (s.kind === 'end') el.innerHTML = `<div class="in"><img class="logo" src="${SPEC.logoInverse}"><div class="slogan">${s.slogan}</div><div class="offer">${s.offer}</div><div class="url">${s.url}</div></div>`;
+  else {
+    const b = boxFor(s);
+    const words = s.chip ? `<div class="chip ${s.chip.tone}">${s.chip.text}</div>` : '';
+    const overlay = F9 ? `<div class="top"></div>${words}<div class="cap">${s.cap || ''}</div>`
+      : (s.kind === 'clip' ? `<div class="lower"></div>${words}<div class="cap">${s.cap || ''}</div>`
+        : `<div class="bar"><div class="step">${s.step || ''}</div><div class="t">${s.cap || ''}</div></div>`);
+    el.innerHTML = `<div class="box" style="left:${b.x}px;top:${b.y}px;width:${b.w}px;height:${b.h}px"><img></div>` + overlay;
+  }
+  stage.appendChild(el); s.el = el; s.img = el.querySelector('.box img'); s.dir = String(i);
+}
+let t0 = 0;
+for (const s of scenes) { s.start = t0; t0 += s.d - FADE; }
+const TOTAL = t0 + FADE;
+window.TOTAL = TOTAL;
+
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const ease = x => x < .5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2;
+const lerp = (a, b, p) => a + (b - a) * p;
+const pad = n => String(n).padStart(4, '0');
+const setFrame = (img, src) => img.getAttribute('src') === src ? Promise.resolve() : new Promise(r => { img.onload = img.onerror = () => r(); img.src = src; });
+
+// geometry of the picture inside its box for local time lt
+function place(s, lt) {
+  const b = boxFor(s), p = ease(clamp(lt / s.d));
+  const srcH = s.srcH || 1080;
+  if (s.kind === 'rec') {
+    // 9:16: show one pane of the two-window recording (a = left, b = right), 16:9: whole frame with gentle zoom
+    if (F9) { const px = s.pane === 'b' ? 968 : 16, k = 1080 / 936 * lerp(1, s.zoomTo || 1.06, p); return { k, x: -px * k, y: 0 }; }
+    const z = lerp(1, s.zoomTo || 1.08, p); return { k: z, x: -(z - 1) * 1920 * (s.ox ?? .5), y: -(z - 1) * 1080 * (s.oy ?? 0) };
+  }
+  if (s.kind === 'still') {
+    // cropX: [from, to] fraction of source width that fills the box; pan from panFrom to panTo (fraction of free height)
+    const [cx0, cx1] = s.cropX || [0, 1];
+    const k = b.w / (1920 * (cx1 - cx0)) * lerp(1, s.zoomTo || 1, p);
+    const free = Math.max(0, srcH * k - b.h);
+    return { k, x: -1920 * cx0 * k, y: -free * lerp(s.panFrom || 0, s.panTo ?? 0, p) };
+  }
+  // clip: cover the box; 9:16 crops a square around focus (0 = left edge, 1 = right edge). trim zooms past baked text.
+  const z = (s.trim?.zoom || 1) * lerp(1, s.zoomTo || 1.04, p);
+  if (F9) { const k = 1080 / 1080 * z; const visW = 1080 / k; const fx = s.focus ?? .5; const x0 = (1920 - visW) * fx; return { k, x: -x0 * k, y: -(1080 * z - 1080) * (s.trim?.oy ?? .5) }; }
+  return { k: z, x: -(z - 1) * 1920 * (s.trim?.ox ?? .5), y: -(z - 1) * 1080 * (s.trim?.oy ?? .5) };
+}
+
+window.seek = async function (t) {
+  const waits = [];
+  for (const s of scenes) {
+    const lt = t - s.start;
+    const first = s === scenes[0];
+    const op = lt < 0 || lt > s.d ? 0 : Math.min(first ? 1 : clamp(lt / FADE), clamp((s.d - lt) / FADE));
+    s.el.style.opacity = op;
+    if (op === 0) continue;
+    if (s.img) {
+      const n = s.kind === 'still' ? 1 : Math.min(Math.floor(lt * FPS) + 1, s.frames || 1e9);
+      waits.push(setFrame(s.img, `${FR}${s.dir}/${pad(n)}.jpg`));
+      const g = place(s, lt);
+      s.img.style.transform = `translate(${g.x}px,${g.y}px) scale(${g.k})`;
+      const cap = s.el.querySelector('.cap, .bar');
+      if (cap) { const cp = ease(clamp((lt - 0.25) / 0.6)); cap.style.opacity = cp; cap.style.transform = cap.classList.contains('bar') ? `translateY(${(1 - cp) * 160}px)` : `translateY(${(1 - cp) * 28}px)`; }
+      const chip = s.el.querySelector('.chip'); if (chip) chip.style.opacity = ease(clamp((lt - 0.1) / 0.5));
+    } else if (s.kind === 'board') {
+      const bp = ease(clamp((lt - 0.2) / 0.8)); const big = s.el.querySelector('.big'); big.style.opacity = bp; big.style.transform = `translateY(calc(-50% + ${(1 - bp) * 24}px))`;
+    } else if (s.kind === 'modules') {
+      // tiles come in one by one across the first ~70% of the scene, in step with the voice listing them
+      const tiles = s.el.querySelectorAll('.tile'), span = s.d * 0.7 / tiles.length;
+      tiles.forEach((el, k) => { const p = ease(clamp((lt - 0.3 - k * span) / 0.45)); el.style.opacity = p; el.style.transform = `translateY(${(1 - p) * 26}px)`; });
+      s.el.querySelector('.ttl').style.opacity = ease(clamp(lt / 0.5));
+    } else if (s.kind === 'end') {
+      const bp = ease(clamp((lt - 0.1) / 0.8)); const inn = s.el.querySelector('.in'); inn.style.opacity = bp;
+    }
+  }
+  // AI disclosure at the top for the first 4 s (art. 50 ust. 4 AI Act), brand mark hidden on boards/end card
+  aiTag.style.opacity = t < 4 ? 1 : clamp((4.5 - t) / 0.5);
+  const cur = scenes.find(s => t >= s.start && t <= s.start + s.d);
+  brand.style.opacity = cur && (cur.kind === 'end' || cur.kind === 'board') ? 0 : 1;
+  if (cur && cur.kind === 'modules' && !F9) brand.style.opacity = 0;
+  document.body.style.filter = t > TOTAL - 0.8 ? `brightness(${clamp((TOTAL - t) / 0.8)})` : '';
+  await Promise.all(waits);
+};
+</script>
+</body></html>
