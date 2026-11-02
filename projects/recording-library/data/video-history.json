@@ -955,6 +955,13 @@
    "changes": [
     "0:12 — zdjęcie spawacza zastąpione widokiem systemu: jasny panel zamówień i produkcji z przykładowymi danymi (makieta „orders”)"
    ]
+  },
+  {
+   "date": "2026-11-02",
+   "by": "Mateusz (uwagi ze studia 02.11), wykonanie: Claude",
+   "changes": [
+    "Muzyka ciszej o 3 dB (pole musicGainDb)"
+   ]
   }
  ],
  "ad-25-e5": [
