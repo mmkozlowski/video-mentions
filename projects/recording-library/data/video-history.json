@@ -985,6 +985,14 @@
     "Pierwszy ekran jak plakat: etykieta, nadtytuł w jednej linii, nagłówek z wyróżnioną liczbą (odręczne podkreślenie), dopowiedzenie",
     "Plansza końcowa: bezpłatna konsultacja online + odesłanie do YouTube zamiast „napisz w komentarzu”"
    ]
+  },
+  {
+   "date": "2026-11-02",
+   "by": "Mateusz (uwagi ze studia 02.11), wykonanie: Claude",
+   "changes": [
+    "Muzyka ciszej o 3 dB (pole musicGainDb)",
+    "0:26–0:35 — czwarty punkt listy „Ludzie się boją” widoczny w całości (lista 4 punktów w wersji zwartej — wcześniej ucinał go dół panelu)"
+   ]
   }
  ],
  "ad-27-w11": [
