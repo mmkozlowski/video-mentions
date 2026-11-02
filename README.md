@@ -98,6 +98,7 @@ w `tools/story.py`.
 | `granit` | Granit Kończewo × FlowBiz AI | kampania sponsorska klubu; sponsor dostaje bezpłatny audyt AI |
 | `shorts IG` | FlowBiz (kanał Mateusza) | pionowe shorty z nagrań telefonem — gadana głowa, przebitki, filmowany ekran |
 | `recording-library` | FlowBiz + AI Słupsk | baza klipów z sesji nagraniowych: reklamy z promptera, case studies, ranking hooków |
+| `ppwrsmart` | PPWR Smart (FlowBiz) | filmy sprzedażowe: ilustracje AI ożywione w Kling + nagranie prawdziwego prototypu + lektor PL; styl w `ai/styl-wideo.md` |
 
 ## Powiązane repo
 
