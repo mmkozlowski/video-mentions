@@ -1282,6 +1282,14 @@
     "Pierwszy ekran jak plakat: etykieta, nadtytuł w jednej linii, nagłówek z wyróżnioną liczbą (odręczne podkreślenie), dopowiedzenie",
     "Plansza końcowa: bezpłatna konsultacja online + odesłanie do YouTube zamiast „napisz w komentarzu”"
    ]
+  },
+  {
+   "date": "2026-11-02",
+   "by": "Mateusz (uwagi ze studia 02.11), wykonanie: Claude",
+   "changes": [
+    "0:00 — start nie łapie już końcówki słowa „…kliknięcie”; na początku kontekst: „Klient zamawiał cztery worki paszy po 25 kilo … cztery różne etykiety. I o tyle to teraz się zmieniło, że to wszystko jest na jedno kliknięcie.” (film dłuższy o ok. 15 s)",
+    "Hook „100 godzin…” do „25 kilo” (ok. 3 s); lista 4 punktów w wersji zwartej"
+   ]
   }
  ],
  "ch-marpasz-2-100-godzin": [
