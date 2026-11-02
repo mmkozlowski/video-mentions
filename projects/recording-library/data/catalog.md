@@ -10,7 +10,7 @@ Ranking: `hook × 2 + delivery` (max 15). A ≥ 13, B ≥ 11. Oceny redakcyjne �
 |---|---|---|---|---|---|---|---|---|---|
 | A | 15 | `ad-19-ra1` | Prezes na lotnisku | flowbiz | 34 | none | 2 | meta-ads, reels-organic | Prezes firmy siedzi na lotnisku i wie co się dzieje na produkcji z telefonu, |
 | A | 14 | `ad-28-w1` | Szefie, Twoi ludzie już używają AI | aislupsk | 32 | aislupsk | 5 | aislupsk-listopad, reels-organic | Szefie, Twoi ludzie już używają AI. Wiesz do czego? Wklejają maile klientów, umowy, cenniki |
-| A | 14 | `ad-35-w9` | Umowa w ChatGPT | aislupsk | 35 | aislupsk | 6 | aislupsk-listopad, reels-organic | Twój pracownik właśnie wkleił umowę klienta do chat GPT. Czy zdawałeś sobie o tym |
+| A | 14 | `ad-35-w9` | Umowa w ChatGPT | aislupsk | 32 | aislupsk | 6 | aislupsk-listopad, reels-organic | Twój pracownik właśnie wkleił umowę klienta do chat GPT. Czy zdawałeś sobie o tym |
 | A | 14 | `ad-11-r1` | Zamówienie na 11 stron | flowbiz | 38 | none | 3 | meta-ads, reels-organic | 11 stron zamówienia w Excelu. |
 | A | 14 | `ad-25-e5` | 4 błędy przy wdrożeniu AI | flowbiz | 43 | comment | 9 | reels-organic | Wdrażasz AI w firmie i nie działa? Pewnie popełniasz jeden z tych czterech błędów. |
 | A | 14 | `ad-04-02-4` | AI skasuje mi pół bazy | flowbiz | 49 | youtube | 4 | reels-organic | A co, jak AI skasuje mi pół bazy? |
@@ -50,7 +50,7 @@ Ranking: `hook × 2 + delivery` (max 15). A ≥ 13, B ≥ 11. Oceny redakcyjne �
 | # | pkt | id | tytuł | s |
 |---|---|---|---|---|
 | A | 14 | `ad-28-w1` | Szefie, Twoi ludzie już używają AI | 32 |
-| A | 14 | `ad-35-w9` | Umowa w ChatGPT | 35 |
+| A | 14 | `ad-35-w9` | Umowa w ChatGPT | 32 |
 | B | 12 | `ad-27-w11` | Pizza i networking | 28 |
 | B | 12 | `ad-36-w7` | Przynieś swój problem | 31 |
 | B | 12 | `ad-24-e7` | Agent AI dla prezesa — co robi | 55 |
@@ -157,7 +157,7 @@ Ranking: `hook × 2 + delivery` (max 15). A ≥ 13, B ≥ 11. Oceny redakcyjne �
 | `ad-29-w4` | Pierwszy start („osoby decyzyjne”, 2000,6–2004,4 s) wycięty po ciszy — Whisper go pominął. Format śniadaniowy, bezpłatne, ograniczona liczba miejsc. |
 | `ad-33-g1` | 16.10 (Agata, 0:30–0:34): wycięta powtórka „co można uzyskać po kilku tygodniach z nas z nami” — zostaje „…po kilku tygodniach pracy, daj znać”. Granice po ciszy w sygnale (Whisper dokleja „daj” do pauzy). |
 | `ad-34-e4` | Jedno czyste ujęcie, pointa „AI przygotowuje, człowiek decyduje”. |
-| `ad-35-w9` | 16.10 (Agata, 0:17–0:23): „plus konkretne zastosowania, które oszczędzają” padało 3 razy — zostaje trzeci, pełny dubel (od 2351,7). Whisper zgubił dwa pierwsze w jednym słowie — czasy słów 2342–2356 w transkrypcji poprawione ponownym przebiegiem na krótkich odcinkach. |
+| `ad-35-w9` | 16.10 (Agata, 0:17–0:23): „plus konkretne zastosowania, które oszczędzają” padało 3 razy — zostaje trzeci, pełny dubel (od 2351,7). Whisper zgubił dwa pierwsze w jednym słowie — czasy słów 2342–2356 w transkrypcji poprawione ponownym przebiegiem na krótkich odcinkach. 02.11 (Mateusz, studio 0:26/0:27): „a skontaktuj się z osobami, którymi,” (2361,0–2363,2) wycięte, zostaje drugie „a skontaktuj się z Wami…” od 2364,2 — cięcie w ciszy po „listę,” (2360,97). Słowa 2360–2366 w transkrypcji z ponownego przebiegu (Whisper scalił oba podejścia). |
 | `ad-36-w7` | Region w nagraniu: Słupsk, Gdańsk i okolice. |
 | `ch-doram-3-przeklejala-drukowala` | Rytm „przeklejała, drukowała” ×3 to gotowy hook — można zacząć od niego (264 s). |
 | `ch-doram-6-kody-15-minut` | „Żadnej magii, żadnego AI” — wiarygodność. |

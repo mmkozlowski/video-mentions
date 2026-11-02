@@ -138,10 +138,14 @@ ADS = [
          ranges=[(2282.8, 2319.0)], hook=4, delivery=5, cta="none",
          notes="Jedno czyste ujęcie, pointa „AI przygotowuje, człowiek decyduje”."),
     dict(n=35, code="W9", title="Umowa w ChatGPT", brand="aislupsk", block="extra",
-         ranges=[(2324.2, 2342.4, None, 2342.62), (2351.4, 2371.0, 2351.62, None)], hook=5, delivery=4, cta="aislupsk",
+         ranges=[(2324.2, 2342.4, None, 2342.62), (2351.4, 2360.6, 2351.62, 2360.97), (2364.0, 2371.0, 2364.20, None)],
+         hook=5, delivery=4, cta="aislupsk",
          notes="16.10 (Agata, 0:17–0:23): „plus konkretne zastosowania, które oszczędzają” padało 3 razy — "
                "zostaje trzeci, pełny dubel (od 2351,7). Whisper zgubił dwa pierwsze w jednym słowie — czasy "
-               "słów 2342–2356 w transkrypcji poprawione ponownym przebiegiem na krótkich odcinkach."),
+               "słów 2342–2356 w transkrypcji poprawione ponownym przebiegiem na krótkich odcinkach. "
+               "02.11 (Mateusz, studio 0:26/0:27): „a skontaktuj się z osobami, którymi,” (2361,0–2363,2) wycięte, "
+               "zostaje drugie „a skontaktuj się z Wami…” od 2364,2 — cięcie w ciszy po „listę,” (2360,97). "
+               "Słowa 2360–2366 w transkrypcji z ponownego przebiegu (Whisper scalił oba podejścia)."),
     dict(n=36, code="W7", title="Przynieś swój problem", brand="aislupsk", block="extra",
          ranges=[(2377.4, 2415.0)], hook=4, delivery=4, cta="aislupsk",
          notes="Region w nagraniu: Słupsk, Gdańsk i okolice."),

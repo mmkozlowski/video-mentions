@@ -1950,19 +1950,19 @@
    ],
    [
     2358.3,
-    2363.32
+    2360.97
    ],
    [
-    2364.16,
+    2364.2,
     2370.64
    ]
   ],
   "start": 2324.12,
   "end": 2370.64,
-  "duration": 34.54,
+  "duration": 32.15,
   "splices": 6,
   "hook_line": "Twój pracownik właśnie wkleił umowę klienta do chat GPT. Czy zdawałeś sobie o tym",
-  "transcript": "Twój pracownik właśnie wkleił umowę klienta do chat GPT. Czy zdawałeś sobie o tym sprawę? Czy wiesz o tym? Na warsztatach AI subsk uczy menadżerów i szefów firm, jak korzystać z AI bezpiecznie, jakie dane wolno dać AI, a jak ich nie, jak ustawić zasady w zespole, plus konkretne zastosowania, które oszczędzają czas w Twojej firmie. Najbliższy termin wejdź na AI subsk i zapisz się na listę, a skontaktuj się z osobami, a skontaktuj się z Wami do dokładnym miejscem i terminem. Liczba miejsc jest ograniczona.",
+  "transcript": "Twój pracownik właśnie wkleił umowę klienta do chat GPT. Czy zdawałeś sobie o tym sprawę? Czy wiesz o tym? Na warsztatach AI subsk uczy menadżerów i szefów firm, jak korzystać z AI bezpiecznie, jakie dane wolno dać AI, a jak ich nie, jak ustawić zasady w zespole, plus konkretne zastosowania, które oszczędzają czas w Twojej firmie. Najbliższy termin wejdź na AI subsk i zapisz się na listę, a skontaktuj się z Wami dokładnym miejscem i terminem. Liczba miejsc jest ograniczona.",
   "scores": {
    "hook": 5,
    "delivery": 4,
@@ -1974,7 +1974,7 @@
    "aislupsk-listopad",
    "reels-organic"
   ],
-  "notes": "16.10 (Agata, 0:17–0:23): „plus konkretne zastosowania, które oszczędzają” padało 3 razy — zostaje trzeci, pełny dubel (od 2351,7). Whisper zgubił dwa pierwsze w jednym słowie — czasy słów 2342–2356 w transkrypcji poprawione ponownym przebiegiem na krótkich odcinkach."
+  "notes": "16.10 (Agata, 0:17–0:23): „plus konkretne zastosowania, które oszczędzają” padało 3 razy — zostaje trzeci, pełny dubel (od 2351,7). Whisper zgubił dwa pierwsze w jednym słowie — czasy słów 2342–2356 w transkrypcji poprawione ponownym przebiegiem na krótkich odcinkach. 02.11 (Mateusz, studio 0:26/0:27): „a skontaktuj się z osobami, którymi,” (2361,0–2363,2) wycięte, zostaje drugie „a skontaktuj się z Wami…” od 2364,2 — cięcie w ciszy po „listę,” (2360,97). Słowa 2360–2366 w transkrypcji z ponownego przebiegu (Whisper scalił oba podejścia)."
  },
  {
   "id": "ad-36-w7",
