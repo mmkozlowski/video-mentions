@@ -3,7 +3,7 @@
  "brand": "flowbiz",
  "hook": {
   "text": "*100 godzin miesięcznie mniej ręcznej pracy",
-  "until": "w którym",
+  "until": "kilo",
   "visual": {
    "kind": "icon",
    "art": "h-hourglass",
@@ -32,7 +32,7 @@
  "events": [
   {
    "type": "broll",
-   "at": "Teraz",
+   "at": "Teraz klient",
    "until": "dostał",
    "src": "assets/broll/hf/video/h11-worki-paszy-etykiety.mp4",
    "ai": true
@@ -90,7 +90,7 @@
   {
    "type": "title",
    "at": "Tak#1",
-   "until": 103.8,
+   "until": 119.47,
    "kicker": "Co dalej z tą osobą?",
    "text": "Zadania, gdzie *człowiek jest potrzebny",
    "sub": "to, na co nigdy nie było czasu"

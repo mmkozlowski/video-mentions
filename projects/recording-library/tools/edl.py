@@ -131,17 +131,23 @@ ADS = [
     dict(n=32, code="L1", title="Najlepsza osoba przepisuje maile", brand="flowbiz", block="extra",
          ranges=[(2162.5, 2182.6), (2189.3, 2220.0)], hook=4, delivery=3, cta="none"),
     dict(n=33, code="G1", title="Programista kontra ChatGPT", brand="flowbiz", block="extra",
-         ranges=[(2225.9, 2249.6), (2254.7, 2267.0, None, 2267.40), (2272.3, 2278.0, 2273.18, None)], hook=5, delivery=3, cta="web",
+         ranges=[(2225.9, 2249.6, None, 2249.92), (2254.7, 2267.0, None, 2267.40), (2272.3, 2278.0, 2273.18, None)], hook=5, delivery=3, cta="web",
          notes="16.10 (Agata, 0:30–0:34): wycięta powtórka „co można uzyskać po kilku tygodniach z nas z nami” — "
-               "zostaje „…po kilku tygodniach pracy, daj znać”. Granice po ciszy w sygnale (Whisper dokleja „daj” do pauzy)."),
+               "zostaje „…po kilku tygodniach pracy, daj znać”. Granice po ciszy w sygnale (Whisper dokleja „daj” do pauzy). "
+               "02.11 (Mateusz, studio 0:21 „nagle się ucina”): „…kilka miesięcy pracy.” kończyło się 2249,62, a głos trwa "
+               "do 2249,78 — koniec w ciszy 2249,92 (przed falstartem „Ja robię to…” od 2250,06)."),
     dict(n=34, code="E4", title="Gdzie AI ma sens — 3 na tak, 3 na nie", brand="flowbiz", block="extra",
          ranges=[(2282.8, 2319.0)], hook=4, delivery=5, cta="none",
          notes="Jedno czyste ujęcie, pointa „AI przygotowuje, człowiek decyduje”."),
     dict(n=35, code="W9", title="Umowa w ChatGPT", brand="aislupsk", block="extra",
-         ranges=[(2324.2, 2342.4, None, 2342.62), (2351.4, 2371.0, 2351.62, None)], hook=5, delivery=4, cta="aislupsk",
+         ranges=[(2324.2, 2342.4, None, 2342.62), (2351.4, 2360.6, 2351.62, 2360.97), (2364.0, 2371.0, 2364.20, None)],
+         hook=5, delivery=4, cta="aislupsk",
          notes="16.10 (Agata, 0:17–0:23): „plus konkretne zastosowania, które oszczędzają” padało 3 razy — "
                "zostaje trzeci, pełny dubel (od 2351,7). Whisper zgubił dwa pierwsze w jednym słowie — czasy "
-               "słów 2342–2356 w transkrypcji poprawione ponownym przebiegiem na krótkich odcinkach."),
+               "słów 2342–2356 w transkrypcji poprawione ponownym przebiegiem na krótkich odcinkach. "
+               "02.11 (Mateusz, studio 0:26/0:27): „a skontaktuj się z osobami, którymi,” (2361,0–2363,2) wycięte, "
+               "zostaje drugie „a skontaktuj się z Wami…” od 2364,2 — cięcie w ciszy po „listę,” (2360,97). "
+               "Słowa 2360–2366 w transkrypcji z ponownego przebiegu (Whisper scalił oba podejścia)."),
     dict(n=36, code="W7", title="Przynieś swój problem", brand="aislupsk", block="extra",
          ranges=[(2377.4, 2415.0)], hook=4, delivery=4, cta="aislupsk",
          notes="Region w nagraniu: Słupsk, Gdańsk i okolice."),
@@ -191,6 +197,14 @@ CHAPTERS = [
          title="Bez fundamentów AI nie wie, jak pracujesz", ranges=[(292.1, 342.2)], hook=3, delivery=4),
     dict(id="ch-doram-5-70-94", source="doram", parent="ep-doram",
          title="Pamięć dla AI: 70% → 94% w miesiąc", ranges=[(521.5, 602.2)], hook=5, delivery=3),
+    # wariant tylko do składanki ep-8-wdrozen (02.11, Mateusz 3:17: „ucina początek zdania, nie wiadomo, do czego
+    # nawiązuje — tu chodziło o przetwarzanie zamówień z AI”): po ofertach brakuje, o jakiego klienta chodzi, więc przed
+    # „I w tym przypadku do tego klienta…” wchodzi zdanie z początku nagrania „Klient dostawał od swoich kontrahentów
+    # niemieckich zamówienia w Excelu.” (33,4–40,75, po ciszy). Rolka ch-doram-5-70-94 zostaje bez zmian (ma okładkę).
+    dict(id="ch-doram-5-70-94-with-context", source="doram", parent="ep-doram",
+         title="Pamięć dla AI: 70% → 94% w miesiąc (z kontekstem zamówień)",
+         # start drugiej części 521,85 (dołek ciszy 521,80–521,95): 521,62 łapało końcówkę „…uczymy.”
+         ranges=[(33.0, 40.5, 33.40, 40.75), (521.5, 602.2, 521.85, None)], hook=5, delivery=3),
     dict(id="ch-doram-6-kody-15-minut", source="doram", parent="ep-doram",
          title="Kody kreskowe: z kilku dni do 15 minut", ranges=[(602.1, 637.3)], hook=5, delivery=4,
          notes="„Żadnej magii, żadnego AI” — wiarygodność."),
@@ -222,7 +236,13 @@ CHAPTERS = [
     dict(id="ch-marpasz-1-cztery-worki", source="session", parent="ep-marpasz",
          title="Cztery worki paszy = cztery etykiety", ranges=[(3279.6, 3428.6)], hook=4, delivery=3),
     dict(id="ch-marpasz-2-100-godzin", source="session", parent="ep-marpasz",
-         title="100 godzin miesięcznie mniej", ranges=[(3444.5, 3547.6)], hook=5, delivery=3),
+         title="100 godzin miesięcznie mniej",
+         # 02.11 (Mateusz, studio: zajawka 0:00 „zaczyna się od pół słowa”, ep-8-wdrozen 5:07 „nie wiadomo, do czego
+         # nawiązuje”): start łapał końcówkę „…kliknięcie” (3444,4–3444,8). Teraz z kontekstem: „Klient zamawiał cztery
+         # worki paszy po 25 kilo … cztery różne etykiety,” (3321,3–3332,8) + całe „I o tyle to teraz się zmieniło, że to
+         # wszystko jest na jedno kliknięcie.” (od 3440,65; Whisper zgubił „że to wszystko jest na jedno” — transkrypcja
+         # 3440–3446 poprawiona ponownym przebiegiem). Granice po ciszy w sygnale.
+         ranges=[(3321.0, 3332.0, 3321.30, 3332.80), (3440.4, 3547.6, 3440.65, None)], hook=5, delivery=3),
     dict(id="ch-marpasz-3-katalog-ai", source="session", parent="ep-marpasz",
          title="Katalog AI: z faktury do Allegro", ranges=[(3557.2, 3679.6)], hook=4, delivery=3),
     dict(id="ch-marpasz-4-srubki", source="session", parent="ep-marpasz",

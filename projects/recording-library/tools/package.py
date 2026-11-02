@@ -644,7 +644,10 @@ class Composition:
         rows = "".join(f'<div class="li" data-i="{i}"><span class="n">{i + 1}</span>'
                        f'{logo(it["logo"], 40) if it.get("logo") else ""}<span class="t" style="font-size:{size}px">{esc(it["text"])}</span></div>'
                        for i, it in enumerate(ev["items"]))
-        cid = self.host(start, end, f'<div class="kicker">{esc(ev.get("kicker", ""))}</div><div class="list">{rows}</div>',
+        # 02.11 (Mateusz, ad-25-e5: „4. błąd nie jest widoczny, obcina go”): w pionie etykieta serii + nadtytuł +
+        # cztery wiersze to ~530 px, a panel ma 500 px (niżej strefa zakazana) — od 4 punktów wiersze ciaśniejsze
+        dense = " dense" if self.vertical and len(ev["items"]) >= 4 else ""
+        cid = self.host(start, end, f'<div class="kicker">{esc(ev.get("kicker", ""))}</div><div class="list{dense}">{rows}</div>',
                         ev.get("zone", self.default_zone()))
         for i, it in enumerate(ev["items"]):
             t = self.clock.at(it["at"]) if it.get("at") else start + 0.3 + i * 0.5
@@ -1277,6 +1280,7 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .fmt-v .list{{gap:10px}}
 .fmt-v .li{{padding:13px 22px;gap:18px}}
 .fmt-v .li .n{{width:54px;height:54px;font-size:28px}}
+.fmt-v .list.dense{{gap:8px}} .fmt-v .list.dense .li{{padding:6px 22px;line-height:1.1}} .fmt-v .list.dense .li .n{{width:46px;height:46px;font-size:24px}}
 .fmt-v .phone-head{{padding:14px 24px;font-size:30px}}
 .fmt-v .chat{{padding:16px 20px;gap:12px}}
 .fmt-v .msg{{font-size:33px;padding:14px 20px;max-width:92%}}
@@ -1431,7 +1435,8 @@ def probe_duration(path, stream):
 # Utwory wybrane przez niego w ~/Repo/video-mentions/music („dobre”), kopie w assets/music/ (Pixabay).
 # Poziomy względem mowy na −14 LUFS: wejście ~14 dB pod głosem, tło ~24 dB pod głosem i dodatkowo
 # ściszane pod słowami (sidechain), plansza końcowa znów głośniej. Storyboard może nadpisać:
-# "music": "plik.mp3" albo false.
+# "music": "plik.mp3" albo false; "musicOffset": 10 — start utworu (patrz music_plan); "musicGainDb": -3 — ściszenie całej ścieżki muzyki tylko w tym filmie
+# (Mateusz 02.11: „muzyka 3–4% ciszej” → kierunek, nie mnożnik: ok. −3 dB, patrz pamięć prosby-o-glosnosc).
 MUSIC_DIR = PROJECT / "assets" / "music"
 MUSIC_DEFAULT = "the-mountain-technology-562622.mp3"
 MUSIC_OFFSET = {"the-mountain-technology-562622.mp3": 1.5, "verclub-technology-550887.mp3": 1.5,
@@ -1448,7 +1453,10 @@ def music_plan(board, clip_len):
     track = board.get("music", MUSIC_DEFAULT)
     if not track:
         return None
-    return {"file": MUSIC_DIR / track, "offset": MUSIC_OFFSET.get(track, 0.0), "clip_len": clip_len}
+    # "musicOffset": sekunda utworu na starcie — gdy film jest dłuższy niż utwór, pętla potrafi położyć planszę
+    # końcową na jego naturalnym wyciszeniu (02.11: ep-8-wdrozen po wydłużeniu, plansza −45 LUFS zamiast −23)
+    return {"file": MUSIC_DIR / track, "offset": float(board.get("musicOffset", MUSIC_OFFSET.get(track, 0.0))), "clip_len": clip_len,
+            "lufs": MUSIC_LUFS + float(board.get("musicGainDb", 0.0))}
 
 
 def mix_music(raw, music, out_wav):
@@ -1460,7 +1468,7 @@ def mix_music(raw, music, out_wav):
     outro_at = max(intro_end + ramp, music["clip_len"] - 0.3)
     gain = (f"if(lt(t,{intro_end}),{intro:.3f},if(lt(t,{intro_end + ramp}),{intro:.3f}-({intro:.3f}-{bed:.3f})*(t-{intro_end})/{ramp},"
             f"if(lt(t,{outro_at:.3f}),{bed:.3f},min({outro:.3f},{bed:.3f}+({outro:.3f}-{bed:.3f})*(t-{outro_at:.3f})/0.6))))")
-    graph = (f"[1:a]atrim=0:{total:.3f},asetpts=PTS-STARTPTS,aresample=48000,loudnorm=I={MUSIC_LUFS}:TP=-3:LRA=7,"
+    graph = (f"[1:a]atrim=0:{total:.3f},asetpts=PTS-STARTPTS,aresample=48000,loudnorm=I={music.get('lufs', MUSIC_LUFS)}:TP=-3:LRA=7,"
              f"volume=eval=frame:volume='{gain}',afade=t=in:d={MUSIC_FADE_IN},afade=t=out:st={max(0, total - 1.0):.3f}:d=1.0[m];"
              f"[0:a]aresample=48000,asplit[v][key];"
              f"[m][key]sidechaincompress=threshold=0.03:ratio=4:attack=20:release=500[md];"
@@ -1537,6 +1545,9 @@ def main():
                 print((r.stdout + r.stderr)[-600:])
             if a.render:
                 raw = folder / "render.mp4"
+                # 02.11: nieudany render zostawiał stary render.mp4, a finalize() kładł na nim nową muzykę —
+                # w final/ lądował stary obraz z nowym czasem. Stary plik nie może udawać nowego.
+                raw.unlink(missing_ok=True)
                 r = hf(["render", ".", "-o", str(raw), "--fps", str(FPS), "--quality", "high"], folder)
                 if not raw.exists():
                     print((r.stdout + r.stderr)[-800:])

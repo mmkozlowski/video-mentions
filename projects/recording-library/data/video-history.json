@@ -955,6 +955,13 @@
    "changes": [
     "0:12 — zdjęcie spawacza zastąpione widokiem systemu: jasny panel zamówień i produkcji z przykładowymi danymi (makieta „orders”)"
    ]
+  },
+  {
+   "date": "2026-11-02",
+   "by": "Mateusz (uwagi ze studia 02.11), wykonanie: Claude",
+   "changes": [
+    "Muzyka ciszej o 3 dB (pole musicGainDb)"
+   ]
   }
  ],
  "ad-25-e5": [
@@ -977,6 +984,14 @@
     "Przekreślenie białe, ciągłe, na szerokość napisu",
     "Pierwszy ekran jak plakat: etykieta, nadtytuł w jednej linii, nagłówek z wyróżnioną liczbą (odręczne podkreślenie), dopowiedzenie",
     "Plansza końcowa: bezpłatna konsultacja online + odesłanie do YouTube zamiast „napisz w komentarzu”"
+   ]
+  },
+  {
+   "date": "2026-11-02",
+   "by": "Mateusz (uwagi ze studia 02.11), wykonanie: Claude",
+   "changes": [
+    "Muzyka ciszej o 3 dB (pole musicGainDb)",
+    "0:26–0:35 — czwarty punkt listy „Ludzie się boją” widoczny w całości (lista 4 punktów w wersji zwartej — wcześniej ucinał go dół panelu)"
    ]
   }
  ],
@@ -1078,6 +1093,13 @@
    "changes": [
     "0:30–0:34 — wycięta powtórka „co można uzyskać po kilku tygodniach z nami”; zostaje „…po kilku tygodniach pracy, daj znać” (film krótszy o ok. 4 s)"
    ]
+  },
+  {
+   "date": "2026-11-02",
+   "by": "Mateusz (uwagi ze studia 02.11), wykonanie: Claude",
+   "changes": [
+    "0:20 — „…kilka miesięcy pracy.” już nie urywa się w pół słowa (koniec przesunięty do ciszy, +0,3 s)"
+   ]
   }
  ],
  "ad-34-e4": [
@@ -1131,6 +1153,13 @@
    "changes": [
     "0:17–0:23 — wycięte dwa powtórzenia „plus konkretne zastosowania, które oszczędzają…”; zostaje jedno, pełne zdanie (film krótszy o ok. 6 s)"
    ]
+  },
+  {
+   "date": "2026-11-02",
+   "by": "Mateusz (uwagi ze studia 02.11), wykonanie: Claude",
+   "changes": [
+    "0:24–0:26 — wycięte pierwsze „a skontaktuj się z osobami, którymi,”; zostaje drugie „a skontaktuj się z Wami…” (film krótszy o ok. 2,3 s)"
+   ]
   }
  ],
  "ad-35-w9": [
@@ -1160,6 +1189,13 @@
    "by": "Agata (uwagi ze studia 15.10), wykonanie: Claude",
    "changes": [
     "0:17–0:23 — wycięte dwa powtórzenia „plus konkretne zastosowania, które oszczędzają…”; zostaje jedno, pełne zdanie (film krótszy o ok. 6 s) (poprawka z wariantu ad-35-w9--ai-slupsk — ten sam klip)"
+   ]
+  },
+  {
+   "date": "2026-11-02",
+   "by": "Mateusz (uwagi ze studia 02.11), wykonanie: Claude",
+   "changes": [
+    "0:24–0:27 — wycięte pierwsze „a skontaktuj się z osobami, którymi,”; zostaje drugie „a skontaktuj się z Wami…” (film krótszy o ok. 2,3 s)"
    ]
   }
  ],
@@ -1252,6 +1288,14 @@
     "Przekreślenie białe, ciągłe, na szerokość napisu",
     "Pierwszy ekran jak plakat: etykieta, nadtytuł w jednej linii, nagłówek z wyróżnioną liczbą (odręczne podkreślenie), dopowiedzenie",
     "Plansza końcowa: bezpłatna konsultacja online + odesłanie do YouTube zamiast „napisz w komentarzu”"
+   ]
+  },
+  {
+   "date": "2026-11-02",
+   "by": "Mateusz (uwagi ze studia 02.11), wykonanie: Claude",
+   "changes": [
+    "0:00 — start nie łapie już końcówki słowa „…kliknięcie”; na początku kontekst: „Klient zamawiał cztery worki paszy po 25 kilo … cztery różne etykiety. I o tyle to teraz się zmieniło, że to wszystko jest na jedno kliknięcie.” (film dłuższy o ok. 15 s)",
+    "Hook „100 godzin…” do „25 kilo” (ok. 3 s); lista 4 punktów w wersji zwartej"
    ]
   }
  ],
@@ -1619,6 +1663,16 @@
     "Etykieta serii „AI w praktyce · w firmie” — bursztyn, czarny tekst",
     "Okna systemu i karta rozmowy (Telegram) jasne zamiast zielonych",
     "Przekreślenie białe, ciągłe, na szerokość napisu"
+   ]
+  },
+  {
+   "date": "2026-11-02",
+   "by": "Mateusz (uwagi ze studia 02.11), wykonanie: Claude",
+   "changes": [
+    "3:17 — przed „W tym przypadku do tego klienta…” wchodzi zdanie z początku nagrania: „Klient dostawał od swoich kontrahentów niemieckich zamówienia w Excelu.” (wiadomo, że chodzi o zamówienia z AI); usunięta też końcówka „…uczymy.” z poprzedniego zdania",
+    "5:07 → 5:14 — rozdział o etykietach zaczyna się od kontekstu sklepu z paszą: „Klient zamawiał cztery worki paszy po 25 kilo … cztery różne etykiety. I o tyle to teraz się zmieniło, że to wszystko jest na jedno kliknięcie.”; wcześniej start łapał końcówkę „…kliknięcie”",
+    "Muzyka ciszej o 3 dB (pole musicGainDb); start utworu przesunięty (musicOffset 30,5 s), żeby plansza końcowa nie wypadła na wyciszeniu utworu",
+    "Film dłuższy o ok. 23 s — rozdziały od 4:33 przesunięte (Kody kreskowe 4:40, Etykiety 5:14, Katalog AI 7:02, Panel B2B 9:00, Kierownik 10:47, Śrubki 12:46)"
    ]
   }
  ],
