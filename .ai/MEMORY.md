@@ -46,6 +46,8 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 - [Nasycony kolor tekstu na materiale](memory/tekst-nasycony-kolor-na-materiale.md) — h.264 4:2:0 zabija krawędź bursztynu; mały kolorowy tekst na ciemną pigułkę, weryfikuj PO kompresji nie na PNG
 - [HyperFrames check: zasłanianie](memory/hyperframes-check-zaslanianie.md) — `data-layout-allow-occlusion` tylko na zasłanianym tekście, nie na nakładce i bez dziedziczenia; scrim ≥ 0,6 krycia to zasłonięcie
 - [Poprawki napisów globalne psują kotwice](memory/poprawki-napisow-globalne-psuja-kotwice.md) — słownik działa wszędzie; kontekst „poprzednie|słowo”
+- [Studio czyta z worktree, nie z ~/Repo](memory/render-studio-czyta-z-worktree.md) — STUDIO_SOURCE_VIDEO_MENTIONS; symlinki build/final + ignorowane assety; nieudany render udawał nowy
+- [Pętla muzyki kładzie planszę na wyciszeniu](memory/muzyka-petla-plansza-na-wyciszeniu.md) — po zmianie długości odcinka mierz planszę; `musicOffset` w storyboardzie
 
 ## Decyzje (ADR)
 
@@ -57,6 +59,7 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 - [Ustalenia z 12.10: postprodukcja, panel, miniatury](decisions/2026-10-12-ustalenia-dnia-postprodukcja-panel-miniatury.md) — 2026-10-12
 - [Podział wiedzy: montaż tutaj, marka w FlowBiz, panel w studiu](decisions/2026-10-12-podzial-wiedzy-montaz-marka-panel.md) — 2026-10-12
 - [Starsze odcinki kanału w bibliotece (ADR projektowy)](../projects/recording-library/ai/decisions/2026-10-11-starsze-odcinki-kanalu.md) — 2026-10-11
+- [Poprawki ze Studia 02.11: kontekst w składance, muzyka, lista 4 punktów (ADR projektowy)](../projects/recording-library/ai/decisions/2026-11-02-poprawki-studia-02-11.md) — 2026-11-02
 - [Marka wideo w repo marki](memory/marka-wideo-w-repo-marki.md) — kolory i elementy z flowbiz-automation-unlocked/docs/brand, nie z wytycznych
 - [Ujęcia AI: zwykłe, nie kinowe](memory/ujecia-ai-zwykle-nie-kinowe.md) — styl „zdjęcie z telefonu”, polskie realia, bez konkretnych miast (AI je zmyśla), sceny z problemów z vaulta
 - [Miniatura: napis składamy sami](memory/miniatura-napis-skladamy-sami.md) — generator rysuje własny krój; napis w Plus Jakarta 800 w HTML
