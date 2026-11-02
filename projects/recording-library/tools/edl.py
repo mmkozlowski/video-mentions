@@ -191,6 +191,14 @@ CHAPTERS = [
          title="Bez fundamentów AI nie wie, jak pracujesz", ranges=[(292.1, 342.2)], hook=3, delivery=4),
     dict(id="ch-doram-5-70-94", source="doram", parent="ep-doram",
          title="Pamięć dla AI: 70% → 94% w miesiąc", ranges=[(521.5, 602.2)], hook=5, delivery=3),
+    # wariant tylko do składanki ep-8-wdrozen (02.11, Mateusz 3:17: „ucina początek zdania, nie wiadomo, do czego
+    # nawiązuje — tu chodziło o przetwarzanie zamówień z AI”): po ofertach brakuje, o jakiego klienta chodzi, więc przed
+    # „I w tym przypadku do tego klienta…” wchodzi zdanie z początku nagrania „Klient dostawał od swoich kontrahentów
+    # niemieckich zamówienia w Excelu.” (33,4–40,75, po ciszy). Rolka ch-doram-5-70-94 zostaje bez zmian (ma okładkę).
+    dict(id="ch-doram-5-70-94-with-context", source="doram", parent="ep-doram",
+         title="Pamięć dla AI: 70% → 94% w miesiąc (z kontekstem zamówień)",
+         # start drugiej części 521,85 (dołek ciszy 521,80–521,95): 521,62 łapało końcówkę „…uczymy.”
+         ranges=[(33.0, 40.5, 33.40, 40.75), (521.5, 602.2, 521.85, None)], hook=5, delivery=3),
     dict(id="ch-doram-6-kody-15-minut", source="doram", parent="ep-doram",
          title="Kody kreskowe: z kilku dni do 15 minut", ranges=[(602.1, 637.3)], hook=5, delivery=4,
          notes="„Żadnej magii, żadnego AI” — wiarygodność."),
@@ -222,7 +230,13 @@ CHAPTERS = [
     dict(id="ch-marpasz-1-cztery-worki", source="session", parent="ep-marpasz",
          title="Cztery worki paszy = cztery etykiety", ranges=[(3279.6, 3428.6)], hook=4, delivery=3),
     dict(id="ch-marpasz-2-100-godzin", source="session", parent="ep-marpasz",
-         title="100 godzin miesięcznie mniej", ranges=[(3444.5, 3547.6)], hook=5, delivery=3),
+         title="100 godzin miesięcznie mniej",
+         # 02.11 (Mateusz, studio: zajawka 0:00 „zaczyna się od pół słowa”, ep-8-wdrozen 5:07 „nie wiadomo, do czego
+         # nawiązuje”): start łapał końcówkę „…kliknięcie” (3444,4–3444,8). Teraz z kontekstem: „Klient zamawiał cztery
+         # worki paszy po 25 kilo … cztery różne etykiety,” (3321,3–3332,8) + całe „I o tyle to teraz się zmieniło, że to
+         # wszystko jest na jedno kliknięcie.” (od 3440,65; Whisper zgubił „że to wszystko jest na jedno” — transkrypcja
+         # 3440–3446 poprawiona ponownym przebiegiem). Granice po ciszy w sygnale.
+         ranges=[(3321.0, 3332.0, 3321.30, 3332.80), (3440.4, 3547.6, 3440.65, None)], hook=5, delivery=3),
     dict(id="ch-marpasz-3-katalog-ai", source="session", parent="ep-marpasz",
          title="Katalog AI: z faktury do Allegro", ranges=[(3557.2, 3679.6)], hook=4, delivery=3),
     dict(id="ch-marpasz-4-srubki", source="session", parent="ep-marpasz",

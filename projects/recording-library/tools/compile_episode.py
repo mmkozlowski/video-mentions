@@ -48,7 +48,7 @@ COMPILATIONS = {
     "ep-8-wdrozen": dict(
         title="8 wdrożeń Open Mercato — co dały firmom",
         brand="flowbiz",
-        parts=["ep-open-mercato-offers", "ch-doram-5-70-94", "ch-doram-6-kody-15-minut", "ch-marpasz-2-100-godzin",
+        parts=["ep-open-mercato-offers", "ch-doram-5-70-94-with-context", "ch-doram-6-kody-15-minut", "ch-marpasz-2-100-godzin",
                "ch-marpasz-3-katalog-ai", "ch-rezon-3-panel-klienta", "ch-vacu-5-kierownik-w-godzine", "ch-marpasz-4-srubki"],
     ),
 }

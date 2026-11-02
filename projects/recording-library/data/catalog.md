@@ -77,7 +77,8 @@ Ranking: `hook × 2 + delivery` (max 15). A ≥ 13, B ≥ 11. Oceny redakcyjne �
 | A | 13 | `ch-om-2-excel-wersje` | Ten sam Excel w kilku wersjach | ep-om-intro | 65 | Zacznijmy od tego, co widzę u klientów. Wchodzę do firm i widzę Excela. Nie |
 | A | 13 | `ch-doram-5-70-94` | Pamięć dla AI: 70% → 94% w miesiąc | ep-doram | 77 | I w tym przypadku do tego klienta, już wracając znowu do brzegu, polegało to |
 | A | 13 | `ch-vacu-1-chatgpt-zapomina` | ChatGPT przestaje pamiętać Twoje wytyczne | ep-vacuactiv | 83 | Jaki był problem? Problem był taki, że właściciel tutaj korzystając z tych narzędzi najbardziej |
-| A | 13 | `ch-marpasz-2-100-godzin` | 100 godzin miesięcznie mniej | ep-marpasz | 93 | Teraz klient widzi, dostał system, w którym opiera się też o tutaj, o AI |
+| A | 13 | `ch-doram-5-70-94-with-context` | Pamięć dla AI: 70% → 94% w miesiąc (z kontekstem zamówień) | ep-doram | 84 | Klient dostawał od swoich kontrahentów niemieckich zamówienia w Excelu. |
+| A | 13 | `ch-marpasz-2-100-godzin` | 100 godzin miesięcznie mniej | ep-marpasz | 108 | Klient zamawiał cztery worki paszy po 25 kilo, więc nie mogliśmy wsadzić tego w |
 | B | 12 | `ch-module-7-slownik` | Zamówienie u handlowca ≠ zamówienie na produkcji | ep-module | 25 | I słownik pojęć to jest rzecz, która bardzo często wspomniana, a która potrafi wywrócić |
 | B | 12 | `ch-om-4-nie-zapier` | To nie jest Make, n8n ani Zapier | ep-om-intro | 25 | z czym Open Mercato jest mylone, bo to jest ważne to nie jest Make, |
 | B | 12 | `ch-marpasz-4-srubki` | AI to dokręcanie śrubek | ep-marpasz | 38 | I teraz pytanie, czy to działa idealnie? No nie, pamiętajmy, że systemy oparte o |

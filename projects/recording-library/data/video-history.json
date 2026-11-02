@@ -1642,6 +1642,16 @@
     "Okna systemu i karta rozmowy (Telegram) jasne zamiast zielonych",
     "Przekreślenie białe, ciągłe, na szerokość napisu"
    ]
+  },
+  {
+   "date": "2026-11-02",
+   "by": "Mateusz (uwagi ze studia 02.11), wykonanie: Claude",
+   "changes": [
+    "3:17 — przed „W tym przypadku do tego klienta…” wchodzi zdanie z początku nagrania: „Klient dostawał od swoich kontrahentów niemieckich zamówienia w Excelu.” (wiadomo, że chodzi o zamówienia z AI); usunięta też końcówka „…uczymy.” z poprzedniego zdania",
+    "5:07 → 5:14 — rozdział o etykietach zaczyna się od kontekstu sklepu z paszą: „Klient zamawiał cztery worki paszy po 25 kilo … cztery różne etykiety. I o tyle to teraz się zmieniło, że to wszystko jest na jedno kliknięcie.”; wcześniej start łapał końcówkę „…kliknięcie”",
+    "Muzyka ciszej o 3 dB (pole musicGainDb); start utworu przesunięty (musicOffset 30,5 s), żeby plansza końcowa nie wypadła na wyciszeniu utworu",
+    "Film dłuższy o ok. 23 s — rozdziały od 4:33 przesunięte (Kody kreskowe 4:40, Etykiety 5:14, Katalog AI 7:02, Panel B2B 9:00, Kierownik 10:47, Śrubki 12:46)"
+   ]
   }
  ],
  "ep-marpasz": [
