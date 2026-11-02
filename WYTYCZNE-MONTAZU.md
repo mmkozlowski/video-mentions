@@ -190,8 +190,9 @@ Wzór: `~/Youtube Projects/S-10 - czym jest OM/Miniatura VS - AI-first-selection
 - **Odznaki narzędzi** (Open Mercato, Claude Code, Excel) z oryginalnymi logo — rozpoznawalne w wynikach wyszukiwania.
 - **Zdjęcia twarzy: wyłącznie przygotowane wcześniej zdjęcia z `~/Youtube Projects/Mój ryj`** (zatwierdzone przez
   Mateusza). **Nigdy klatki wycięte z nagrania odcinka** (decyzja 02.11.2026 — szkice z klatek do „8 wdrożeń”
-  odrzucone). Postać wycinana z tła (`~/Youtube Projects/ep-8-wdrozen/szkice/cutout.swift`, macOS Vision) z miętową
-  poświatą; wzory: `ep-vibecoding-szef-programuje/miniatura-final-*.jpg`. Część zdjęć to generacje Gemini —
+  odrzucone). Cały kadr generuje GPT Image przez Codex (`image_gen`)
+  z referencjami: ostatnia zatwierdzona miniatura (`ep-vibecoding-szef-programuje/miniatura-final-8-*.jpg`) + zdjęcie
+  z „Mój ryj”; przykład z promptami: `~/Youtube Projects/ep-8-wdrozen/szkice/gpt/`. Skład HTML z wyciętą postacią — odrzucony. Część zdjęć to generacje Gemini —
   wtedy dopisek w stopce opisu (niżej, „Oznaczanie AI”).
 - Format: 1280×720 PNG/JPG < 2 MB; pion 1080×1920 jako okładka rolki.
 
