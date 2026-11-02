@@ -155,7 +155,7 @@ Ranking: `hook × 2 + delivery` (max 15). A ≥ 13, B ≥ 11. Oceny redakcyjne �
 | `ad-26-w10` | Doszły narzędzia: Claude, Grok-bot. Pizza i ludzie z regionu. |
 | `ad-28-w1` | Region w nagraniu: Słupsk, Lębork, Koszalin. |
 | `ad-29-w4` | Pierwszy start („osoby decyzyjne”, 2000,6–2004,4 s) wycięty po ciszy — Whisper go pominął. Format śniadaniowy, bezpłatne, ograniczona liczba miejsc. |
-| `ad-33-g1` | 16.10 (Agata, 0:30–0:34): wycięta powtórka „co można uzyskać po kilku tygodniach z nas z nami” — zostaje „…po kilku tygodniach pracy, daj znać”. Granice po ciszy w sygnale (Whisper dokleja „daj” do pauzy). |
+| `ad-33-g1` | 16.10 (Agata, 0:30–0:34): wycięta powtórka „co można uzyskać po kilku tygodniach z nas z nami” — zostaje „…po kilku tygodniach pracy, daj znać”. Granice po ciszy w sygnale (Whisper dokleja „daj” do pauzy). 02.11 (Mateusz, studio 0:21 „nagle się ucina”): „…kilka miesięcy pracy.” kończyło się 2249,62, a głos trwa do 2249,78 — koniec w ciszy 2249,92 (przed falstartem „Ja robię to…” od 2250,06). |
 | `ad-34-e4` | Jedno czyste ujęcie, pointa „AI przygotowuje, człowiek decyduje”. |
 | `ad-35-w9` | 16.10 (Agata, 0:17–0:23): „plus konkretne zastosowania, które oszczędzają” padało 3 razy — zostaje trzeci, pełny dubel (od 2351,7). Whisper zgubił dwa pierwsze w jednym słowie — czasy słów 2342–2356 w transkrypcji poprawione ponownym przebiegiem na krótkich odcinkach. 02.11 (Mateusz, studio 0:26/0:27): „a skontaktuj się z osobami, którymi,” (2361,0–2363,2) wycięte, zostaje drugie „a skontaktuj się z Wami…” od 2364,2 — cięcie w ciszy po „listę,” (2360,97). Słowa 2360–2366 w transkrypcji z ponownego przebiegu (Whisper scalił oba podejścia). |
 | `ad-36-w7` | Region w nagraniu: Słupsk, Gdańsk i okolice. |

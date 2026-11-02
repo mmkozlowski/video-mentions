@@ -1828,7 +1828,7 @@
    ],
    [
     2248.33,
-    2249.62
+    2249.92
    ],
    [
     2254.76,
@@ -1845,7 +1845,7 @@
   ],
   "start": 2225.79,
   "end": 2276.8,
-  "duration": 35.63,
+  "duration": 35.93,
   "splices": 6,
   "hook_line": "Programista mówi 3 miesiące, chat GPT mówi 3 dni. Kto kłamie? Nikt. Mówią o",
   "transcript": "Programista mówi 3 miesiące, chat GPT mówi 3 dni. Kto kłamie? Nikt. Mówią o dwóch różnych rzeczach. 3 dni AI zrobi Ci prototyp, coś co wygląda jak system, ale uprawnienia daje dane klientów, historia zmian, To jest długi czas pracy. To jest kilka miesięcy pracy. Ja robię to drugie, tylko z AI w ręku, więc szybciej niż tradycyjny software house. Jeżeli chcesz zobaczyć, co można uzyskać w swojej firmie po kilku tygodniach pracy, daj znać, wejdź na flobis .pl i zostaw do siebie kontakt.",
@@ -1859,7 +1859,7 @@
   "uses": [
    "reels-organic"
   ],
-  "notes": "16.10 (Agata, 0:30–0:34): wycięta powtórka „co można uzyskać po kilku tygodniach z nas z nami” — zostaje „…po kilku tygodniach pracy, daj znać”. Granice po ciszy w sygnale (Whisper dokleja „daj” do pauzy)."
+  "notes": "16.10 (Agata, 0:30–0:34): wycięta powtórka „co można uzyskać po kilku tygodniach z nas z nami” — zostaje „…po kilku tygodniach pracy, daj znać”. Granice po ciszy w sygnale (Whisper dokleja „daj” do pauzy). 02.11 (Mateusz, studio 0:21 „nagle się ucina”): „…kilka miesięcy pracy.” kończyło się 2249,62, a głos trwa do 2249,78 — koniec w ciszy 2249,92 (przed falstartem „Ja robię to…” od 2250,06)."
  },
  {
   "id": "ad-34-e4",

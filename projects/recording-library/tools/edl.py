@@ -131,9 +131,11 @@ ADS = [
     dict(n=32, code="L1", title="Najlepsza osoba przepisuje maile", brand="flowbiz", block="extra",
          ranges=[(2162.5, 2182.6), (2189.3, 2220.0)], hook=4, delivery=3, cta="none"),
     dict(n=33, code="G1", title="Programista kontra ChatGPT", brand="flowbiz", block="extra",
-         ranges=[(2225.9, 2249.6), (2254.7, 2267.0, None, 2267.40), (2272.3, 2278.0, 2273.18, None)], hook=5, delivery=3, cta="web",
+         ranges=[(2225.9, 2249.6, None, 2249.92), (2254.7, 2267.0, None, 2267.40), (2272.3, 2278.0, 2273.18, None)], hook=5, delivery=3, cta="web",
          notes="16.10 (Agata, 0:30–0:34): wycięta powtórka „co można uzyskać po kilku tygodniach z nas z nami” — "
-               "zostaje „…po kilku tygodniach pracy, daj znać”. Granice po ciszy w sygnale (Whisper dokleja „daj” do pauzy)."),
+               "zostaje „…po kilku tygodniach pracy, daj znać”. Granice po ciszy w sygnale (Whisper dokleja „daj” do pauzy). "
+               "02.11 (Mateusz, studio 0:21 „nagle się ucina”): „…kilka miesięcy pracy.” kończyło się 2249,62, a głos trwa "
+               "do 2249,78 — koniec w ciszy 2249,92 (przed falstartem „Ja robię to…” od 2250,06)."),
     dict(n=34, code="E4", title="Gdzie AI ma sens — 3 na tak, 3 na nie", brand="flowbiz", block="extra",
          ranges=[(2282.8, 2319.0)], hook=4, delivery=5, cta="none",
          notes="Jedno czyste ujęcie, pointa „AI przygotowuje, człowiek decyduje”."),
