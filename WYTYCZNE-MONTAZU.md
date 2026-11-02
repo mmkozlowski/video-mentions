@@ -188,7 +188,10 @@ Wzór: `~/Youtube Projects/S-10 - czym jest OM/Miniatura VS - AI-first-selection
 - **Prawy dolny róg pusty** — YouTube kładzie tam czas trwania. Tekst czytelny na telefonie (miniatura ~170 px
   szerokości): najwyżej dwie linie, gruby font.
 - **Odznaki narzędzi** (Open Mercato, Claude Code, Excel) z oryginalnymi logo — rozpoznawalne w wynikach wyszukiwania.
-- **Zdjęcia twarzy:** `~/Youtube Projects/Mój ryj` (zatwierdzone przez Mateusza). Część to generacje Gemini —
+- **Zdjęcia twarzy: wyłącznie przygotowane wcześniej zdjęcia z `~/Youtube Projects/Mój ryj`** (zatwierdzone przez
+  Mateusza). **Nigdy klatki wycięte z nagrania odcinka** (decyzja 02.11.2026 — szkice z klatek do „8 wdrożeń”
+  odrzucone). Postać wycinana z tła (`~/Youtube Projects/ep-8-wdrozen/szkice/cutout.swift`, macOS Vision) z miętową
+  poświatą; wzory: `ep-vibecoding-szef-programuje/miniatura-final-*.jpg`. Część zdjęć to generacje Gemini —
   wtedy dopisek w stopce opisu (niżej, „Oznaczanie AI”).
 - Format: 1280×720 PNG/JPG < 2 MB; pion 1080×1920 jako okładka rolki.
 
@@ -221,7 +224,7 @@ retuszowana. Zasady YouTube dotyczą realistycznych treści **w filmie**, o mini
 (deepfake realnej osoby) przy celu komercyjnym nie daje wyjątku „artystycznego”
 ([SRD Rechtsanwälte o wytycznych KE](https://www.srd-rechtsanwaelte.de/en/blog/deepfake-labelling-under-the-ai-act-what-the-new-eu-guidance-clarifies)).
 Praktycznie: na miniaturze **bez znaczka**; w stopce opisu „Miniatura i część ujęć wygenerowane z pomocą AI”
-— tanie, nie psuje kliknięć, zamyka ryzyko. Prawdziwe zdjęcie albo klatka z nagrania nie wymaga niczego.
+— tanie, nie psuje kliknięć, zamyka ryzyko. Prawdziwe zdjęcie nie wymaga niczego.
 
 Źródła danych: [Search Engine Journal — czy twarze pomagają](https://www.searchenginejournal.com/do-faces-help-youtube-thumbnails-heres-what-the-data-says/563944/),
 [vidIQ — miniatury a CTR](https://vidiq.com/blog/post/youtube-custom-thumbnails-ctr/).
