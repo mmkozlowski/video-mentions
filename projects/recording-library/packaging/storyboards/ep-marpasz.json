@@ -60,6 +60,22 @@
    "title": "Sklep z *paszą dla zwierząt"
   },
   {
+   "type": "logos",
+   "at": "Apilo",
+   "until": "+7",
+   "kicker": "Systemy do e-commerce",
+   "items": [
+    {
+     "logo": "apilo",
+     "name": "Apilo"
+    },
+    {
+     "logo": "baselinker",
+     "name": "BaseLinker"
+    }
+   ]
+  },
+  {
    "type": "beat",
    "style": "slam",
    "at": "25",
@@ -73,9 +89,23 @@
   },
   {
    "type": "mockup",
-   "name": "parcels",
+   "name": "apilo",
+   "mode": "orders",
+   "at": "czterech",
+   "until": "+14"
+  },
+  {
+   "type": "mockup",
+   "name": "apilo",
+   "mode": "shipment",
    "at": "wchodził",
    "until": "+14"
+  },
+  {
+   "type": "mockup",
+   "name": "parcels",
+   "at": "system,",
+   "until": "+12"
   },
   {
    "type": "broll",
@@ -156,6 +186,14 @@
    "text": "Człowiek do *ważniejszych zadań"
   },
   {
+   "type": "title",
+   "at": "kolejny przykład",
+   "until": "+8",
+   "zone": "lower",
+   "kicker": "Drugi przykład z tej firmy",
+   "text": "Katalog *AI z faktur"
+  },
+  {
    "type": "broll",
    "at": "faktury",
    "until": "+3.2",
@@ -163,6 +201,18 @@
    "ai": true,
    "center": true,
    "title": "Faktura → *ręczne przepisywanie"
+  },
+  {
+   "type": "logos",
+   "at": "programu",
+   "until": "+6",
+   "kicker": "Faktura przepisywana ręcznie",
+   "items": [
+    {
+     "logo": "nexo",
+     "name": "Nexo"
+    }
+   ]
   },
   {
    "type": "logos",
@@ -181,6 +231,30 @@
     {
      "logo": "wordpress",
      "name": "Sklep"
+    },
+    {
+     "logo": "erli",
+     "name": "Erli"
+    }
+   ]
+  },
+  {
+   "type": "list",
+   "at": "pracy",
+   "until": "+14",
+   "kicker": "Wprowadzanie produktów",
+   "items": [
+    {
+     "text": "Ręczne przepisywanie",
+     "at": "ręcznej"
+    },
+    {
+     "text": "5–10 produktów",
+     "at": "wprowadzenie"
+    },
+    {
+     "text": "Ktoś co chwilę puka",
+     "at": "puka"
     }
    ]
   },

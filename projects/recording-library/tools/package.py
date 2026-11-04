@@ -138,6 +138,8 @@ LOGO_COLORS = {
     "youtube": "#FF0000", "wordpress": "#5A9FC4", "telegram": "#26A5E4", "whatsapp": "#25D366", "obsidian": "#A88BFA",
     "googlegemini": "#8E9BFF", "allegro": "#FF5A00", "adobeacrobatreader": "#EC1C24",
     "googlecalendar": "#4285F4", "dropbox": "#0061FF",
+    # ep-marpasz (noc 04.11): znaki z oficjalnych stron, obrysowane potrace — kolory czytelne na #0A0A08
+    "apilo": "#8B7CF6", "baselinker": "#4D8DFF", "inpost": "#FFCC05", "nexo": "#3FC1E6", "erli": "#2BB3C0",
 }
 
 BRANDS = {

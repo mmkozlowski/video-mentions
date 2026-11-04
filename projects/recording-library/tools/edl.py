@@ -167,7 +167,13 @@ EPISODES = [
          notes="Krótki odcinek: chaos w ofertach, konwersja handlowców, asystent czytający maile "
                "(producent sprzętu sportowego) — oferta w 5 min zamiast kilkunastu godzin."),
     dict(id="ep-rezon", source="session", client="Rezon",
-         title="Pamiątki znad morza: system B2B", ranges=[(2767.6, 3226.0)], hook=3, delivery=3,
+         title="Pamiątki znad morza: system B2B",
+         # noc 04.11 (kontrola transkrypcją gotowego pliku): start bez ogona „pójdzie” z ep-offers
+         # („Ok” od 2770,32 z sygnału), bez falstartu „Włożyliśmy,” (2911,04–2912,2), bez dubli
+         # „na pace, czyli na naszym / na naszym dostawcach. Dostawczaku.” (3024,0–3029,44).
+         # Czasy Whispera przesunięte tu o ~1,5 s — granice z ciszy w sygnale, sprawdzone sklejką.
+         ranges=[(2770.0, 2910.5, 2770.20, 2910.55), (2912.5, 3022.5, 2912.60, 3022.40),
+                 (3022.9, 3023.95, 3023.00, 3023.90), (3032.3, 3226.0, 3032.44, None)], hook=3, delivery=3,
          brand="flowbiz",
          notes="Firma z Kołobrzegu, proces na kartkach, integracja z PC Business, handlowiec "
                "z tabletem, produkcja na zamówienie, panel klienta na Open Mercato."),
@@ -194,6 +200,10 @@ CHAPTERS = [
     dict(id="ch-doram-6-kody-15-minut", source="doram", parent="ep-doram",
          title="Kody kreskowe: z kilku dni do 15 minut", ranges=[(602.1, 637.3)], hook=5, delivery=4,
          notes="„Żadnej magii, żadnego AI” — wiarygodność."),
+    # noc 04.11: wersja do składanki ep-8-wdrozen — domyka zdanie „więc to by było na razie na tyle.”
+    # (rozdział kończył się na „więc”). Rolki i reklamy miejskie zostają na ch-doram-6-kody-15-minut.
+    dict(id="ch-doram-6-kody-15-minut-full", source="doram", parent="ep-doram",
+         title="Kody kreskowe: z kilku dni do 15 minut (pełne zdanie)", ranges=[(602.1, 639.0)], hook=5, delivery=4),
     dict(id="ch-vacu-1-chatgpt-zapomina", source="vacuactiv", parent="ep-vacuactiv",
          title="ChatGPT przestaje pamiętać Twoje wytyczne", ranges=[(38.5, 124.6)], hook=5, delivery=3),
     dict(id="ch-vacu-2-dane-w-glowach", source="vacuactiv", parent="ep-vacuactiv",
@@ -225,6 +235,10 @@ CHAPTERS = [
          title="100 godzin miesięcznie mniej", ranges=[(3444.5, 3547.6)], hook=5, delivery=3),
     dict(id="ch-marpasz-3-katalog-ai", source="session", parent="ep-marpasz",
          title="Katalog AI: z faktury do Allegro", ranges=[(3557.2, 3679.6)], hook=4, delivery=3),
+    # noc 04.11: wersja do składanki ep-8-wdrozen — rozdział kończył się na „firmę handlową i”,
+    # tu domknięty do „…spokój po wprowadzeniu takich rzeczy.”
+    dict(id="ch-marpasz-3-katalog-ai-full", source="session", parent="ep-marpasz",
+         title="Katalog AI: z faktury do Allegro (pełne zdanie)", ranges=[(3557.2, 3697.0)], hook=4, delivery=3),
     dict(id="ch-marpasz-4-srubki", source="session", parent="ep-marpasz",
          title="AI to dokręcanie śrubek", ranges=[(3697.5, 3740.0)], hook=4, delivery=4),
 ]
@@ -233,6 +247,28 @@ RAW = [
     dict(id="raw-freestyle-workshop", source="session", title="Freestyle: bańka AI i strach",
          ranges=[(2424.6, 2548.0)], hook=3, delivery=2, brand="aislupsk",
          notes="Zaproszenie na warsztaty bez prompteru, urwane na fakturach. Do przebrania na cytaty."),
+]
+
+# ── Przerywniki o usługach (openmerxat-wstawki.mov) — dołożone 04.11.2026 ────
+# Nagrane raz, wklejane do odcinków (vault: marketing/content/youtube/_przerywniki.md i
+# _wstawki-uslugi-plan.md). Granice z ciszy w sygnale, każda sklejka sprawdzona transkrypcją.
+# Zdanie „u Ciebie w filmie jest dokładnie tak samo” (99–108 s, 164–171 s) pominięte: dwa modele
+# słyszą „w filmie”, nie „w firmie” — zaproszenie zaczyna się od „Poczekaj…” i przechodzi
+# od razu do „Robię konsultacje…”.
+RAW += [
+    dict(id="ins-intro", source="inserts", title="Przerywnik: przedstawienie się",
+         ranges=[(3.9, 14.3, 3.96, 14.26), (65.5, 87.45, 65.56, 87.40)], hook=3, delivery=4,
+         notes="„A ja nazywam się Mateusz Kozłowski…” + branże + „to nie jest odcinek sponsorowany”. Po hooku."),
+    dict(id="ins-mid", source="inserts", title="Przerywnik: zaproszenie na konsultację",
+         ranges=[(95.8, 99.4, 95.82, 99.36), (171.6, 198.6, 171.70, 198.58)], hook=3, delivery=4,
+         notes="„Poczekaj, zatrzymam Cię…” + konsultacja, „bez zobowiązań”, WhatsApp/LinkedIn/strona. 60–70% filmu."),
+    dict(id="ins-mid-long", source="inserts", title="Przerywnik: zaproszenie na warsztat (Open Mercato)",
+         ranges=[(95.8, 99.4, 95.82, 99.36), (108.7, 118.6, 108.79, 118.55), (133.3, 156.1, 133.38, 156.02),
+                 (183.1, 198.6, 183.18, 198.58)], hook=3, delivery=4,
+         notes="Wersja z warsztatem na miejscu i „Open Mercato przetworzy to na specyfikację” — tylko odcinki o OM."),
+    dict(id="ins-outro", source="inserts", title="Przerywnik: zamknięcie",
+         ranges=[(206.3, 222.35, 206.40, 222.30)], hook=3, delivery=4,
+         notes="„Jeśli chcesz, żebym przeszedł z Tobą przez Twój proces…” + pytania w komentarzu. Po CTA odcinka."),
 ]
 
 # ── Starsze odcinki kanału (Youtube Projects) — dołożone 11.10.2026 ─────────
@@ -258,7 +294,9 @@ EPISODES += [
                "paczki, które ze sobą nie gadają, AI przyznaje Ci rację, framework we frameworku, "
                "trzy uczciwe zastrzeżenia, puenta: AI obniżyło barierę budowania, nie projektowania."),
     dict(id="ep-module-1", source="module-build", client="(kanał)", title="Jak składam moduł — cz. 1",
-         ranges=[(65.9, 92.0), (104.0, 108.2), (128.4, 161.5), (185.3, 226.3), (226.8, 250.0, None, 249.95), (253.1, 267.3),
+         ranges=[(65.9, 92.0), (104.0, 108.2), (128.4, 161.5), (185.3, 226.3), (226.8, 250.0, None, 249.95), (253.1, 267.3, 253.48, None),
+    # noc 04.11: druga część „…w głowie właściciela” kończy się w 253,4 — start od „bo” (253,48),
+    # inaczej w gotowym pliku zostaje „właściciela. Właściciela.” (sprawdzone sklejką + transkrypcją)
                  (293.4, 304.3), (306.3, 360.9), (365.4, 380.3), (384.9, 404.8), (456.4, 468.4)],
          hook=4, delivery=3, brand="flowbiz",
          notes="Kartka papieru zamiast kodu, warsztat 6 h z ~70 pytaniami po rolach, droga zamówienia "

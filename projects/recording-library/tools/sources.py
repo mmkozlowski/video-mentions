@@ -26,6 +26,7 @@ SOURCES = {
     "module-retake": YT_DIR / "moduly-dogrywka.mov",                      # S12 cz. 2 — specyfikacja → powtarzalność
     "om-intro": YT_DIR / "S-10 - czym jest OM" / "Surowy" / "01 - czym jest OM.mov",  # S-10, opublikowany
     "om-retake": YT_DIR / "dogrywka_01.mov",                              # dogrywki S-10: hook „Excel działa”, społeczność
+    "inserts": YT_DIR / "openmerxat-wstawki.mov",                         # przerywniki o usługach: przedstawienie, zaproszenie, zamknięcie
 }
 
 # Kadr źródła: 1280×720, kamera statyczna, twarz w okolicy x≈700–720.
@@ -52,6 +53,7 @@ FACE_CENTER_X = {
     "module-retake": 650,
     "om-intro": 644,
     "om-retake": 660,
+    "inserts": 680,
 }
 
 

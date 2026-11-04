@@ -2357,6 +2357,53 @@
   "notes": "„Żadnej magii, żadnego AI” — wiarygodność."
  },
  {
+  "id": "ch-doram-6-kody-15-minut-full",
+  "kind": "chapter",
+  "source": "doram",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": "ep-doram",
+  "client": null,
+  "title": "Kody kreskowe: z kilku dni do 15 minut (pełne zdanie)",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    601.97,
+    609.85
+   ],
+   [
+    610.19,
+    614.63
+   ],
+   [
+    615.79,
+    628.25
+   ],
+   [
+    628.77,
+    639.4
+   ]
+  ],
+  "start": 601.97,
+  "end": 639.4,
+  "duration": 35.41,
+  "splices": 3,
+  "hook_line": "Jeżeli chodzi o tą część taką jeszcze bardzo czasochłoną, czy generowanie samych kodów kreskowych,",
+  "transcript": "Jeżeli chodzi o tą część taką jeszcze bardzo czasochłoną, czy generowanie samych kodów kreskowych, no to tutaj to nie było tutaj żadnej magii, żadnego AI, po prostu program, system bierze cztery numery, które potrzebujemy, generuje z nich po prostu PDF -a od razu gotowego, po kliknięciu, po minucie, masz gotowego PDF -a z 40 stronami, etykiet, który po prostu trzeba tylko wydrukować, przykleić i nagle z kilku dni pracy dostajemy 15 minut pracy, więc to by było na razie na tyle.",
+  "scores": {
+   "hook": 5,
+   "delivery": 4,
+   "total": 14
+  },
+  "priority": "A",
+  "cta": null,
+  "uses": [
+   "reels-organic"
+  ],
+  "notes": ""
+ },
+ {
   "id": "ch-vacu-1-chatgpt-zapomina",
   "kind": "chapter",
   "source": "vacuactiv",
@@ -3353,6 +3400,94 @@
   "splices": 10,
   "hook_line": "to też jest katalog AI. Katalog AI, jak to wygląda? Wcześniej klient musiał dane",
   "transcript": "to też jest katalog AI. Katalog AI, jak to wygląda? Wcześniej klient musiał dane z faktury przekopiować ręcznie do na przykład programu Nexo. do programu Nexo i ten program Nexo trzeba było wszystkie te dane uzupełnić, przekleić, do tego trzeba było wejść w chat GPT albo Gmini, stworzyć opis jeden dla Allegro, opis dla swojego sklepu na WordPressie, opis dla Erli na przykład i jeszcze dla innych Marketplace 'ów, do tego trzeba było znaleźć zdjęcia, naprawdę dużo, dużo pracy ręcznej i tutaj z informacji, jakie widziałem, jakie klientka do mnie tutaj przyszła z tymi informacjami, wprowadzenie 5 -10 produktów i oczywiście robienie jeszcze przy tym innych rzeczy i gaszenie pożarów, bo co chwilę ktoś puka i co chwilę ktoś wchodzi, generowało to, że kilkanaście produktów potrafiło być wprowadzanych na przykład cały dzień. Nieraz, jeżeli na przykład to była faktura to te wszystkie pozycje nawet nie były wprowadzone, nie było na to po prostu czasu, bo ktoś zachorował, bo były ważniejsze rzeczy i przez to nasz asortyment nie rósł w żaden sposób, więc tutaj znowu wchodzi AI, które pozwala po pierwsze odczytać te dokumenty w bardzo prosty sposób, zbudować listę produktów, jakie chcemy dodać w naszego katalogu, przygotować nam opisy pod każdą platformę, sprawdzić to z naszymi magazynami i czy ten produkt już istnieje i dosłownie jednym kliknięciem dodać wszystko do naszego magazynu i do naszych programów księgowych, magazynowych, fakturowych, jakkolwiek, gdzie tego niekolwiek byśmy nie potrzebowali. Więc to są takie dwa zastosowania, że tak powiem, z pola bitwy, jeżeli chodzi o firmę handlową i",
+  "scores": {
+   "hook": 4,
+   "delivery": 3,
+   "total": 11
+  },
+  "priority": "B",
+  "cta": null,
+  "uses": [
+   "reels-organic",
+   "needs-cutdown"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "ch-marpasz-3-katalog-ai-full",
+  "kind": "chapter",
+  "source": "session",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": "ep-marpasz",
+  "client": null,
+  "title": "Katalog AI: z faktury do Allegro (pełne zdanie)",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    3557.06,
+    3565.4
+   ],
+   [
+    3566.22,
+    3567.76
+   ],
+   [
+    3568.12,
+    3572.88
+   ],
+   [
+    3574.28,
+    3599.96
+   ],
+   [
+    3600.3,
+    3606.84
+   ],
+   [
+    3607.72,
+    3610.66
+   ],
+   [
+    3611.02,
+    3612.86
+   ],
+   [
+    3613.56,
+    3622.98
+   ],
+   [
+    3623.46,
+    3672.08
+   ],
+   [
+    3672.64,
+    3674.7
+   ],
+   [
+    3675.04,
+    3679.98
+   ],
+   [
+    3680.78,
+    3686.44
+   ],
+   [
+    3686.82,
+    3694.42
+   ],
+   [
+    3695.06,
+    3697.6
+   ]
+  ],
+  "start": 3557.06,
+  "end": 3697.6,
+  "duration": 132.48,
+  "splices": 13,
+  "hook_line": "to też jest katalog AI. Katalog AI, jak to wygląda? Wcześniej klient musiał dane",
+  "transcript": "to też jest katalog AI. Katalog AI, jak to wygląda? Wcześniej klient musiał dane z faktury przekopiować ręcznie do na przykład programu Nexo. do programu Nexo i ten program Nexo trzeba było wszystkie te dane uzupełnić, przekleić, do tego trzeba było wejść w chat GPT albo Gmini, stworzyć opis jeden dla Allegro, opis dla swojego sklepu na WordPressie, opis dla Erli na przykład i jeszcze dla innych Marketplace 'ów, do tego trzeba było znaleźć zdjęcia, naprawdę dużo, dużo pracy ręcznej i tutaj z informacji, jakie widziałem, jakie klientka do mnie tutaj przyszła z tymi informacjami, wprowadzenie 5 -10 produktów i oczywiście robienie jeszcze przy tym innych rzeczy i gaszenie pożarów, bo co chwilę ktoś puka i co chwilę ktoś wchodzi, generowało to, że kilkanaście produktów potrafiło być wprowadzanych na przykład cały dzień. Nieraz, jeżeli na przykład to była faktura to te wszystkie pozycje nawet nie były wprowadzone, nie było na to po prostu czasu, bo ktoś zachorował, bo były ważniejsze rzeczy i przez to nasz asortyment nie rósł w żaden sposób, więc tutaj znowu wchodzi AI, które pozwala po pierwsze odczytać te dokumenty w bardzo prosty sposób, zbudować listę produktów, jakie chcemy dodać w naszego katalogu, przygotować nam opisy pod każdą platformę, sprawdzić to z naszymi magazynami i czy ten produkt już istnieje i dosłownie jednym kliknięciem dodać wszystko do naszego magazynu i do naszych programów księgowych, magazynowych, fakturowych, jakkolwiek, gdzie tego niekolwiek byśmy nie potrzebowali. Więc to są takie dwa zastosowania, że tak powiem, z pola bitwy, jeżeli chodzi o firmę handlową i naprawdę widzimy mocno korzyści, tutaj już też mam informację od tego klienta, że no już przebiera nogami, żeby robić kolejne rzeczy i próbować to zautomatyzować, bo też czuje spokój, większy spokój po wprowadzeniu takich rzeczy.",
   "scores": {
    "hook": 4,
    "delivery": 3,
@@ -5509,11 +5644,7 @@
   "brand": "flowbiz",
   "ranges": [
    [
-    2767.88,
-    2768.32
-   ],
-   [
-    2770.14,
+    2770.2,
     2770.78
    ],
    [
@@ -5602,10 +5733,10 @@
    ],
    [
     2906.22,
-    2910.6
+    2910.55
    ],
    [
-    2911.2,
+    2912.6,
     2918.76
    ],
    [
@@ -5653,11 +5784,11 @@
     3022.4
    ],
    [
-    3022.96,
-    3029.64
+    3023.0,
+    3023.9
    ],
    [
-    3032.38,
+    3032.44,
     3039.52
    ],
    [
@@ -5714,6 +5845,10 @@
    ],
    [
     3174.52,
+    3178.3
+   ],
+   [
+    3178.6,
     3212.38
    ],
    [
@@ -5725,12 +5860,12 @@
     3225.96
    ]
   ],
-  "start": 2767.88,
+  "start": 2770.2,
   "end": 3225.96,
-  "duration": 421.22,
+  "duration": 413.13,
   "splices": 53,
-  "hook_line": "Ok, kolejny temat. Firma produkująca pamiątki w Kołobrzegu przyszła do mnie z dość dużym",
-  "transcript": "Ok, kolejny temat. Firma produkująca pamiątki w Kołobrzegu przyszła do mnie z dość dużym problemem, bo cały proces obsługi w firmie funkcjonuje na karce. Potrzebowali stworzyć i scentralizować dane do tego, aby po prostu mieć kontrolę Aktualnie ta kontrola była, ale była bardzo w ograniczonym zakresie. Kontrola była głównie od księgowych i od raportów miesięcznych, kwartalnych, rocznych do tego jak firma pracuje i jak firma, w jakiej jest firma kondycji. Tylko, że to już jest po fakcie, jeżeli chodzi o dane z księgowości. My jako osoby, które prowadzą firmę potrzebujemy danych na zawołanie, danych codziennie, tygodniowo, miesięcznie, kwartalnie. Dzięki temu jesteśmy w stanie szybciej podejmować decyzje, szybciej rozwiązywać problemy w naszej firmie, bo wiemy gdzie one się pojawiają. I sama centralizacja danych, gdzie nawet AI nie jest tutaj jeszcze w tym wszystkim potrzebne, powoduje, że dane mamy w jednym miejscu i to jest ta rzecz, na której często zaczynamy, czyli scentralizowanie danych w jedno miejsce tak, aby zbudować fundament pod sztuczną inteligencję. Dlaczego fundament pod sztuczną inteligencję? Bo jeżeli będziemy mieć w firmie bardzo rozproszone dane na kilku Excelach, w kilku systemach, to uwierz mi, ale AI sobie z tym nie poradzi. Nie będzie wiedziało, które dane są prawidłowo, nie będzie się mogło z niektórymi systemami połączyć, bo duża część systemów typu klasy ERP, CRM są systemami zamkniętymi. Masa klientów ma jeszcze systemy, które są instalowane na Windowsie, nie są w chmurze i nie ma do nich dostępu. I to jest realny problem, który często i głównie, może nawet nie często, ale bardzo w większości przypadków rozwiązujemy. I tak samo było w przypadku tej firmy. Zrobiliśmy integrację z systemem PC Business, który jest systemem księgowym, sprzedażowym, po to, żeby mieć jedno źródło prawdy i synchronizujemy go codziennie, po to, aby wszyscy pracownicy, nie tylko szef i osoby, które są księgowymi miały do tych danych dostęp. Pobieramy dane typu cenę, zamówienia, ileś rzeczy na magazynie. One się aktualizują raz dziennie. Dzięki temu handlowcy, firmy, osoby z produkcji mają na bieżąco do nich dostęp. I już teraz widzimy, jak dużo czasu to zaoszczędziło. Jak sposób pracy handlowca będzie się w takiej branży zmieniał. Dlaczego sposób pracy w firmie, która była oparta na tym, aby jeździć pomiędzy punktami, czyli typowy handlowiec pracującej w branży pamiątkarskiej sezonowej musiał wejść, wsiąść w samochód i objechać z towarem już wyprodukowanym całe wybrzeże albo w okresie zimowym całe tutaj południe Polski. Schemat pracy się zmienia. Koszty firmy się zwiększają, koszty produkcji się zwiększają. Liczba nadprodukcji, która nie jest wykorzystywana również powoduje straty w firmie, ale wiemy dopiero o tym bardzo późno. I teraz co ten system pozwolił zmienić w sposobie pracy i jak na ten proces wpłynął? A zmienił to tak mocno na tyle, że handlowiec teraz będzie zamawiał takie ilości i tyle po prostu będą to robione na zamówienie produkty, czyli oczywiście mając flagowe produkty na tak zwanej, na pace, czyli na naszym dostawczaku, na naszym dostawczaku, będziemy mieć te flagowe produkty, które możemy dać od ręki, ale często pojawiało się problem taki, że nagle wydawało nam się, że jakaś rzecz siądzie, pójdzie zwał jak zwał i nagle produkujemy tego dziesiątki tysięcy sztuk, a finalnie okazuje się, że one się nie sprzedały. Ta braża też jest tutaj specyficzna, że dla każdej nadmorskiej miejscowości albo południowo tutaj, albo na każdej nadmorskiej miejscowości każdy, jak dobrze wiecie, każdy wzór, każda miejscowość ma swój napis, ma swoją jakby jakby taką indywidualne dostosowanie do potrzeb danej miejscowości. To powoduje, że jeżeli wyprodukowaliśmy tysiące sztuk na miejscowość, przypuśćmy ustka, nie zrobisz tego samego na tych samych półproduktach do rowów albo do łeby na przykład, bo już zostały wykorzystane. Dzięki temu możemy zmienić sposób pracy na to, żeby firma mogła, handlowiec jeżdżący z tabletem po prostu prezentował nam te produkty i w momencie, kiedy klient się zdecyduje składać je na zamówienie i przyspieszyć sposób dostawy. Co tu jeszcze zmieniliśmy w sposobie pracy? Zmieniliśmy to, że klient przestaje zamawiać mailowo przez jakieś formularze, które są bardzo nieczytelne, na jakichś karteczkach odręcznie napisanych które były bardzo trudne do zrozumienia, często powodowały błędy, często powodowały nadprodukcje, często powodowały złą relację z klientem i nieporozumienia. Dzięki wprowadzeniu systemu i panelu klienta, który właśnie został zrobiony w oparciu o Open Mercato, klient sam się loguje, sam może złożyć zamówienie, sam widzi statusy, w których to zamówienie jest Dzięki temu mamy zaoszczędzone bardzo dużo czasu, bo nasz pracownik w biurze, na produkcji dostaje powiadomienie, że wpadło nowe zamówienie i dzięki temu może już przystąpić do realizacji. Oczywiście nie zawsze jest tak, że klient musi to zrobić sam, bo powiedzmy nie każdy klient sobie poradzi z takim systemem. Dzięki temu wiemy, że na przykład daliśmy możliwości handlowcowi składania zamówień za klienta, tak? To jest rzecz normalna, to się zawsze odbywało, jednak dajemy dwie drogi. Jeśli klient sobie nie radzi, handlowiec przejmuje tą rolę, którą zawsze miał i wprowadza za klienta zamówienie i oczywiście handlowiec ma swój do tego panel, handlowiec widzi zamówienia swoich klientów, a klient dalej widzi tylko swoje zamówienie. Więc to jest ten przypadek, jeżeli chodzi o zastosowanie Open Mercato i jak to zastosowanie jest dla firmy i handlu B2B w branży pamiątkarskiej.",
+  "hook_line": "kolejny temat. Firma produkująca pamiątki w Kołobrzegu przyszła do mnie z dość dużym problemem,",
+  "transcript": "kolejny temat. Firma produkująca pamiątki w Kołobrzegu przyszła do mnie z dość dużym problemem, bo cały proces obsługi w firmie funkcjonuje na karce. Potrzebowali stworzyć i scentralizować dane do tego, aby po prostu mieć kontrolę Aktualnie ta kontrola była, ale była bardzo w ograniczonym zakresie. Kontrola była głównie od księgowych i od raportów miesięcznych, kwartalnych, rocznych do tego jak firma pracuje i jak firma, w jakiej jest firma kondycji. Tylko, że to już jest po fakcie, jeżeli chodzi o dane z księgowości. My jako osoby, które prowadzą firmę potrzebujemy danych na zawołanie, danych codziennie, tygodniowo, miesięcznie, kwartalnie. Dzięki temu jesteśmy w stanie szybciej podejmować decyzje, szybciej rozwiązywać problemy w naszej firmie, bo wiemy gdzie one się pojawiają. I sama centralizacja danych, gdzie nawet AI nie jest tutaj jeszcze w tym wszystkim potrzebne, powoduje, że dane mamy w jednym miejscu i to jest ta rzecz, na której często zaczynamy, czyli scentralizowanie danych w jedno miejsce tak, aby zbudować fundament pod sztuczną inteligencję. Dlaczego fundament pod sztuczną inteligencję? Bo jeżeli będziemy mieć w firmie bardzo rozproszone dane na kilku Excelach, w kilku systemach, to uwierz mi, ale AI sobie z tym nie poradzi. Nie będzie wiedziało, które dane są prawidłowo, nie będzie się mogło z niektórymi systemami połączyć, bo duża część systemów typu klasy ERP, CRM są systemami zamkniętymi. Masa klientów ma jeszcze systemy, które są instalowane na Windowsie, nie są w chmurze i nie ma do nich dostępu. I to jest realny problem, który często i głównie, może nawet nie często, ale bardzo w większości przypadków rozwiązujemy. I tak samo było w przypadku tej firmy. z systemem PC Business, który jest systemem księgowym, sprzedażowym, po to, żeby mieć jedno źródło prawdy i synchronizujemy go codziennie, po to, aby wszyscy pracownicy, nie tylko szef i osoby, które są księgowymi miały do tych danych dostęp. Pobieramy dane typu cenę, zamówienia, ileś rzeczy na magazynie. One się aktualizują raz dziennie. Dzięki temu handlowcy, firmy, osoby z produkcji mają na bieżąco do nich dostęp. I już teraz widzimy, jak dużo czasu to zaoszczędziło. Jak sposób pracy handlowca będzie się w takiej branży zmieniał. Dlaczego sposób pracy w firmie, która była oparta na tym, aby jeździć pomiędzy punktami, czyli typowy handlowiec pracującej w branży pamiątkarskiej sezonowej musiał wejść, wsiąść w samochód i objechać z towarem już wyprodukowanym całe wybrzeże albo w okresie zimowym całe tutaj południe Polski. Schemat pracy się zmienia. Koszty firmy się zwiększają, koszty produkcji się zwiększają. Liczba nadprodukcji, która nie jest wykorzystywana również powoduje straty w firmie, ale wiemy dopiero o tym bardzo późno. I teraz co ten system pozwolił zmienić w sposobie pracy i jak na ten proces wpłynął? A zmienił to tak mocno na tyle, że handlowiec teraz będzie zamawiał takie ilości i tyle po prostu będą to robione na zamówienie produkty, czyli oczywiście mając flagowe produkty na tak zwanej, na pace, czyli naszym dostawczaku, będziemy mieć te flagowe produkty, które możemy dać od ręki, ale często pojawiało się problem taki, że nagle wydawało nam się, że jakaś rzecz siądzie, pójdzie zwał jak zwał i nagle produkujemy tego dziesiątki tysięcy sztuk, a finalnie okazuje się, że one się nie sprzedały. Ta braża też jest tutaj specyficzna, że dla każdej nadmorskiej miejscowości albo południowo tutaj, albo na każdej nadmorskiej miejscowości każdy, jak dobrze wiecie, każdy wzór, każda miejscowość ma swój napis, ma swoją jakby jakby taką indywidualne dostosowanie do potrzeb danej miejscowości. To powoduje, że jeżeli wyprodukowaliśmy tysiące sztuk na miejscowość, przypuśćmy ustka, nie zrobisz tego samego na tych samych półproduktach do rowów albo do łeby na przykład, bo już zostały wykorzystane. Dzięki temu możemy zmienić sposób pracy na to, żeby firma mogła, handlowiec jeżdżący z tabletem po prostu prezentował nam te produkty i w momencie, kiedy klient się zdecyduje składać je na zamówienie i przyspieszyć sposób dostawy. Co tu jeszcze zmieniliśmy w sposobie pracy? Zmieniliśmy to, że klient przestaje zamawiać mailowo przez jakieś formularze, które są bardzo nieczytelne, na jakichś karteczkach odręcznie napisanych które były bardzo trudne do zrozumienia, często powodowały błędy, często powodowały nadprodukcje, często powodowały złą relację z klientem i nieporozumienia. Dzięki wprowadzeniu systemu i panelu klienta, który właśnie został zrobiony w oparciu o Open Mercato, klient sam się loguje, sam może złożyć zamówienie, sam widzi statusy, w których to zamówienie jest Dzięki temu mamy zaoszczędzone bardzo dużo czasu, bo nasz pracownik w biurze, na produkcji dostaje powiadomienie, że wpadło nowe zamówienie i dzięki temu może już przystąpić do realizacji. Oczywiście nie zawsze jest tak, że klient musi to zrobić sam, bo powiedzmy nie każdy klient sobie poradzi z takim systemem. Dzięki temu wiemy, że na przykład daliśmy możliwości handlowcowi składania zamówień za klienta, tak? To jest rzecz normalna, to się zawsze odbywało, jednak dajemy dwie drogi. Jeśli klient sobie nie radzi, handlowiec przejmuje tą rolę, którą zawsze miał i wprowadza za klienta zamówienie i oczywiście handlowiec ma swój do tego panel, handlowiec widzi zamówienia swoich klientów, a klient dalej widzi tylko swoje zamówienie. Więc to jest ten przypadek, jeżeli chodzi o zastosowanie Open Mercato i jak to zastosowanie jest dla firmy i handlu B2B w branży pamiątkarskiej.",
   "scores": {
    "hook": 3,
    "delivery": 3,
@@ -6222,7 +6357,7 @@
     249.95
    ],
    [
-    253.22,
+    253.48,
     256.44
    ],
    [
@@ -6264,7 +6399,7 @@
   ],
   "start": 65.61,
   "end": 469.58,
-  "duration": 255.82,
+  "duration": 255.56,
   "splices": 17,
   "hook_line": "Zanim napiszę jedną linię kodu, biorę kartkę, taką zwykłą kartkę papieru, która często funkcjonuje",
   "transcript": "Zanim napiszę jedną linię kodu, biorę kartkę, taką zwykłą kartkę papieru, która często funkcjonuje w firmach. I 6 godzin chodzę z tą kartką po firmach albo kartkami, śledząc drogę tego na przykład zamówienia. Od momentu, w którym wpada, do momentu, w którym ktoś wystawia fakturę i wyjeżdża z danym zamówieniem. I to jest najważniejsza część mojej roboty. Nie kod, nie ekran, nie wybór technologii. Ta kartka. Dziś pokażę, jak z procesu, który żyje w Excelu i w mailach, robi się działający moduł systemów Open Mercator. Nie od ekranu, nie od bazy danych. Od kartki, rozmowy i jednej porządnej specyfikacji. Mówię o tym, bo widzę, jak ludzie zaczynają od drugiej strony. Odpalają agenta, proszą o system, dostają system. I po miesiącu okazuje się, że to nie opisuje ich firmy, to nie opisuje ich procesu. Okej, ale zacznijmy od początku. Zaczynam od warsztatu. 6 godzin, 1 dzień i przychodzę na niego z gotową listą. Około 70 nieraz pytań nawet w różnych koncepcjach. Nie są ułożone tematycznie, są ułożone często po ludziach. Osobno pytania dla właściciela, osobno pytania dla handlowca, Osobno dla produkcji i dla działów technicznych. Dla biur inny zestaw i dla obsługi zamówienia też inny zestaw pytań. Na końcu osobna sekcja otwartych decyzji do zamknięcia. Bo jak zapytasz, jak wygląda proces, usłyszysz bardzo oficjalną wersję. A często jest tak, że właściciel mówi, ja wszystko wiem, jak wygląda na każdym szczeblu. A niestety też mam takie poczucie i takie doświadczenie w tym wszystkim, że dopiero chodząc po tych konkretnych osobach dowiadujemy się bardzo dużo szczegółów na temat procesu, jak on faktycznie wygląda, a nie jak wygląda w głowie właściciela. bo często właściciel jest już na kompletnie innym etapie i jeszcze dwa lata temu ten proces mógł wyglądać tak, jak on go pamięta. Teraz to wygląda zupełnie inaczej. A jak zapytasz konkretną osobę, co robi rękami we wtorek rano, przychodząc do pracy, usłyszysz tak naprawdę 100 % tego, jak ten proces faktycznie wygląda. Idziemy z tą kartką, zaczyna się od handlowca albo od razu od klienta. Zamówienie ląduje w administracji, z administracji trafia w zależności od oddziału na konkretną produkcję. Produkcja przerabia je w swoim tempie, potem jest kolejna osoba, która zbiera, pakuje, wysyła i zmienia status zamówienia. Jeszcze jedna, która to wszystko podsumowuje, wystawia dokumenty, rachunki, faktury i komunikuje się z klientem. I teraz policz. Tej jednej kartki dotyka kilka, czasem kilkadziesiąt osób w zależności od tego, jak duża jest firma. Każdy robi z nią coś innego, każdy widzi co innego, każdy może zepsuć co innego, każda osoba popełnia inne błędy. I to jest moment, w którym przestaje być jasne, czego ludzie potrzebują, a zaczyna być jasne, jak ten moduł ma wyglądać. I teraz rzecz, którą polecam każdemu, kto ma w firmie programistę. Usiądźcie razem, ty od biznesu, on od technologii, bo on nie do końca rozumie Waszą firmę i nie ma w tym nic złego tak naprawdę. Poświęćcie na to kilka godzin i nagrajcie tę rozmowę najlepiej, zwyczajnie dyktafonem, potem oczywiście wrzućcie to transkrypcję do systemu, a on pomoże ją poukładać w specyfikacje, jeżeli wykorzystacie gotowe narzędzia, które są w Open Mercato do budowania tych specyfikacji. I oczywiście nie za pierwszym razem to wszystko wyjdzie. Potrzeba pewnie kilku iteracji, które spowodują, że powiesz w końcu, o, tak to miało wyglądać, tak chciałem, żeby to zawsze działało,",
@@ -6494,5 +6629,161 @@
    "needs-cutdown"
   ],
   "notes": "Zaproszenie na warsztaty bez prompteru, urwane na fakturach. Do przebrania na cytaty."
+ },
+ {
+  "id": "ins-intro",
+  "kind": "raw",
+  "source": "inserts",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": null,
+  "client": null,
+  "title": "Przerywnik: przedstawienie się",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    3.96,
+    14.26
+   ],
+   [
+    65.56,
+    87.4
+   ]
+  ],
+  "start": 3.96,
+  "end": 87.4,
+  "duration": 32.14,
+  "splices": 1,
+  "hook_line": "ja nazywam się Mateusz Kozłowski i pomagam firmom budować systemy dla firm, które wyrosły",
+  "transcript": "ja nazywam się Mateusz Kozłowski i pomagam firmom budować systemy dla firm, które wyrosły z Excela. Produkcja opakowań, wyroby medyczne, handel B2B, sprzedaż. To są tylko niektóre z obszarów i branż, które miałem okazję już dotknąć. Ale to nie jest odcinek sponsorowany, po prostu buduję na tym codziennie i chcę Wam o tym opowiadać, o swojej drodze i ścieżce, pomysłach, rozkminach, o tym, dlaczego to robię tak, a nie inaczej.",
+  "scores": {
+   "hook": 3,
+   "delivery": 4,
+   "total": 10
+  },
+  "priority": "C",
+  "cta": null,
+  "uses": [],
+  "notes": "„A ja nazywam się Mateusz Kozłowski…” + branże + „to nie jest odcinek sponsorowany”. Po hooku."
+ },
+ {
+  "id": "ins-mid",
+  "kind": "raw",
+  "source": "inserts",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": null,
+  "client": null,
+  "title": "Przerywnik: zaproszenie na konsultację",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    95.82,
+    99.36
+   ],
+   [
+    171.7,
+    176.08
+   ],
+   [
+    176.44,
+    198.58
+   ]
+  ],
+  "start": 95.82,
+  "end": 198.58,
+  "duration": 30.06,
+  "splices": 2,
+  "hook_line": "Poczekaj, zatrzymam Cię tu na chwilę. Jeśli",
+  "transcript": "Poczekaj, zatrzymam Cię tu na chwilę. Jeśli konsultacje, na których przechodzimy przez Twój proces i wychodzisz z odpowiedzią, czy to w ogóle się opłaca, czy to jest dla Ciebie. Bez zobowiązań, że cokolwiek budujemy. Link na dole masz w opisie, odezwij się do mnie na Whatsapp albo na Linkedin, ewentualnie umów, spotkanie tutaj, gdzie będziesz, masz na stronie opcję umów, konsultacje. A",
+  "scores": {
+   "hook": 3,
+   "delivery": 4,
+   "total": 10
+  },
+  "priority": "C",
+  "cta": null,
+  "uses": [],
+  "notes": "„Poczekaj, zatrzymam Cię…” + konsultacja, „bez zobowiązań”, WhatsApp/LinkedIn/strona. 60–70% filmu."
+ },
+ {
+  "id": "ins-mid-long",
+  "kind": "raw",
+  "source": "inserts",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": null,
+  "client": null,
+  "title": "Przerywnik: zaproszenie na warsztat (Open Mercato)",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    95.82,
+    99.36
+   ],
+   [
+    108.79,
+    118.55
+   ],
+   [
+    133.38,
+    156.02
+   ],
+   [
+    183.18,
+    198.58
+   ]
+  ],
+  "start": 95.82,
+  "end": 198.58,
+  "duration": 51.34,
+  "splices": 3,
+  "hook_line": "Poczekaj, zatrzymam Cię tu na chwilę. Jeśli",
+  "transcript": "Poczekaj, zatrzymam Cię tu na chwilę. Jeśli konsultacje, na których przechodzimy przez Twój proces. Najczęściej przyjeżdżamy do Ciebie i przechodzimy ten proces na żywo, nie przez kamerkę, nie online, bo Bierzemy przy swój kartkę i przechodzimy cały proces od A do Z, żeby go genialnie poznać. Takie warsztaty mogą trwać 5 -6 godzin, ale wychodzimy z tym z genialnym wkładem do tego właśnie, jak Open Mercato może przetworzyć to na specyfikację, a specyfikację na kod, który będzie dostosowany do Twojej firmy, zobowiązań, że cokolwiek budujemy. Link na dole masz w opisie, odezwij się do mnie na Whatsapp albo na Linkedin, ewentualnie umów, spotkanie tutaj, gdzie będziesz, masz na stronie opcję umów, konsultacje. A",
+  "scores": {
+   "hook": 3,
+   "delivery": 4,
+   "total": 10
+  },
+  "priority": "C",
+  "cta": null,
+  "uses": [],
+  "notes": "Wersja z warsztatem na miejscu i „Open Mercato przetworzy to na specyfikację” — tylko odcinki o OM."
+ },
+ {
+  "id": "ins-outro",
+  "kind": "raw",
+  "source": "inserts",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": null,
+  "client": null,
+  "title": "Przerywnik: zamknięcie",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    206.4,
+    222.3
+   ]
+  ],
+  "start": 206.4,
+  "end": 222.3,
+  "duration": 15.9,
+  "splices": 0,
+  "hook_line": "Jeśli chcesz, żebym przeszedł z Tobą przez Twój proces biznesowy i problemy, jakie Ty",
+  "transcript": "Jeśli chcesz, żebym przeszedł z Tobą przez Twój proces biznesowy i problemy, jakie Ty się mierzysz, masz link w opisie. A jeśli masz pytania do tego odcinka, zostaw je w komentarzu. Odpowiem na wszystkie, póki jest ich mało.",
+  "scores": {
+   "hook": 3,
+   "delivery": 4,
+   "total": 10
+  },
+  "priority": "C",
+  "cta": null,
+  "uses": [],
+  "notes": "„Jeśli chcesz, żebym przeszedł z Tobą przez Twój proces…” + pytania w komentarzu. Po CTA odcinka."
  }
 ]

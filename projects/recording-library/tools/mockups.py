@@ -871,3 +871,111 @@ MOCKUP_STYLE += """
 .fmt-v .or-row .or-client{{grid-column:1/3;color:{muted};font-size:32px}} .fmt-v .or-row .or-qty,.fmt-v .or-row em,.fmt-v .or-head{{display:none}}
 .fmt-v .or-kpis{{padding:22px 24px 8px;gap:12px}} .fmt-v .or-kpi{{flex-direction:column;gap:4px;padding:16px 18px}} .fmt-v .or-kpi b{{font-size:64px}} .fmt-v .or-kpi span{{font-size:26px}}
 """
+
+
+# ── Panel „jak Apilo” do ep-marpasz (noc 04.11) ─────────────────────────────
+# Mateusz: „na screenach odwzoruj Apilo — dane anonimowe, przykładowe”. Układ i kolory wzięte
+# ze zrzutów panelu (ciemne menu, fioletowe akcenty, pastylki statusów, jasna treść), znak
+# Apilo z oficjalnej strony. Żadnych prawdziwych zamówień, klientów ani nazwy sklepu.
+# mode "orders"   — lista zamówień: jedno zamówienie = 4 worki po 25 kg (~0:35–1:30)
+# mode "shipment" — „Wyślij przesyłkę”: 4 paczki, 4 pola „Komentarz” wpisywane po kolei (~1:35)
+APILO_MENU = ["Pulpit", "Zamówienia", "Lista zamówień", "Przesyłki", "Dokumenty kurierów", "Towary i usługi", "Raporty"]
+APILO_ORDERS = [
+    ("ZAM-10418", "Pasza dla niosek 25 kg", "× 4", "4 paczki", "warn"),
+    ("ZAM-10419", "Karma dla psa 20 kg", "× 1", "1 paczka", "ok"),
+    ("ZAM-10420", "Pasza królik 25 kg", "× 2", "2 paczki", "warn"),
+    ("ZAM-10421", "Ziarno gołąb 25 kg", "× 3", "3 paczki", "warn"),
+]
+
+
+def apilo_shell(title, body, crumbs):
+    from package import logo
+    menu = "".join(f'<div class="ap-mi{" ap-on" if m in crumbs else ""}{" ap-sub" if m in ("Lista zamówień", "Przesyłki", "Dokumenty kurierów") else ""}">{esc(m)}</div>'
+                   for m in APILO_MENU)
+    return (f'<div class="mk-window ap"><div class="ap-side"><div class="ap-logo">{logo("apilo", 44, "#FFFFFF")}</div>{menu}</div>'
+            f'<div class="ap-main"><div class="ap-top"><b>{esc(title)}</b><span>Zamówienia · {esc(title)}</span>'
+            f'<div class="ap-search">Szukaj zamówienia/klienta</div></div>{body}</div></div>')
+
+
+def apilo_orders(comp, ev, start, end):
+    rows = "".join(f'<div class="ap-row" data-i="{i}"><b class="ap-num">{n}</b><span>{esc(p)} <em>{q}</em></span>'
+                   f'<span class="ap-pill {cls}">{esc(pk)}</span></div>' for i, (n, p, q, pk, cls) in enumerate(APILO_ORDERS))
+    body = (f'<div class="ap-body"><div class="ap-stat"><div class="ap-st-h">Statusy</div>'
+            f'<div class="ap-st"><span>BIEŻĄCE</span><i>214</i></div><div class="ap-st"><span>DO WYSŁANIA</span><i>38</i></div>'
+            f'<div class="ap-st"><span>WIADOMOŚCI</span><i>8</i></div><div class="ap-st ap-st-red"><span>PROBLEMOWE</span><i>3</i></div></div>'
+            f'<div class="ap-card"><div class="ap-tools"><span>Drukuj</span><span>Status</span><span>Przesyłki</span></div>'
+            f'<div class="ap-row ap-head"><b>Zamówienie</b><span>Dane produktu</span><span>Dostawa</span></div>{rows}</div></div>')
+    sid = mock_slate(comp, start, end, apilo_shell("Lista zamówień", body, ("Zamówienia", "Lista zamówień")), pip=ev.get("pip", True))
+    q = comp.q
+    comp.js.append(f'tl.fromTo("#{sid} .ap-row[data-i]",{{opacity:0,x:-30}},{{opacity:1,x:0,duration:0.3,stagger:0.18}},{q(start + 0.3)});')
+    comp.js.append(f'tl.to("#{sid} .ap-row[data-i=\\"0\\"]",{{backgroundColor:"#EEEBFF",duration:0.3}},{q(start + min(1.6, (end - start) * 0.4))});')
+    comp.js.append(f'tl.fromTo("#{sid} .ap-row[data-i=\\"0\\"] .ap-pill",{{scale:1}},{{scale:1.18,duration:0.2,yoyo:true,repeat:3}},{q(start + min(1.9, (end - start) * 0.45))});')
+
+
+def apilo_shipment(comp, ev, start, end):
+    boxes = "".join(f'<div class="ap-pkg" data-i="{i}"><b>Paczka {i + 1}/4</b><div class="ap-f"><label>Waga (kg)</label><div>25,00</div></div>'
+                    f'<div class="ap-f ap-com"><label>Komentarz</label><div class="ap-in"><span class="ap-typed">{i + 1}/4 · ZAM-10418 · pasza 25 kg</span><i class="ap-caret"></i></div></div></div>'
+                    for i in range(4))
+    body = (f'<div class="ap-body ap-ship"><div class="ap-form"><div class="ap-f2"><label>Rodzaj przesyłki</label><div>Paczka</div></div>'
+            f'<div class="ap-f2"><label>Ilość paczek</label><div><b>4</b></div></div></div>'
+            f'<div class="ap-pkgs">{boxes}</div><div class="ap-actions"><span class="ap-send">Wyślij</span><span class="ap-cancel">Anuluj</span>'
+            f'<span class="ap-note">każda etykieta osobno · ręcznie</span></div></div>')
+    sid = mock_slate(comp, start, end, apilo_shell("Wyślij przesyłkę", body, ("Zamówienia", "Przesyłki")), pip=ev.get("pip", True))
+    q, span = comp.q, end - start
+    step = max(0.7, (span - 2.5) / 4)
+    comp.js.append(f'tl.set("#{sid} .ap-typed",{{clipPath:"inset(0 100% 0 0)"}},{q(start)});')
+    comp.js.append(f'tl.fromTo("#{sid} .ap-pkg",{{opacity:0,y:24}},{{opacity:1,y:0,duration:0.3,stagger:0.12}},{q(start + 0.2)});')
+    for i in range(4):
+        t = start + 0.9 + i * step
+        comp.js.append(f'tl.to("#{sid} .ap-pkg[data-i=\\"{i}\\"] .ap-in",{{borderColor:"#5B4FE9",duration:0.15}},{q(t)});')
+        comp.js.append(f'tl.set("#{sid} .ap-pkg[data-i=\\"{i}\\"] .ap-caret",{{opacity:1}},{q(t)});')
+        comp.js.append(f'tl.set("#{sid} .ap-pkg[data-i=\\"{i}\\"] .ap-caret",{{opacity:0}},{q(t + step * 0.9)});')
+        comp.js.append(f'tl.to("#{sid} .ap-pkg[data-i=\\"{i}\\"] .ap-typed",{{clipPath:"inset(0 0% 0 0)",duration:{min(0.9, step * 0.75):.2f},ease:"steps(18)"}},{q(t + 0.05)});')
+        comp.js.append(f'tl.to("#{sid} .ap-pkg[data-i=\\"{i}\\"] .ap-in",{{borderColor:"#D9DCE6",duration:0.15}},{q(t + step * 0.9)});')
+    click = start + 0.9 + 4 * step
+    if click < end - 0.4:
+        comp.js.append(f'tl.to("#{sid} .ap-send",{{scale:0.92,duration:0.12,yoyo:true,repeat:1}},{q(click)});')
+
+
+def apilo(comp, ev, start, end):
+    return (apilo_shipment if ev.get("mode") == "shipment" else apilo_orders)(comp, ev, start, end)
+
+
+MOCKUPS["apilo"] = apilo
+
+# Kolory panelu Apilo celowo stałe (nie z palety kanału) — makieta ma przypominać prawdziwy panel.
+MOCKUP_STYLE += """
+.ap{{display:grid;grid-template-columns:270px 1fr;background:#F3F4F8;color:#2B2B33;border-color:#2A2A33}}
+.ap-side{{background:#26262E;padding:22px 0;display:flex;flex-direction:column;gap:4px}}
+.ap-logo{{padding:4px 26px 22px;color:#fff}} .ap-logo .logo{{color:#fff}}
+.ap-mi{{padding:14px 26px;font-size:24px;color:#C9C9D4}} .ap-mi.ap-sub{{padding-left:46px;font-size:22px}}
+.ap-mi.ap-on{{background:#5B4FE9;color:#fff;font-weight:700}}
+.ap-main{{display:flex;flex-direction:column;min-width:0}}
+.ap-top{{display:flex;align-items:center;gap:22px;padding:20px 28px;background:#fff;border-bottom:1px solid #E3E5EE}}
+.ap-top b{{font-size:30px;font-weight:600;white-space:nowrap}} .ap-top span{{font-size:20px;color:#8A8DA0}}
+.ap-search{{margin-left:auto;border:1px solid #D9DCE6;border-radius:10px;padding:10px 18px;font-size:20px;color:#9A9DB0}}
+.ap-body{{display:grid;grid-template-columns:250px 1fr;gap:20px;padding:22px}}
+.ap-stat{{background:#fff;border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px}}
+.ap-st-h{{font-size:22px;font-weight:600;margin-bottom:6px}}
+.ap-st{{display:flex;justify-content:space-between;align-items:center;font-size:18px;color:#3B3B46}}
+.ap-st i{{font-style:normal;background:#5B4FE9;color:#fff;border-radius:8px;padding:4px 12px;font-size:18px;font-weight:700}}
+.ap-st-red i{{background:#E0483B}}
+.ap-card{{background:#fff;border-radius:14px;padding:14px 18px;display:flex;flex-direction:column}}
+.ap-tools{{display:flex;gap:10px;margin-bottom:10px}} .ap-tools span{{background:#8F86F2;color:#fff;border-radius:8px;padding:8px 16px;font-size:18px}}
+.ap-row{{display:grid;grid-template-columns:150px 1fr 130px;white-space:nowrap;gap:16px;align-items:center;padding:16px 10px;border-bottom:1px solid #ECEEF4;font-size:22px;border-radius:10px}}
+.ap-row em{{font-style:normal;font-weight:800;color:#5B4FE9}} .ap-num{{color:#5B4FE9;font-weight:700}}
+.ap-head{{font-size:18px;color:#8A8DA0;padding-top:6px}} .ap-head b{{font-weight:600}}
+.ap-pill{{justify-self:start;border-radius:20px;padding:6px 14px;font-size:18px;font-weight:700;color:#fff;background:#2B2B33}}
+.ap-pill.warn{{background:#E0483B}} .ap-pill.ok{{background:#3BAA74}}
+.ap-ship{{grid-template-columns:1fr;gap:16px}}
+.ap-form{{display:flex;gap:18px}} .ap-f2{{background:#fff;border-radius:12px;padding:12px 18px;font-size:22px;display:flex;gap:16px;align-items:center}}
+.ap-f2 label,.ap-f label{{color:#8A8DA0;font-size:18px}}
+.ap-pkgs{{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}}
+.ap-pkg{{background:#fff;border-radius:14px;padding:14px 18px;display:flex;flex-direction:column;gap:8px;font-size:22px}}
+.ap-f{{display:flex;flex-direction:column;gap:4px}} .ap-f > div{{border:1px solid #D9DCE6;border-radius:8px;padding:8px 12px;font-size:20px}}
+.ap-in{{display:flex;align-items:center;white-space:nowrap;overflow:hidden}} .ap-caret{{width:2px;height:22px;background:#5B4FE9;margin-left:2px;opacity:0}}
+.ap-actions{{display:flex;gap:12px;align-items:center}} .ap-send{{background:#3BAA74;color:#fff;border-radius:8px;padding:10px 26px;font-size:22px;font-weight:700}}
+.ap-cancel{{border:1px solid #D9DCE6;border-radius:8px;padding:10px 22px;font-size:22px;color:#6A6D80;background:#fff}}
+.ap-note{{margin-left:auto;font-size:20px;color:#E0483B;font-weight:700}}
+.fmt-v .ap{{grid-template-columns:1fr}} .fmt-v .ap-side{{display:none}} .fmt-v .ap-body{{grid-template-columns:1fr}} .fmt-v .ap-stat{{display:none}}
+"""
