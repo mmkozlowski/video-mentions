@@ -444,7 +444,7 @@
    "until": "+9",
    "zone": "lower",
    "kicker": "Gdy pamięć się kończy",
-   "text": "AI *nadpisuje dane* i halucynuje"
+   "text": "AI nadpisuje dane *i halucynuje"
   },
   {
    "type": "logos",
@@ -471,7 +471,7 @@
    "until": "+9",
    "zone": "lower",
    "kicker": "Obsidian",
-   "text": "Mózg *firmowy* w plikach"
+   "text": "Mózg firmowy *w plikach"
   },
   {
    "type": "quote",

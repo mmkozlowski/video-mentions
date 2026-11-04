@@ -26,23 +26,23 @@
    "Kody kreskowe: kilka dni → 15 minut"
   ],
   [
-   306.87,
+   308.89,
    "Etykiety: ok. 100 godzin miesięcznie"
   ],
   [
-   399.703,
+   417.4,
    "Katalog AI z faktur"
   ],
   [
-   517.337,
+   550.0,
    "Panel klienta B2B"
   ],
   [
-   624.503,
+   657.167,
    "Kierownik produkcji w godzinę"
   ],
   [
-   743.37,
+   776.033,
    "AI to dokręcanie śrubek"
   ]
  ],
@@ -199,7 +199,7 @@
    "until": "+9",
    "zone": "lower",
    "kicker": "Na początku ręcznie",
-   "text": "Kilkanaście *kliknięć* na zamówienie"
+   "text": "Kilkanaście kliknięć *na zamówienie"
   },
   {
    "type": "title",
@@ -259,8 +259,8 @@
   },
   {
    "type": "slate",
-   "at": 306.92,
-   "until": 310.73,
+   "at": 308.94,
+   "until": 312.75,
    "kicker": "Wdrożenie · sklep z paszą dla zwierząt",
    "text": "Etykiety *jednym kliknięciem",
    "pip": false
@@ -335,8 +335,8 @@
   },
   {
    "type": "slate",
-   "at": 399.756,
-   "until": 403.563,
+   "at": 417.453,
+   "until": 421.26,
    "kicker": "Wdrożenie · sklep z paszą dla zwierząt",
    "text": "Katalog *z faktur",
    "pip": false
@@ -424,8 +424,8 @@
   },
   {
    "type": "slate",
-   "at": 517.384,
-   "until": 521.197,
+   "at": 550.047,
+   "until": 553.86,
    "kicker": "Wdrożenie · producent pamiątek, Kołobrzeg",
    "text": "Klient zamawia *sam",
    "pip": false
@@ -501,8 +501,8 @@
   },
   {
    "type": "slate",
-   "at": 624.556,
-   "until": 628.363,
+   "at": 657.22,
+   "until": 661.027,
    "kicker": "Wdrożenie · producent sprzętu sportowego",
    "text": "System *jak Excel kierownika",
    "pip": false
@@ -550,8 +550,8 @@
   },
   {
    "type": "slate",
-   "at": 743.42,
-   "until": 747.23,
+   "at": 776.083,
+   "until": 779.893,
    "kicker": "Na koniec",
    "text": "AI to *dokręcanie śrubek",
    "pip": false

@@ -1,0 +1,52 @@
+{
+ "brand": "flowbiz",
+ "formats": [
+  "youtube"
+ ],
+ "endcard": {
+  "youtube": 0
+ },
+ "cta": {
+  "chip": "flowbiz.pl"
+ },
+ "clip": "ins-intro",
+ "events": [
+  {
+   "type": "title",
+   "at": "nazywam",
+   "until": "+8",
+   "zone": "lower",
+   "kicker": "flowbiz · systemy dla firm",
+   "text": "Mateusz *Kozłowski",
+   "sub": "firmy, które wyrosły z Excela"
+  },
+  {
+   "type": "list",
+   "at": "Produkcja",
+   "until": "+9",
+   "kicker": "Branże, które już dotknąłem",
+   "items": [
+    {
+     "text": "Produkcja opakowań",
+     "at": "Produkcja"
+    },
+    {
+     "text": "Wyroby medyczne",
+     "at": "medyczne"
+    },
+    {
+     "text": "Handel B2B i sprzedaż",
+     "at": "B2B"
+    }
+   ]
+  },
+  {
+   "type": "title",
+   "at": "sponsorowany",
+   "until": "+6",
+   "zone": "lower",
+   "kicker": "Uczciwie",
+   "text": "To nie jest *odcinek sponsorowany"
+  }
+ ]
+}

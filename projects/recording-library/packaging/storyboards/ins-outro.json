@@ -1,0 +1,23 @@
+{
+ "brand": "flowbiz",
+ "formats": [
+  "youtube"
+ ],
+ "endcard": {
+  "youtube": 0
+ },
+ "cta": {
+  "chip": "flowbiz.pl"
+ },
+ "clip": "ins-outro",
+ "events": [
+  {
+   "type": "title",
+   "at": "przeszedł",
+   "until": "+15",
+   "kicker": "flowbiz.pl · 536 507 701",
+   "text": "Przejdę z Tobą *Twój proces",
+   "sub": "link w opisie · pytania w komentarzu"
+  }
+ ]
+}

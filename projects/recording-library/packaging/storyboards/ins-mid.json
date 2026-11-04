@@ -1,0 +1,39 @@
+{
+ "brand": "flowbiz",
+ "formats": [
+  "youtube"
+ ],
+ "endcard": {
+  "youtube": 0
+ },
+ "cta": {
+  "chip": "flowbiz.pl"
+ },
+ "clip": "ins-mid",
+ "events": [
+  {
+   "type": "title",
+   "at": "konsultacje",
+   "until": "+10",
+   "kicker": "Bezpłatna konsultacja",
+   "text": "Przejdziemy *Twój proces",
+   "sub": "i odpowiemy, czy to się opłaca"
+  },
+  {
+   "type": "title",
+   "at": "zobowiązań",
+   "until": "+5",
+   "zone": "lower",
+   "kicker": "Bez zobowiązań",
+   "text": "Nie musimy *nic budować"
+  },
+  {
+   "type": "title",
+   "at": "Link",
+   "until": "+12",
+   "kicker": "flowbiz.pl · 536 507 701",
+   "text": "Umów *konsultację",
+   "sub": "link w opisie · WhatsApp · LinkedIn"
+  }
+ ]
+}

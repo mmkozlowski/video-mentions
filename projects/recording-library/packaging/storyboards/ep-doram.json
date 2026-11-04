@@ -211,7 +211,7 @@
    "at": "numery",
    "until": "+8",
    "kicker": "Kody kreskowe ręcznie",
-   "text": "Excel → *drugi Excel* → drukarka"
+   "text": "Excel → Excel → *drukarka"
   },
   {
    "type": "slate",
@@ -302,7 +302,7 @@
    "until": "+9",
    "zone": "lower",
    "kicker": "Oczekiwanie",
-   "text": "AI *nie wchodzi* w firmę od razu",
+   "text": "AI nie wchodzi w firmę *od razu",
    "sub": "trzeba iteracyjnie"
   },
   {

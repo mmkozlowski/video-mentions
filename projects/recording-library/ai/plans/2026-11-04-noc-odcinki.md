@@ -30,8 +30,8 @@ Każdy punkt: zrób → zweryfikuj (verify.py / transkrypcja gotowego pliku / kl
 - [x] 6. Logotypy: apilo, baselinker, inpost, nexo, allegro (jest?), erli → `assets/logos` + kolory
 - [x] 7. Makiety „jak Apilo”: lista zamówień, zamówienie 4×25 kg, „Wyślij przesyłkę” z 4 komentarzami — dane zmyślone
 - [x] 8. Plansze w lukach: wszystkie 7 odcinków bez luk > 25 s (patrz runda 4)
-- [ ] 9. Sklejki odcinków ze wstawkami (`compile_episode.py`), przeliczone rozdziały
-- [ ] 10. Render youtube wszystkich 7 → klatki kontrolne co ~30 s + transkrypcja gotowego pliku (urwania na łączeniach)
+- [x] 9. Sklejki odcinków ze wstawkami (`compile_episode.py`), przeliczone rozdziały
+- [x] 10. Render youtube wszystkich 7 → klatki kontrolne co ~30 s + transkrypcja gotowego pliku (urwania na łączeniach)
 - [ ] 11. Podglądy Studia (serwer buduje sam w tle) + rozdziały w `data/episodes/*.json` panelu
 - [ ] 12. Commit tylko własnych ścieżek, ADR, raport dla Mateusza
 
@@ -104,3 +104,38 @@ wystąpienia słowa. „8 wdrożeń”: dołożona karta „Case study · produc
 rozdziału Vacu Activ (wcześniej zaczynał się bez kontekstu od „My wychodzimy z innego założenia”).
 Fałszywe alarmy audytu: kotwice „Nie handlowiec” (moduł) działają przez caption-fixes („handlowie”).
 Składanki przebudowane (`compile_episode.py`) z klipami *-full.
+
+### Runda 5 (05.11 ~02:45) — wstawki w odcinkach (w toku)
+
+- Storyboardy wstawek `ins-*.json` (bez planszy końcowej, CTA flowbiz.pl · 536 507 701), klatki
+  ins-mid obejrzane.
+- `tools/assemble_episode.py`: render youtube-F + wstawki → `…__youtube-F--with-inserts.mp4`,
+  cięcie w najdłuższej ciszy ±1,5 s od kotwicy rozdziału, zamknięcie przed planszą końcową,
+  rozdziały po przesunięciu → `data/assembly.json`.
+- Render w tle: 4 wstawki + 7 odcinków (nowe cięcia i plansze). Potem: assemble → transkrypcja
+  gotowych plików na łączeniach → klatki kontrolne.
+
+### Runda 6 (05.11 ~00:45) — sklejanie i kontrola łączeń
+
+- Rendery: 4 wstawki + 7 odcinków (youtube-F) bez błędów. ep-8-wdrozen: storyboard miał czasy
+  liczbowe (plansze rozdziałów i rozdziały) ze starej składanki — po wydłużeniu dwóch rozdziałów
+  wypadały w środku zdań; przeliczone na nowe początki części, render ponowiony.
+- Pierwsze sklejenie 5 odcinków → transkrypcja każdego łączenia ±6 s. Czysto: oferty, moduł,
+  zaproszenie w Rezonie i Marpaszu, wszystkie zamknięcia. **Złe:** wstęp Marpasz („firma handlowa,
+  która… | wstawka | handluje paszą”), wstęp Rezon („kontrolę nad… | … | nad firmą”), wstęp i
+  zaproszenie Doram w środku zdania, zamknięcie Doram po „Dzięki i do usłyszenia”.
+- Przyczyna: kotwica rozdziału w środku zdania, najbliższa cisza = oddech. Poprawka w
+  `assemble_episode.py`: cięcie w ciszy po NAJBLIŻSZYM końcu zdania (. ? !), rozdział startuje tuż
+  po wstawce; Doram: zamknięcie `before:Dzięki i do usłyszenia`. Ponowne sklejenie + kontrola w toku.
+
+### Runda 7 (05.11 ~01:30) — łączenia czyste, klatki kontrolne
+
+- Trzecie podejście do cięć: granice słów z transkrypcji GOTOWEGO renderu (`build/work/final-words/`),
+  cięcie w przerwie po najbliższym końcu zdania; skróty („np.”) wykluczone; zamknięcie przed własnym
+  pożegnaniem (`before:` — Doram „Dzięki i do usłyszenia”, Vacu Activ „No dobra. Dziękuję Wam…”).
+- Kontrola transkrypcją wszystkich 40 łączeń (7 odcinków × 4–6): każde od końca zdania do wstawki
+  i z powrotem. Dwa świadome kompromisy: Marpasz „…to też jest katalog AI. | zaproszenie | Katalog AI,
+  jak to wygląda?”, 8 wdrożeń „…tworzenie ofert. | przedstawienie | To jest jeden z…”.
+- Klatki kontrolne nowych plansz (Doram 7, Vacu Activ 8): błąd znacznika — `*` wyróżnia od słowa
+  do końca, para `*…*` zostawiała dosłowną gwiazdkę („drugi Excel*”). Poprawione 5 tytułów
+  (Doram 2, Vacu Activ 2, 8 wdrożeń 1), ponowny render tych trzech + sklejenie.
