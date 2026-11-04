@@ -102,6 +102,22 @@
    ]
   },
   {
+   "type": "title",
+   "at": "potocznym",
+   "until": "+10",
+   "zone": "lower",
+   "kicker": "Kontekst po ludzku",
+   "text": "Pamięć, która *się kończy"
+  },
+  {
+   "type": "title",
+   "at": "milion",
+   "until": "+8",
+   "zone": "lower",
+   "kicker": "Okno kontekstu",
+   "text": "Milion tokenów *też się kończy"
+  },
+  {
    "type": "broll",
    "at": "kilkanaście miesięcy",
    "until": "+3.2",
@@ -161,12 +177,52 @@
    "title": "„Chcę wiedzieć, *co się dziś dzieje”"
   },
   {
+   "type": "list",
+   "at": "zakasaliśmy",
+   "until": "+26",
+   "kicker": "Kolejne rozwiązania dla produkcji",
+   "items": [
+    {
+     "text": "Status i ślad",
+     "at": "ślad"
+    },
+    {
+     "text": "Cyfryzacja danych",
+     "at": "scyfryzować"
+    },
+    {
+     "text": "Jedno miejsce",
+     "at": "scentralizować"
+    }
+   ]
+  },
+  {
    "type": "broll",
    "at": "Open Mercato",
    "until": "+10",
    "src": "build/klocki/system-moduly-przelot-16x9.mp4",
    "ai": false,
    "from": 1.0
+  },
+  {
+   "type": "title",
+   "at": "odczucie",
+   "until": "+9",
+   "zone": "lower",
+   "kicker": "Gotowy system dla produkcji",
+   "text": "Ty dopasowujesz się *do niego"
+  },
+  {
+   "type": "beat",
+   "style": "slam",
+   "at": "przestawić",
+   "until": "+3.6",
+   "label": "Kupując gotowca",
+   "lines": [
+    "Z TWOJEGO UKŁADU",
+    "na",
+    "CUDZY SYSTEM."
+   ]
   },
   {
    "type": "beat",
@@ -190,6 +246,22 @@
    "text": "System dopasowany *do ludzi"
   },
   {
+   "type": "title",
+   "at": "budżety",
+   "until": "+9",
+   "zone": "lower",
+   "kicker": "Częsta blokada",
+   "text": "Budżety IT *poza planem"
+  },
+  {
+   "type": "title",
+   "at": "założenia",
+   "until": "+9",
+   "zone": "lower",
+   "kicker": "Nasze założenie",
+   "text": "Zaczynamy *od Excela kierownika"
+  },
+  {
    "type": "mockup",
    "name": "board",
    "at": "widoki",
@@ -204,6 +276,35 @@
    "num": "1 H"
   },
   {
+   "type": "logos",
+   "at": "potężne",
+   "until": "+7",
+   "kicker": "Gotowe moduły",
+   "items": [
+    {
+     "logo": "openmercato",
+     "name": "Open Mercato"
+    }
+   ]
+  },
+  {
+   "type": "title",
+   "at": "konkretny",
+   "until": "+9",
+   "zone": "lower",
+   "kicker": "Z gotowych klocków",
+   "text": "Jeden moduł *pod jeden proces"
+  },
+  {
+   "type": "beat",
+   "style": "burst",
+   "at": "godzin",
+   "until": "+3.4",
+   "label": "Wdrożenie u kierownika",
+   "num": "KILKA H",
+   "bottom": "plus pytania na WhatsAppie"
+  },
+  {
    "type": "title",
    "at": "PDF",
    "until": "+8",
@@ -211,11 +312,35 @@
    "text": "PDF 1:1 *jak dawny Excel"
   },
   {
+   "type": "title",
+   "at": "jednym",
+   "until": "+9",
+   "zone": "lower",
+   "kicker": "Czego chciał właściciel",
+   "text": "Wszystkie dane *w jednym miejscu"
+  },
+  {
    "type": "mockup",
    "name": "telegram",
    "mode": "brief",
    "at": "przyjemnością",
    "until": "+12"
+  },
+  {
+   "type": "logos",
+   "at": "Whatsapp",
+   "until": "+7",
+   "kicker": "Oferta z komunikatora",
+   "items": [
+    {
+     "logo": "whatsapp",
+     "name": "WhatsApp"
+    },
+    {
+     "logo": "slack",
+     "name": "Slack"
+    }
+   ]
   },
   {
    "type": "broll",
@@ -257,11 +382,49 @@
   },
   {
    "type": "title",
+   "at": "project",
+   "until": "+9",
+   "zone": "lower",
+   "kicker": "Agent AI w praktyce",
+   "text": "Twój *project manager",
+   "sub": "przypomina o opóźnieniach na produkcji"
+  },
+  {
+   "type": "title",
    "at": "odświeżany",
    "until": "+9",
    "zone": "lower",
    "kicker": "Bez utraty kontekstu",
    "text": "Pamięć *zawsze świeża"
+  },
+  {
+   "type": "list",
+   "at": "skille",
+   "until": "+18",
+   "kicker": "Jak pracuje agent",
+   "items": [
+    {
+     "text": "Buduje skille z Twojej pracy",
+     "at": "skille"
+    },
+    {
+     "text": "Nie traci kontekstu",
+     "at": "straci"
+    },
+    {
+     "text": "Zawsze najnowsze pliki",
+     "at": "plików"
+    }
+   ]
+  },
+  {
+   "type": "title",
+   "at": "miesiąca",
+   "until": "+10",
+   "zone": "lower",
+   "kicker": "Czat GPT",
+   "text": "Nie cofnie się *o pół roku",
+   "sub": "nie zapisuje plików"
   },
   {
    "type": "beat",
@@ -276,6 +439,26 @@
    ]
   },
   {
+   "type": "title",
+   "at": "halucynować",
+   "until": "+9",
+   "zone": "lower",
+   "kicker": "Gdy pamięć się kończy",
+   "text": "AI *nadpisuje dane* i halucynuje"
+  },
+  {
+   "type": "logos",
+   "at": "Obsidiana",
+   "until": "+7",
+   "kicker": "Pamięć w plikach",
+   "items": [
+    {
+     "logo": "obsidian",
+     "name": "Obsidian"
+    }
+   ]
+  },
+  {
    "type": "broll",
    "at": "markdown",
    "until": "+3.4",
@@ -283,10 +466,26 @@
    "title": "Pliki, które *możesz przeczytać"
   },
   {
+   "type": "title",
+   "at": "firmowy",
+   "until": "+9",
+   "zone": "lower",
+   "kicker": "Obsidian",
+   "text": "Mózg *firmowy* w plikach"
+  },
+  {
    "type": "quote",
    "at": "nie wymyśla",
    "until": "+8",
    "text": "On nie wymyśla — bierze dane na bieżąco"
+  },
+  {
+   "type": "title",
+   "at": "kroku",
+   "until": "+9",
+   "zone": "lower",
+   "kicker": "Puenta",
+   "text": "Duży krok dla firmy *jest możliwy"
   },
   {
    "type": "beat",
@@ -312,6 +511,14 @@
   },
   {
    "type": "title",
+   "at": "ulgę",
+   "until": "+9",
+   "zone": "lower",
+   "kicker": "Po wdrożeniu",
+   "text": "Właściciel i dyrektorzy: *ulga"
+  },
+  {
+   "type": "title",
    "at": "nawyk",
    "until": "+9",
    "kicker": "Warunek",
@@ -327,12 +534,40 @@
    "title": "Najpierw *konsultacja"
   },
   {
+   "type": "list",
+   "at": "ludziach",
+   "until": "+16",
+   "kicker": "Jak podchodzimy we flowbiz",
+   "items": [
+    {
+     "text": "Ludzie",
+     "at": "ludziach"
+    },
+    {
+     "text": "Szkolenie",
+     "at": "szkolić"
+    },
+    {
+     "text": "Doradztwo i konsultacje",
+     "at": "konsultować"
+    }
+   ]
+  },
+  {
    "type": "title",
    "at": "naszyte na miarę",
    "until": "+9",
    "zone": "lower",
    "kicker": "Zasada",
    "text": "Rozwiązanie *szyte na miarę"
+  },
+  {
+   "type": "title",
+   "at": "przymiotnik",
+   "until": "+8",
+   "zone": "lower",
+   "kicker": "Emocje właściciela",
+   "text": "Wstaw *swój przymiotnik"
   }
  ]
 }

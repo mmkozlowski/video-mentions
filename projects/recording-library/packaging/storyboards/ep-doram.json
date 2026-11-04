@@ -105,6 +105,15 @@
    ]
   },
   {
+   "type": "title",
+   "at": "frustracja",
+   "until": "+8",
+   "zone": "lower",
+   "kicker": "Frustracja",
+   "text": "Nie tylko *właściciela",
+   "sub": "też osób, które to klepały"
+  },
+  {
    "type": "beat",
    "style": "strike",
    "at": "kilka dni",
@@ -169,6 +178,26 @@
    "until": "+9"
   },
   {
+   "type": "list",
+   "at": "utarte",
+   "until": "+20",
+   "kicker": "Ujednolicić Excele u kontrahentów?",
+   "items": [
+    {
+     "text": "Utarte schematy",
+     "at": "utarte"
+    },
+    {
+     "text": "Bierzemy, jak jest",
+     "at": "braliśmy"
+    },
+    {
+     "text": "Próby kończyły się po tygodniu",
+     "at": "tygodniu"
+    }
+   ]
+  },
+  {
    "type": "broll",
    "at": "kodów kreskowych",
    "until": "+3.4",
@@ -176,6 +205,13 @@
    "kicker": "Biuro",
    "title": "Kody kreskowe do *każdej paczki",
    "ai": true
+  },
+  {
+   "type": "title",
+   "at": "numery",
+   "until": "+8",
+   "kicker": "Kody kreskowe ręcznie",
+   "text": "Excel → *drugi Excel* → drukarka"
   },
   {
    "type": "slate",
@@ -206,6 +242,27 @@
    "text": "Bez fundamentów AI nie wie, jak firma pracuje"
   },
   {
+   "type": "beat",
+   "style": "slam",
+   "at": "finałem",
+   "until": "+3.6",
+   "label": "Finał",
+   "lines": [
+    "JEDNO KLIKNIĘCIE",
+    "albo",
+    "DWA."
+   ]
+  },
+  {
+   "type": "title",
+   "at": "początku",
+   "until": "+9",
+   "zone": "lower",
+   "kicker": "Uczciwie",
+   "text": "Na początku *5–10 kliknięć",
+   "sub": "dziś jedno, dwa"
+  },
+  {
    "type": "title",
    "at": "pamięć dla",
    "until": "+12",
@@ -214,10 +271,39 @@
    "sub": "każdy kontrahent pisze inaczej"
   },
   {
+   "type": "list",
+   "at": "trzech",
+   "until": "+24",
+   "kicker": "Ten sam produkt u kontrahenta",
+   "items": [
+    {
+     "text": "3 warianty nazwy",
+     "at": "trzech"
+    },
+    {
+     "text": "5 wariantów",
+     "at": "pięciu"
+    },
+    {
+     "text": "AI liczy prawdopodobieństwo",
+     "at": "prawdopodobieństwa"
+    }
+   ]
+  },
+  {
    "type": "mockup",
    "name": "match",
    "at": "kolorach",
    "until": "+14"
+  },
+  {
+   "type": "title",
+   "at": "oczekujemy",
+   "until": "+9",
+   "zone": "lower",
+   "kicker": "Oczekiwanie",
+   "text": "AI *nie wchodzi* w firmę od razu",
+   "sub": "trzeba iteracyjnie"
   },
   {
    "type": "logos",
@@ -245,6 +331,26 @@
    "title": "Poprawiasz. *Zapamiętuje."
   },
   {
+   "type": "list",
+   "at": "tygodni",
+   "until": "+26",
+   "kicker": "Jak AI uczy się Twojej firmy",
+   "items": [
+    {
+     "text": "Tygodnie prób",
+     "at": "tygodni"
+    },
+    {
+     "text": "Ten sposób, nie tamten",
+     "at": "sposób"
+    },
+    {
+     "text": "Forma maila: okej",
+     "at": "maila"
+    }
+   ]
+  },
+  {
    "type": "beat",
    "style": "burst",
    "at": "poziomie",
@@ -261,6 +367,14 @@
    "num": "94%",
    "bottom": "bez zmiany pracy biura",
    "pip": true
+  },
+  {
+   "type": "title",
+   "at": "zapisaliśmy",
+   "until": "+8",
+   "zone": "lower",
+   "kicker": "Poprawiasz raz",
+   "text": "System *zapamiętuje"
   },
   {
    "type": "title",
@@ -301,6 +415,15 @@
    "label": "Etykiety do zamówienia",
    "num": "15 MIN",
    "bottom": "zamiast kilku dni"
+  },
+  {
+   "type": "title",
+   "at": "oszczędności",
+   "until": "+9",
+   "zone": "lower",
+   "kicker": "Co dalej w tej firmie",
+   "text": "Kolejne *automatyzacje",
+   "sub": "wrócę z liczbami przed i po"
   },
   {
    "type": "title",

@@ -28,8 +28,8 @@ Każdy punkt: zrób → zweryfikuj (verify.py / transkrypcja gotowego pliku / kl
 - [x] 4. Wstawki jako klipy biblioteki: źródło `wstawki` w `sources.py`, klipy `ins-intro`, `ins-mid`, `ins-mid-long`, `ins-outro` w `edl.py` → `cut.py` → `verify.py`
 - [x] 5. Odsłuch „w filmie / w firmie” (1:39, 2:39 w pliku wstawek) — transkrypcja wycinka large-v3
 - [x] 6. Logotypy: apilo, baselinker, inpost, nexo, allegro (jest?), erli → `assets/logos` + kolory
-- [ ] 7. Makiety „jak Apilo”: lista zamówień, zamówienie 4×25 kg, „Wyślij przesyłkę” z 4 komentarzami — dane zmyślone
-- [ ] 8. Storyboard ep-marpasz: logotypy + makiety w miejscach z planu; uzupełnienie braków z pkt 2 we wszystkich odcinkach
+- [x] 7. Makiety „jak Apilo”: lista zamówień, zamówienie 4×25 kg, „Wyślij przesyłkę” z 4 komentarzami — dane zmyślone
+- [x] 8. Plansze w lukach: wszystkie 7 odcinków bez luk > 25 s (patrz runda 4)
 - [ ] 9. Sklejki odcinków ze wstawkami (`compile_episode.py`), przeliczone rozdziały
 - [ ] 10. Render youtube wszystkich 7 → klatki kontrolne co ~30 s + transkrypcja gotowego pliku (urwania na łączeniach)
 - [ ] 11. Podglądy Studia (serwer buduje sam w tle) + rozdziały w `data/episodes/*.json` panelu
@@ -77,3 +77,30 @@ jak wcześniej…” — wycięcie psuło sens), Vacu Activ rozdz. 5 kończy si�
   od „Poczekaj, zatrzymam Cię tu na chwilę.” prosto do „Robię konsultacje…”.
 - Logotypy (packaging/brand/logos): apilo, baselinker, erli (CDN integracji BaseLinkera / apilo.com),
   inpost (inpost.pl), nexo (ikona „nexo PRO” z insert.com.pl) — obrysowane potrace, sprawdzone renderem.
+
+### Runda 3 (05.11 ~01:30) — makiety Apilo + Marpasz, checkpoint
+
+- Makieta `apilo` (mockups.py): `mode: orders` — lista zamówień, pierwsza pozycja „4 paczki” podświetlona;
+  `mode: shipment` — „Wyślij przesyłkę”, 4 paczki × „Komentarz” wpisywany po kolei, „Wyślij”.
+  Klatki kontrolne obejrzane (76 s, 101,5 s): układ jak panel Apilo, dane zmyślone (ZAM-10418…).
+- ep-marpasz: logotypy Apilo+BaseLinker (0:40), lista zamówień (1:08), „Wyślij przesyłkę” (1:34),
+  stara plansza „wcześniej ręcznie” przesunięta na 1:48, Nexo (5:02), Erli dopisane do platform,
+  tytuł „Drugi przykład z tej firmy” (4:46), lista „Wprowadzanie produktów” (5:28).
+- Gałąź **mmkozlowski/noc-odcinki-0411** (od gałęzi Agaty, jej niezacommitowane zmiany NIE weszły:
+  hunki vibecoding w edl.py, zmiany package.py poza LOGO_COLORS, klipy vibe w clips.json z HEAD).
+  Commit d30a8b3, wypchnięty.
+
+**Następna runda:** pkt 8 dla vacuactiv (15 luk), doram (9), 8-wdrozen (7), module (1 + kotwice
+„Nie handlowiec”), potem pkt 9: montaż wstawek = cięcie gotowych renderów youtube-F w punktach
+z planu wstawek + render wstawek przez storyboard (CTA flowbiz.pl / 536 507 701) i sklejenie ffmpeg.
+
+### Runda 4 (05.11 ~02:15) — plansze w lukach
+
+Udział grafiki w czasie (przed → po): Vacu Activ 20% → 40% (15 luk → 0), Doram 29% → 49% (9 → 0),
+Marpasz 29% → 42%, 8 wdrożeń 38% → 44% (7 → 0), moduł 55% → 57%. Rezon i oferty bez zmian (bez luk).
+Tylko istniejące typy zdarzeń (title/list/beat/logos), treść wyłącznie z tego, co Mateusz mówi
+w danym miejscu; kotwice sprawdzone — czasy rosną monotonicznie, żadna nie cofa się do wcześniejszego
+wystąpienia słowa. „8 wdrożeń”: dołożona karta „Case study · producent sprzętu sportowego” na wejściu
+rozdziału Vacu Activ (wcześniej zaczynał się bez kontekstu od „My wychodzimy z innego założenia”).
+Fałszywe alarmy audytu: kotwice „Nie handlowiec” (moduł) działają przez caption-fixes („handlowie”).
+Składanki przebudowane (`compile_episode.py`) z klipami *-full.

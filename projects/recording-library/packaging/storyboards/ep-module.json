@@ -233,6 +233,26 @@
    "text": "Rozmowa → *specyfikacja"
   },
   {
+   "type": "list",
+   "at": "Nikt",
+   "until": "+12",
+   "kicker": "Rozmowa bez presji",
+   "items": [
+    {
+     "text": "Nikt nie liczy godzin",
+     "at": "godzin"
+    },
+    {
+     "text": "Nikt nie patrzy na terminy",
+     "at": "terminy"
+    },
+    {
+     "text": "Open Mercato + agenci",
+     "at": "agenci"
+    }
+   ]
+  },
+  {
    "type": "mockup",
    "name": "spec",
    "at": "Problem biznesowy",

@@ -195,6 +195,14 @@
   },
   {
    "type": "title",
+   "at": "kilkunastu",
+   "until": "+9",
+   "zone": "lower",
+   "kicker": "Na początku ręcznie",
+   "text": "Kilkanaście *kliknięć* na zamówienie"
+  },
+  {
+   "type": "title",
    "at": "dopasowuje to",
    "until": "Zostają",
    "kicker": "Kolejne zamówienie",
@@ -256,6 +264,26 @@
    "kicker": "Wdrożenie · sklep z paszą dla zwierząt",
    "text": "Etykiety *jednym kliknięciem",
    "pip": false
+  },
+  {
+   "type": "beat",
+   "style": "slam",
+   "at": "kilo",
+   "until": "+3.6",
+   "label": "Limit kuriera",
+   "lines": [
+    "4 WORKI PO 25 KG",
+    "to",
+    "4 ETYKIETY."
+   ]
+  },
+  {
+   "type": "title",
+   "at": "kliknięcie",
+   "until": "+9",
+   "zone": "lower",
+   "kicker": "Teraz",
+   "text": "Wszystko na *jedno kliknięcie"
   },
   {
    "type": "broll",
@@ -343,6 +371,26 @@
     }
    ],
    "floor": 402.506
+  },
+  {
+   "type": "list",
+   "at": "zdjęcia",
+   "until": "+16",
+   "kicker": "Wprowadzanie produktów",
+   "items": [
+    {
+     "text": "Szukanie zdjęć",
+     "at": "zdjęcia"
+    },
+    {
+     "text": "Ręczna praca",
+     "at": "ręcznej"
+    },
+    {
+     "text": "5–10 produktów",
+     "at": "wprowadzenie"
+    }
+   ]
   },
   {
    "type": "beat",
@@ -460,6 +508,14 @@
    "pip": false
   },
   {
+   "type": "title",
+   "at": "wychodzimy",
+   "until": "+9",
+   "zone": "lower",
+   "kicker": "Case study · producent sprzętu sportowego",
+   "text": "Zaczynamy *od Excela kierownika"
+  },
+  {
    "type": "mockup",
    "name": "board",
    "at": "widoki",
@@ -499,6 +555,18 @@
    "kicker": "Na koniec",
    "text": "AI to *dokręcanie śrubek",
    "pip": false
+  },
+  {
+   "type": "beat",
+   "style": "slam",
+   "at": "idealnie",
+   "until": "+3.6",
+   "label": "Czy działa idealnie?",
+   "lines": [
+    "NIE OD RAZU.",
+    "to",
+    "DOKRĘCANIE ŚRUBEK."
+   ]
   },
   {
    "type": "title",
