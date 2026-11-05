@@ -358,15 +358,15 @@ class Composition:
                 f'data-duration="{self.clip_len}" data-track-index="0" style="object-position:{face_x:.1f}% 50%"></video></div>'
                 f'<!--BROLL--></div>'
                 f'<div id="side-plate"></div>')
+        if self.board.get("voice_only"):
+            # przerywnik bez twarzy (Mateusz 05.11: „nie potrzebuję siebie pokazywać — zostawmy dźwięk,
+            # resztę na planszach”): stałe tło pod planszami, kamera nigdy nie prześwituje
+            self.html.append('<div class="voice-backdrop"><div class="end-grid"></div></div>')
 
     def brand_mark(self):
         if self.brand["mark"] == "flowbiz":
             logo = self.pal["logo"]
             if logo != "flowbiz-ai.png":
-        if self.board.get("voice_only"):
-            # przerywnik bez twarzy (Mateusz 05.11: „nie potrzebuję siebie pokazywać — zostawmy dźwięk,
-            # resztę na planszach”): stałe tło pod planszami, kamera nigdy nie prześwituje
-            self.html.append('<div class="voice-backdrop"><div class="end-grid"></div></div>')
                 self.media[logo] = BRAND / logo
             return f'<img src="media/{logo}" alt="flowbiz AI" class="mark-img">'
         return f'<span class="mark-text"><b>AI</b> Słupsk</span>'
@@ -1330,6 +1330,7 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .hv-bar{{height:44px;border-radius:22px;background:{raised};overflow:hidden}} .hv-bar i{{display:block;height:100%;background:{accent};border-radius:22px}}
 .hv-val{{font-size:120px;line-height:1;color:{accent};text-align:center}}
 .hook-in .acc{{color:{accent}}}
+.voice-backdrop{{position:absolute;inset:0;background:{bg};z-index:6}}
 .slate{{position:absolute;inset:0;background:{bg};display:flex;align-items:center;justify-content:center;z-index:7}}
 .slate-body{{position:relative;width:{SW}px;display:flex;flex-direction:column;gap:10px}}
 .slate-text{{font-size:{SF}px;font-weight:800;line-height:1.04;letter-spacing:-.02em}}
@@ -1340,7 +1341,6 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .slate .logo-tile{{min-width:0;width:{ST}px;padding:46px 20px 32px;gap:24px}}
 .slate .logo-tile span{{font-size:38px}}
 .slate .sub{{margin-top:40px}}
-.voice-backdrop{{position:absolute;inset:0;background:{bg};z-index:6}}
 
 .cap{{position:absolute;left:40px;right:40px;top:{FH}px;transform:translateY(-150px);display:flex;justify-content:center}}
 .cap-in{{font-size:52px;font-weight:800;text-align:center;line-height:1.12;color:#fff;background:rgba(0,0,0,.72);padding:10px 22px;border-radius:16px}}
@@ -1466,6 +1466,8 @@ def mix_music(raw, music, out_wav):
     total = probe_duration(raw, "v:0")
     intro_end, ramp = MUSIC_INTRO
     bed, outro = 10 ** (MUSIC_BED_DB / 20), 10 ** (MUSIC_OUTRO_DB / 20)
+    intro = 10 ** (MUSIC_INTRO_DB / 20) if music.get("intro", True) else bed
+    outro = outro if music.get("intro", True) else bed   # przerywnik nie ma planszy końcowej
     outro_at = max(intro_end + ramp, music["clip_len"] - 0.3)
     gain = (f"if(lt(t,{intro_end}),{intro:.3f},if(lt(t,{intro_end + ramp}),{intro:.3f}-({intro:.3f}-{bed:.3f})*(t-{intro_end})/{ramp},"
             f"if(lt(t,{outro_at:.3f}),{bed:.3f},min({outro:.3f},{bed:.3f}+({outro:.3f}-{bed:.3f})*(t-{outro_at:.3f})/0.6))))")
@@ -1476,8 +1478,6 @@ def mix_music(raw, music, out_wav):
              f"[v][md]amix=inputs=2:normalize=0:duration=first[a]")
     subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", str(raw), "-stream_loop", "-1", "-ss", f"{music['offset']:.2f}",
                     "-i", str(music["file"]), "-filter_complex", graph, "-map", "[a]", "-c:a", "pcm_s16le", str(out_wav)],
-    intro = 10 ** (MUSIC_INTRO_DB / 20) if music.get("intro", True) else bed
-    outro = outro if music.get("intro", True) else bed   # przerywnik nie ma planszy końcowej
                    check=True)
     return out_wav
 
