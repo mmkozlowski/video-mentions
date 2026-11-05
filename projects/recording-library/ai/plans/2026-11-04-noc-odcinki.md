@@ -146,3 +146,27 @@ Składanki przebudowane (`compile_episode.py`) z klipami *-full.
   wyeksportowany (66 filmów). Rozdziały 7 odcinków wpisane przez API panelu (PATCH 200). Panel nie
   przyjmuje `length` — długości w raporcie. Podglądy nowych plików buduje serwer w tle.
 - Klatka kontrolna po poprawce napisu: „Excel → Excel → drukarka” ✅.
+
+### Runda 9 (05.11 rano) — uwagi Mateusza po obejrzeniu Marpasza
+
+- **Wstawki bez twarzy** („sztucznie wygląda, dźwięk się rozjeżdża, inne ujęcie kamery — zostawmy
+  dźwięk, resztę na planszach”): storyboard `"voice_only": true` → stałe tło pod planszami, kamera nie
+  prześwituje; cztery wstawki przepisane na ciągłe plansze z jego zdaniami.
+- **Przedstawienie do „…miałem okazję już dotknąć”** — „to nie jest odcinek sponsorowany” wycięte
+  („po co mam się tłumaczyć”), cięcie w ciszy 74,38–74,76 s źródła; transkrypcja końcówki ✅.
+- **Dźwięk wstawek:** głośność zintegrowana była równa (−14 LUFS); różnica to barwa — wstawce brakowało
+  4–6 dB w 1–4 kHz (pomiar widma obu nagrań). `"voice_filter"`: EQ + łagodna bramka na ogon pogłosu.
+  `"music_intro": false` — wstawka nie odpala od nowa wejścia muzyki (było słychać doklejenie).
+- **Apilo w Marpaszu:** nowy tryb makiety `comment` — JEDNO pole „Komentarz” z czterema pozycjami po
+  przecinku; zaznacz i usuń → Excel → drukuj 1/4 → wklej z powrotem → druga pozycja → … 4/4; kroki
+  przypięte do słów (`beats`). Ekran wchodzi przy „wracając do sedna” (~10 s później niż przedtem), na
+  „fajny system do marketplace'ów” samo logo Apilo. Stary tryb `shipment` (4 pola) zostaje w kodzie.
+- **Rezon ~3:30:** mapa zamiast krzywej — prawdziwy zarys wybrzeża (lon/lat, Świnoujście → Hel →
+  Mierzeja Wiślana), trasa Kołobrzeg → Ustka → Rowy → Łeba.
+- **Jingiel otwarcia** (`Miniaturki Youtube.mp4`): 1,2 s plansza + wejście muzyki → odcinek pod maską
+  L (pasek z logo i dolny z CTA) → paski zjeżdżają z kadru po 6,5 s. Pierwsza wersja (pomniejszone okno
+  + przenikanie) dawała podwójny obraz — odrzucona po klatkach.
+- Sklejone wszystkie 7 odcinków; transkrypcja wszystkich łączeń — każde na końcu zdania (te same dwa
+  kompromisy co w rundzie 7). Rozdziały w Studiu przez PATCH (nagłówek `x-studio-request: 1` — nowy
+  wymóg panelu). Długości: oferty 3:36, 8 wdrożeń 15:05, Doram 11:50, Rezon 8:02, Marpasz 8:49,
+  Vacu Activ 18:53, moduł 9:32.

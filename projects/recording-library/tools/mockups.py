@@ -238,24 +238,52 @@ def sync(comp, ev, start, end):
 
 
 # Trasa handlowca z ep-rezon (~2:45): „objechać z towarem całe wybrzeże albo zimą południe
-# Polski” — stylizowane wybrzeże Bałtyku, bus jedzie od miasta do miasta.
-COAST_TOWNS = [("Kołobrzeg", 120, 300), ("Ustka", 560, 200), ("Rowy", 700, 175), ("Łeba", 900, 150)]
+# Polski”. 05.11 Mateusz: „ta mapka to lipa — to musi być mapa wybrzeża Polski”, więc zamiast
+# krzywej: prawdziwy zarys brzegu (uproszczone współrzędne lon/lat, Świnoujście → Hel → Mierzeja
+# Wiślana), rzut równoodległościowy z cos(54,4°), bus jedzie wzdłuż brzegu od miasta do miasta.
+COAST_LONLAT = [
+    (14.22, 53.93), (14.45, 53.93), (14.77, 54.03), (14.93, 54.06), (15.07, 54.10), (15.27, 54.15),
+    (15.57, 54.18), (15.75, 54.22), (16.06, 54.26), (16.40, 54.44), (16.53, 54.54), (16.85, 54.59),
+    (17.05, 54.67), (17.55, 54.76), (17.97, 54.80), (18.30, 54.83), (18.42, 54.79), (18.68, 54.70),
+    (18.82, 54.60), (18.79, 54.605), (18.66, 54.685), (18.46, 54.765), (18.41, 54.72), (18.50, 54.63),
+    (18.55, 54.52), (18.57, 54.44), (18.63, 54.41), (18.78, 54.37), (19.11, 54.33), (19.45, 54.38),
+    (19.63, 54.45),
+]
+# (nazwa, lon, lat, przesunięcie podpisu x) — Ustka i Rowy leżą 15 km od siebie, podpisy rozsunięte
+COAST_TOWNS = [("Kołobrzeg", 15.57, 54.18, 0), ("Ustka", 16.85, 54.59, -62), ("Rowy", 17.05, 54.67, 50), ("Łeba", 17.55, 54.76, 30)]
+COAST_LANDMARKS = [("Świnoujście", 14.25, 53.91, 70, 26), ("Gdańsk", 18.64, 54.36, 0, 44)]
+COAST_W, COAST_H = 1220, 420
+
+
+def coast_xy(lon, lat):
+    k = 352.0
+    return round(30 + (lon - 14.15) * 0.582 * k, 1), round(40 + (54.90 - lat) * k, 1)
 
 
 def coast(comp, ev, start, end):
-    path = "M 40 330 C 200 300, 380 230, 560 200 S 820 160, 1000 135 L 1180 120"
-    towns = "".join(f'<g class="co-town" data-i="{i}"><circle cx="{x}" cy="{y}" r="12"/><text x="{x}" y="{y + 52}">{esc(n)}</text></g>'
-                    for i, (n, x, y) in enumerate(COAST_TOWNS))
-    inner = (f'<div class="co"><div class="co-kicker">Sezon w trasie</div><svg viewBox="0 0 1220 420" class="co-map">'
-             f'<path class="co-sea" d="{path} L 1220 0 L 0 0 Z"/><path class="co-shore" d="{path}"/>'
-             f'<path class="co-route" d="M 120 300 C 300 260, 430 225, 560 200 S 820 160, 900 150" pathLength="1"/>{towns}'
+    shore = [coast_xy(*p) for p in COAST_LONLAT]
+    line = "M " + " L ".join(f"{x} {y}" for x, y in shore)
+    sea = line + f" L {COAST_W} {shore[-1][1]} L {COAST_W} 0 L 0 0 L 0 {shore[0][1]} Z"
+    land = line + f" L {COAST_W} {shore[-1][1]} L {COAST_W} {COAST_H} L 0 {COAST_H} L 0 {shore[0][1]} Z"
+    # trasa: brzegiem, kilkanaście pikseli w głąb lądu, od Kołobrzegu do Łeby
+    leg = [(x, y + 14) for (lon, lat), (x, y) in zip(COAST_LONLAT, shore) if 15.57 <= lon <= 17.55]
+    route = "M " + " L ".join(f"{x} {y}" for x, y in leg)
+    towns = "".join(f'<g class="co-town" data-i="{i}"><circle cx="{x}" cy="{y + 14}" r="12"/><text x="{x + dx}" y="{y + 66}">{esc(n)}</text></g>'
+                    for i, (n, x, y, dx) in enumerate((n, *coast_xy(lon, lat), dx) for n, lon, lat, dx in COAST_TOWNS))
+    marks = "".join(f'<text class="co-mark" x="{x + dx}" y="{y + dy}">{esc(n)}</text>'
+                    for n, x, y, dx, dy in ((n, *coast_xy(lon, lat), dx, dy) for n, lon, lat, dx, dy in COAST_LANDMARKS))
+    inner = (f'<div class="co"><div class="co-kicker">Sezon w trasie · wybrzeże</div><svg viewBox="0 0 {COAST_W} {COAST_H}" class="co-map">'
+             f'<path class="co-sea" d="{sea}"/><path class="co-land" d="{land}"/><path class="co-shore" d="{line}"/>'
+             f'<text class="co-sea-label" x="560" y="70">Morze Bałtyckie</text>{marks}'
+             f'<path class="co-route" d="{route}" pathLength="1"/>{towns}'
              f'<g class="co-van"><rect x="-26" y="-16" width="52" height="30" rx="6"/></g></svg>'
              f'<div class="co-note">Towar wyprodukowany „na zapas” — <b>dowiadujesz się o nadwyżce na końcu sezonu</b></div></div>')
     sid = mock_slate(comp, start, end, inner, pip=ev.get("pip", True))
     q, run = comp.q, max(2.0, (end - start) - 2.0)
+    frames = ",".join(f"{{x:{x},y:{y}}}" for x, y in leg[1:])
     comp.js.append(f'tl.fromTo("#{sid} .co-route",{{strokeDashoffset:1}},{{strokeDashoffset:0,duration:{run},ease:"none"}},{q(start + 0.4)});')
     comp.js.append(f'tl.fromTo("#{sid} .co-town",{{opacity:0,scale:0.4,transformOrigin:"50% 50%"}},{{opacity:1,scale:1,duration:0.3,stagger:{run / 4}}},{q(start + 0.4)});')
-    comp.js.append(f'tl.fromTo("#{sid} .co-van",{{x:120,y:300}},{{keyframes:[{{x:560,y:200}},{{x:700,y:175}},{{x:900,y:150}}],duration:{run},ease:"none"}},{q(start + 0.4)});')
+    comp.js.append(f'tl.fromTo("#{sid} .co-van",{{x:{leg[0][0]},y:{leg[0][1]}}},{{keyframes:[{frames}],duration:{run},ease:"none"}},{q(start + 0.4)});')
     comp.js.append(f'tl.fromTo("#{sid} .co-note",{{opacity:0,y:20}},{{opacity:1,y:0,duration:0.4}},{q(start + run * 0.6)});')
 
 
@@ -433,7 +461,8 @@ MOCKUP_STYLE = """
 .co{{width:100%;display:flex;flex-direction:column;align-items:center;gap:20px}}
 .co-kicker{{font-size:30px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:{accent}}}
 .co-map{{width:100%;max-width:1200px;overflow:visible}}
-.co-sea{{fill:#16324A}} .co-shore{{fill:none;stroke:#7FA8C9;stroke-width:4}}
+.co-sea{{fill:#16324A}} .co-land{{fill:#E4ECE7}} .co-shore{{fill:none;stroke:#7FA8C9;stroke-width:4;stroke-linejoin:round}}
+.co-sea-label{{fill:#7FA8C9;font-size:28px;font-style:italic;text-anchor:middle;letter-spacing:.08em}} .co-mark{{fill:#8A9A93;font-size:24px;text-anchor:middle}}
 .co-route{{fill:none;stroke:{accent};stroke-width:8;stroke-dasharray:1;stroke-linecap:round}}
 .co-town circle{{fill:{text}}} .co-town text{{fill:{text};font-size:34px;font-weight:700;text-anchor:middle}}
 .co-van rect{{fill:{accent}}}
@@ -878,10 +907,11 @@ MOCKUP_STYLE += """
 # ze zrzutów panelu (ciemne menu, fioletowe akcenty, pastylki statusów, jasna treść), znak
 # Apilo z oficjalnej strony. Żadnych prawdziwych zamówień, klientów ani nazwy sklepu.
 # mode "orders"   — lista zamówień: jedno zamówienie = 4 worki po 25 kg (~0:35–1:30)
-# mode "shipment" — „Wyślij przesyłkę”: 4 paczki, 4 pola „Komentarz” wpisywane po kolei (~1:35)
+# mode "shipment" — „Wyślij przesyłkę”: 4 paczki, 4 pola „Komentarz” (05.11 zastąpiony przez "comment" —
+#                   tak to nie wyglądało; zostaje dla innych odcinków)
 APILO_MENU = ["Pulpit", "Zamówienia", "Lista zamówień", "Przesyłki", "Dokumenty kurierów", "Towary i usługi", "Raporty"]
 APILO_ORDERS = [
-    ("ZAM-10418", "Pasza dla niosek 25 kg", "× 4", "4 paczki", "warn"),
+    ("ZAM-10418", "Pasza i ziarno 25 kg", "× 4", "4 paczki", "warn"),
     ("ZAM-10419", "Karma dla psa 20 kg", "× 1", "1 paczka", "ok"),
     ("ZAM-10420", "Pasza królik 25 kg", "× 2", "2 paczki", "warn"),
     ("ZAM-10421", "Ziarno gołąb 25 kg", "× 3", "3 paczki", "warn"),
@@ -937,8 +967,90 @@ def apilo_shipment(comp, ev, start, end):
         comp.js.append(f'tl.to("#{sid} .ap-send",{{scale:0.92,duration:0.12,yoyo:true,repeat:1}},{q(click)});')
 
 
+# mode "comment" — jak to naprawdę wyglądało (Mateusz 05.11): JEDNO pole „Komentarz” z kilkoma
+# pozycjami po przecinku. Usuń resztę → przeklej do Excela → drukuj → wklej z powrotem → zostaw
+# drugą pozycję → drukuj… i tak dla każdego zamówienia. Kroki przypięte do słów (ev["beats"]).
+APILO_ITEMS = ["Pasza dla niosek 25 kg", "Pszenica 25 kg", "Kukurydza 25 kg", "Mieszanka dla gołębi 25 kg"]
+APILO_STEPS = ["Usuń resztę z komentarza", "Przeklej resztę do Excela", "Drukuj etykietę", "Wklej komentarz z powrotem"]
+
+
+def apilo_comment(comp, ev, start, end):
+    items = "".join(f'<span class="ap-it" data-i="{i}">{esc(t)}</span>'
+                    + (f'<span class="ap-sep" data-i="{i}">, </span>' if i < len(APILO_ITEMS) - 1 else "")
+                    for i, t in enumerate(APILO_ITEMS))
+    counter = "".join(f'<span class="ap-cnt" data-n="{n}">Etykiety: <b>{n}/4</b></span>' for n in range(5))
+    cells = "".join(f'<div class="ap-xr" data-i="{i}"><i>{i + 1}</i><span>{esc(t)}</span></div>' for i, t in enumerate(APILO_ITEMS[1:]))
+    steps = "".join(f'<div class="ap-step" data-i="{i}"><i>{i + 1}</i>{esc(t)}</div>' for i, t in enumerate(APILO_STEPS))
+    body = (f'<div class="ap-body ap-cm"><div class="ap-card ap-cmcard">'
+            f'<div class="ap-cmhead"><b class="ap-num">ZAM-10418</b><span>InPost Kurier · 4 paczki po 25 kg</span></div>'
+            f'<div class="ap-form"><div class="ap-f2"><label>Rodzaj przesyłki</label><div>Paczka</div></div>'
+            f'<div class="ap-f2"><label>Waga (kg)</label><div>25,00</div></div></div>'
+            f'<div class="ap-f ap-com ap-combig"><label>Komentarz</label><div class="ap-in">{items}<i class="ap-caret"></i></div></div>'
+            f'<div class="ap-actions"><span class="ap-print">Drukuj etykietę</span><span class="ap-cnts">{counter}</span></div>'
+            f'<div class="ap-toast">Etykieta wydrukowana</div></div>'
+            f'<div class="ap-right"><div class="ap-xl"><div class="ap-xlbar">Excel · schowek.xlsx</div>{cells}</div>'
+            f'<div class="ap-steps">{steps}<div class="ap-loop">↻ i tak dla każdego zamówienia</div></div></div></div>')
+    sid = mock_slate(comp, start, end, apilo_shell("Wyślij przesyłkę", body, ("Zamówienia", "Przesyłki")), pip=ev.get("pip", False))
+    q, js = comp.q, comp.js
+    beats = ev.get("beats", {})
+
+    def beat(key, fallback):
+        if key not in beats:
+            return start + fallback * (end - start)
+        return min(max(comp.clock.at(beats[key], floor=start), start + 0.5), end - 0.6)
+
+    others = lambda k: ",".join(f'#{sid} .ap-it[data-i=\\"{i}\\"]' for i in range(4) if i != k)
+    def step_on(i, t):
+        js.append(f'tl.to("#{sid} .ap-step[data-i=\\"{i}\\"]",{{opacity:1,backgroundColor:"#EEEBFF",duration:0.2}},{q(t)});')
+        if i:
+            js.append(f'tl.to("#{sid} .ap-step[data-i=\\"{i - 1}\\"]",{{backgroundColor:"rgba(0,0,0,0)",duration:0.2}},{q(t)});')
+    def keep_only(k, t):
+        """zaznacz wszystko poza pozycją k (jak myszką) i skasuj"""
+        js.append(f'tl.set("{others(k)}",{{backgroundColor:"#B4D5FE"}},{q(t)});')
+        js.append(f'tl.set("{others(k)}",{{display:"none",backgroundColor:"rgba(0,0,0,0)"}},{q(t + 0.4)});')
+        js.append(f'tl.set("#{sid} .ap-sep",{{display:"none"}},{q(t + 0.4)});')
+    def restore(t):
+        js.append(f'tl.set("#{sid} .ap-it,#{sid} .ap-sep",{{display:"inline",backgroundColor:"rgba(0,0,0,0)"}},{q(t)});')
+    def press(n, t):
+        js.append(f'tl.to("#{sid} .ap-print",{{scale:0.92,duration:0.1,yoyo:true,repeat:1}},{q(t)});')
+        js.append(f'tl.set("#{sid} .ap-cnt",{{display:"none"}},{q(t + 0.2)});')
+        js.append(f'tl.set("#{sid} .ap-cnt[data-n=\\"{n}\\"]",{{display:"inline"}},{q(t + 0.2)});')
+        js.append(f'tl.fromTo("#{sid} .ap-toast",{{opacity:0,y:10}},{{opacity:1,y:0,duration:0.15}},{q(t + 0.2)});')
+        js.append(f'tl.to("#{sid} .ap-toast",{{opacity:0,duration:0.2}},{q(t + 0.75)});')
+
+    js.append(f'tl.set("#{sid} .ap-cnt",{{display:"none"}},{q(start)});')
+    js.append(f'tl.set("#{sid} .ap-cnt[data-n=\\"0\\"]",{{display:"inline"}},{q(start)});')
+    js.append(f'tl.set("#{sid} .ap-xr,#{sid} .ap-loop,#{sid} .ap-toast",{{opacity:0}},{q(start)});')
+    js.append(f'tl.set("#{sid} .ap-step",{{opacity:0.35}},{q(start)});')
+    js.append(f'tl.to("#{sid} .ap-in",{{borderColor:"#5B4FE9",duration:0.2}},{q(start + 0.6)});')
+    t_del, t_xl, t_print = beat("delete", 0.25), beat("excel", 0.42), beat("print", 0.52)
+    t_back, t_loop = beat("restore", 0.62), beat("loop", 0.92)
+    step_on(0, t_del)
+    keep_only(0, t_del + 0.3)
+    step_on(1, t_xl)
+    js.append(f'tl.to("#{sid} .ap-xr",{{opacity:1,duration:0.25,stagger:0.15}},{q(t_xl + 0.2)});')
+    t_print = max(t_print, t_xl + 1.0)
+    step_on(2, t_print)
+    press(1, t_print + 0.2)
+    t_back = max(t_back, t_print + 1.2)
+    step_on(3, t_back)
+    js.append(f'tl.fromTo("#{sid} .ap-xr",{{backgroundColor:"#D9F2E3"}},{{backgroundColor:"rgba(0,0,0,0)",duration:0.6}},{q(t_back)});')
+    restore(t_back + 0.3)
+    # druga, trzecia, czwarta pozycja: ten sam cykl coraz szybciej (mówię „drugi człon, trzeci, czwarty”)
+    t = max(beat("second", 0.75), t_back + 1.2)
+    for k in (1, 2, 3):
+        if k > 1:
+            restore(t)
+        keep_only(k, t + 0.15)
+        press(k + 1, t + 0.6)
+        t += 1.0
+    js.append(f'tl.to("#{sid} .ap-loop",{{opacity:1,duration:0.3}},{q(max(t_loop, t))});')
+    js.append(f'tl.fromTo("#{sid} .ap-loop",{{scale:1}},{{scale:1.08,duration:0.25,yoyo:true,repeat:1}},{q(max(t_loop, t) + 0.3)});')
+
+
 def apilo(comp, ev, start, end):
-    return (apilo_shipment if ev.get("mode") == "shipment" else apilo_orders)(comp, ev, start, end)
+    mode = ev.get("mode")
+    return {"shipment": apilo_shipment, "comment": apilo_comment}.get(mode, apilo_orders)(comp, ev, start, end)
 
 
 MOCKUPS["apilo"] = apilo
@@ -977,5 +1089,23 @@ MOCKUP_STYLE += """
 .ap-actions{{display:flex;gap:12px;align-items:center}} .ap-send{{background:#3BAA74;color:#fff;border-radius:8px;padding:10px 26px;font-size:22px;font-weight:700}}
 .ap-cancel{{border:1px solid #D9DCE6;border-radius:8px;padding:10px 22px;font-size:22px;color:#6A6D80;background:#fff}}
 .ap-note{{margin-left:auto;font-size:20px;color:#E0483B;font-weight:700}}
+.ap-cm{{grid-template-columns:1fr 430px;gap:20px}}
+.ap-cmcard{{gap:18px;padding:22px 26px;position:relative}}
+.ap-cmhead{{display:flex;gap:18px;align-items:baseline;font-size:26px}} .ap-cmhead span{{color:#8A8DA0;font-size:22px}}
+.ap-combig label{{font-size:22px;font-weight:700;color:#2B2B33}}
+.ap-combig .ap-in{{font-size:27px;padding:16px 18px;min-height:74px;border:2px solid #D9DCE6;border-radius:10px;white-space:normal;line-height:1.35;display:block}}
+.ap-it{{border-radius:4px}}
+.ap-print{{background:#5B4FE9;color:#fff;border-radius:8px;padding:12px 28px;font-size:24px;font-weight:700}}
+.ap-cnts{{margin-left:auto;font-size:24px;color:#3B3B46}} .ap-cnts b{{color:#5B4FE9}}
+.ap-toast{{position:absolute;right:26px;bottom:84px;background:#3BAA74;color:#fff;border-radius:8px;padding:8px 16px;font-size:20px;font-weight:700}}
+.ap-right{{display:flex;flex-direction:column;gap:16px}}
+.ap-xl{{background:#fff;border-radius:12px;overflow:hidden;border:1px solid #CFE3D6}}
+.ap-xlbar{{background:#1D6F42;color:#fff;font-size:20px;font-weight:700;padding:10px 16px}}
+.ap-xr{{display:flex;gap:12px;align-items:center;border-bottom:1px solid #E3E8E5;font-size:21px;padding:8px 12px;white-space:nowrap}}
+.ap-xr i{{font-style:normal;color:#8A8DA0;width:22px;font-size:18px}}
+.ap-steps{{background:#fff;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:6px}}
+.ap-step{{display:flex;gap:12px;align-items:center;font-size:22px;padding:8px 10px;border-radius:8px}}
+.ap-step i{{font-style:normal;background:#5B4FE9;color:#fff;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;flex:none}}
+.ap-loop{{font-size:22px;font-weight:800;color:#E0483B;padding:8px 10px}}
 .fmt-v .ap{{grid-template-columns:1fr}} .fmt-v .ap-side{{display:none}} .fmt-v .ap-body{{grid-template-columns:1fr}} .fmt-v .ap-stat{{display:none}}
 """

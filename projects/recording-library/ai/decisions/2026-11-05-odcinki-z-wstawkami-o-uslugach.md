@@ -35,3 +35,14 @@ zdania i braki w planszach, a w odcinku o Marpaszu dać logotypy Apilo/BaseLinke
   długości części — po wydłużeniu klipu przelicz liczby w storyboardzie.
 - Rozdziały kończące się w pół zdania w składance: nowe klipy `*-full` tylko dla składanki, żeby nie
   ruszać rolek i reklam miejskich zbudowanych na starych.
+
+## Aktualizacja 05.11 rano — wstawki jako głos na planszach, jingiel
+
+Wstawki nagrane innym ujęciem i w innym pomieszczeniu odstawały obrazem i barwą głosu. Decyzja
+Mateusza: **w odcinku zostaje tylko jego głos, obraz to plansze** (`voice_only`), przedstawienie bez
+„to nie jest odcinek sponsorowany”. Barwa wyrównana korekcją (`voice_filter`), bez ponownego wejścia
+muzyki (`music_intro: false`). Na otwarcie każdego odcinka jingiel z `Miniaturki Youtube.mp4` jako maska
+L (pasek boczny + dolny) — `assemble_episode.py`, `JINGLE_*`.
+
+**Pułapka:** przenikanie (`xfade`) pomniejszonego okna w pełną klatkę daje podwójny obraz, bo te same
+klatki leżą w dwóch geometriach. Paski mają zjeżdżać nad niezmienionym obrazem, nie obraz się rozszerzać.

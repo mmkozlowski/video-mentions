@@ -6648,15 +6648,15 @@
    ],
    [
     65.56,
-    87.4
+    74.55
    ]
   ],
   "start": 3.96,
-  "end": 87.4,
-  "duration": 32.14,
+  "end": 74.55,
+  "duration": 19.29,
   "splices": 1,
   "hook_line": "ja nazywam się Mateusz Kozłowski i pomagam firmom budować systemy dla firm, które wyrosły",
-  "transcript": "ja nazywam się Mateusz Kozłowski i pomagam firmom budować systemy dla firm, które wyrosły z Excela. Produkcja opakowań, wyroby medyczne, handel B2B, sprzedaż. To są tylko niektóre z obszarów i branż, które miałem okazję już dotknąć. Ale to nie jest odcinek sponsorowany, po prostu buduję na tym codziennie i chcę Wam o tym opowiadać, o swojej drodze i ścieżce, pomysłach, rozkminach, o tym, dlaczego to robię tak, a nie inaczej.",
+  "transcript": "ja nazywam się Mateusz Kozłowski i pomagam firmom budować systemy dla firm, które wyrosły z Excela. Produkcja opakowań, wyroby medyczne, handel B2B, sprzedaż. To są tylko niektóre z obszarów i branż, które miałem okazję już dotknąć. Ale",
   "scores": {
    "hook": 3,
    "delivery": 4,
@@ -6665,7 +6665,7 @@
   "priority": "C",
   "cta": null,
   "uses": [],
-  "notes": "„A ja nazywam się Mateusz Kozłowski…” + branże + „to nie jest odcinek sponsorowany”. Po hooku."
+  "notes": "„A ja nazywam się Mateusz Kozłowski…” + branże, do „…miałem okazję już dotknąć”. Bez „to nie jest odcinek sponsorowany” (Mateusz 05.11: „po co mam się tłumaczyć”), cięcie w ciszy 74,38–74,76. Po hooku."
  },
  {
   "id": "ins-mid",

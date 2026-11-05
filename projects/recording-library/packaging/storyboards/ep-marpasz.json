@@ -96,22 +96,36 @@
   },
   {
    "type": "mockup",
-   "name": "apilo",
-   "mode": "shipment",
+   "name": "parcels",
    "at": "wchodził",
-   "until": "+14"
+   "until": "wchodzić"
+  },
+  {
+   "type": "logos",
+   "at": "system,",
+   "until": "sedna",
+   "kicker": "System do e-commerce i marketplace'ów",
+   "items": [
+    {
+     "logo": "apilo",
+     "name": "Apilo · link w opisie"
+    }
+   ]
   },
   {
    "type": "mockup",
-   "name": "parcels",
-   "at": "system,",
-   "until": "+12"
-  },
-  {
-   "type": "broll",
-   "at": "Excela",
-   "until": "+3.0",
-   "src": "assets/broll/hf/video/h01-biuro-przeciazenie.mp4"
+   "name": "apilo",
+   "mode": "comment",
+   "at": "sprawy",
+   "until": "widziałem",
+   "beats": {
+    "delete": "usunąć",
+    "excel": "Excela",
+    "print": "drukował",
+    "restore": "wklejał",
+    "second": "drugi",
+    "loop": "każdego"
+   }
   },
   {
    "type": "beat",

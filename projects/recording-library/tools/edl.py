@@ -257,8 +257,9 @@ RAW = [
 # od razu do „Robię konsultacje…”.
 RAW += [
     dict(id="ins-intro", source="inserts", title="Przerywnik: przedstawienie się",
-         ranges=[(3.9, 14.3, 3.96, 14.26), (65.5, 87.45, 65.56, 87.40)], hook=3, delivery=4,
-         notes="„A ja nazywam się Mateusz Kozłowski…” + branże + „to nie jest odcinek sponsorowany”. Po hooku."),
+         ranges=[(3.9, 14.3, 3.96, 14.26), (65.5, 74.6, 65.56, 74.55)], hook=3, delivery=4,
+         notes="„A ja nazywam się Mateusz Kozłowski…” + branże, do „…miałem okazję już dotknąć”. Bez „to nie jest odcinek "
+               "sponsorowany” (Mateusz 05.11: „po co mam się tłumaczyć”), cięcie w ciszy 74,38–74,76. Po hooku."),
     dict(id="ins-mid", source="inserts", title="Przerywnik: zaproszenie na konsultację",
          ranges=[(95.8, 99.4, 95.82, 99.36), (171.6, 198.6, 171.70, 198.58)], hook=3, delivery=4,
          notes="„Poczekaj, zatrzymam Cię…” + konsultacja, „bez zobowiązań”, WhatsApp/LinkedIn/strona. 60–70% filmu."),

@@ -12,12 +12,24 @@
  "clip": "ins-outro",
  "events": [
   {
-   "type": "title",
-   "at": "przeszedł",
-   "until": "+15",
-   "kicker": "flowbiz.pl · 536 507 701",
+   "type": "slate",
+   "at": "Jeśli",
+   "until": "A",
    "text": "Przejdę z Tobą *Twój proces",
-   "sub": "link w opisie · pytania w komentarzu"
+   "kicker": "flowbiz.pl · 536 507 701",
+   "sub": "link w opisie"
+  },
+  {
+   "type": "slate",
+   "at": "A",
+   "until": "+8",
+   "text": "Zostaw je *w komentarzu",
+   "kicker": "Pytania do odcinka?",
+   "sub": "odpowiem na wszystkie"
   }
- ]
+ ],
+ "voice_only": true,
+ "lower_third": false,
+ "music_intro": false,
+ "voice_filter": "highpass=f=70,equalizer=f=1300:t=q:w=1.2:g=4.5,equalizer=f=3000:t=q:w=1.0:g=3.5,equalizer=f=9000:t=q:w=1.0:g=-1.5,agate=threshold=0.02:ratio=2:range=0.3:attack=5:release=150"
 }

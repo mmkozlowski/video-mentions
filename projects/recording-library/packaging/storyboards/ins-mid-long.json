@@ -12,40 +12,65 @@
  "clip": "ins-mid-long",
  "events": [
   {
-   "type": "title",
-   "at": "konsultacje",
-   "until": "+8",
-   "kicker": "Konsultacja na miejscu",
+   "type": "slate",
+   "at": "Poczekaj",
+   "until": "Robię",
+   "text": "Poczekaj. *Zatrzymam Cię na chwilę."
+  },
+  {
+   "type": "slate",
+   "at": "Robię",
+   "until": "Najczęściej",
    "text": "Przejdziemy *Twój proces",
-   "sub": "na żywo, nie przez kamerkę"
+   "kicker": "Konsultacja"
   },
   {
-   "type": "list",
-   "at": "kartkę",
-   "until": "+18",
-   "kicker": "Warsztat",
-   "items": [
-    {
-     "text": "Kartka i proces od A do Z",
-     "at": "kartkę"
-    },
-    {
-     "text": "5–6 godzin",
-     "at": "warsztaty"
-    },
-    {
-     "text": "Specyfikacja → kod pod Twoją firmę",
-     "at": "specyfikację"
-    }
-   ]
+   "type": "slate",
+   "at": "Najczęściej",
+   "until": "Bierzemy",
+   "text": "Przyjeżdżamy *do Ciebie",
+   "kicker": "Na miejscu, nie online"
   },
   {
-   "type": "title",
+   "type": "slate",
+   "at": "Bierzemy",
+   "until": "Takie",
+   "text": "Cały proces *od A do Z",
+   "kicker": "Kartka i długopis"
+  },
+  {
+   "type": "slate",
+   "at": "Takie",
+   "until": "Open",
+   "text": "Wychodzimy z *konkretnym wkładem",
+   "kicker": "Warsztat 5–6 godzin"
+  },
+  {
+   "type": "slate",
+   "at": "Open",
+   "until": "Bez",
+   "text": "Proces → specyfikacja → *kod",
+   "kicker": "Open Mercato",
+   "sub": "system dostosowany do Twojej firmy"
+  },
+  {
+   "type": "slate",
+   "at": "Bez",
+   "until": "Link",
+   "text": "Nie musimy *nic budować",
+   "kicker": "Bez zobowiązań"
+  },
+  {
+   "type": "slate",
    "at": "Link",
-   "until": "+11",
-   "kicker": "flowbiz.pl · 536 507 701",
+   "until": "+14",
    "text": "Umów *konsultację",
+   "kicker": "flowbiz.pl · 536 507 701",
    "sub": "link w opisie · WhatsApp · LinkedIn"
   }
- ]
+ ],
+ "voice_only": true,
+ "lower_third": false,
+ "music_intro": false,
+ "voice_filter": "highpass=f=70,equalizer=f=1300:t=q:w=1.2:g=4.5,equalizer=f=3000:t=q:w=1.0:g=3.5,equalizer=f=9000:t=q:w=1.0:g=-1.5,agate=threshold=0.02:ratio=2:range=0.3:attack=5:release=150"
 }

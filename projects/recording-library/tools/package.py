@@ -363,6 +363,10 @@ class Composition:
         if self.brand["mark"] == "flowbiz":
             logo = self.pal["logo"]
             if logo != "flowbiz-ai.png":
+        if self.board.get("voice_only"):
+            # przerywnik bez twarzy (Mateusz 05.11: „nie potrzebuję siebie pokazywać — zostawmy dźwięk,
+            # resztę na planszach”): stałe tło pod planszami, kamera nigdy nie prześwituje
+            self.html.append('<div class="voice-backdrop"><div class="end-grid"></div></div>')
                 self.media[logo] = BRAND / logo
             return f'<img src="media/{logo}" alt="flowbiz AI" class="mark-img">'
         return f'<span class="mark-text"><b>AI</b> Słupsk</span>'
@@ -1336,6 +1340,7 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .slate .logo-tile{{min-width:0;width:{ST}px;padding:46px 20px 32px;gap:24px}}
 .slate .logo-tile span{{font-size:38px}}
 .slate .sub{{margin-top:40px}}
+.voice-backdrop{{position:absolute;inset:0;background:{bg};z-index:6}}
 
 .cap{{position:absolute;left:40px;right:40px;top:{FH}px;transform:translateY(-150px);display:flex;justify-content:center}}
 .cap-in{{font-size:52px;font-weight:800;text-align:center;line-height:1.12;color:#fff;background:rgba(0,0,0,.72);padding:10px 22px;border-radius:16px}}
@@ -1450,25 +1455,29 @@ def music_plan(board, clip_len):
     track = board.get("music", MUSIC_DEFAULT)
     if not track:
         return None
-    return {"file": MUSIC_DIR / track, "offset": MUSIC_OFFSET.get(track, 0.0), "clip_len": clip_len}
+    # przerywnik wklejany w środek odcinka: bez wejścia muzyki (od razu ciche tło, jak w odcinku)
+    # i z korekcją głosu z innego mikrofonu/pomieszczenia (storyboard "voice_filter")
+    return {"file": MUSIC_DIR / track, "offset": MUSIC_OFFSET.get(track, 0.0), "clip_len": clip_len,
+            "intro": board.get("music_intro", True), "voice_filter": board.get("voice_filter")}
 
 
 def mix_music(raw, music, out_wav):
     """Głos z renderu + muzyka: wejście → ciche tło (ściszane pod słowami) → głośniej na planszy końcowej."""
     total = probe_duration(raw, "v:0")
     intro_end, ramp = MUSIC_INTRO
-    intro = 10 ** (MUSIC_INTRO_DB / 20)
     bed, outro = 10 ** (MUSIC_BED_DB / 20), 10 ** (MUSIC_OUTRO_DB / 20)
     outro_at = max(intro_end + ramp, music["clip_len"] - 0.3)
     gain = (f"if(lt(t,{intro_end}),{intro:.3f},if(lt(t,{intro_end + ramp}),{intro:.3f}-({intro:.3f}-{bed:.3f})*(t-{intro_end})/{ramp},"
             f"if(lt(t,{outro_at:.3f}),{bed:.3f},min({outro:.3f},{bed:.3f}+({outro:.3f}-{bed:.3f})*(t-{outro_at:.3f})/0.6))))")
     graph = (f"[1:a]atrim=0:{total:.3f},asetpts=PTS-STARTPTS,aresample=48000,loudnorm=I={MUSIC_LUFS}:TP=-3:LRA=7,"
-             f"volume=eval=frame:volume='{gain}',afade=t=in:d={MUSIC_FADE_IN},afade=t=out:st={max(0, total - 1.0):.3f}:d=1.0[m];"
-             f"[0:a]aresample=48000,asplit[v][key];"
+             f"volume=eval=frame:volume='{gain}',afade=t=in:d={MUSIC_FADE_IN if music.get('intro', True) else 0.05},afade=t=out:st={max(0, total - 1.0):.3f}:d=1.0[m];"
+             f"[0:a]aresample=48000,{music['voice_filter'] + ',' if music.get('voice_filter') else ''}asplit[v][key];"
              f"[m][key]sidechaincompress=threshold=0.03:ratio=4:attack=20:release=500[md];"
              f"[v][md]amix=inputs=2:normalize=0:duration=first[a]")
     subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", str(raw), "-stream_loop", "-1", "-ss", f"{music['offset']:.2f}",
                     "-i", str(music["file"]), "-filter_complex", graph, "-map", "[a]", "-c:a", "pcm_s16le", str(out_wav)],
+    intro = 10 ** (MUSIC_INTRO_DB / 20) if music.get("intro", True) else bed
+    outro = outro if music.get("intro", True) else bed   # przerywnik nie ma planszy końcowej
                    check=True)
     return out_wav
 

@@ -19,6 +19,7 @@ po przesunięciu — do opisu odcinka w Studiu).
 import json
 import subprocess
 import sys
+from pathlib import Path
 
 import package as P
 from sources import BUILD, DATA, LIBRARY, load_clips
@@ -26,7 +27,19 @@ from sources import BUILD, DATA, LIBRARY, load_clips
 FINAL_WORDS = BUILD / "work" / "final-words"   # transkrypcja GOTOWEGO renderu (mlx, czasy słów)
 
 FINAL = P.FINAL
-ENDCARD = 2.5          # plansza końcowa youtube (package.py, end_len)
+ENDCARD = 2.5
+
+# Jingiel otwarcia (Mateusz 05.11: „na początku jako wstawka Miniaturki Youtube.mp4 z maską — został
+# tylko dolny i boczny pasek; sensowne wejście i przejście, tzw. jingiel, że zaczyna się odcinek”).
+# 1,2 s sama plansza z paskami + wejście muzyki → plansza się rozpuszcza, odcinek na pełnym ekranie
+# pod maską z paskiem bocznym i dolnym → po ~6,5 s paski zjeżdżają z kadru. Muzyka: ten sam utwór i pozycja
+# co podkład odcinka (package.MUSIC_*), więc wejście przechodzi w niego bez szwu.
+JINGLE = Path.home() / "Youtube Projects" / "Miniaturki Youtube.mp4"
+JINGLE_LEAD = 1.2        # sama plansza, zanim pojawi się obraz odcinka
+JINGLE_BARS = (150, 130)    # szerokość paska z logo, wysokość dolnego paska z CTA (px przy 1920×1080)
+JINGLE_EXPAND = 6.5      # od tej sekundy (osi wyjścia) paski zjeżdżają z kadru
+JINGLE_FADE = 0.6
+JINGLE_SPLIT = 8.0       # ile sekund odcinka idzie przez kompozycję jingla (cięcie w przerwie między słowami)          # plansza końcowa youtube (package.py, end_len)
 FADE = 0.012
 ABBREVIATIONS = {"np.", "tzn.", "itp.", "itd.", "m.in.", "ok.", "tj.", "pt.", "ul.", "nr.", "tzw."}
 
@@ -87,6 +100,45 @@ def chapter_times(clip_id):
     return times
 
 
+def word_gap_near(words, t):
+    """środek najbliższej przerwy między słowami (≥ 80 ms) — tam szew jingla nie przetnie głoski"""
+    gaps = [((a["end"] + b["start"]) / 2, b["start"] - a["end"]) for a, b in zip(words, words[1:])]
+    return round(min((g for g in gaps if g[1] >= 0.08), key=lambda g: abs(g[0] - t))[0], 3)
+
+
+def jingle_graph(split):
+    """[0:v][0:a] odcinka (0…split) + plik jingla → [jv][ja] o długości split + JINGLE_LEAD.
+
+    Maska, nie okno: odcinek leci na pełnym ekranie, a z pliku jingla zostaje tylko pasek boczny
+    (logo) i dolny (CTA) — miętowy kształt L nałożony na obraz. Przenikanie pomniejszonego okna
+    w pełną klatkę dawało podwójny obraz (05.11), więc na wyjściu paski po prostu zjeżdżają z kadru."""
+    lead, total = JINGLE_LEAD, split + JINGLE_LEAD
+    side, bottom = JINGLE_BARS
+    out_at, slide = JINGLE_EXPAND, JINGLE_FADE
+    music = P.MUSIC_DIR / P.MUSIC_DEFAULT
+    pos = P.MUSIC_OFFSET.get(P.MUSIC_DEFAULT, 0.0) - lead          # ta sama pozycja utworu co podkład odcinka
+    ease = f"pow(min(1,max(0,(t-{out_at})/{slide})),2)"
+    graph = (
+        f"[J:v]fps=30,scale=1920:1080,setsar=1,tpad=stop_mode=clone:stop_duration={total},"
+        f"trim=0:{total:.3f},setpts=PTS-STARTPTS,split[jfull][jbar];"
+        # cała plansza jingla przez JINGLE_LEAD, potem rozpuszcza się i odsłania odcinek
+        f"[jfull]trim=0:{lead + 0.5:.3f},format=yuva420p,fade=t=out:st={lead:.3f}:d=0.45:alpha=1,setpts=PTS-STARTPTS[jcover];"
+        # maska: zostaje tylko pasek boczny i dolny
+        f"[jbar]trim=0:{out_at + slide + 0.1:.3f},format=yuva420p,"
+        f"geq=lum='lum(X,Y)':cb='cb(X,Y)':cr='cr(X,Y)':a='if(lt(X,{side})+gt(Y,{1080 - bottom}),255,0)',setpts=PTS-STARTPTS[jL];"
+        f"[0:v]trim=0:{split},setpts=PTS-STARTPTS,fps=30,scale=1920:1080,setsar=1,"
+        f"tpad=start_mode=clone:start_duration={lead}[jbase];"
+        f"[jbase][jcover]overlay=0:0:eof_action=pass[j1];"
+        f"[j1][jL]overlay=x='-{side + 40}*{ease}':y='{bottom + 40}*{ease}':eof_action=pass,format=yuv420p,setsar=1[jv];"
+        f"[0:a]atrim=0:{split},asetpts=PTS-STARTPTS,aformat=sample_rates=48000:channel_layouts=stereo,"
+        f"adelay={int(lead * 1000)}:all=1,apad=whole_dur={total}[jvoice];"
+        f"[M:a]atrim={pos:.3f}:{pos + lead + 0.8:.3f},asetpts=PTS-STARTPTS,aresample=48000,"
+        f"aformat=sample_rates=48000:channel_layouts=stereo,loudnorm=I=-25:TP=-3:LRA=7,volume=-4dB,"
+        f"afade=t=in:d=0.15,afade=t=out:st={lead:.3f}:d=0.8,apad=whole_dur={total}[jmus];"
+        f"[jvoice][jmus]amix=inputs=2:normalize=0:duration=first,atrim=0:{total:.3f}[ja];")
+    return graph, music
+
+
 def plan_segments(clip_id):
     render = FINAL / f"{clip_id}__youtube-F.mp4"
     content_end = round(duration(LIBRARY / clip_id / "master.mp4"), 3)
@@ -126,12 +178,18 @@ def plan_segments(clip_id):
         segments.append(("insert", insert, duration(FINAL / f"{insert}__youtube-F.mp4")))
         cursor = t
     segments.append(("episode", cursor, duration(render)))
+    # jingiel: pierwsze JINGLE_SPLIT s odcinka idzie przez kompozycję z paskami
+    split = word_gap_near(rw, JINGLE_SPLIT)
+    if segments[0][0] == "episode" and segments[0][2] > split + 1:
+        segments[0:1] = [("jingle", 0.0, split), ("episode", split, segments[0][2])]
     # rozdziały po przesunięciu: każdy dostaje sumę długości wstawek wklejonych przed nim
     shifted = []
     for t, title in chapters:
         t = pinned.get(title, t)
         # wstawka przesuwa rozdział, gdy fragment odcinka przed nią kończy się najpóźniej w punkcie rozdziału
         extra = sum(seg[2] for i, seg in enumerate(segments) if seg[0] == "insert" and segments[i - 1][2] <= t + 0.05)
+        if t > 0 and segments[0][0] == "jingle":
+            extra += JINGLE_LEAD
         shifted.append((round(t + extra, 1), title))
     return render, segments, shifted
 
@@ -140,6 +198,7 @@ def build(clip_id, dry=False):
     render, segments, chapters = plan_segments(clip_id)
     for seg in segments:
         print(f"   {seg[0]:8} {seg[1] if seg[0] == 'insert' else f'{seg[1]:8.2f}'} → {seg[2]:8.2f}")
+    has_jingle = segments[0][0] == "jingle"
     if dry:
         return chapters
     inputs, graph, labels = ["-i", str(render)], "", []
@@ -148,7 +207,15 @@ def build(clip_id, dry=False):
         if seg[0] == "insert" and seg[1] not in insert_inputs:
             insert_inputs[seg[1]] = len(insert_inputs) + 1
             inputs += ["-i", str(FINAL / f"{seg[1]}__youtube-F.mp4")]
+    if has_jingle:
+        j_index, m_index = len(insert_inputs) + 1, len(insert_inputs) + 2
+        jgraph, music = jingle_graph(segments[0][2])
+        graph += jgraph.replace("[J:", f"[{j_index}:").replace("[M:", f"[{m_index}:")
+        inputs += ["-i", str(JINGLE), "-i", str(music)]
+        labels.append("[jv][ja]")
     for i, seg in enumerate(segments):
+        if seg[0] == "jingle":
+            continue
         if seg[0] == "episode":
             n, a, b = 0, seg[1], seg[2]
         else:

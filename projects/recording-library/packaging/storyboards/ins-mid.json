@@ -12,28 +12,37 @@
  "clip": "ins-mid",
  "events": [
   {
-   "type": "title",
-   "at": "konsultacje",
-   "until": "+10",
-   "kicker": "Bezpłatna konsultacja",
+   "type": "slate",
+   "at": "Poczekaj",
+   "until": "Robię",
+   "text": "Poczekaj. *Zatrzymam Cię na chwilę."
+  },
+  {
+   "type": "slate",
+   "at": "Robię",
+   "until": "Bez",
    "text": "Przejdziemy *Twój proces",
-   "sub": "i odpowiemy, czy to się opłaca"
+   "kicker": "Konsultacja",
+   "sub": "i dowiesz się, czy to się opłaca"
   },
   {
-   "type": "title",
-   "at": "zobowiązań",
-   "until": "+5",
-   "zone": "lower",
-   "kicker": "Bez zobowiązań",
-   "text": "Nie musimy *nic budować"
+   "type": "slate",
+   "at": "Bez",
+   "until": "Link",
+   "text": "Nie musimy *nic budować",
+   "kicker": "Bez zobowiązań"
   },
   {
-   "type": "title",
+   "type": "slate",
    "at": "Link",
-   "until": "+12",
-   "kicker": "flowbiz.pl · 536 507 701",
+   "until": "+14",
    "text": "Umów *konsultację",
+   "kicker": "flowbiz.pl · 536 507 701",
    "sub": "link w opisie · WhatsApp · LinkedIn"
   }
- ]
+ ],
+ "voice_only": true,
+ "lower_third": false,
+ "music_intro": false,
+ "voice_filter": "highpass=f=70,equalizer=f=1300:t=q:w=1.2:g=4.5,equalizer=f=3000:t=q:w=1.0:g=3.5,equalizer=f=9000:t=q:w=1.0:g=-1.5,agate=threshold=0.02:ratio=2:range=0.3:attack=5:release=150"
 }

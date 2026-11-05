@@ -12,41 +12,35 @@
  "clip": "ins-intro",
  "events": [
   {
-   "type": "title",
-   "at": "nazywam",
-   "until": "+8",
-   "zone": "lower",
-   "kicker": "flowbiz · systemy dla firm",
+   "type": "slate",
+   "at": "A",
+   "until": "pomagam",
    "text": "Mateusz *Kozłowski",
-   "sub": "firmy, które wyrosły z Excela"
+   "kicker": "flowbiz · systemy dla firm"
   },
   {
-   "type": "list",
+   "type": "slate",
+   "at": "pomagam",
+   "until": "Produkcja",
+   "text": "Systemy dla firm, które *wyrosły z Excela"
+  },
+  {
+   "type": "slate",
    "at": "Produkcja",
-   "until": "+9",
-   "kicker": "Branże, które już dotknąłem",
-   "items": [
-    {
-     "text": "Produkcja opakowań",
-     "at": "Produkcja"
-    },
-    {
-     "text": "Wyroby medyczne",
-     "at": "medyczne"
-    },
-    {
-     "text": "Handel B2B i sprzedaż",
-     "at": "B2B"
-    }
-   ]
+   "until": "To",
+   "text": "Produkcja opakowań. Wyroby medyczne. *Handel B2B.",
+   "kicker": "Branże"
   },
   {
-   "type": "title",
-   "at": "sponsorowany",
-   "until": "+6",
-   "zone": "lower",
-   "kicker": "Uczciwie",
-   "text": "To nie jest *odcinek sponsorowany"
+   "type": "slate",
+   "at": "To",
+   "until": "+8",
+   "text": "Tylko niektóre z obszarów, które *już dotknąłem",
+   "kicker": "Mateusz Kozłowski · flowbiz"
   }
- ]
+ ],
+ "voice_only": true,
+ "lower_third": false,
+ "music_intro": false,
+ "voice_filter": "highpass=f=70,equalizer=f=1300:t=q:w=1.2:g=4.5,equalizer=f=3000:t=q:w=1.0:g=3.5,equalizer=f=9000:t=q:w=1.0:g=-1.5,agate=threshold=0.02:ratio=2:range=0.3:attack=5:release=150"
 }
