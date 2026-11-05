@@ -1343,3 +1343,381 @@ $$(".msx-wire").forEach(function(g,i){var k=g.getAttribute("data-k"),t=D.fin+i*0
  tl.to(g.querySelector(".msx-port"),{fill:"#2FD3A0",duration:0.2},t);
  tl.set(card(k),{attr:{class:"msx-item is-on"}},t)});
 })();"""
+
+
+# ── 05.11 wieczór: makiety do uwag Mateusza w ep-vacuactiv ─────────────────────────────────
+# Wszystkie poniżej mają własny CSS (blok <style> w środku planszy, stałe kolory — to ekrany
+# produktów, nie paleta odcinka) i ruch wyłącznie na osi GSAP: żadnych CSS transitions/animations.
+# Kotwice w storyboardzie jak wszędzie: słowo, „+sekundy” od startu zdarzenia albo liczba.
+SITE_SCREENS = Path(__file__).resolve().parent.parent / "packaging" / "brand" / "site-screens"
+CURSOR_SVG = ('<svg viewBox="0 0 28 28" width="34" height="34"><path d="M4 2 L4 22 L9.5 17 L13.5 26 L17 24.5 '
+              'L13 15.8 L20.5 15.8 Z" fill="#111" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg>')
+
+
+def when(comp, ev, key, start, default):
+    """Czas z pola zdarzenia: brak → default; „+1.5” → od startu; słowo/liczba → oś klipu."""
+    value = ev.get(key)
+    if value is None:
+        return default
+    if isinstance(value, str) and value.startswith("+"):
+        return start + float(value[1:])
+    return comp.clock.at(value, floor=start)
+
+
+def own_slate(comp, start, end, cls, css, inner, pip):
+    """Plansza z własnym układem: bez jasnej karty „mock”, z własnym CSS w środku."""
+    return comp.slate(start, end, f"<style>{css}</style>{inner}", pip=pip, cls=cls)
+
+
+# Strona flowbiz.pl (zrzuty z porcupinefish 05.11, packaging/brand/site-screens/): przewijanie
+# strony głównej → klik „Zarezerwuj spotkanie” → strona konsultacji → formularz → wysłane.
+# Wymiary w px CSS strony przy szerokości 1440 (z Playwrighta, zrzuty w skali 1,5).
+SITE_STRIP = [("home-0.jpg", 842.0), ("home-1.jpg", 1003.86), ("home-2.jpg", 1105.3), ("home-3.jpg", 819.31), ("home-4.jpg", 1345.81)]
+SITE_CTA = (606.77, 1211.31, 226.45, 50.5)          # „Zarezerwuj spotkanie” w home-4
+SITE_FORM = [("Jan", 633, 330), ("600 100 200", 633, 420.5), ("jan@firma.pl", 633, 511), ("zamówienia z maila", 633, 601.5)]
+SITE_SUBMIT = (633, 721, 354, 52)
+SB_VIEW_H = 842.0
+
+SB_CSS = """
+.slate.sbk .slate-body{width:auto;align-items:center;gap:0}
+.sbk .series-tag{margin-bottom:18px}
+.sb-win{width:1440px;border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 40px 90px rgba(0,0,0,.55);text-align:left}
+.sb-bar{height:44px;background:#EEF1EF;display:flex;align-items:center;gap:9px;padding:0 18px;border-bottom:1px solid #D8DEDA}
+.sb-bar i{width:12px;height:12px;border-radius:50%;background:#D0D6D2}
+.sb-url{position:relative;margin-left:22px;height:28px;width:520px;border-radius:14px;background:#fff;border:1px solid #D8DEDA;font:500 15px/26px system-ui,sans-serif;color:#33413C;padding-left:16px}
+.sb-url span{position:absolute;left:16px;top:0}
+.sb-view{position:relative;height:842px;overflow:hidden;background:#fff}
+.sb-page{position:absolute;left:0;top:0;width:1440px;height:842px;transform-origin:0 0;overflow:hidden}
+.sb-strip img,.sb-page2 img{display:block;width:1440px}
+.sb-fill{position:absolute;height:46px;background:#fff;border-radius:10px;font:500 16px/46px system-ui,sans-serif;color:#0E1F1A;padding-left:15px;overflow:hidden;white-space:nowrap}
+.sb-fill b{display:inline-block;overflow:hidden;vertical-align:top;font-weight:500;width:0}
+.sb-tick{position:absolute;width:16px;height:16px;border-radius:4px;background:#1C9E7A;color:#fff;font:700 12px/16px system-ui;text-align:center;opacity:0}
+.sb-done{position:absolute;left:620px;top:318px;width:380px;padding:34px 30px;border-radius:18px;background:#fff;border:2px solid #1C9E7A;
+  box-shadow:0 20px 60px rgba(14,31,26,.25);font:700 24px/1.3 system-ui,sans-serif;color:#0E1F1A;text-align:center;opacity:0}
+.sb-done small{display:block;margin-top:10px;font:500 17px/1.4 system-ui,sans-serif;color:#4A5A54}
+.sb-done i{display:block;margin:0 auto 14px;width:56px;height:56px;border-radius:50%;background:#1C9E7A;color:#fff;font:700 32px/56px system-ui;font-style:normal}
+.sb-cur{position:absolute;left:0;top:0;width:34px;height:34px;opacity:0;z-index:5}
+.sb-rip{position:absolute;left:-30px;top:-30px;width:60px;height:60px;border-radius:50%;border:4px solid #1C9E7A;opacity:0;z-index:4}
+"""
+
+
+def site_booking(comp, ev, start, end):
+    q = comp.q
+    for name, _ in SITE_STRIP:
+        comp.media[f"site-{name}"] = SITE_SCREENS / name
+    comp.media["site-consultation.jpg"] = SITE_SCREENS / "consultation.jpg"
+    strip = "".join(f'<img src="media/site-{n}" style="height:{h}px">' for n, h in SITE_STRIP)
+    fills = "".join(f'<div class="sb-fill" data-i="{i}" style="left:{x + 1}px;top:{y + 1}px;width:352px"><b>{esc(v)}</b></div>'
+                    for i, (v, x, y) in enumerate(SITE_FORM))
+    inner = (f'<div class="sb-win"><div class="sb-bar"><i></i><i></i><i></i><div class="sb-url"><span class="u1">flowbiz.pl</span>'
+             f'<span class="u2" style="opacity:0">flowbiz.pl/bezplatna-konsultacja</span></div></div>'
+             f'<div class="sb-view"><div class="sb-page sb-page1"><div class="sb-strip">{strip}</div></div>'
+             f'<div class="sb-page sb-page2" style="opacity:0"><img src="media/site-consultation.jpg" style="height:1060px">{fills}'
+             f'<div class="sb-tick" style="left:633px;top:668px">✓</div>'
+             f'<div class="sb-done"><i>✓</i>Dziękuję! Oddzwonię<small>w ciągu jednego dnia roboczego i ustalimy termin rozmowy.</small></div></div>'
+             f'<div class="sb-page sb-layer" style="pointer-events:none;overflow:visible"><div class="sb-rip"></div><div class="sb-cur">{CURSOR_SVG}</div></div></div></div>')
+    sid = own_slate(comp, start, end, "sbk", SB_CSS, inner, pip=ev.get("pip", False))
+    span = end - start
+    click = when(comp, ev, "click", start, start + span * 0.42)
+    submit = when(comp, ev, "submit", start, end - 1.6)
+    total = sum(h for _, h in SITE_STRIP)
+    max_scroll = total - SB_VIEW_H
+    cta_y = total - SITE_STRIP[-1][1] + SITE_CTA[1]
+    scroll = min(max_scroll, cta_y - 560)
+    cx, cy = SITE_CTA[0] + SITE_CTA[2] * 0.5, cta_y - scroll + SITE_CTA[3] * 0.55
+    S = f"#{sid}"
+    js = comp.js.append
+    js(f'tl.fromTo("{S} .sb-strip",{{y:0}},{{y:{-scroll:.1f},duration:{q(max(0.8, click - 1.0 - (start + 0.7)))},ease:"power1.inOut"}},{q(start + 0.7)});')
+    js(f'tl.fromTo("{S} .sb-cur",{{opacity:0,x:900,y:420}},{{opacity:1,duration:0.2}},{q(click - 1.0)});')
+    js(f'tl.to("{S} .sb-cur",{{x:{cx:.0f},y:{cy:.0f},duration:0.7,ease:"power2.inOut"}},{q(click - 0.85)});')
+    js(f'tl.fromTo("{S} .sb-rip",{{opacity:0.9,scale:0.3,x:{cx:.0f},y:{cy:.0f}}},{{opacity:0,scale:1.5,duration:0.45,immediateRender:false}},{q(click)});')
+    js(f'tl.to("{S} .sb-cur",{{scale:0.85,duration:0.08,yoyo:true,repeat:1}},{q(click)});')
+    sw = click + 0.3
+    js(f'tl.to("{S} .sb-page1",{{opacity:0,duration:0.3}},{q(sw)});')
+    js(f'tl.fromTo("{S} .sb-page2",{{opacity:0,y:20}},{{opacity:1,y:0,duration:0.35}},{q(sw)});')
+    js(f'tl.to("{S} .u1",{{opacity:0,duration:0.15}},{q(sw)});tl.to("{S} .u2",{{opacity:1,duration:0.15}},{q(sw)});')
+    t0, t1 = sw + 0.6, submit - 0.9
+    step = max(0.35, (t1 - t0) / len(SITE_FORM))
+    for i, (value, x, y) in enumerate(SITE_FORM):
+        t = t0 + i * step
+        js(f'tl.to("{S} .sb-cur",{{x:{x + 200},y:{y + 30},duration:{q(min(0.3, step * 0.4))},ease:"power2.inOut"}},{q(t - min(0.3, step * 0.4))});')
+        js(f'tl.fromTo("{S} .sb-fill[data-i=\'{i}\'] b",{{width:0}},{{width:"auto",duration:{q(step * 0.6)},ease:"steps({max(3, len(value))})"}},{q(t)});')
+    js(f'tl.to("{S} .sb-cur",{{x:{633 + 8},y:{668 + 8},duration:0.2}},{q(submit - 0.75)});')
+    js(f'tl.to("{S} .sb-tick",{{opacity:1,duration:0.1}},{q(submit - 0.55)});')
+    bx, by = SITE_SUBMIT[0] + SITE_SUBMIT[2] * 0.5, SITE_SUBMIT[1] + SITE_SUBMIT[3] * 0.55
+    js(f'tl.to("{S} .sb-cur",{{x:{bx:.0f},y:{by:.0f},duration:0.3,ease:"power2.inOut"}},{q(submit - 0.35)});')
+    js(f'tl.fromTo("{S} .sb-rip",{{opacity:0.9,scale:0.3,x:{bx:.0f},y:{by:.0f}}},{{opacity:0,scale:1.5,duration:0.45,immediateRender:false}},{q(submit)});')
+    js(f'tl.fromTo("{S} .sb-done",{{opacity:0,scale:0.9}},{{opacity:1,scale:1,duration:0.35,ease:"back.out(1.8)"}},{q(submit + 0.2)});')
+    js(f'tl.to("{S} .sb-cur",{{opacity:0,duration:0.2}},{q(submit + 0.3)});')
+
+
+# Telegram jak na stronie flowbiz.pl/asystent-telegram (worktree telegram-demo, telegram-demo.css):
+# iPhone, tło czatu Telegrama, dymki białe/zielone, przyciski inline pod wiadomością bota.
+# Treść z TELEGRAM (tryby offer/brief/order) — te same, które były w starej makiecie.
+TG_CSS = """
+.slate.tgx .slate-body{align-items:center}
+.tgx-wrap{width:507px;height:944px;position:relative}
+.tgx-phone{position:absolute;left:0;top:0;width:430px;height:800px;transform:scale(1.18);transform-origin:0 0;border-radius:58px;background:#111;padding:11px;
+  box-shadow:0 0 0 2px #2b2b2b,0 40px 80px -20px rgba(0,0,0,.6);text-align:left}
+.tgx-screen{position:relative;width:100%;height:100%;border-radius:48px;overflow:hidden;display:flex;flex-direction:column;background:#fff;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;color:#000}
+.tgx-status{flex:none;height:50px;display:flex;align-items:center;justify-content:space-between;padding:6px 32px 0 36px;font-size:16px;font-weight:600;background:#f7f7f7;position:relative}
+.tgx-island{position:absolute;left:50%;top:11px;width:116px;height:33px;margin-left:-58px;border-radius:20px;background:#000}
+.tgx-head{flex:none;display:grid;grid-template-columns:84px 1fr 84px;align-items:center;height:54px;padding:0 10px;background:#f7f7f7;border-bottom:.5px solid #c8c7cc}
+.tgx-back{color:#007aff;font-size:17px} .tgx-title{text-align:center;line-height:1.15}
+.tgx-title b{display:block;font-size:17px;font-weight:600} .tgx-title small{display:block;font-size:13.5px;color:#8e8e93}
+.tgx-av{justify-self:end;width:38px;height:38px;border-radius:50%;background:linear-gradient(150deg,#1c9e7a,#0f7d60);color:#fff;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center}
+.tgx-body{flex:1;min-height:0;overflow:hidden;padding:8px 9px 10px;display:flex;flex-direction:column;justify-content:flex-end;
+  background:radial-gradient(circle at 15% 15%,#dbddbb 0,rgba(219,221,187,0) 45%),radial-gradient(circle at 85% 25%,#d5d88d 0,rgba(213,216,141,0) 50%),
+  radial-gradient(circle at 20% 85%,#88b884 0,rgba(136,184,132,0) 55%),radial-gradient(circle at 90% 90%,#6ba587 0,rgba(107,165,135,0) 50%),#b4c99a}
+.tgx-row{display:none;margin:5px 0} .tgx-row.out{justify-content:flex-end}
+.tgx-msg{max-width:86%;display:flex;flex-direction:column;gap:3px}
+.tgx-b{padding:7px 11px;border-radius:17px;font-size:17px;line-height:22px;box-shadow:0 1px .5px rgba(0,0,0,.13)}
+.tgx-row.in .tgx-b{background:#fff;border-bottom-left-radius:5px} .tgx-row.out .tgx-b{background:#e1fec6;border-bottom-right-radius:5px}
+.tgx-b b{font-weight:600}
+.tgx-meta{float:right;margin:7px 0 -3px 10px;font-size:12.5px;color:#a1aab3} .tgx-row.out .tgx-meta{color:#4fae4e}
+.tgx-ikb{display:flex;gap:3px} .tgx-ikb span{flex:1;min-height:40px;padding:9px 10px;border-radius:10px;background:rgba(56,92,52,.42);color:#fff;
+  font-size:15.5px;font-weight:600;text-align:center}
+.tgx-typing{display:none;margin:5px 0} .tgx-typing .tgx-b{display:inline-flex;gap:5px;padding:13px 14px}
+.tgx-typing i{width:8px;height:8px;border-radius:50%;background:#a1aab3}
+.tgx-input{flex:none;display:flex;align-items:center;gap:10px;padding:8px 10px 26px;background:#f7f7f7;border-top:.5px solid #c8c7cc}
+.tgx-menu{height:34px;padding:0 13px;border-radius:17px;background:#3390ec;color:#fff;font-size:15.5px;font-weight:600;display:flex;align-items:center}
+.tgx-field{flex:1;height:36px;border:.5px solid #c8c7cc;border-radius:18px;background:#fff;padding:0 13px;font-size:16px;line-height:35px;color:#a1a1a6}
+"""
+TG_TIMES = ["7:00", "7:00", "7:01", "7:01", "7:02", "7:02"]
+
+
+def telegram_phone(comp, ev, start, end):
+    lines = TELEGRAM[ev.get("mode", "brief")]
+    rows, steps = [], []
+    for i, (who, body) in enumerate(lines):
+        if who == "buttons":
+            continue
+        kb = lines[i + 1][1] if i + 1 < len(lines) and lines[i + 1][0] == "buttons" else None
+        ikb = ('<div class="tgx-ikb">' + "".join(f'<span data-b="{esc(b)}">{esc(b)}</span>' for b in kb) + "</div>") if kb else ""
+        side = "out" if who == "me" else "in"
+        meta = f'<span class="tgx-meta">{TG_TIMES[min(i, 5)]}{" ✓✓" if side == "out" else ""}</span>'
+        rows.append(f'<div class="tgx-row {side}" data-i="{i}"><div class="tgx-msg"><div class="tgx-b">{body}{meta}</div>{ikb}</div></div>')
+        steps.append((i, side, body))
+    inner = ('<div class="tgx-wrap"><div class="tgx-phone"><div class="tgx-screen">'
+             '<div class="tgx-status"><span>9:41</span><i class="tgx-island"></i><span>●●● 100%</span></div>'
+             '<div class="tgx-head"><span class="tgx-back">‹ Czaty</span><div class="tgx-title"><b>Asystent firmy</b><small>bot</small></div><span class="tgx-av">AF</span></div>'
+             f'<div class="tgx-body">{"".join(rows)}<div class="tgx-typing"><div class="tgx-b"><i></i><i></i><i></i></div></div></div>'
+             '<div class="tgx-input"><span class="tgx-menu">☰ Menu</span><span class="tgx-field">Wiadomość</span></div>'
+             '</div></div></div>')
+    sid = own_slate(comp, start, end, "tgx", TG_CSS, inner, pip=ev.get("pip", True))
+    q, S = comp.q, f"#{sid}"
+    step = min(1.4, max(0.55, (end - start - 1.4) / max(1, len(steps))))
+    for n, (i, side, body) in enumerate(steps):
+        t = start + 0.45 + n * step
+        if side == "in":
+            # „pisze…” przed odpowiedzią bota — kropki stoją (bez pętli), tylko pojawiają się i znikają
+            comp.js.append(f'tl.set("{S} .tgx-typing",{{display:"block"}},{q(max(start + 0.3, t - 0.4))});')
+            comp.js.append(f'tl.set("{S} .tgx-typing",{{display:"none"}},{q(t)});')
+        else:
+            prev = next((lines[k][1] for k in range(i - 1, -1, -1) if lines[k][0] == "buttons"), None)
+            label = re.sub(r"<[^>]+>", "", body)
+            if prev and label in prev:
+                comp.js.append(f'tl.fromTo("{S} .tgx-ikb span[data-b=\'{esc(label)}\']",{{backgroundColor:"rgba(56,92,52,0.42)"}},'
+                               f'{{backgroundColor:"rgba(28,158,122,0.95)",duration:0.12,yoyo:true,repeat:1}},{q(t - 0.3)});')
+        comp.js.append(f'tl.set("{S} .tgx-row[data-i=\'{i}\']",{{display:"flex"}},{q(t)});')
+        comp.js.append(f'tl.fromTo("{S} .tgx-row[data-i=\'{i}\'] .tgx-msg",{{opacity:0,y:14}},{{opacity:1,y:0,duration:0.25,ease:"power2.out"}},{q(t)});')
+
+
+telegram_classic = telegram
+MOCKUPS["telegram_classic"] = telegram_classic
+MOCKUPS["telegram"] = telegram_phone
+
+
+# Plan produkcji jak w systemie Vacu Activ (repo vacuactiv-mercato, moduł production: „cyfrowa kartka
+# F046” — plan tygodniowy z kolumnami w kolejności z papieru, przenoszenie między tygodniami
+# z historią). Najpierw arkusz kierownika, potem ten sam układ w Open Mercato + historia etapów.
+# Dane zmyślone, bez klientów.
+PLAN_ROWS = [("Fitness Club · DE", "412/10", "DE", "Bieżnia próżniowa", "2", 4, 5, "Montaż", "mid", False),
+             ("Studio Forma · NL", "418/10", "NL", "Rower poziomy", "1", 5, 5, "Gotowe", "ok", False),
+             ("Klinika Sport · PL", "367/08", "PL", "Bieżnia próżniowa", "3", 2, 5, "Laminat", "mid", True),
+             ("Gym Center · AT", "421/10", "AT", "Kapsuła próżniowa", "1", 1, 5, "Cięcie", "new", False),
+             ("Wellness Hotel · CZ", "425/10", "CZ", "Rower poziomy", "2", 0, 5, "Czeka na ramy", "no", False)]
+PLAN_HIST = [("Cięcie", "pon 07:40", "ok"), ("Spawanie", "pon 13:10", "ok"), ("Laminat", "wt 09:05", "ok"), ("Montaż", "w toku", "mid"), ("Kontrola i pakowanie", "—", "todo")]
+PP_CSS = """
+.slate.ppx .slate-body{align-items:center}
+.ppx-stage{position:relative;width:1200px;height:600px;text-align:left;font-family:"Inter",system-ui,sans-serif}
+.ppx-xl{position:absolute;left:60px;top:90px;width:1080px;background:#fff;border:1px solid #cfd8d3;border-radius:10px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.45);font-size:19px;color:#27302d}
+.ppx-xl-bar{background:#1D6F42;color:#fff;font-weight:700;padding:11px 18px;font-size:18px}
+.ppx-xl-title{padding:10px 18px;font-weight:800;font-size:22px;background:#FFF9D6;border-bottom:1px solid #e3e8e5}
+.ppx-xl table{border-collapse:collapse;width:100%} .ppx-xl td,.ppx-xl th{border:1px solid #e3e8e5;padding:9px 12px;white-space:nowrap}
+.ppx-xl th{background:#f3f5f4;color:#5a6b65;font-weight:700;text-align:left} .ppx-xl .y{background:#FFF3B0} .ppx-xl .r{background:#FDE2E1;color:#B42318;font-weight:700}
+.ppx-om{position:absolute;inset:0;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 40px 90px rgba(0,0,0,.55);display:grid;grid-template-columns:210px 1fr;opacity:0}
+.ppx-side{background:#F7F8F7;border-right:1px solid #E4E8E6;padding:18px 14px;font-size:16px;color:#4A5A54}
+.ppx-brand{display:flex;align-items:center;gap:10px;font-weight:800;color:#0E1F1A;font-size:17px;margin-bottom:22px}
+.ppx-brand i.sq{width:28px;height:28px;border-radius:8px;background:#0E1F1A;display:inline-block}
+.ppx-nav div{padding:8px 10px;border-radius:8px;margin:2px 0} .ppx-nav .grp{font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8A9893;margin-top:14px}
+.ppx-nav .on{background:#E6F4EF;color:#0F7D60;font-weight:700}
+.ppx-main{padding:20px 26px;position:relative;color:#0E1F1A}
+.ppx-crumb{font-size:14px;color:#8A9893} .ppx-h{display:flex;align-items:center;gap:14px;margin:6px 0 14px}
+.ppx-h b{font-size:27px;font-weight:800} .ppx-wk{display:flex;gap:6px} .ppx-wk span{width:32px;height:32px;border:1px solid #DCE2DF;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#4A5A54}
+.ppx-tools{display:flex;gap:10px;margin-bottom:12px} .ppx-tools span{height:36px;padding:0 14px;border:1px solid #DCE2DF;border-radius:9px;font-size:15px;color:#6B7A75;display:flex;align-items:center}
+.ppx-tools .s{width:260px}
+.ppx-t{border:1px solid #E4E8E6;border-radius:12px;overflow:hidden}
+.ppx-r{display:grid;grid-template-columns:1.6fr .8fr .5fr 1.5fr .5fr 1.1fr 1.1fr;align-items:center;gap:10px;padding:0 16px;height:58px;border-top:1px solid #EEF1EF;font-size:16.5px}
+.ppx-r.hd{height:44px;border-top:0;background:#FAFBFA;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7A8984}
+.ppx-r.sel{background:#F2FBF7;box-shadow:inset 3px 0 0 #1C9E7A}
+.ppx-bar{height:8px;border-radius:4px;background:#E6EBE9;overflow:hidden} .ppx-bar i{display:block;height:100%;background:#1C9E7A;border-radius:4px}
+.ppx-pr{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;font-size:13.5px;color:#6B7A75}
+.ppx-chip{display:inline-block;padding:4px 11px;border-radius:20px;font-size:13.5px;font-weight:700}
+.ppx-chip.ok{background:#DDF5EA;color:#0F7D60} .ppx-chip.mid{background:#FFF1D6;color:#9A5B00} .ppx-chip.new{background:#E7EEFF;color:#3557C4} .ppx-chip.no{background:#FDE7E5;color:#B42318}
+.ppx-moved{display:block;margin-top:2px;font-size:12.5px;font-weight:700;color:#B86E00}
+.ppx-drawer{position:absolute;top:0;right:0;bottom:0;width:390px;background:#fff;border-left:1px solid #E4E8E6;box-shadow:-20px 0 50px rgba(14,31,26,.12);padding:24px 24px;opacity:0}
+.ppx-drawer h4{margin:0;font-size:21px;font-weight:800} .ppx-drawer .sub{font-size:14.5px;color:#6B7A75;margin:4px 0 18px}
+.ppx-st{display:grid;grid-template-columns:28px 1fr auto;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid #F0F2F1;font-size:16.5px}
+.ppx-st i{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:13px;font-weight:800}
+.ppx-st i.ok{background:#1C9E7A;color:#fff} .ppx-st i.mid{background:#F5A623;color:#fff} .ppx-st i.todo{background:#E6EBE9;color:#8A9893}
+.ppx-st span{color:#6B7A75;font-size:14.5px}
+.ppx-mv{margin-top:16px;padding:12px 14px;border-radius:10px;background:#FFF7E6;font-size:14.5px;color:#7A4A00}
+"""
+
+
+def production_plan(comp, ev, start, end):
+    from package import logo
+    xl_head = ["Klient", "Nr zam.", "Kraj", "Urządzenie", "Szt.", "Etap"]
+    xl_rows = "".join("<tr>" + "".join(f'<td{" class=r" if (c == 5 and r[8] == "no") else " class=y" if (c == 5 and r[9]) else ""}>{esc(v)}</td>'
+                                       for c, v in enumerate([r[0], r[1], r[2], r[3], r[4], r[7]])) + "</tr>" for r in PLAN_ROWS)
+    xl = (f'<div class="ppx-xl"><div class="ppx-xl-bar">plan_produkcji_tydzien_27.xlsx</div><div class="ppx-xl-title">PLAN PRODUKCYJNY · TYDZIEŃ 27</div>'
+          f'<table><tr>{"".join(f"<th>{h}</th>" for h in xl_head)}</tr>{xl_rows}</table></div>')
+    rows = '<div class="ppx-r hd"><span>Klient</span><span>Nr zam.</span><span>Kraj</span><span>Urządzenie</span><span>Szt.</span><span>Postęp</span><span>Etap</span></div>'
+    for i, (cl, nr, kr, dev, qty, done, of, stage, cls, moved) in enumerate(PLAN_ROWS):
+        mv = '<span class="ppx-moved">↻ przeniesione z tyg. 26</span>' if moved else ""
+        rows += (f'<div class="ppx-r{" sel" if moved else ""}" data-i="{i}"><span><b style="font-weight:600">{esc(cl)}</b>{mv}</span><span>{nr}</span><span>{kr}</span>'
+                 f'<span>{esc(dev)}</span><span>{qty}</span><span class="ppx-pr"><span class="ppx-bar"><i style="width:{done / of * 100:.0f}%"></i></span>{done}/{of}</span>'
+                 f'<span><span class="ppx-chip {cls}">{esc(stage)}</span></span></div>')
+    hist = "".join(f'<div class="ppx-st"><i class="{c}">{"✓" if c == "ok" else "…" if c == "mid" else ""}</i><b style="font-weight:600">{esc(n)}</b><span>{esc(w)}</span></div>'
+                   for n, w, c in PLAN_HIST)
+    nav = ('<div class="grp">Sprzedaż</div><div>Zamówienia</div><div>Klienci</div><div class="grp">Produkcja</div>'
+           '<div class="on">Plan tygodniowy</div><div>Tablica etapów</div><div>Laminaty</div><div class="grp">Magazyn</div><div>Stany</div>')
+    om = (f'<div class="ppx-om"><div class="ppx-side"><div class="ppx-brand">{logo("openmercato", 34, "#0E1F1A")}</div><div class="ppx-nav">{nav}</div></div>'
+          f'<div class="ppx-main"><div class="ppx-crumb">Produkcja / Plan tygodniowy</div>'
+          f'<div class="ppx-h"><b>Tydzień 27 · 29.06–03.07</b><span class="ppx-wk"><span>‹</span><span>›</span></span></div>'
+          f'<div class="ppx-tools"><span class="s">🔍 Szukaj zlecenia…</span><span>Filtry</span><span>Kolumny</span><span>Eksport PDF</span></div>'
+          f'<div class="ppx-t">{rows}</div>'
+          f'<div class="ppx-drawer"><h4>Zlecenie 367/08</h4><div class="sub">Bieżnia próżniowa · 3 szt. · historia etapów</div>{hist}'
+          f'<div class="ppx-mv">↻ Przeniesione z tygodnia 26 na 27 — zapisane w historii planu</div></div></div></div>')
+    sid = own_slate(comp, start, end, "ppx", PP_CSS, f'<div class="ppx-stage">{xl}{om}</div>', pip=ev.get("pip", True))
+    q, S, span = comp.q, f"#{sid}", end - start
+    swap = when(comp, ev, "system", start, start + span * 0.3)
+    drawer = when(comp, ev, "history", start, start + span * 0.65)
+    js = comp.js.append
+    js(f'tl.fromTo("{S} .ppx-xl",{{opacity:0,y:30}},{{opacity:1,y:0,duration:0.4}},{q(start + 0.2)});')
+    js(f'tl.fromTo("{S} .ppx-xl tr",{{opacity:0}},{{opacity:1,duration:0.2,stagger:0.12}},{q(start + 0.4)});')
+    js(f'tl.to("{S} .ppx-xl",{{opacity:0,scale:0.92,x:-60,duration:0.4,ease:"power2.in"}},{q(swap - 0.2)});')
+    js(f'tl.fromTo("{S} .ppx-om",{{opacity:0,scale:0.96}},{{opacity:1,scale:1,duration:0.45,ease:"power3.out"}},{q(swap)});')
+    js(f'tl.fromTo("{S} .ppx-r:not(.hd)",{{opacity:0,x:30}},{{opacity:1,x:0,duration:0.3,stagger:0.14}},{q(swap + 0.35)});')
+    js(f'tl.fromTo("{S} .ppx-bar i",{{scaleX:0}},{{scaleX:1,transformOrigin:"0 50%",duration:0.5,stagger:0.14}},{q(swap + 0.5)});')
+    js(f'tl.fromTo("{S} .ppx-drawer",{{opacity:0,x:60}},{{opacity:1,x:0,duration:0.4,ease:"power3.out"}},{q(drawer)});')
+    js(f'tl.fromTo("{S} .ppx-st",{{opacity:0,x:16}},{{opacity:1,x:0,duration:0.25,stagger:0.16}},{q(drawer + 0.3)});')
+    js(f'tl.fromTo("{S} .ppx-mv",{{opacity:0}},{{opacity:1,duration:0.3}},{q(drawer + 1.3)});')
+
+
+# Graf Obsidiana (ep-vacuactiv ~13:20: „w świetle Obsidiana potrafi łączyć bardzo dobrze”):
+# notatki-węzły pojawiają się i łączą jak w widoku grafu. Układ stały (deterministyczny).
+GRAPH_NODES = [("Brief dzienny", 600, 330, 14), ("Plan produkcji — tydz. 27", 380, 210, 10), ("Opóźnienia", 820, 200, 9),
+               ("Procedura pakowania", 330, 470, 9), ("Oferta — klient B2B", 860, 460, 10), ("Cennik 2026", 1040, 330, 7),
+               ("Zlecenie 367/08", 170, 300, 7), ("Bieżnia próżniowa", 520, 560, 8), ("Wysyłka eksportowa", 160, 520, 7),
+               ("Spotkanie z kierownikiem", 760, 600, 7), ("Wytyczne rabatów", 1060, 560, 6), ("Laminat — dostawca", 600, 110, 6),
+               ("Reklamacje", 980, 120, 6), ("Instrukcja montażu", 360, 630, 6)]
+GRAPH_EDGES = [(0, 1), (0, 2), (0, 4), (0, 3), (0, 9), (1, 6), (1, 11), (1, 7), (2, 12), (2, 11), (3, 8), (3, 7), (3, 13), (4, 5),
+               (4, 10), (4, 9), (5, 10), (6, 8), (7, 13), (9, 1), (2, 6), (5, 12)]
+OG_CSS = """
+.slate.ogx .slate-body{align-items:center}
+.ogx-win{width:1200px;border-radius:16px;overflow:hidden;background:#1e1e1e;box-shadow:0 40px 90px rgba(0,0,0,.55);text-align:left;font-family:"Inter",system-ui,sans-serif}
+.ogx-bar{height:44px;background:#262626;display:flex;align-items:center;gap:9px;padding:0 18px;color:#bdbdbd;font-size:15px;border-bottom:1px solid #333}
+.ogx-bar i{width:12px;height:12px;border-radius:50%;background:#444} .ogx-bar span{margin-left:14px}
+.ogx-bar b{margin-left:auto;color:#a99bff;font-weight:600}
+.ogx-g{position:relative;width:1200px;height:700px;background:radial-gradient(60% 60% at 50% 50%,#262330 0,#1e1e1e 70%)}
+.ogx-g svg{position:absolute;inset:0} .ogx-e{stroke:#5b5b66;stroke-width:1.6;stroke-dasharray:100;stroke-dashoffset:100}
+.ogx-n{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0}
+.ogx-n i{display:block;border-radius:50%;background:#9a9aa3;box-shadow:0 0 0 0 rgba(169,155,255,0)}
+.ogx-n span{font-size:15px;color:#d6d6dc;white-space:nowrap;text-shadow:0 1px 4px #000}
+.ogx-n.hub i{background:#a99bff} .ogx-n.hub span{color:#fff;font-weight:700;font-size:17px}
+"""
+
+
+def obsidian_graph(comp, ev, start, end):
+    edges = "".join(f'<line class="ogx-e" data-a="{a}" data-b="{b}" x1="{GRAPH_NODES[a][1]}" y1="{GRAPH_NODES[a][2]}" x2="{GRAPH_NODES[b][1]}" y2="{GRAPH_NODES[b][2]}" pathLength="100"/>'
+                    for a, b in GRAPH_EDGES)
+    nodes = "".join(f'<div class="ogx-n{" hub" if i == 0 else ""}" data-i="{i}" style="left:{x}px;top:{y}px"><i style="width:{r * 2}px;height:{r * 2}px"></i><span>{esc(n)}</span></div>'
+                    for i, (n, x, y, r) in enumerate(GRAPH_NODES))
+    inner = (f'<div class="ogx-win"><div class="ogx-bar"><i></i><i></i><i></i><span>Mózg firmy — widok grafu</span><b>{len(GRAPH_NODES)} notatek · {len(GRAPH_EDGES)} połączeń</b></div>'
+             f'<div class="ogx-g"><svg viewBox="0 0 1200 700">{edges}</svg>{nodes}</div></div>')
+    sid = own_slate(comp, start, end, "ogx", OG_CSS, inner, pip=ev.get("pip", True))
+    q, S, span = comp.q, f"#{sid}", end - start
+    hub = when(comp, ev, "hub", start, start + span * 0.62)
+    order = sorted(range(len(GRAPH_NODES)), key=lambda i: (i != 0, GRAPH_NODES[i][3] * -1))
+    gap = min(0.22, (hub - start - 1.2) / len(GRAPH_NODES))
+    seen = set()
+    for n, i in enumerate(order):
+        t = start + 0.3 + n * gap
+        comp.js.append(f'tl.fromTo("{S} .ogx-n[data-i=\'{i}\']",{{opacity:0,scale:0.3}},{{opacity:1,scale:1,duration:0.35,ease:"back.out(2)"}},{q(t)});')
+        seen.add(i)
+        for a, b in GRAPH_EDGES:
+            if (a == i and b in seen) or (b == i and a in seen):
+                comp.js.append(f'tl.to("{S} .ogx-e[data-a=\'{a}\'][data-b=\'{b}\']",{{strokeDashoffset:0,duration:0.4,ease:"power2.out"}},{q(t + 0.15)});')
+    hub_edges = ",".join(f'{S} .ogx-e[data-a=\'{a}\'][data-b=\'{b}\']' for a, b in GRAPH_EDGES if 0 in (a, b))
+    comp.js.append(f'tl.to("{hub_edges}",{{stroke:"#a99bff",strokeWidth:3,duration:0.4}},{q(hub)});')
+    comp.js.append(f'tl.to("{S} .ogx-n.hub i",{{boxShadow:"0 0 0 14px rgba(169,155,255,0.25)",scale:1.3,duration:0.5,ease:"power2.out"}},{q(hub)});')
+    comp.js.append(f'tl.to("{S} .ogx-g",{{scale:1.06,duration:{q(max(0.5, end - hub - 0.3))},ease:"none"}},{q(hub)});')
+
+
+# Pliki Markdown w Obsidianie (ep-vacuactiv ~13:01: „wchodzisz na ten profil Obsidiana i widzisz
+# po prostu pliki tak zwane markdown… o tej samej strukturze, z historią”).
+MD_TREE = [("📁 Firma", 0), ("Brief dzienny.md", 1), ("Wytyczne rabatów.md", 1), ("📁 Produkcja", 0), ("Plan produkcji — tydz. 27.md", 1),
+           ("Procedura pakowania.md", 1), ("Instrukcja montażu.md", 1), ("📁 Klienci", 0), ("Oferta — klient B2B.md", 1), ("📁 Spotkania", 0),
+           ("2026-10-14 kierownik produkcji.md", 1)]
+MD_ACTIVE = 5
+MD_LINES = [("fm", "---"), ("fm", "typ: procedura"), ("fm", "dział: produkcja"), ("fm", "aktualizacja: 2026-10-14"), ("fm", "---"),
+            ("h1", "# Procedura pakowania"), ("p", "Dotyczy: [[Bieżnia próżniowa]] · [[Wysyłka eksportowa]]"), ("h2", "## Kroki"),
+            ("li", "1. Kontrola końcowa — lista z [[Instrukcja montażu]]"), ("li", "2. Folia + narożniki, paleta EUR"),
+            ("li", "3. Zdjęcie palety do zlecenia"), ("h2", "## Historia zmian"),
+            ("li", "- 2026-10-14 — dodane zdjęcie palety ([[Spotkanie z kierownikiem]])")]
+MD_CSS = """
+.slate.mdx .slate-body{align-items:center}
+.mdx-win{width:1200px;height:760px;border-radius:16px;overflow:hidden;background:#1e1e1e;box-shadow:0 40px 90px rgba(0,0,0,.55);text-align:left;
+  font-family:"Inter",system-ui,sans-serif;display:grid;grid-template-rows:44px 1fr}
+.mdx-bar{background:#262626;display:flex;align-items:center;gap:9px;padding:0 18px;color:#bdbdbd;font-size:15px;border-bottom:1px solid #333}
+.mdx-bar i{width:12px;height:12px;border-radius:50%;background:#444} .mdx-bar span{margin-left:14px}
+.mdx-cols{display:grid;grid-template-columns:330px 1fr 250px;min-height:0}
+.mdx-tree{background:#262626;border-right:1px solid #333;padding:16px 10px;font-size:16px;color:#bdbdbd}
+.mdx-f{padding:6px 10px;border-radius:6px;white-space:nowrap;opacity:0} .mdx-f.l1{padding-left:30px;color:#d6d6dc}
+.mdx-f.on{background:#3a3a46;color:#fff}
+.mdx-ed{padding:28px 40px;color:#dcddde;font-size:19px;line-height:1.6;overflow:hidden}
+.mdx-l{opacity:0;white-space:normal}
+.mdx-l.mk-fm{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace;font-size:16px;color:#8f8f99}
+.mdx-l.mk-h1{font-size:34px;font-weight:800;color:#fff;margin:6px 0} .mdx-l.mk-h2{font-size:24px;font-weight:700;color:#fff;margin-top:10px}
+.mdx-l a{color:#a99bff;text-decoration:none;border-radius:4px}
+.mdx-bl{background:#232323;border-left:1px solid #333;padding:18px 16px;font-size:14.5px;color:#bdbdbd}
+.mdx-bl h5{margin:0 0 12px;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:#8f8f99}
+.mdx-bl div{padding:8px 10px;border-radius:6px;background:#2b2b2b;margin-bottom:8px;color:#d6d6dc;opacity:0}
+"""
+
+
+def markdown_files(comp, ev, start, end):
+    tree = "".join(f'<div class="mdx-f l{d}" data-i="{i}">{esc(n)}</div>' for i, (n, d) in enumerate(MD_TREE))
+    def md(text):
+        return re.sub(r"\[\[([^\]]+)\]\]", r'<a>[[\1]]</a>', esc(text))
+    lines = "".join(f'<div class="mdx-l mk-{k}">{md(t)}</div>' for k, t in MD_LINES)
+    back = "".join(f"<div>{esc(n)}</div>" for n in ["Brief dzienny", "Plan produkcji — tydz. 27", "Spotkanie z kierownikiem"])
+    inner = (f'<div class="mdx-win"><div class="mdx-bar"><i></i><i></i><i></i><span>Mózg firmy — Procedura pakowania.md</span></div>'
+             f'<div class="mdx-cols"><div class="mdx-tree">{tree}</div><div class="mdx-ed">{lines}</div>'
+             f'<div class="mdx-bl"><h5>Linki zwrotne</h5>{back}</div></div></div>')
+    sid = own_slate(comp, start, end, "mdx", MD_CSS, inner, pip=ev.get("pip", True))
+    q, S, span = comp.q, f"#{sid}", end - start
+    open_at = when(comp, ev, "open", start, start + min(1.6, span * 0.2))
+    comp.js.append(f'tl.fromTo("{S} .mdx-f",{{opacity:0,x:-14}},{{opacity:1,x:0,duration:0.22,stagger:{q(min(0.1, (open_at - start - 0.4) / len(MD_TREE)))}}},{q(start + 0.25)});')
+    comp.js.append(f'tl.set("{S} .mdx-f[data-i=\'{MD_ACTIVE}\']",{{attr:{{class:"mdx-f l1 on"}}}},{q(open_at)});')
+    step = min(0.32, (span - (open_at - start) - 1.6) / len(MD_LINES))
+    comp.js.append(f'tl.fromTo("{S} .mdx-l",{{opacity:0,y:8}},{{opacity:1,y:0,duration:0.22,stagger:{q(step)}}},{q(open_at + 0.2)});')
+    links_at = open_at + 0.2 + step * len(MD_LINES) + 0.2
+    comp.js.append(f'tl.fromTo("{S} .mdx-l a",{{backgroundColor:"rgba(169,155,255,0)"}},{{backgroundColor:"rgba(169,155,255,0.28)",duration:0.3,yoyo:true,repeat:1,stagger:0.12}},{q(links_at)});')
+    comp.js.append(f'tl.fromTo("{S} .mdx-bl div",{{opacity:0,x:12}},{{opacity:1,x:0,duration:0.25,stagger:0.2}},{q(links_at + 0.2)});')
+
+
+MOCKUPS.update({"site_booking": site_booking, "production_plan": production_plan, "obsidian_graph": obsidian_graph, "markdown_files": markdown_files})
