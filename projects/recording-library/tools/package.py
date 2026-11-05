@@ -1458,15 +1458,17 @@ def music_plan(board, clip_len):
     # przerywnik wklejany w środek odcinka: bez wejścia muzyki (od razu ciche tło, jak w odcinku)
     # i z korekcją głosu z innego mikrofonu/pomieszczenia (storyboard "voice_filter")
     return {"file": MUSIC_DIR / track, "offset": MUSIC_OFFSET.get(track, 0.0), "clip_len": clip_len,
-            "intro": board.get("music_intro", True), "voice_filter": board.get("voice_filter")}
+            "intro": board.get("music_intro", True), "voice_filter": board.get("voice_filter"),
+            "gain_db": board.get("music_db", 0.0)}   # 05.11 odcinki YouTube: −6 dB („dalej za głośno na całym filmie”)
 
 
 def mix_music(raw, music, out_wav):
     """Głos z renderu + muzyka: wejście → ciche tło (ściszane pod słowami) → głośniej na planszy końcowej."""
     total = probe_duration(raw, "v:0")
     intro_end, ramp = MUSIC_INTRO
-    bed, outro = 10 ** (MUSIC_BED_DB / 20), 10 ** (MUSIC_OUTRO_DB / 20)
-    intro = 10 ** (MUSIC_INTRO_DB / 20) if music.get("intro", True) else bed
+    extra = music.get("gain_db", 0.0)
+    bed, outro = 10 ** ((MUSIC_BED_DB + extra) / 20), 10 ** ((MUSIC_OUTRO_DB + extra) / 20)
+    intro = 10 ** ((MUSIC_INTRO_DB + extra) / 20) if music.get("intro", True) else bed
     outro = outro if music.get("intro", True) else bed   # przerywnik nie ma planszy końcowej
     outro_at = max(intro_end + ramp, music["clip_len"] - 0.3)
     gain = (f"if(lt(t,{intro_end}),{intro:.3f},if(lt(t,{intro_end + ramp}),{intro:.3f}-({intro:.3f}-{bed:.3f})*(t-{intro_end})/{ramp},"

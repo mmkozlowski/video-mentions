@@ -195,3 +195,18 @@ Składanki przebudowane (`compile_episode.py`) z klipami *-full.
 - Pułapki: `"until": "+8"` liczy się od startu zdarzenia (przy jednym zdarzeniu od 3,7 s plansza gasła
   w 11,7 s) — koniec podany liczbą (19,3). Wycinek CSS ze strony urwany w połowie reguły unieważnił
   cały arkusz (ikony SVG na pół ekranu) — sprawdzać bilans klamer.
+
+### Runda 12 (05.11) — falstarty w zaproszeniu, muzyka −6 dB
+
+- Mateusz (Marpasz 5:13 i 5:25): „zzzz”, „zatrzymam cię” dwa razy, „wychodzisz i wychodzisz”. Transkrypcja
+  słów tego nie pokazywała — whisper scalał falstart z właściwym ujęciem, a jedynym śladem była 3-sekundowa
+  dziura między „odpowiedzią” a „czy”. Wykryte dopiero po rozbiciu źródła na wyspy mowy (`silencedetect`)
+  i transkrypcji każdej osobno: 95,83–96,71 „Zzzzzz”, 171,77–172,04 szum (whisper: „dziękuję”),
+  175,9–179,4 „i wychodzisz z… odpowiem…”. Wycięte z `ins-mid` (i „zzzz” z `ins-mid-long`); Marpasz po
+  sklejeniu przepisany słowo po słowie — ciągłe „i wychodzisz z odpowiedzią, czy to w ogóle się opłaca”.
+  **Wniosek:** przy wstawkach z wielu podejść dziury >1,5 s między słowami transkrypcji traktuj jak
+  podejrzenie falstartu i odsłuchuj wyspami.
+- Muzyka „dalej za głośno na całym filmie”: storyboard `"music_db": -6.0` (dokłada do wejścia, tła i końcówki)
+  w 7 odcinkach i 4 wstawkach; reklamy bez zmian. Przemiks przez `--finalize-only`, bez renderu obrazu.
+- Długości: oferty 3:35, 8 wdrożeń 15:03, Doram 11:44, Rezon 7:56, Marpasz 8:43, Vacu Activ 18:47,
+  moduł 9:30. Rozdziały w Studiu (PATCH 200 ×7).

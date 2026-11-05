@@ -261,10 +261,12 @@ RAW += [
          notes="„A ja nazywam się Mateusz Kozłowski…” + branże, do „…miałem okazję już dotknąć”. Bez „to nie jest odcinek "
                "sponsorowany” (Mateusz 05.11: „po co mam się tłumaczyć”), cięcie w ciszy 74,38–74,76. Po hooku."),
     dict(id="ins-mid", source="inserts", title="Przerywnik: zaproszenie na konsultację",
-         ranges=[(95.8, 99.4, 95.82, 99.36), (171.6, 198.6, 171.70, 198.58)], hook=3, delivery=4,
+         ranges=[(95.8, 99.4, 96.85, 99.36), (171.6, 175.95, 172.10, 175.95), (179.3, 198.6, 179.40, 198.58)], hook=3, delivery=4,
+         # 05.11: bez „zzzz” przed „Poczekaj” (95,83–96,71), szumu przed „Robię” (171,77–172,04, whisper: „dziękuję”)
+         # i falstartu „i wychodzisz z… odpowiem…” (176,0–179,4) — whisper chował powtórkę w 3 s dziury przed „czy”
          notes="„Poczekaj, zatrzymam Cię…” + konsultacja, „bez zobowiązań”, WhatsApp/LinkedIn/strona. 60–70% filmu."),
     dict(id="ins-mid-long", source="inserts", title="Przerywnik: zaproszenie na warsztat (Open Mercato)",
-         ranges=[(95.8, 99.4, 95.82, 99.36), (108.7, 118.6, 108.79, 118.55), (133.3, 156.1, 133.38, 156.02),
+         ranges=[(95.8, 99.4, 96.85, 99.36), (108.7, 118.6, 108.79, 118.55), (133.3, 156.1, 133.38, 156.02),
                  (183.1, 198.6, 183.18, 198.58)], hook=3, delivery=4,
          notes="Wersja z warsztatem na miejscu i „Open Mercato przetworzy to na specyfikację” — tylko odcinki o OM."),
     dict(id="ins-outro", source="inserts", title="Przerywnik: zamknięcie",
