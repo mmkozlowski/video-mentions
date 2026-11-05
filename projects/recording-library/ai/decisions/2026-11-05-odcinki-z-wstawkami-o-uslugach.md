@@ -41,8 +41,9 @@ zdania i braki w planszach, a w odcinku o Marpaszu dać logotypy Apilo/BaseLinke
 Wstawki nagrane innym ujęciem i w innym pomieszczeniu odstawały obrazem i barwą głosu. Decyzja
 Mateusza: **w odcinku zostaje tylko jego głos, obraz to plansze** (`voice_only`), przedstawienie bez
 „to nie jest odcinek sponsorowany”. Barwa wyrównana korekcją (`voice_filter`), bez ponownego wejścia
-muzyki (`music_intro: false`). Na otwarcie każdego odcinka jingiel z `Miniaturki Youtube.mp4` jako maska
-L (pasek boczny + dolny) — `assemble_episode.py`, `JINGLE_*`.
+muzyki (`music_intro: false`). Paski z `Miniaturki Youtube.mp4` jako maska L (pasek boczny + dolny CTA) idą
+na planszach zamknięcia — `assemble_episode.py`, `BARS_*`. Pierwsza wersja (jingiel od pierwszej sekundy)
+odrzucona przez Mateusza: „nie może być od pierwszej sekundy — ewentualnie przy końcu”.
 
 **Pułapka:** przenikanie (`xfade`) pomniejszonego okna w pełną klatkę daje podwójny obraz, bo te same
 klatki leżą w dwóch geometriach. Paski mają zjeżdżać nad niezmienionym obrazem, nie obraz się rozszerzać.

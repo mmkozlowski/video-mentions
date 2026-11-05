@@ -6,7 +6,7 @@
     "ins-outro"
    ]
   ],
-  "chapters": "0:00 8 wdrożeń Open Mercato\n0:22 Każdy ma swoją wersję oferty\n1:44 20 ofert → 3 zamówienia\n2:19 Asystent czyta maile → szkic w 5 minut"
+  "chapters": "0:00 8 wdrożeń Open Mercato\n0:20 Każdy ma swoją wersję oferty\n1:43 20 ofert → 3 zamówienia\n2:17 Asystent czyta maile → szkic w 5 minut"
  },
  "ep-marpasz": {
   "plan": [
@@ -23,7 +23,7 @@
     "ins-outro"
    ]
   ],
-  "chapters": "0:00 Realne przypadki AI\n0:49 Paczki do 25 kg: cztery worki, cztery etykiety\n1:55 Jak to wyglądało wcześniej\n3:28 Teraz: AI łączy w jeden koszyk\n4:02 Około 100 godzin miesięcznie\n5:44 Katalog AI: faktura → produkty → opisy\n7:54 Czy to działa idealnie?"
+  "chapters": "0:00 Realne przypadki AI\n0:48 Paczki do 25 kg: cztery worki, cztery etykiety\n1:53 Jak to wyglądało wcześniej\n3:27 Teraz: AI łączy w jeden koszyk\n4:01 Około 100 godzin miesięcznie\n5:42 Katalog AI: faktura → produkty → opisy\n7:52 Czy to działa idealnie?"
  },
  "ep-rezon": {
   "plan": [
@@ -40,7 +40,7 @@
     "ins-outro"
    ]
   ],
-  "chapters": "0:00 Pamiątki z Kołobrzegu i proces na kartkach\n0:42 Kontrola po fakcie\n1:25 Najpierw jedna baza\n2:25 Integracja z PC Business\n2:59 Handlowiec w trasie\n4:59 Nadprodukcja\n6:26 Panel klienta B2B\n7:06 Handlowiec zamawia za klienta"
+  "chapters": "0:00 Pamiątki z Kołobrzegu i proces na kartkach\n0:41 Kontrola po fakcie\n1:24 Najpierw jedna baza\n2:23 Integracja z PC Business\n2:58 Handlowiec w trasie\n4:58 Nadprodukcja\n6:25 Panel klienta B2B\n7:04 Handlowiec zamawia za klienta"
  },
  "ep-module": {
   "plan": [
@@ -57,7 +57,7 @@
     "ins-outro"
    ]
   ],
-  "chapters": "0:00 Kartka zamiast kodu\n0:32 Od procesu w Excelu do modułu\n1:08 Ludzie zaczynają od drugiej strony\n1:25 Warsztat: 70 pytań po rolach\n2:06 Szef wie swoje, hala wie lepiej\n2:51 Droga jednej kartki\n3:49 Nagraj rozmowę z programistą\n4:58 Trzy warstwy specyfikacji\n6:34 Słownik pojęć\n6:57 Checklista i 70–90% trafności\n7:51 Gdzie to się psuje\n8:20 Powtarzalność\n8:46 Zadanie: przejdź swój proces"
+  "chapters": "0:00 Kartka zamiast kodu\n0:31 Od procesu w Excelu do modułu\n1:07 Ludzie zaczynają od drugiej strony\n1:24 Warsztat: 70 pytań po rolach\n2:05 Szef wie swoje, hala wie lepiej\n2:50 Droga jednej kartki\n3:48 Nagraj rozmowę z programistą\n4:57 Trzy warstwy specyfikacji\n6:33 Słownik pojęć\n6:56 Checklista i 70–90% trafności\n7:50 Gdzie to się psuje\n8:19 Powtarzalność\n8:45 Zadanie: przejdź swój proces"
  },
  "ep-doram": {
   "plan": [
@@ -74,7 +74,7 @@
     "ins-outro"
    ]
   ],
-  "chapters": "0:00 Kolejny przypadek z firmy\n0:43 Zamówienia w Excelu od kontrahentów z Niemiec\n1:47 Kilka dni klepania → 10 minut\n2:26 Dlaczego to tak długo trwało\n3:44 Kody kreskowe: przeklej, drukuj\n4:59 Najpierw jedna baza\n6:06 Pamięć dla AI\n8:01 Jak uczy się zwykły czat\n9:24 70% → 94% → 95%\n10:22 Kody bez AI: 15 minut\n10:48 Co dalej"
+  "chapters": "0:00 Kolejny przypadek z firmy\n0:42 Zamówienia w Excelu od kontrahentów z Niemiec\n1:46 Kilka dni klepania → 10 minut\n2:25 Dlaczego to tak długo trwało\n3:43 Kody kreskowe: przeklej, drukuj\n4:58 Najpierw jedna baza\n6:05 Pamięć dla AI\n8:00 Jak uczy się zwykły czat\n9:23 70% → 94% → 95%\n10:21 Kody bez AI: 15 minut\n10:47 Co dalej"
  },
  "ep-8-wdrozen": {
   "plan": [
@@ -91,7 +91,7 @@
     "ins-outro"
    ]
   ],
-  "chapters": "0:00 Oferta w 5 minut\n3:36 Zamówienia z Excela: 70% → 94%\n4:54 Kody kreskowe: kilka dni → 15 minut\n5:29 Etykiety: ok. 100 godzin miesięcznie\n7:17 Katalog AI z faktur\n10:22 Panel klienta B2B\n12:09 Kierownik produkcji w godzinę\n14:07 AI to dokręcanie śrubek"
+  "chapters": "0:00 Oferta w 5 minut\n3:35 Zamówienia z Excela: 70% → 94%\n4:52 Kody kreskowe: kilka dni → 15 minut\n5:28 Etykiety: ok. 100 godzin miesięcznie\n7:16 Katalog AI z faktur\n10:20 Panel klienta B2B\n12:07 Kierownik produkcji w godzinę\n14:06 AI to dokręcanie śrubek"
  },
  "ep-vacuactiv": {
   "plan": [
@@ -108,6 +108,6 @@
     "ins-outro"
    ]
   ],
-  "chapters": "0:00 Asystent AI do zarządzania firmą\n0:51 ChatGPT zapomina i halucynuje\n2:21 Dane w głowach, na kartkach, w mailach\n3:40 Mózg firmy: 100–150 GB danych\n4:35 „Chcę codzienny brief”\n5:24 Open Mercato jako fundament\n5:45 Dlaczego gotowce się nie wdrażają\n7:08 Excel kierownika → widoki w systemie\n9:25 Codzienny briefing przyjemnością\n10:20 Zamówienie z Telegrama w trzech kliknięciach\n11:18 Obsidian + Hermes + Codex\n15:28 Fundamenty i systemy zamknięte\n17:08 Najpierw konsultacje, ludzie, nawyk"
+  "chapters": "0:00 Asystent AI do zarządzania firmą\n0:50 ChatGPT zapomina i halucynuje\n2:20 Dane w głowach, na kartkach, w mailach\n3:39 Mózg firmy: 100–150 GB danych\n4:34 „Chcę codzienny brief”\n5:23 Open Mercato jako fundament\n5:44 Dlaczego gotowce się nie wdrażają\n7:07 Excel kierownika → widoki w systemie\n9:24 Codzienny briefing przyjemnością\n10:19 Zamówienie z Telegrama w trzech kliknięciach\n11:17 Obsidian + Hermes + Codex\n15:27 Fundamenty i systemy zamknięte\n17:07 Najpierw konsultacje, ludzie, nawyk"
  }
 }

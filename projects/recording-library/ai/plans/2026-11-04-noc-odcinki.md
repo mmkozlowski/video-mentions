@@ -170,3 +170,13 @@ Składanki przebudowane (`compile_episode.py`) z klipami *-full.
   kompromisy co w rundzie 7). Rozdziały w Studiu przez PATCH (nagłówek `x-studio-request: 1` — nowy
   wymóg panelu). Długości: oferty 3:36, 8 wdrożeń 15:05, Doram 11:50, Rezon 8:02, Marpasz 8:49,
   Vacu Activ 18:53, moduł 9:32.
+
+### Runda 10 (05.11) — paski z miniaturek przy końcu, nie na otwarciu
+
+- Mateusz po obejrzeniu: „ta wstawka z maską nie może być od pierwszej sekundy — ewentualnie przy końcu”.
+  Jingiel otwarcia usunięty; paski (maska L) idą na planszach zamknięcia `ins-outro` — wjazd po 0,3 s,
+  zjazd 1 s przed końcem. Próba na ostatnich 8 s ujęcia odcinka odrzucona po klatkach: pasek boczny
+  ucinał dolny napis „Pokażę, jak to zrobić u Ciebie”.
+- Sklejanie przy pełnym obciążeniu Maca zagłodziło panel Studia (load 37) — kolejne sklejki puszczać
+  z `nice -n 20`. Długości: oferty 3:35, 8 wdrożeń 15:04, Doram 11:49, Rezon 8:01, Marpasz 8:48,
+  Vacu Activ 18:51, moduł 9:31. Rozdziały w Studiu (PATCH 200).
