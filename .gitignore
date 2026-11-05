@@ -67,3 +67,6 @@ projects/youtube/final/**/zgrubny/
 # Spisy dla FlowBiz Studio — odtwarzalne (tools/export_studio.py) i lokalne, jak final/samples
 studio-index.json
 projects/*/exports/
+
+# Referencje wstawek YouTube zostają w gicie mimo reguły *.mp4 wyżej (decyzja 22.08.2026)
+!projects/youtube/final/**/referencje/*.mp4
