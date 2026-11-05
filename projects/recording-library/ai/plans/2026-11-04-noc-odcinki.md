@@ -1,7 +1,7 @@
 # Noc 04→05.11: dopracowanie 7 odcinków YouTube
 
 **Data:** 2026-11-04
-**Status:** w toku (pętla nocna)
+**Status:** ✅ zrobione (05.11 ~02:00) — ADR: [[../decisions/2026-11-05-odcinki-z-wstawkami-o-uslugach]]
 
 Zlecenie Mateusza (04.11, wieczór): „pracuj całą noc, dopracowuj w loopie, testuj, weryfikuj,
 sklej z poprawkami”. Wykryć urwane zdania i braki w planszach (ekranach), wstawić nagrane
@@ -32,8 +32,8 @@ Każdy punkt: zrób → zweryfikuj (verify.py / transkrypcja gotowego pliku / kl
 - [x] 8. Plansze w lukach: wszystkie 7 odcinków bez luk > 25 s (patrz runda 4)
 - [x] 9. Sklejki odcinków ze wstawkami (`compile_episode.py`), przeliczone rozdziały
 - [x] 10. Render youtube wszystkich 7 → klatki kontrolne co ~30 s + transkrypcja gotowego pliku (urwania na łączeniach)
-- [ ] 11. Podglądy Studia (serwer buduje sam w tle) + rozdziały w `data/episodes/*.json` panelu
-- [ ] 12. Commit tylko własnych ścieżek, ADR, raport dla Mateusza
+- [x] 11. Podglądy Studia (serwer buduje sam w tle) + rozdziały w `data/episodes/*.json` panelu
+- [x] 12. Commit tylko własnych ścieżek, ADR, raport dla Mateusza
 
 ## Dziennik
 
@@ -139,3 +139,10 @@ Składanki przebudowane (`compile_episode.py`) z klipami *-full.
 - Klatki kontrolne nowych plansz (Doram 7, Vacu Activ 8): błąd znacznika — `*` wyróżnia od słowa
   do końca, para `*…*` zostawiała dosłowną gwiazdkę („drugi Excel*”). Poprawione 5 tytułów
   (Doram 2, Vacu Activ 2, 8 wdrożeń 1), ponowny render tych trzech + sklejenie.
+
+### Runda 8 (05.11 ~02:00) — Studio i zamknięcie
+
+- `export_studio.py`: odcinek z `--with-inserts.mp4` ma pierwszeństwo przed gołym renderem; spis
+  wyeksportowany (66 filmów). Rozdziały 7 odcinków wpisane przez API panelu (PATCH 200). Panel nie
+  przyjmuje `length` — długości w raporcie. Podglądy nowych plików buduje serwer w tle.
+- Klatka kontrolna po poprawce napisu: „Excel → Excel → drukarka” ✅.

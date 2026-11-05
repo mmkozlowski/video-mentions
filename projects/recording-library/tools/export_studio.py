@@ -68,6 +68,10 @@ def main():
     THUMBS.mkdir(parents=True, exist_ok=True)
     videos = []
     for row in sorted(rows, key=lambda r: (r["seriesName"], KIND_ORDER.index(r["kind"]), r["id"])):
+        # odcinek sklejony z przerywnikami o usługach (assemble_episode.py) ma pierwszeństwo przed gołym renderem
+        with_inserts = row["file"].replace(".mp4", "--with-inserts.mp4")
+        if row["kind"] == "odcinek" and (FINAL / "samples" / with_inserts).exists():
+            row = dict(row, file=with_inserts)
         video = FINAL / "samples" / row["file"]
         if not video.exists():
             print(f"  brak pliku: {row['file']}")
