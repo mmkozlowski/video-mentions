@@ -35,10 +35,16 @@
   {
    "type": "slate",
    "at": "Link",
-   "until": "+14",
+   "until": "ewentualnie",
    "text": "Umów *konsultację",
    "kicker": "flowbiz.pl · 536 507 701",
    "sub": "link w opisie · WhatsApp · LinkedIn"
+  },
+  {
+   "type": "mockup",
+   "name": "site_booking",
+   "at": "ewentualnie",
+   "until": "+7"
   }
  ],
  "voice_only": true,

@@ -37,7 +37,19 @@ ENDCARD = 2.5          # plansza końcowa youtube (package.py, end_len)
 BARS_SOURCE = Path.home() / "Youtube Projects" / "Miniaturki Youtube.mp4"
 BARS_SIZE = (150, 130)    # szerokość paska z logo, wysokość dolnego paska z CTA (px przy 1920×1080)
 BARS_ON = "ins-outro"
+# Mateusz 05.11 wieczór: „plansza z maską powinna być pod koniec mojego gadania, ostatnie 20 sekund —
+# to tylko taki baner”. Paski idą więc na ostatnie BARS_LEAD s treści odcinka PRZED zamknięciem
+# (i przed gagiem, jeśli jest), a plansze zamknięcia lecą już bez nich.
+BARS_LEAD = 20.0
+END_GUARD = 0.35
 BARS_SLIDE = 0.6
+GAGS_DIR = P.PACK / "brand" / "gags"
+# Gag = stopklatka z ostatniej klatki przed cięciem + kartka z dziennika i ocena „1” + dzwonek/pieczątka
+# (własna grafika i dźwięk — fragment cudzego filmu na kanale firmowym = roszczenie Content ID).
+GAGS = {
+    "gag-przymiotnik": dict(card="przymiotnik-nograde.png", grade="przymiotnik-onlygrade.png",
+                            sfx="przymiotnik-sfx.wav", length=3.4, card_in=0.15, grade_at=1.2),
+}
 FADE = 0.012
 ABBREVIATIONS = {"np.", "tzn.", "itp.", "itd.", "m.in.", "ok.", "tj.", "pt.", "ul.", "nr.", "tzw."}
 
@@ -48,7 +60,8 @@ PLAN = {
     "ep-doram": [("Zamówienia w Excelu od kontrahentów z Niemiec", "ins-intro"), ("Jak uczy się zwykły czat", "ins-mid"), ("before:Dzięki i do usłyszenia", "ins-outro")],
     "ep-rezon": [("Kontrola po fakcie", "ins-intro"), ("Nadprodukcja", "ins-mid"), ("END", "ins-outro")],
     "ep-marpasz": [("Paczki do 25 kg: cztery worki, cztery etykiety", "ins-intro"), ("Katalog AI: faktura → produkty → opisy", "ins-mid"), ("END", "ins-outro")],
-    "ep-vacuactiv": [("ChatGPT zapomina i halucynuje", "ins-intro"), ("Obsidian + Hermes + Codex", "ins-mid"), ("before:No dobra", "ins-outro")],
+    "ep-vacuactiv": [("ChatGPT zapomina i halucynuje", "ins-intro"), ("Obsidian + Hermes + Codex", "ins-mid"),
+                     ("before:No dobra", "gag-przymiotnik"), ("before:No dobra", "ins-outro")],
     "ep-module": [("Ludzie zaczynają od drugiej strony", "ins-intro"), ("Słownik pojęć", "ins-mid-long"), ("END", "ins-outro")],
 }
 
@@ -104,19 +117,55 @@ def word_gap_near(words, t):
     return round(min((g for g in gaps if g[1] >= 0.08), key=lambda g: abs(g[0] - t))[0], 3)
 
 
-def bars_graph(source, length):
-    """[source:v] (0…length) + plik pasków → [bv]. Maska, nie okno: obraz odcinka bez zmian,
-    na nim tylko pasek boczny i dolny. (Pomniejszone okno + przenikanie dawało podwójny obraz.)"""
+def bars_graph(source, length, start=0.0):
+    """[source:v] (start…start+length) + plik pasków → [bv]. OKNO, nie maska: obraz odcinka zmniejsza się
+    do ramki obok paska z logo i nad dolnym paskiem CTA (tło = mięta z pliku pasków), potem wraca na cały
+    kadr. Maska nakładana NA obraz ucinała dolne napisy (05.11 wieczór, wszystkie odcinki). Bez przenikania
+    dwóch skal — to dawało podwójny obraz; skala zmienia się klatka po klatce."""
     side, bottom = BARS_SIZE
+    win_h = 1080 - bottom
+    win_w = round(win_h * 16 / 9 / 2) * 2
+    x0 = side + (1920 - side - win_w) // 2
     slide_in = f"pow(1-min(1,max(0,t-0.3)/{BARS_SLIDE}),2)"
     slide_out = f"pow(min(1,max(0,(t-{length - BARS_SLIDE - 0.4:.3f})/{BARS_SLIDE})),2)"
-    away = f"max({slide_in},{slide_out})"
+    p = f"(1-max({slide_in},{slide_out}))"
     return (f"[B:v]fps=30,scale=1920:1080,setsar=1,tpad=stop_mode=clone:stop_duration={length:.3f},"
-            f"trim=0:{length:.3f},setpts=PTS-STARTPTS,format=yuva420p,"
-            f"geq=lum='lum(X,Y)':cb='cb(X,Y)':cr='cr(X,Y)':a='if(lt(X,{side})+gt(Y,{1080 - bottom}),255,0)'[bmask];"
-            f"[{source}:v]trim=0:{length:.3f},setpts=PTS-STARTPTS,fps=30,scale=1920:1080,setsar=1[bbase];"
-            f"[bbase][bmask]overlay=x='-{side + 40}*{away}':y='{bottom + 40}*{away}':eof_action=pass,"
+            f"trim=0:{length:.3f},setpts=PTS-STARTPTS[bmask];"
+            f"[{source}:v]trim={start:.3f}:{start + length:.3f},setpts=PTS-STARTPTS,fps=30,"
+            f"scale=w='trunc((1920-{1920 - win_w}*{p})/2)*2':h='trunc((1080-{1080 - win_h}*{p})/2)*2':eval=frame,"
+            f"setsar=1[bbase];"
+            f"[bmask][bbase]overlay=x='{x0}*{p}':y=0:eval=frame:eof_action=pass,"
             f"format=yuv420p,setsar=1[bv];")
+
+def split_for_bars(segments, words):
+    """Ostatnie BARS_LEAD s treści przed zamknięciem (BARS_ON) → osobny kawałek „bars”; szew w przerwie
+    między słowami. Gag stojący tuż przed zamknięciem nie przesuwa banera — baner kończy się przed gagiem."""
+    for i, seg in enumerate(segments):
+        if seg[0] == "insert" and seg[1] == BARS_ON:
+            j = i - 1
+            while j >= 0 and segments[j][0] == "insert":
+                j -= 1
+            if j < 0:
+                return segments
+            _, a, b = segments[j]
+            seam = max(a, word_gap_near(words, b - BARS_LEAD)) if b - a > BARS_LEAD + 1 else a
+            parts = ([("episode", a, seam)] if seam > a + 0.01 else []) + [("bars", seam, b)]
+            return segments[:j] + parts + segments[j + 1:]
+    return segments
+
+
+def gag_graph(n_card, n_grade, n_sfx, t, spec, i):
+    """Stopklatka ostatniej klatki przed t (lekko przyciemniona) + kartka wjeżdżająca z góry + ocena."""
+    L, cin, gat = spec["length"], spec["card_in"], spec["grade_at"]
+    slide = f"if(lt(t,{cin}),-H,if(lt(t,{cin + 0.3}),-H+H*pow((t-{cin})/0.3,0.6),0))"
+    return (f"[0:v]trim={max(0.0, t - 0.07):.3f}:{t:.3f},setpts=PTS-STARTPTS,fps=30,scale=1920:1080,setsar=1,"
+            f"tpad=stop_mode=clone:stop_duration={L},trim=0:{L},setpts=PTS-STARTPTS,eq=brightness=-0.08[gb{i}];"
+            f"[{n_card}:v]format=rgba,setpts=PTS-STARTPTS[gc{i}];"
+            f"[{n_grade}:v]format=rgba,fade=t=in:st={gat}:d=0.08:alpha=1,setpts=PTS-STARTPTS[gg{i}];"
+            f"[gb{i}][gc{i}]overlay=x=0:y='{slide}':eof_action=repeat[gx{i}];"
+            f"[gx{i}][gg{i}]overlay=0:0:eof_action=repeat,trim=0:{L},format=yuv420p,setsar=1[v{i}];"
+            f"[{n_sfx}:a]atrim=0:{L},asetpts=PTS-STARTPTS,aformat=sample_rates=48000:channel_layouts=stereo,"
+            f"apad=whole_dur={L}[a{i}];")
 
 
 def plan_segments(clip_id):
@@ -128,7 +177,9 @@ def plan_segments(clip_id):
     cuts = []
     for where, insert in PLAN[clip_id]:
         if where == "END":
-            cuts.append((content_end, insert))
+            # plansza końcowa renderu wchodzi przenikaniem ~0,3 s PRZED końcem treści — cięcie dokładnie
+            # w content_end pokazywało mignięcie logo flowbiz przed zamknięciem (Rezon, Marpasz…)
+            cuts.append((round(content_end - END_GUARD, 3), insert))
         elif where.startswith("before:"):
             # zamknięcie przed własnym pożegnaniem w nagraniu („Dzięki i do usłyszenia”): przerwa przed
             # ostatnim wystąpieniem pierwszego słowa frazy
@@ -154,16 +205,19 @@ def plan_segments(clip_id):
             pinned[where] = t
     segments, cursor = [], 0.0
     for t, insert in cuts:
-        segments.append(("episode", cursor, t))
-        segments.append(("insert", insert, duration(FINAL / f"{insert}__youtube-F.mp4")))
+        if t > cursor + 0.01:   # dwie wstawki w jednym miejscu (gag + zamknięcie) — bez pustego kawałka
+            segments.append(("episode", cursor, t))
+        length = GAGS[insert]["length"] if insert in GAGS else duration(FINAL / f"{insert}__youtube-F.mp4")
+        segments.append(("insert", insert, length, t))
         cursor = t
     segments.append(("episode", cursor, duration(render)))
+    segments = split_for_bars(segments, rw)
     # rozdziały po przesunięciu: każdy dostaje sumę długości wstawek wklejonych przed nim
     shifted = []
     for t, title in chapters:
         t = pinned.get(title, t)
         # wstawka przesuwa rozdział, gdy fragment odcinka przed nią kończy się najpóźniej w punkcie rozdziału
-        extra = sum(seg[2] for i, seg in enumerate(segments) if seg[0] == "insert" and segments[i - 1][2] <= t + 0.05)
+        extra = sum(seg[2] for seg in segments if seg[0] == "insert" and seg[3] <= t + 0.05)
         shifted.append((round(t + extra, 1), title))
     return render, segments, shifted
 
@@ -177,18 +231,31 @@ def build(clip_id, dry=False):
     inputs, graph, labels = ["-i", str(render)], "", []
     insert_inputs = {}
     for seg in segments:
-        if seg[0] == "insert" and seg[1] not in insert_inputs:
+        if seg[0] == "insert" and seg[1] not in insert_inputs and seg[1] not in GAGS:
             insert_inputs[seg[1]] = len(insert_inputs) + 1
             inputs += ["-i", str(FINAL / f"{seg[1]}__youtube-F.mp4")]
     bars_input = len(insert_inputs) + 1
-    if BARS_ON in insert_inputs:
+    if any(seg[0] == "bars" for seg in segments):
         inputs += ["-i", str(BARS_SOURCE)]
+    gag_inputs = {}
+    for seg in segments:
+        if seg[0] == "insert" and seg[1] in GAGS and seg[1] not in gag_inputs:
+            spec, first = GAGS[seg[1]], inputs.count("-i")
+            gag_inputs[seg[1]] = (first, first + 1, first + 2)
+            inputs += ["-loop", "1", "-t", str(spec["length"]), "-i", str(GAGS_DIR / spec["card"]),
+                       "-loop", "1", "-t", str(spec["length"]), "-i", str(GAGS_DIR / spec["grade"]),
+                       "-i", str(GAGS_DIR / spec["sfx"])]
     for i, seg in enumerate(segments):
-        if seg[0] == "insert" and seg[1] == BARS_ON:
-            graph += (bars_graph(insert_inputs[seg[1]], seg[2]).replace("[B:", f"[{bars_input}:")
+        if seg[0] == "bars":
+            a, b = seg[1], seg[2]
+            graph += (bars_graph(0, b - a, a).replace("[B:", f"[{bars_input}:")
                       .replace("[bv]", f"[v{i}]").replace("[bmask]", f"[bmask{i}]").replace("[bbase]", f"[bbase{i}]"))
-            graph += (f"[{insert_inputs[seg[1]]}:a]atrim=0:{seg[2]},asetpts=PTS-STARTPTS,aformat=sample_rates=48000:channel_layouts=stereo,"
-                      f"afade=t=in:d={FADE},afade=t=out:st={max(0.0, seg[2] - FADE):.3f}:d={FADE}[a{i}];")
+            graph += (f"[0:a]atrim={a}:{b},asetpts=PTS-STARTPTS,aformat=sample_rates=48000:channel_layouts=stereo,"
+                      f"afade=t=in:d={FADE},afade=t=out:st={max(0.0, b - a - FADE):.3f}:d={FADE}[a{i}];")
+            labels.append(f"[v{i}][a{i}]")
+            continue
+        if seg[0] == "insert" and seg[1] in GAGS:
+            graph += gag_graph(*gag_inputs[seg[1]], seg[3], GAGS[seg[1]], i)
             labels.append(f"[v{i}][a{i}]")
             continue
         if seg[0] == "episode":

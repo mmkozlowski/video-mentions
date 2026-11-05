@@ -210,3 +210,30 @@ Składanki przebudowane (`compile_episode.py`) z klipami *-full.
   w 7 odcinkach i 4 wstawkach; reklamy bez zmian. Przemiks przez `--finalize-only`, bez renderu obrazu.
 - Długości: oferty 3:35, 8 wdrożeń 15:03, Doram 11:44, Rezon 7:56, Marpasz 8:43, Vacu Activ 18:47,
   moduł 9:30. Rozdziały w Studiu (PATCH 200 ×7).
+
+### Runda 13 (05.11 wieczór) — „Agent AI dla właściciela firmy”: 17 uwag Mateusza ze Studia
+
+- [x] **Cięcia (EDL ep-vacuactiv, 31 przedziałów):** 21× „po prostu” (Mateusz: wtrącenie, gdy przed/po jest
+  cisza), falstarty „nagle… cyfryzacja” (5:00), „Kolejne statu…, tak”, „do jednego… do jednego tutaj…”,
+  „żeby… żeby”, „i… i itd., tak”, „do tego… jak, jak, jak… tutaj”, przeciągnięte „z…” przed „związane”.
+  Odcinek 1066 → 1030 s. **Pułapka:** w tym nagraniu czasy słów Whispera są przesunięte do 0,8 s,
+  a `silencedetect -38 dB` źle parował start/koniec (mowa oznaczona jako cisza). Granice z RMS co 20 ms,
+  każde cięcie sprawdzone Whisperem SKLEJKI (2,5 s przed + 2,5 s po) — narzędzia w scratchpadzie sesji
+  (`probe.py`, `verify_cut.py`, `refine.py`); falstarty widać dopiero po przetranskrybowaniu wysp mowy osobno.
+- [x] **Grafiki:** `production_plan` zamiast `board` (Excel kierownika → plan w stylu Open Mercato),
+  `telegram` w wyglądzie z demo na stronie, `obsidian_graph` przy „zapisywana”, `markdown_files` przy
+  „markdown”, logotypy Obsidian + **Hermes** (`hermes.svg`, neutralny monogram) + Codex.
+- [x] **ChatGPT (uwaga 13:21, sprawdzone merytorycznie):** „jeden plik, nadpisuje dane” było nieścisłe —
+  plansze: „Okno kontekstu się zapełnia”, „Najstarsze wiadomości wypadają z pamięci”.
+- [x] **Gag „przymiotnik”** (Mateusz: „czy to jest przymiotnik” → zrób z tego scenę, np. „Kozłowski, pała,
+  siadaj”): zamiast fragmentu cudzego filmu (Content ID) — wstawka `gag-przymiotnik` w `assemble_episode.GAGS`:
+  stopklatka ostatniej klatki przed „No dobra”, kartka z dziennika (rzeczownik / rzeczownik / przymiotnik? brak),
+  czerwona „1”, dzwonek i pieczątka (syntetyczne, `packaging/brand/gags/`). Błędna plansza „Wstaw swój
+  przymiotnik” usunięta.
+- [x] **Baner marki** (Mateusz: „plansza z maską ma być pod koniec mojego gadania, ostatnie 20 s — to tylko
+  baner”): `BARS_LEAD = 20` s treści przed zamknięciem, plansze zamknięcia już bez pasków — **we wszystkich
+  odcinkach**. Pierwsza wersja (maska NA obrazie) ucinała dolne napisy w każdym odcinku → wersja OKNO:
+  obraz zmniejsza się do ramki obok pasków (skala klatka po klatce, bez przenikania).
+- [x] **Strona www w zaproszeniu (wszystkie odcinki):** `site_booking` w `ins-mid` i `ins-mid-long` od
+  „ewentualnie umów” — przewijana flowbiz.pl, „Zarezerwuj spotkanie”, formularz, „Dziękuję! Oddzwonię”.
+- Długość: ep-vacuactiv z wstawkami 18:14 (było 18:47); pozostałe odcinki bez zmiany długości.

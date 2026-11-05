@@ -263,7 +263,7 @@
   },
   {
    "type": "mockup",
-   "name": "board",
+   "name": "production_plan",
    "at": "widoki",
    "until": "+12"
   },
@@ -374,11 +374,15 @@
      "name": "Obsidian"
     },
     {
+     "logo": "hermes",
+     "name": "Hermes"
+    },
+    {
      "logo": "openai",
      "name": "Codex"
     }
    ],
-   "sub": "+ Hermes · pamięć zapisywana na bieżąco"
+   "sub": "pamięć zapisywana na bieżąco"
   },
   {
    "type": "title",
@@ -398,14 +402,20 @@
    "text": "Pamięć *zawsze świeża"
   },
   {
+   "type": "mockup",
+   "name": "obsidian_graph",
+   "at": "zapisywana",
+   "until": "+11"
+  },
+  {
    "type": "list",
-   "at": "skille",
-   "until": "+18",
+   "at": "straci",
+   "until": "+14",
    "kicker": "Jak pracuje agent",
    "items": [
     {
      "text": "Buduje skille z Twojej pracy",
-     "at": "skille"
+     "at": "straci"
     },
     {
      "text": "Nie traci kontekstu",
@@ -424,7 +434,7 @@
    "zone": "lower",
    "kicker": "Czat GPT",
    "text": "Nie cofnie się *o pół roku",
-   "sub": "nie zapisuje plików"
+   "sub": "czat ma ograniczone okno kontekstu"
   },
   {
    "type": "beat",
@@ -433,9 +443,9 @@
    "until": "+3.6",
    "label": "Czat GPT",
    "lines": [
-    "JEDEN PLIK.",
-    "aż",
-    "PAMIĘĆ SIĘ SKOŃCZY."
+    "OKNO KONTEKSTU",
+    "się",
+    "ZAPEŁNIA."
    ]
   },
   {
@@ -443,8 +453,8 @@
    "at": "halucynować",
    "until": "+9",
    "zone": "lower",
-   "kicker": "Gdy pamięć się kończy",
-   "text": "AI nadpisuje dane *i halucynuje"
+   "kicker": "Gdy okno się zapełni",
+   "text": "Najstarsze wiadomości *wypadają z pamięci"
   },
   {
    "type": "logos",
@@ -459,11 +469,10 @@
    ]
   },
   {
-   "type": "broll",
+   "type": "mockup",
+   "name": "markdown_files",
    "at": "markdown",
-   "until": "+3.4",
-   "src": "assets/broll/hf/video/h17-mozg-firmy.mp4",
-   "title": "Pliki, które *możesz przeczytać"
+   "until": "+10"
   },
   {
    "type": "title",
@@ -560,14 +569,6 @@
    "zone": "lower",
    "kicker": "Zasada",
    "text": "Rozwiązanie *szyte na miarę"
-  },
-  {
-   "type": "title",
-   "at": "przymiotnik",
-   "until": "+8",
-   "zone": "lower",
-   "kicker": "Emocje właściciela",
-   "text": "Wstaw *swój przymiotnik"
   }
  ],
  "music_db": -6.0

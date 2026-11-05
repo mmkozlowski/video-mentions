@@ -156,7 +156,42 @@ EPISODES = [
          notes="Zamówienia od niemieckich kontrahentów w Excelu, dopasowanie AI 70% → 94% "
                "po miesiącu, kody kreskowe z kilku dni do 15 minut. Restart zdania w 92 s."),
     dict(id="ep-vacuactiv", source="vacuactiv", client="Vacuactiv", title="Agent AI dla właściciela firmy",
-         ranges=[(7.0, 1126.0)], hook=3, delivery=3, brand="flowbiz",
+         # 05.11 wieczór (uwagi Mateusza w Studiu): bez 21× „po prostu”, falstartu „nagle… cyfryzacja”,
+         # „do jednego… do jednego tutaj…”, „żeby… żeby”, „Kolejne statu…, tak”, „i… i itd., tak”, „do tego… jak, jak… tutaj”
+         # i przeciągniętego „z…” przed „związane”.
+         # Granice z sygnału (RMS co 20 ms) + kontrola Whisperem sklejki — czasy słów w tym nagraniu
+         # są przesunięte nawet o 0,8 s. Po „…czy to przymiotnik” wchodzi gag (assemble_episode.PLAN).
+         ranges=[(7.00, 46.30, None, 46.30),
+                (47.18, 78.27, 47.18, 78.27),
+                (79.32, 87.55, 79.32, 87.55),
+                (87.95, 89.12, 87.95, 89.12),
+                (89.36, 181.82, 89.36, 181.82),
+                (182.52, 194.60, 182.52, 194.60),
+                (197.44, 220.02, 197.44, 220.02),
+                (221.08, 241.76, 221.08, 241.76),
+                (242.16, 249.60, 242.16, 249.60),
+                (250.22, 292.18, 250.22, 292.18),
+                (293.96, 301.75, 293.96, 301.75),
+                (307.02, 320.68, 307.02, 320.68),
+                (323.52, 427.42, 323.52, 427.42),
+                (427.84, 521.70, 427.84, 521.70),
+                (522.20, 786.33, 522.20, 786.33),
+                (786.74, 788.38, 786.74, 788.38),
+                (788.86, 793.44, 788.86, 793.44),
+                (793.94, 833.04, 793.94, 833.04),
+                (833.82, 899.96, 833.82, 899.96),
+                (900.54, 909.80, 900.54, 909.80),
+                (910.38, 980.04, 910.38, 980.04),
+                (981.14, 991.12, 981.14, 991.12),
+                (992.18, 1039.28, 992.18, 1039.28),
+                (1040.90, 1068.42, 1040.90, 1068.42),
+                (1069.14, 1090.70, 1069.14, 1090.70),
+                (1091.28, 1095.45, 1091.28, 1095.45),
+                (1098.10, 1103.00, 1098.10, 1103.00),
+                (1110.60, 1112.06, 1110.60, 1112.06),
+                (1113.48, 1114.32, 1113.48, 1114.32),
+                (1115.20, 1116.05, 1115.20, 1116.05),
+                (1116.85, 1126.00, 1116.85, None)], hook=3, delivery=3, brand="flowbiz",
          notes="Sprzęt sportowy z okolic Słupska. ChatGPT gubi kontekst → mózg firmy "
                "(100–150 GB danych), Open Mercato na produkcji, brief w Telegramie, "
                "Obsidian + Hermes + Codex. Najdłuższy, do skrócenia w montażu."),
