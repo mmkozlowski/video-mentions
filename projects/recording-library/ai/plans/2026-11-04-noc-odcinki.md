@@ -180,3 +180,18 @@ Składanki przebudowane (`compile_episode.py`) z klipami *-full.
 - Sklejanie przy pełnym obciążeniu Maca zagłodziło panel Studia (load 37) — kolejne sklejki puszczać
   z `nice -n 20`. Długości: oferty 3:35, 8 wdrożeń 15:04, Doram 11:49, Rezon 8:01, Marpasz 8:48,
   Vacu Activ 18:51, moduł 9:31. Rozdziały w Studiu (PATCH 200).
+
+### Runda 11 (05.11) — przedstawienie się: klocki modułów zamiast samego tekstu
+
+- Mateusz: „zamiast samego dużego tekstu animacja klikania się mockupu — składania klocków z modułów
+  w jeden system”. Źródło: nowa sekcja strony flowbiz.pl „Z tych klocków składamy Twój system”
+  (worktree `porcupinefish`, 9 modułów z prototypów, dane zmyślone). Markup i CSS skopiowane do
+  `packaging/brand/site-modules/` (README: skąd i jak odświeżyć), ruch napisany od nowa w
+  `mockups.py` → `modules()` na osi GSAP, bo silnik strony liczy czas zegarem przeglądarki.
+- `ins-intro`: plansza „Mateusz Kozłowski” zostaje (0–3,7 s); od „pomagam” Excel w oknie systemu →
+  od „systemy” 9 klocków wlatuje i wpina się łącznikiem w okno (menu i licznik „n / 9 modułów”
+  rosną) → przy „produkcja opakowań / wyroby medyczne / handel B2B / sprzedaż” zapala się moduł
+  i kursor klika dwa kroki jego ekranu → na „obszarów” świeci cały system.
+- Pułapki: `"until": "+8"` liczy się od startu zdarzenia (przy jednym zdarzeniu od 3,7 s plansza gasła
+  w 11,7 s) — koniec podany liczbą (19,3). Wycinek CSS ze strony urwany w połowie reguły unieważnił
+  cały arkusz (ikony SVG na pół ekranu) — sprawdzać bilans klamer.

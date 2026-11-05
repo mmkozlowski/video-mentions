@@ -47,3 +47,13 @@ odrzucona przez Mateusza: „nie może być od pierwszej sekundy — ewentualnie
 
 **Pułapka:** przenikanie (`xfade`) pomniejszonego okna w pełną klatkę daje podwójny obraz, bo te same
 klatki leżą w dwóch geometriach. Paski mają zjeżdżać nad niezmienionym obrazem, nie obraz się rozszerzać.
+
+## Aktualizacja 05.11 — moduły ze strony we wstawce „przedstawienie się”
+
+Plansze z tekstem po imieniu i nazwisku zastąpiła makieta `modules`: sekcja modułów ze strony
+flowbiz.pl (kopia w `packaging/brand/site-modules/`) składa się na ekranie w jeden system, a sceny
+modułów klikają się w rytm wymienianych branż. Kopia, a nie odczyt z repo strony, bo strona żyje
+w innym repo i zmienia się niezależnie — wstawka ma się renderować tak samo za miesiąc. Ruch jest
+własny (GSAP), nie ze strony: silnik strony gra na `setTimeout`, a render wideo przewija oś klatka
+po klatce. Pozycje kursora mierzone offsetami przy pierwszym renderze tweena (po fontach),
+łączniki liczone w Pythonie ze stałej siatki.

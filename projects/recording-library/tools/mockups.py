@@ -1109,3 +1109,237 @@ MOCKUP_STYLE += """
 .ap-loop{{font-size:22px;font-weight:800;color:#E0483B;padding:8px 10px}}
 .fmt-v .ap{{grid-template-columns:1fr}} .fmt-v .ap-side{{display:none}} .fmt-v .ap-body{{grid-template-columns:1fr}} .fmt-v .ap-stat{{display:none}}
 """
+
+
+# ── Moduły systemu ze strony flowbiz.pl (wstawka „przedstawienie się”, 05.11) ─────────────
+# Mateusz: „zamiast samego dużego tekstu leciała też animacja klikania się mockupu — ale
+# składania klocków z modułów w jeden system”. Markup i CSS to kopia sekcji #modules ze strony
+# (packaging/brand/site-modules, README tam). Silnika pokazu ze strony nie bierzemy — liczy czas
+# zegarem przeglądarki; tu ruch idzie po osi GSAP, żeby render klatka po klatce był powtarzalny.
+#
+#   Excel w oknie → 9 klocków wlatuje i wpina się łącznikiem w okno (menu systemu rośnie)
+#   → przy każdej wymienianej branży zapala się jej moduł, a kursor klika jego ekran
+#   → na finale świeci cały system.
+import json
+import re
+from pathlib import Path
+
+SITE_MODULES = Path(__file__).resolve().parent.parent / "packaging" / "brand" / "site-modules"
+MODULE_KEYS = ["b2b", "service", "production", "quotes", "crm", "warehouse", "compliance", "catalog", "margin"]
+MODULE_LANDING = ["b2b", "warehouse", "service", "compliance", "production", "catalog", "quotes", "margin", "crm"]
+# Plansza w układzie 1480 px (skala do 1920): karta 240, przerwa 56, okno 780 (płótno strony
+# 1:1), padding 30. Stałe wymiary, bo z nich liczymy łączniki — bez mierzenia DOM-u przy starcie.
+MV_W, MV_H = 1480, 832
+MV_PAD, MV_CARD, MV_GAP, MV_WIN = 30, 240, 56, 780
+MV_BODY_W = 2 + 2 * MV_PAD + 2 * MV_CARD + 2 * MV_GAP + MV_WIN
+MV_BODY_H, MV_WIN_H = 640, 504        # okno = pasek 32 + płótno 470 + ramka 2
+
+MV_EXCEL = [("Klient", "Produkt", "Ilość", "Status", "Uwagi"),
+            ("Firma A", "Paleta 120×80", "40", "?", "dzwonić"),
+            ("Firma B", "Karton 5W", "1 200", "wysłane", ""),
+            ("Firma A", "Paleta 120×80", "40", "DUPLIKAT", "!!"),
+            ("Firma C", "Folia stretch", "#ARG!", "", "cena?"),
+            ("Firma D", "Karton 3W", "800", "w toku", "v2"),
+            ("Firma B", "Taśma 48 mm", "60", "", "kto?"),
+            ("Firma E", "Narożnik", "2 000", "czeka", "")]
+
+
+def elbow(x1, y1, xm, x2, y2):
+    """Łamana jak drawWires() na stronie: poziomo od karty, pionowo w szczelinie, poziomo do okna."""
+    dy = y2 - y1
+    if abs(dy) < 2:
+        return f"M{x1:.1f},{y1:.1f} H{x2:.1f}"
+    dx = 1 if x2 > x1 else -1
+    r = min(12, abs(dy) / 2, abs(xm - x1), abs(x2 - xm))
+    sy = 1 if dy > 0 else -1
+    return (f"M{x1:.1f},{y1:.1f} H{xm - dx * r:.1f} Q{xm:.1f},{y1:.1f} {xm:.1f},{y1 + sy * r:.1f} "
+            f"V{y2 - sy * r:.1f} Q{xm:.1f},{y2:.1f} {xm + dx * r:.1f},{y2:.1f} H{x2:.1f}")
+
+
+def module_wires():
+    inner_h = MV_BODY_H - 2 - 2 * MV_PAD
+    row = inner_h / 10                      # siatka strony: 10 wierszy, karta zajmuje dwa
+    win_x = MV_PAD + MV_CARD + MV_GAP
+    win_y = MV_PAD + (inner_h - MV_WIN_H) / 2
+    groups = []
+    for i, key in enumerate(MODULE_KEYS):
+        left = i < 5
+        k, count = (i, 5) if left else (i - 5, 4)
+        y1 = MV_PAD + row * (2 * k + 1 if left else 2 * k + 2)
+        x1 = MV_PAD + MV_CARD if left else win_x + MV_WIN + MV_GAP
+        x2 = win_x - 7 if left else win_x + MV_WIN + 7
+        y2 = win_y + MV_WIN_H * (0.2 + 0.6 * (k + 0.5) / count)
+        center = (count - 1) / 2
+        xm = x1 + (x2 - x1) * (0.3 + 0.45 * abs(k - center) / center)
+        d = elbow(x1, y1, xm, x2, y2)
+        groups.append(f'<g class="msx-wire" data-k="{key}"><path class="msx-wire-base" d="{d}" pathLength="100"/>'
+                      f'<path class="msx-wire-draw" d="{d}" pathLength="100"/>'
+                      f'<circle class="msx-port" cx="{x2 + (3 if left else -3):.1f}" cy="{y2:.1f}" r="3.5"/>'
+                      f'<circle class="msx-dot" cx="{x1:.1f}" cy="{y1:.1f}" r="3"/></g>')
+    return f'<svg class="msx-wires" viewBox="0 0 {MV_BODY_W - 2} {MV_BODY_H - 2}" aria-hidden="true">{"".join(groups)}</svg>'
+
+
+def accent(text):
+    """„Systemy dla firm, które *wyrosły z Excela” — od gwiazdki mięta, jak na planszach."""
+    head, _, acc = text.partition("*")
+    return esc(head) + (f'<span class="mv-acc">{esc(acc)}</span>' if acc else "")
+
+
+def module_markup(headlines):
+    src = (SITE_MODULES / "section.html").read_text()
+    body = re.search(r'<div class="msx-body" data-msx-body>(.*)</div>\s*</div>\s*</section>', src, re.S).group(1)
+    body = body.replace(" is-on", "").replace("<span data-msx-url>b2b</span>", "")
+    body = re.sub(r'<svg class="msx-wires"[^>]*></svg>', module_wires(), body)
+    side = re.search(r'<div class="msx-side">.*?</ul>\s*</div>', body, re.S).group(0).replace(' class="on"', "")
+    icons = re.findall(r'<span class="msx-item-ic">(<svg.*?</svg>)</span>', body, re.S)
+    xls = "".join("<tr>" + "".join(
+        f'<{"th" if r == 0 else "td"}{" class=y" if (r, c) in ((1, 3), (5, 4)) else " class=r" if (r, c) in ((3, 3), (4, 2)) else ""}>{esc(v)}</{"th" if r == 0 else "td"}>'
+        for c, v in enumerate(row)) + "</tr>" for r, row in enumerate(MV_EXCEL))
+    counter = "".join(f'<span class="mv-cnt" data-n="{n}">{n} / 9 modułów</span>' for n in range(10))
+    tiles = "".join(f'<span class="mv-tile" data-k="{k}">{icons[i]}</span>' for i, k in enumerate(MODULE_KEYS))
+    assembly = (f'<div class="msx-screen mv-asm">{side}<div class="msx-main mv-asm-main">'
+                f'<div class="mv-xls"><div class="mv-xls-bar">zamowienia_FINAL_v7 (2).xlsx</div><table>{xls}</table></div>'
+                f'<div class="mv-build"><div class="mv-build-k">Składamy Twój system</div>'
+                f'<div class="mv-build-n">{counter}</div><div class="mv-tiles">{tiles}</div></div></div></div>')
+    body = body.replace('<div class="msx-screen"', assembly + '<div class="msx-screen"', 1)
+    heads = []
+    for i, h in enumerate(headlines):
+        kicker = f'<div class="mv-k">{esc(h["kicker"])}</div>' if h.get("kicker") else ""
+        if h.get("words"):
+            words = '<i>·</i>'.join(f'<span class="mv-w">{esc(label)}</span>' for _, label in h["words"])
+            heads.append(f'<div class="mv-h" data-h="{i}">{kicker}<h2 class="mv-words">{words}</h2></div>')
+        else:
+            heads.append(f'<div class="mv-h" data-h="{i}">{kicker}<h2>{accent(h["text"])}</h2></div>')
+    css = (SITE_MODULES / "section.css").read_text()
+    return (f'<style>{css}{MV_CSS}</style><div class="fbv2 mv-root"><div class="ad-dark msx-dark mv">'
+            f'<div class="mv-head">{"".join(heads)}</div><div class="msx-body">{body}</div></div></div>')
+
+
+def modules(comp, ev, start, end):
+    at = lambda v, base: base + float(v[1:]) if isinstance(v, str) and v.startswith("+") else comp.clock.at(v, floor=start)
+    heads = ev["headlines"]
+    head_at = [max(start, at(h["at"], start)) for h in heads]
+    asm = at(ev["assemble"], start)
+    scenes = []
+    for s in ev["scenes"]:
+        t0 = at(s["at"], start)
+        scenes.append({"k": s["key"], "at": comp.q(t0), "steps": [comp.q(at(o, t0)) for o in s["steps"]]})
+    first = scenes[0]["at"]
+    span = (first - 0.75) - (asm + 0.15)
+    if span < 2.5:
+        raise SystemExit(f"makieta modules @ {start:.1f}: {span:.1f} s na wpięcie 9 modułów — za mało (min. 2,5 s)")
+    land = [{"k": k, "left": MODULE_KEYS.index(k) < 5, "i": MODULE_KEYS.index(k), "n": n + 1,
+             "t": comp.q(asm + 0.15 + n * span / (len(MODULE_LANDING) - 1))} for n, k in enumerate(MODULE_LANDING)]
+    words = [comp.q(at(w, start)) for h in heads for w, _ in h.get("words", [])]
+    data = {"start": comp.q(start), "asm": comp.q(asm), "fin": comp.q(at(ev["finale"], start)), "words": words,
+            "heads": [{"at": comp.q(t), "end": comp.q(head_at[i + 1]) if i + 1 < len(heads) else None} for i, t in enumerate(head_at)],
+            "land": land, "scenes": scenes}
+    sid = comp.slate(start, end, module_markup(heads), pip=False, cls="msxv")
+    comp.js.append(MV_JS.replace("__SID__", sid).replace("__DATA__", json.dumps(data)))
+
+
+MOCKUPS["modules"] = modules
+
+MV_CSS = """
+.slate.msxv{background:#0E1F1A}
+.slate.msxv .slate-body{position:absolute;inset:0;width:auto;display:block;gap:0;text-align:left}
+.slate.msxv .series-tag{display:none}
+.fbv2.mv-root{position:absolute;inset:0;background:transparent;color:#F2FBF7}
+.fbv2 .ad-dark.mv{position:absolute;left:0;top:0;width:1480px;height:832px;transform:scale(1.297297);transform-origin:0 0;
+  background:radial-gradient(55% 50% at 50% 60%,rgba(47,211,160,.13),transparent 70%)}
+.mv,.mv *{transition:none!important;animation:none!important}
+.mv-head{position:absolute;left:0;right:0;top:18px;height:150px}
+.mv-h{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;opacity:0}
+.fbv2 .mv-h h2{font-size:54px;font-weight:800;letter-spacing:-.025em;line-height:1.05;color:#fff;margin:0}
+.mv-acc{color:#2FD3A0;text-shadow:0 0 28px rgba(47,211,160,.35)}
+.mv-k{font-size:15px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#8FE6C8;margin-bottom:14px}
+.fbv2 .mv-h h2.mv-words{display:flex;gap:14px;align-items:baseline;font-size:38px;white-space:nowrap}
+.mv-w{color:rgba(255,255,255,.32)}
+.mv-words i{font-style:normal;color:rgba(47,211,160,.55)}
+.fbv2 .mv .msx-body{position:absolute;left:23px;top:178px;width:1434px;height:640px;margin:0;padding:30px;
+  grid-template-columns:240px 780px 240px;column-gap:56px;grid-template-rows:repeat(10,minmax(0,1fr))}
+.fbv2 .mv .msx-chrome{height:32px;padding:0 12px}
+.fbv2 .mv .msx-under,.fbv2 .mv .msx-note{display:none}
+.fbv2 .mv .msx-li{opacity:0}
+.fbv2 .mv .msx-wire-draw{opacity:0}
+.fbv2 .mv .mv-asm{display:block}
+.fbv2 .mv-asm-main{display:flex;align-items:center;justify-content:center}
+.mv-xls{position:absolute;inset:14px 18px;border:1px solid #d9e2dd;border-radius:6px;overflow:hidden;background:#fff;font-size:12px;color:#27302d}
+.mv-xls-bar{background:#1D6F42;color:#fff;font-weight:700;padding:7px 12px;font-size:12px}
+.mv-xls table{border-collapse:collapse;width:100%}
+.mv-xls td,.mv-xls th{border:1px solid #e3e8e5;padding:6px 9px;text-align:left;white-space:nowrap}
+.mv-xls th{background:#f3f5f4;color:#5a6b65;font-weight:700}
+.mv-xls .y{background:#FFF3B0}
+.mv-xls .r{background:#FDE2E1;color:#B42318;font-weight:700}
+.mv-build{text-align:center;opacity:0}
+.mv-build-k{font-size:24px;font-weight:800;color:#13211D;letter-spacing:-.01em}
+.mv-build-n{margin-top:6px;font-size:14px;font-weight:700;color:#0F7D60}
+.mv-cnt{display:none}
+.mv-tiles{display:grid;grid-template-columns:repeat(3,52px);gap:10px;justify-content:center;margin-top:20px}
+.mv-tile{width:52px;height:52px;border-radius:12px;border:1.5px dashed #c9d8d1;display:flex;align-items:center;justify-content:center;color:#0F7D60}
+.mv-tile svg{width:22px;height:22px;opacity:0}
+"""
+
+# Oś pokazu. Pozycje celów kursora mierzone leniwie (wartości-funkcje GSAP liczą się przy
+# pierwszym renderze tweena, czyli już po załadowaniu fontów), offsetami — transform planszy
+# (skala 1,297 i wejście slate-body) ich nie zmienia.
+MV_JS = """(function(){
+var R=document.getElementById("__SID__"),D=__DATA__;
+function $(s){return R.querySelector(s)}function $$(s){return R.querySelectorAll(s)}
+var canvas=$(".msx-canvas"),cur=$(".msx-cursor"),rip=$(".msx-ripple"),memo={};
+function scr(k){return k==="asm"?$(".mv-asm"):$('[data-msx-screen="'+k+'"]')}
+function card(k){return $('[data-msx-item="'+k+'"]')}
+function wire(k,p){return $('.msx-wire[data-k="'+k+'"] '+p)}
+function cls(n){var c="msx-screen is-on";for(var i=1;i<=n;i++)c+=" st-"+i;return c}
+function point(k,n){var id=k+n;if(memo[id])return memo[id];var s=scr(k),keep=s.getAttribute("class");s.setAttribute("class",cls(n-1));
+ var el=s.querySelector('[data-msx-step="'+n+'"]'),w=el.offsetWidth,h=el.offsetHeight,x=0,y=0;
+ while(el&&el!==canvas){x+=el.offsetLeft;y+=el.offsetTop;el=el.offsetParent}
+ s.setAttribute("class",keep);return memo[id]={x:x+w*0.55,y:y+h*0.6}}
+tl.set(cur,{opacity:0,x:690,y:410},D.start);
+tl.set(rip,{opacity:0},D.start);
+tl.set($$(".mv-cnt"),{display:"none"},D.start);tl.set($('.mv-cnt[data-n="0"]'),{display:"inline"},D.start);
+D.heads.forEach(function(h,i){var el=$('.mv-h[data-h="'+i+'"]');
+ tl.fromTo(el,{opacity:0,y:18},{opacity:1,y:0,duration:0.4,ease:"power3.out"},h.at);
+ if(h.end!==null)tl.to(el,{opacity:0,y:-14,duration:0.25},h.end-0.25)});
+var ws=$$(".mv-w");D.words.forEach(function(t,i){tl.to(ws[i],{color:"#2FD3A0",duration:0.2},t)});
+tl.to($(".mv-xls"),{opacity:0,scale:0.96,duration:0.35},D.asm-0.1);
+tl.fromTo($(".mv-build"),{opacity:0,y:10},{opacity:1,y:0,duration:0.3},D.asm+0.15);
+var nav=$$(".mv-asm .msx-side li");
+D.land.forEach(function(L){var li=card(L.k).parentNode,t=L.t;
+ tl.fromTo(li,{opacity:0,x:L.left?-170:170,scale:0.85},{opacity:1,x:0,scale:1,duration:0.5,ease:"back.out(1.6)"},t);
+ tl.fromTo(wire(L.k,".msx-wire-base"),{opacity:0},{opacity:1,duration:0.2},t+0.35);
+ tl.fromTo(wire(L.k,".msx-wire-draw"),{opacity:1,strokeDashoffset:100},{strokeDashoffset:0,duration:0.45,ease:"power2.inOut"},t+0.35);
+ tl.to(wire(L.k,".msx-wire-draw"),{opacity:0,duration:0.4},t+0.95);
+ tl.fromTo(wire(L.k,".msx-port"),{attr:{r:3.5}},{attr:{r:7},duration:0.18,yoyo:true,repeat:1},t+0.75);
+ tl.fromTo(nav[L.i],{opacity:0,x:-10},{opacity:1,x:0,duration:0.25},t+0.8);
+ var tile=$('.mv-tile[data-k="'+L.k+'"]');
+ tl.to(tile,{backgroundColor:"#EAF6F1",borderColor:"#1C9E7A",borderStyle:"solid",duration:0.2},t+0.8);
+ tl.to(tile.querySelector("svg"),{opacity:1,duration:0.2},t+0.8);
+ tl.set($$(".mv-cnt"),{display:"none"},t+0.8);tl.set($('.mv-cnt[data-n="'+L.n+'"]'),{display:"inline"},t+0.8)});
+var prev=null;
+D.scenes.forEach(function(S){var s=scr(S.k);
+ tl.set(scr(prev||"asm"),{attr:{class:prev?"msx-screen":"msx-screen mv-asm"}},S.at);
+ if(!prev)tl.set(scr("asm"),{display:"none"},S.at);
+ tl.set(s,{attr:{class:cls(0)}},S.at);
+ tl.fromTo(s.querySelector(".msx-main"),{opacity:0,y:8},{opacity:1,y:0,duration:0.3,immediateRender:false},S.at);
+ if(prev){tl.set(card(prev),{attr:{class:"msx-item"}},S.at);tl.to(wire(prev,".msx-wire-draw"),{opacity:0,duration:0.2},S.at);
+  tl.to(wire(prev,".msx-port"),{fill:"#0E1F1A",duration:0.2},S.at)}
+ tl.set(card(S.k),{attr:{class:"msx-item is-on"}},S.at);
+ tl.fromTo(wire(S.k,".msx-wire-draw"),{opacity:1,strokeDashoffset:100},{strokeDashoffset:0,duration:0.4,immediateRender:false},S.at);
+ tl.to(wire(S.k,".msx-port"),{fill:"#2FD3A0",duration:0.2},S.at+0.35);
+ S.steps.forEach(function(t,j){var n=j+1,k=S.k,tg=s.querySelector('[data-msx-step="'+n+'"]');
+  tl.to(cur,{opacity:1,duration:0.15},Math.max(S.at,t-0.45));
+  tl.to(cur,{x:function(){return point(k,n).x},y:function(){return point(k,n).y},duration:0.38,ease:"power2.inOut"},t-0.42);
+  tl.fromTo(rip,{opacity:0.9,scale:0.3,x:function(){return point(k,n).x},y:function(){return point(k,n).y}},{opacity:0,scale:1.4,duration:0.45,immediateRender:false},t);
+  tl.to(tg,{scale:0.94,duration:0.08,yoyo:true,repeat:1},t);
+  tl.set(s,{attr:{class:cls(n)}},t+0.1);
+  var on=s.querySelectorAll(".on-"+n),hl=s.querySelectorAll(".hl-"+n);
+  if(on.length)tl.fromTo(on,{opacity:0,y:6},{opacity:1,y:0,duration:0.35,immediateRender:false},t+0.1);
+  if(hl.length)tl.fromTo(hl,{backgroundColor:"rgba(47,211,160,0.30)"},{backgroundColor:"rgba(47,211,160,0)",duration:1.1,immediateRender:false},t+0.1)});
+ prev=S.k});
+tl.to(cur,{opacity:0,duration:0.25},D.fin);
+$$(".msx-wire").forEach(function(g,i){var k=g.getAttribute("data-k"),t=D.fin+i*0.08;
+ tl.to(g.querySelector(".msx-wire-draw"),{opacity:1,strokeDashoffset:0,duration:0.3},t);
+ tl.to(g.querySelector(".msx-port"),{fill:"#2FD3A0",duration:0.2},t);
+ tl.set(card(k),{attr:{class:"msx-item is-on"}},t)});
+})();"""

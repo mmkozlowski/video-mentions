@@ -19,24 +19,79 @@
    "kicker": "flowbiz · systemy dla firm"
   },
   {
-   "type": "slate",
+   "type": "mockup",
+   "name": "modules",
    "at": "pomagam",
-   "until": "Produkcja",
-   "text": "Systemy dla firm, które *wyrosły z Excela"
-  },
-  {
-   "type": "slate",
-   "at": "Produkcja",
-   "until": "To",
-   "text": "Produkcja opakowań. Wyroby medyczne. *Handel B2B.",
-   "kicker": "Branże"
-  },
-  {
-   "type": "slate",
-   "at": "To",
-   "until": "+8",
-   "text": "Tylko niektóre z obszarów, które *już dotknąłem",
-   "kicker": "Mateusz Kozłowski · flowbiz"
+   "until": 19.3,
+   "headlines": [
+    {
+     "at": "pomagam",
+     "text": "Systemy dla firm, które *wyrosły z Excela"
+    },
+    {
+     "at": "Produkcja",
+     "kicker": "Branże i moduły, które już działają",
+     "words": [
+      [
+       "Produkcja",
+       "Produkcja opakowań"
+      ],
+      [
+       "wyroby",
+       "Wyroby medyczne"
+      ],
+      [
+       "handel",
+       "Handel B2B"
+      ],
+      [
+       "sprzedaż.",
+       "Sprzedaż"
+      ]
+     ]
+    },
+    {
+     "at": "To",
+     "text": "Tylko niektóre z obszarów, które *już dotknąłem",
+     "kicker": "Mateusz Kozłowski · flowbiz"
+    }
+   ],
+   "assemble": "systemy",
+   "scenes": [
+    {
+     "key": "compliance",
+     "at": "Produkcja",
+     "steps": [
+      "+0.55",
+      "+1.05"
+     ]
+    },
+    {
+     "key": "service",
+     "at": "wyroby",
+     "steps": [
+      "+0.35",
+      "+0.8"
+     ]
+    },
+    {
+     "key": "b2b",
+     "at": "handel",
+     "steps": [
+      "+0.4",
+      "+0.9"
+     ]
+    },
+    {
+     "key": "crm",
+     "at": "sprzedaż.",
+     "steps": [
+      "+0.5",
+      "+1.5"
+     ]
+    }
+   ],
+   "finale": "obszarów"
   }
  ],
  "voice_only": true,
