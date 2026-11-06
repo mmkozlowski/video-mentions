@@ -29,6 +29,7 @@ export const FORMATS = {
 export const ALPHA = {
   "agent-ai-duplikuje-oferte": ["16x9", "9x16"],
   "stoper-40-do-5": ["16x9", "9x16"],
+  "block-tower": ["9x16"],
 };
 
 export function scenes() {

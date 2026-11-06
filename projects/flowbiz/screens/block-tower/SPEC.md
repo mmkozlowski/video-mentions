@@ -1,6 +1,6 @@
 # Klocek 6: `block-tower` — wieża klocków rośnie (specyfikacja)
 
-**Status:** specyfikacja, **nie zbudowane** (czeka na akceptację i nazwy narzędzi — patrz „Otwarte")
+**Status:** ✅ zbudowane 07.11.2026 (pierwsza wersja, 3 formaty) — nazwy narzędzi w fazie „przed" wciąż do potwierdzenia
 **Data:** 2026-11-06
 **Do czego:** rolka „System składasz z klocków" — [`../../reels/blocks-2027/SCENARIUSZ.md`](../../reels/blocks-2027/SCENARIUSZ.md)
 **Wzorzec techniczny:** `../stoper-40-do-5/scene.html` (jedna scena, układy z klas `fmt-land`/`fmt-port`/`alpha-mode`, jedna pauzowana timeline)
