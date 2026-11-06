@@ -63,6 +63,8 @@ Tarcza z podziałką, „40 min" zjeżdża do 5, łuk z czerwieni w pomarańcz, 
 przygotowanie jednej oferty", pigułka „Szwalnia · wdrożenie flowbiz", logo flowbiz (5,0 s).
 **Montaż:** zamknięcie spotu / endcard. Wersja alfa 16×9 to układ **lewej tercji z kartą**
 pod tekstem — na gadaną głowę, twarz zostaje odsłonięta (sprawdzone kompozytem po h.264).
+**Pion z alfą to NIE ten układ:** w `9x16-alpha` tarcza stoi na y 300–1000, czyli na twarzy
+w rolce — w pionie stoper wchodzi jako plansza na pełny ekran (`.ai/memory/stoper-pion-alfa-zaslania-twarz.md`).
 
 ## Weryfikacja
 

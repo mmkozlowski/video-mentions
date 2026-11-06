@@ -98,6 +98,8 @@ i ziarna ([[wstawki-alfa-nie-green-screen]]). Stoper w poziomie z alfą przechod
 
 ## Powiązane
 
+- Rozszerzenie: [rolka 2027 „System z klocków"](2026-11-06-rolka-klocki-2027.md) — klocek 6 `block-tower` (spec), rolki tekstowe
+
 - ADR repo: [ekran produktu z HTML](../../../../.ai/decisions/2026-07-30-ekran-produktu-z-html.md)
 - Pamięć repo: `ekran-produktu-hyperframes`, `wstawki-alfa-nie-green-screen`,
   `wstawki-uklad-lewy-domyslny`, `wstawki-rozdzielczosc-pod-projekt`,

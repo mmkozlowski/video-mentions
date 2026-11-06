@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>flowbiz — rolka tekstowa __ID__</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="assets/flowbiz.css" />
+    <style>
+      /* Rolka tekstowa 9:16: grafika GPT na pełny kadr + jedno zdanie naraz w górnej tercji.
+         Strefy zakazane Reels: góra 230, prawa kolumna 130 od y 1100, dół 260 (pamięć pion-strefy-zakazane-reels). */
+      .shot {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        opacity: 0;
+      }
+      .shot img {
+        position: absolute;
+        inset: 0;
+        width: 1080px;
+        height: 1920px;
+        object-fit: cover;
+      }
+      /* Ściemnienie górnej tercji pod tekst — krycie < 0.6, więc bramka nie liczy go jako zakrycia */
+      .topshade {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 1100px;
+        background: linear-gradient(#0b0b0d 0%, #0b0b0d 35%, rgba(11, 11, 13, 0) 100%);
+        opacity: 0.55;
+      }
+      .line {
+        position: absolute;
+        left: 70px;
+        width: 940px;
+        top: 380px;
+        text-align: center;
+        opacity: 0;
+      }
+      .line .eyebrow {
+        position: relative;
+        margin-bottom: 30px;
+      }
+      .line .big {
+        margin: 0;
+        text-wrap: balance;
+        font-size: 92px;
+        line-height: 1.04;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        text-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+      }
+      .hi {
+        color: var(--acc2);
+      }
+      .bad {
+        color: var(--red-tx);
+      }
+      .line .sub {
+        margin: 26px auto 0;
+        font-size: 34px;
+        font-weight: 500;
+        color: #d4d4d8;
+      }
+      .line .sub s {
+        color: var(--red-tx);
+        text-decoration-thickness: 3px;
+      }
+      .chip {
+        display: inline-block;
+        margin-top: 34px;
+        padding: 14px 30px;
+        border-radius: 999px;
+        background: var(--acc);
+        color: var(--ink);
+        font-size: 38px;
+        font-weight: 800;
+        letter-spacing: -0.01em;
+        box-shadow: 0 0 40px var(--glow);
+      }
+      .flash {
+        position: absolute;
+        inset: 0;
+        background: #fff;
+        opacity: 0;
+      }
+      /* Oznaczenie treści AI (art. 50 ust. 4): u góry, ale pod strefą zakazaną, przez pierwsze ~4 s */
+      .ai-mark {
+        position: absolute;
+        top: 250px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 8px 18px;
+        border-radius: 999px;
+        background: rgba(11, 11, 13, 0.85);
+        border: 1px solid var(--line2);
+        font-size: 28px;
+        font-weight: 600;
+        color: var(--tx2);
+        white-space: nowrap;
+      }
+      .end {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: var(--bg);
+      }
+      .end img {
+        width: 640px;
+        height: 194px;
+      }
+      .end .cta {
+        margin-top: 70px;
+        width: 860px;
+        text-align: center;
+        font-size: 60px;
+        line-height: 1.1;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        text-wrap: balance;
+      }
+      .end .url {
+        margin-top: 40px;
+        font-family: var(--mono);
+        font-size: 34px;
+        color: var(--acc2);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" class="fmt-port" data-composition-id="__ID__" data-start="0" data-duration="__DUR__" data-width="1080" data-height="1920" data-fps="30" style="width: 1080px; height: 1920px">
+      <div class="stage" data-layout-ignore></div>
+      <section id="r-clip" class="clip" data-start="0" data-duration="__DUR__" data-track-index="1" style="position: absolute; inset: 0">
+        __SHOTS__
+        <div class="topshade" data-layout-ignore></div>
+        __LINES__
+        <div class="ai-mark" id="r-ai">Grafiki wygenerowane z pomocą AI</div>
+        <div class="flash" id="r-flash" data-layout-ignore></div>
+        <div class="end" id="r-end">
+          <img src="assets/logo-flowbiz-white.svg" alt="flowbiz" />
+          <div class="cta">__CTA__</div>
+          <div class="url">flowbiz.pl</div>
+        </div>
+      </section>
+      <div class="grain" data-layout-ignore></div>
+      <div class="vignette" data-layout-ignore></div>
+    </div>
+    <script>
+      const D = __DATA__;
+      const tl = gsap.timeline({ paused: true });
+
+      // Ujęcia: przenikanie + powolny najazd (seek-safe, jedna timeline)
+      D.shots.forEach((s, i) => {
+        const el = "#r-shot" + i;
+        tl.fromTo(el, { opacity: 0 }, { opacity: 1, duration: i ? 0.35 : 0.5, ease: "power2.out" }, s.from);
+        tl.fromTo(el + " img", { scale: 1.0 }, { scale: 1.08, duration: s.to - s.from + 0.4, ease: "none" }, s.from);
+        if (s.flash) {
+          tl.fromTo("#r-flash", { opacity: 0.85 }, { opacity: 0, duration: 0.45, ease: "power2.out", immediateRender: false }, s.from);
+        }
+      });
+
+      // Zdania — jedno naraz
+      D.lines.forEach((l, i) => {
+        const el = "#r-line" + i;
+        tl.fromTo(el, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, ease: "expo.out" }, l.at);
+        if (l.chip) tl.fromTo(el + " .chip", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2)" }, l.at + 0.6);
+        if (l.shake) tl.fromTo(el, { x: -10 }, { x: 0, duration: 0.4, ease: "elastic.out(1, 0.3)", immediateRender: false }, l.at + 0.05);
+        tl.to(el, { opacity: 0, y: -30, duration: 0.25, ease: "power2.in" }, l.out);
+      });
+
+      // Znak AI tylko na starcie
+      tl.fromTo("#r-ai", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.1);
+      tl.to("#r-ai", { opacity: 0, duration: 0.3 }, 4.0);
+
+      // Plansza końcowa: duże logo + jedno wezwanie
+      tl.fromTo("#r-end", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, D.end.from);
+      tl.fromTo("#r-end img", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, D.end.from + 0.1);
+      tl.fromTo("#r-end .cta", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, D.end.from + 0.5);
+      tl.fromTo("#r-end .url", { opacity: 0 }, { opacity: 1, duration: 0.5 }, D.end.from + 0.9);
+
+      window.__timelines["__ID__"] = tl;
+    </script>
+  </body>
+</html>

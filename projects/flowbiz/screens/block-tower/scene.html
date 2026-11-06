@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="pl" class="__HTMLCLASS__">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=__W__, height=__H__" />
+    <title>flowbiz — wieża klocków</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="assets/flowbiz.css" />
+    <style>
+      /* ── Klocek 6: wieża klocków (spec: SPEC.md obok) ──
+         Faza „przed": narzędzia spadają na stos bez podstawy, chwieją się i wybuchają.
+         Faza 2027: fundament Open Mercato, na nim zatrzaskują się moduły 01–05, impuls światła.
+         Geometria liczona w skrypcie z jednej tabeli LAYOUTS (pion / pion+alfa / poziom). */
+
+      .block {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        border-radius: 14px;
+        will-change: transform, opacity;
+      }
+      .tool {
+        background: var(--card);
+        border: 2px solid var(--red);
+        padding: 0 26px;
+        gap: 18px;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+      }
+      .tool .ico {
+        width: 1.05em;
+        height: 1.05em;
+        color: var(--red-tx);
+        flex: none;
+      }
+      .tool .name {
+        font-weight: 700;
+        color: var(--tx);
+        white-space: nowrap;
+      }
+      .module {
+        background: var(--card2);
+        border: 2px solid var(--line2);
+        padding: 0 30px 0 36px;
+        gap: 22px;
+        overflow: visible;
+        box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5);
+      }
+      .module .bar {
+        position: absolute;
+        left: -2px;
+        top: -2px;
+        bottom: -2px;
+        width: 8px;
+        border-radius: 14px 0 0 14px;
+        background: var(--acc);
+      }
+      .module .no {
+        font-family: var(--mono);
+        font-weight: 600;
+        color: var(--tx3);
+      }
+      .module .ico {
+        width: 1em;
+        height: 1em;
+        color: var(--acc-soft);
+        flex: none;
+      }
+      .module .name {
+        font-weight: 700;
+        color: var(--tx);
+        white-space: nowrap;
+      }
+      .module .flash {
+        position: absolute;
+        inset: -2px;
+        border-radius: 14px;
+        border: 3px solid var(--acc);
+        box-shadow: 0 0 26px rgba(255, 106, 26, 0.55);
+        opacity: 0;
+      }
+      .peg {
+        position: absolute;
+        top: -12px;
+        width: 64px;
+        height: 12px;
+        border-radius: 3px 3px 0 0;
+      }
+      .module .peg {
+        background: var(--line2);
+      }
+      .foundation {
+        flex-direction: column;
+        justify-content: center;
+        background: linear-gradient(180deg, #ff8a3d, #ff6a1a);
+        box-shadow: 0 30px 80px rgba(255, 106, 26, 0.45);
+        border-radius: 16px;
+      }
+      .foundation .peg {
+        background: #ff8a3d;
+      }
+      .foundation .name {
+        font-weight: 800;
+        color: var(--ink);
+        letter-spacing: -0.02em;
+        line-height: 1;
+      }
+      .foundation .sub {
+        margin-top: 10px;
+        font-family: var(--mono);
+        font-weight: 600;
+        color: rgba(22, 10, 3, 0.78);
+        white-space: nowrap;
+      }
+      .glow {
+        position: absolute;
+        border-radius: 50%;
+        background: radial-gradient(ellipse, rgba(255, 106, 26, 0.5), transparent 70%);
+        opacity: 0;
+      }
+      .floor {
+        position: absolute;
+        height: 0;
+        border-top: 3px dashed #4a4a52;
+      }
+      .shock {
+        position: absolute;
+        border-radius: 50%;
+        border: 3px solid var(--acc);
+        opacity: 0;
+      }
+      .cross {
+        position: absolute;
+        width: 44px;
+        height: 44px;
+        margin: -22px 0 0 -22px;
+        border-radius: 50%;
+        background: var(--card);
+        border: 2px solid var(--red);
+        color: var(--red-tx);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+      }
+      .cross .ico {
+        width: 24px;
+        height: 24px;
+      }
+      .spine {
+        position: absolute;
+        width: 4px;
+        border-radius: 2px;
+        background: var(--acc);
+        box-shadow: 0 0 12px rgba(255, 106, 26, 0.7);
+        transform-origin: 50% 100%;
+      }
+      .pulse {
+        position: absolute;
+        width: 14px;
+        height: 70px;
+        margin-left: -5px;
+        border-radius: 7px;
+        background: linear-gradient(180deg, transparent, #fff3e8 50%, transparent);
+        box-shadow: 0 0 22px #ff8a3d;
+        opacity: 0;
+      }
+      .ghost {
+        position: absolute;
+        border: 3px dashed #6a6a74;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        color: var(--tx2);
+        font-weight: 700;
+        background: rgba(11, 11, 13, 0.55);
+        opacity: 0;
+      }
+      .ghost .ico {
+        width: 1em;
+        height: 1em;
+      }
+      .alpha-mode .ghost {
+        background: rgba(11, 11, 13, 0.88);
+      }
+      .redflash {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse 70% 60% at 50% 60%, transparent 40%, rgba(184, 68, 60, 0.9));
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" class="fmt-__FMT__" data-composition-id="__ID__" data-start="0" data-duration="14" data-width="__W__" data-height="__H__" data-fps="30" style="width: __W__px; height: __H__px">
+      <div class="stage" data-layout-ignore></div>
+      <div class="grid" data-layout-ignore></div>
+
+      <section id="t-clip" class="clip" data-start="0" data-duration="14" data-track-index="1" style="position: absolute; inset: 0">
+        <div id="t-scene" style="position: absolute; inset: 0">
+          <div class="floor" id="t-floor" data-layout-ignore></div>
+          <div class="glow" id="t-glow" data-layout-ignore></div>
+          <div class="shock" id="t-shock" data-layout-ignore></div>
+          <div id="t-tools" style="position: absolute; inset: 0"></div>
+          <div id="t-tower" style="position: absolute; inset: 0"></div>
+        </div>
+      </section>
+      <div class="redflash bg-only" id="t-redflash" data-layout-ignore></div>
+      <div class="grain" data-layout-ignore></div>
+      <div class="vignette" data-layout-ignore></div>
+    </div>
+
+    <script src="assets/kit.js"></script>
+    <script>
+      const { icon, port, root } = window.FB;
+      const alpha = document.documentElement.classList.contains("alpha-mode");
+
+      // Geometria trzech układów. axis = oś wieży, floor = dolna krawędź fundamentu.
+      // scale = mnożnik wymiarów klocków względem bazowych (moduł 740×78, fundament 800×140).
+      const LAYOUTS = {
+        port: { axis: 540, floor: 1560, scale: 1.0, modH: 96, fH: 150, font: 40, drop: 900, toolFrom: null },
+        portAlpha: { axis: 540, floor: 1640, scale: 1.0, modH: 78, fH: 140, font: 36, drop: 120, toolFrom: 960 },
+        land: { axis: 640, floor: 1000, scale: 0.92, modH: 78, fH: 140, font: 36, drop: 700, toolFrom: null },
+      };
+      const L = port ? (alpha ? LAYOUTS.portAlpha : LAYOUTS.port) : LAYOUTS.land;
+      const S = L.scale;
+      const GAP = 14; // przerwa = wysokość zaczepów, żeby zaczepy były widoczne
+
+      // ── Faza „przed": narzędzia (zestaw z klocka 4; nazwy jako tekst, bez logotypów) ──
+      const TOOLS = [
+        ["sheet", "Excel", 520, 88],
+        ["mail", "Gmail", 440, 76],
+        ["receipt", "wFirma", 560, 92],
+        ["package", "BaseLinker", 470, 80],
+        ["store", "Allegro", 400, 84],
+        ["workflow", "Make / n8n", 500, 78],
+      ];
+      const TOOL_DX = [0, 34, -22, 48, -40, 62];
+      const TOOL_ROT = [0, 1.5, -2, 3, -3.5, 5];
+      const TOOL_AT = [0.4, 1.0, 1.6, 2.2, 2.8, 3.4];
+      // Kierunki wybuchu — stałe, bez losowości
+      const BLAST = [
+        [-420, 260, -34],
+        [380, 180, 28],
+        [-480, 90, -40],
+        [460, 40, 36],
+        [-320, -60, -22],
+        [350, -140, 30],
+      ];
+
+      // ── Faza 2027: moduły (te same co w klocku 3) ──
+      const MODULES = [
+        ["building", "Klienci"],
+        ["cart", "Oferty"],
+        ["package", "Magazyn"],
+        ["globe", "Portal klienta"],
+        ["sparkles", "Asystent AI"],
+      ];
+      const MOD_AT = [6.4, 7.3, 8.2, 9.1, 10.0];
+
+      const fW = 800 * S;
+      const modW = 740 * S;
+      const fTop = L.floor - L.fH;
+      const modTop = (i) => fTop - GAP - (i + 1) * L.modH - i * GAP;
+      const spineX = L.axis + modW / 2 - 30 * S;
+      const towerTop = modTop(MODULES.length - 1);
+
+      const px = (v) => `${Math.round(v)}px`;
+      const place = (el, x, y, w, h) => Object.assign(el.style, { left: px(x), top: px(y), width: px(w), height: px(h) });
+      const pegs = (w) =>
+        [0.16, 0.38, 0.62, 0.84].map((f) => `<span class="peg" style="left:${Math.round(w * f - 32)}px"></span>`).join("");
+
+      // Podłoga, poświata, fala
+      place(document.getElementById("t-floor"), L.axis - 470 * S, L.floor + 6, 940 * S, 0);
+      place(document.getElementById("t-glow"), L.axis - 520 * S, L.floor - 160, 1040 * S, 320);
+      place(document.getElementById("t-shock"), L.axis - 420 * S, L.floor - 40, 840 * S, 80);
+
+      // Narzędzia — stos od podłogi w górę
+      const toolsBox = document.getElementById("t-tools");
+      let stackY = L.floor;
+      const toolEls = [];
+      const crossEls = [];
+      TOOLS.forEach(([ico, name, w, h], i) => {
+        const el = document.createElement("div");
+        el.className = "block tool";
+        el.style.fontSize = px(34 * S * (L.font / 40));
+        el.innerHTML = `${icon(ico)}<span class="name" data-layout-allow-occlusion>${name}</span>`;
+        const top = stackY - h * (L.modH / 96);
+        const hh = stackY - top;
+        place(el, L.axis + TOOL_DX[i] - (w * S) / 2, top, w * S, hh);
+        el.style.transformOrigin = "50% 100%";
+        toolsBox.appendChild(el);
+        toolEls.push(el);
+        if (i > 0) {
+          const c = document.createElement("div");
+          c.className = "cross";
+          c.innerHTML = icon("x", 3);
+          c.style.left = px(L.axis + (TOOL_DX[i] + TOOL_DX[i - 1]) / 2 + ((i % 2 ? 1 : -1) * w * S) / 2.6);
+          c.style.top = px(stackY);
+          toolsBox.appendChild(c);
+          crossEls.push(c);
+        }
+        stackY = top;
+      });
+
+      // Wieża: fundament + moduły + kręgosłup + impuls + kontur
+      const tower = document.getElementById("t-tower");
+      const fnd = document.createElement("div");
+      fnd.className = "block foundation";
+      fnd.innerHTML =
+        pegs(fW) +
+        `<span class="name" style="font-size:${px(54 * S)}" data-layout-allow-occlusion>Open Mercato</span>` +
+        `<span class="sub" style="font-size:${px(24 * S)}" data-layout-allow-occlusion>dane · uprawnienia · workflow · API</span>`;
+      place(fnd, L.axis - fW / 2, fTop, fW, L.fH);
+      tower.appendChild(fnd);
+
+      const spine = document.createElement("div");
+      spine.className = "spine";
+      place(spine, spineX, towerTop + 18, 4, fTop - towerTop - 18);
+      tower.appendChild(spine);
+
+      const modEls = MODULES.map(([ico, name], i) => {
+        const el = document.createElement("div");
+        el.className = "block module";
+        el.style.fontSize = px(L.font * S);
+        el.innerHTML =
+          `<span class="bar"></span>${pegs(modW)}<span class="flash"></span>` +
+          `<span class="no" style="font-size:${px(26 * S)}" data-layout-allow-occlusion>0${i + 1}</span>${icon(ico)}` +
+          `<span class="name" data-layout-allow-occlusion>${name}</span>`;
+        place(el, L.axis - modW / 2, modTop(i), modW, L.modH);
+        tower.appendChild(el);
+        return el;
+      });
+
+      const pulse = document.createElement("div");
+      pulse.className = "pulse";
+      pulse.style.left = px(spineX); pulse.style.top = px(fTop - 40);
+      const pulseY = (top) => top - (fTop - 40);
+      tower.appendChild(pulse);
+
+      const ghost = document.createElement("div");
+      ghost.className = "ghost";
+      ghost.style.fontSize = px(L.font * S * 0.9);
+      ghost.innerHTML = `${icon("plus", 2.4)}<span data-layout-allow-occlusion>Twój moduł</span>`;
+      const ghostH = L.modH * 0.9;
+      place(ghost, L.axis - modW / 2, towerTop - GAP - ghostH, modW, ghostH);
+      tower.appendChild(ghost);
+
+      // ── Timeline ──
+      const tl = gsap.timeline({ paused: true });
+
+      // Stany startowe przez tl.set (nie CSS transform)
+      tl.set(toolEls, { opacity: 0 }, 0);
+      tl.set(crossEls, { opacity: 0, scale: 0.4 }, 0);
+      tl.set(fnd, { opacity: 0, y: 120 }, 0);
+      tl.set(modEls, { opacity: 0, y: -160 }, 0);
+      tl.set(spine, { scaleY: 0 }, 0);
+      tl.set(pulse, { opacity: 0, y: 0 }, 0);
+      tl.set("#t-shock", { opacity: 0 }, 0);
+
+      // 0. Podłoga — „ziemia bez fundamentu"
+      tl.fromTo("#t-floor", { opacity: 0, scaleX: 0.6 }, { opacity: 1, scaleX: 1, duration: 0.4, ease: "power2.out" }, 0);
+
+      // 1. Narzędzia spadają na stos, krzywo
+      toolEls.forEach((el, i) => {
+        const at = TOOL_AT[i];
+        const fromY = L.toolFrom == null ? -L.drop : -Math.min(L.drop, 120);
+        tl.fromTo(el, { opacity: 0, y: fromY, rotation: 0 }, { opacity: 1, y: 10, rotation: TOOL_ROT[i], duration: 0.35, ease: "power2.in" }, at);
+        tl.to(el, { y: 0, duration: 0.25, ease: "back.out(2)" }, at + 0.35);
+        if (i > 0) {
+          const c = crossEls[i - 1];
+          tl.to(c, { opacity: 1, scale: 1.15, duration: 0.15, ease: "power2.out" }, at + 0.35);
+          tl.to(c, { opacity: 0.75, scale: 1, duration: 0.15, ease: "power2.in" }, at + 0.5);
+        }
+      });
+
+      // 2. Chwianie — rosnąca amplituda, skończone powtórzenia
+      const stackAll = [...toolEls, ...crossEls];
+      tl.set("#t-tools", { transformOrigin: `${L.axis}px ${L.floor}px` }, 0);
+      [1.0, -1.6, 2.2, -2.5].forEach((deg, k) => {
+        tl.to("#t-tools", { rotation: deg, duration: 0.2, ease: "sine.inOut" }, 3.8 + k * 0.2);
+      });
+
+      // 3. Wybuch
+      toolEls.forEach((el, i) => {
+        const [dx, dy, rot] = BLAST[i];
+        tl.to(el, { x: dx, y: dy, rotation: rot, opacity: 0, duration: 0.8, ease: "power3.out" }, 4.6);
+      });
+      tl.to(crossEls, { opacity: 0, scale: 1.6, duration: 0.3, ease: "power2.out" }, 4.6);
+      if (!alpha) {
+        tl.fromTo("#t-redflash", { opacity: 0 }, { opacity: 0.3, duration: 0.1, ease: "power2.out" }, 4.6);
+        tl.to("#t-redflash", { opacity: 0, duration: 0.4, ease: "power2.in" }, 4.7);
+      }
+      [3, -3, 2, -2, 1, 0].forEach((dx, k) => tl.to("#t-scene", { x: dx, duration: 0.05, ease: "none" }, 4.6 + k * 0.05));
+
+      // 4. Fundament wjeżdża z dołu
+      tl.to(fnd, { opacity: 1, y: 0, duration: 0.8, ease: "expo.out" }, 5.6);
+      tl.to("#t-floor", { borderTopColor: "#ff6a1a", opacity: 0.5, duration: 0.6, ease: "power2.out" }, 6.0);
+      tl.fromTo("#t-shock", { opacity: 0.8, scale: 0.6 }, { opacity: 0, scale: 1.3, duration: 0.8, ease: "power2.out", immediateRender: false }, 6.2);
+      tl.to("#t-glow", { opacity: 0.55, duration: 1.2, ease: "power2.out" }, 5.8);
+
+      // 5. Moduły zatrzaskują się, kręgosłup dorasta, impuls w dół
+      const spineH = fTop - towerTop - 18;
+      MOD_AT.forEach((at, i) => {
+        const el = modEls[i];
+        tl.to(el, { opacity: 1, y: 0, duration: 0.45, ease: "back.out(1.6)" }, at);
+        const reach = (fTop - modTop(i) - 18) / spineH;
+        tl.to(spine, { scaleY: reach, duration: 0.3, ease: "power2.out" }, at + 0.35);
+        tl.fromTo(
+          pulse,
+          { opacity: 1, y: pulseY(modTop(i)) },
+          { opacity: 0, y: 0, duration: 0.35, ease: "power2.in", immediateRender: false },
+          at + 0.4,
+        );
+      });
+
+      // 6. Jeden mocny moment: impuls z fundamentu w górę przez cały kręgosłup
+      tl.fromTo(pulse, { opacity: 1, y: 0 }, { y: pulseY(towerTop), duration: 0.6, ease: "power2.inOut", immediateRender: false }, 10.8);
+      tl.to(pulse, { opacity: 0, duration: 0.15 }, 11.4);
+      [...modEls].forEach((el, i) => {
+        const f = el.querySelector(".flash");
+        tl.fromTo(f, { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out", immediateRender: false }, 10.85 + i * 0.1);
+        tl.to(f, { opacity: 0, duration: 0.5, ease: "power2.in" }, 11.0 + i * 0.1);
+      });
+      tl.fromTo(fnd, { scale: 1 }, { scale: 1.03, duration: 0.15, ease: "power2.out", immediateRender: false }, 10.8);
+      tl.to(fnd, { scale: 1, duration: 0.5, ease: "power2.inOut" }, 10.95);
+      tl.to("#t-glow", { opacity: 0.9, duration: 0.3, yoyo: true, repeat: 1, ease: "sine.inOut" }, 10.8);
+
+      // 7. „+ Twój moduł" — wieża rośnie dalej
+      tl.fromTo(ghost, { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 11.6);
+      tl.to(ghost, { opacity: 0.55, duration: 0.6, repeat: 2, yoyo: true, ease: "sine.inOut" }, 12.2);
+
+      // Powolny dojazd kamery
+      tl.fromTo("#t-scene", { scale: 1, transformOrigin: `${L.axis}px ${L.floor}px` }, { scale: 1.03, duration: 14, ease: "none" }, 0);
+
+      window.__timelines["__ID__"] = tl;
+    </script>
+  </body>
+</html>
