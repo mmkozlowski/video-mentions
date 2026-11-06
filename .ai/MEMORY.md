@@ -60,3 +60,5 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 - [Ustalenia z 12.10: postprodukcja, panel, miniatury](decisions/2026-10-12-ustalenia-dnia-postprodukcja-panel-miniatury.md) — 2026-10-12
 - [Podział wiedzy: montaż tutaj, marka w FlowBiz, panel w studiu](decisions/2026-10-12-podzial-wiedzy-montaz-marka-panel.md) — 2026-10-12
 - [Starsze odcinki kanału w bibliotece (ADR projektowy)](../projects/recording-library/ai/decisions/2026-10-11-starsze-odcinki-kanalu.md) — 2026-10-11
+- [Stoper w pionie z alfą zasłania twarz](memory/stoper-pion-alfa-zaslania-twarz.md) — lewa tercja tylko w 16x9-alpha; w rolce stoper idzie jako pełny ekran MP4
+- [Grafiki GPT: bez tekstu, dopełnij górę](memory/grafiki-gpt-bez-tekstu-dopelnij-gore.md) — tekst w HTML; 2:3 → 9:16 przez pad, nie crop; to treść AI → znak + przełącznik
