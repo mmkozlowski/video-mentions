@@ -1440,9 +1440,12 @@ def probe_duration(path, stream):
 # ściszane pod słowami (sidechain), plansza końcowa znów głośniej. Storyboard może nadpisać:
 # "music": "plik.mp3" albo false.
 MUSIC_DIR = PROJECT / "assets" / "music"
-MUSIC_DEFAULT = "the-mountain-technology-562622.mp3"
+# 10.11: The Mountain (Pixabay) ma roszczenie Content ID — We Are Era Music AB, YouTube blokuje odcinki.
+# Zamiana na utwór z Biblioteki audio YouTube (bez Content ID; plik z tagiem kodera „Google”).
+MUSIC_DEFAULT = "simon-herody-way-back-home.mp3"
 MUSIC_OFFSET = {"the-mountain-technology-562622.mp3": 1.5, "verclub-technology-550887.mp3": 1.5,
-                "jonasblakewood-technology-startup-533868.mp3": 1.0}   # ciche intro utworów (zmierzone RMS)
+                "jonasblakewood-technology-startup-533868.mp3": 1.0,
+                "simon-herody-way-back-home.mp3": 17.0}   # Way Back Home: ~10 s ciszy, pełne brzmienie od ~17 s   # ciche intro utworów (zmierzone RMS)
 MUSIC_LUFS = -28.0        # poziom ścieżki muzycznej przed automatyką; 12.10 −22 → −28 (−6 dB): „za głośno, zagłusza mówienie”
 MUSIC_INTRO = (2.2, 1.0)  # (do której sekundy pełne wejście, czas zejścia do tła)
 MUSIC_INTRO_DB = -4.0     # 13.10 „początek mocno wjeżdża” — wejście −4 dB i narastanie 0,6 s
