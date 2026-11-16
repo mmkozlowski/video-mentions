@@ -119,43 +119,43 @@
   "brand": "flowbiz",
   "kind": "episode",
   "source": "session",
-  "duration": 814.47,
+  "duration": 814.27,
   "priority": "A",
   "scores": {
    "total": 0
   },
   "parts": [
    {
-    "clip": "ep-open-mercato-offers",
+    "clip": "ch-offers-0-z-wstepem-8-wdrozen",
     "start": 0.0
    },
    {
-    "clip": "ch-doram-5-70-94",
+    "clip": "ch-doram-5-70-94--8w",
     "start": 196.44
    },
    {
-    "clip": "ch-doram-6-kody-15-minut-full",
-    "start": 273.453
+    "clip": "ch-doram-6-kody-15-minut--8w",
+    "start": 278.44
    },
    {
-    "clip": "ch-marpasz-2-100-godzin",
-    "start": 308.89
+    "clip": "ch-marpasz-2-100-godzin--8w",
+    "start": 311.777
    },
    {
-    "clip": "ch-marpasz-3-katalog-ai-full",
-    "start": 417.4
+    "clip": "ch-marpasz-3-katalog-ai--8w",
+    "start": 420.777
    },
    {
     "clip": "ch-rezon-3-panel-klienta",
-    "start": 550.0
+    "start": 549.844
    },
    {
     "clip": "ch-vacu-5-kierownik-w-godzine",
-    "start": 657.167
+    "start": 657.01
    },
    {
     "clip": "ch-marpasz-4-srubki",
-    "start": 776.033
+    "start": 775.877
    }
   ]
  }

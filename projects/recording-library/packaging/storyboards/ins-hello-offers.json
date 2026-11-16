@@ -1,0 +1,45 @@
+{
+ "brand": "flowbiz",
+ "formats": [
+  "youtube"
+ ],
+ "endcard": {
+  "youtube": 0
+ },
+ "cta": {
+  "chip": "flowbiz.pl"
+ },
+ "voice_only": true,
+ "lower_third": false,
+ "music_intro": false,
+ "voice_filter": "highpass=f=70,equalizer=f=1300:t=q:w=1.2:g=4.5,equalizer=f=3000:t=q:w=1.0:g=3.5,equalizer=f=9000:t=q:w=1.0:g=-1.5,agate=threshold=0.02:ratio=2:range=0.3:attack=5:release=150",
+ "music_db": -6.0,
+ "clip": "ins-hello-offers",
+ "events": [
+  {
+   "type": "mockup",
+   "name": "kinetic",
+   "at": "Cześć,",
+   "until": "W",
+   "lines": [
+    "Cześć, tu *Mateusz",
+    "AI w normalnych *firmach"
+   ],
+   "kicker": "flowbiz · AI w praktyce",
+   "sync": {
+    "Cześć,": "cześć"
+   },
+   "sub": "nie na prezentacjach",
+   "sub_at": "prezentacjach"
+  },
+  {
+   "type": "beat",
+   "style": "burst",
+   "at": "W",
+   "until": "+8",
+   "num": "5 MIN",
+   "label": "W tym odcinku · szkic oferty",
+   "bottom": "zamiast kilkunastu godzin"
+  }
+ ]
+}

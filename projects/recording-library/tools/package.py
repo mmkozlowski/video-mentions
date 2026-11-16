@@ -361,7 +361,9 @@ class Composition:
         if self.board.get("voice_only"):
             # przerywnik bez twarzy (Mateusz 05.11: „nie potrzebuję siebie pokazywać — zostawmy dźwięk,
             # resztę na planszach”): stałe tło pod planszami, kamera nigdy nie prześwituje
-            self.html.append('<div class="voice-backdrop"><div class="end-grid"></div></div>')
+            # 16.11: tło W oknie wideo, nad twarzą i POD b-rollem — wcześniej (z-index 6 nad całym oknem)
+            # zakrywało też b-roll i karty case'ów z dogrywek wychodziły czarne
+            self.html.append('<!--VOICE-BACKDROP-->')
 
     def brand_mark(self):
         if self.brand["mark"] == "flowbiz":
@@ -1169,7 +1171,7 @@ class Composition:
         return (f'<!doctype html><html lang="pl"><head><meta charset="utf-8">'
                 f'<meta name="viewport" content="width={g["w"]}, height={g["h"]}"><style>{css}</style></head>'
                 f'<body><div id="root" class="{cls}" data-composition-id="pack" data-start="0" data-width="{g["w"]}" '
-                f'data-height="{g["h"]}" data-duration="{self.total}">{"".join(self.html).replace("<!--BROLL-->", "".join(self.broll_html))}</div>'
+                f'data-height="{g["h"]}" data-duration="{self.total}">{"".join(self.html).replace("<!--VOICE-BACKDROP-->", "").replace("<!--BROLL-->", ('<div class="voice-backdrop"><div class="end-grid"></div></div>' if self.board.get("voice_only") else "") + "".join(self.broll_html))}</div>'
                 f'<script src="vendor/gsap.min.js"></script><script>'
                 f'var tl=gsap.timeline({{paused:true}});{"".join(self.js)}window.__timelines["pack"]=tl;</script></body></html>')
 
@@ -1330,7 +1332,7 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .hv-bar{{height:44px;border-radius:22px;background:{raised};overflow:hidden}} .hv-bar i{{display:block;height:100%;background:{accent};border-radius:22px}}
 .hv-val{{font-size:120px;line-height:1;color:{accent};text-align:center}}
 .hook-in .acc{{color:{accent}}}
-.voice-backdrop{{position:absolute;inset:0;background:{bg};z-index:6}}
+.voice-backdrop{{position:absolute;inset:0;background:{bg}}}
 .slate{{position:absolute;inset:0;background:{bg};display:flex;align-items:center;justify-content:center;z-index:7}}
 .slate-body{{position:relative;width:{SW}px;display:flex;flex-direction:column;gap:10px}}
 .slate-text{{font-size:{SF}px;font-weight:800;line-height:1.04;letter-spacing:-.02em}}

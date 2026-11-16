@@ -27,6 +27,9 @@ SOURCES = {
     "om-intro": YT_DIR / "S-10 - czym jest OM" / "Surowy" / "01 - czym jest OM.mov",  # S-10, opublikowany
     "om-retake": YT_DIR / "dogrywka_01.mov",                              # dogrywki S-10: hook „Excel działa”, społeczność
     "inserts": YT_DIR / "openmerxat-wstawki.mov",                         # przerywniki o usługach: przedstawienie, zaproszenie, zamknięcie
+    # dogrywki audio 16.11 (sam głos, lista 43 kwestii: vault marketing/content/youtube/2026-11-15-do-dogrania.md)
+    # m4a z telefonu → .mov z czarnym obrazem (tools/dubs_ingest.py), bo cut.py tnie obraz i dźwięk razem
+    "dubs": PROJECT / "raw" / "2026-11-16-dogrywki-audio" / "dogrywki.mov",
 }
 
 # Kadr źródła: 1280×720, kamera statyczna, twarz w okolicy x≈700–720.
@@ -54,6 +57,7 @@ FACE_CENTER_X = {
     "om-intro": 644,
     "om-retake": 660,
     "inserts": 680,
+    "dubs": 640,
 }
 
 

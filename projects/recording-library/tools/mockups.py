@@ -250,7 +250,9 @@ COAST_LONLAT = [
     (19.63, 54.45),
 ]
 # (nazwa, lon, lat, przesunięcie podpisu x) — Ustka i Rowy leżą 15 km od siebie, podpisy rozsunięte
-COAST_TOWNS = [("Kołobrzeg", 15.57, 54.18, 0), ("Ustka", 16.85, 54.59, -62), ("Rowy", 17.05, 54.67, 50), ("Łeba", 17.55, 54.76, 30)]
+# 16.11: start trasy BEZ podpisu — klienci anonimowo, miasto siedziby klienta nie pada na ekranie
+# (zasada vaulta: „producent pamiątek znad morza”); Ustka, Rowy, Łeba to punkty trasy handlowca
+COAST_TOWNS = [("", 15.57, 54.18, 0), ("Ustka", 16.85, 54.59, -62), ("Rowy", 17.05, 54.67, 50), ("Łeba", 17.55, 54.76, 30)]
 COAST_LANDMARKS = [("Świnoujście", 14.25, 53.91, 70, 26), ("Gdańsk", 18.64, 54.36, 0, 44)]
 COAST_W, COAST_H = 1220, 420
 
@@ -265,10 +267,10 @@ def coast(comp, ev, start, end):
     line = "M " + " L ".join(f"{x} {y}" for x, y in shore)
     sea = line + f" L {COAST_W} {shore[-1][1]} L {COAST_W} 0 L 0 0 L 0 {shore[0][1]} Z"
     land = line + f" L {COAST_W} {shore[-1][1]} L {COAST_W} {COAST_H} L 0 {COAST_H} L 0 {shore[0][1]} Z"
-    # trasa: brzegiem, kilkanaście pikseli w głąb lądu, od Kołobrzegu do Łeby
+    # trasa: brzegiem, kilkanaście pikseli w głąb lądu, od startu (bez podpisu) do Łeby
     leg = [(x, y + 14) for (lon, lat), (x, y) in zip(COAST_LONLAT, shore) if 15.57 <= lon <= 17.55]
     route = "M " + " L ".join(f"{x} {y}" for x, y in leg)
-    towns = "".join(f'<g class="co-town" data-i="{i}"><circle cx="{x}" cy="{y + 14}" r="12"/><text x="{x + dx}" y="{y + 66}">{esc(n)}</text></g>'
+    towns = "".join(f'<g class="co-town" data-i="{i}"><circle cx="{x}" cy="{y + 14}" r="12"/>{f'<text x="{x + dx}" y="{y + 66}">{esc(n)}</text>' if n else ""}</g>'
                     for i, (n, x, y, dx) in enumerate((n, *coast_xy(lon, lat), dx) for n, lon, lat, dx in COAST_TOWNS))
     marks = "".join(f'<text class="co-mark" x="{x + dx}" y="{y + dy}">{esc(n)}</text>'
                     for n, x, y, dx, dy in ((n, *coast_xy(lon, lat), dx, dy) for n, lon, lat, dx, dy in COAST_LANDMARKS))
@@ -1721,3 +1723,79 @@ def markdown_files(comp, ev, start, end):
 
 
 MOCKUPS.update({"site_booking": site_booking, "production_plan": production_plan, "obsidian_graph": obsidian_graph, "markdown_files": markdown_files})
+
+
+# ── Plansza kinetyczna pod głos z dogrywek (16.11, Mateusz: „plansze mają być DYNAMICZNE”) ──────────
+# Sam głos, bez twarzy: krótki nagłówek (3–6 słów, sens kwestii), każde słowo wyostrza się z rozmycia
+# w chwili, gdy pada w nagraniu (czasy słów z words.json klipu). Słowo z gwiazdką = kolor marki
+# i podkreślenie, które się dorysowuje. Cała plansza powoli najeżdża (push-in), kicker wjeżdża z boku.
+#
+#   {"type": "mockup", "name": "kinetic", "at": "Cześć,", "until": "+9",
+#    "kicker": "Mateusz Kozłowski · flowbiz",
+#    "lines": ["AI w *normalnych *firmach"],          # słowo nagłówka = słowo z nagrania…
+#    "sync": {"AI": "AI", "5": "pięć"},               # …albo kotwica podana wprost
+#    "sub": "nie na prezentacjach", "sub_at": "prezentacjach"}
+#
+# Słowo nagłówka, którego nie ma w nagraniu, wchodzi 0,25 s po poprzednim (rytm zostaje).
+# Od wejścia planszy słowa stoją jako rozmyty „duch” (16 %), więc plansza nie jest pusta, zanim padnie
+# pierwsze słowo (16.11, przegląd ofert: łącznik A4 i „do zobaczenia” miały 1–2 s samego kickera).
+def kinetic(comp, ev, start, end):
+    from package import fit, norm
+    sync = ev.get("sync", {})
+    spoken = [(norm(w["word"]), w["start"] / comp.tempo) for w in comp.words if start - 0.05 <= w["start"] / comp.tempo < end]
+
+    def when(token, after):
+        key = norm(sync.get(token, token))
+        for word, t in spoken:
+            if t >= after - 0.05 and (word == key or (len(key) >= 4 and word.startswith(key[:max(4, len(key) - 2)]))):
+                return t
+        return None
+
+    lines_html, times, cursor = [], [], start + 0.15
+    width = 900 if comp.vertical else (820 if ev.get("layout") == "endscreen" else 1500)
+    text_all = " ".join(ev["lines"])
+    size = fit(text_all.replace("*", ""), width, 124 if not comp.vertical else 112, max(2, len(ev["lines"])))
+    for line in ev["lines"]:
+        spans = []
+        for token in line.split():
+            bare = token.replace("*", "")
+            t = when(bare, cursor)
+            t = cursor + 0.25 if t is None else t
+            cursor = t
+            times.append(t)
+            cls = "kn-w acc" if "*" in token else "kn-w"
+            spans.append(f'<span class="{cls}">{esc(bare)}{"<i class=kn-u></i>" if "*" in token else ""}</span>')
+        lines_html.append(f'<div class="kn-line">{" ".join(spans)}</div>')
+    kicker = f'<div class="kicker kn-kicker">{esc(ev["kicker"])}</div>' if ev.get("kicker") else ""
+    sub = f'<div class="sub kn-sub">{esc(ev["sub"])}</div>' if ev.get("sub") else ""
+    inner = f'{kicker}<div class="kn-head" style="font-size:{size}px">{"".join(lines_html)}</div>{sub}'
+    # „endscreen”: tekst w lewej kolumnie, prawa połowa wolna pod elementy ekranu końcowego YouTube
+    sid = comp.slate(start, end, inner, pip=False, cls="kn kn-es" if ev.get("layout") == "endscreen" else "kn")
+    q = comp.q
+    comp.js.append(f'tl.fromTo("#{sid} .slate-body",{{scale:0.97}},{{scale:1.045,duration:{max(0.5, end - start):.3f},ease:"none"}},{q(start)});')
+    comp.js.append(f'tl.fromTo("#{sid} .end-grid",{{backgroundPosition:"0px 0px"}},{{backgroundPosition:"0px -60px",duration:{max(0.5, end - start):.3f},ease:"none"}},{q(start)});')
+    if kicker:
+        comp.js.append(f'tl.fromTo("#{sid} .kn-kicker",{{opacity:0,x:-60}},{{opacity:1,x:0,duration:0.45,ease:"power3.out"}},{q(start + 0.05)});')
+    for i, t in enumerate(times):
+        comp.js.append(f'tl.fromTo(document.querySelectorAll("#{sid} .kn-w")[{i}],{{opacity:0.16,filter:"blur(22px)",y:26,scale:1.08}},'
+                       f'{{opacity:1,filter:"blur(0px)",y:0,scale:1,duration:0.42,ease:"power3.out"}},{q(max(start, t - 0.06))});')
+    for i, t in enumerate(times):
+        comp.js.append(f'(function(){{var w=document.querySelectorAll("#{sid} .kn-w")[{i}],u=w&&w.querySelector(".kn-u");'
+                       f'if(u)tl.fromTo(u,{{scaleX:0}},{{scaleX:1,duration:0.35,ease:"power2.out"}},{q(max(start, t + 0.25))});}})();')
+    if sub:
+        st = when(ev.get("sub_at", ""), start) if ev.get("sub_at") else None
+        st = st if st is not None else (times[-1] + 0.5 if times else start + 0.8)
+        comp.js.append(f'tl.fromTo("#{sid} .kn-sub",{{opacity:0,y:18,filter:"blur(10px)"}},{{opacity:1,y:0,filter:"blur(0px)",duration:0.4}},{q(st)});')
+
+
+MOCKUPS["kinetic"] = kinetic
+MOCKUP_STYLE += """
+.kn .slate-body{{will-change:transform}}
+.kn-head{{font-weight:800;line-height:1.06;letter-spacing:-.025em;display:flex;flex-direction:column;gap:.08em}}
+.kn-w{{display:inline-block;position:relative;opacity:0.16;filter:blur(22px);will-change:filter,transform}}
+.kn-w.acc{{color:{accent}}}
+.kn-u{{position:absolute;left:0;right:0;bottom:-.06em;height:.09em;border-radius:.05em;background:{accent};transform-origin:0 50%;transform:scaleX(0)}}
+.kn-sub{{opacity:0}}
+.kn-es{{justify-content:flex-start}} .kn-es .slate-body{{width:820px;margin-left:140px;align-items:flex-start;text-align:left}}
+.fmt-v .kn-es .slate-body{{width:900px;margin-left:90px}}
+"""

@@ -152,7 +152,9 @@ ADS = [
 EPISODES = [
     dict(id="ep-doram", source="doram", client="Doram", title="Meble ogrodowe: zamówienia z Niemiec",
          # Mateusz 12.10: drugie „Dlaczego?” (restart 92,9–97,5 s) wycięte, zostaje pierwsze + dokończona próba
-         ranges=[(6.0, 92.95, None, 92.90), (93.0, 688.0, 97.52, None)], hook=3, delivery=3, brand="flowbiz",
+         # 16.11: bez „No dobra, lecimy z kolejnymi praktycznymi użyciami AI w firmach.” (zostało ze składanki) —
+         # start od „Teraz na warsztat…” (cisza w sygnale 13,80–15,12, czasy Whispera ~0,9 s za wcześnie)
+         ranges=[(14.2, 92.95, 14.90, 92.90), (93.0, 688.0, 97.52, None)], hook=3, delivery=3, brand="flowbiz",
          notes="Zamówienia od niemieckich kontrahentów w Excelu, dopasowanie AI 70% → 94% "
                "po miesiącu, kody kreskowe z kilku dni do 15 minut. Restart zdania w 92 s."),
     dict(id="ep-vacuactiv", source="vacuactiv", client="Vacuactiv", title="Agent AI dla właściciela firmy",
@@ -197,7 +199,12 @@ EPISODES = [
                "Obsidian + Hermes + Codex. Najdłuższy, do skrócenia w montażu."),
     dict(id="ep-open-mercato-offers", source="session", client="(wiele)",
          title="8 wdrożeń Open Mercato — oferty",
-         ranges=[(2557.1, 2716.2, None, 2716.10), (2719.3, 2767.6, 2719.42, 2768.20)], hook=3, delivery=3,   # ten sam dubel co ch-offers-1
+         # 16.11 (Mateusz: „to nie jest o 8 wdrożeniach”): bez wstępu składanki „Cześć. Zrobiłem już 8 wdrożeń…
+         # Już Wam o tym mówię. Pierwsza rzecz to jest” — start od „tworzenie ofert.” (cisza w sygnale 2581,50–2581,92,
+         # sprawdzone Whisperem wycinka). Wstęp robi głos z dogrywek na planszy (ins-hello, assemble_episode.PLAN).
+         # koniec 2768,65 (było 2768,20): przy cięciu wstawek END (−0,35 s) „pójdzie.” urywało się w połowie;
+         # następna wypowiedź („Ok, kolejny temat”) zaczyna się dopiero w 2770,3
+         ranges=[(2581.2, 2716.2, 2581.70, 2716.10), (2719.3, 2767.6, 2719.42, 2768.65)], hook=3, delivery=3,   # ten sam dubel co ch-offers-1
          brand="flowbiz",
          notes="Krótki odcinek: chaos w ofertach, konwersja handlowców, asystent czytający maile "
                "(producent sprzętu sportowego) — oferta w 5 min zamiast kilkunastu godzin."),
@@ -207,7 +214,8 @@ EPISODES = [
          # („Ok” od 2770,32 z sygnału), bez falstartu „Włożyliśmy,” (2911,04–2912,2), bez dubli
          # „na pace, czyli na naszym / na naszym dostawcach. Dostawczaku.” (3024,0–3029,44).
          # Czasy Whispera przesunięte tu o ~1,5 s — granice z ciszy w sygnale, sprawdzone sklejką.
-         ranges=[(2770.0, 2910.5, 2770.20, 2910.55), (2912.5, 3022.5, 2912.60, 3022.40),
+         # 16.11: bez „Ok, kolejny temat.” (składanka) — start od „Firma produkująca…” (cisza 2774,28–2775,64)
+         ranges=[(2774.6, 2910.5, 2775.30, 2910.55), (2912.5, 3022.5, 2912.60, 3022.40),
                  (3022.9, 3023.95, 3023.00, 3023.90), (3032.3, 3226.0, 3032.44, None)], hook=3, delivery=3,
          brand="flowbiz",
          notes="Firma z Kołobrzegu, proces na kartkach, integracja z PC Business, handlowiec "
@@ -253,6 +261,11 @@ CHAPTERS = [
          title="Zamówienie z Telegrama w trzy kliknięcia", ranges=[(563.8, 678.1)], hook=4, delivery=3),
     dict(id="ch-vacu-7-narzedzie-to-nie-wdrozenie", source="vacuactiv", parent="ep-vacuactiv",
          title="Licencja to nie wdrożenie", ranges=[(1063.9, 1100.1)], hook=4, delivery=3),
+    # 16.11: część „oferty” składanki ep-8-wdrozen Z WSTĘPEM „Zrobiłem już 8 wdrożeń…” — tam ten wstęp pasuje,
+    # a sam odcinek ep-open-mercato-offers od 16.11 zaczyna się od „tworzenie ofert.” (compile_episode.py)
+    dict(id="ch-offers-0-z-wstepem-8-wdrozen", source="session", parent="ep-open-mercato-offers",
+         title="Oferty — z wstępem składanki „8 wdrożeń”",
+         ranges=[(2557.1, 2716.2, None, 2716.10), (2719.3, 2767.6, 2719.42, 2768.20)], hook=3, delivery=3),
     dict(id="ch-offers-1-oferta-5-minut", source="session", parent="ep-open-mercato-offers",
          title="Oferta w 5 minut zamiast kilkunastu godzin",
          # 12.10 uwagi Mateusza ze studia: start łapał „…chwili” i ucinał „A”; dubel „zbiera z nich informacje
@@ -274,6 +287,25 @@ CHAPTERS = [
     # tu domknięty do „…spokój po wprowadzeniu takich rzeczy.”
     dict(id="ch-marpasz-3-katalog-ai-full", source="session", parent="ep-marpasz",
          title="Katalog AI: z faktury do Allegro (pełne zdanie)", ranges=[(3557.2, 3697.0)], hook=4, delivery=3),
+    # 16.11: warianty tylko do składanki ep-8-wdrozen (rolki zostają na starych klipach). Cięcia z listy
+    # „co zrobię bez nagrywania” (vault 2026-11-15-do-dogrania.md); granice z sygnału, sklejki sprawdzone Whisperem.
+    # Każdy case otwiera łącznik z dogrywek (ins-case-6…12), więc zdania „kolejny przykład…” wypadają.
+    dict(id="ch-doram-5-70-94--8w", source="doram", parent="ep-doram",
+         title="Pamięć dla AI: 70% → 94% (do składanki, bez „już wracając znowu do brzegu”)",
+         # + kontekst z poprawek studia 02.11 (941f34f, niescalone; uwaga MK 15.11 w Studiu „3:36 dalej ucięte”):
+         # „Klient dostawał od swoich kontrahentów niemieckich zamówienia w Excelu.” (33,40–40,75) przed „I w tym przypadku…”
+         ranges=[(33.0, 40.5, 33.40, 40.75), (521.5, 523.1, 521.85, 523.22), (525.65, 602.2, 525.70, None)], hook=5, delivery=3),
+    dict(id="ch-doram-6-kody-15-minut--8w", source="doram", parent="ep-doram",
+         title="Kody kreskowe (do składanki, koniec na „15 minut pracy”)",
+         ranges=[(602.1, 637.15, None, 637.30)], hook=5, delivery=4),
+    dict(id="ch-marpasz-2-100-godzin--8w", source="session", parent="ep-marpasz",
+         title="100 godzin miesięcznie mniej (do składanki: z kontekstem 4 worków, domknięte „na to.”)",
+         # kontekst z poprawek studia 02.11 (commit 941f34f na gałęzi mmkozlowski/poprawki-studia-02-11, niescalonej):
+         # „Klient zamawiał cztery worki paszy po 25 kilo … cztery różne etykiety,” + „I o tyle to teraz się zmieniło…”
+         ranges=[(3321.0, 3332.0, 3321.30, 3332.80), (3440.4, 3547.7, 3440.65, 3548.10)], hook=5, delivery=3),
+    dict(id="ch-marpasz-3-katalog-ai--8w", source="session", parent="ep-marpasz",
+         title="Katalog AI (do składanki, od „Katalog AI, jak to wygląda?”)",
+         ranges=[(3560.3, 3697.0, 3560.60, None)], hook=4, delivery=3),
     dict(id="ch-marpasz-4-srubki", source="session", parent="ep-marpasz",
          title="AI to dokręcanie śrubek", ranges=[(3697.5, 3740.0)], hook=4, delivery=4),
 ]
@@ -307,6 +339,46 @@ RAW += [
     dict(id="ins-outro", source="inserts", title="Przerywnik: zamknięcie",
          ranges=[(206.3, 222.35, 206.40, 222.30)], hook=3, delivery=4,
          notes="„Jeśli chcesz, żebym przeszedł z Tobą przez Twój proces…” + pytania w komentarzu. Po CTA odcinka."),
+]
+
+# ── Wstawki z dogrywek audio 16.11 (raw/2026-11-16-dogrywki-audio, tools/dubs_ingest.py + dubs_split.py) ──
+# Sam głos na planszach kinetycznych (mockups.kinetic). Granice = kwestie/mapa.json (cisza w sygnale),
+# numery kwestii z vault marketing/content/youtube/2026-11-15-do-dogrania.md.
+RAW += [
+    dict(id="ins-hello-offers", source="dubs", title="Dogrywka: wstęp (13+14) — oferty",
+         ranges=[(188.25, 197.40, 188.30, 197.40), (198.95, 203.60, 199.00, 203.60)], hook=3, delivery=4),
+    dict(id="ins-lead-doram", source="dubs", title="Dogrywka: wstęp (14+15) — meble",
+         ranges=[(198.95, 203.60, 199.00, 203.60), (204.47, 210.24, 204.52, 210.24)], hook=3, delivery=4),
+    dict(id="ins-lead-rezon", source="dubs", title="Dogrywka: wstęp (14+15) — pamiątki",
+         ranges=[(198.95, 203.60, 199.00, 203.60), (204.47, 210.24, 204.52, 210.24)], hook=3, delivery=4),
+    dict(id="ins-a1", source="dubs", title="Dogrywka: łącznik przed przedstawieniem (1)",
+         ranges=[(6.97, 10.72, 7.02, 10.72)], hook=3, delivery=4),
+    dict(id="ins-a2", source="dubs", title="Dogrywka: łącznik po przedstawieniu (2)",
+         ranges=[(18.11, 20.98, 18.16, 20.98)], hook=3, delivery=4),
+    dict(id="ins-a3", source="dubs", title="Dogrywka: łącznik po zaproszeniu (3)",
+         ranges=[(34.33, 37.50, 34.38, 37.50)], hook=3, delivery=4),
+    dict(id="ins-a4", source="dubs", title="Dogrywka: łącznik przed zamknięciem (4)",
+         ranges=[(39.91, 42.90, 39.96, 42.90)], hook=3, delivery=4),
+    dict(id="ins-bye", source="dubs", title="Dogrywka: do zobaczenia w następnym odcinku (24)",
+         ranges=[(286.37, 290.70, 286.42, 290.70)], hook=3, delivery=4),
+    dict(id="ins-contact", source="dubs", title="Dogrywka: kontakt w opisie (23)",
+         ranges=[(277.05, 284.70, 277.10, 284.70)], hook=3, delivery=4),
+    dict(id="ins-yt-sub", source="dubs", title="Dogrywka: zakończenie bez pożegnania (37+39)",
+         ranges=[(467.55, 475.78, 467.60, 475.78), (481.15, 490.50, 481.20, 490.50)], hook=3, delivery=4),
+    dict(id="ins-case-6", source="dubs", title="Dogrywka: łącznik case'u (6)",
+         ranges=[(67.21, 74.40, 67.26, 74.40)], hook=3, delivery=4),
+    dict(id="ins-case-7", source="dubs", title="Dogrywka: łącznik case'u (7)",
+         ranges=[(75.29, 81.60, 75.34, 81.60)], hook=3, delivery=4),
+    dict(id="ins-case-8", source="dubs", title="Dogrywka: łącznik case'u (8)",
+         ranges=[(98.95, 105.00, 99.00, 105.00)], hook=3, delivery=4),
+    dict(id="ins-case-9", source="dubs", title="Dogrywka: łącznik case'u (9)",
+         ranges=[(106.37, 111.50, 106.42, 111.50)], hook=3, delivery=4),
+    dict(id="ins-case-10", source="dubs", title="Dogrywka: łącznik case'u (10)",
+         ranges=[(141.13, 147.20, 141.18, 147.20)], hook=3, delivery=4),
+    dict(id="ins-case-11", source="dubs", title="Dogrywka: łącznik case'u (11)",
+         ranges=[(158.15, 166.05, 158.20, 166.05)], hook=3, delivery=4),
+    dict(id="ins-case-12", source="dubs", title="Dogrywka: łącznik case'u (12)",
+         ranges=[(180.77, 184.20, 180.82, 184.20)], hook=3, delivery=4),
 ]
 
 # ── Starsze odcinki kanału (Youtube Projects) — dołożone 11.10.2026 ─────────

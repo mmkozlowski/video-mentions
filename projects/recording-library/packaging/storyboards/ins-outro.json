@@ -12,20 +12,32 @@
  "clip": "ins-outro",
  "events": [
   {
-   "type": "slate",
+   "type": "mockup",
+   "name": "kinetic",
    "at": "Jeśli",
    "until": "A",
-   "text": "Przejdę z Tobą *Twój proces",
+   "lines": [
+    "Przejdę z Tobą",
+    "*Twój proces"
+   ],
    "kicker": "flowbiz.pl · 536 507 701",
-   "sub": "link w opisie"
+   "sync": {
+    "Przejdę": "przeszedł"
+   },
+   "sub": "link w opisie",
+   "sub_at": "opisie."
   },
   {
-   "type": "slate",
+   "type": "beat",
+   "style": "slam",
    "at": "A",
    "until": "+8",
-   "text": "Zostaw je *w komentarzu",
-   "kicker": "Pytania do odcinka?",
-   "sub": "odpowiem na wszystkie"
+   "label": "Odpowiem na wszystkie",
+   "lines": [
+    "PYTANIA?",
+    "zostaw w",
+    "KOMENTARZU"
+   ]
   }
  ],
  "voice_only": true,

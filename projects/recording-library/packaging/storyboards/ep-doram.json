@@ -15,7 +15,7 @@
  "chapters": [
   [
    "Teraz",
-   "Kolejny przypadek z firmy"
+   "Producent mebli ogrodowych"
   ],
   [
    "Klient dostawał",
@@ -60,15 +60,6 @@
  ],
  "events": [
   {
-   "type": "title",
-   "at": "Teraz",
-   "until": "Klient",
-   "zone": "lower",
-   "kicker": "Case study · meble ogrodowe",
-   "text": "Zamówienia od kontrahentów z *Niemiec",
-   "sub": "producent z okolic Słupska"
-  },
-  {
    "type": "broll",
    "at": "meble",
    "until": "+3.4",
@@ -76,6 +67,15 @@
    "ai": true,
    "kicker": "Producent z Pomorza",
    "title": "Meble ogrodowe i *szwalnia"
+  },
+  {
+   "type": "title",
+   "at": "był",
+   "until": "Klient",
+   "zone": "lower",
+   "kicker": "Case study · meble ogrodowe",
+   "text": "Zamówienia od kontrahentów z *Niemiec",
+   "sub": "producent z okolic Słupska"
   },
   {
    "type": "broll",

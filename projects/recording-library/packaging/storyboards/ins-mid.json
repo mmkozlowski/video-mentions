@@ -12,33 +12,61 @@
  "clip": "ins-mid",
  "events": [
   {
-   "type": "slate",
+   "type": "beat",
+   "style": "slam",
    "at": "Poczekaj",
    "until": "Robię",
-   "text": "Poczekaj. *Zatrzymam Cię na chwilę."
+   "lines": [
+    "POCZEKAJ",
+    "zatrzymam",
+    "CIĘ"
+   ]
   },
   {
-   "type": "slate",
+   "type": "mockup",
+   "name": "kinetic",
    "at": "Robię",
    "until": "Bez",
-   "text": "Przejdziemy *Twój proces",
+   "lines": [
+    "Przejdziemy",
+    "*Twój proces"
+   ],
    "kicker": "Konsultacja",
-   "sub": "i dowiesz się, czy to się opłaca"
+   "sync": {
+    "Przejdziemy": "przechodzimy"
+   },
+   "sub": "i dowiesz się, czy to się opłaca",
+   "sub_at": "opłaca,"
   },
   {
-   "type": "slate",
+   "type": "beat",
+   "style": "strike",
    "at": "Bez",
    "until": "Link",
-   "text": "Nie musimy *nic budować",
-   "kicker": "Bez zobowiązań"
+   "main": "ZOBOWIĄZANIA",
+   "label": "Bez",
+   "sub": [
+    "Rozmowa.",
+    "Twój proces.",
+    "Bez presji."
+   ]
   },
   {
-   "type": "slate",
+   "type": "mockup",
+   "name": "kinetic",
    "at": "Link",
    "until": "ewentualnie",
-   "text": "Umów *konsultację",
+   "lines": [
+    "Umów",
+    "*konsultację"
+   ],
    "kicker": "flowbiz.pl · 536 507 701",
-   "sub": "link w opisie · WhatsApp · LinkedIn"
+   "sync": {
+    "Umów": "link",
+    "konsultację": "opisie,"
+   },
+   "sub": "WhatsApp · LinkedIn · strona",
+   "sub_at": "Whatsapp"
   },
   {
    "type": "mockup",

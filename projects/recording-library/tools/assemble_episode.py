@@ -36,7 +36,7 @@ ENDCARD = 2.5          # plansza końcowa youtube (package.py, end_len)
 # leci, przed końcem zjeżdżają. Na ostatnim ujęciu odcinka zasłaniały dolne napisy („Pokażę, jak…”).
 BARS_SOURCE = Path.home() / "Youtube Projects" / "Miniaturki Youtube.mp4"
 BARS_SIZE = (150, 130)    # szerokość paska z logo, wysokość dolnego paska z CTA (px przy 1920×1080)
-BARS_ON = "ins-outro"
+BARS_ON = ("ins-outro", "ins-contact", "ins-yt-sub")   # 16.11: Doram kończy się kontaktem (23) zamiast przerywnika zamknięcia
 # Mateusz 05.11 wieczór: „plansza z maską powinna być pod koniec mojego gadania, ostatnie 20 sekund —
 # to tylko taki baner”. Paski idą więc na ostatnie BARS_LEAD s treści odcinka PRZED zamknięciem
 # (i przed gagiem, jeśli jest), a plansze zamknięcia lecą już bez nich.
@@ -55,10 +55,33 @@ ABBREVIATIONS = {"np.", "tzn.", "itp.", "itd.", "m.in.", "ok.", "tj.", "pt.", "u
 
 # odcinek → [(tytuł rozdziału, przed którym wchodzi wstawka | "END"), klip wstawki]
 PLAN = {
-    "ep-open-mercato-offers": [("END", "ins-outro")],
-    "ep-8-wdrozen": [("word:tworzenie ofert", "ins-intro"), ("Panel klienta B2B", "ins-mid-long"), ("END", "ins-outro")],
-    "ep-doram": [("Zamówienia w Excelu od kontrahentów z Niemiec", "ins-intro"), ("Jak uczy się zwykły czat", "ins-mid"), ("before:Dzięki i do usłyszenia", "ins-outro")],
-    "ep-rezon": [("Kontrola po fakcie", "ins-intro"), ("Nadprodukcja", "ins-mid"), ("END", "ins-outro")],
+    # 16.11: wstęp z dogrywek zamiast „Zrobiłem już 8 wdrożeń…”, zakończenie: łącznik → zamknięcie → subskrypcja
+    # i ekran końcowy (37+39, prawa połowa wolna) → „do zobaczenia” (24)
+    "ep-open-mercato-offers": [("START", "ins-hello-offers"), ("END", "ins-a4"), ("END", "ins-outro"),
+                               ("END", "ins-yt-sub"), ("END", "ins-bye")],
+    # 16.11: łączniki case'ów z dogrywek (6–12) — głos na planszy z nazwą case'u PRZED każdym rozdziałem
+    "ep-8-wdrozen": [("word:tworzenie ofert", "ins-a1"), ("word:tworzenie ofert", "ins-intro"), ("word:tworzenie ofert", "ins-a2"),
+                     ("Zamówienia z Excela: 70% → 94%", "ins-case-6"),
+                     ("Kody kreskowe: kilka dni → 15 minut", "ins-case-7"),
+                     ("Etykiety: ok. 100 godzin miesięcznie", "ins-case-8"),
+                     ("Katalog AI z faktur", "ins-case-9"),
+                     ("Panel klienta B2B", "ins-mid-long"), ("Panel klienta B2B", "ins-case-10"),
+                     ("Kierownik produkcji w godzinę", "ins-case-11"),
+                     ("AI to dokręcanie śrubek", "ins-case-12"),
+                     # własne CTA na końcu („zapraszam Cię na flowbiz.pl…”) — bez przerywnika zamknięcia (dubel)
+                     ("END", "ins-yt-sub"), ("END", "ins-bye")],
+    # 16.11: wstęp i łączniki z dogrywek; zakończenie przed własnym „Dzięki i do usłyszenia” z nagrania
+    "ep-doram": [("START", "ins-lead-doram"),
+                 ("Zamówienia w Excelu od kontrahentów z Niemiec", "ins-a1"), ("Zamówienia w Excelu od kontrahentów z Niemiec", "ins-intro"),
+                 ("Zamówienia w Excelu od kontrahentów z Niemiec", "ins-a2"),
+                 ("Jak uczy się zwykły czat", "ins-mid"), ("Jak uczy się zwykły czat", "ins-a3"),
+                 # Doram ma własne zakończenie (subskrypcja + komentarze + „Dzięki i do usłyszenia”) — brakuje w nim tylko
+                 # kontaktu, więc przed „więc dziękuję Wam” wchodzi łącznik A4 i kwestia 23, bez dubli subskrypcji
+                 ("before:więc dziękuję", "ins-a4"), ("before:więc dziękuję", "ins-contact")],
+    "ep-rezon": [("START", "ins-lead-rezon"),
+                 ("Kontrola po fakcie", "ins-a1"), ("Kontrola po fakcie", "ins-intro"), ("Kontrola po fakcie", "ins-a2"),
+                 ("Nadprodukcja", "ins-mid"), ("Nadprodukcja", "ins-a3"),
+                 ("END", "ins-a4"), ("END", "ins-outro"), ("END", "ins-yt-sub"), ("END", "ins-bye")],
     "ep-marpasz": [("Paczki do 25 kg: cztery worki, cztery etykiety", "ins-intro"), ("Katalog AI: faktura → produkty → opisy", "ins-mid"), ("END", "ins-outro")],
     "ep-vacuactiv": [("ChatGPT zapomina i halucynuje", "ins-intro"), ("Obsidian + Hermes + Codex", "ins-mid"),
                      ("before:No dobra", "gag-przymiotnik"), ("before:No dobra", "ins-outro")],
@@ -141,7 +164,7 @@ def split_for_bars(segments, words):
     """Ostatnie BARS_LEAD s treści przed zamknięciem (BARS_ON) → osobny kawałek „bars”; szew w przerwie
     między słowami. Gag stojący tuż przed zamknięciem nie przesuwa banera — baner kończy się przed gagiem."""
     for i, seg in enumerate(segments):
-        if seg[0] == "insert" and seg[1] == BARS_ON:
+        if seg[0] == "insert" and seg[1] in BARS_ON:
             j = i - 1
             while j >= 0 and segments[j][0] == "insert":
                 j -= 1
@@ -176,10 +199,19 @@ def plan_segments(clip_id):
     by_title = {title: t for t, title in chapters}
     cuts = []
     for where, insert in PLAN[clip_id]:
-        if where == "END":
+        if where == "START":
+            # wstęp z dogrywek (16.11): głos na planszy przed pierwszym słowem odcinka
+            cuts.append((0.0, insert))
+        elif where == "END":
             # plansza końcowa renderu wchodzi przenikaniem ~0,3 s PRZED końcem treści — cięcie dokładnie
             # w content_end pokazywało mignięcie logo flowbiz przed zamknięciem (Rezon, Marpasz…)
-            cuts.append((round(content_end - END_GUARD, 3), insert))
+            cut = round(content_end - END_GUARD, 3)
+            last_word_end = max((w["end"] for w in rw), default=0.0)
+            if last_word_end + 0.05 > cut:
+                # 16.11: „…dobrze pójdzie.” urywało się w połowie — klip ma za krótkie wybrzmienie; popraw koniec w EDL
+                raise SystemExit(f"{clip_id}: cięcie END {cut:.2f} s ucina ostatnie słowo (kończy się {last_word_end:.2f} s) — "
+                                 f"wydłuż koniec klipu w edl.py")
+            cuts.append((cut, insert))
         elif where.startswith("before:"):
             # zamknięcie przed własnym pożegnaniem w nagraniu („Dzięki i do usłyszenia”): przerwa przed
             # ostatnim wystąpieniem pierwszego słowa frazy
@@ -198,7 +230,9 @@ def plan_segments(clip_id):
             if where not in by_title:
                 raise SystemExit(f"{clip_id}: nie ma rozdziału „{where}” w storyboardzie")
             cuts.append((cut_after_sentence(rw, by_title[where]), insert))
-    cuts.sort()
+    # sortowanie STABILNE po czasie: kilka wstawek w jednym miejscu (łącznik → przerywnik → łącznik)
+    # idzie w kolejności z PLAN, a nie alfabetycznie po nazwie klipu
+    cuts.sort(key=lambda c: c[0])
     pinned = {}   # tytuł rozdziału → cięcie, po którym rozdział faktycznie się zaczyna
     for (where, insert), (t, _) in zip(PLAN[clip_id], sorted(cuts, key=lambda c: [i for w, i in PLAN[clip_id]].index(c[1]))):
         if where in by_title:
@@ -216,9 +250,19 @@ def plan_segments(clip_id):
     shifted = []
     for t, title in chapters:
         t = pinned.get(title, t)
-        # wstawka przesuwa rozdział, gdy fragment odcinka przed nią kończy się najpóźniej w punkcie rozdziału
-        extra = sum(seg[2] for seg in segments if seg[0] == "insert" and seg[3] <= t + 0.05)
+        # wstawka przesuwa rozdział, gdy fragment odcinka przed nią kończy się najpóźniej w punkcie rozdziału;
+        # łącznik case'u (ins-case-*, 16.11) otwiera rozdział — rozdział startuje NA nim, nie po nim
+        extra = 0.0
+        for seg in segments:
+            if seg[0] != "insert" or seg[3] > t + 0.05:
+                continue
+            if abs(seg[3] - t) <= 0.05 and seg[1].startswith("ins-case"):
+                break
+            extra += seg[2]
         shifted.append((round(t + extra, 1), title))
+    if any(where == "START" for where, _ in PLAN[clip_id]):
+        # YouTube wymaga rozdziału od 0:00 — wstęp z dogrywek dostaje własny
+        shifted.insert(0, (0.0, "Wstęp"))
     return render, segments, shifted
 
 

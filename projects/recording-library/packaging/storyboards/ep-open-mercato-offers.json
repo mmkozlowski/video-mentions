@@ -5,7 +5,7 @@
   "youtube"
  ],
  "topic": {
-  "kicker": "8 wdrożeń Open Mercato",
+  "kicker": "Case study · oferty",
   "text": "Oferty w *5 minut",
   "sub": "firmy handlowe i produkcyjne"
  },
@@ -13,10 +13,6 @@
   "chip": "Case study · flowbiz.pl"
  },
  "chapters": [
-  [
-   "Cześć",
-   "8 wdrożeń Open Mercato"
-  ],
   [
    "tworzenie ofert",
    "Każdy ma swoją wersję oferty"
@@ -32,18 +28,9 @@
  ],
  "events": [
   {
-   "type": "beat",
-   "style": "burst",
-   "at": "Zrobiłem",
-   "until": "+3.4",
-   "label": "Wdrożenia Open Mercato",
-   "num": "8",
-   "bottom": "firmy handlowe i produkcyjne"
-  },
-  {
    "type": "title",
-   "at": "tworzenie ofert",
-   "until": "+8",
+   "at": "tysiąca",
+   "until": "+6",
    "zone": "lower",
    "kicker": "Najczęstszy problem",
    "text": "Oferta z *tysiąca indeksów"

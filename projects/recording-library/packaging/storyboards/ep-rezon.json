@@ -7,7 +7,7 @@
  "topic": {
   "kicker": "Case study · pamiątki znad morza",
   "text": "System B2B dla *producenta pamiątek",
-  "sub": "Kołobrzeg · handel sezonowy"
+  "sub": "wybrzeże · handel sezonowy"
  },
  "cta": {
   "chip": "Case study · flowbiz.pl"
@@ -15,7 +15,7 @@
  "chapters": [
   [
    "Firma",
-   "Pamiątki z Kołobrzegu i proces na kartkach"
+   "Producent pamiątek znad morza i proces na kartkach"
   ],
   [
    "Kontrola",
@@ -49,11 +49,11 @@
  "events": [
   {
    "type": "broll",
-   "at": "Firma",
+   "at": "dość",
    "until": "+3.6",
-   "src": "assets/broll/hf/video/h07-magnesy-kolobrzeg.mp4",
+   "src": "assets/broll/hf/video/h10-sklep-pamiatki-tablet.mp4",
    "kicker": "Case study",
-   "title": "Pamiątki z *Kołobrzegu"
+   "title": "Pamiątki *znad morza"
   },
   {
    "type": "broll",
@@ -211,7 +211,8 @@
    "type": "broll",
    "at": "powiadomienie",
    "until": "+3.2",
-   "src": "assets/broll/hf/video/h10-sklep-pamiatki-tablet.mp4"
+   "src": "assets/broll/hf/video/h10-sklep-pamiatki-tablet.mp4",
+   "from": 1.8
   },
   {
    "type": "mockup",
