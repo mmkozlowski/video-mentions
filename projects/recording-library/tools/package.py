@@ -364,6 +364,10 @@ class Composition:
             # 16.11: tło W oknie wideo, nad twarzą i POD b-rollem — wcześniej (z-index 6 nad całym oknem)
             # zakrywało też b-roll i karty case'ów z dogrywek wychodziły czarne
             self.html.append('<!--VOICE-BACKDROP-->')
+            if self.vertical:
+                # pion: okno twarzy ma tylko górne face_h px — bez tego między planszami prześwitywał
+                # dolny panel z linią podziału (16.11, wstawki z dogrywek w shortach)
+                self.html.append('<style>#panel{display:none}#video-wrap{height:100%!important}</style>')
 
     def brand_mark(self):
         if self.brand["mark"] == "flowbiz":

@@ -41,8 +41,10 @@ i gotowego mastera. Czasy Whispera źródła są tu przesunięte o 0,6–1,5 s.
 - [x] Plansze dynamiczne: `mockups.kinetic` (słowa z rozmycia w rytm mowy, akcent + podkreślenie, push-in) + mieszanka typów
 - [x] Wstawki z dogrywek: wstęp (13+14 / 14+15), łączniki A1–A4, case'y 6–12, kontakt (23), subskrypcja + ekran końcowy (37+39), pożegnanie (24)
 - [x] Sklejki 4 odcinków + przegląd `tools/review_episode.py` (klatki + transkrypcja łączeń), 3 iteracje poprawek
-- [ ] Mastery 1440p w tailnecie (oferty gotowe; meble, pamiątki, 8 wdrożeń w toku)
-- [ ] Shorty i rolki (hak G + zakończenie H z dogrywek)
+- [x] Mastery 1440p w tailnecie: `pliki/odcinki-2026-11-17/` (oferty 19.11, meble 26.11, pamiątki 03.12, 8 wdrożeń 10.12 + rozdziały)
+- [x] Shorty i rolki (8): hak G + zakończenie H z dogrywek, `tools/assemble_short.py` → `…--with-dubs.mp4`, `pliki/rolki-2026-11-17/`
+  - zajawki mebli i paszy przepięte na warianty `--8w` (kontekst na starcie, domknięte „na to.”) — uwagi ze Studia 29.10 i 15.11
+  - kwestia 26 nieużyta (liczba nie ma pokrycia w treści); w pionie przy samym głosie ukryty dolny panel (prześwitywała linia)
 
 ## Decyzje (16→17.11)
 
@@ -69,7 +71,9 @@ i gotowego mastera. Czasy Whispera źródła są tu przesunięte o 0,6–1,5 s.
 4. **Łącznik 10 mówi „hurtownia pamiątek”**, klient to producent (plansza mówi „producent”). Zostawić?
 5. **Ekran końcowy:** okno ~15 s (39 + 24 + plansza końcowa), nie 20 — po „do zobaczenia” w nagraniu nie ma ciszy.
 6. **Studio:** `zaj-8-wdrozen` ma `publishAt` 19.11, a odcinek przeszedł na 10.12 — przestawić?
-7. **Gałąź `mmkozlowski/poprawki-studia-02-11`** (9 commitów z 02.11) nie jest w main ani w tej gałęzi — scalić?
+7. **Shorty w Studiu:** nowe wersje to `…--with-dubs.mp4` — `export_studio.py` ich nie podmienia (dla odcinków podmienia
+   `--with-inserts`). Podmienić w Studiu?
+8. **Gałąź `mmkozlowski/poprawki-studia-02-11`** (9 commitów z 02.11) nie jest w main ani w tej gałęzi — scalić?
 
 ## Dziennik
 
