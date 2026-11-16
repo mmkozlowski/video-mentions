@@ -65,3 +65,4 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 - [Miniatura: napis składamy sami](memory/miniatura-napis-skladamy-sami.md) — generator rysuje własny krój; napis w Plus Jakarta 800 w HTML
 - [Cięcie wstawek po renderze, nie po surówce](memory/ciecie-wstawek-po-renderze-nie-po-surowce.md) — koniec zdania z transkrypcji gotowego pliku; czasy z surówki przesunięte o 0,5–1,5 s, „np.” to nie kropka
 - [Gwiazdka w storyboardzie](memory/storyboard-gwiazdka-wyroznia-slowo.md) — `*` wyróżnia od słowa; para `*…*` zostawia dosłowną gwiazdkę
+- [Wstawki „sam głos” — pułapki](memory/wstawki-sam-glos-pulapki.md) — tło pod b-rollem, panel w pionie, END nie przed ostatnim słowem; przegląd `review_episode.py`
