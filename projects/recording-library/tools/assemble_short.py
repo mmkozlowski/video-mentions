@@ -29,14 +29,16 @@ FADE = 0.012
 # (~0,3 s). Przez pierwsze POSTER_HOLD s stoi klatka z pełnym tekstem haka (POSTER_AT s od startu), potem animacja
 # leci dalej — w 0,3 s jest już prawie cała, więc przejście nie skacze.
 POSTER_AT = 0.9
+POSTER_AT_HOOK = {"ins-g29--doram": 2.9}   # „Zobacz: przed / a po” — pełny tekst dopiero po „po”
 POSTER_HOLD = 0.3
 
 # short (storyboard) → (format, hak, zakończenie); None = bez wstawki
 PLAN = {
     "ch-offers-1-oferta-5-minut--zajawka": ("feed", "ins-g29--offers", "ins-h32--feed"),     # 19.11
-    # 17.11: hak 28 brzmiał dwuznacznie („Dlatego/Do tego nie potrzebujesz AI”) → kwestia 30; start od „generowanie kodów” (pkt 7)
-    "ch-doram-6-kody-od-generowania": ("reels", "ins-g30--module", "ins-h33--reels"),        # 22.11 — „żadnej magii, żadnego AI”
-    "ch-doram-5-70-94--zajawka": ("feed", "ins-g30--doram", "ins-h32--feed"),               # 26.11
+    # 17.11: hak 28 brzmiał dwuznacznie („Dlatego/Do tego nie potrzebujesz AI”) → kwestia 27 (drugi odsłuch: bez dubla haka 30); start od „generowanie kodów” (pkt 7)
+    "ch-doram-6-kody-od-generowania": ("reels", "ins-g27--reels", "ins-h33--reels"),        # 22.11 — „żadnej magii, żadnego AI”
+    # 17.11 (drugi odsłuch): hak 30 otwierał 4 z 8 shortów — kody 22.11 → 27, meble 26.11 → 29, 30 w kartce i 8 wdrożeniach
+    "ch-doram-5-70-94--zajawka": ("feed", "ins-g29--doram", "ins-h32--feed"),               # 26.11
     "ch-module-1-kartka": ("reels", "ins-g30--module", "ins-h35--reels"),                   # 29.11
     # 17.11 (pkt 8): hak 27 („ręcznie, niepotrzebnie”) nie pasował — hak z samego odcinka w klipie, bez wstawki
     "ch-rezon-2-ustka-rowy--hak--zajawka": ("feed", None, "ins-h32--feed"),                 # 03.12
@@ -70,8 +72,10 @@ def last_word_end(render, content_end, work):
 
 def insert_file(board_name, fmt):
     """Render wstawki nazywa się po KLIPIE (package.py), a plan wskazuje storyboard (ten sam klip, różne plansze)."""
-    clip = json.load(open(P.PACK / "storyboards" / f"{board_name}.json"))["clip"]
-    return FINAL / f"{clip}__{fmt}-F.mp4"
+    board = json.load(open(P.PACK / "storyboards" / f"{board_name}.json"))
+    # wariant planszy (ta sama kwestia, inny tekst: ins-g29 w ofertach i w meblach) → osobny plik clip--wariant
+    name = board["clip"] + (f"--{board['variant']}" if board.get("variant") else "")
+    return FINAL / f"{name}__{fmt}-F.mp4"
 
 
 def build(name):
@@ -95,7 +99,8 @@ def build(name):
     segments.append(("file", render, resume if outro else cut, total))
     poster = work / "poster.png"
     first_path, first_a = segments[0][1], segments[0][2]
-    subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", f"{first_a + POSTER_AT:.3f}", "-i", str(first_path), "-frames:v", "1",
+    poster_at = POSTER_AT_HOOK.get(hook, POSTER_AT) if hook else POSTER_AT
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", f"{first_a + poster_at:.3f}", "-i", str(first_path), "-frames:v", "1",
                     str(poster)], check=True)
     inputs, graph, labels = [], "", []
     for i, (_, path, a, b) in enumerate(segments):
