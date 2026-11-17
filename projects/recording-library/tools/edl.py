@@ -63,7 +63,8 @@ ADS = [
                "Zaproszenie bez telefonu. 16.10 (Agata): koniec 1. przedziału po sygnale — Whisper kończył "
                "„Excelu” 0,25 s za wcześnie i cięcie urywało końcówkę „-lu” (zamknięcie „trzy” od 734,21)."),
     dict(n=12, code="R2", title="Zeszyt i emerytura", brand="flowbiz", block="production",
-         ranges=[(784.0, 838.0)], hook=5, delivery=4, cta="web",
+         ranges=[(784.0, 802.6, None, 802.58), (803.6, 838.0, 803.78, None)], hook=5, delivery=4, cta="web",
+         # 17.11 (Agata, Studio 0:16): falstart „jest w zzz…” (802,58–803,78) przed „jest w zeszytach” — wycięty
          notes="Jedno ujęcie, najmocniejsza emocja w bloku. CTA: bezpłatna konsultacja na flowbiz.pl."),
     dict(n=13, code="R3", title="Przepisy o opakowaniach (PPWR)", brand="flowbiz", block="production",
          ranges=[(840.0, 872.0), (882.1, 885.3), (890.0, 903.1), (912.0, 955.0)],
@@ -117,7 +118,9 @@ ADS = [
     dict(n=27, code="W11", title="Pizza i networking", brand="aislupsk", block="workshop",
          ranges=[(1907.8, 1918.0), (1924.6, 1952.0)], hook=4, delivery=4, cta="aislupsk"),
     dict(n=28, code="W1", title="Szefie, Twoi ludzie już używają AI", brand="aislupsk", block="workshop",
-         ranges=[(1955.8, 1990.9)], hook=5, delivery=4, cta="aislupsk",
+         # 17.11 (Agata, Studio 0:22/0:30): bez falstartu „War-” (1982,55–1983,17) przed „Warsztaty są w Słupsku”;
+         # koniec w ciszy po „ai.slupsk.pl” (1990,45) — wcześniej wchodziło „i-” z „i zapisz się na listę” i urywało
+         ranges=[(1955.8, 1982.0), (1983.0, 1990.9, 1983.18, 1990.45)], hook=5, delivery=4, cta="aislupsk",
          notes="Region w nagraniu: Słupsk, Lębork, Koszalin."),
     dict(n=29, code="W4", title="Śniadanie dla szefów", brand="aislupsk", block="workshop",
          ranges=[(2000.0, 2050.0, 2006.6, None)], hook=4, delivery=3, cta="aislupsk",
@@ -307,13 +310,29 @@ CHAPTERS = [
          ranges=[(33.0, 40.5, 33.40, 40.75), (521.5, 523.1, 521.85, 523.22), (525.65, 561.6, 525.70, 561.51),
                  # 17.11 (pkt 2–3): bez „dlatego mówiłem też o tych kilkunastu kliknięciach” — w składance i zajawce nic o tym nie padło
                  (564.2, 602.2, 564.40, None)], hook=5, delivery=3),
+    # 17.11 (Agata, zajawka 0:09: „nie wiadomo, co »polegało« ani skąd miernik”): po „zamówienia w Excelu” zdanie
+    # z odcinka „Kontrahent, który zamawiał, potrafił tą samą rzecz nazwać na kilkanaście różnych sposobów. Potrafił raz
+    # napisać po niemiecku, raz po angielsku.” (62,05–73,45); wątek „więc nawet jeżeli zrobiliśmy miernik i wyliczaliśmy…
+    # to powodowało, że” wycięty (533,42–543,30) → „…nazwany w różnych momentach. Z początku … 70%”
+    dict(id="ch-doram-5-70-94--zajawka", source="doram", parent="ep-doram",
+         title="Pamięć dla AI: 70% → 94% (zajawka mebli 26.11)",
+         ranges=[(33.0, 40.5, 33.40, 40.75), (61.9, 73.4, 62.05, 73.45), (521.5, 523.1, 521.85, 523.22),
+                 (525.65, 533.3, 525.70, 533.42), (542.9, 561.6, 543.30, 561.51), (564.2, 602.2, 564.40, None)],
+         hook=5, delivery=3,
+         # napisy na sklejkach (czasy z sygnału i Whispera gotowego wycinka)
+         caption_words=[(40.5, 40.7, []), (60.8, 61.0, [("Kontrahent,", 62.05, 62.5)]), (73.25, 73.4, []), (521.6, 521.95, [("I", 521.85, 521.94), ("w", 521.94, 521.98), ("tym", 521.98, 522.08),
+                                                             ("przypadku", 522.08, 522.36)]),
+                        (523.1, 523.3, []), (533.35, 543.4, [("Z", 543.32, 543.5), ("początku", 543.5, 543.86)])]),
     # 17.11 (pkt 7): rolka o kodach i zajawka 8 wdrożeń — start bez „Jeżeli chodzi o tą część taką jeszcze bardzo
     # czasochłoną, czy” (widz nie wiedział, jaką część): od „generowanie samych kodów kreskowych” (cisza 606,64–606,80)
     dict(id="ch-doram-6-kody-od-generowania", source="doram", parent="ep-doram",
-         title="Kody kreskowe: z kilku dni do 15 minut (od „generowanie kodów”)", ranges=[(606.6, 637.3, 606.76, None)], hook=5, delivery=4),
+         title="Kody kreskowe: z kilku dni do 15 minut (od „generowanie kodów”)", # 17.11 (Agata, zaj-8 0:04): „no to tutaj to nie było tutaj” → „no to nie było tutaj” (610,49–610,82 wycięte)
+         ranges=[(606.6, 610.4, 606.76, 610.49), (610.6, 637.3, 610.82, None)], hook=5, delivery=4,
+         caption_words=[(609.7, 611.05, [("no", 610.36, 610.45), ("to", 610.45, 610.49), ("nie", 610.82, 610.94), ("było", 610.94, 611.12), ("tutaj", 611.12, 611.5)])]),
     dict(id="ch-doram-6-kody-od-generowania--15-minut", source="doram", parent="ep-doram",
          title="Kody kreskowe (zajawka 8 wdrożeń: od „generowanie kodów”, koniec na „15 minut pracy”)",
-         ranges=[(606.6, 637.15, 606.76, 637.30)], hook=5, delivery=4),
+         ranges=[(606.6, 610.4, 606.76, 610.49), (610.6, 637.15, 610.82, 637.30)], hook=5, delivery=4,
+         caption_words=[(609.7, 611.05, [("no", 610.36, 610.45), ("to", 610.45, 610.49), ("nie", 610.82, 610.94), ("było", 610.94, 611.12), ("tutaj", 611.12, 611.5)])]),
     # 17.11 (pkt 8): zajawka pamiątek z hakiem z samego odcinka („I nagle produkujemy tego dziesiątki tysięcy sztuk…”),
     # potem od „Każdy wzór, każda miejscowość ma swój napis” — bez „Ta branża też…” (zlepione, nie da się wyciąć samego „też”)
     dict(id="ch-rezon-2-ustka-rowy--hak", source="session", parent="ep-rezon",
@@ -480,7 +499,10 @@ CHAPTERS += [
          ranges=[(366.4, 388.2), (464.0, 469.9), (502.4, 512.5)], hook=4, delivery=3, cta="none"),
     # Jak składam moduł
     dict(id="ch-module-1-kartka", source="module-build", parent="ep-module",
-         title="Zanim napiszę linię kodu, biorę kartkę", ranges=[(65.9, 92.0), (104.0, 108.2)],
+         title="Zanim napiszę linię kodu, biorę kartkę",
+         # 17.11 (Agata, 0:01): „Zanim, zanim napiszę” — start od drugiego „Zanim” (cisza 66,84–66,94)
+         ranges=[(65.9, 92.0, 66.90, None), (104.0, 108.2)],
+         caption_words=[(65.9, 67.0, [("Zanim", 66.92, 67.26), ("napiszę", 67.26, 67.76)])],
          hook=5, delivery=4, cta="none"),
     dict(id="ch-module-2-druga-strona", source="module-build", parent="ep-module",
          title="Warsztat: 70 pytań po rolach", ranges=[(145.0, 160.7), (189.4, 220.5)], hook=4, delivery=4,
@@ -519,7 +541,10 @@ CHAPTERS += [
          title="To nie jest Make, n8n ani Zapier", ranges=[(325.4, 342.5), (364.3, 371.2)], hook=4, delivery=4,
          cta="none"),
     dict(id="ch-om-5-erp-lat-90", source="om-intro", parent="ep-om-intro",
-         title="ERP z lat 90. i jedno pole za duże pieniądze", ranges=[(469.7, 509.1), (519.9, 532.7)],
+         title="ERP z lat 90. i jedno pole za duże pieniądze",
+         # 17.11 (Agata, 0:00): start był w połowie zdania („…były systemy klasy ERP”) — od „A drugą stroną były systemy” (469,06)
+         ranges=[(468.6, 509.1, 469.06, None), (519.9, 532.7)],
+         caption_words=[(468.5, 469.3, [("A", 469.06, 469.24), ("drugą", 469.24, 469.48)])],
          hook=4, delivery=3, cta="none"),
     dict(id="ch-om-6-najtrudniejsze", source="om-intro", parent="ep-om-intro",
          title="Najtrudniejsze rzeczy w programowaniu już są", ranges=[(550.6, 579.3), (588.8, 593.9)],

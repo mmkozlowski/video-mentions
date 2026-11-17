@@ -1,9 +1,9 @@
 {
- "clip": "ch-doram-5-70-94--8w",
+ "clip": "ch-doram-5-70-94--zajawka",
  "brand": "flowbiz",
  "hook": {
   "text": "AI nauczyło się *zamówień. Bez programowania od nowa.",
-  "until": "polegało",
+  "until": "zamawiał",
   "visual": {
    "kind": "meter",
    "from": 70,
@@ -35,10 +35,18 @@
  "events": [
   {
    "type": "title",
+   "at": "zamawiał",
+   "until": "polegało",
+   "kicker": "Ten sam produkt",
+   "text": "Kilkanaście *nazw",
+   "sub": "raz po niemiecku, raz po angielsku"
+  },
+  {
+   "type": "title",
    "at": "AI się",
-   "until": "więc",
+   "until": "początku",
    "kicker": "Pamięć dla AI",
-   "text": "Jeden produkt, *pięć nazw",
+   "text": "AI uczy się *wszystkich nazw",
    "sub": "każdy kontrahent pisze inaczej"
   },
   {
@@ -48,26 +56,6 @@
    "src": "assets/broll/hf/video/h01-biuro-przeciazenie.mp4",
    "label": "Zamówienie w Excelu od kontrahenta",
    "ai": true
-  },
-  {
-   "type": "logos",
-   "at": "miernik",
-   "until": "początku",
-   "kicker": "Mierzymy wpływ AI",
-   "items": [
-    {
-     "logo": "excel",
-     "name": "Zamówienie"
-    },
-    {
-     "logo": "claude",
-     "name": "AI"
-    },
-    {
-     "logo": "openmercato",
-     "name": ""
-    }
-   ]
   },
   {
    "type": "stat",
@@ -130,7 +118,7 @@
   {
    "type": "quote",
    "at": "Zostają",
-   "until": 80.0,
+   "until": 81.02,
    "text": "Zostają marginalne przypadki",
    "sub": "a człowiek tylko sprawdza"
   }
@@ -139,7 +127,6 @@
   "kicker": "Case study · producent mebli ogrodowych",
   "text": "Zamówienia od niemieckich kontrahentów. *AI uczy się je czytać."
  },
- "variant": "zajawka",
  "formats": [
   "feed"
  ],

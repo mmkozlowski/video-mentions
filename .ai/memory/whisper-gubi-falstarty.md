@@ -29,6 +29,15 @@ ustawiona po czasach słów zostawiła powtórzenie.
   Napisy brały się z tych złych czasów, więc po cięciu poprawiono też czasy słów
   w `data/transcripts/session.json` (transkrypcja 3–4-sekundowych wycinków).
 
+- **Napisy po cięciu w środku frazy** (17.11, uwagi Agaty): „no to [tutaj to] nie było” — po cięciu
+  reguła luki w `cut.words_in` (≤ 2 słowa w luce ≤ 2 s → przeklejone za lukę) wciągała wycięte
+  „tutaj to” z powrotem do napisów, a przy starcie od drugiego „Zanim” jedyne „Zanim” z transkrypcji
+  wypadało. W EDL pole `caption_words=[(od, do, [(słowo, start, koniec), …])]` zastępuje słowa
+  w przedziale źródła czasami zmierzonymi na sygnale. Sprawdzaj `build/library/<klip>/words.json` po cięciu.
+- **Zgłoszone miejsce ≠ miejsce zająknięcia** (17.11, ad-12-r2): uwaga „między »Wiedza« a »o« 2 s”,
+  a w źródle była tam pauza 0,6 s — falstart „jest w zzz…” siedział 2 s dalej. Szukaj transkrypcją
+  wycinków 1–2 s wokół zgłoszenia, nie tnij w zgłoszonej sekundzie na ślepo.
+
 Lek: granica z **ciszy w sygnale** (`silencedetect` na wycinku ±5 s,
 `-32…-38 dB`, `d=0.1–0.25`) i ewentualnie transkrypcja samego 2-sekundowego
 wycinka. W EDL `projects/recording-library` takie miejsce zapisuje się jako

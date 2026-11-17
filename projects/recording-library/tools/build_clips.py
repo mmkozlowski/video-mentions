@@ -98,6 +98,7 @@ def main():
             "priority": prio, "cta": entry.get("cta"),
             "uses": placement(kind, brand, entry.get("block"), duration),
             "notes": entry.get("notes", ""),
+            **({"caption_words": entry["caption_words"]} if entry.get("caption_words") else {}),
         })
 
     for ad in edl.ADS:

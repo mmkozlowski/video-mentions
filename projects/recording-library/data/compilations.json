@@ -49,7 +49,7 @@
   "brand": "flowbiz",
   "kind": "episode",
   "source": "session",
-  "duration": 86.6,
+  "duration": 85.32,
   "priority": "A",
   "scores": {
    "total": 0
@@ -61,11 +61,11 @@
    },
    {
     "clip": "ch-module-7-slownik",
-    "start": 32.01
+    "start": 30.733
    },
    {
     "clip": "ch-module-9-wyjatki",
-    "start": 56.577
+    "start": 55.3
    }
   ]
  },
@@ -97,7 +97,7 @@
   "brand": "flowbiz",
   "kind": "episode",
   "source": "session",
-  "duration": 28.54,
+  "duration": 28.2,
   "priority": "A",
   "scores": {
    "total": 0

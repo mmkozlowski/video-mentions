@@ -6,7 +6,7 @@
  ],
  "hook": {
   "text": "Najważniejsze narzędzie przy budowie systemu? *Kartka papieru.",
-  "until": 6.5,
+  "until": 5.21,
   "visual": {
    "kind": "icon",
    "art": "h-paper-stack"
@@ -43,7 +43,7 @@
    "type": "beat",
    "style": "strike",
    "at": "Nie kod",
-   "until": 31.5,
+   "until": 30.21,
    "label": "Najpierw",
    "main": "KOD",
    "sub": [

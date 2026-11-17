@@ -30,6 +30,17 @@ from sources import DATA, FACE_CENTER_X, LIBRARY, SOURCE_W, SOURCES, VERTICAL, l
 COLOR_GRADE = "eq=contrast=1.10:saturation=1.18:brightness=0.01,unsharp=5:5:0.3"
 
 
+def with_caption_words(words, overrides):
+    """Napisy w miejscu cięcia z EDL `caption_words`: [(od, do, [(słowo, start, koniec), …]), …] w osi źródła.
+
+    17.11 (Agata): przy cięciu w środku frazy („no to [tutaj to] nie było”) czasy Whispera leżą obok dźwięku,
+    a reguła luki niżej wciąga wycięte słowa z powrotem do napisów. Słowa, których start leży w [od, do),
+    zastępuje lista zmierzona na sygnale; puste słowa = wycięte z napisów."""
+    for a, b, replacement in overrides or []:
+        words = [w for w in words if not a <= w["start"] < b] + [{"word": " " + t, "start": s, "end": e} for t, s, e in replacement]
+    return sorted(words, key=lambda w: w["start"])
+
+
 def words_in(words, ranges):
     """Słowa z przedziałów źródła przeliczone na oś sklejonego klipu.
 
@@ -140,7 +151,7 @@ def main(argv):
             render(clip, "vertical", folder / "vertical.mp4")
         if clip["source"] not in words_cache:
             words_cache[clip["source"]] = load_words(clip["source"])
-        json.dump(words_in(words_cache[clip["source"]], clip["ranges"]),
+        json.dump(words_in(with_caption_words(words_cache[clip["source"]], clip.get("caption_words")), clip["ranges"]),
                   open(folder / "words.json", "w"), ensure_ascii=False, indent=0)
         # sklejki na osi klipu — package.py maskuje na nich skok obrazu zoomem
         joins = [round(sum(b - a for a, b in clip["ranges"][:i]), 3) for i in range(1, len(clip["ranges"]))]

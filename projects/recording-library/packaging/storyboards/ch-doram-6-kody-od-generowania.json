@@ -75,7 +75,7 @@
   {
    "type": "compare",
    "at": "nagle",
-   "until": 35.6,
+   "until": 35.27,
    "kicker": "Etykiety do zamówienia",
    "before": {
     "value": "kilka dni",

@@ -17,6 +17,7 @@ import datetime
 import json
 import subprocess
 
+from assemble_short import PLAN as SHORTS_WITH_DUBS
 from sources import DATA, PROJECT
 
 REPO = PROJECT.parent.parent
@@ -72,6 +73,12 @@ def main():
         with_inserts = row["file"].replace(".mp4", "--with-inserts.mp4")
         if row["kind"] == "odcinek" and (FINAL / "samples" / with_inserts).exists():
             row = dict(row, file=with_inserts)
+        # 17.11 (Agata recenzowała shorty bez dogrywek): short z hakiem i zakończeniem z dogrywek
+        # (assemble_short.py) jest wersją do publikacji — Studio pokazuje ją zamiast gołego renderu. Tylko shorty
+        # z bieżącego planu: stare `--with-dubs` (np. kody-15-minut sprzed przemianowania) zostają na dysku
+        with_dubs = row["file"].replace(".mp4", "--with-dubs.mp4")
+        if row["id"] in SHORTS_WITH_DUBS and (FINAL / "samples" / with_dubs).exists():
+            row = dict(row, file=with_dubs)
         video = FINAL / "samples" / row["file"]
         if not video.exists():
             print(f"  brak pliku: {row['file']}")

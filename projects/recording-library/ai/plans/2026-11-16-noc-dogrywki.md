@@ -82,6 +82,24 @@ Lista MK: `POPRAWKI-2026-11-17.md` (tailnet `odcinki-2026-11-17/`), czasy w goto
   0,3 s klatkę z pełnym tekstem (0,9 s haka), potem animacja.
 - **Oferty:** kwestia 30 na planszy przed A4 (domknięcie), „KILKANAŚCIE GODZIN”, bez „oferty często,”.
 
+## Uwagi Agaty ze Studia (17.11, 11:48–12:08)
+
+Każda granica z ciszy w sygnale i sprawdzona Whisperem sklejki (large-v3 i turbo).
+
+- **Kody (zaj-8, rolka 22.11):** „no to [tutaj to] nie było tutaj” → wycięte 610,49–610,82.
+- **ad-28-w1 (+ --ai-slupsk):** falstart „War-” (1982,55–1983,17) przed „Warsztaty są w Słupsku”; koniec w ciszy po
+  „ai.slupsk.pl” (1990,45) — wcześniej wchodziło „i-” z kolejnego zdania. Muzyka pod planszą końcową schodzi przez 1 s.
+- **Zajawka mebli:** osobny klip `ch-doram-5-70-94--zajawka` (wariant `--8w` zostaje w składance). Po „zamówienia
+  w Excelu” zdanie z odcinka o kilkunastu nazwach tego samego produktu (po niemiecku / po angielsku); wątek „miernik /
+  wyliczaliśmy” wycięty → „…nazwany w różnych momentach. Z początku … 70%”. Plansza „pięć nazw” → „kilkanaście nazw”
+  (tak mówi nagranie).
+- **Kartka:** start od drugiego „Zanim” (66,90). **ERP lat 90.:** start od „A drugą stroną były systemy” (469,06).
+- **ad-12-r2 (+ --ai-w-produkcji):** zająknięcie to falstart „jest w zzz…” (802,58–803,78) przed powtórzonym „jest
+  w zeszytach” — między „Wiedza” a „o” w źródle jest tylko 0,6 s pauzy, nie zająknięcie.
+- **Napisy na cięciach:** EDL `caption_words` (cut.py) — w przedziale źródła słowa z czasami zmierzonymi na sygnale.
+  Reguła luki w `words_in` wciągała wycięte „tutaj to” z powrotem do napisów, a „Zanim”/„A” wypadały.
+- **Studio pokazuje shorty z dogrywkami:** `export_studio.py` bierze `…--with-dubs.mp4`, gdy istnieje (pytanie 7).
+
 ## Pytania na rano (MK)
 
 1. **Kwestie do odsłuchu:** 22 („w filmie / w firmie”), 36 („w polskiej filmie”), 41 („nazwy film nie podaję”) — modele się
@@ -93,7 +111,7 @@ Lista MK: `POPRAWKI-2026-11-17.md` (tailnet `odcinki-2026-11-17/`), czasy w goto
 4. **Łącznik 10 mówi „hurtownia pamiątek”**, klient to producent (plansza mówi „producent”). Zostawić?
 5. **Ekran końcowy:** okno ~15 s (39 + 24 + plansza końcowa), nie 20 — po „do zobaczenia” w nagraniu nie ma ciszy.
 6. **Studio:** `zaj-8-wdrozen` ma `publishAt` 19.11, a odcinek przeszedł na 10.12 — przestawić?
-7. **Shorty w Studiu:** nowe wersje to `…--with-dubs.mp4` — `export_studio.py` ich nie podmienia (dla odcinków podmienia
+7. ~~**Shorty w Studiu**~~ — zamknięte 17.11: Studio pokazuje `--with-dubs` (`export_studio.py`). Było: nowe wersje to `…--with-dubs.mp4` — `export_studio.py` ich nie podmienia (dla odcinków podmienia
    `--with-inserts`). Podmienić w Studiu?
 8. **Gałąź `mmkozlowski/poprawki-studia-02-11`** (9 commitów z 02.11) nie jest w main ani w tej gałęzi — scalić?
 
