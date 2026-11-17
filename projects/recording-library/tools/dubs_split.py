@@ -31,6 +31,10 @@ LIST = Path.home() / "orca/workspaces/Obsidian Vault/team/marketing/content/yout
 MODEL = "mlx-community/whisper-large-v3-mlx"
 HEAD, TAIL = 0.12, 0.30
 
+# audyt 17.11 (silencedetect −40 dB): na początku pliku urywek poprzedniej mowy na poziomie mowy → start
+# przesunięty o tyle sekund (≈80 ms przed silence_end), licząc od startu z cięcia po ciszy
+TRIM_START = {5: 0.71, 16: 1.02, 22: 1.07, 40: 0.73, 41: 0.76}
+
 # nr → (od, do, uwaga) w osi dogrywki.wav; None = kwestii nie ma w nagraniu
 TAKES = {
     1: (5.6, 10.6, "pierwszy plik; drugie podejście ma „…przedstawię szybko”"),
@@ -145,6 +149,10 @@ def main(only=()):
             continue
         a, b, note = take
         s, e = snap(a, b)
+        if nr in TRIM_START:
+            s += TRIM_START[nr]
+            note = (note + "; " if note else "") + (f"audyt 17.11: przycięty początek o {TRIM_START[nr]:.2f} s "
+                                                    "(urywek poprzedniej mowy na starcie)")
         path = OUT / f"{nr:02d}.wav"
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", f"{s:.3f}", "-t", f"{e - s:.3f}", "-i", str(WAV),
                         "-af", "afade=t=in:d=0.01,areverse,afade=t=in:d=0.04,areverse", "-ar", "48000", "-ac", "1",
