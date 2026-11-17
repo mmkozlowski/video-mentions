@@ -43,7 +43,9 @@ COMPILATIONS = {
     "zaj-8-wdrozen": dict(
         title="Zajawka: 8 wdrożeń Open Mercato",
         brand="flowbiz",
-        parts=["ch-doram-6-kody-15-minut", "ch-marpasz-4-srubki"],
+        # 17.11 (pkt 6–7): bez części o śrubkach („systemy oparte o AI potrzebują czasu” przeczyło „żadnego AI”, a
+        # „zapraszam Cię na flowbiz.pl” to sprzedaż w social mediach); koniec na „15 minut pracy” + zakończenie H
+        parts=["ch-doram-6-kody-od-generowania--15-minut"],
     ),
     "ep-8-wdrozen": dict(
         title="8 wdrożeń Open Mercato — co dały firmom",

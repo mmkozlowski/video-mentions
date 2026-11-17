@@ -57,7 +57,9 @@ ABBREVIATIONS = {"np.", "tzn.", "itp.", "itd.", "m.in.", "ok.", "tj.", "pt.", "u
 PLAN = {
     # 16.11: wstęp z dogrywek zamiast „Zrobiłem już 8 wdrożeń…”, zakończenie: łącznik → zamknięcie → subskrypcja
     # i ekran końcowy (37+39, prawa połowa wolna) → „do zobaczenia” (24)
-    "ep-open-mercato-offers": [("START", "ins-hello-offers"), ("END", "ins-a4"), ("END", "ins-outro"),
+    # 17.11 (odsłuch, pkt 5): treść kończy się stanem PRZED („…o ile wszystko dobrze pójdzie”) — domknięcie kwestią 30
+    # („To nie jest magia, to porządek plus trochę automatyzacji.”) przed łącznikiem A4
+    "ep-open-mercato-offers": [("START", "ins-hello-offers"), ("END", "ins-g30"), ("END", "ins-a4"), ("END", "ins-outro"),
                                ("END", "ins-yt-sub"), ("END", "ins-bye")],
     # 16.11: łączniki case'ów z dogrywek (6–12) — głos na planszy z nazwą case'u PRZED każdym rozdziałem
     "ep-8-wdrozen": [("word:tworzenie ofert", "ins-a1"), ("word:tworzenie ofert", "ins-intro"), ("word:tworzenie ofert", "ins-a2"),
@@ -244,7 +246,10 @@ def plan_segments(clip_id):
         length = GAGS[insert]["length"] if insert in GAGS else duration(FINAL / f"{insert}__youtube-F.mp4")
         segments.append(("insert", insert, length, t))
         cursor = t
-    segments.append(("episode", cursor, duration(render)))
+    # 17.11: po wstawkach END wracał ogon treści (0,35 s twarzy z planszą) przed logo — po „Do zobaczenia” mignięcie
+    # twarzy. Jak w shortach: plansza końcowa wraca od chwili, gdy jest już w pełni widoczna (content_end + 0,35 s)
+    ends_with_end = any(where == "END" for where, _ in PLAN[clip_id])
+    segments.append(("episode", round(content_end + 0.35, 3) if ends_with_end else cursor, duration(render)))
     segments = split_for_bars(segments, rw)
     # rozdziały po przesunięciu: każdy dostaje sumę długości wstawek wklejonych przed nim
     shifted = []

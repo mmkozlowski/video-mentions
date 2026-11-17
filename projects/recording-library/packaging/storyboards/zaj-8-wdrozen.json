@@ -10,8 +10,8 @@
   "text": "Co AI i automatyzacja *dały firmom z Pomorza?"
  },
  "hook": {
-  "text": "Kody kreskowe: z *kilku dni do *15 minut",
-  "until": "czy",
+  "text": "Kody kreskowe *na paczki: z kilku dni do *15 minut",
+  "until": 3.2,
   "visual": {
    "kind": "versus",
    "sign": "→",
@@ -73,21 +73,6 @@
      "at": "40"
     }
    ]
-  },
-  {
-   "type": "slate",
-   "at": 33.467,
-   "until": 36.017,
-   "kicker": "Na koniec",
-   "text": "AI to *dokręcanie śrubek"
-  },
-  {
-   "type": "title",
-   "at": "zapomnieć",
-   "floor": 33.417,
-   "until": "+5",
-   "kicker": "W odcinku",
-   "text": "8 wdrożeń, *jedna lekcja"
   }
  ]
 }

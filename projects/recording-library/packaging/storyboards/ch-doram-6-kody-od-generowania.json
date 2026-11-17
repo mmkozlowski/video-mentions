@@ -1,0 +1,98 @@
+{
+ "clip": "ch-doram-6-kody-od-generowania",
+ "brand": "flowbiz",
+ "hook": {
+  "text": "Kody kreskowe *na paczki: z kilku dni do *15 minut",
+  "until": 3.2,
+  "visual": {
+   "kind": "versus",
+   "sign": "→",
+   "left": {
+    "art": "h-calendar",
+    "label": "kilka dni",
+    "strike": true
+   },
+   "right": {
+    "art": "h-stopwatch",
+    "label": "15 minut",
+    "accent": true
+   }
+  },
+  "poster": "Kody kreskowe: z kilku dni do [15 minut]",
+  "poster_sub": "Etykiety do każdej paczki bez ręcznej pracy."
+ },
+ "topic": {
+  "kicker": "Case study · meble ogrodowe",
+  "text": "Etykiety do *paczek",
+  "sub": "kod zamówienia, produktu i części"
+ },
+ "cta": {
+  "chip": "Automatyzacje · flowbiz.pl",
+  "reels": {
+   "kicker": "Zapisz, przyda się",
+   "title": "Podeślij komuś, kto *przykleja etykiety ręcznie",
+   "sub": "Cały odcinek: link w bio"
+  }
+ },
+ "events": [
+  {
+   "type": "broll",
+   "at": "kodów",
+   "until": "+2.2",
+   "src": "assets/broll/hf/video/h06-etykiety-kody.mp4",
+   "label": "Kody kreskowe do każdej paczki",
+   "ai": true
+  },
+  {
+   "type": "title",
+   "at": "nie",
+   "until": "system",
+   "kicker": "Bez magii",
+   "text": "Żadnego AI. *Zwykły program.",
+   "sub": "nie wszystko wymaga sztucznej inteligencji"
+  },
+  {
+   "type": "list",
+   "at": "system",
+   "until": "nagle",
+   "kicker": "Po jednym kliknięciu",
+   "items": [
+    {
+     "text": "Cztery numery",
+     "at": "cztery"
+    },
+    {
+     "text": "PDF po minucie",
+     "at": "minucie"
+    },
+    {
+     "text": "40 stron etykiet",
+     "logo": "adobeacrobatreader",
+     "at": "40"
+    }
+   ]
+  },
+  {
+   "type": "compare",
+   "at": "nagle",
+   "until": 35.6,
+   "kicker": "Etykiety do zamówienia",
+   "before": {
+    "value": "kilka dni",
+    "label": "przeklejanie i drukowanie"
+   },
+   "after": {
+    "value": "15 min",
+    "label": "PDF i drukarka"
+   },
+   "after_at": "15"
+  }
+ ],
+ "cover": {
+  "kicker": "Case study · producent mebli ogrodowych",
+  "text": "Etykiety do każdej paczki. *Kilka dni ręcznej pracy."
+ },
+ "formats": [
+  "reels"
+ ]
+}

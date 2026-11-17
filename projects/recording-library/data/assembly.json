@@ -7,6 +7,10 @@
    ],
    [
     "END",
+    "ins-g30"
+   ],
+   [
+    "END",
     "ins-a4"
    ],
    [
@@ -22,7 +26,7 @@
     "ins-bye"
    ]
   ],
-  "chapters": "0:00 Wstęp\n0:13 Każdy ma swoją wersję oferty\n1:35 20 ofert → 3 zamówienia\n2:09 Asystent czyta maile → szkic w 5 minut"
+  "chapters": "0:00 Wstęp\n0:13 Każdy ma swoją wersję oferty\n1:33 20 ofert → 3 zamówienia\n2:08 Asystent czyta maile → szkic w 5 minut"
  },
  "ep-marpasz": {
   "plan": [
@@ -84,7 +88,7 @@
     "ins-bye"
    ]
   ],
-  "chapters": "0:00 Wstęp\n0:10 Producent pamiątek znad morza i proces na kartkach\n0:55 Kontrola po fakcie\n1:38 Najpierw jedna baza\n2:37 Integracja z PC Business\n3:12 Handlowiec w trasie\n5:02 Nadprodukcja\n6:37 Panel klienta B2B\n7:17 Handlowiec zamawia za klienta"
+  "chapters": "0:00 Wstęp\n0:10 Producent pamiątek znad morza i proces na kartkach\n0:53 Kontrola po fakcie\n1:37 Najpierw jedna baza\n2:36 Integracja z PC Business\n3:11 Handlowiec w trasie\n5:09 Nadprodukcja\n6:36 Panel klienta B2B\n7:16 Handlowiec zamawia za klienta"
  },
  "ep-module": {
   "plan": [
@@ -138,7 +142,7 @@
     "ins-contact"
    ]
   ],
-  "chapters": "0:00 Wstęp\n0:10 Producent mebli ogrodowych\n0:52 Zamówienia w Excelu od kontrahentów z Niemiec\n1:56 Kilka dni klepania → 10 minut\n2:35 Dlaczego to tak długo trwało\n3:52 Kody kreskowe: przeklej, drukuj\n5:08 Najpierw jedna baza\n6:15 Pamięć dla AI\n8:09 Jak uczy się zwykły czat\n9:31 70% → 94% → 95%\n10:29 Kody bez AI: 15 minut\n10:55 Co dalej"
+  "chapters": "0:00 Wstęp\n0:10 Producent mebli ogrodowych\n0:52 Zamówienia w Excelu od kontrahentów z Niemiec\n1:54 Kilka dni klepania → 10 minut\n2:33 Dlaczego to tak długo trwało\n3:51 Kody kreskowe: przeklej, drukuj\n5:07 Najpierw jedna baza\n6:13 Pamięć dla AI\n8:07 Jak uczy się zwykły czat\n9:29 70% → 94% → 95%\n10:27 Kody bez AI: 15 minut\n10:54 Co dalej"
  },
  "ep-8-wdrozen": {
   "plan": [
@@ -195,7 +199,7 @@
     "ins-bye"
    ]
   ],
-  "chapters": "0:00 Oferta w 5 minut\n3:42 Zamówienia z Excela: 70% → 94%\n5:11 Kody kreskowe: kilka dni → 15 minut\n5:50 Etykiety: ok. 100 godzin miesięcznie\n7:45 Katalog AI z faktur\n10:50 Panel klienta B2B\n12:43 Kierownik produkcji w godzinę\n14:49 AI to dokręcanie śrubek"
+  "chapters": "0:00 Oferta w 5 minut\n3:40 Zamówienia z Excela: 70% → 94%\n5:06 Kody kreskowe: kilka dni → 15 minut\n5:45 Etykiety: ok. 100 godzin miesięcznie\n7:40 Katalog AI z faktur\n10:45 Panel klienta B2B\n12:32 Kierownik produkcji w godzinę\n14:34 AI to dokręcanie śrubek"
  },
  "ep-vacuactiv": {
   "plan": [

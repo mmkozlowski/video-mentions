@@ -97,19 +97,15 @@
   "brand": "flowbiz",
   "kind": "episode",
   "source": "session",
-  "duration": 71.8,
+  "duration": 28.54,
   "priority": "A",
   "scores": {
    "total": 0
   },
   "parts": [
    {
-    "clip": "ch-doram-6-kody-15-minut",
+    "clip": "ch-doram-6-kody-od-generowania--15-minut",
     "start": 0.0
-   },
-   {
-    "clip": "ch-marpasz-4-srubki",
-    "start": 33.417
    }
   ]
  },
@@ -119,7 +115,7 @@
   "brand": "flowbiz",
   "kind": "episode",
   "source": "session",
-  "duration": 814.27,
+  "duration": 799.07,
   "priority": "A",
   "scores": {
    "total": 0
@@ -131,31 +127,31 @@
    },
    {
     "clip": "ch-doram-5-70-94--8w",
-    "start": 196.44
+    "start": 194.54
    },
    {
     "clip": "ch-doram-6-kody-15-minut--8w",
-    "start": 278.44
+    "start": 273.65
    },
    {
     "clip": "ch-marpasz-2-100-godzin--8w",
-    "start": 311.777
+    "start": 306.987
    },
    {
     "clip": "ch-marpasz-3-katalog-ai--8w",
-    "start": 420.777
+    "start": 415.987
    },
    {
     "clip": "ch-rezon-3-panel-klienta",
-    "start": 549.844
+    "start": 545.054
    },
    {
     "clip": "ch-vacu-5-kierownik-w-godzine",
-    "start": 657.01
+    "start": 646.894
    },
    {
     "clip": "ch-marpasz-4-srubki",
-    "start": 775.877
+    "start": 760.66
    }
   ]
  }

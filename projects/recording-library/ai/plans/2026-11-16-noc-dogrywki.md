@@ -60,13 +60,35 @@ i gotowego mastera. Czasy Whispera źródła są tu przesunięte o 0,6–1,5 s.
 - **Prawda w tytule/początku:** oferty — kicker „Case study · oferty” (Open Mercato nie pada w odcinku), „5 MIN = szkic
   oferty zamiast kilkunastu godzin”; 8 wdrożeń — pod „8” podpis „w tym odcinku: 7 historii z 4 firm”.
 
+## Poprawki po odsłuchu masterów (17.11)
+
+Lista MK: `POPRAWKI-2026-11-17.md` (tailnet `odcinki-2026-11-17/`), czasy w gotowym masterze → źródło przez
+`plan_segments` + `locate`. Każda granica z ciszy w sygnale i sprawdzona Whisperem sklejki (nie samego wycinka).
+
+- **Anonimowość (decyzja MK 17.11, „Do decyzji MK” wchodzi):** meble bez „z Podsłupska” (81,98 / 83,04), pamiątki bez
+  „w Kołobrzegu” (2778,52 / 2780,95 → „Firma produkująca pamiątki przyszła do mnie”), b-roll z latarnią (h08) zamieniony
+  na h01 we wstępie i na h16 przy „samochód”. Zostaje: „z Podsłupska” w reklamach ad-15/ad-16 (sesja 1049/1103) i
+  w nieużywanym `ch-doram-2-kilka-dni-10-minut`.
+- **„Dlaczego?” w meblach (pkt 14):** sygnał pokazuje oba podejścia później niż Whisper (pierwsze ~92,96–93,38, drugie od
+  97,42) — koniec 92,42 (po „wykonywały.”), start 97,30.
+- **Składanka 8 wdrożeń:** bez falstartu kierownika, bez „kilkunastu kliknięć” (też zajawka mebli), case 10 od „Klient
+  przestaje zamawiać”.
+- **Shorty:** hak 28 („Dlatego/Do tego”) → 30; zajawka 8 wdrożeń = same kody do „15 minut pracy” (bez śrubek i CTA
+  sprzedażowego); rolka o kodach i zajawka od „generowanie samych kodów kreskowych”; zajawka pamiątek z hakiem z odcinka
+  („I nagle produkujemy tego dziesiątki tysięcy sztuk…”), bez „Ta branża też”; rolka „komu odradzam” bez „Nie masz
+  ograniczeń na użytkowników”. Rolki IG o kodach i „komu odradzam”: plansza końcowa „Zapisz, przyda się / Podeślij
+  komuś” zamiast konsultacji.
+- **Pierwsza klatka shorta (miniatura IG):** plansze haka wjeżdżają z pustego tła — `assemble_short` kładzie przez
+  0,3 s klatkę z pełnym tekstem (0,9 s haka), potem animacja.
+- **Oferty:** kwestia 30 na planszy przed A4 (domknięcie), „KILKANAŚCIE GODZIN”, bez „oferty często,”.
+
 ## Pytania na rano (MK)
 
 1. **Kwestie do odsłuchu:** 22 („w filmie / w firmie”), 36 („w polskiej filmie”), 41 („nazwy film nie podaję”) — modele się
    nie zgadzają albo słyszą „film”. Nie są użyte w odcinkach.
-2. **Kołobrzeg w nagraniu pamiątek** (0:03 odcinka, „Firma produkująca pamiątki w Kołobrzegu przyszła do mnie…”): wariant
+2. ~~**Kołobrzeg w nagraniu pamiątek**~~ — rozstrzygnięte 17.11: wycięte (sekcja wyżej). (0:03 odcinka, „Firma produkująca pamiątki w Kołobrzegu przyszła do mnie…”): wariant
    wycięty / wyciszony / bez zmian — podglądy w tailnecie `pamiatki-kolobrzeg-warianty/`.
-3. **Tytuł „8 wdrożeń”** — odcinek pokazuje 7 historii z 4 firm. Propozycja: „7 wdrożeń w 4 firmach: co realnie dało AI”
+3. ~~**Tytuł „8 wdrożeń”**~~ — zamknięte 17.11, decyzja MK: tytuł zostaje „8 wdrożeń” z Open Mercato („bo to się klika”), Open Mercato zostaje w tytule, na planszach i w opisie; podpis pod „8” („w tym odcinku: 7 historii z 4 firm”) zostaje. Było: — odcinek pokazuje 7 historii z 4 firm. Propozycja: „7 wdrożeń w 4 firmach: co realnie dało AI”
    albo zostawić (wstęp mówi prawdę: „zrobiłem już 8 wdrożeń… powiem pokrótce”).
 4. **Łącznik 10 mówi „hurtownia pamiątek”**, klient to producent (plansza mówi „producent”). Zostawić?
 5. **Ekran końcowy:** okno ~15 s (39 + 24 + plansza końcowa), nie 20 — po „do zobaczenia” w nagraniu nie ma ciszy.

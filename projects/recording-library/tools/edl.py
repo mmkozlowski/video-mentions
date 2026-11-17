@@ -150,11 +150,14 @@ ADS = [
 # ── Pełne odcinki case study (16:9, YouTube) ────────────────────────────────
 # Nazwy klientów tylko tu, wewnętrznie. Na nagraniach nazwy nie padają.
 EPISODES = [
+    # 17.11 (odsłuch MK, pkt 14 + anonimowość): „od klienta z Podsłupska” → „od klienta” (cisza 81,98 / 83,04,
+    # sprawdzone Whisperem sklejki); „Dlaczego?” sklejało dwa podejścia („Czego? Bo robiły…”) — koniec po „wykonywały.”
+    # (92,42, cisza z sygnału), start na początku drugiego „Dlaczego?” (97,30, przed nim cisza 96,44–97,42)
     dict(id="ep-doram", source="doram", client="Doram", title="Meble ogrodowe: zamówienia z Niemiec",
          # Mateusz 12.10: drugie „Dlaczego?” (restart 92,9–97,5 s) wycięte, zostaje pierwsze + dokończona próba
          # 16.11: bez „No dobra, lecimy z kolejnymi praktycznymi użyciami AI w firmach.” (zostało ze składanki) —
          # start od „Teraz na warsztat…” (cisza w sygnale 13,80–15,12, czasy Whispera ~0,9 s za wcześnie)
-         ranges=[(14.2, 92.95, 14.90, 92.90), (93.0, 688.0, 97.52, None)], hook=3, delivery=3, brand="flowbiz",
+         ranges=[(14.2, 82.0, 14.90, 81.98), (82.9, 92.95, 83.04, 92.42), (93.0, 688.0, 97.30, None)], hook=3, delivery=3, brand="flowbiz",
          notes="Zamówienia od niemieckich kontrahentów w Excelu, dopasowanie AI 70% → 94% "
                "po miesiącu, kody kreskowe z kilku dni do 15 minut. Restart zdania w 92 s."),
     dict(id="ep-vacuactiv", source="vacuactiv", client="Vacuactiv", title="Agent AI dla właściciela firmy",
@@ -204,7 +207,7 @@ EPISODES = [
          # sprawdzone Whisperem wycinka). Wstęp robi głos z dogrywek na planszy (ins-hello, assemble_episode.PLAN).
          # koniec 2768,65 (było 2768,20): przy cięciu wstawek END (−0,35 s) „pójdzie.” urywało się w połowie;
          # następna wypowiedź („Ok, kolejny temat”) zaczyna się dopiero w 2770,3
-         ranges=[(2581.2, 2716.2, 2581.70, 2716.10), (2719.3, 2767.6, 2719.42, 2768.65)], hook=3, delivery=3,   # ten sam dubel co ch-offers-1
+         ranges=[(2581.2, 2657.4, 2581.70, 2657.30), (2659.4, 2716.2, 2659.50, 2716.10), (2719.3, 2767.6, 2719.42, 2768.65)], hook=3, delivery=3,   # ten sam dubel co ch-offers-1
          brand="flowbiz",
          notes="Krótki odcinek: chaos w ofertach, konwersja handlowców, asystent czytający maile "
                "(producent sprzętu sportowego) — oferta w 5 min zamiast kilkunastu godzin."),
@@ -215,7 +218,8 @@ EPISODES = [
          # „na pace, czyli na naszym / na naszym dostawcach. Dostawczaku.” (3024,0–3029,44).
          # Czasy Whispera przesunięte tu o ~1,5 s — granice z ciszy w sygnale, sprawdzone sklejką.
          # 16.11: bez „Ok, kolejny temat.” (składanka) — start od „Firma produkująca…” (cisza 2774,28–2775,64)
-         ranges=[(2774.6, 2910.5, 2775.30, 2910.55), (2912.5, 3022.5, 2912.60, 3022.40),
+         # 17.11 (decyzja MK: klienci anonimowo): „pamiątki w Kołobrzegu przyszła” → „pamiątki przyszła” (cisza 2778,52 / 2780,95)
+         ranges=[(2774.6, 2778.6, 2775.30, 2778.52), (2780.8, 2910.5, 2780.95, 2910.55), (2912.5, 3022.5, 2912.60, 3022.40),
                  (3022.9, 3023.95, 3023.00, 3023.90), (3032.3, 3226.0, 3032.44, None)], hook=3, delivery=3,
          brand="flowbiz",
          notes="Firma z Kołobrzegu, proces na kartkach, integracja z PC Business, handlowiec "
@@ -256,7 +260,10 @@ CHAPTERS = [
     dict(id="ch-vacu-4-duze-systemy", source="vacuactiv", parent="ep-vacuactiv",
          title="Dlaczego duże systemy się nie wdrażają", ranges=[(344.5, 438.4)], hook=4, delivery=3),
     dict(id="ch-vacu-5-kierownik-w-godzine", source="vacuactiv", parent="ep-vacuactiv",
-         title="Kierownik produkcji nauczył się w godzinę", ranges=[(438.4, 563.8)], hook=4, delivery=3),
+         title="Kierownik produkcji nauczył się w godzinę",
+         # 17.11 (odsłuch, pkt 1): bez falstartu „Kierownik produkcji miał swój sposób, a miał go na tyle ten sposób,”
+         # → „…ale miał swój sposób. Miał na tyle ten sposób ułożony” (tylko składanka ep-8-wdrozen używa tego klipu)
+         ranges=[(438.4, 452.3, None, 452.30), (456.35, 457.8, 457.22, 457.75), (458.2, 563.8, 458.40, None)], hook=4, delivery=3),
     dict(id="ch-vacu-6-brief-telegram", source="vacuactiv", parent="ep-vacuactiv",
          title="Zamówienie z Telegrama w trzy kliknięcia", ranges=[(563.8, 678.1)], hook=4, delivery=3),
     dict(id="ch-vacu-7-narzedzie-to-nie-wdrozenie", source="vacuactiv", parent="ep-vacuactiv",
@@ -265,7 +272,7 @@ CHAPTERS = [
     # a sam odcinek ep-open-mercato-offers od 16.11 zaczyna się od „tworzenie ofert.” (compile_episode.py)
     dict(id="ch-offers-0-z-wstepem-8-wdrozen", source="session", parent="ep-open-mercato-offers",
          title="Oferty — z wstępem składanki „8 wdrożeń”",
-         ranges=[(2557.1, 2716.2, None, 2716.10), (2719.3, 2767.6, 2719.42, 2768.20)], hook=3, delivery=3),
+         ranges=[(2557.1, 2657.4, None, 2657.30), (2659.4, 2716.2, 2659.50, 2716.10), (2719.3, 2767.6, 2719.42, 2768.20)], hook=3, delivery=3),
     dict(id="ch-offers-1-oferta-5-minut", source="session", parent="ep-open-mercato-offers",
          title="Oferta w 5 minut zamiast kilkunastu godzin",
          # 12.10 uwagi Mateusza ze studia: start łapał „…chwili” i ucinał „A”; dubel „zbiera z nich informacje
@@ -276,7 +283,10 @@ CHAPTERS = [
     dict(id="ch-rezon-2-ustka-rowy", source="session", parent="ep-rezon",
          title="Tysiące sztuk z napisem „Ustka”", ranges=[(3052.8, 3116.4)], hook=4, delivery=3),
     dict(id="ch-rezon-3-panel-klienta", source="session", parent="ep-rezon",
-         title="Klient sam składa zamówienie", ranges=[(3116.1, 3227.0)], hook=3, delivery=3),
+         title="Klient sam składa zamówienie",
+         # 17.11 (pkt 4): bez „Co tu jeszcze zmieniliśmy… Zmieniliśmy to, że” — łącznik 10 przedstawia case, „jeszcze”
+         # nie miało kontekstu; start od „Klient przestaje zamawiać mailowo” (tylko składanka ep-8-wdrozen)
+         ranges=[(3116.1, 3227.0, 3121.30, None)], hook=3, delivery=3),
     dict(id="ch-marpasz-1-cztery-worki", source="session", parent="ep-marpasz",
          title="Cztery worki paszy = cztery etykiety", ranges=[(3279.6, 3428.6)], hook=4, delivery=3),
     dict(id="ch-marpasz-2-100-godzin", source="session", parent="ep-marpasz",
@@ -294,7 +304,21 @@ CHAPTERS = [
          title="Pamięć dla AI: 70% → 94% (do składanki, bez „już wracając znowu do brzegu”)",
          # + kontekst z poprawek studia 02.11 (941f34f, niescalone; uwaga MK 15.11 w Studiu „3:36 dalej ucięte”):
          # „Klient dostawał od swoich kontrahentów niemieckich zamówienia w Excelu.” (33,40–40,75) przed „I w tym przypadku…”
-         ranges=[(33.0, 40.5, 33.40, 40.75), (521.5, 523.1, 521.85, 523.22), (525.65, 602.2, 525.70, None)], hook=5, delivery=3),
+         ranges=[(33.0, 40.5, 33.40, 40.75), (521.5, 523.1, 521.85, 523.22), (525.65, 561.6, 525.70, 561.51),
+                 # 17.11 (pkt 2–3): bez „dlatego mówiłem też o tych kilkunastu kliknięciach” — w składance i zajawce nic o tym nie padło
+                 (564.2, 602.2, 564.40, None)], hook=5, delivery=3),
+    # 17.11 (pkt 7): rolka o kodach i zajawka 8 wdrożeń — start bez „Jeżeli chodzi o tą część taką jeszcze bardzo
+    # czasochłoną, czy” (widz nie wiedział, jaką część): od „generowanie samych kodów kreskowych” (cisza 606,64–606,80)
+    dict(id="ch-doram-6-kody-od-generowania", source="doram", parent="ep-doram",
+         title="Kody kreskowe: z kilku dni do 15 minut (od „generowanie kodów”)", ranges=[(606.6, 637.3, 606.76, None)], hook=5, delivery=4),
+    dict(id="ch-doram-6-kody-od-generowania--15-minut", source="doram", parent="ep-doram",
+         title="Kody kreskowe (zajawka 8 wdrożeń: od „generowanie kodów”, koniec na „15 minut pracy”)",
+         ranges=[(606.6, 637.15, 606.76, 637.30)], hook=5, delivery=4),
+    # 17.11 (pkt 8): zajawka pamiątek z hakiem z samego odcinka („I nagle produkujemy tego dziesiątki tysięcy sztuk…”),
+    # potem od „Każdy wzór, każda miejscowość ma swój napis” — bez „Ta branża też…” (zlepione, nie da się wyciąć samego „też”)
+    dict(id="ch-rezon-2-ustka-rowy--hak", source="session", parent="ep-rezon",
+         title="Tysiące sztuk z napisem „Ustka” (hak z odcinka)",
+         ranges=[(3044.3, 3052.6, 3044.60, 3052.45), (3066.3, 3116.4, 3066.55, None)], hook=4, delivery=3),
     dict(id="ch-doram-6-kody-15-minut--8w", source="doram", parent="ep-doram",
          title="Kody kreskowe (do składanki, koniec na „15 minut pracy”)",
          ranges=[(602.1, 637.15, None, 637.30)], hook=5, delivery=4),
@@ -503,7 +527,9 @@ CHAPTERS += [
     dict(id="ch-om-7-trzy-zarzuty", source="om-intro", parent="ep-om-intro",
          title="Po co framework, skoro AI pisze kod?", ranges=[(626.3, 667.5)], hook=5, delivery=4, cta="none"),
     dict(id="ch-om-8-komu-odradzam", source="om-intro", parent="ep-om-intro",
-         title="Komu odradzam Open Mercato", ranges=[(697.2, 746.5)], hook=5, delivery=4, cta="none"),
+         title="Komu odradzam Open Mercato",
+         # 17.11 (pkt 9): bez „Nie masz ograniczeń na użytkowników.” — zaleta wciśnięta w listę powodów, żeby nie wdrażać
+         ranges=[(697.2, 732.4, None, 732.29), (734.5, 746.5, 734.70, None)], hook=5, delivery=4, cta="none"),
     dict(id="ch-om-9-cztery-branze", source="om-intro", parent="ep-om-intro",
          title="Cztery branże, jeden fundament", ranges=[(850.0, 871.95), (887.7, 906.1)], hook=3, delivery=3,
          cta="none"),

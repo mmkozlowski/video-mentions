@@ -25,17 +25,24 @@ import package as P
 FINAL = P.FINAL
 MODEL = "mlx-community/whisper-large-v3-turbo"
 FADE = 0.012
+# 17.11 (odsłuch, pkt 13): pierwsza klatka shorta to miniatura na IG, a plansze haka wjeżdżają z pustego tła
+# (~0,3 s). Przez pierwsze POSTER_HOLD s stoi klatka z pełnym tekstem haka (POSTER_AT s od startu), potem animacja
+# leci dalej — w 0,3 s jest już prawie cała, więc przejście nie skacze.
+POSTER_AT = 0.9
+POSTER_HOLD = 0.3
 
 # short (storyboard) → (format, hak, zakończenie); None = bez wstawki
 PLAN = {
     "ch-offers-1-oferta-5-minut--zajawka": ("feed", "ins-g29--offers", "ins-h32--feed"),     # 19.11
-    "ch-doram-6-kody-15-minut": ("reels", "ins-g28--reels", "ins-h33--reels"),              # 22.11 — „żadnej magii, żadnego AI”
+    # 17.11: hak 28 brzmiał dwuznacznie („Dlatego/Do tego nie potrzebujesz AI”) → kwestia 30; start od „generowanie kodów” (pkt 7)
+    "ch-doram-6-kody-od-generowania": ("reels", "ins-g30--module", "ins-h33--reels"),        # 22.11 — „żadnej magii, żadnego AI”
     "ch-doram-5-70-94--zajawka": ("feed", "ins-g30--doram", "ins-h32--feed"),               # 26.11
     "ch-module-1-kartka": ("reels", "ins-g30--module", "ins-h35--reels"),                   # 29.11
-    "ch-rezon-2-ustka-rowy--zajawka": ("feed", "ins-g27--feed", "ins-h32--feed"),           # 03.12
+    # 17.11 (pkt 8): hak 27 („ręcznie, niepotrzebnie”) nie pasował — hak z samego odcinka w klipie, bez wstawki
+    "ch-rezon-2-ustka-rowy--hak--zajawka": ("feed", None, "ins-h32--feed"),                 # 03.12
     "ch-om-8-komu-odradzam": ("reels", None, "ins-h31--reels"),                             # 06.12 — hak tekstowy zostaje
     "ch-marpasz-2-100-godzin--zajawka": ("feed", "ins-g27--feed", "ins-h32--feed"),         # 10.12
-    "zaj-8-wdrozen": ("feed", "ins-g28--feed", "ins-h32--feed"),                            # kody bez AI
+    "zaj-8-wdrozen": ("feed", "ins-g30--doram", "ins-h32--feed"),                           # kody bez AI (17.11: hak 30 zamiast 28)
 }
 
 
@@ -86,15 +93,23 @@ def build(name):
     if outro:
         segments.append(("file", insert_file(outro, fmt), 0.0, None))
     segments.append(("file", render, resume if outro else cut, total))
+    poster = work / "poster.png"
+    first_path, first_a = segments[0][1], segments[0][2]
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", f"{first_a + POSTER_AT:.3f}", "-i", str(first_path), "-frames:v", "1",
+                    str(poster)], check=True)
     inputs, graph, labels = [], "", []
     for i, (_, path, a, b) in enumerate(segments):
         b = duration(path) if b is None else b
         inputs += ["-i", str(path)]
-        graph += (f"[{i}:v]trim={a}:{b},setpts=PTS-STARTPTS,fps=30,scale={geo['w']}:{geo['h']},setsar=1[v{i}];"
+        graph += (f"[{i}:v]trim={a}:{b},setpts=PTS-STARTPTS,fps=30,scale={geo['w']}:{geo['h']},setsar=1[v{i}{'raw' if i == 0 else ''}];"
                   f"[{i}:a]atrim={a}:{b},asetpts=PTS-STARTPTS,aformat=sample_rates=48000:channel_layouts=stereo,"
                   f"afade=t=in:d={FADE},afade=t=out:st={max(0.0, b - a - FADE):.3f}:d={FADE}[a{i}];")
         labels.append(f"[v{i}][a{i}]")
-    graph += "".join(labels) + f"concat=n={len(segments)}:v=1:a=1[v][a]"
+    n = len(segments)
+    inputs += ["-loop", "1", "-framerate", "30", "-t", f"{POSTER_HOLD}", "-i", str(poster)]
+    graph += (f"[{n}:v]scale={geo['w']}:{geo['h']},setsar=1,format=yuv420p[pst];"
+              f"[v0raw][pst]overlay=eof_action=pass:format=auto[v0];")
+    graph += "".join(labels) + f"concat=n={n}:v=1:a=1[v][a]"
     out = FINAL / f"{name}__{fmt}-F--with-dubs.mp4"
     subprocess.run(["ffmpeg", "-v", "error", "-y", *inputs, "-filter_complex", graph, "-map", "[v]", "-map", "[a]",
                     "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-pix_fmt", "yuv420p",
