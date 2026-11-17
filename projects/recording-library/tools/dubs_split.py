@@ -33,7 +33,7 @@ HEAD, TAIL = 0.12, 0.30
 
 # audyt 17.11 (silencedetect −40 dB): na początku pliku urywek poprzedniej mowy na poziomie mowy → start
 # przesunięty o tyle sekund (≈80 ms przed silence_end), licząc od startu z cięcia po ciszy
-TRIM_START = {5: 0.71, 16: 1.02, 22: 1.07, 40: 0.73, 41: 0.76}
+TRIM_START = {5: 0.71, 16: 1.02, 22: 0.99, 40: 0.73, 41: 0.76}
 
 # nr → (od, do, uwaga) w osi dogrywki.wav; None = kwestii nie ma w nagraniu
 TAKES = {
