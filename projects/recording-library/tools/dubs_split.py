@@ -27,59 +27,62 @@ from sources import SOURCES
 RAW = SOURCES["dubs"].parent
 WAV = RAW / "dogrywki.wav"
 OUT = RAW / "kwestie"
-LIST = Path.home() / "orca/workspaces/Obsidian Vault/team/marketing/content/youtube/2026-11-15-do-dogrania.md"
+YT = Path.home() / "orca/workspaces/Obsidian Vault/team/marketing/content/youtube"
+LIST = YT / "2026-11-15-do-dogrania.md"            # 01–05
+LIST_RETAKE = YT / "2026-11-20-do-dogrania-ponownie.md"  # 06–43, nagrane ponownie 20.11
 MODEL = "mlx-community/whisper-large-v3-mlx"
 HEAD, TAIL = 0.12, 0.30
 
 # audyt 17.11 (silencedetect −40 dB): na początku pliku urywek poprzedniej mowy na poziomie mowy → start
 # przesunięty o tyle sekund (≈80 ms przed silence_end), licząc od startu z cięcia po ciszy
-TRIM_START = {5: 0.71, 16: 1.02, 22: 0.99, 40: 0.73, 41: 0.76}
+TRIM_START = {5: 0.71}
 
-# nr → (od, do, uwaga) w osi dogrywki.wav; None = kwestii nie ma w nagraniu
+# 01–05: pierwszy plik z 16.11 (oś 0–63,68 s). 06–43: nagranie 20.11 (oś od 65,68 s), okna z ciszy w sygnale
+# (pauzy > 0,2 s poniżej −45 dB), bo czasy Whispera są przesunięte, a kwestie idą jedna po drugiej.
 TAKES = {
     1: (5.6, 10.6, "pierwszy plik; drugie podejście ma „…przedstawię szybko”"),
     2: (17.5, 20.8, "są też wersje „nie przedłużając, wracam do naszego głównego tematu”"),
     3: (33.3, 37.3, ""),
     4: (38.8, 42.7, ""),
     5: (47.8, 50.4, "wcześniej wersja „dobra, wracamy szybko”"),
-    6: (66.7, 74.2, "główny plik, drugie podejście (pierwsze urwane na końcu pierwszego pliku)"),
-    7: (74.2, 81.4, "drugie podejście: „ta sama firma i drugi case… generowanie dziesiątek kodów jednym kliknięciem”"),
-    8: (99.0, 104.8, ""),
-    9: (104.8, 111.3, "w nagraniu ciągnie dalej: „z ulotek i z dowolnego materiału… odczytywanie kodów kreskowych, składów…” — ucięte na „z faktur”"),
-    10: (140.4, 147.0, "„z nadmorza” = „znad morza” (pisownia Whispera); w nagraniu ciągnie dalej: „a kilkudziesięciu handlowców musiało jeździć z pełnym dostawczakiem…” — ucięte (liczba handlowców do potwierdzenia)"),
-    11: (158.2, 165.85, "drugie podejście: „…w swoim ukochanym Excelu. Najlepszy system ERP w naszych czasach, czyli Excel.”"),
-    12: (179.9, 184.0, ""),
-    13: (188.3, 197.2, "turbo słyszy „filmach”, large-v3 i medium: „firmach”"),
-    14: (198.2, 203.4, ""),
-    15: (204.2, 210.1, ""),
-    16: (215.3, 220.2, "pierwsze podejście urwane („ale zanim do tego”)"),
-    17: (222.0, 224.9, ""),
-    18: (227.1, 231.0, ""),
-    19: (232.8, 237.1, "dalej dopowiedziane „zapraszam Cię do mojego ekranu” — ucięte"),
-    20: (241.0, 246.8, ""),
-    21: (249.0, 255.9, ""),
-    22: (271.5, 277.3, "DO ODSŁUCHU: large-v3 „w filmie”, medium „w firmie”"),
-    23: (277.1, 284.5, ""),
-    24: (285.4, 290.5, "drugie podejście dłuższe: „…kolejne wdrożenie, które w praktyce oszczędziło kilkadziesiąt godzin miesięcznie”"),
-    25: (312.4, 317.3, "drugie podejście; pierwsze: „i to by było na tyle na dzisiaj…”"),
-    26: (323.2, 327.0, "później improwizacja „firmy tracą kilkadziesiąt tysięcy, nawet do dziesięciu tysięcy miesięcznie” — NIE użyta (liczby się gryzą)"),
-    27: (328.2, 332.3, ""),
-    28: (333.4, 336.5, ""),
-    29: (337.5, 340.9, "drugie podejście: „zobacz, jak wygląda AI przed i po, na konkretnych przykładach”"),
-    30: (354.4, 359.8, ""),
-    31: (378.9, 383.9, ""),
-    32: (384.9, 388.7, "drugie podejście dłuższe: „a jeżeli zaciekawiła Cię ta zajawka…”"),
-    33: (397.55, 403.0, "start za „…na YouTube” poprzedniej kwestii"),
-    34: (415.4, 420.0, ""),
-    35: (428.4, 431.8, ""),
-    36: (450.1, 459.1, "DO ODSŁUCHU: large-v3 „w polskiej filmie”; pierwsze podejście dłuższe („…która przechodzi transformację i potrzebuje uporządkowania”)"),
-    37: (467.6, 475.6, ""),
-    38: (475.4, 481.4, ""),
-    39: (481.2, 491.5, ""),
-    40: (510.4, 515.6, "pierwsze podejście z dopowiedzeniem „bez przysypiania… halo halo, nie śpimy”"),
-    41: (515.4, 523.5, "DO ODSŁUCHU: oba modele słyszą „nazwy film nie podaję” (lista: „nazw firm nie podaję”)"),
-    42: (526.8, 531.9, ""),
-    43: (533.1, 538.1, ""),
+    6: (67.10, 74.95, "20.11"),
+    7: (74.95, 81.50, "20.11"),
+    8: (81.50, 87.30, "20.11"),
+    9: (87.30, 93.20, "20.11"),
+    10: (93.20, 99.40, "20.11; „producent” zamiast „hurtownia” (lista 20.11)"),
+    11: (99.40, 105.50, "20.11"),
+    12: (105.50, 109.50, "20.11"),
+    13: (109.50, 118.50, "20.11; „…a nie na prezentacjach”"),
+    14: (118.50, 124.90, "20.11"),
+    15: (124.90, 132.50, "20.11; „będzie o tym” powiedziane 2× — w EDL sklejka; dopowiedziane „w swojej firmie”"),
+    16: (209.90, 215.20, "20.11; wcześniej porzucone „ale zanim… część druga”"),
+    17: (215.20, 217.70, "20.11"),
+    18: (217.70, 221.40, "20.11"),
+    19: (221.40, 225.20, "20.11"),
+    20: (225.20, 229.80, "20.11"),
+    21: (229.80, 235.00, "20.11"),
+    22: (261.00, 266.10, "20.11, drugie podejście (pierwsze 235,0–240,7: „jak to wygląda u Was”)"),
+    23: (132.50, 138.50, "20.11"),
+    24: (138.70, 144.20, "20.11"),
+    25: (241.00, 244.80, "20.11, pierwsze z trzech podejść"),
+    26: (253.00, 258.00, "20.11"),
+    27: (144.20, 150.40, "20.11; „…A to jest zupełnie niepotrzebne”"),
+    28: (150.40, 155.00, "20.11; „…Naprawdę, serio.”"),
+    29: (155.00, 159.30, "20.11"),
+    30: (159.30, 163.40, "20.11"),
+    31: (165.00, 171.00, "20.11"),
+    32: (171.30, 174.50, "20.11"),
+    33: (174.50, 178.60, "20.11, pierwsze podejście (drugie: „ile podobny proces trwa u Ciebie”)"),
+    34: (274.00, 280.20, "20.11; falstart „w następnym… ale w następnym tygodniu” — zapas, nieużyta"),
+    35: (183.10, 187.30, "20.11; „Zapisz to sobie, mam nadzieję, że Ci się przyda”"),
+    36: (280.20, 287.20, "20.11"),
+    37: (187.80, 196.00, "20.11"),
+    38: (287.20, 293.60, "20.11"),
+    39: (196.30, 204.60, "20.11"),
+    40: (293.60, 299.20, "20.11"),
+    41: (299.20, 307.60, "20.11"),
+    42: (307.60, 313.50, "20.11"),
+    43: (314.40, 319.20, "20.11; DO ODSŁUCHU: Whisper słyszy „podeźdź mu koniecznie ten film”"),
 }
 
 
@@ -91,10 +94,11 @@ def norm(text):
 def expected():
     """Tekst kwestii z listy do-dogrania (vault): „N. „…”” albo „N. **…**”."""
     out = {}
-    for line in open(LIST, encoding="utf-8"):
-        m = re.match(r"^(\d+)\.\s+[„\"](.+?)[”\"]", line.strip())
-        if m:
-            out[int(m.group(1))] = m.group(2)
+    for path, keep in ((LIST, range(1, 6)), (LIST_RETAKE, range(6, 44))):
+        for line in open(path, encoding="utf-8"):
+            m = re.match(r"^(\d+)\.\s+[„\"](.+?)[”\"]", line.strip())
+            if m and int(m.group(1)) in keep:
+                out[int(m.group(1))] = m.group(2).replace("**", "")
     return out
 
 
