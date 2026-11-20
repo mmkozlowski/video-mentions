@@ -8375,17 +8375,13 @@
   "ranges": [
    [
     75.51,
-    75.85
-   ],
-   [
-    76.23,
     81.51
    ]
   ],
   "start": 75.51,
   "end": 81.51,
-  "duration": 5.62,
-  "splices": 1,
+  "duration": 6.0,
+  "splices": 0,
   "hook_line": "sama firma druga rzecz kody kreskowe na paczki trzeci",
   "transcript": "sama firma druga rzecz kody kreskowe na paczki trzeci",
   "scores": {
@@ -8544,13 +8540,17 @@
   "ranges": [
    [
     105.7,
+    106.1
+   ],
+   [
+    106.44,
     109.38
    ]
   ],
   "start": 105.7,
   "end": 109.38,
-  "duration": 3.68,
-  "splices": 0,
+  "duration": 3.34,
+  "splices": 1,
   "hook_line": "na koniec jedna uczciwa uwaga",
   "transcript": "na koniec jedna uczciwa uwaga",
   "scores": {
