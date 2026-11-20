@@ -70,57 +70,102 @@ def last_word_end(render, content_end, work):
     return start + max(w["end"] for w in words) if words else content_end - 0.4
 
 
-def insert_file(board_name, fmt):
+def insert_board(board_name):
+    return json.load(open(P.PACK / "storyboards" / f"{board_name}.json"))
+
+
+def insert_name(board):
     """Render wstawki nazywa się po KLIPIE (package.py), a plan wskazuje storyboard (ten sam klip, różne plansze)."""
-    board = json.load(open(P.PACK / "storyboards" / f"{board_name}.json"))
     # wariant planszy (ta sama kwestia, inny tekst: ins-g29 w ofertach i w meblach) → osobny plik clip--wariant
-    name = board["clip"] + (f"--{board['variant']}" if board.get("variant") else "")
-    return FINAL / f"{name}__{fmt}-F.mp4"
+    return board["clip"] + (f"--{board['variant']}" if board.get("variant") else "")
+
+
+def raw_render(name, fmt):
+    """Surowy render (obraz + sam głos, przed muzyką i −14 LUFS) z package.py."""
+    path = P.OUT / name / f"{fmt}-F" / "render.mp4"
+    if not path.exists():
+        raise SystemExit(f"brak {path} — najpierw package.py {name} --render")
+    return path
+
+
+def loudness(path, a, b, work):
+    """Głośność zintegrowana mowy w przedziale (LUFS) — do wyrównania kawałków przed jedną muzyką."""
+    out = subprocess.run(["ffmpeg", "-hide_banner", "-ss", f"{a:.3f}", "-t", f"{b - a:.3f}", "-i", str(path), "-vn",
+                          "-af", "ebur128", "-f", "null", "-"], capture_output=True, text=True).stderr
+    vals = [float(l.split()[1]) for l in out.splitlines() if l.strip().startswith("I:") and "LUFS" in l]
+    return vals[-1] if vals else -23.0
+
+
+VOICE_LUFS = -18.0   # mowa każdego kawałka przed wspólnym podkładem (finalize i tak dociąga całość do −14)
 
 
 def build(name):
+    """21.11 (MK: „muzyka musi być cały czas jak podkład”, „nie musisz jej wycinać na to, jak mówię”):
+    kawałki mają osobno zmiksowaną muzykę, więc na sklejce z dogrywką podkład się urywał i startował od nowa.
+    Teraz sklejamy SUROWE rendery (sam głos), a jeden podkład shorta kładzie finalize na całość."""
     fmt, hook, outro = PLAN[name]
     board = json.load(open(P.PACK / "storyboards" / f"{name}.json"))
     geo = P.FORMATS[fmt]
-    render = FINAL / f"{name}__{fmt}-F.mp4"
+    final_render = FINAL / f"{name}__{fmt}-F.mp4"
+    render = raw_render(name, fmt)
     total = duration(render)
     content_end = total - end_card_len(board, fmt)
     work = P.BUILD / "work" / "shorts" / name
     work.mkdir(parents=True, exist_ok=True)
-    spoken_end = last_word_end(render, content_end, work)
+    spoken_end = last_word_end(final_render, content_end, work)
     # treść do końca (najwcześniej 0,05 s po ostatnim słowie, najpóźniej do startu planszy końcowej), potem wstawka,
-    # a plansza końcowa wraca od momentu, gdy jest już w pełni widoczna (bez 0,35 s przenikania z treścią) —
-    # w zajawkach mowa ciągnie się praktycznie do samej planszy („…dobrze pójdzie.” do 56,3 s przy końcu 56,33 s)
+    # a plansza końcowa wraca od momentu, gdy jest już w pełni widoczna (bez 0,35 s przenikania z treścią)
     cut = round(min(content_end, max(spoken_end + 0.05, content_end - 0.3)), 3)
     resume = round(content_end + 0.35, 3)
-    segments = ([("file", insert_file(hook, fmt), 0.0, None)] if hook else []) + [("file", render, 0.0, cut)]
+    segments = []   # (ścieżka, od, do, filtr głosu)
+    if hook:
+        hb = insert_board(hook)
+        segments.append((raw_render(insert_name(hb), fmt), 0.0, None, hb.get("voice_filter")))
+    segments.append((render, 0.0, cut, None))
     if outro:
-        segments.append(("file", insert_file(outro, fmt), 0.0, None))
-    segments.append(("file", render, resume if outro else cut, total))
+        ob = insert_board(outro)
+        segments.append((raw_render(insert_name(ob), fmt), 0.0, None, ob.get("voice_filter")))
+    segments.append((render, resume if outro else cut, total, None))
     poster = work / "poster.png"
-    first_path, first_a = segments[0][1], segments[0][2]
     poster_at = POSTER_AT_HOOK.get(hook, POSTER_AT) if hook else POSTER_AT
-    subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", f"{first_a + poster_at:.3f}", "-i", str(first_path), "-frames:v", "1",
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", f"{poster_at:.3f}", "-i", str(segments[0][0]), "-frames:v", "1",
                     str(poster)], check=True)
-    inputs, graph, labels = [], "", []
-    for i, (_, path, a, b) in enumerate(segments):
+    inputs, graph, labels, starts, t = [], "", [], [], 0.0
+    # głośność treści shorta mierzona raz, na całej treści — plansza końcowa (prawie bez mowy) dostaje ten sam zysk
+    main_gain = VOICE_LUFS - loudness(render, 0.0, content_end, work)
+    for i, (path, a, b, vf) in enumerate(segments):
         b = duration(path) if b is None else b
+        gain = main_gain if path == render else VOICE_LUFS - loudness(path, a, b, work)
         inputs += ["-i", str(path)]
         graph += (f"[{i}:v]trim={a}:{b},setpts=PTS-STARTPTS,fps=30,scale={geo['w']}:{geo['h']},setsar=1[v{i}{'raw' if i == 0 else ''}];"
                   f"[{i}:a]atrim={a}:{b},asetpts=PTS-STARTPTS,aformat=sample_rates=48000:channel_layouts=stereo,"
+                  f"{vf + ',' if vf else ''}volume={gain:.2f}dB,"
                   f"afade=t=in:d={FADE},afade=t=out:st={max(0.0, b - a - FADE):.3f}:d={FADE}[a{i}];")
         labels.append(f"[v{i}][a{i}]")
+        starts.append(t)
+        t += b - a
     n = len(segments)
     inputs += ["-loop", "1", "-framerate", "30", "-t", f"{POSTER_HOLD}", "-i", str(poster)]
     graph += (f"[{n}:v]scale={geo['w']}:{geo['h']},setsar=1,format=yuv420p[pst];"
               f"[v0raw][pst]overlay=eof_action=pass:format=auto[v0];")
     graph += "".join(labels) + f"concat=n={n}:v=1:a=1[v][a]"
-    out = FINAL / f"{name}__{fmt}-F--with-dubs.mp4"
+    raw = work / "composite.mp4"
     subprocess.run(["ffmpeg", "-v", "error", "-y", *inputs, "-filter_complex", graph, "-map", "[v]", "-map", "[a]",
-                    "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-pix_fmt", "yuv420p",
-                    "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", str(out)], check=True)
-    print(f"{name}: hak {hook or '—'}, ostatnie słowo {spoken_end:.2f} s → cięcie {cut:.2f} s (plansza od {resume:.2f}), {outro or '—'} → {out.name} "
-          f"({duration(out):.1f} s)")
+                    "-c:v", "libx264", "-preset", "medium", "-crf", "16", "-pix_fmt", "yuv420p",
+                    "-c:a", "pcm_s16le", str(raw)], check=True)
+    # jeden podkład na całość: wejście na starcie, tło pod mową, głośniej od planszy końcowej (ostatni kawałek)
+    music = P.music_plan(board, starts[-1] + 0.3)
+    # efekty plansz każdego kawałka (sfx.json obok render.mp4), przesunięte o miejsce kawałka w sklejce
+    cues = []
+    for (path, a, b, _), t0 in zip(segments, starts):
+        cue_file = path.parent / "sfx.json"
+        b = duration(path) if b is None else b
+        if cue_file.exists():
+            cues += [(t0 + t - a, kind, style) for t, kind, style in json.load(open(cue_file)) if a <= t < b]
+    out = FINAL / f"{name}__{fmt}-F--with-dubs.mp4"
+    note = P.finalize(raw, out, music=music, sfx=P.sfx_plan(cues))
+    print(f"{name}: hak {hook or '—'}, ostatnie słowo {spoken_end:.2f} s → cięcie {cut:.2f} s (plansza od {resume:.2f}), "
+          f"{outro or '—'} → {note}")
     return out
 
 

@@ -5,8 +5,8 @@ Mateusz 16.11 nagrał 43 kwestie (06–43 ponownie 20.11 — patrz ORDER) z list
 numer, potem zdanie 2–3 razy. Pliki m4a leżą poza repo w raw/2026-11-16-dogrywki-audio/.
 
 1. Skleja pliki m4a w kolejności ORDER, 2 s ciszy między nimi, 48 kHz mono.
-2. Głośność jak w odcinkach: loudnorm do -16 LUFS, DWUPRZEBIEGOWO i liniowo — jednoprzebiegowy loudnorm działa
-   jak automatyczne wzmocnienie i podbija ogony pokoju między słowami (20.11: tło z −81 do −60 dB).
+2. Głośność: łagodna kompresja + stałe wzmocnienie (do −16 LUFS albo sufitu −1,5 dBTP). Nie loudnorm: jednoprzebiegowy
+   podbija ogony pokoju (20.11), a „liniowy” przy cichym nagraniu z wysokimi szczytami przechodzi w dynamiczny i trzeszczy (21.11).
 3. Czarny obraz 1280×720 / 30 fps — cut.py tnie obraz i dźwięk jednym przebiegiem, a wstawki
    voice_only i tak zakrywają kadr planszami.
 4. Transkrypcja z czasami słów (mlx Whisper large-v3-turbo) → data/transcripts/dubs.json.
@@ -43,14 +43,22 @@ def main(argv):
     joined = RAW / "dogrywki-surowe.wav"
     subprocess.run(["ffmpeg", "-v", "error", "-y", *inputs, "-filter_complex", graph, "-map", "[a]",
                     "-ar", "48000", str(joined)], check=True)
-    probe = subprocess.run(["ffmpeg", "-hide_banner", "-i", str(joined), "-af",
+    # 21.11 (MK: „Pełna historia… mam wrażenie, że trzeszczy”): nagranie 20.11 ma −32 LUFS przy szczytach −10,9 dBTP —
+    # do −16 LUFS trzeba +16 dB, a szczyty pozwalają na +9,4 dB. loudnorm wtedy PO CICHU przechodzi w tryb dynamiczny
+    # z ogranicznikiem, który ścina mocne sylaby (trzask). Teraz: łagodna kompresja (zbija pojedyncze szczyty), potem
+    # STAŁE wzmocnienie do −16 LUFS albo do sufitu −1,5 dBTP — co pierwsze. Bez ogranicznika; resztę robi finalize.
+    comp = RAW / "dogrywki-kompresja.wav"
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(joined), "-af",
+                    "acompressor=threshold=-28dB:ratio=3:attack=5:release=120:knee=4", str(comp)], check=True)
+    probe = subprocess.run(["ffmpeg", "-hide_banner", "-i", str(comp), "-af",
                             "loudnorm=I=-16:TP=-1.5:LRA=11:print_format=json", "-f", "null", "-"],
                            capture_output=True, text=True).stderr
     m = json.loads(probe[probe.rindex("{"):probe.rindex("}") + 1])
-    measured = (f"measured_I={m['input_i']}:measured_TP={m['input_tp']}:measured_LRA={m['input_lra']}:"
-                f"measured_thresh={m['input_thresh']}:offset={m['target_offset']}:linear=true")
-    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(joined), "-af", f"loudnorm=I=-16:TP=-1.5:LRA=11:{measured}",
-                    "-ar", "48000", str(wav)], check=True)
+    gain = min(-16.0 - float(m["input_i"]), -1.5 - float(m["input_tp"]))
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(comp), "-af", f"volume={gain:.2f}dB", "-ar", "48000", str(wav)],
+                   check=True)
+    print(f"głośność: {m['input_i']} LUFS, szczyt {m['input_tp']} dBTP → +{gain:.1f} dB (bez ogranicznika)")
+    comp.unlink()
     joined.unlink()
     out = SOURCES["dubs"]
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i", "color=c=black:s=1280x720:r=30",

@@ -1120,6 +1120,7 @@ class Composition:
 
     # ── składanie ───────────────────────────────────────────────────────────
     def build(self):
+        self.sfx_cues = []   # (s, typ planszy, styl) — pod efekty dźwiękowe (sfx_plan)
         hook = self.board.get("hook")
         self.cover_end = self.board.get("cover", {}).get("dur", 2.2) if self.board.get("cover") else 0.0
         if self.poster_mode():
@@ -1157,6 +1158,7 @@ class Composition:
             if not self.vertical and ev["type"] in ("title", "quote") and "zone" not in ev:
                 ev = dict(ev, zone=self.pick_zone())
             self.card_w = 1000 if ev.get("zone") == "lower" else (888 if self.vertical else 700)
+            self.sfx_cues.append((round(start, 3), ev["type"], ev.get("style") or ev.get("name") or ""))
             getattr(self, "broll" if ev["type"] == "broll" else f"card_{ev['type']}")(ev, start, end)
         self.fill_panel_gaps()
         self.emit_side_windows()
@@ -1461,7 +1463,10 @@ MUSIC_DIR = PROJECT / "assets" / "music"
 MUSIC_DEFAULT = "simon-herody-way-back-home.mp3"
 MUSIC_OFFSET = {"the-mountain-technology-562622.mp3": 1.5, "verclub-technology-550887.mp3": 1.5,
                 "jonasblakewood-technology-startup-533868.mp3": 1.0,
-                "simon-herody-way-back-home.mp3": 17.0}   # Way Back Home: ~10 s ciszy, pełne brzmienie od ~17 s   # ciche intro utworów (zmierzone RMS)
+                "simon-herody-way-back-home.mp3": 17.0,
+                # 21.11 ElevenLabs (MK): cisza na starcie zmierzona silencedetect −40 dB
+                "tlo.mp3": 1.4, "tlo2.mp3": 0.2, "jingle-2.mp3": 0.25, "jingle-tlo.mp3": 0.35,
+                "jingle-przedstawienie.mp3": 0.0}   # Way Back Home: ~10 s ciszy, pełne brzmienie od ~17 s   # ciche intro utworów (zmierzone RMS)
 MUSIC_LUFS = -28.0        # poziom ścieżki muzycznej przed automatyką; 12.10 −22 → −28 (−6 dB): „za głośno, zagłusza mówienie”
 MUSIC_INTRO = (2.2, 1.0)  # (do której sekundy pełne wejście, czas zejścia do tła)
 MUSIC_INTRO_DB = -4.0     # 13.10 „początek mocno wjeżdża” — wejście −4 dB i narastanie 0,6 s
@@ -1503,7 +1508,57 @@ def mix_music(raw, music, out_wav):
     return out_wav
 
 
-def finalize(raw, out, target=-14.0, music=None):
+SFX_DIR = PROJECT / "assets" / "sfx"
+# 21.11 (MK: „efekty, które zwrócą uwagę”; ElevenLabs Sound Effects, płatny plan): jeden efekt na wejście planszy.
+# Szczyt efektu w dBFS w surowym miksie (głos ~−2…−6 dBFS) — dyskretnie, efekt podbija ruch, nie zagłusza mowy.
+SFX_FOR = {("beat", "burst"): ("uderzenie-4.mp3", -14), ("beat", "slam"): ("puenta-4.mp3", -15),
+           ("beat", "strike"): ("glitch-4.mp3", -18), ("stat", ""): ("licznik-3.mp3", -18),
+           ("chat", ""): ("powiadomienie-3.mp3", -16), ("list", ""): ("pop-1.mp3", -20),
+           ("title", ""): ("pop-1.mp3", -20), ("quote", ""): ("pop-1.mp3", -20), ("logos", ""): ("pop-1.mp3", -20),
+           ("mockup", "kinetic"): ("whoosh-2.mp3", -22), ("mockup", ""): ("przycisk-2.mp3", -20),
+           ("broll", ""): ("whoosh-2.mp3", -20), ("slate", ""): ("whoosh-2.mp3", -20), ("compare", ""): ("whoosh-2.mp3", -20)}
+SFX_GAP = 0.8   # maks. jeden efekt na 0,8 s — inaczej „karabin”
+
+
+def sfx_plan(cues):
+    """Momenty plansz → [(s, plik, szczyt dBFS)], najwyżej jeden efekt na SFX_GAP."""
+    plan, last = [], -9.0
+    for t, kind, style in sorted(cues):
+        hit = SFX_FOR.get((kind, style)) or SFX_FOR.get((kind, ""))
+        if not hit or t - last < SFX_GAP:
+            continue
+        plan.append((t, str(SFX_DIR / hit[0]), hit[1]))
+        last = t
+    return plan
+
+
+def add_sfx(audio, plan, out_wav):
+    """Dokłada efekty do gotowej ścieżki (głos + muzyka): każdy przesunięty na swój moment, szczyt do zadanego dBFS."""
+    if not plan:
+        return audio
+    inputs, graph, labels = ["-i", str(audio)], "", []
+    for i, (t, path, peak) in enumerate(plan, start=1):
+        m = subprocess.run(["ffmpeg", "-hide_banner", "-i", path, "-af", "astats=measure_perchannel=none:measure_overall=Peak_level",
+                            "-f", "null", "-"], capture_output=True, text=True).stderr
+        cur = float([l for l in m.splitlines() if "Peak level" in l][-1].split()[-1])
+        ms = int(round(max(0.0, t) * 1000))
+        inputs += ["-i", path]
+        graph += (f"[{i}:a]aresample=48000,aformat=channel_layouts=stereo,volume={peak - cur:.2f}dB,"
+                  f"adelay={ms}|{ms}[s{i}];")
+        labels.append(f"[s{i}]")
+    graph += f"[0:a]aresample=48000,aformat=channel_layouts=stereo[base];[base]{''.join(labels)}amix=inputs={len(plan) + 1}:normalize=0:duration=first[a]"
+    subprocess.run(["ffmpeg", "-y", "-v", "error", *inputs, "-filter_complex", graph, "-map", "[a]", "-c:a", "pcm_s16le",
+                    str(out_wav)], check=True)
+    return out_wav
+
+
+def save_sfx(folder, comp):
+    """Momenty plansz obok render.mp4 — assemble_short przesuwa je o swoje sklejki."""
+    (folder / "sfx.json").write_text(json.dumps(comp.sfx_cues))
+    return sfx_plan(comp.sfx_cues)
+
+
+def finalize(raw, out, target=-14.0, music=None, sfx=None):
     """Render → plik do publikacji: (muzyka) + −14 LUFS (cel IG/TikTok), x264 CRF 20, a/v równe.
 
     Dwa przebiegi loudnorm (pomiar, potem liniowa korekta) — jednoprzebiegowy pompuje.
@@ -1512,6 +1567,7 @@ def finalize(raw, out, target=-14.0, music=None):
     """
     video_len = probe_duration(raw, "v:0")
     audio = mix_music(raw, music, raw.with_name("mix.wav")) if music else raw
+    audio = add_sfx(audio, sfx, raw.with_name("mix-sfx.wav")) if sfx else audio
     measure = subprocess.run(["ffmpeg", "-v", "info", "-i", str(audio), "-vn", "-af",
                               f"loudnorm=I={target}:TP=-1.5:LRA=11:print_format=json", "-f", "null", "-"],
                              capture_output=True, text=True).stderr
@@ -1556,7 +1612,9 @@ def main():
             if a.finalize_only:
                 if (folder / "render.mp4").exists():
                     FINAL.mkdir(parents=True, exist_ok=True)
-                    print("  →", finalize(folder / "render.mp4", FINAL / f"{name}__{fmt}-{pal}.mp4", music=music_plan(board, clip["duration"] / tempo_for(board, fmt))), flush=True)
+                    comp = Composition(clip, board, fmt, pal)
+                    comp.build()   # tylko momenty plansz pod efekty — bez ponownego renderu obrazu
+                    print("  →", finalize(folder / "render.mp4", FINAL / f"{name}__{fmt}-{pal}.mp4", music=music_plan(board, clip["duration"] / tempo_for(board, fmt)), sfx=save_sfx(folder, comp)), flush=True)
                 continue
             comp = Composition(clip, board, fmt, pal)
             stage(comp, folder)
@@ -1575,7 +1633,7 @@ def main():
                     continue
                 FINAL.mkdir(parents=True, exist_ok=True)
                 out = FINAL / f"{name}__{fmt}-{pal}.mp4"
-                print("  →", finalize(raw, out, music=music_plan(board, comp.clip_len)), flush=True)
+                print("  →", finalize(raw, out, music=music_plan(board, comp.clip_len), sfx=save_sfx(folder, comp)), flush=True)
 
 
 if __name__ == "__main__":
