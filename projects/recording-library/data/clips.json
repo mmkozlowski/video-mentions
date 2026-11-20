@@ -7715,20 +7715,20 @@
   "brand": "flowbiz",
   "ranges": [
    [
-    188.3,
-    197.4
+    109.98,
+    118.26
    ],
    [
-    199.0,
-    203.6
+    118.8,
+    125.1
    ]
   ],
-  "start": 188.3,
-  "end": 203.6,
-  "duration": 13.7,
+  "start": 109.98,
+  "end": 125.1,
+  "duration": 14.58,
   "splices": 1,
-  "hook_line": "cześć tu Mateusz z Flowbiz pokazuje jak AI i automatyzacje działają w normalnych firmach",
-  "transcript": "cześć tu Mateusz z Flowbiz pokazuje jak AI i automatyzacje działają w normalnych firmach nie na prezentacjach tym odcinku pokażę Ci jedną konkretną rzecz z prawdziwego wdrożenia",
+  "hook_line": "cześć tu Mateusz z Flowbiz pokazuję jak AI i automatyzacje działają w normalnych firmach",
+  "transcript": "cześć tu Mateusz z Flowbiz pokazuję jak AI i automatyzacje działają w normalnych firmach a nie na prezentacjach w tym odcinku pokażę Ci jedną konkretną rzecz z prawdziwego wdrożenia nie",
   "scores": {
    "hook": 3,
    "delivery": 4,
@@ -7752,20 +7752,24 @@
   "brand": "flowbiz",
   "ranges": [
    [
-    199.0,
-    203.6
+    118.8,
+    125.1
    ],
    [
-    204.52,
-    210.24
+    125.18,
+    126.58
+   ],
+   [
+    128.3,
+    132.46
    ]
   ],
-  "start": 199.0,
-  "end": 210.24,
-  "duration": 10.32,
-  "splices": 1,
-  "hook_line": "tym odcinku pokażę Ci jedną konkretną rzecz z prawdziwego wdrożenia",
-  "transcript": "tym odcinku pokażę Ci jedną konkretną rzecz z prawdziwego wdrożenia będzie o modnych narzędziach będzie o tym co realnie oszczędza czas w firmach",
+  "start": 118.8,
+  "end": 132.46,
+  "duration": 11.86,
+  "splices": 2,
+  "hook_line": "tym odcinku pokażę Ci jedną konkretną rzecz z prawdziwego wdrożenia nie",
+  "transcript": "tym odcinku pokażę Ci jedną konkretną rzecz z prawdziwego wdrożenia nie będzie o modnych narzędziach o tym co realnie oszczędza czas w swojej firmie",
   "scores": {
    "hook": 3,
    "delivery": 4,
@@ -7789,20 +7793,24 @@
   "brand": "flowbiz",
   "ranges": [
    [
-    199.0,
-    203.6
+    118.8,
+    125.1
    ],
    [
-    204.52,
-    210.24
+    125.18,
+    126.58
+   ],
+   [
+    128.3,
+    132.46
    ]
   ],
-  "start": 199.0,
-  "end": 210.24,
-  "duration": 10.32,
-  "splices": 1,
-  "hook_line": "tym odcinku pokażę Ci jedną konkretną rzecz z prawdziwego wdrożenia",
-  "transcript": "tym odcinku pokażę Ci jedną konkretną rzecz z prawdziwego wdrożenia będzie o modnych narzędziach będzie o tym co realnie oszczędza czas w firmach",
+  "start": 118.8,
+  "end": 132.46,
+  "duration": 11.86,
+  "splices": 2,
+  "hook_line": "tym odcinku pokażę Ci jedną konkretną rzecz z prawdziwego wdrożenia nie",
+  "transcript": "tym odcinku pokażę Ci jedną konkretną rzecz z prawdziwego wdrożenia nie będzie o modnych narzędziach o tym co realnie oszczędza czas w swojej firmie",
   "scores": {
    "hook": 3,
    "delivery": 4,
@@ -7958,16 +7966,16 @@
   "brand": "flowbiz",
   "ranges": [
    [
-    286.42,
-    290.7
+    139.2,
+    144.06
    ]
   ],
-  "start": 286.42,
-  "end": 290.7,
-  "duration": 4.28,
+  "start": 139.2,
+  "end": 144.06,
+  "duration": 4.86,
   "splices": 0,
-  "hook_line": "następnym odcinku pokażę kolejne wdrożenie do zobaczenia już",
-  "transcript": "następnym odcinku pokażę kolejne wdrożenie do zobaczenia już",
+  "hook_line": "następnym odcinku pokażę kolejne wdrożenie do zobaczenia",
+  "transcript": "następnym odcinku pokażę kolejne wdrożenie do zobaczenia",
   "scores": {
    "hook": 3,
    "delivery": 4,
@@ -7991,18 +7999,14 @@
   "brand": "flowbiz",
   "ranges": [
    [
-    277.1,
-    277.48
-   ],
-   [
-    278.34,
-    284.7
+    132.82,
+    138.56
    ]
   ],
-  "start": 277.1,
-  "end": 284.7,
-  "duration": 6.74,
-  "splices": 1,
+  "start": 132.82,
+  "end": 138.56,
+  "duration": 5.74,
+  "splices": 0,
   "hook_line": "jeśli chcesz to przegadać na swoim przykładzie kontakt do mnie jest w opisie",
   "transcript": "jeśli chcesz to przegadać na swoim przykładzie kontakt do mnie jest w opisie",
   "scores": {
@@ -8028,20 +8032,20 @@
   "brand": "flowbiz",
   "ranges": [
    [
-    328.3,
-    330.48
+    144.44,
+    147.66
    ],
    [
-    330.8,
-    332.46
+    148.08,
+    150.28
    ]
   ],
-  "start": 328.3,
-  "end": 332.46,
-  "duration": 3.84,
+  "start": 144.44,
+  "end": 150.28,
+  "duration": 5.42,
   "splices": 1,
-  "hook_line": "firm robi to ręcznie. Zupełnie niepotrzebnie.",
-  "transcript": "firm robi to ręcznie. Zupełnie niepotrzebnie.",
+  "hook_line": "większość firm robi to ręcznie a to jest zupełnie niepotrzebne",
+  "transcript": "większość firm robi to ręcznie a to jest zupełnie niepotrzebne",
   "scores": {
    "hook": 3,
    "delivery": 4,
@@ -8065,16 +8069,16 @@
   "brand": "flowbiz",
   "ranges": [
    [
-    333.52,
-    336.7
+    150.82,
+    155.02
    ]
   ],
-  "start": 333.52,
-  "end": 336.7,
-  "duration": 3.18,
+  "start": 150.82,
+  "end": 155.02,
+  "duration": 4.2,
   "splices": 0,
-  "hook_line": "tego nie potrzebujesz AI. Serio.",
-  "transcript": "tego nie potrzebujesz AI. Serio.",
+  "hook_line": "tego nie potrzebujesz AI naprawdę serio",
+  "transcript": "tego nie potrzebujesz AI naprawdę serio",
   "scores": {
    "hook": 3,
    "delivery": 4,
@@ -8098,16 +8102,16 @@
   "brand": "flowbiz",
   "ranges": [
    [
-    337.68,
-    341.1
+    155.0,
+    159.22
    ]
   ],
-  "start": 337.68,
-  "end": 341.1,
-  "duration": 3.42,
+  "start": 155.0,
+  "end": 159.22,
+  "duration": 4.22,
   "splices": 0,
-  "hook_line": "jak to wygląda przed, a jak po.",
-  "transcript": "jak to wygląda przed, a jak po.",
+  "hook_line": "zobacz jak to wygląda przed a jak po to",
+  "transcript": "zobacz jak to wygląda przed a jak po to",
   "scores": {
    "hook": 3,
    "delivery": 4,
@@ -8131,16 +8135,16 @@
   "brand": "flowbiz",
   "ranges": [
    [
-    354.4,
-    360.0
+    159.4,
+    163.54
    ]
   ],
-  "start": 354.4,
-  "end": 360.0,
-  "duration": 5.6,
+  "start": 159.4,
+  "end": 163.54,
+  "duration": 4.14,
   "splices": 0,
-  "hook_line": "to nie jest magia to porządek plus trochę automatyzacji",
-  "transcript": "to nie jest magia to porządek plus trochę automatyzacji",
+  "hook_line": "nie jest magia to porządek plus trochę automatyzacji",
+  "transcript": "nie jest magia to porządek plus trochę automatyzacji",
   "scores": {
    "hook": 3,
    "delivery": 4,
@@ -8164,16 +8168,16 @@
   "brand": "flowbiz",
   "ranges": [
    [
-    379.62,
-    384.1
+    165.0,
+    170.8
    ]
   ],
-  "start": 379.62,
-  "end": 384.1,
-  "duration": 4.48,
+  "start": 165.0,
+  "end": 170.8,
+  "duration": 5.8,
   "splices": 0,
-  "hook_line": "odcinek jest na moim kanale link masz w bio",
-  "transcript": "odcinek jest na moim kanale link masz w bio",
+  "hook_line": "cały odcinek jest na moim kanale link masz w bio",
+  "transcript": "cały odcinek jest na moim kanale link masz w bio",
   "scores": {
    "hook": 3,
    "delivery": 4,
@@ -8197,16 +8201,16 @@
   "brand": "flowbiz",
   "ranges": [
    [
-    385.58,
-    388.9
+    171.3,
+    174.38
    ]
   ],
-  "start": 385.58,
-  "end": 388.9,
-  "duration": 3.32,
+  "start": 171.3,
+  "end": 174.38,
+  "duration": 3.08,
   "splices": 0,
-  "hook_line": "historia w odcinku na youtube",
-  "transcript": "historia w odcinku na youtube",
+  "hook_line": "pełna historia w odcinku na YouTube",
+  "transcript": "pełna historia w odcinku na YouTube",
   "scores": {
    "hook": 3,
    "delivery": 4,
@@ -8230,16 +8234,16 @@
   "brand": "flowbiz",
   "ranges": [
    [
-    398.47,
-    403.2
+    175.08,
+    178.62
    ]
   ],
-  "start": 398.47,
-  "end": 403.2,
-  "duration": 4.73,
+  "start": 175.08,
+  "end": 178.62,
+  "duration": 3.54,
   "splices": 0,
-  "hook_line": "w komentarzu ile to trwa u Ciebie i w Twojej firmie",
-  "transcript": "w komentarzu ile to trwa u Ciebie i w Twojej firmie",
+  "hook_line": "w komentarzu ile to trwało u Ciebie napisz",
+  "transcript": "w komentarzu ile to trwało u Ciebie napisz",
   "scores": {
    "hook": 3,
    "delivery": 4,
@@ -8263,16 +8267,16 @@
   "brand": "flowbiz",
   "ranges": [
    [
-    428.78,
-    431.9
+    183.52,
+    187.1
    ]
   ],
-  "start": 428.78,
-  "end": 431.9,
-  "duration": 3.12,
+  "start": 183.52,
+  "end": 187.1,
+  "duration": 3.58,
   "splices": 0,
-  "hook_line": "sobie może to Ci się przydać",
-  "transcript": "sobie może to Ci się przydać",
+  "hook_line": "zapisz to sobie mam nadzieję że Ci się przyda",
+  "transcript": "zapisz to sobie mam nadzieję że Ci się przyda",
   "scores": {
    "hook": 3,
    "delivery": 4,
@@ -8296,28 +8300,20 @@
   "brand": "flowbiz",
   "ranges": [
    [
-    467.6,
-    467.94
+    188.14,
+    195.98
    ],
    [
-    468.64,
-    475.78
-   ],
-   [
-    481.2,
-    481.52
-   ],
-   [
-    482.64,
-    490.5
+    196.96,
+    204.44
    ]
   ],
-  "start": 467.6,
-  "end": 490.5,
-  "duration": 15.66,
-  "splices": 3,
-  "hook_line": "jeśli takie konkrety Ci się przydają zasubskrybuj ten kanał a nowy odcinek pojawia się",
-  "transcript": "jeśli takie konkrety Ci się przydają zasubskrybuj ten kanał a nowy odcinek pojawia się co czwartek zostaw jeśli ten temat Cię dotyczy obejrzyj jeszcze ten odcinek tam pokazuję drugą stronę tego samego problemu",
+  "start": 188.14,
+  "end": 204.44,
+  "duration": 15.32,
+  "splices": 1,
+  "hook_line": "takie konkrety Ci się przydają zasubskrybuj ten kanał a nowy odcinek pojawia się co",
+  "transcript": "takie konkrety Ci się przydają zasubskrybuj ten kanał a nowy odcinek pojawia się co czwartek ten temat Cię dotyczy obejrzyj jeszcze ten odcinek tam pokazuję drugą stronę tego samego problemu",
   "scores": {
    "hook": 3,
    "delivery": 4,
@@ -8341,14 +8337,18 @@
   "brand": "flowbiz",
   "ranges": [
    [
-    67.26,
-    74.4
+    67.72,
+    69.66
+   ],
+   [
+    69.96,
+    75.0
    ]
   ],
-  "start": 67.26,
-  "end": 74.4,
-  "duration": 7.14,
-  "splices": 0,
+  "start": 67.72,
+  "end": 75.0,
+  "duration": 6.98,
+  "splices": 1,
   "hook_line": "przykład producent mebli ogrodowych i zamówienia z Excela od niemieckich kontrahentów ta",
   "transcript": "przykład producent mebli ogrodowych i zamówienia z Excela od niemieckich kontrahentów ta",
   "scores": {
@@ -8374,20 +8374,20 @@
   "brand": "flowbiz",
   "ranges": [
    [
-    75.34,
-    76.72
+    75.51,
+    75.85
    ],
    [
-    77.34,
-    81.6
+    76.23,
+    81.51
    ]
   ],
-  "start": 75.34,
-  "end": 81.6,
-  "duration": 5.64,
+  "start": 75.51,
+  "end": 81.51,
+  "duration": 5.62,
   "splices": 1,
-  "hook_line": "sama firma druga rzecz kody kreskowe na paczki ta",
-  "transcript": "sama firma druga rzecz kody kreskowe na paczki ta",
+  "hook_line": "sama firma druga rzecz kody kreskowe na paczki trzeci",
+  "transcript": "sama firma druga rzecz kody kreskowe na paczki trzeci",
   "scores": {
    "hook": 3,
    "delivery": 4,
@@ -8411,16 +8411,16 @@
   "brand": "flowbiz",
   "ranges": [
    [
-    99.0,
-    105.0
+    82.0,
+    87.42
    ]
   ],
-  "start": 99.0,
-  "end": 105.0,
-  "duration": 6.0,
+  "start": 82.0,
+  "end": 87.42,
+  "duration": 5.42,
   "splices": 0,
-  "hook_line": "trzeci przykład sklep z paszą dla zwierząt i etykiety do wysyłek u",
-  "transcript": "trzeci przykład sklep z paszą dla zwierząt i etykiety do wysyłek u",
+  "hook_line": "przykład sklep z paszą dla zwierząt i etykiety do wysyłek u",
+  "transcript": "przykład sklep z paszą dla zwierząt i etykiety do wysyłek u",
   "scores": {
    "hook": 3,
    "delivery": 4,
@@ -8444,16 +8444,16 @@
   "brand": "flowbiz",
   "ranges": [
    [
-    106.42,
-    111.5
+    87.52,
+    93.06
    ]
   ],
-  "start": 106.42,
-  "end": 111.5,
-  "duration": 5.08,
+  "start": 87.52,
+  "end": 93.06,
+  "duration": 5.54,
   "splices": 0,
-  "hook_line": "tego samego klienta zrobiliśmy jeszcze katalog produktów z faktur z",
-  "transcript": "tego samego klienta zrobiliśmy jeszcze katalog produktów z faktur z",
+  "hook_line": "tego samego klienta zrobiliśmy jeszcze katalog produktów z faktur",
+  "transcript": "tego samego klienta zrobiliśmy jeszcze katalog produktów z faktur",
   "scores": {
    "hook": 3,
    "delivery": 4,
@@ -8477,16 +8477,16 @@
   "brand": "flowbiz",
   "ranges": [
    [
-    141.18,
-    147.2
+    94.4,
+    99.4
    ]
   ],
-  "start": 141.18,
-  "end": 147.2,
-  "duration": 6.02,
+  "start": 94.4,
+  "end": 99.4,
+  "duration": 5.0,
   "splices": 0,
-  "hook_line": "hurtownia pamiątek z nadmorza gdzie zamówienia krążyły na karteczkach a",
-  "transcript": "hurtownia pamiątek z nadmorza gdzie zamówienia krążyły na karteczkach a",
+  "hook_line": "producent pamiątek z nadmorza gdzie zamówienia krążyły na karteczkach i",
+  "transcript": "producent pamiątek z nadmorza gdzie zamówienia krążyły na karteczkach i",
   "scores": {
    "hook": 3,
    "delivery": 4,
@@ -8510,20 +8510,16 @@
   "brand": "flowbiz",
   "ranges": [
    [
-    158.2,
-    158.58
-   ],
-   [
-    159.62,
-    166.05
+    99.56,
+    105.52
    ]
   ],
-  "start": 158.2,
-  "end": 166.05,
-  "duration": 6.81,
-  "splices": 1,
-  "hook_line": "i ostatni przykład kierownik produkcji który planował wszystko w swoim Excelu i",
-  "transcript": "i ostatni przykład kierownik produkcji który planował wszystko w swoim Excelu i",
+  "start": 99.56,
+  "end": 105.52,
+  "duration": 5.96,
+  "splices": 0,
+  "hook_line": "ostatni przykład kierownik produkcji który planował wszystko w swoim Excelu",
+  "transcript": "ostatni przykład kierownik produkcji który planował wszystko w swoim Excelu",
   "scores": {
    "hook": 3,
    "delivery": 4,
@@ -8547,16 +8543,16 @@
   "brand": "flowbiz",
   "ranges": [
    [
-    180.82,
-    184.2
+    105.7,
+    109.38
    ]
   ],
-  "start": 180.82,
-  "end": 184.2,
-  "duration": 3.38,
+  "start": 105.7,
+  "end": 109.38,
+  "duration": 3.68,
   "splices": 0,
-  "hook_line": "koniec jedna uczciwa uwaga",
-  "transcript": "koniec jedna uczciwa uwaga",
+  "hook_line": "na koniec jedna uczciwa uwaga",
+  "transcript": "na koniec jedna uczciwa uwaga",
   "scores": {
    "hook": 3,
    "delivery": 4,
