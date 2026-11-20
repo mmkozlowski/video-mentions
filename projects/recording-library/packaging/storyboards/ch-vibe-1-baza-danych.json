@@ -4,6 +4,7 @@
  "formats": [
   "reels"
  ],
+ "episode_title": "Szef programuje z AI. Czy to ma prawo zadziałać?",
  "hook": {
   "text": "System zrobiony sam, z agentem AI. *Bez bazy danych.",
   "until": 6.5,
@@ -22,17 +23,12 @@
   }
  },
  "topic": {
-  "kicker": "Vibe coding",
+  "kicker": "Szef programuje z AI",
   "text": "Gdzie są *Twoje dane?",
-  "sub": "aplikacja z AI bez bazy danych"
+  "sub": "vibe coding kontra framework"
  },
  "cta": {
-  "chip": "Open Mercato · flowbiz.pl",
-  "reels": {
-   "kicker": "Chcesz pogadać o swoim systemie?",
-   "title": "Napisz *BAZA w komentarzu",
-   "sub": "Sprawdzę, gdzie lądują Twoje dane"
-  }
+  "chip": "Open Mercato · flowbiz.pl"
  },
  "events": [
   {

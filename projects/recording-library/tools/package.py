@@ -99,7 +99,7 @@ for palette in PALETTES.values():
 ACTIVE_PALETTES = ["F"]
 # 13.10: zieleń ze strony (B) odrzucona („zieleń mi tu nie siedzi w ogóle”), zieleń jak w reklamach
 # (F „forest”) wybrana po porównaniu z czernią (A) — wszystkie formaty, odcinki 16:9 też.
-FORMAT_PALETTE = {"reels": "F", "ad": "F", "feed": "F", "youtube": "F"}
+FORMAT_PALETTE = {"reels": "F", "ad": "F", "ad45": "F", "feed": "F", "youtube": "F"}
 
 # Plansza końcowa rolki (Mateusz 13.10): zamiast „Napisz SŁOWO w komentarzu” (30 różnych słów,
 # obiecane materiały, za którymi nic nie stało) — bezpłatna konsultacja online z przyciskiem
@@ -152,11 +152,16 @@ BRANDS = {
 
 FORMATS = {
     "reels": dict(w=1080, h=1920, face_h=1215),
-    "ad": dict(w=1080, h=1920, face_h=1215),
+    # reklama 9:16 do Rolek/Relacji Meta (26.10): dolne ~35% zasłania karta „Dowiedz się więcej”,
+    # nazwa konta i opis, górne ~14% pasek — panel z kartami zaczyna się wyżej (860 zamiast 1215)
+    "ad": dict(w=1080, h=1920, face_h=860),
     "youtube": dict(w=1920, h=1080, face_h=1080),
     # zajawka odcinka na LinkedIn / Facebook: pion 4:5 zajmuje feed, a nie jest ucinany jak 9:16
     "feed": dict(w=1080, h=1350, face_h=810),
+    # reklama do feedu Meta: geometria 4:5 jak `feed`, zachowanie jak `ad` (plansza konsultacji, znaczek CTA)
+    "ad45": dict(w=1080, h=1350, face_h=810),
 }
+AD_FORMATS = ("ad", "ad45")
 
 
 # ── czas: kotwice na słowach ─────────────────────────────────────────────────
@@ -300,7 +305,7 @@ class Composition:
                       for i, w in enumerate(words)]
         self.clock = Clock(self.words, fixes, self.tempo)
         self.clip_len = round(clip["duration"] / self.tempo, 3)
-        self.end_len = board.get("endcard", {}).get(fmt, {"ad": 3.5, "reels": 3.5, "youtube": 2.5, "feed": 3.5}[fmt])
+        self.end_len = board.get("endcard", {}).get(fmt, {"ad": 3.5, "ad45": 3.5, "reels": 3.5, "youtube": 2.5, "feed": 3.5}[fmt])
         self.total = round(self.clip_len + self.end_len, 3)
         self.html, self.js, self.media = [], [], {}
         self.n = 0
@@ -932,7 +937,7 @@ class Composition:
         return sorted(blocked)
 
     def cta_chip(self):
-        if self.fmt != "ad":
+        if self.fmt not in AD_FORMATS:
             return
         cta = self.board.get("cta", {})
         text = cta.get("chip", self.brand["web"])
@@ -975,7 +980,7 @@ class Composition:
             body = (f'<div class="end-yt">{logo("youtube", 120, "#FF0000")}<span>Cały odcinek na YouTube</span></div>'
                     + self.end_title(self.board.get("episode_title", "Obejrzyj cały odcinek")) +
                     f'<div class="end-sub">kanał flowbiz · Mateusz Kozłowski</div>')
-        elif self.fmt == "ad":
+        elif self.fmt in AD_FORMATS:
             lines = cta.get("ad", {})
             body = (f'<div class="end-kicker">{esc(lines.get("kicker", "Bezpłatna konsultacja"))}</div>'
                     + self.end_title(lines.get("title", "Przyjadę do Twojej firmy")) +
@@ -1007,7 +1012,7 @@ class Composition:
                          f'<div class="end-mark">{self.brand_mark()}</div><div class="end-body">{body}</div></div></div>')
         self.js.append(f'tl.fromTo("#{cid} .end-mark",{{opacity:0,scale:0.9}},{{opacity:1,scale:1,duration:0.6,ease:"power3.out"}},{self.q(start)});')
         self.js.append(f'tl.fromTo("#{cid} .end-body > *",{{opacity:0,y:30}},{{opacity:1,y:0,duration:0.45,stagger:0.12,ease:"power3.out"}},{self.q(start + 0.1)});')
-        if self.fmt in ("ad", "reels"):
+        if self.fmt in AD_FORMATS + ("reels",):
             self.js.append(f'tl.fromTo("#{cid} .end-btn",{{scale:1}},{{scale:1.05,duration:0.5,yoyo:true,repeat:3,ease:"sine.inOut"}},{self.q(start + 0.9)});')
 
     def yt_badge(self):
@@ -1172,6 +1177,8 @@ class Composition:
             W=g["w"], H=g["h"], FH=g["face_h"], SW=900 if self.vertical else 1500, EL=640 if self.vertical else 1000, ST=282 if self.vertical else 330, SF=110 if self.vertical else 120, LBL=404 if self.vertical else 60, PH=g["h"] - g["face_h"], CHIP=g["face_h"] - 250, CUT=760 if self.vertical else 900, **p,
             V="1" if self.vertical else "0") + MOCKUP_STYLE.format(**self.mock_pal)
         cls = ("fmt-v" if self.vertical else "fmt-h") + f" fmt-{self.fmt} pal-{self.palette_key}"
+        if self.geo["h"] == 1350:
+            cls += " fmt-45"   # wspólny układ niskiego pionu 4:5 (feed, ad45)
         return (f'<!doctype html><html lang="pl"><head><meta charset="utf-8">'
                 f'<meta name="viewport" content="width={g["w"]}, height={g["h"]}"><style>{css}</style></head>'
                 f'<body><div id="root" class="{cls}" data-composition-id="pack" data-start="0" data-width="{g["w"]}" '
@@ -1204,7 +1211,7 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .zone-full{{inset:0}}
 .callout{{font-weight:900;line-height:.92;letter-spacing:-.03em;text-transform:uppercase;color:{text};text-align:center;font-style:{heading_style}}}
 .callout .w{{display:block}} .callout .acc{{color:{accent}}}
-.fmt-feed .hook{{bottom:90px}} .fmt-feed .hv{{min-height:170px}} .fmt-feed .hv-img,.fmt-feed .hv-logo{{width:170px;height:170px}}
+.fmt-45 .hook{{bottom:90px}} .fmt-45 .hv{{min-height:170px}} .fmt-45 .hv-img,.fmt-45 .hv-logo{{width:170px;height:170px}}
 .yt-badge{{position:absolute;left:32px;top:32px;display:flex;align-items:center;gap:12px;padding:10px 18px 10px 14px;border-radius:40px;background:rgba(0,0,0,.72);color:#fff;font-size:26px;font-weight:700;z-index:6}}
 .end-yt{{display:flex;align-items:center;gap:22px;font-size:40px;font-weight:800;color:{text}}}
 .end-checks{{display:flex;flex-wrap:wrap;gap:10px 30px;font-size:36px;font-weight:700}} .end-checks b{{color:{accent};margin-right:10px}}
@@ -1306,7 +1313,10 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .hook{{position:absolute;left:44px;right:132px;bottom:430px}}
 .poster-scrim{{position:absolute;left:0;right:0;bottom:0;height:62%;background:linear-gradient(180deg,rgba(0,0,0,0) 0%,{bg}C0 32%,{bg}F2 62%,{bg} 100%)}}
 .poster{{position:absolute;left:44px;right:132px;bottom:290px;color:{text}}}
-.fmt-feed .poster{{bottom:70px}}
+.fmt-45 .poster{{bottom:70px}}
+.fmt-ad .poster{{bottom:700px}} .fmt-ad .poster-scrim{{height:80%}} .fmt-ad .hook{{bottom:700px}}
+.fmt-ad .brand-mark{{top:290px}} .fmt-ad .zone-panel{{padding-top:26px}} .fmt-ad .zone-full{{top:200px;bottom:520px}} .fmt-ad .lower-third{{bottom:700px}}
+.fmt-ad .endcard{{align-items:flex-start;padding-top:300px}} .fmt-ad .end-phone{{display:none}}
 .pkicker{{font-family:'{mono}',sans-serif;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:{kicker_color};opacity:.95;white-space:nowrap;margin:2px 0 18px;line-height:1.2}}
 .phead{{font-weight:800;line-height:1.08;letter-spacing:-.02em}}
 .phead .w{{display:inline-block}} .nb{{display:inline-block;white-space:nowrap}}
@@ -1323,7 +1333,7 @@ html,body{{width:100%;height:100%;overflow:hidden;background:{bg};color:{text};f
 .pal-F .pbox{{background:none;color:{accent};padding:0 .04em;position:relative;border-radius:0}}
 .pal-F .pbox::after{{content:"";position:absolute;left:-3%;right:-3%;bottom:-.16em;height:.26em;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 24' preserveAspectRatio='none'%3E%3Cpath d='M4 17 C 55 7, 130 5, 196 11' stroke='%23F4A72A' stroke-width='7' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") center/100% 100% no-repeat}}
 .psub{{font-size:38px;font-weight:500;line-height:1.3;color:{text};opacity:.86;margin-top:22px}}
-.fmt-feed .psub{{font-size:32px}}
+.fmt-45 .psub{{font-size:32px}}
 .hook-in{{display:flex;flex-direction:column;gap:22px;font-weight:800;line-height:1.06;letter-spacing:-.02em;color:{text};background:{bg}F2;padding:30px 34px 32px;border-radius:30px;border-left:8px solid {accent};box-shadow:0 18px 50px rgba(0,0,0,.45)}}
 .hook-text{{display:grid}} .hook-sent{{grid-area:1/1}}
 .hv{{display:flex;align-items:center;justify-content:center;gap:26px;min-height:230px}}

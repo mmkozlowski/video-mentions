@@ -43,7 +43,7 @@
     "ins-outro"
    ]
   ],
-  "chapters": "0:00 Realne przypadki AI\n0:48 Paczki do 25 kg: cztery worki, cztery etykiety\n1:53 Jak to wyglądało wcześniej\n3:27 Teraz: AI łączy w jeden koszyk\n4:01 Około 100 godzin miesięcznie\n5:42 Katalog AI: faktura → produkty → opisy\n7:52 Czy to działa idealnie?"
+  "chapters": "0:00 Realne przypadki AI\n0:48 Paczki do 25 kg: cztery worki, cztery etykiety\n1:53 Jak to wyglądało wcześniej\n3:27 Teraz: AI łączy w jeden koszyk\n4:01 Około 100 godzin miesięcznie\n5:38 Katalog AI: faktura → produkty → opisy\n7:48 Czy to działa idealnie?"
  },
  "ep-rezon": {
   "plan": [
@@ -105,7 +105,7 @@
     "ins-outro"
    ]
   ],
-  "chapters": "0:00 Kartka zamiast kodu\n0:31 Od procesu w Excelu do modułu\n1:07 Ludzie zaczynają od drugiej strony\n1:24 Warsztat: 70 pytań po rolach\n2:05 Szef wie swoje, hala wie lepiej\n2:50 Droga jednej kartki\n3:48 Nagraj rozmowę z programistą\n4:57 Trzy warstwy specyfikacji\n6:33 Słownik pojęć\n6:56 Checklista i 70–90% trafności\n7:50 Gdzie to się psuje\n8:19 Powtarzalność\n8:45 Zadanie: przejdź swój proces"
+  "chapters": "0:00 Kartka zamiast kodu\n0:31 Od procesu w Excelu do modułu\n1:07 Ludzie zaczynają od drugiej strony\n1:24 Warsztat: 70 pytań po rolach\n2:05 Szef wie swoje, hala wie lepiej\n2:50 Droga jednej kartki\n3:48 Nagraj rozmowę z programistą\n4:57 Trzy warstwy specyfikacji\n6:32 Słownik pojęć\n6:55 Checklista i 70–90% trafności\n7:49 Gdzie to się psuje\n8:18 Powtarzalność\n8:44 Zadanie: przejdź swój proces"
  },
  "ep-doram": {
   "plan": [
@@ -213,9 +213,13 @@
    ],
    [
     "before:No dobra",
+    "gag-przymiotnik"
+   ],
+   [
+    "before:No dobra",
     "ins-outro"
    ]
   ],
-  "chapters": "0:00 Asystent AI do zarządzania firmą\n0:50 ChatGPT zapomina i halucynuje\n2:20 Dane w głowach, na kartkach, w mailach\n3:39 Mózg firmy: 100–150 GB danych\n4:34 „Chcę codzienny brief”\n5:23 Open Mercato jako fundament\n5:44 Dlaczego gotowce się nie wdrażają\n7:07 Excel kierownika → widoki w systemie\n9:24 Codzienny briefing przyjemnością\n10:19 Zamówienie z Telegrama w trzech kliknięciach\n11:17 Obsidian + Hermes + Codex\n15:27 Fundamenty i systemy zamknięte\n17:07 Najpierw konsultacje, ludzie, nawyk"
+  "chapters": "0:00 Asystent AI do zarządzania firmą\n0:50 ChatGPT zapomina i halucynuje\n2:18 Dane w głowach, na kartkach, w mailach\n3:34 Mózg firmy: 100–150 GB danych\n4:26 „Chcę codzienny brief”\n5:07 Open Mercato jako fundament\n5:28 Dlaczego gotowce się nie wdrażają\n6:50 Excel kierownika → widoki w systemie\n9:07 Codzienny briefing przyjemnością\n10:02 Zamówienie z Telegrama w trzech kliknięciach\n11:07 Obsidian + Hermes + Codex\n15:02 Fundamenty i systemy zamknięte\n16:41 Najpierw konsultacje, ludzie, nawyk"
  }
 }

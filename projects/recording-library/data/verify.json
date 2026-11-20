@@ -625,5 +625,33 @@
   "av_drift": 0.007,
   "new_repeats": [],
   "heard": "Cześć. Zrobiłem już 8 wdrożeń z Open Mercato i chciałbym Ci powiedzieć pokrótce,\njak to wyglądało w praktyce.\nMam na swoim koncie już firmy handlowe i produkcyjne, które korzystałem na co dzień z Open Mercato.\nGdzie one tego najwięcej widzą korzyści? Już Wam o tym mówię.\nPierwsza rzecz to jest tworzenie ofert.\nTo jest jeden z najczęściej powtarzających się problemów,\nczyli to, żeby tą ofertę z tysiąca indeksów często móc tworzyć szybkie oferty,\nczyli dostajemy maila i nie czeka klient na niego kilka dni, żeby w ogóle tą ofertę przygotować,\ndo tego też nie ma osoby, która tą ofertę z miłą chęcią przygotuje, bo wiemy jak to jest trudne w firmie.\nKażdy w tej firmie ma swoją wersję jakiegoś PDF-a, niektórzy z takim logiem,\nniektórzy z jakimś nowym logotypem, bo wiemy, że te szaty graficzne się różnią,\nkażdy ma jakiś system wyceny, wszystko jest bardzo rozmyte i rozbite\nna kilkanaście różnych sposobów pracy, nie ma jednego systemu,\na wprowadzenie tego systemu i ograniczenie go do bardzo wąskiej liczby reguł\ni ułożenie tego procesu powoduje, że zaczynamy pracować w jednolity\ni ten sam sposób, to powoduje przejrzystość danych,\nlepsze zrozumienie klienta, wiedzę o tym, dlaczego te oferty są odrzucane\nalbo dlaczego te oferty nie zwracają się.\nI to też wszystko powoduje, że oferty często, oferty, które są różne\ni różnie pisane, nie do końca wiemy, dlaczego na przykład tylko na 20 wystawionych ofert\n3 oferty stały się zamówieniem.\nDzięki zbieraniu tym danym powiedzmy po pół roku i mając te dane w systemie wiesz jaka jest konwersja Twoich handlowców na to, żeby te oferty jeszcze lepiej sprzedawały.\nObłożenie je na pewno w jakimś jednym procesie, layoutcie, sekcjach, które każda oferta ma mieć, w produktach, które są dostępne aktualnie w magazynie, powoduje, że możemy tą ofertę wygenerować dosłownie w ciągu chwili.\nA jak to działa w praktyce? U jednego producenta maszyn sportowych wdrożyliśmy asystenta AI, który po prostu na bieżąco czyta maile. Czyta maile, zbiera z nich informacje na temat wycen. Sprawdza, które dotyczą wycen i w locie przygotowuje Ci szkic takiej oferty.\nDostajesz powiadomienia na Telegrama przykładowo albo na inny komunikator i możesz je zaakceptować albo poprosić o drobną korektę zmianę. Wszystko w ciągu 5 minut. Wcześniej ta sama oferta zajmowała nawet kilkanaście godzin.\nCzemu kilkanaście godzin? No bo zanim się do niej zabraliśmy, zanim odkopaliśmy stare oferty, jak one wyglądały, która to była ta najlepsza oferta, powoduje, że zaczynamy tworzenie tej oferty prawdopodobnie w poniedziałek rano, a kończymy ją na przykład we wtorek pod koniec pracy, o ile wszystko dobrze pójdzie.\n"
+ },
+ "ins-intro": {
+  "verdict": "ok",
+  "coverage": 0.986,
+  "av_drift": 0.027,
+  "new_repeats": [],
+  "heard": "A ja nazywam się Mateusz Kozłowski i pomagam firmom budować systemy dla firm, które wyrosły z Excela.\nprodukcja opakowań, wyroby medyczne\nhandel B2B, sprzedaż\nto są tylko niektóre z obszarów\ni branż, których miałem okazję już dotknąć\nale to nie jest odcinek sponsorowany\npo prostu buduję na tym\ncodziennie i chcę Wam o tym\nopowiadać o swojej drodze\ni ścieżce, pomysłach, rozkminach\no tym, dlaczego to robię\ntak, a nie inaczej\n"
+ },
+ "ins-mid": {
+  "verdict": "ok",
+  "coverage": 0.968,
+  "av_drift": 0.007,
+  "new_repeats": [],
+  "heard": "poczekaj, zatrzymam Cię tu na chwilę.\nRobię konsultacje, na których przechodzimy przez Twój proces\ni wychodzisz z odpowiedzią, czy to w ogóle się opłaca,\nczy to jest dla Ciebie, bez zobowiązań, że cokolwiek budujemy.\nLink na dole masz w opisie, odezwij się do mnie na Whatsapp\nalbo na Linkedin, ewentualnie umów, spotkanie tutaj,\ngdzie będziesz, masz na stronie\nopcję umów, konsultacje.\n"
+ },
+ "ins-mid-long": {
+  "verdict": "ok",
+  "coverage": 0.947,
+  "av_drift": 0.013,
+  "new_repeats": [],
+  "heard": "poczekaj, zatrzymam Cię tu na chwilę.\nRobię konsultacje, na których przechodzimy przez Twój proces.\nNajczęściej przyjeżdżamy do Ciebie i przechodzimy ten proces na żywo,\nnie przez kamerkę, nie online.\nBierzemy przez swoją kartkę i przechodzimy cały proces od A do Z,\nżeby go genialnie poznać.\nTakie warsztaty mogą trwać 5-6 godzin, ale wychodzimy z tym\nz genialnym wkładem do tego właśnie, jak Open Mercato\nmoże przetworzyć to na specyfikację, a specyfikację na kod,\nktóry będzie dostosowany do Twojej firmy.\nBez zobowiązań, że cokolwiek budujemy.\nLink na dole masz w opisie. Odezwij się do mnie na WhatsApp\nalbo na LinkedIn. Ewentualnie umów, spotkanie tutaj,\ngdzie masz na stronie opcję umów, konsultacje.\n"
+ },
+ "ins-outro": {
+  "verdict": "ok",
+  "coverage": 1.0,
+  "av_drift": 0.0,
+  "new_repeats": [],
+  "heard": "Jeśli chcesz, żebym przeszedł z Tobą przez Twój proces biznesowy i problemy, jakie Ty się mierzysz,\nmasz link w opisie.\nA jeśli masz pytania do tego odcinka, zostaw je w komentarzu.\nOdpowiem na wszystkie, póki jest ich mało.\n"
  }
 }

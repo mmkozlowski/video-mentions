@@ -4,7 +4,7 @@
  "formats": [
   "feed"
  ],
- "episode_title": "Claude vs Open Mercato: dlaczego system z AI sypie się na produkcji",
+ "episode_title": "Szef programuje z AI. Czy to ma prawo zadziałać?",
  "cover": {
   "kicker": "Vibe coding vs framework",
   "text": "Zbudował system sam, z agentem AI. *Zapomniał o bazie danych."
@@ -27,7 +27,7 @@
   }
  },
  "topic": {
-  "kicker": "Claude vs Open Mercato",
+  "kicker": "Szef programuje z AI",
   "text": "System z AI, *który wytrzyma",
   "sub": "vibe coding kontra framework"
  },

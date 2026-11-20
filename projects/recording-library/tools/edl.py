@@ -204,7 +204,7 @@ EPISODES = [
                "(100–150 GB danych), Open Mercato na produkcji, brief w Telegramie, "
                "Obsidian + Hermes + Codex. Najdłuższy, do skrócenia w montażu."),
     dict(id="ep-open-mercato-offers", source="session", client="(wiele)",
-         title="8 wdrożeń Open Mercato — oferty",
+         title="Oferta w 5 minut zamiast dwóch dni",
          # 16.11 (Mateusz: „to nie jest o 8 wdrożeniach”): bez wstępu składanki „Cześć. Zrobiłem już 8 wdrożeń…
          # Już Wam o tym mówię. Pierwsza rzecz to jest” — start od „tworzenie ofert.” (cisza w sygnale 2581,50–2581,92,
          # sprawdzone Whisperem wycinka). Wstęp robi głos z dogrywek na planszy (ins-hello, assemble_episode.PLAN).
@@ -452,9 +452,11 @@ EPISODES += [
          # poprawki Mateusza 12.10: drugi dubel „bo dowolna zmiana” (161,5), czysta druga próba
          # „o cokolwiek go poprosisz” (226,4), trzecia próba „architektonicznych” (250,55), bez ciszy
          # przed „Open Mercato”, bez „Druga rzecz.” (wycieranie twarzy), „gliniane, | ale są to mocne”,
-         # bez ogona porzuconej próby przed „Pomogę zrozumieć”, zakończenie „do usłyszenia” z 697 s
+         # bez ogona porzuconej próby przed „Pomogę zrozumieć”, zakończenie „do usłyszenia” z 697 s;
+         # 22.10 (uwagi 3:18/3:19): po „rzecz,” od razu „prze…” falstartu (268,95), druga próba od dołka
+         # przed „przez” (270,57, nie w środku głoski), „odcinek.” z wybrzmieniem (272,95)
          ranges=[(27.5, 85.0), (89.8, 156.4, None, 156.48), (156.4, 211.6, 161.50, None), (212.7, 214.85, None, 215.15),
-                 (221.4, 249.5, 226.40, 249.08), (249.5, 264.0, 250.55, None), (267.5, 268.95, None, 268.97), (269.0, 272.6, 270.42, None), (279.3, 388.2, 279.62, None),
+                 (221.4, 249.5, 226.40, 249.08), (249.5, 264.0, 250.55, None), (267.5, 268.95, None, 268.95), (270.4, 272.95, 270.57, 272.95), (279.3, 388.2, 279.62, None),
                  (415.2, 442.6, None, 442.55), (450.4, 462.3), (464.0, 469.9), (502.4, 512.5),
                  (523.3, 528.9), (539.8, 574.5), (577.7, 592.6), (637.2, 673.3, None, 673.30), (677.5, 687.4, 677.58, None),
                  (697.0, 716.2)],
@@ -462,10 +464,10 @@ EPISODES += [
          notes="Kolega zrobił system z Codexem — dane w pamięci przeglądarki. Magiczne pierwsze sesje, "
                "paczki, które ze sobą nie gadają, AI przyznaje Ci rację, framework we frameworku, "
                "trzy uczciwe zastrzeżenia, puenta: AI obniżyło barierę budowania, nie projektowania."),
-    dict(id="ep-module-1", source="module-build", client="(kanał)", title="Jak składam moduł — cz. 1",
-         ranges=[(65.9, 92.0), (104.0, 108.2), (128.4, 161.5), (185.3, 226.3), (226.8, 250.0, None, 249.95), (253.1, 267.3, 253.48, None),
     # noc 04.11: druga część „…w głowie właściciela” kończy się w 253,4 — start od „bo” (253,48),
     # inaczej w gotowym pliku zostaje „właściciela. Właściciela.” (sprawdzone sklejką + transkrypcją)
+    dict(id="ep-module-1", source="module-build", client="(kanał)", title="Jak składam moduł — cz. 1",
+         ranges=[(65.9, 92.0), (104.0, 108.2), (128.4, 161.5), (185.3, 226.3), (226.8, 250.0, None, 249.95), (253.1, 267.3, 253.48, None),
                  (293.4, 304.3), (306.3, 360.9), (365.4, 380.3), (384.9, 404.8), (456.4, 468.4)],
          hook=4, delivery=3, brand="flowbiz",
          notes="Kartka papieru zamiast kodu, warsztat 6 h z ~70 pytaniami po rolach, droga zamówienia "

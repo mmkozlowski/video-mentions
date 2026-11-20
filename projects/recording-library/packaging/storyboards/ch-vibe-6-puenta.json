@@ -4,6 +4,7 @@
  "formats": [
   "reels"
  ],
+ "episode_title": "Szef programuje z AI. Czy to ma prawo zadziałać?",
  "hook": {
   "text": "Pisanie kodu: *tanie. Projektowanie: *wciąż nie.",
   "until": 6.5,
@@ -22,17 +23,12 @@
   }
  },
  "topic": {
-  "kicker": "Vibe coding vs framework",
+  "kicker": "Szef programuje z AI",
   "text": "System z AI, *który wytrzyma",
-  "sub": "Claude, Codex i Open Mercato"
+  "sub": "vibe coding kontra framework"
  },
  "cta": {
-  "chip": "Open Mercato · flowbiz.pl",
-  "reels": {
-   "kicker": "Chcesz pogadać o swoim systemie?",
-   "title": "Napisz *SYSTEM w komentarzu",
-   "sub": "Powiem Ci, od czego zacząć u Ciebie"
-  }
+  "chip": "Open Mercato · flowbiz.pl"
  },
  "events": [
   {

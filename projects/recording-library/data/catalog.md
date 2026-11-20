@@ -9,12 +9,12 @@ Ranking: `hook × 2 + delivery` (max 15). A ≥ 13, B ≥ 11. Oceny redakcyjne �
 | # | pkt | id | tytuł | marka | s | cta | sklejki | gdzie | hook (pierwsze słowa) |
 |---|---|---|---|---|---|---|---|---|---|
 | A | 15 | `ad-19-ra1` | Prezes na lotnisku | flowbiz | 34 | none | 2 | meta-ads, reels-organic | Prezes firmy siedzi na lotnisku i wie co się dzieje na produkcji z telefonu, |
-| A | 14 | `ad-28-w1` | Szefie, Twoi ludzie już używają AI | aislupsk | 32 | aislupsk | 5 | aislupsk-listopad, reels-organic | Szefie, Twoi ludzie już używają AI. Wiesz do czego? Wklejają maile klientów, umowy, cenniki |
+| A | 14 | `ad-28-w1` | Szefie, Twoi ludzie już używają AI | aislupsk | 30 | aislupsk | 5 | aislupsk-listopad, reels-organic | Szefie, Twoi ludzie już używają AI. Wiesz do czego? Wklejają maile klientów, umowy, cenniki |
 | A | 14 | `ad-35-w9` | Umowa w ChatGPT | aislupsk | 35 | aislupsk | 6 | aislupsk-listopad, reels-organic | Twój pracownik właśnie wkleił umowę klienta do chat GPT. Czy zdawałeś sobie o tym |
 | A | 14 | `ad-11-r1` | Zamówienie na 11 stron | flowbiz | 38 | none | 3 | meta-ads, reels-organic | 11 stron zamówienia w Excelu. |
 | A | 14 | `ad-25-e5` | 4 błędy przy wdrożeniu AI | flowbiz | 43 | comment | 9 | reels-organic | Wdrażasz AI w firmie i nie działa? Pewnie popełniasz jeden z tych czterech błędów. |
 | A | 14 | `ad-04-02-4` | AI skasuje mi pół bazy | flowbiz | 49 | youtube | 4 | reels-organic | A co, jak AI skasuje mi pół bazy? |
-| A | 14 | `ad-12-r2` | Zeszyt i emerytura | flowbiz | 51 | web | 2 | meta-ads, reels-organic | Co się stanie z Twoją produkcją, jak jedna osoba, która wie, jak to robić, |
+| A | 14 | `ad-12-r2` | Zeszyt i emerytura | flowbiz | 50 | web | 3 | meta-ads, reels-organic | Co się stanie z Twoją produkcją, jak jedna osoba, która wie, jak to robić, |
 | A | 13 | `ad-34-e4` | Gdzie AI ma sens — 3 na tak, 3 na nie | flowbiz | 31 | none | 5 | reels-organic | Gdzie AI w firmie ma sens, a gdzie to wyrzucone pieniądze? 3 na tak, |
 | A | 13 | `ad-31-l9` | ChatGPT dla pracowników | flowbiz | 35 | web | 6 | reels-organic | Kupiłeś chat GPT dla pracowników i nic się nie zmieniło? Bo dostęp do narzędzia |
 | A | 13 | `ad-33-g1` | Programista kontra ChatGPT | flowbiz | 36 | web | 6 | reels-organic | Programista mówi 3 miesiące, chat GPT mówi 3 dni. Kto kłamie? Nikt. Mówią o |
@@ -49,7 +49,7 @@ Ranking: `hook × 2 + delivery` (max 15). A ≥ 13, B ≥ 11. Oceny redakcyjne �
 
 | # | pkt | id | tytuł | s |
 |---|---|---|---|---|
-| A | 14 | `ad-28-w1` | Szefie, Twoi ludzie już używają AI | 32 |
+| A | 14 | `ad-28-w1` | Szefie, Twoi ludzie już używają AI | 30 |
 | A | 14 | `ad-35-w9` | Umowa w ChatGPT | 35 |
 | B | 12 | `ad-27-w11` | Pizza i networking | 28 |
 | B | 12 | `ad-36-w7` | Przynieś swój problem | 31 |
@@ -62,8 +62,11 @@ Ranking: `hook × 2 + delivery` (max 15). A ≥ 13, B ≥ 11. Oceny redakcyjne �
 
 | # | pkt | id | tytuł | odcinek | s | hook (pierwsze słowa) |
 |---|---|---|---|---|---|---|
+| A | 14 | `ch-doram-6-kody-od-generowania--15-minut` | Kody kreskowe (zajawka 8 wdrożeń: od „generowanie kodów”, koniec na „15 minut pracy”) | ep-doram | 28 | samych kodów kreskowych, no to tutaj |
+| A | 14 | `ch-doram-6-kody-od-generowania` | Kody kreskowe: z kilku dni do 15 minut (od „generowanie kodów”) | ep-doram | 28 | samych kodów kreskowych, no to tutaj |
 | A | 14 | `ch-module-9-wyjatki` | On zna wzorce, Ty znasz wyjątki | ep-module | 30 | I teraz uczciwie, gdzie to pasuje? Agent nie powie Ci, gdzie kończy się moduł. |
-| A | 14 | `ch-module-1-kartka` | Zanim napiszę linię kodu, biorę kartkę | ep-module | 32 | Zanim napiszę jedną linię kodu, biorę kartkę, taką zwykłą kartkę papieru, która często funkcjonuje |
+| A | 14 | `ch-module-1-kartka` | Zanim napiszę linię kodu, biorę kartkę | ep-module | 31 | napiszę jedną linię kodu, biorę kartkę, taką zwykłą kartkę papieru, która często funkcjonuje w |
+| A | 14 | `ch-doram-6-kody-15-minut--8w` | Kody kreskowe (do składanki, koniec na „15 minut pracy”) | ep-doram | 33 | Jeżeli chodzi o tą część taką jeszcze bardzo czasochłoną, czy generowanie samych kodów kreskowych, |
 | A | 14 | `ch-doram-6-kody-15-minut` | Kody kreskowe: z kilku dni do 15 minut | ep-doram | 33 | Jeżeli chodzi o tą część taką jeszcze bardzo czasochłoną, czy generowanie samych kodów kreskowych, |
 | A | 14 | `ch-vibe-6-puenta` | Bariera budowania spadła, projektowania nie | ep-vibecoding | 35 | AI obniżyło mocno barierę, jeżeli chodzi o wytwarzanie kodu. Bardzo mocno. ale nie obniżyło |
 | A | 14 | `ch-doram-6-kody-15-minut-full` | Kody kreskowe: z kilku dni do 15 minut (pełne zdanie) | ep-doram | 35 | Jeżeli chodzi o tą część taką jeszcze bardzo czasochłoną, czy generowanie samych kodów kreskowych, |
@@ -71,14 +74,17 @@ Ranking: `hook × 2 + delivery` (max 15). A ≥ 13, B ≥ 11. Oceny redakcyjne �
 | A | 14 | `ch-om-7-trzy-zarzuty` | Po co framework, skoro AI pisze kod? | ep-om-intro | 39 | Teraz trzy zarzuty, które często słyszę. Pierwsze, skoro AI umie budować software, to po |
 | A | 14 | `ch-vibe-1-baza-danych` | Wyczyści cache i system znika | ep-vibecoding | 39 | Kolega pokazał mi ostatnio system, który zrobił sam dla swojej firmy vibe kodując razem |
 | A | 14 | `ch-om-10-excel-dziala` | Excel działa. Po co mi Open Mercato? | ep-om-intro | 46 | Excel działa, no -cody, low -cody działają, Sasy działają, a i też pisze już |
-| A | 14 | `ch-om-8-komu-odradzam` | Komu odradzam Open Mercato | ep-om-intro | 48 | Więc uczciwie, komu to odradzam? Jeśli nie masz w firmie osoby technicznej, to nie |
+| A | 14 | `ch-om-8-komu-odradzam` | Komu odradzam Open Mercato | ep-om-intro | 46 | Więc uczciwie, komu to odradzam? Jeśli nie masz w firmie osoby technicznej, to nie |
 | A | 14 | `ch-offers-1-oferta-5-minut` | Oferta w 5 minut zamiast kilkunastu godzin | ep-open-mercato-offers | 59 | A jak to działa w praktyce? U jednego producenta maszyn sportowych wdrożyliśmy asystenta AI, |
 | A | 14 | `ch-doram-3-przeklejala-drukowala` | Przeklejała, drukowała, przeklejała… | ep-doram | 75 | Dużo też czasu w tym wszystkim zajmowało przygotowanie dla osoby, która była w biurze, |
 | A | 13 | `ch-vibe-3-przyznaje-racje` | AI zawsze przyzna Ci rację | ep-vibecoding | 38 | Problem jest gdzie indziej. AI przyznaje Ci rację |
 | A | 13 | `ch-om-2-excel-wersje` | Ten sam Excel w kilku wersjach | ep-om-intro | 65 | Zacznijmy od tego, co widzę u klientów. Wchodzę do firm i widzę Excela. Nie |
 | A | 13 | `ch-doram-5-70-94` | Pamięć dla AI: 70% → 94% w miesiąc | ep-doram | 77 | I w tym przypadku do tego klienta, już wracając znowu do brzegu, polegało to |
+| A | 13 | `ch-doram-5-70-94--8w` | Pamięć dla AI: 70% → 94% (do składanki, bez „już wracając znowu do brzegu”) | ep-doram | 79 | Klient dostawał od swoich kontrahentów niemieckich zamówienia w Excelu. |
+| A | 13 | `ch-doram-5-70-94--zajawka` | Pamięć dla AI: 70% → 94% (zajawka mebli 26.11) | ep-doram | 80 | Klient dostawał od swoich kontrahentów niemieckich zamówienia w Excelu. |
 | A | 13 | `ch-vacu-1-chatgpt-zapomina` | ChatGPT przestaje pamiętać Twoje wytyczne | ep-vacuactiv | 83 | Jaki był problem? Problem był taki, że właściciel tutaj korzystając z tych narzędzi najbardziej |
 | A | 13 | `ch-marpasz-2-100-godzin` | 100 godzin miesięcznie mniej | ep-marpasz | 93 | Teraz klient widzi, dostał system, w którym opiera się też o tutaj, o AI |
+| A | 13 | `ch-marpasz-2-100-godzin--8w` | 100 godzin miesięcznie mniej (do składanki: z kontekstem 4 worków, domknięte „na to.”) | ep-marpasz | 109 | Klient zamawiał cztery worki paszy po 25 kilo, więc nie mogliśmy wsadzić tego w |
 | B | 12 | `ch-module-7-slownik` | Zamówienie u handlowca ≠ zamówienie na produkcji | ep-module | 25 | I słownik pojęć to jest rzecz, która bardzo często wspomniana, a która potrafi wywrócić |
 | B | 12 | `ch-om-4-nie-zapier` | To nie jest Make, n8n ani Zapier | ep-om-intro | 25 | z czym Open Mercato jest mylone, bo to jest ważne to nie jest Make, |
 | B | 12 | `ch-marpasz-4-srubki` | AI to dokręcanie śrubek | ep-marpasz | 38 | I teraz pytanie, czy to działa idealnie? No nie, pamiętajmy, że systemy oparte o |
@@ -96,23 +102,26 @@ Ranking: `hook × 2 + delivery` (max 15). A ≥ 13, B ≥ 11. Oceny redakcyjne �
 | B | 11 | `ch-om-3-dwa-zdania` | Dwa zdania dla właściciela | ep-om-intro | 41 | Więc co mówię Takiemu właścicielowi Stojąc nad takim Excelem Nie mówię mu o frameworku |
 | B | 11 | `ch-module-6-40-minut` | Problem w liczbach: 40 minut dziennie | ep-module | 42 | Zasada podstawowa. Są trzy warstwy i najlepiej ich nie mieszać ze sobą. Problem biznesowy, |
 | B | 11 | `ch-module-3-wtorek-rano` | Co robisz rękami we wtorek rano? | ep-module | 53 | Bo jak zapytasz, jak wygląda proces, usłyszysz bardzo oficjalną wersję. A często jest tak, |
-| B | 11 | `ch-om-5-erp-lat-90` | ERP z lat 90. i jedno pole za duże pieniądze | ep-om-intro | 53 | systemy klasy ERP i CRM które powiem szczerze często wyglądają jak z lat 90 |
 | B | 11 | `ch-module-8-70-90` | Dobra specyfikacja = 70–90% trafności | ep-module | 53 | Kiedy specyfikacja jest gotowa i przeszła przez checklistę bezpieczeństwo, wydajność, ryzyka, przegląd tego, czego |
+| B | 11 | `ch-om-5-erp-lat-90` | ERP z lat 90. i jedno pole za duże pieniądze | ep-om-intro | 54 | drugą stroną były systemy klasy ERP i CRM które powiem szczerze często wyglądają jak |
 | B | 11 | `ch-om-11-spolecznosc` | WMS i kalendarz w dwa tygodnie | ep-om-intro | 54 | Społeczność rozwija Open Mercato na Open Mercato naprawdę szybko. Dwa tygodnie temu, kiedy nagrywałem |
+| B | 11 | `ch-rezon-2-ustka-rowy--hak` | Tysiące sztuk z napisem „Ustka” (hak z odcinka) | ep-rezon | 54 | nagle produkujemy tego dziesiątki tysięcy sztuk, a finalnie okazuje się, że one się nie |
 | B | 11 | `ch-doram-2-kilka-dni-10-minut` | Kilka dni klepania → 10 minut | ep-doram | 58 | Tutaj od klienta z Podsłupska, który miał ten problem, była dość duża frustracja i |
 | B | 11 | `ch-rezon-2-ustka-rowy` | Tysiące sztuk z napisem „Ustka” | ep-rezon | 60 | Ta braża też jest tutaj specyficzna, że dla każdej nadmorskiej miejscowości albo południowo tutaj, |
 | B | 11 | `ch-rezon-1-ksiegowosc-po-fakcie` | Dane z księgowości to dane po fakcie | ep-rezon | 68 | Kontrola była głównie od księgowych i od raportów miesięcznych, kwartalnych, rocznych do tego jak |
 | B | 11 | `ch-vacu-2-dane-w-glowach` | Dane w głowach, na kartkach, w mailach | ep-vacuactiv | 73 | No więc pierwsze tutaj hasło agent AI dla tego właściciela. Jednak problem się stał |
 | B | 11 | `ch-vacu-4-duze-systemy` | Dlaczego duże systemy się nie wdrażają | ep-vacuactiv | 85 | A to dlatego, że ja mam takie odczucie, że często kupując gotowca system dla |
 | B | 11 | `ch-vacu-6-brief-telegram` | Zamówienie z Telegrama w trzy kliknięcia | ep-vacuactiv | 110 | a jak to wpłynęło dalej na tego właściciela, który temu wszystkiemu chciał, żeby te |
+| B | 11 | `ch-vacu-5-kierownik-w-godzine` | Kierownik produkcji nauczył się w godzinę | ep-vacuactiv | 114 | My wychodzimy z innego założenia, czyli Excel miał pewien plan produkcji, nie był to |
 | B | 11 | `ch-marpasz-3-katalog-ai` | Katalog AI: z faktury do Allegro | ep-marpasz | 118 | to też jest katalog AI. Katalog AI, jak to wygląda? Wcześniej klient musiał dane |
-| B | 11 | `ch-vacu-5-kierownik-w-godzine` | Kierownik produkcji nauczył się w godzinę | ep-vacuactiv | 119 | My wychodzimy z innego założenia, czyli Excel miał pewien plan produkcji, nie był to |
+| B | 11 | `ch-marpasz-3-katalog-ai--8w` | Katalog AI (do składanki, od „Katalog AI, jak to wygląda?”) | ep-marpasz | 129 | Katalog AI, jak to wygląda? Wcześniej klient musiał dane z faktury przekopiować ręcznie do |
 | B | 11 | `ch-marpasz-3-katalog-ai-full` | Katalog AI: z faktury do Allegro (pełne zdanie) | ep-marpasz | 132 | to też jest katalog AI. Katalog AI, jak to wygląda? Wcześniej klient musiał dane |
 | B | 11 | `ch-marpasz-1-cztery-worki` | Cztery worki paszy = cztery etykiety | ep-marpasz | 143 | Jednym z nich jest firma handlowa, która handluje paszą dla zwierząt i miała dosyć |
 | C | 10 | `ch-vibe-4-framework` | Framework we frameworku | ep-vibecoding | 48 | Open Mercato to jest w pewnym uproszczeniu framework we frameworku. Podłączasz swojego cloud 'a |
 | C | 10 | `ch-doram-4-fundamenty` | Bez fundamentów AI nie wie, jak pracujesz | ep-doram | 49 | I teraz jak to uprościliśmy, tak? No dzięki całej tutaj mocy AI, jakie nam |
 | C | 9 | `ch-om-9-cztery-branze` | Cztery branże, jeden fundament | ep-om-intro | 34 | jeszcze jedno co zobaczyłem dopiero po czwartym wdrożeniu, karta techniczna u klienta, producenta opakowanie, |
-| C | 9 | `ch-rezon-3-panel-klienta` | Klient sam składa zamówienie | ep-rezon | 107 | Co tu jeszcze zmieniliśmy w sposobie pracy? Zmieniliśmy to, że klient przestaje zamawiać mailowo |
+| C | 9 | `ch-rezon-3-panel-klienta` | Klient sam składa zamówienie | ep-rezon | 102 | klient przestaje zamawiać mailowo przez jakieś formularze, które są bardzo nieczytelne, na jakichś karteczkach |
+| C | 9 | `ch-offers-0-z-wstepem-8-wdrozen` | Oferty — z wstępem składanki „8 wdrożeń” | ep-open-mercato-offers | 194 | Cześć. Zrobiłem już 8 wdrożeń z Open Mercato i chciałbym Ci powiedzieć pokrótce, jak |
 
 ## Pełne odcinki (YouTube 16:9)
 
@@ -120,12 +129,12 @@ Ranking: `hook × 2 + delivery` (max 15). A ≥ 13, B ≥ 11. Oceny redakcyjne �
 |---|---|---|---|---|
 | `ep-module-1` | (kanał) | Jak składam moduł — cz. 1 | 4.3 | Kartka papieru zamiast kodu, warsztat 6 h z ~70 pytaniami po rolach, droga zamówienia przez firmę, nagrana rozmowa z programistą → specyfikacja. |
 | `ep-vibecoding` | (kanał) | Vibe coding vs framework: dlaczego system z agentem sypie się na produkcji | 8.1 | Kolega zrobił system z Codexem — dane w pamięci przeglądarki. Magiczne pierwsze sesje, paczki, które ze sobą nie gadają, AI przyznaje Ci rację, framework we frameworku, trzy uczciwe zastrzeżenia, puenta: AI obniżyło barierę budowania, nie projektowania. |
-| `ep-open-mercato-offers` | (wiele) | 8 wdrożeń Open Mercato — oferty | 3.3 | Krótki odcinek: chaos w ofertach, konwersja handlowców, asystent czytający maile (producent sprzętu sportowego) — oferta w 5 min zamiast kilkunastu godzin. |
+| `ep-open-mercato-offers` | (wiele) | Oferta w 5 minut zamiast dwóch dni | 2.9 | Krótki odcinek: chaos w ofertach, konwersja handlowców, asystent czytający maile (producent sprzętu sportowego) — oferta w 5 min zamiast kilkunastu godzin. |
 | `ep-module-2` | (kanał) | Jak składam moduł — cz. 2 | 3.8 | Trzy warstwy specyfikacji (40 minut dziennie, 3 faktury), słownik pojęć, checklista, trafność 70–90%, granice modułu, wzorce vs wyjątki, powtarzalność, CTA w komentarzu. |
-| `ep-rezon` | Rezon | Pamiątki znad morza: system B2B | 6.9 | Firma z Kołobrzegu, proces na kartkach, integracja z PC Business, handlowiec z tabletem, produkcja na zamówienie, panel klienta na Open Mercato. |
+| `ep-rezon` | Rezon | Pamiątki znad morza: system B2B | 6.8 | Firma z Kołobrzegu, proces na kartkach, integracja z PC Business, handlowiec z tabletem, produkcja na zamówienie, panel klienta na Open Mercato. |
 | `ep-marpasz` | Marpasz | Pasza dla zwierząt: etykiety i katalog AI | 7.7 | Sklep internetowy ze Słupska. Paczki po 25 kg = 4 etykiety na zamówienie w Apilo, teraz jedno kliknięcie — ok. 100 h/mies. Katalog AI z faktur do Nexo i opisy na Allegro/Erli/sklep. „Dokręcanie śrubek”. |
-| `ep-doram` | Doram | Meble ogrodowe: zamówienia z Niemiec | 10.7 | Zamówienia od niemieckich kontrahentów w Excelu, dopasowanie AI 70% → 94% po miesiącu, kody kreskowe z kilku dni do 15 minut. Restart zdania w 92 s. |
-| `ep-vacuactiv` | Vacuactiv | Agent AI dla właściciela firmy | 17.7 | Sprzęt sportowy z okolic Słupska. ChatGPT gubi kontekst → mózg firmy (100–150 GB danych), Open Mercato na produkcji, brief w Telegramie, Obsidian + Hermes + Codex. Najdłuższy, do skrócenia w montażu. |
+| `ep-doram` | Doram | Meble ogrodowe: zamówienia z Niemiec | 10.5 | Zamówienia od niemieckich kontrahentów w Excelu, dopasowanie AI 70% → 94% po miesiącu, kody kreskowe z kilku dni do 15 minut. Restart zdania w 92 s. |
+| `ep-vacuactiv` | Vacuactiv | Agent AI dla właściciela firmy | 17.1 | Sprzęt sportowy z okolic Słupska. ChatGPT gubi kontekst → mózg firmy (100–150 GB danych), Open Mercato na produkcji, brief w Telegramie, Obsidian + Hermes + Codex. Najdłuższy, do skrócenia w montażu. |
 
 ## Uwagi do poszczególnych klipów
 
