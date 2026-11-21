@@ -1,0 +1,200 @@
+{
+  "A-contradiction": {
+    "title": "Kiedyś klocek był problemem",
+    "shots": [
+      {
+        "img": "a1-tower-collapsing",
+        "from": 0,
+        "to": 7.6
+      },
+      {
+        "img": "a2-foundation",
+        "from": 7.6,
+        "to": 13.2,
+        "flash": true
+      },
+      {
+        "img": "a3-tower-on-foundation",
+        "from": 13.2,
+        "to": 20.4
+      }
+    ],
+    "lines": [
+      {
+        "at": 0.3,
+        "out": 3.3,
+        "html": "Każdy nowy system<br>to <span class=hi>kolejny klocek</span>"
+      },
+      {
+        "at": 3.5,
+        "out": 5.6,
+        "html": "Żaden nie gada<br>z poprzednim"
+      },
+      {
+        "at": 5.8,
+        "out": 7.4,
+        "html": "I w końcu<br><span class=bad>to się wali</span>",
+        "shake": true
+      },
+      {
+        "at": 8.0,
+        "out": 10.4,
+        "eyebrow": "2027",
+        "html": "Składaj system<br><span class=hi>z klocków</span>"
+      },
+      {
+        "at": 10.6,
+        "out": 13.0,
+        "html": "Tylko na<br><span class=hi>fundamencie</span>",
+        "chip": "Open Mercato"
+      },
+      {
+        "at": 13.5,
+        "out": 16.2,
+        "html": "Każdy nowy klocek<br><span class=hi>gada z resztą</span>"
+      },
+      {
+        "at": 16.4,
+        "out": 20.2,
+        "eyebrow": "Szwalnia · wdrożenie flowbiz",
+        "html": "Oferta w <span class=hi>5–10 min</span>",
+        "sub": "zamiast <s>40 minut</s> — przygotowanie jednej oferty"
+      }
+    ],
+    "end": {
+      "from": 20.4,
+      "to": 23.4,
+      "cta": "Ile systemów masz dziś w firmie?"
+    }
+  },
+  "B-top-tools-explode": {
+    "title": "Topowe narzędzia i tak wybuchają",
+    "shots": [
+      {
+        "img": "b1-premium-stack",
+        "from": 0,
+        "to": 6.6
+      },
+      {
+        "img": "b2-explosion",
+        "from": 6.6,
+        "to": 11.2,
+        "flash": true
+      },
+      {
+        "img": "b3-reassembled",
+        "from": 11.2,
+        "to": 19.4
+      }
+    ],
+    "lines": [
+      {
+        "at": 0.3,
+        "out": 3.0,
+        "html": "Bierzesz <span class=hi>najlepsze</span><br>narzędzia na rynku"
+      },
+      {
+        "at": 3.2,
+        "out": 6.4,
+        "html": "Jedno. Drugie.<br>Kolejne"
+      },
+      {
+        "at": 6.8,
+        "out": 8.8,
+        "html": "Każde świetne"
+      },
+      {
+        "at": 9.0,
+        "out": 11.0,
+        "html": "Razem —<br><span class=bad>wybucha</span>",
+        "shake": true
+      },
+      {
+        "at": 11.5,
+        "out": 13.8,
+        "html": "To nie narzędzia<br>są złe"
+      },
+      {
+        "at": 14.0,
+        "out": 16.4,
+        "html": "Brakuje im<br><span class=hi>fundamentu</span>"
+      },
+      {
+        "at": 16.6,
+        "out": 19.2,
+        "html": "Jeden fundament.<br><span class=hi>Twoje moduły</span>",
+        "chip": "Open Mercato"
+      }
+    ],
+    "end": {
+      "from": 19.4,
+      "to": 22.4,
+      "cta": "Ile narzędzi spinasz dziś ręcznie?"
+    }
+  },
+  "C-honest-limit": {
+    "title": "Klocki mają granicę",
+    "shots": [
+      {
+        "img": "c1-simple-flow",
+        "from": 0,
+        "to": 6.6
+      },
+      {
+        "img": "c2-tangled-mess",
+        "from": 6.6,
+        "to": 12.2,
+        "flash": true
+      },
+      {
+        "img": "c3-code-floor",
+        "from": 12.2,
+        "to": 19.8
+      }
+    ],
+    "lines": [
+      {
+        "at": 0.3,
+        "out": 3.2,
+        "html": "Regułę w firmie<br><span class=hi>wyklikasz z klocków</span>"
+      },
+      {
+        "at": 3.4,
+        "out": 6.4,
+        "html": "I działa<br>od ręki"
+      },
+      {
+        "at": 6.8,
+        "out": 9.2,
+        "html": "Aż naklikasz<br><span class=bad>za dużo</span>",
+        "shake": true
+      },
+      {
+        "at": 9.4,
+        "out": 12.0,
+        "html": "Wtedy nikt<br>tego nie czyta"
+      },
+      {
+        "at": 12.4,
+        "out": 14.6,
+        "html": "Proste —<br><span class=hi>wyklikujesz</span>"
+      },
+      {
+        "at": 14.8,
+        "out": 17.0,
+        "html": "Złożone —<br><span class=hi>schodzi do kodu</span>"
+      },
+      {
+        "at": 17.2,
+        "out": 19.6,
+        "html": "Jeden system.<br>Ten sam fundament",
+        "chip": "Open Mercato"
+      }
+    ],
+    "end": {
+      "from": 19.8,
+      "to": 22.8,
+      "cta": "Gdzie u Ciebie kończą się klocki?"
+    }
+  }
+}

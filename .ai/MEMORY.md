@@ -71,3 +71,5 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 - [Cięcie wstawek po renderze, nie po surówce](memory/ciecie-wstawek-po-renderze-nie-po-surowce.md) — koniec zdania z transkrypcji gotowego pliku; czasy z surówki przesunięte o 0,5–1,5 s, „np.” to nie kropka
 - [Gwiazdka w storyboardzie](memory/storyboard-gwiazdka-wyroznia-slowo.md) — `*` wyróżnia od słowa; para `*…*` zostawia dosłowną gwiazdkę
 - [Wstawki „sam głos” — pułapki](memory/wstawki-sam-glos-pulapki.md) — tło pod b-rollem, panel w pionie, END nie przed ostatnim słowem; przegląd `review_episode.py`
+- [Stoper w pionie z alfą zasłania twarz](memory/stoper-pion-alfa-zaslania-twarz.md) — lewa tercja tylko w 16x9-alpha; w rolce stoper idzie jako pełny ekran MP4
+- [Grafiki GPT: bez tekstu, dopełnij górę](memory/grafiki-gpt-bez-tekstu-dopelnij-gore.md) — tekst w HTML; 2:3 → 9:16 przez pad, nie crop; to treść AI → znak + przełącznik
