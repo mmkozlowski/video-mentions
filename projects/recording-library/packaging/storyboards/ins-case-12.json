@@ -17,15 +17,15 @@
  "clip": "ins-case-12",
  "events": [
   {
-   "type": "beat",
-   "style": "slam",
+   "type": "mockup",
+   "name": "kinetic",
    "at": "na",
    "until": "+5",
    "lines": [
-    "NA KONIEC",
-    "jedna",
-    "UCZCIWA UWAGA"
-   ]
+    "Jedna *uczciwa",
+    "uwaga"
+   ],
+   "kicker": "Na koniec"
   }
  ],
  "music": "tlo2.mp3"

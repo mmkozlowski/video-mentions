@@ -17,14 +17,13 @@
  "clip": "ins-a4",
  "events": [
   {
-   "type": "beat",
-   "style": "slam",
+   "type": "mockup",
+   "name": "kinetic",
    "at": "I",
    "until": "+6",
    "lines": [
-    "NA KONIEC",
-    "jeszcze",
-    "JEDNA RZECZ"
+    "Na koniec",
+    "jeszcze *jedna rzecz"
    ]
   }
  ],

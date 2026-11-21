@@ -94,16 +94,15 @@
    "from": 0.5
   },
   {
-   "type": "beat",
-   "style": "slam",
+   "type": "mockup",
+   "name": "kinetic",
    "at": "rozproszone",
    "until": "+3.4",
-   "label": "Rozproszone dane",
    "lines": [
-    "KILKA EXCELI.",
-    "a",
-    "AI NIE PORADZI."
-   ]
+    "Kilka Exceli,",
+    "a AI *nie poradzi."
+   ],
+   "kicker": "Rozproszone dane"
   },
   {
    "type": "title",

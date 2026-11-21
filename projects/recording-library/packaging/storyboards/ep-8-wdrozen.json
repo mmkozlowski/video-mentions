@@ -220,16 +220,15 @@
    "floor": 276.453
   },
   {
-   "type": "beat",
-   "style": "slam",
+   "type": "mockup",
+   "name": "kinetic",
    "at": "żadnej magii",
    "until": "+3.4",
-   "label": "Kody kreskowe",
    "lines": [
-    "ŻADNEGO AI.",
-    "tylko",
-    "PROGRAM."
+    "Żadnego AI.",
+    "Tylko *program."
    ],
+   "kicker": "Kody kreskowe",
    "floor": 276.453
   },
   {
@@ -258,16 +257,15 @@
    "pip": false
   },
   {
-   "type": "beat",
-   "style": "slam",
+   "type": "mockup",
+   "name": "kinetic",
    "at": "kilo",
    "until": "+3.6",
-   "label": "Limit kuriera",
    "lines": [
-    "4 WORKI PO 25 KG",
-    "to",
-    "4 ETYKIETY."
-   ]
+    "4 worki po 25 kg",
+    "to *4 etykiety."
+   ],
+   "kicker": "Limit kuriera"
   },
   {
    "type": "title",
@@ -549,16 +547,15 @@
    "pip": false
   },
   {
-   "type": "beat",
-   "style": "slam",
+   "type": "mockup",
+   "name": "kinetic",
    "at": "idealnie",
    "until": "+3.6",
-   "label": "Czy działa idealnie?",
    "lines": [
-    "NIE OD RAZU.",
-    "to",
-    "DOKRĘCANIE ŚRUBEK."
-   ]
+    "Nie od razu.",
+    "To *dokręcanie śrubek."
+   ],
+   "kicker": "Czy działa idealnie?"
   },
   {
    "type": "title",

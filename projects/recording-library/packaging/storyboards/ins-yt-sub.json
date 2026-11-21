@@ -17,40 +17,13 @@
  "clip": "ins-yt-sub",
  "events": [
   {
-   "type": "beat",
-   "style": "burst",
+   "type": "mockup",
+   "name": "subscribe",
    "at": "jeśli",
-   "until": "nowy",
-   "num": "SUBSKRYBUJ",
-   "label": "Takie konkrety?",
-   "bottom": "jeden temat, jedno wdrożenie"
-  },
-  {
-   "type": "mockup",
-   "name": "kinetic",
-   "at": "nowy",
-   "until": "jeśli ten",
-   "lines": [
-    "Nowy odcinek",
-    "co *czwartek"
-   ],
-   "kicker": "Na kanale flowbiz"
-  },
-  {
-   "type": "mockup",
-   "name": "kinetic",
-   "at": "jeśli ten",
    "until": "+12",
-   "lines": [
-    "Druga strona",
-    "*tego problemu"
-   ],
-   "kicker": "Obejrzyj jeszcze",
-   "sync": {
-    "Druga": "drugą",
-    "strona": "stronę"
-   },
-   "layout": "endscreen"
+   "kicker": "Takie konkrety?",
+   "sub": "Nowy odcinek co czwartek",
+   "click": "zasubskrybuj"
   }
  ],
  "music": "tlo2.mp3"

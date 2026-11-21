@@ -1793,9 +1793,69 @@ MOCKUP_STYLE += """
 .kn .slate-body{{will-change:transform}}
 .kn-head{{font-weight:800;line-height:1.06;letter-spacing:-.025em;display:flex;flex-direction:column;gap:.08em}}
 .kn-w{{display:inline-block;position:relative;opacity:0.16;filter:blur(22px);will-change:filter,transform}}
-.kn-w.acc{{color:{accent}}}
-.kn-u{{position:absolute;left:0;right:0;bottom:-.06em;height:.09em;border-radius:.05em;background:{accent};transform-origin:0 50%;transform:scaleX(0)}}
+.kn-w.acc{{color:{screen_accent};text-shadow:0 0 28px {screen_glow}}}
+.kn-u{{position:absolute;left:0;right:0;bottom:-.06em;height:.09em;border-radius:.05em;background:{screen_accent};box-shadow:0 0 18px {screen_glow};transform-origin:0 50%;transform:scaleX(0)}}
 .kn-sub{{opacity:0}}
 .kn-es{{justify-content:flex-start}} .kn-es .slate-body{{width:820px;margin-left:140px;align-items:flex-start;text-align:left}}
 .fmt-v .kn-es .slate-body{{width:900px;margin-left:90px}}
+"""
+
+
+HAND_SVG = ('<svg viewBox="0 0 24 24"><path fill="#FFFFFF" stroke="#0E1F1A" stroke-width=".8" d="M9 11.24V7.5C9 6.12 10.12 5 11.5 5S14 6.12 14 7.5v3.74c1.21-.81 2-2.18 2-3.74C16 5.01 13.99 3 11.5 3S7 5.01 7 7.5c0 1.56.79 2.93 2 3.74zm9.84 4.63l-4.54-2.26c-.17-.07-.35-.11-.54-.11H13v-6c0-.83-.67-1.5-1.5-1.5S10 6.67 10 7.5v10.74l-3.43-.72c-.08-.01-.15-.03-.24-.03-.31 0-.59.13-.79.33l-.79.8 4.94 4.94c.27.27.65.44 1.06.44h6.79c.75 0 1.33-.55 1.44-1.28l.75-5.27c.01-.07.02-.14.02-.2 0-.62-.38-1.16-.91-1.38z"/></svg>')
+BELL_SVG = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'
+            '<path d="M10.3 21a2 2 0 0 0 3.4 0"/><path d="M3.3 15.3A1 1 0 0 0 4 17h16a1 1 0 0 0 .7-1.7C19.4 14 18 12.5 18 8A6 6 0 0 0 6 8c0 4.5-1.4 6-2.7 7.3"/></svg>')
+
+
+def subscribe(comp, ev, start, end):
+    """21.11 (MK: „prosta wstawka »zasubskrybuj«, palec i logo YouTube'a, zamiast długiego tekstu”):
+    logo YouTube + kanał + czerwony przycisk; dłoń wjeżdża i klika na słowie `click` (domyślnie „zasubskrybuj”),
+    przycisk przechodzi w „Subskrybujesz” z dzwonkiem."""
+    from package import logo, norm
+    key = norm(ev.get("click", "zasubskrybuj"))
+    spoken = [(norm(w["word"]), w["start"] / comp.tempo) for w in comp.words if start <= w["start"] / comp.tempo < end]
+    t_click = next((t for w, t in spoken if w.startswith(key[:6])), start + min(2.2, (end - start) * 0.45))
+    kicker = f'<div class="kicker sb-kicker">{esc(ev["kicker"])}</div>' if ev.get("kicker") else ""
+    sub = f'<div class="sub sb-sub">{esc(ev["sub"])}</div>' if ev.get("sub") else ""
+    big = 230 if not comp.vertical else 260
+    inner = (f'{kicker}<div class="sb-logo">{logo("youtube", big, "#FF0000")}</div>'
+             f'<div class="sb-chan"><span class="sb-av">fb</span><span><b>{esc(ev.get("channel", "flowbiz · AI w praktyce"))}</b>'
+             f'<small>{esc(ev.get("channel_sub", "Mateusz Kozłowski"))}</small></span></div>'
+             f'<div class="sb-btn"><span class="sb-off">Subskrybuj</span><span class="sb-on">{BELL_SVG}Subskrybujesz</span>'
+             f'<i class="sb-ripple"></i><span class="sb-hand">{HAND_SVG}</span></div>{sub}')
+    sid = comp.slate(start, end, inner, pip=False, cls="sb")
+    comp.sfx_cues.append((round(t_click, 3), "click", ""))
+    q = comp.q
+    js = comp.js.append
+    js(f'tl.fromTo("#{sid} .slate-body",{{scale:0.98}},{{scale:1.03,duration:{max(0.5, end - start):.3f},ease:"none"}},{q(start)});')
+    if kicker:
+        js(f'tl.fromTo("#{sid} .sb-kicker",{{opacity:0,x:-60}},{{opacity:1,x:0,duration:0.45,ease:"power3.out"}},{q(start + 0.05)});')
+    js(f'tl.fromTo("#{sid} .sb-logo",{{opacity:0,scale:0.55,filter:"blur(16px)"}},{{opacity:1,scale:1,filter:"blur(0px)",duration:0.55,ease:"back.out(1.8)"}},{q(start + 0.1)});')
+    js(f'tl.fromTo("#{sid} .sb-chan",{{opacity:0,y:24}},{{opacity:1,y:0,duration:0.4,ease:"power3.out"}},{q(start + 0.35)});')
+    js(f'tl.fromTo("#{sid} .sb-btn",{{opacity:0,y:30,scale:0.9}},{{opacity:1,y:0,scale:1,duration:0.45,ease:"back.out(1.6)"}},{q(start + 0.5)});')
+    js(f'tl.fromTo("#{sid} .sb-hand",{{opacity:0,x:380,y:260,rotation:-14}},{{opacity:1,x:0,y:0,rotation:0,duration:0.7,ease:"power3.out"}},{q(max(start + 0.6, t_click - 0.75))});')
+    js(f'tl.to("#{sid} .sb-hand",{{scale:0.82,duration:0.09,yoyo:true,repeat:1,ease:"power1.inOut"}},{q(t_click)});')
+    js(f'tl.to("#{sid} .sb-btn",{{scale:0.94,duration:0.09,yoyo:true,repeat:1}},{q(t_click)});')
+    js(f'tl.fromTo("#{sid} .sb-ripple",{{opacity:0.55,scale:0.2}},{{opacity:0,scale:2.4,duration:0.6,ease:"power2.out",immediateRender:false}},{q(t_click + 0.05)});')
+    js(f'tl.set("#{sid} .sb-btn",{{className:"sb-btn is-on"}},{q(t_click + 0.08)});')
+    js(f'tl.fromTo("#{sid} .sb-on svg",{{rotation:-25}},{{rotation:0,duration:0.5,ease:"elastic.out(1,0.35)"}},{q(t_click + 0.1)});')
+    js(f'tl.to("#{sid} .sb-hand",{{opacity:0,x:120,y:120,duration:0.5,ease:"power2.in"}},{q(t_click + 0.7)});')
+    if sub:
+        js(f'tl.fromTo("#{sid} .sb-sub",{{opacity:0,y:18,filter:"blur(10px)"}},{{opacity:1,y:0,filter:"blur(0px)",duration:0.4}},{q(t_click + 0.5)});')
+
+
+MOCKUPS["subscribe"] = subscribe
+MOCKUP_STYLE += """
+.sb .slate-body{{align-items:center;justify-content:center;text-align:center;gap:28px;height:100%}}
+.sb-logo{{line-height:0;filter:drop-shadow(0 0 60px rgba(255,0,0,.4))}}
+.sb-chan{{display:flex;align-items:center;gap:24px;font-size:52px;color:#FFFFFF;text-align:left}}
+.sb-chan small{{display:block;font-size:34px;color:#A7B8B1;font-weight:500}}
+.sb-av{{width:96px;height:96px;border-radius:50%;background:{screen_accent};color:#0E1F1A;font-weight:800;font-size:40px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 30px {screen_glow}}}
+.sb-btn{{position:relative;display:inline-flex;align-items:center;justify-content:center;min-width:600px;height:150px;padding:0 70px;border-radius:75px;background:#FF0000;color:#FFFFFF;font-size:64px;font-weight:800;box-shadow:0 22px 60px rgba(255,0,0,.4)}}
+.sb-btn.is-on{{background:#272727;box-shadow:0 22px 60px rgba(0,0,0,.45)}}
+.sb-on{{display:none;align-items:center;gap:20px}} .sb-on svg{{width:62px;height:62px}}
+.sb-btn.is-on .sb-off{{display:none}} .sb-btn.is-on .sb-on{{display:inline-flex}}
+.sb-ripple{{position:absolute;left:50%;top:50%;width:220px;height:220px;margin:-110px 0 0 -110px;border-radius:50%;background:#FFFFFF;opacity:0;pointer-events:none}}
+.sb-hand{{position:absolute;right:-60px;bottom:-150px;width:210px;height:210px;opacity:0;filter:drop-shadow(0 12px 22px rgba(0,0,0,.55))}}
+.sb-hand svg{{width:100%;height:100%}}
+.sb-sub{{opacity:0;font-size:44px}}
 """

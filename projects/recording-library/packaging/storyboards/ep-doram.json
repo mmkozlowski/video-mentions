@@ -242,16 +242,15 @@
    "text": "Bez fundamentów AI nie wie, jak firma pracuje"
   },
   {
-   "type": "beat",
-   "style": "slam",
+   "type": "mockup",
+   "name": "kinetic",
    "at": "finałem",
    "until": "+3.6",
-   "label": "Finał",
    "lines": [
-    "JEDNO KLIKNIĘCIE",
-    "albo",
-    "DWA."
-   ]
+    "Jedno kliknięcie",
+    "albo *dwa."
+   ],
+   "kicker": "Finał"
   },
   {
    "type": "title",
@@ -390,16 +389,15 @@
    "text": "Zostają marginalne przypadki"
   },
   {
-   "type": "beat",
-   "style": "slam",
+   "type": "mockup",
+   "name": "kinetic",
    "at": "żadnej magii",
    "until": "+3.4",
-   "label": "Kody kreskowe",
    "lines": [
-    "ŻADNEGO AI.",
-    "tylko",
-    "PROGRAM."
-   ]
+    "Żadnego AI.",
+    "Tylko *program."
+   ],
+   "kicker": "Kody kreskowe"
   },
   {
    "type": "mockup",

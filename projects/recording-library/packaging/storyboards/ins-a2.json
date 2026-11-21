@@ -17,15 +17,15 @@
  "clip": "ins-a2",
  "events": [
   {
-   "type": "beat",
-   "style": "slam",
+   "type": "mockup",
+   "name": "kinetic",
    "at": "dobra,",
    "until": "+5",
    "lines": [
-    "WRACAMY",
-    "do",
-    "TEMATU"
-   ]
+    "Wracamy",
+    "do *tematu"
+   ],
+   "kicker": "Dobra"
   }
  ],
  "music": "tlo2.mp3"

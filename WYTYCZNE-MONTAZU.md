@@ -75,6 +75,10 @@ mu zabrano („mylący przeskok”).
   „Case study · branża” **w jednej linii**, nagłówek z liczbą wyróżnioną miętą i pomarańczowym
   podkreśleniem, jedno zdanie dopowiedzenia. Plakat jest pełny już w 1. klatce — ona jest okładką
   rolki. Nic pełnoekranowego (przebitka, plansza) nie wchodzi, dopóki plakat stoi.
+- **Hak rolki nazywa odbiorcę i jego ból (✅ 21.11).** „Zobacz, jak to wyglądało przed, a jak po” jest
+  słabe — „nie wiadomo, o czym mówię i do kogo”. Dobry hak w 2 s mówi, *kto* ma oglądać i *co go boli*:
+  „Przepisujesz zamówienia z Excela od klientów?”, „Stop. Ile godzin tygodniowo tracisz na ręczną robotę?”.
+  Liczba tylko z tego, co pada w materiale.
 
 ## 5. Zakończenie
 
@@ -82,10 +86,15 @@ mu zabrano („mylący przeskok”).
   w nagraniu go brakuje, bierzemy pożegnanie z innego nagrania, **w którym autor jest
   tak samo ubrany**.
 - Rolka kończy się dużym logo i **jednym wezwaniem: bezpłatna konsultacja online** (✅ 13.10) —
-  „Pokażę, jak to wygląda u Ciebie”, ✓ 30 minut ✓ bezpłatnie ✓ jeden proces, przycisk flowbiz.pl,
-  telefon i wiersz „Całe case study na kanale YouTube”. **Nie** „Napisz SŁOWO w komentarzu”:
+  „Pokażę, jak to wygląda u Ciebie”, ✓ 30 minut ✓ bezpłatnie ✓ jeden proces, przycisk flowbiz.pl
+  i wiersz „Całe case study na kanale YouTube”. **Bez numeru telefonu** (✅ 21.11) — nigdzie na planszach,
+  zostaje flowbiz.pl. **Nie** „Napisz SŁOWO w komentarzu”:
   słowo bez automatu, który odsyła materiał, to obietnica bez pokrycia (było 30 różnych słów).
 - Zakończenie mówi jedną rzecz do zrobienia — nie trzy.
+- **Zakończenie odcinka krótkie (✅ 21.11, „końcówka jest zbyt długa”):** zaproszenie na konsultację →
+  **plansza „Subskrybuj”** (logo YouTube, kanał, czerwony przycisk, dłoń klika na słowie „zasubskrybuj”,
+  ~8 s) → „do zobaczenia” → plansza końcowa. Bez długich tekstów na planszach zamknięcia. Okno ekranu
+  końcowego YouTube (5–20 s) mieści się w subskrypcji + pożegnaniu.
 
 ## 6. Formaty
 
@@ -127,6 +136,16 @@ Wszystkie układy z klatkami i podpowiedzią, kiedy którego użyć: [`KATALOG-U
   materiał z polskimi, europejskimi małymi firmami. Bez azjatyckich hal i postaci.
 - Nazwy narzędzi i firm — z oryginalnymi logo, poprawnie zapisane (Claude, Codex,
   Open Mercato, SaaS).
+- **Plansza tekstowa = dwie zrównoważone linie (✅ 21.11).** Nie trzy linie z jednym krótkim słowem
+  w środku („WRACAMY / do / TEMATU”, „ILE TO / trwało / U CIEBIE?”) — „mało ładne”. Zamiast tego
+  plansza kinetyczna: „Wracamy / do *tematu*”, słowa wyostrzają się w rytm mowy, jedno słowo w akcencie.
+  Liczby → uderzenie z liczbą (burst), zaprzeczenie → przekreślenie (strike).
+- **Zieleń akcentu (✅ 21.11): jaskrawa zieleń ze strony flowbiz.pl z poświatą** — na każdym ciemnym tle
+  (plansze, napisy, podkreślenia). Ciemna, leśna zieleń tylko na białych oknach systemu (makiety), gdzie
+  jasna byłaby nieczytelna. Wartości: brandbook w repo marki; w pipeline `PALETTES["F"]["accent"]` +
+  `accent_glow`.
+- **Systemy i moduły pokazujemy tak jak na stronie** — klocki modułów (panel B2B, produkcja, wyceny,
+  magazyn, zgodność, katalog, marża) i okno systemu z kursorem. Przy przedstawieniu się i przy Open Mercato.
 
 ## 8. Napisy
 
@@ -156,6 +175,17 @@ Wszystkie układy z klatkami i podpowiedzią, kiedy którego użyć: [`KATALOG-U
   wskazania wartości — wzięta rekomendacja; do korekty po obejrzeniu.
 - Prośby o głośność w procentach traktujemy jako kierunek: „trochę” ≈ 2–3 dB,
   „wyraźnie” ≈ 4–6 dB. Zmiana poniżej 1 dB jest niesłyszalna.
+- **Dogrywki głosu (✅ 20–21.11):** ten sam mikrofon co w odcinkach, **na kardioidę**, wejście w QuickTime
+  wybrane ręcznie, mówimy do mikrofonu, nie do ekranu. Przed sesją 2 kwestie testowe i pomiar pogłosu
+  (wybrzmienie po frazie ~60 ms jak w odcinkach; 130 ms = „dziwny pogłos”, do powtórki).
+- **Muzyka ciągła (✅ 21.11, „musi być cały czas jak podkład”):** w rolce i shorcie jeden podkład od
+  pierwszej do ostatniej sekundy — także pod hakiem i zakończeniem z dogrywki; nie urywa się na sklejkach.
+- **Muzyka marki (✅ 21.11, ElevenLabs, płatny plan):** start odcinka pod „Cześć, tu Mateusz” — jingiel;
+  przedstawienie się — krótki jingiel; plansze z głosem — tło deep focus; treść z kamery — dotychczasowy
+  podkład. Pliki w `projects/recording-library/assets/music/`.
+- **Efekty dźwiękowe (✅ 21.11):** jeden efekt na wejście planszy — uderzenie pod liczbę, whoosh pod napis
+  i przebitkę, glitch pod przekreślenie, pop pod listę, powiadomienie pod czat, klik pod kliknięcie.
+  Najwyżej jeden na 0,8 s, dyskretnie pod głosem; narastanie + uderzenie najwyżej 2–3 razy na odcinek.
 
 ## 10. Oznaczenia
 
@@ -283,6 +313,15 @@ na czas sklejki.
 - `history.py <film> "zmiana" --by Mateusz|kontrola|Claude` przed każdym renderem.
 
 ## Postprodukcja
+
+- **Głośność dogrywek:** nie `loudnorm` — kompresja (ratio 3) + stałe wzmocnienie do −16 LUFS albo −1,5 dBTP.
+  `loudnorm linear=true` przy cichym nagraniu z wysokimi szczytami po cichu przechodzi w tryb dynamiczny
+  z ogranicznikiem = trzask (`.ai/memory/loudnorm-po-cichu-dynamiczny.md`).
+- **Shorty:** `assemble_short` skleja surowe `render.mp4` (sam głos), podkład i efekty kładzie raz na całość
+  (`.ai/memory/muzyka-ciagla-w-sklejce.md`).
+- **Efekty:** `package.sfx_plan` (typ planszy → plik w `assets/sfx/`, szczyt −12…−22 dBFS w surowym miksie),
+  momenty z `Composition.build()` → `sfx.json` obok renderu; działa też przy `--finalize-only`.
+- `ffmpeg` w pętli `while read` zjada stdin — zawsze `-nostdin`.
 
 - obraz (✅ 12.10): `eq=contrast=1.10:saturation=1.18:brightness=0.01,unsharp=5:5:0.3` — `cut.py` `COLOR_GRADE`,
   na materiale z kamery przed grafikami; wchodzi przy ponownym cięciu (`cut.py --force`)

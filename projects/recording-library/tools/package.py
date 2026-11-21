@@ -78,7 +78,7 @@ PALETTES = {
     # Reklamy FlowBiz („forest”, flowbiz-ads-studio/tools/templates): prawie czarne zielone tło z siatką,
     # mięta jako akcent i przycisk z ciemnym tekstem, nadtytuły Space Mono w bursztynie, liczba na
     # białej karcie w ciemnej zieleni, logo w wersji forest. 13.10 — próba po odrzuceniu B.
-    "F": dict(name="reklamy FlowBiz (forest)", bg="#071B15", panel="#09211A", raised="#0E2A22",
+    "F": dict(name="reklamy FlowBiz (forest)", accent_glow="rgba(47,211,160,.35)", bg="#071B15", panel="#09211A", raised="#0E2A22",
               line="#1F4A3E", text="#FFFFFF", muted="#A7B8B1", accent="#2FD3A0",
               accent2="#F4A72A", danger="#FFFFFF", on_accent="#0E1F1A",   # 13.10: pomarańczowe przekreślenie „nie pasuje”
               font="Plus Jakarta Sans", grid="rgba(47,211,160,0.06)", tag="#F4A72A", tag_text="#0E1F1A",
@@ -986,7 +986,7 @@ class Composition:
                     + self.end_title(lines.get("title", "Przyjadę do Twojej firmy")) +
                     f'<div class="end-sub">{esc(lines.get("sub", "Słupsk · Pomorze · Zachodniopomorskie"))}</div>'
                     f'<div class="end-btn">{esc(lines.get("button", self.brand["web"]))}</div>'
-                    f'<div class="end-phone">tel. {esc(self.brand["phone"])}</div>')
+                    + (f'<div class="end-phone">tel. {esc(self.brand["phone"])}</div>' if SHOW_PHONE else ""))
         else:
             lines = cta.get("reels", {})
             if not lines or "komentarz" in (lines.get("title", "") + lines.get("kicker", "")).lower():
@@ -995,7 +995,7 @@ class Composition:
                         + ('<div class="end-checks">' + "".join(f'<span><b>✓</b>{esc(c)}</span>' for c in lines.get("checks", [])) + '</div>'
                            if lines.get("checks") else "")
                         + f'<div class="end-btn">{esc(self.brand["web"])}</div>'
-                        f'<div class="end-phone">tel. {esc(self.brand["phone"])}</div>'
+                        + (f'<div class="end-phone">tel. {esc(self.brand["phone"])}</div>' if SHOW_PHONE else "")
                         + (f'<div class="end-yt end-yt-small">{logo("youtube", 64, "#FF0000")}<span>{esc(lines["youtube"])}</span></div>'
                            if lines.get("youtube") else ""))
             else:
@@ -1177,7 +1177,7 @@ class Composition:
         from mockups import MOCKUP_STYLE
         css = (BRAND / "fonts" / "fonts.css").read_text() + logos_css() + STYLE.format(
             W=g["w"], H=g["h"], FH=g["face_h"], SW=900 if self.vertical else 1500, EL=640 if self.vertical else 1000, ST=282 if self.vertical else 330, SF=110 if self.vertical else 120, LBL=404 if self.vertical else 60, PH=g["h"] - g["face_h"], CHIP=g["face_h"] - 250, CUT=760 if self.vertical else 900, **p,
-            V="1" if self.vertical else "0") + MOCKUP_STYLE.format(**self.mock_pal)
+            V="1" if self.vertical else "0") + MOCKUP_STYLE.format(**self.mock_pal, screen_accent=self.pal["accent"], screen_glow=self.pal.get("accent_glow", "rgba(47,211,160,.35)"))
         cls = ("fmt-v" if self.vertical else "fmt-h") + f" fmt-{self.fmt} pal-{self.palette_key}"
         if self.geo["h"] == 1350:
             cls += " fmt-45"   # wspólny układ niskiego pionu 4:5 (feed, ad45)
@@ -1508,6 +1508,7 @@ def mix_music(raw, music, out_wav):
     return out_wav
 
 
+SHOW_PHONE = False   # 21.11 MK: numeru telefonu nie podajemy na planszach (zostaje flowbiz.pl)
 SFX_DIR = PROJECT / "assets" / "sfx"
 # 21.11 (MK: „efekty, które zwrócą uwagę”; ElevenLabs Sound Effects, płatny plan): jeden efekt na wejście planszy.
 # Szczyt efektu w dBFS w surowym miksie (głos ~−2…−6 dBFS) — dyskretnie, efekt podbija ruch, nie zagłusza mowy.
@@ -1516,7 +1517,8 @@ SFX_FOR = {("beat", "burst"): ("uderzenie-4.mp3", -14), ("beat", "slam"): ("puen
            ("chat", ""): ("powiadomienie-3.mp3", -16), ("list", ""): ("pop-1.mp3", -20),
            ("title", ""): ("pop-1.mp3", -20), ("quote", ""): ("pop-1.mp3", -20), ("logos", ""): ("pop-1.mp3", -20),
            ("mockup", "kinetic"): ("whoosh-2.mp3", -22), ("mockup", ""): ("przycisk-2.mp3", -20),
-           ("broll", ""): ("whoosh-2.mp3", -20), ("slate", ""): ("whoosh-2.mp3", -20), ("compare", ""): ("whoosh-2.mp3", -20)}
+           ("broll", ""): ("whoosh-2.mp3", -20), ("slate", ""): ("whoosh-2.mp3", -20), ("compare", ""): ("whoosh-2.mp3", -20),
+           ("mockup", "subscribe"): ("pop-1.mp3", -20), ("click", ""): ("klik-2.mp3", -12)}
 SFX_GAP = 0.8   # maks. jeden efekt na 0,8 s — inaczej „karabin”
 
 

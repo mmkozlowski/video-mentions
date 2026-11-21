@@ -19,16 +19,15 @@
  ],
  "events": [
   {
-   "type": "beat",
-   "style": "slam",
+   "type": "mockup",
+   "name": "kinetic",
    "at": "Napisz",
    "until": "+6",
-   "label": "Napisz w komentarzu",
    "lines": [
-    "ILE TO",
-    "trwało",
-    "U CIEBIE?"
-   ]
+    "Ile to trwało",
+    "u *Ciebie?"
+   ],
+   "kicker": "Napisz w komentarzu"
   }
  ]
 }

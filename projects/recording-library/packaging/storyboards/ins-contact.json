@@ -39,14 +39,14 @@
    "until": "+6",
    "lines": [
     "*flowbiz.pl",
-    "536 507 701"
+    "link w opisie"
    ],
    "kicker": "Kontakt w opisie",
    "sync": {
     "flowbiz.pl": "kontakt",
-    "536": "jest",
-    "507": "w",
-    "701": "opisie"
+    "link": "w",
+    "w": "w",
+    "opisie": "opisie"
    }
   }
  ],

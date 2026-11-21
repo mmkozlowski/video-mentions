@@ -12,14 +12,13 @@
  "clip": "ins-mid",
  "events": [
   {
-   "type": "beat",
-   "style": "slam",
+   "type": "mockup",
+   "name": "kinetic",
    "at": "Poczekaj",
    "until": "Robię",
    "lines": [
-    "POCZEKAJ",
-    "zatrzymam",
-    "CIĘ"
+    "Poczekaj.",
+    "Zatrzymam *Cię"
    ]
   },
   {
@@ -60,7 +59,7 @@
     "Umów",
     "*konsultację"
    ],
-   "kicker": "flowbiz.pl · 536 507 701",
+   "kicker": "flowbiz.pl",
    "sync": {
     "Umów": "link",
     "konsultację": "opisie,"
