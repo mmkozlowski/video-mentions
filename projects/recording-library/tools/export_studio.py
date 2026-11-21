@@ -111,6 +111,11 @@ def video_entry(row, history, versions):
 
 
 def main():
+    # 21.11: spis filmów z karty ocen — liczona na nowo przy każdym eksporcie (0,1 s), inaczej nowe/przemianowane
+    # klipy nie trafiały do Studia (stara „kody-15-minut” zamiast „kody-od-generowania”)
+    import contextlib, io, scorecard
+    with contextlib.redirect_stdout(io.StringIO()):
+        scorecard.main()
     rows = json.load(open(DATA / "scorecard.json"))["rows"]
     history = json.load(open(DATA / "video-history.json")) if (DATA / "video-history.json").exists() else {}
     THUMBS.mkdir(parents=True, exist_ok=True)
