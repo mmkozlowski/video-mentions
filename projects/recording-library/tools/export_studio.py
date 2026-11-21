@@ -187,7 +187,8 @@ FORMAT_LABEL = {"reels": "9:16 rolka", "feed": "4:5 feed", "ad": "9:16 reklama",
 MASTERS = {"ep-doram": "26-11-meble-zamowienia-z-excela", "ep-open-mercato-offers": "19-11-oferta-w-5-minut",
            "ep-rezon": "03-12-pamiatki-b2b", "ep-8-wdrozen": "10-12-8-wdrozen"}
 MASTER_DIR = Path.home() / "tailnet-pliki" / "odcinki-2026-11-21"
-FILE_RE = _re.compile(r"^(?P<variant>.+?)__(?P<fmt>[a-z0-9]+)-F(?P<pub>--with-dubs|--with-inserts)?\.mp4$")
+# paleta: F (forest, Flowbiz) i S (AI Słupsk); A to stara paleta sprzed 13.10 — pomijana
+FILE_RE = _re.compile(r"^(?P<variant>.+?)__(?P<fmt>[a-z0-9]+)-(?P<pal>[FS])(?P<pub>--with-dubs|--with-inserts)?\.mp4$")
 
 
 def rejected_ids(project=None):
