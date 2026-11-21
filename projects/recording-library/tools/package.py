@@ -22,6 +22,7 @@ import argparse
 import base64
 import html
 import json
+import sys
 import os
 import random
 import re
@@ -1638,5 +1639,19 @@ def main():
                 print("  →", finalize(raw, out, music=music_plan(board, comp.clip_len), sfx=save_sfx(folder, comp)), flush=True)
 
 
+def auto_export():
+    """21.11: każdy render od razu w Studiu (wspólny folder). STUDIO_AUTO_EXPORT=0 wyłącza (np. w pętlach testowych)."""
+    import os as _os
+    if _os.environ.get("STUDIO_AUTO_EXPORT", "1") == "0":
+        return
+    try:
+        import export_studio
+        export_studio.main()
+    except Exception as error:   # eksport nie może zatrzymać montażu
+        print(f"  ⚠ eksport do Studia: {error}")
+
+
 if __name__ == "__main__":
     main()
+    if any(a in sys.argv for a in ("--render", "--finalize-only")):
+        auto_export()

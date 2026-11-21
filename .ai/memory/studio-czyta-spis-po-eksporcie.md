@@ -1,28 +1,27 @@
 ---
 name: studio-czyta-spis-po-eksporcie
-description: FlowBiz Studio widzi nowy/zmieniony film dopiero po tools/export_studio.py; uwagi agencji są w flowbiz-ads-studio/data/videos, nie w tym repo
+description: Studio czyta filmy z JEDNEGO wspólnego folderu ~/Media/flowbiz-wideo (poza gitem, niezależnie od gałęzi); eksport idzie sam po każdym renderze/sklejce; „odrzucone” w Studiu = do usunięcia (studio_cleanup.py)
 metadata:
   type: project
 ---
 
-Od 12.10.2026 plansza filmów to zakładka „Filmy” w `~/Repo/flowbiz-ads-studio`. Studio czyta
-`studio-index.json` → `projects/recording-library/exports/studio-manifest.json`; oba pisze
-`tools/export_studio.py` (też miniatury w `final/thumbs/`).
+Od 21.11.2026 (MK: „Studio czyta z jednego miejsca, my tworzymy nowe wersje, w Studiu zaznaczam, co do usunięcia”):
 
-- **Po każdym renderze albo `scorecard.py` / `history.py` uruchom `export_studio.py`** — inaczej
-  panel pokazuje starą historię, starą ocenę albo nie widzi nowego filmu (spis jest poza gitem).
-- **Uwagi i sekcje agencji czytaj z `~/Repo/flowbiz-ads-studio/data/videos/<źródło>--<projekt>--<film>.json`**,
-  nie z `data/board-state.json` (stara plansza `board_server.py` jest tylko zapasem).
-- Studio na tej maszynie wskazuje worktree `cerith` przez `STUDIO_SOURCE_VIDEO_MENTIONS` w `.env`
-  studia, bo rendery (`final/`) są tylko tam. Po przeniesieniu pracy do innego checkoutu zmień tę ścieżkę.
+- **Jedno miejsce:** `~/Media/flowbiz-wideo/` (zmienna `STUDIO_SHARED`) — `studio-index.json` + `projects/<projekt>/`
+  (`final/samples`, `final/thumbs`, `exports/studio-manifest.json`, `versions/<film>/<data>.mp4`). Podział na projekty;
+  w projekcie serie i formaty (rolka/reklama/zajawka/odcinek). Studio (`flowbiz-ads-studio-cmo/.env`:
+  `STUDIO_SOURCE_VIDEO_MENTIONS=/Users/mac/Media/flowbiz-wideo/studio-index.json`) czyta tylko stąd.
+- **Automatycznie:** `package.py --render/--finalize-only`, `assemble_episode.py`, `assemble_short.py` wołają na końcu
+  `export_studio.main()` (wyłączenie: `STUDIO_AUTO_EXPORT=0`). Plik kopiowany klonem APFS (`cp -c`) — 0 dodatkowego miejsca.
+- **Wersje:** nowa wersja zastępuje plik pod tym samym id (decyzje i uwagi w Studiu zostają — klucz to id filmu),
+  poprzednia idzie do `versions/`; w spisie `versions[]` z gałęzią, commitem, datą.
+- **Usuwanie:** sekcja „odrzucone” w Studiu → `python3 tools/studio_cleanup.py` (podgląd) / `--tak` (usuwa pliki,
+  archiwum ponad KEEP=2, wpisuje do `exports/removed.json`, żeby eksport ich nie przywracał). Tylko na polecenie MK.
+- Strony podglądu w tailnecie (gotowe-*, probki-*) — już nie; przegląd tylko w Studiu.
 
-- **Shorty z dogrywkami:** od 17.11 `export_studio.py` podaje `…--with-dubs.mp4` dla shortów z `assemble_short.PLAN`
-  (Agata recenzowała gołe rendery bez haka i zakończenia). Stare `--with-dubs` spoza planu zostają na dysku, ale panel ich nie bierze.
-- **Działający panel to checkout `~/Repo/flowbiz-ads-studio-cmo` (:4318)**, nie `flowbiz-ads-studio` — sekcje i uwagi
-  pisze się przez jego API (`PATCH /api/videos/:key`, `/notes/:id` przyjmuje tylko `done`; odpowiedź = nowa uwaga
-  autora „agent”). 17.11 miał sekcję `przeglad` („Do ponownego przeglądu”), a `akceptacja` była tylko w drugim checkoucie.
+**Why:** Studio było przypięte do worktree `cerith` i do ręcznego eksportu → „nieświeże pliki” i ryzyko utraty
+wszystkiego przy usunięciu worktree.
 
-**Why:** spis jest kontraktem między repo — zmiana w danych bez eksportu jest dla panelu niewidoczna.
-
-**How to apply:** render → `history.py` → `scorecard.py` → `export_studio.py`. Przy uwagach od agencji
-zacznij od `data/videos/` w studiu. Powiązane: [[historia-zmian-per-film]].
+**How to apply:** nie kieruj Studia na worktree; nowy projekt wideo = własny eksport do `projects/<nazwa>/` we
+wspólnym folderze (index scala projekty po id). Restart Studia: zabij tylko jego PID-y (pamięć vaulta
+`nie-pkill-szerokim-wzorcem`), start `PORT=4318 nohup npm exec tsx src/server.ts` w `~/Repo/flowbiz-ads-studio-cmo`.

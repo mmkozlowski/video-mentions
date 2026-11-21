@@ -279,6 +279,15 @@ Praktycznie: na miniaturze **bez znaczka**; w stopce opisu „Miniatura i częś
 
 ---
 
+## Przegląd i wersje filmów — Studio (✅ 21.11)
+
+- **Jedno miejsce na gotowe filmy:** wspólny folder poza gitem, podzielony na projekty; Studio czyta tylko stąd.
+  Każdy render i każda sklejka trafiają tam same, niezależnie od gałęzi — w Studiu zawsze najświeższa wersja.
+- **Nowa wersja zastępuje starą pod tym samym filmem** — uwagi i sekcja w Studiu zostają; poprzednia wersja jest
+  w archiwum z informacją, z której gałęzi i kiedy powstała.
+- **Do usunięcia = sekcja „odrzucone” w Studiu.** Sprzątanie (pliki odrzuconych + stare wersje) tylko na polecenie.
+- Przegląd i uwagi tylko w Studiu — bez osobnych stron z podglądem.
+
 # Część II — załącznik techniczny
 
 Pipeline: `projects/recording-library` (README tam). Kolejność:

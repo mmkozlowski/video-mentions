@@ -172,3 +172,5 @@ def build(name):
 if __name__ == "__main__":
     for name in (sys.argv[1:] or PLAN):
         build(name)
+    from package import auto_export
+    auto_export()

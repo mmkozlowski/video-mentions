@@ -362,3 +362,5 @@ def main(argv):
 
 if __name__ == "__main__":
     main(sys.argv[1:])
+    from package import auto_export
+    auto_export()
