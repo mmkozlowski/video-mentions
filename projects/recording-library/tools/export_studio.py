@@ -166,6 +166,112 @@ def main():
     index["generatedAt"] = now
     write_json(INDEX, index)
     print(f"{len(videos)} filmów w {len(groups)} seriach ({published} nowych wersji) → {INDEX} [{origin['branch']} {origin['commit']}]")
+    main_v2(rows, history, ledger, origin, removed)
+    write_json(ledger_file, ledger)
+
+
+
+
+# ── v2: jedna karta na film, w niej warianty × formaty × wersje (21.11, MK: „karta danego odcinka,
+#    a pod nią wszystkie wersje”; „szybciej, bez zacinania”) — podglądy robione PRZY EKSPORCIE ──────────
+import re as _re
+from concurrent.futures import ThreadPoolExecutor
+
+MANIFEST_V2 = OUT / "exports" / "studio-manifest-v2.json"
+PREVIEWS = OUT / "final" / "previews"
+STUDIO_DECISIONS = Path(os.path.expanduser(os.environ.get("STUDIO_DECISIONS", "~/Repo/flowbiz-ads-studio-cmo/data/videos")))
+# przemianowane klipy → karta, pod którą mają się pokazać (decyzje Mateusza wisiały na starych id)
+CARD_ALIASES = {"ch-doram-6-kody-od-generowania": "ch-doram-6-kody-15-minut"}
+FORMAT_LABEL = {"reels": "9:16 rolka", "feed": "4:5 feed", "ad": "9:16 reklama", "ad45": "4:5 reklama",
+                "youtube": "16:9", "master1440": "16:9 · 1440p"}
+MASTERS = {"ep-doram": "26-11-meble-zamowienia-z-excela", "ep-open-mercato-offers": "19-11-oferta-w-5-minut",
+           "ep-rezon": "03-12-pamiatki-b2b", "ep-8-wdrozen": "10-12-8-wdrozen"}
+MASTER_DIR = Path.home() / "tailnet-pliki" / "odcinki-2026-11-21"
+FILE_RE = _re.compile(r"^(?P<variant>.+?)__(?P<fmt>[a-z0-9]+)-F(?P<pub>--with-dubs|--with-inserts)?\.mp4$")
+
+
+def rejected_ids(project=None):
+    """Id filmów/wariantów oznaczonych w Studiu jako „odrzucone” (montaż i eksport je pomijają)."""
+    project = project or PROJECT.name
+    out = set()
+    for f in STUDIO_DECISIONS.glob(f"video-mentions--{project}--*.json"):
+        try:
+            d = json.load(open(f))
+        except Exception:
+            continue
+        vid = f.stem.split(f"--{project}--", 1)[1]
+        if d.get("section") == "odrzucone":
+            out.add(vid)
+        for variant, mark in (d.get("variants") or {}).items():
+            if (mark or {}).get("mark") == "odrzucony":
+                out.add(variant)
+    return out
+
+
+def build_preview(src, dst):
+    """Lekki podgląd do przeglądarki: krótszy bok 720 px, ~2 Mb/s, faststart — Studio go tylko podaje."""
+    if dst.exists() and dst.stat().st_mtime >= src.stat().st_mtime:
+        return False
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    tmp = dst.with_suffix(".tmp.mp4")
+    subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-i", str(src),
+                    "-vf", "scale='if(gt(iw,ih),-2,720)':'if(gt(iw,ih),720,-2)'", "-c:v", "libx264", "-preset", "veryfast",
+                    "-crf", "28", "-maxrate", "2500k", "-bufsize", "5000k", "-pix_fmt", "yuv420p",
+                    "-c:a", "aac", "-b:a", "96k", "-movflags", "+faststart", str(tmp)], check=True)
+    os.replace(tmp, dst)
+    return True
+
+
+def main_v2(rows, history, ledger, origin, removed):
+    rejected = rejected_ids() | removed
+    by_variant = {}
+    for f in sorted((FINAL / "samples").glob("*.mp4")):
+        m = FILE_RE.match(f.name)
+        if m:
+            by_variant.setdefault(m["variant"], {}).setdefault(m["fmt"], []).append((bool(m["pub"]), f))
+    cards, jobs = {}, []
+    for row in sorted(rows, key=lambda r: (r["seriesName"], KIND_ORDER.index(r["kind"]), r["id"])):
+        vid = row["id"]
+        if vid.startswith(("ins-", "gag-")) or vid in rejected or vid not in by_variant:
+            continue
+        card_id = CARD_ALIASES.get(vid, vid.split("--")[0])
+        card = cards.setdefault(card_id, {"id": card_id, "title": row["title"], "group": row["seriesName"],
+                                          "kind": row["kind"], "brand": row["brand"], "variants": []})
+        formats = []
+        for fmt, files in sorted(by_variant[vid].items()):
+            pub = [f for p, f in files if p]
+            src = (pub or [f for p, f in files])[0]   # wersja do publikacji (z dogrywkami / wstawkami) ma pierwszeństwo
+            entry = publish(src, origin)
+            if entry:
+                ledger.setdefault(src.stem, []).insert(0, entry)
+            preview = PREVIEWS / f"{src.stem}.mp4"
+            jobs.append((SAMPLES / src.name, preview))
+            thumb = THUMBS / f"{src.stem}.jpg"
+            thumbnail(SAMPLES / src.name, row, thumb)
+            formats.append({"format": fmt, "label": FORMAT_LABEL.get(fmt, fmt), "file": f"final/samples/{src.name}",
+                            "preview": f"final/previews/{src.stem}.mp4", "thumb": f"final/thumbs/{src.stem}.jpg",
+                            "duration": row["duration"], "versions": ledger.get(src.stem, [])})
+        if vid in MASTERS and (MASTER_DIR / f"{MASTERS[vid]}-1440p.mp4").exists():
+            master = MASTER_DIR / f"{MASTERS[vid]}-1440p.mp4"
+            entry = publish(master, origin)
+            if entry:
+                ledger.setdefault(master.stem, []).insert(0, entry)
+            formats.append({"format": "master1440", "label": FORMAT_LABEL["master1440"], "file": f"final/samples/{master.name}",
+                            "preview": formats[0]["preview"] if formats else None, "duration": row["duration"],
+                            "versions": ledger.get(master.stem, [])})
+        label = "bazowy" if vid == card_id else vid.replace(card_id + "--", "").replace("-", " ")
+        card["variants"].append({"id": vid, "label": label, "hook": row["hook_text"], "score": row["score"],
+                                 "history": history.get(vid) or [], "formats": formats})
+    with ThreadPoolExecutor(max_workers=4) as pool:
+        built = sum(pool.map(lambda j: build_preview(*j), jobs))
+    for card in cards.values():   # wariant główny: bazowy, a jeśli go nie ma — pierwszy
+        base = next((v for v in card["variants"] if v["id"] == card["id"]), card["variants"][0])
+        card["primary"] = {"variant": base["id"], "format": base["formats"][0]["format"] if base["formats"] else None}
+    now = datetime.datetime.now().isoformat(timespec="seconds")
+    write_json(MANIFEST_V2, {"version": 2, "project": PROJECT.name, "name": "Rolki i odcinki YouTube", "generatedAt": now,
+                             "root": "..", "source": origin, "cards": list(cards.values())})
+    print(f"v2: {len(cards)} kart, {sum(len(c['variants']) for c in cards.values())} wariantów, "
+          f"{len(jobs)} plików, {built} nowych podglądów, pominięte odrzucone: {len(rejected)}")
 
 
 if __name__ == "__main__":
