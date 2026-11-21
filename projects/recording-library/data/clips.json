@@ -8296,24 +8296,20 @@
   "block": null,
   "parent": null,
   "client": null,
-  "title": "Dogrywka: zakończenie bez pożegnania (37+39)",
+  "title": "Dogrywka: subskrypcja (37) — plansza z logo YouTube i kliknięciem",
   "brand": "flowbiz",
   "ranges": [
    [
     188.14,
     195.98
-   ],
-   [
-    196.96,
-    204.44
    ]
   ],
   "start": 188.14,
-  "end": 204.44,
-  "duration": 15.32,
-  "splices": 1,
+  "end": 195.98,
+  "duration": 7.84,
+  "splices": 0,
   "hook_line": "takie konkrety Ci się przydają zasubskrybuj ten kanał a nowy odcinek pojawia się co",
-  "transcript": "takie konkrety Ci się przydają zasubskrybuj ten kanał a nowy odcinek pojawia się co czwartek ten temat Cię dotyczy obejrzyj jeszcze ten odcinek tam pokazuję drugą stronę tego samego problemu",
+  "transcript": "takie konkrety Ci się przydają zasubskrybuj ten kanał a nowy odcinek pojawia się co czwartek",
   "scores": {
    "hook": 3,
    "delivery": 4,
