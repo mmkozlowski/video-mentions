@@ -14,10 +14,6 @@
  },
  "chapters": [
   [
-   "Teraz",
-   "Producent mebli ogrodowych"
-  ],
-  [
    "Klient dostawał",
    "Zamówienia w Excelu od kontrahentów z Niemiec"
   ],
@@ -61,7 +57,7 @@
  "events": [
   {
    "type": "broll",
-   "at": "meble",
+   "at": "Klient",
    "until": "+3.4",
    "src": "assets/broll/hf/video/h05-szwalnia-meble-ogrodowe.mp4",
    "ai": true,
@@ -70,7 +66,7 @@
   },
   {
    "type": "title",
-   "at": "był",
+   "at": "Długoletni",
    "until": "Klient",
    "zone": "lower",
    "kicker": "Case study · meble ogrodowe",

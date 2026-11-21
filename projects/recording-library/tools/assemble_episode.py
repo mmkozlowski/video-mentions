@@ -59,7 +59,9 @@ PLAN = {
     # i ekran końcowy (37+39, prawa połowa wolna) → „do zobaczenia” (24)
     # 17.11 (odsłuch, pkt 5): treść kończy się stanem PRZED („…o ile wszystko dobrze pójdzie”) — domknięcie kwestią 30
     # („To nie jest magia, to porządek plus trochę automatyzacji.”) przed łącznikiem A4
-    "ep-open-mercato-offers": [("START", "ins-hello-offers"), ("END", "ins-g30"), ("END", "ins-a4"), ("END", "ins-outro"),
+    # 21.11 (MK): odcinek otwiera treść (15–20 s), przedstawienie dopiero potem — wstawki z przedstawieniem po pierwszym
+    # akapicie; po dograniu 44–47 podmienić tylko id wstawki, miejsce zostaje
+    "ep-open-mercato-offers": [("word:trudne", "ins-hello-offers"), ("END", "ins-g30"), ("END", "ins-a4"), ("END", "ins-outro"),
                                ("END", "ins-yt-sub"), ("END", "ins-bye")],
     # 16.11: łączniki case'ów z dogrywek (6–12) — głos na planszy z nazwą case'u PRZED każdym rozdziałem
     "ep-8-wdrozen": [("word:tworzenie ofert", "ins-a1"), ("word:tworzenie ofert", "ins-intro"), ("word:tworzenie ofert", "ins-a2"),
@@ -73,15 +75,12 @@ PLAN = {
                      # własne CTA na końcu („zapraszam Cię na flowbiz.pl…”) — bez przerywnika zamknięcia (dubel)
                      ("END", "ins-yt-sub"), ("END", "ins-bye")],
     # 16.11: wstęp i łączniki z dogrywek; zakończenie przed własnym „Dzięki i do usłyszenia” z nagrania
-    "ep-doram": [("START", "ins-lead-doram"),
-                 ("Zamówienia w Excelu od kontrahentów z Niemiec", "ins-a1"), ("Zamówienia w Excelu od kontrahentów z Niemiec", "ins-intro"),
-                 ("Zamówienia w Excelu od kontrahentów z Niemiec", "ins-a2"),
+    "ep-doram": [("word:wyglądało", "ins-a1"), ("word:wyglądało", "ins-intro"), ("word:wyglądało", "ins-a2"),
                  ("Jak uczy się zwykły czat", "ins-mid"), ("Jak uczy się zwykły czat", "ins-a3"),
                  # Doram ma własne zakończenie (subskrypcja + komentarze + „Dzięki i do usłyszenia”) — brakuje w nim tylko
                  # kontaktu, więc przed „więc dziękuję Wam” wchodzi łącznik A4 i kwestia 23, bez dubli subskrypcji
                  ("before:więc dziękuję", "ins-a4"), ("before:więc dziękuję", "ins-contact")],
-    "ep-rezon": [("START", "ins-lead-rezon"),
-                 ("Kontrola po fakcie", "ins-a1"), ("Kontrola po fakcie", "ins-intro"), ("Kontrola po fakcie", "ins-a2"),
+    "ep-rezon": [("before:Aktualnie", "ins-a1"), ("before:Aktualnie", "ins-intro"), ("before:Aktualnie", "ins-a2"),
                  ("Nadprodukcja", "ins-mid"), ("Nadprodukcja", "ins-a3"),
                  ("END", "ins-a4"), ("END", "ins-outro"), ("END", "ins-yt-sub"), ("END", "ins-bye")],
     "ep-marpasz": [("Paczki do 25 kg: cztery worki, cztery etykiety", "ins-intro"), ("Katalog AI: faktura → produkty → opisy", "ins-mid"), ("END", "ins-outro")],
