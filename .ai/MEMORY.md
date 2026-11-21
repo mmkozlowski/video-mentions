@@ -53,6 +53,8 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 - [loudnorm po cichu dynamiczny](memory/loudnorm-po-cichu-dynamiczny.md) — linear=true przechodzi w dynamiczny z ogranicznikiem, gdy szczyty nie pozwalają; trzask na sylabach; sprawdzaj normalization_type
 - [Muzyka ciągła w sklejce](memory/muzyka-ciagla-w-sklejce.md) — sklejaj surowe rendery, podkład i efekty kładź raz na całość (assemble_short)
 
+- [Kotwice sklejki odcinków](memory/kotwice-sklejki-odcinkow.md) — before: = ostatnie wystąpienie, first: = pierwsze, word: łapie przecinki; cache transkrypcji renderu musi być nowszy niż render
+
 ## Decyzje (ADR)
 
 - [Ekran produktu z HTML zamiast nagrań i generacji](decisions/2026-07-30-ekran-produktu-z-html.md) — 2026-07-30

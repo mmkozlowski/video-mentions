@@ -161,8 +161,8 @@ EPISODES = [
          # 16.11: bez „No dobra, lecimy z kolejnymi praktycznymi użyciami AI w firmach.” (zostało ze składanki) —
          # start od „Teraz na warsztat…” (cisza w sygnale 13,80–15,12, czasy Whispera ~0,9 s za wcześnie)
          # 21.11 (MK: „początek odcinka = wycinek tego, co mówię, przedstawienie po 15–20 s”): bez meta-wstępu
-         # „Teraz na warsztat… jak wygląda teraz” — start od „Klient dostawał…” (cisza w sygnale 29,50–29,86)
-         ranges=[(29.4, 82.0, 29.70, 81.98), (82.9, 92.95, 83.04, 92.42), (93.0, 688.0, 97.30, None)], hook=3, delivery=3, brand="flowbiz",
+         # „Teraz na warsztat… jak wygląda teraz” — start od „Klient dostawał…” (cisza w sygnale 33,12–33,68; 29,5 s to pauza wewnątrz wstępu)
+         ranges=[(33.3, 82.0, 33.55, 81.98), (82.9, 92.95, 83.04, 92.42), (93.0, 688.0, 97.30, None)], hook=3, delivery=3, brand="flowbiz",
          notes="Zamówienia od niemieckich kontrahentów w Excelu, dopasowanie AI 70% → 94% "
                "po miesiącu, kody kreskowe z kilku dni do 15 minut. Restart zdania w 92 s."),
     dict(id="ep-vacuactiv", source="vacuactiv", client="Vacuactiv", title="Agent AI dla właściciela firmy",

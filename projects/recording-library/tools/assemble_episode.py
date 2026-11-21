@@ -75,7 +75,7 @@ PLAN = {
                      # własne CTA na końcu („zapraszam Cię na flowbiz.pl…”) — bez przerywnika zamknięcia (dubel)
                      ("END", "ins-yt-sub"), ("END", "ins-bye")],
     # 16.11: wstęp i łączniki z dogrywek; zakończenie przed własnym „Dzięki i do usłyszenia” z nagrania
-    "ep-doram": [("word:wyglądało", "ins-a1"), ("word:wyglądało", "ins-intro"), ("word:wyglądało", "ins-a2"),
+    "ep-doram": [("first:Jednak", "ins-a1"), ("first:Jednak", "ins-intro"), ("first:Jednak", "ins-a2"),
                  ("Jak uczy się zwykły czat", "ins-mid"), ("Jak uczy się zwykły czat", "ins-a3"),
                  # Doram ma własne zakończenie (subskrypcja + komentarze + „Dzięki i do usłyszenia”) — brakuje w nim tylko
                  # kontaktu, więc przed „więc dziękuję Wam” wchodzi łącznik A4 i kwestia 23, bez dubli subskrypcji
@@ -100,8 +100,17 @@ def render_words(clip_id):
     """Słowa z transkrypcji gotowego renderu. Czasy z transkrypcji surówki bywają przesunięte
     o 0,5–1,5 s, przez co cięcie trafiało w „katalog… | wstawka | AI.” — tu liczy się render."""
     path = FINAL_WORDS / f"{clip_id}.json"
-    if not path.exists():
-        raise SystemExit(f"brak {path} — przetranskrybuj render (mlx_whisper --word-timestamps True)")
+    render = FINAL / f"{clip_id}__youtube-F.mp4"
+    # 21.11: transkrypcja leżała w cache po zmianie cięcia (meble bez wstępu) i kotwice trafiały 16 s obok —
+    # odświeżamy, gdy render jest nowszy niż transkrypcja
+    if not path.exists() or (render.exists() and render.stat().st_mtime > path.stat().st_mtime):
+        FINAL_WORDS.mkdir(parents=True, exist_ok=True)
+        wav = FINAL_WORDS / f"{clip_id}.wav"
+        subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(render), "-vn", "-ac", "1", "-ar", "16000", str(wav)], check=True)
+        subprocess.run(["mlx_whisper", str(wav), "--model", "mlx-community/whisper-large-v3-turbo", "--language", "pl",
+                        "--word-timestamps", "True", "--condition-on-previous-text", "False",
+                        "--output-dir", str(FINAL_WORDS), "--output-format", "json"], check=True, capture_output=True)
+        print(f"   (transkrypcja renderu odświeżona: {path.name})")
     return [w for seg in json.load(open(path))["segments"] for w in seg.get("words", [])]
 
 
@@ -221,6 +230,14 @@ def plan_segments(clip_id):
             if not idx or idx[-1] == 0:
                 raise SystemExit(f"{clip_id}: nie ma „{where[7:]}” w renderze")
             i = idx[-1]
+            cuts.append((round((rw[i - 1]["end"] + rw[i]["start"]) / 2, 3), insert))
+        elif where.startswith("first:"):
+            # 21.11: otwarcie z treści — wstawka w przerwie przed PIERWSZYM wystąpieniem słowa (before: bierze ostatnie)
+            first = P.norm(where[6:].split()[0])
+            idx = [i for i, w in enumerate(rw) if P.norm(w["word"]) == first]
+            if not idx or idx[0] == 0:
+                raise SystemExit(f"{clip_id}: nie ma „{where[6:]}” w renderze")
+            i = idx[0]
             cuts.append((round((rw[i - 1]["end"] + rw[i]["start"]) / 2, 3), insert))
         elif where.startswith("word:"):
             # wstawka przed konkretnym zdaniem (gdy granica nie jest rozdziałem składanki)

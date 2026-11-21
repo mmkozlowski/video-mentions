@@ -2,7 +2,7 @@
  "ep-open-mercato-offers": {
   "plan": [
    [
-    "START",
+    "word:trudne",
     "ins-hello-offers"
    ],
    [
@@ -26,7 +26,7 @@
     "ins-bye"
    ]
   ],
-  "chapters": "0:00 Wstęp\n0:14 Każdy ma swoją wersję oferty\n1:34 20 ofert → 3 zamówienia\n2:09 Asystent czyta maile → szkic w 5 minut"
+  "chapters": "0:00 Każdy ma swoją wersję oferty\n1:34 20 ofert → 3 zamówienia\n2:09 Asystent czyta maile → szkic w 5 minut"
  },
  "ep-marpasz": {
   "plan": [
@@ -48,19 +48,15 @@
  "ep-rezon": {
   "plan": [
    [
-    "START",
-    "ins-lead-rezon"
-   ],
-   [
-    "Kontrola po fakcie",
+    "before:Aktualnie",
     "ins-a1"
    ],
    [
-    "Kontrola po fakcie",
+    "before:Aktualnie",
     "ins-intro"
    ],
    [
-    "Kontrola po fakcie",
+    "before:Aktualnie",
     "ins-a2"
    ],
    [
@@ -88,7 +84,7 @@
     "ins-bye"
    ]
   ],
-  "chapters": "0:00 Wstęp\n0:11 Producent pamiątek znad morza i proces na kartkach\n0:55 Kontrola po fakcie\n1:38 Najpierw jedna baza\n2:38 Integracja z PC Business\n3:13 Handlowiec w trasie\n5:11 Nadprodukcja\n6:38 Panel klienta B2B\n7:18 Handlowiec zamawia za klienta"
+  "chapters": "0:00 Producent pamiątek znad morza i proces na kartkach\n0:44 Kontrola po fakcie\n1:27 Najpierw jedna baza\n2:26 Integracja z PC Business\n3:01 Handlowiec w trasie\n4:59 Nadprodukcja\n6:26 Panel klienta B2B\n7:06 Handlowiec zamawia za klienta"
  },
  "ep-module": {
   "plan": [
@@ -110,19 +106,15 @@
  "ep-doram": {
   "plan": [
    [
-    "START",
-    "ins-lead-doram"
-   ],
-   [
-    "Zamówienia w Excelu od kontrahentów z Niemiec",
+    "first:Jednak",
     "ins-a1"
    ],
    [
-    "Zamówienia w Excelu od kontrahentów z Niemiec",
+    "first:Jednak",
     "ins-intro"
    ],
    [
-    "Zamówienia w Excelu od kontrahentów z Niemiec",
+    "first:Jednak",
     "ins-a2"
    ],
    [
@@ -142,7 +134,7 @@
     "ins-contact"
    ]
   ],
-  "chapters": "0:00 Wstęp\n0:11 Producent mebli ogrodowych\n0:54 Zamówienia w Excelu od kontrahentów z Niemiec\n1:56 Kilka dni klepania → 10 minut\n2:35 Dlaczego to tak długo trwało\n3:53 Kody kreskowe: przeklej, drukuj\n5:08 Najpierw jedna baza\n6:14 Pamięć dla AI\n8:08 Jak uczy się zwykły czat\n9:31 70% → 94% → 95%\n10:29 Kody bez AI: 15 minut\n10:55 Co dalej"
+  "chapters": "0:00 Zamówienia w Excelu od kontrahentów z Niemiec\n1:27 Kilka dni klepania → 10 minut\n2:06 Dlaczego to tak długo trwało\n3:24 Kody kreskowe: przeklej, drukuj\n4:40 Najpierw jedna baza\n5:46 Pamięć dla AI\n7:40 Jak uczy się zwykły czat\n9:02 70% → 94% → 95%\n10:00 Kody bez AI: 15 minut\n10:27 Co dalej"
  },
  "ep-8-wdrozen": {
   "plan": [
@@ -199,7 +191,7 @@
     "ins-bye"
    ]
   ],
-  "chapters": "0:00 Oferta w 5 minut\n3:40 Zamówienia z Excela: 70% → 94%\n5:06 Kody kreskowe: kilka dni → 15 minut\n5:46 Etykiety: ok. 100 godzin miesięcznie\n7:40 Katalog AI z faktur\n10:45 Panel klienta B2B\n12:31 Kierownik produkcji w godzinę\n14:32 AI to dokręcanie śrubek"
+  "chapters": "0:00 Oferta w 5 minut\n3:40 Zamówienia z Excela: 70% → 94%\n5:06 Kody kreskowe: kilka dni → 15 minut\n5:45 Etykiety: ok. 100 godzin miesięcznie\n7:40 Katalog AI z faktur\n10:45 Panel klienta B2B\n12:31 Kierownik produkcji w godzinę\n14:35 AI to dokręcanie śrubek"
  },
  "ep-vacuactiv": {
   "plan": [
