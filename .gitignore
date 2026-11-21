@@ -26,6 +26,12 @@ Thumbs.db
 
 # Rendery wstawek YouTube — odtwarzalne przez node render.js, jak build/
 projects/youtube/**/out/
+# Shorty cięte z odcinków leżą poziom głębiej niż wzorzec projects/*/build/
+projects/youtube/shorts/*/build/
+# Jak przy surówce shorts IG: gotowe rolki ważą ~250 MB na odcinek, a są
+# odtwarzalne pipeline'em z odcinka źródłowego (tools/ + README). Do decyzji:
+# git-lfs albo dystrybucja poza repo.
+projects/youtube/shorts/*/final/
 
 # ── shorts IG: surówka z telefonu i wyrenderowany short ───────────────────
 # WYJĄTEK od reguły „assets/ i final/ idą do gita". Materiał jest

@@ -54,6 +54,9 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 - [Muzyka ciągła w sklejce](memory/muzyka-ciagla-w-sklejce.md) — sklejaj surowe rendery, podkład i efekty kładź raz na całość (assemble_short)
 
 - [Kotwice sklejki odcinków](memory/kotwice-sklejki-odcinkow.md) — before: = ostatnie wystąpienie, first: = pierwsze, word: łapie przecinki; cache transkrypcji renderu musi być nowszy niż render
+- [virality_predictor w procesie shortów](memory/virality-predictor-w-procesie-shortow.md) — darmowy na planie plus (0 kredytów), max 16 s, 2 równolegle; grafiki/przebitki podbijają korę wzrokową, mikro-ruch w intro nie rejestruje się (próbkowanie ~1 fps); porównuj wersje, nie czytaj pojedynczej liczby
+- [ffmpeg: atempo w jednym grafie z setpts nie działa](memory/ffmpeg-atempo-w-jednym-grafie.md) — ffmpeg 8.1 po cichu gubi atempo, gdy w tym samym filter_complex jest setpts na wideo; tempo zmieniaj dwoma przebiegami + mux
+- [Shorty studyjne vs reelsy IG](memory/shorty-studyjne-vs-reelsy-ig.md) — dwa reżimy pionowych shortów: telefon = autentyczność (Poppins, potknięcia zostają), studio = polish i brand odcinka (DM Sans, punch-iny, pionowe przebudowy plansz); nie przenosić reguł między nimi
 
 ## Decyzje (ADR)
 
