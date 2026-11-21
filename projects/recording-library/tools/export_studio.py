@@ -139,6 +139,9 @@ def main():
             row = dict(row, file=with_dubs)
         if row["id"] in removed:
             continue
+        # wstawki (ins-*) i gagi to klocki do sklejania odcinków/rolek, nie filmy do przeglądu (21.11: zaśmiecały Studio)
+        if row["id"].startswith(("ins-", "gag-")):
+            continue
         video = FINAL / "samples" / row["file"]
         if not video.exists():
             print(f"  brak pliku: {row['file']}")
