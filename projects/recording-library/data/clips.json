@@ -7537,13 +7537,313 @@
  {
   "id": "ins-intro",
   "kind": "raw",
+  "source": "dubs",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": null,
+  "client": null,
+  "title": "Przerywnik: przedstawienie (dogrywki 21.11: 44h + 46b + 47)",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    325.33,
+    336.34
+   ],
+   [
+    397.95,
+    407.0
+   ],
+   [
+    408.61,
+    415.26
+   ]
+  ],
+  "start": 325.33,
+  "end": 415.26,
+  "duration": 26.71,
+  "splices": 2,
+  "hook_line": "Cześć, jestem Mateusz Kozłowski a na tym kanale pokazuję prawdziwe wdrożenia AI i systemów",
+  "transcript": "Cześć, jestem Mateusz Kozłowski a na tym kanale pokazuję prawdziwe wdrożenia AI i systemów w firmach co zadziałało, ile to dało i gdzie był haczyk fundamentem jest Open Mercato 80 % gotowego systemu ja dokładam te 20 % które robią różnicę u Ciebie mebli, pamiątki, e -commerce, wyroby medyczne, opakowania w tych branżach to już działa",
+  "scores": {
+   "hook": 3,
+   "delivery": 4,
+   "total": 10
+  },
+  "priority": "C",
+  "cta": null,
+  "uses": [],
+  "notes": "„Cześć, jestem Mateusz Kozłowski, a na tym kanale pokazuję prawdziwe wdrożenia…” + Open Mercato 80% + branże."
+ },
+ {
+  "id": "ins-intro-krotkie",
+  "kind": "raw",
+  "source": "dubs",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": null,
+  "client": null,
+  "title": "Przerywnik: przedstawienie krótkie (44h + 46b)",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    325.33,
+    336.34
+   ],
+   [
+    397.95,
+    407.0
+   ]
+  ],
+  "start": 325.33,
+  "end": 407.0,
+  "duration": 20.06,
+  "splices": 1,
+  "hook_line": "Cześć, jestem Mateusz Kozłowski a na tym kanale pokazuję prawdziwe wdrożenia AI i systemów",
+  "transcript": "Cześć, jestem Mateusz Kozłowski a na tym kanale pokazuję prawdziwe wdrożenia AI i systemów w firmach co zadziałało, ile to dało i gdzie był haczyk fundamentem jest Open Mercato 80 % gotowego systemu ja dokładam te 20 % które robią różnicę u Ciebie",
+  "scores": {
+   "hook": 3,
+   "delivery": 4,
+   "total": 10
+  },
+  "priority": "C",
+  "cta": null,
+  "uses": [],
+  "notes": ""
+ },
+ {
+  "id": "ins-intro-pelne",
+  "kind": "raw",
+  "source": "dubs",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": null,
+  "client": null,
+  "title": "Przerywnik: przedstawienie pełne (44h + 45 + 46b + 47)",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    325.33,
+    336.34
+   ],
+   [
+    375.42,
+    383.74
+   ],
+   [
+    397.95,
+    407.0
+   ],
+   [
+    408.61,
+    415.26
+   ]
+  ],
+  "start": 325.33,
+  "end": 415.26,
+  "duration": 35.03,
+  "splices": 3,
+  "hook_line": "Cześć, jestem Mateusz Kozłowski a na tym kanale pokazuję prawdziwe wdrożenia AI i systemów",
+  "transcript": "Cześć, jestem Mateusz Kozłowski a na tym kanale pokazuję prawdziwe wdrożenia AI i systemów w firmach co zadziałało, ile to dało i gdzie był haczyk z firmami, które mają już dość Excela a gotowy system jak HubSpot czy Bitrix nie pasują do tego jak naprawdę pracujecie fundamentem jest Open Mercato 80 % gotowego systemu ja dokładam te 20 % które robią różnicę u Ciebie mebli, pamiątki, e -commerce, wyroby medyczne, opakowania w tych branżach to już działa",
+  "scores": {
+   "hook": 3,
+   "delivery": 4,
+   "total": 10
+  },
+  "priority": "C",
+  "cta": null,
+  "uses": [],
+  "notes": ""
+ },
+ {
+  "id": "ins-intro-b",
+  "kind": "raw",
+  "source": "dubs",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": null,
+  "client": null,
+  "title": "Przerywnik: przedstawienie wariant B (44i + 46b + 47)",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    336.91,
+    339.27
+   ],
+   [
+    339.65,
+    345.43
+   ],
+   [
+    397.95,
+    407.0
+   ],
+   [
+    408.61,
+    415.26
+   ]
+  ],
+  "start": 336.91,
+  "end": 415.26,
+  "duration": 23.84,
+  "splices": 3,
+  "hook_line": "Cześć, tu Mateusz Kozłowski rozmawiamy tu o rozwiązaniach, które działają w Waszych firmach a",
+  "transcript": "Cześć, tu Mateusz Kozłowski rozmawiamy tu o rozwiązaniach, które działają w Waszych firmach a nie o tym co dobrze wygląda na prezentacji fundamentem jest Open Mercato 80 % gotowego systemu ja dokładam te 20 % które robią różnicę u Ciebie mebli, pamiątki, e -commerce, wyroby medyczne, opakowania w tych branżach to już działa",
+  "scores": {
+   "hook": 3,
+   "delivery": 4,
+   "total": 10
+  },
+  "priority": "C",
+  "cta": null,
+  "uses": [],
+  "notes": ""
+ },
+ {
+  "id": "ins-back-offers",
+  "kind": "raw",
+  "source": "dubs",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": null,
+  "client": null,
+  "title": "Dogrywka: powrót do ofert (47a)",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    415.62,
+    417.97
+   ]
+  ],
+  "start": 415.62,
+  "end": 417.97,
+  "duration": 2.35,
+  "splices": 0,
+  "hook_line": "dobra, wracamy do ofert dobra,",
+  "transcript": "dobra, wracamy do ofert dobra,",
+  "scores": {
+   "hook": 3,
+   "delivery": 4,
+   "total": 10
+  },
+  "priority": "C",
+  "cta": null,
+  "uses": [],
+  "notes": ""
+ },
+ {
+  "id": "ins-back-doram",
+  "kind": "raw",
+  "source": "dubs",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": null,
+  "client": null,
+  "title": "Dogrywka: powrót do zamówień z Excela (47b)",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    418.74,
+    420.86
+   ]
+  ],
+  "start": 418.74,
+  "end": 420.86,
+  "duration": 2.12,
+  "splices": 0,
+  "hook_line": "wracamy do tych zamówień z Excela dobra,",
+  "transcript": "wracamy do tych zamówień z Excela dobra,",
+  "scores": {
+   "hook": 3,
+   "delivery": 4,
+   "total": 10
+  },
+  "priority": "C",
+  "cta": null,
+  "uses": [],
+  "notes": ""
+ },
+ {
+  "id": "ins-back-rezon",
+  "kind": "raw",
+  "source": "dubs",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": null,
+  "client": null,
+  "title": "Dogrywka: powrót do pamiątek (47c)",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    421.3,
+    424.4
+   ]
+  ],
+  "start": 421.3,
+  "end": 424.4,
+  "duration": 3.1,
+  "splices": 0,
+  "hook_line": "wracamy do tematu pamiątek dobra,",
+  "transcript": "wracamy do tematu pamiątek dobra,",
+  "scores": {
+   "hook": 3,
+   "delivery": 4,
+   "total": 10
+  },
+  "priority": "C",
+  "cta": null,
+  "uses": [],
+  "notes": ""
+ },
+ {
+  "id": "ins-back-8",
+  "kind": "raw",
+  "source": "dubs",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": null,
+  "client": null,
+  "title": "Dogrywka: powrót do ośmiu wdrożeń (47d)",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    424.66,
+    427.3
+   ]
+  ],
+  "start": 424.66,
+  "end": 427.3,
+  "duration": 2.64,
+  "splices": 0,
+  "hook_line": "wracamy do tych ośmiu wdrożeń dobra,",
+  "transcript": "wracamy do tych ośmiu wdrożeń dobra,",
+  "scores": {
+   "hook": 3,
+   "delivery": 4,
+   "total": 10
+  },
+  "priority": "C",
+  "cta": null,
+  "uses": [],
+  "notes": ""
+ },
+ {
+  "id": "ins-intro-kamera",
+  "kind": "raw",
   "source": "inserts",
   "n": null,
   "code": null,
   "block": null,
   "parent": null,
   "client": null,
-  "title": "Przerywnik: przedstawienie się",
+  "title": "Przerywnik: przedstawienie się (kamera, 05.11 — zastąpione 21.11)",
   "brand": "flowbiz",
   "ranges": [
    [
@@ -7715,8 +8015,8 @@
   "end": 125.1,
   "duration": 14.58,
   "splices": 1,
-  "hook_line": "cześć tu Mateusz z Flowbiz pokazuję jak AI i automatyzacje działają w normalnych firmach",
-  "transcript": "cześć tu Mateusz z Flowbiz pokazuję jak AI i automatyzacje działają w normalnych firmach a nie na prezentacjach w tym odcinku pokażę Ci jedną konkretną rzecz z prawdziwego wdrożenia nie",
+  "hook_line": "cześć cześć tu Mateusz z Flowbiz pokazuję jak AI i automatyzacje działają w normalnych",
+  "transcript": "cześć cześć tu Mateusz z Flowbiz pokazuję jak AI i automatyzacje działają w normalnych firmach a nie na prezentacjach w tym odcinku pokażę Ci jedną konkretną rzecz z prawdziwego wdrożenia nie",
   "scores": {
    "hook": 3,
    "delivery": 4,
@@ -7757,7 +8057,7 @@
   "duration": 11.86,
   "splices": 2,
   "hook_line": "tym odcinku pokażę Ci jedną konkretną rzecz z prawdziwego wdrożenia nie",
-  "transcript": "tym odcinku pokażę Ci jedną konkretną rzecz z prawdziwego wdrożenia nie będzie o modnych narzędziach o tym co realnie oszczędza czas w swojej firmie",
+  "transcript": "tym odcinku pokażę Ci jedną konkretną rzecz z prawdziwego wdrożenia nie będzie o modnych narzędziach będzie o tym co realnie oszczędza czas w swojej firmie",
   "scores": {
    "hook": 3,
    "delivery": 4,
@@ -7798,7 +8098,7 @@
   "duration": 11.86,
   "splices": 2,
   "hook_line": "tym odcinku pokażę Ci jedną konkretną rzecz z prawdziwego wdrożenia nie",
-  "transcript": "tym odcinku pokażę Ci jedną konkretną rzecz z prawdziwego wdrożenia nie będzie o modnych narzędziach o tym co realnie oszczędza czas w swojej firmie",
+  "transcript": "tym odcinku pokażę Ci jedną konkretną rzecz z prawdziwego wdrożenia nie będzie o modnych narzędziach będzie o tym co realnie oszczędza czas w swojej firmie",
   "scores": {
    "hook": 3,
    "delivery": 4,
@@ -8021,7 +8321,7 @@
   "ranges": [
    [
     144.44,
-    147.66
+    147.62
    ],
    [
     148.08,
@@ -8030,7 +8330,7 @@
   ],
   "start": 144.44,
   "end": 150.28,
-  "duration": 5.42,
+  "duration": 5.38,
   "splices": 1,
   "hook_line": "większość firm robi to ręcznie a to jest zupełnie niepotrzebne",
   "transcript": "większość firm robi to ręcznie a to jest zupełnie niepotrzebne",
@@ -8263,8 +8563,8 @@
   "end": 187.1,
   "duration": 3.58,
   "splices": 0,
-  "hook_line": "zapisz to sobie mam nadzieję że Ci się przyda",
-  "transcript": "zapisz to sobie mam nadzieję że Ci się przyda",
+  "hook_line": "zapisz to sobie mam nadzieję, że Ci się przyda",
+  "transcript": "zapisz to sobie mam nadzieję, że Ci się przyda",
   "scores": {
    "hook": 3,
    "delivery": 4,
@@ -8498,8 +8798,8 @@
   "end": 105.52,
   "duration": 5.96,
   "splices": 0,
-  "hook_line": "ostatni przykład kierownik produkcji który planował wszystko w swoim Excelu",
-  "transcript": "ostatni przykład kierownik produkcji który planował wszystko w swoim Excelu",
+  "hook_line": "ostatni przykład kierownik produkcji, który planował wszystko w swoim Excelu",
+  "transcript": "ostatni przykład kierownik produkcji, który planował wszystko w swoim Excelu",
   "scores": {
    "hook": 3,
    "delivery": 4,

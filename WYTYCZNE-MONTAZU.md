@@ -288,6 +288,18 @@ Praktycznie: na miniaturze **bez znaczka**; w stopce opisu „Miniatura i częś
 - **Do usunięcia = sekcja „odrzucone” w Studiu.** Sprzątanie (pliki odrzuconych + stare wersje) tylko na polecenie.
 - Przegląd i uwagi tylko w Studiu — bez osobnych stron z podglądem.
 
+## Baza kwestii — dogrywki Mateusza (✅ 21.11)
+
+MK 21.11: „pamiętaj, żeby dobrze to wycinać i zbudować z tych moich tekstów bazę — może być w Studio”.
+- Każda kwestia dogrywek (01–43, 44h–92, wolne wypowiedzi M1–M3 moduły i branże, F1–F4 ból abonamentu) jest osobnym
+  plikiem: `tools/dubs_split.py` (okna z ciszy, przy mowie bez pauzy — granica w dołku energii, sklejki zająknięć) →
+  `kwestie/<nr>.wav` + `mapa.json` z transkrypcją wyciętego pliku.
+- `tools/export_lines.py` (wołany przez `export_studio.py`) publikuje bazę do wspólnego folderu: `exports/lines.json`
+  + `lines/<nr>.m4a` — sekcja, tekst z listy, co słychać, gdzie użyta (wstawki, odcinki). Studio: strona **/kwestie**.
+- Nowe nagranie: plik na KOŃCU `ORDER` w `dubs_ingest.py` (offsety starszych kwestii się nie zmieniają), okna do
+  `TAKES_2111` (albo kolejnego słownika), `dubs_split.py <nr…>`, potem eksport. Mateusz nie mówi numerów i często mówi
+  swoimi słowami — wolne wypowiedzi też wchodzą do bazy, nie wyrzucamy ich.
+
 # Część II — załącznik techniczny
 
 Pipeline: `projects/recording-library` (README tam). Kolejność:

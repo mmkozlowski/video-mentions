@@ -61,10 +61,12 @@ PLAN = {
     # („To nie jest magia, to porządek plus trochę automatyzacji.”) przed łącznikiem A4
     # 21.11 (MK): odcinek otwiera treść (15–20 s), przedstawienie dopiero potem — wstawki z przedstawieniem po pierwszym
     # akapicie; po dograniu 44–47 podmienić tylko id wstawki, miejsce zostaje
-    "ep-open-mercato-offers": [("word:trudne", "ins-hello-offers"), ("END", "ins-g30"), ("END", "ins-a4"), ("END", "ins-outro"),
+    # 21.11 wieczór: dograne — ins-intro = 44h + 46b + 47 (bez „prowadzę Flowbiz”), powrót do tematu per odcinek
+    # (ins-back-*, 47a–d) zamiast ogólnego ins-a2; w ofertach przedstawienie zastępuje ins-hello-offers (13 „tu Mateusz z Flowbiz”)
+    "ep-open-mercato-offers": [("word:trudne", "ins-intro"), ("word:trudne", "ins-back-offers"), ("END", "ins-g30"), ("END", "ins-a4"), ("END", "ins-outro"),
                                ("END", "ins-yt-sub"), ("END", "ins-bye")],
     # 16.11: łączniki case'ów z dogrywek (6–12) — głos na planszy z nazwą case'u PRZED każdym rozdziałem
-    "ep-8-wdrozen": [("word:tworzenie ofert", "ins-a1"), ("word:tworzenie ofert", "ins-intro"), ("word:tworzenie ofert", "ins-a2"),
+    "ep-8-wdrozen": [("word:tworzenie ofert", "ins-a1"), ("word:tworzenie ofert", "ins-intro"), ("word:tworzenie ofert", "ins-back-8"),
                      ("Zamówienia z Excela: 70% → 94%", "ins-case-6"),
                      ("Kody kreskowe: kilka dni → 15 minut", "ins-case-7"),
                      ("Etykiety: ok. 100 godzin miesięcznie", "ins-case-8"),
@@ -75,12 +77,12 @@ PLAN = {
                      # własne CTA na końcu („zapraszam Cię na flowbiz.pl…”) — bez przerywnika zamknięcia (dubel)
                      ("END", "ins-yt-sub"), ("END", "ins-bye")],
     # 16.11: wstęp i łączniki z dogrywek; zakończenie przed własnym „Dzięki i do usłyszenia” z nagrania
-    "ep-doram": [("first:Jednak", "ins-a1"), ("first:Jednak", "ins-intro"), ("first:Jednak", "ins-a2"),
+    "ep-doram": [("first:Jednak", "ins-a1"), ("first:Jednak", "ins-intro"), ("first:Jednak", "ins-back-doram"),
                  ("Jak uczy się zwykły czat", "ins-mid"), ("Jak uczy się zwykły czat", "ins-a3"),
                  # Doram ma własne zakończenie (subskrypcja + komentarze + „Dzięki i do usłyszenia”) — brakuje w nim tylko
                  # kontaktu, więc przed „więc dziękuję Wam” wchodzi łącznik A4 i kwestia 23, bez dubli subskrypcji
                  ("before:więc dziękuję", "ins-a4"), ("before:więc dziękuję", "ins-contact")],
-    "ep-rezon": [("before:Aktualnie", "ins-a1"), ("before:Aktualnie", "ins-intro"), ("before:Aktualnie", "ins-a2"),
+    "ep-rezon": [("before:Aktualnie", "ins-a1"), ("before:Aktualnie", "ins-intro"), ("before:Aktualnie", "ins-back-rezon"),
                  ("Nadprodukcja", "ins-mid"), ("Nadprodukcja", "ins-a3"),
                  ("END", "ins-a4"), ("END", "ins-outro"), ("END", "ins-yt-sub"), ("END", "ins-bye")],
     "ep-marpasz": [("Paczki do 25 kg: cztery worki, cztery etykiety", "ins-intro"), ("Katalog AI: faktura → produkty → opisy", "ins-mid"), ("END", "ins-outro")],
@@ -287,7 +289,8 @@ def plan_segments(clip_id):
     return render, segments, shifted
 
 
-INSERT_LABELS = {"ins-intro": "przedstawienie", "ins-a1": "łącznik przed przedstawieniem", "ins-a2": "powrót do tematu",
+INSERT_LABELS = {"ins-intro": "przedstawienie", "ins-back-offers": "powrót do tematu", "ins-back-doram": "powrót do tematu",
+                 "ins-back-rezon": "powrót do tematu", "ins-back-8": "powrót do tematu", "ins-a1": "łącznik przed przedstawieniem", "ins-a2": "powrót do tematu",
                  "ins-yt-sub": "plansza Subskrybuj", "ins-hello-offers": "wstęp", "ins-mid": "wstawka w środku",
                  "ins-mid-long": "wstawka w środku", "ins-outro": "zakończenie"}
 

@@ -30,6 +30,7 @@ OUT = RAW / "kwestie"
 YT = Path.home() / "orca/workspaces/Obsidian Vault/team/marketing/content/youtube"
 LIST = YT / "2026-11-15-do-dogrania.md"            # 01–05
 LIST_RETAKE = YT / "2026-11-20-do-dogrania-ponownie.md"  # 06–43, nagrane ponownie 20.11
+LIST_2111 = YT / "2026-11-21-dogranie-przedstawienie.md"  # 44h–92 i wolne wypowiedzi, nagrane 21.11 (oś od 324,12 s)
 MODEL = "mlx-community/whisper-large-v3-mlx"
 HEAD, TAIL = 0.12, 0.30
 
@@ -85,6 +86,68 @@ TAKES = {
     43: (314.40, 319.20, "20.11; DO ODSŁUCHU: Whisper słyszy „podeźdź mu koniecznie ten film”"),
 }
 
+# 21.11 (trzeci plik, oś od 324,12 s): Mateusz nie mówił numerów, część kwestii powiedział swoimi słowami, dołożył
+# wolne wypowiedzi (przedstawienia 44l–o, moduły M1–M3, ból abonamentu F1–F4). Okna z ciszy w sygnale
+# (silencedetect −45 dB / 0,22 s); tam, gdzie mowa idzie bez pauzy, granica w dołku energii (RMS 20 ms) — zapis
+# jako lista zakresów: granice dokładne (bez dociągania do ciszy), kilka zakresów = sklejka.
+# Nienagrane: 44k, 62, 74, 80, 90, 120–128 w brzmieniu z listy (zamiast nich F1–F4).
+TAKES_2111 = {
+    "44h": (325.03, 336.14, "„a na tym kanale…” — dodane „a”"),
+    "44i": (336.89, 345.25, ""),
+    "44j": (345.77, 354.96, "„AI engineering” (bez -iem)"),
+    "44l": (355.43, 363.78, "wolna: „tworzę systemy, które przejmują ręczną robotę, wspierając się przy tym AI”; 1,4 s pauzy po imieniu"),
+    "44m": (364.53, 374.01, "wolna: „zajmuję się AI i automatyzacjami dla firm, budujemy systemy…”"),
+    "44n": (462.66, 473.01, "wolna: „pokazuję, jak z gotowych klocków składam systemy pod konkretne firmy…”"),
+    "44o": (474.50, 486.90, "wolna: „składam z gotowych klocków z Open Mercato systemy dedykowane… zapraszam Cię na mój kanał”"),
+    "45": (374.76, 383.56, "„…jak naprawdę pracujecie”"),
+    "46a": ([(384.36, 392.28), (394.16, 397.27)], "„nie zaczynamy od zera”; sklejka: wycięte pierwsze „po to” i pauza (powtórzenie)"),
+    "46b": (397.87, 406.80, ""),
+    "47": (407.95, 415.06, ""),
+    "47a": ([(415.62, 417.97)], ""),
+    "47b": ([(418.74, 420.86)], ""),
+    "47c": ([(421.30, 424.40)], "„do tematu pamiątek”"),
+    "47d": ([(424.66, 427.30)], "bez pauzy przed 47e — granica w dołku energii"),
+    "47e": ([(427.30, 429.05)], ""),
+    "48": (432.64, 437.95, ""),
+    "49": (439.04, 444.29, ""),
+    "50": (445.19, 451.02, ""),
+    "51": (451.83, 456.63, ""),
+    "61": (457.34, 461.58, "„to jeden z ośmiu wdrożeń”"),
+    "71": (495.54, 501.47, "„…na którym zbudujesz własny system”"),
+    "73": (501.85, 506.38, "pierwsze podejście"),
+    "73b": ([(517.65, 524.26)], "drugie: „biorę fundament, jakim jest Open Mercato…” — przechodzi w M1"),
+    "M1": ([(524.26, 541.40)], "wolna: lista modułów (panel B2B, serwis, planowanie produkcji, wycena, CRM, magazyn, dokumenty zgodności, katalog, marże)"),
+    "M2": (545.55, 557.52, "wolna: „ofertowanie, kalkulacja, szacunki, kosztorysy dla Twojej firmy” — z pauzami"),
+    "M3": (557.52, 570.97, "wolna: „ruszyliśmy już temat w dużej liczbie branż: produkcja, budowlana, handel, e-commerce… sprzedaż B2B”"),
+    "77": (571.85, 577.32, "„…to brak systemu, brak procesu”"),
+    "78": (577.93, 581.73, ""),
+    "79": ([(584.20, 591.02)], "trzecie „co to jest” (dwa falstarty przed); koniec przed „który…”"),
+    "79b": ([(584.20, 602.27)], "z dopowiedzeniem: „…który po prostu nie działa. Dlatego duża część firm rezygnuje z systemów ERP…” (zająknięcie „który, który”)"),
+    "81": (603.39, 608.38, "„zbudowałem na nich” — DO ODSŁUCHU"),
+    "82": (609.20, 615.46, "„link masz pod filmem”"),
+    "83": (615.94, 620.87, ""),
+    "84": (621.09, 632.26, "„zasubskrybuj mój kanał… umów bezpłatną trzydziestominutową rozmowę”"),
+    "86": ([(632.82, 641.44), (642.50, 643.28)], "sklejka: wycięte „na jeden” (zająknięcie)"),
+    "87": (643.82, 649.10, ""),
+    "88": (649.82, 652.62, ""),
+    "89": (653.24, 656.90, "bez dopowiedzianego „nie, to jest bez sensu”"),
+    "91": (658.92, 663.53, "„podeślij mu koniecznie ten film”"),
+    "92": (664.01, 671.44, ""),
+    "F1": (688.68, 698.11, "wolna (ból abonamentu): „znowu Twój CRM, który tak lubisz, zmienił cały układ…”"),
+    "F2": (698.44, 719.95, "wolna: „dlatego zaprojektuj system pod siebie… AI zmieniło zasady gry, a Open Mercato…”"),
+    "F3": (720.54, 728.21, "wolna: „zasady gry na tym rynku się zmieniły…”"),
+    "F4": (729.24, 740.12, "wolna: „wykorzystaj 80% modułów, które Open Mercato ma w sobie, a 20% dopisz ze mną…”"),
+}
+FREE = {"44l": "", "44m": "", "44n": "", "44o": "", "73b": "", "79b": "", "M1": "", "M2": "", "M3": "",
+        "F1": "", "F2": "", "F3": "", "F4": ""}   # wolne wypowiedzi — bez tekstu z listy
+
+
+def key_of(nr):
+    return f"{nr:02d}" if isinstance(nr, int) else nr
+
+
+ALL = list(range(1, 44)) + list(TAKES_2111)
+
 
 def norm(text):
     text = unicodedata.normalize("NFC", text.lower())
@@ -99,6 +162,10 @@ def expected():
             m = re.match(r"^(\d+)\.\s+[„\"](.+?)[”\"]", line.strip())
             if m and int(m.group(1)) in keep:
                 out[int(m.group(1))] = m.group(2).replace("**", "")
+    for line in open(LIST_2111, encoding="utf-8"):   # „44h. „…”” / „80. *(…)* „…””
+        m = re.match(r"^(\d+[a-z]?)\.\s+(?:\*\([^)]*\)\*\s+)?[„\"](.+)[”\"]", line.strip())
+        if m and m.group(1) in TAKES_2111:
+            out[m.group(1)] = re.sub(r"[”\"]\s*(\*.*|←.*|—.*)?$", "", m.group(2)).replace("**", "").strip()
     return out
 
 
@@ -141,33 +208,57 @@ def main(only=()):
     previous = {r["nr"]: r for r in json.load(open(OUT / "mapa.json"))} if only and (OUT / "mapa.json").exists() else {}
     want = expected()
     rows = []
-    for nr in range(1, 44):
-        if only and nr not in only and f"{nr:02d}" in previous:
-            rows.append(previous[f"{nr:02d}"])
+    for nr in ALL:
+        key = key_of(nr)
+        if only and key not in only and key in previous:
+            rows.append(previous[key])
             continue
-        take = TAKES.get(nr)
+        take = TAKES.get(nr) if isinstance(nr, int) else TAKES_2111.get(nr)
         exp = want.get(nr, "")
         if take is None:
-            rows.append(dict(nr=f"{nr:02d}", plik="", start="", koniec="", transkrypt="", oczekiwany=exp,
+            rows.append(dict(nr=key, plik="", start="", koniec="", transkrypt="", oczekiwany=exp,
                              zgodnosc="brak", uwagi="nie ma w nagraniu"))
             continue
-        a, b, note = take
-        s, e = snap(a, b)
+        path = OUT / f"{key}.wav"
+        if isinstance(take[0], list):   # dokładne zakresy (dołek energii / sklejka)
+            ranges, note = take
+            parts = []
+            for i, (ra, rb) in enumerate(ranges):
+                part = OUT / f"_{key}-{i}.wav"
+                subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", f"{ra:.3f}", "-t", f"{rb - ra:.3f}", "-i", str(WAV),
+                                "-af", "afade=t=in:d=0.01,areverse,afade=t=in:d=0.02,areverse", "-ar", "48000", "-ac", "1",
+                                str(part)], check=True)
+                parts.append(part)
+            cat = OUT / f"_{key}.txt"
+            cat.write_text("".join(f"file '{p.name}'\n" for p in parts))
+            subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", str(cat), str(path)],
+                           check=True)
+            for p in parts + [cat]:
+                p.unlink()
+            s, e = ranges[0][0], ranges[-1][1]
+            length = sum(rb - ra for ra, rb in ranges)
+        else:
+            a, b, note = take
+            s, e = snap(a, b)
+            length = None
         if nr in TRIM_START:
             s += TRIM_START[nr]
             note = (note + "; " if note else "") + (f"audyt 17.11: przycięty początek o {TRIM_START[nr]:.2f} s "
                                                     "(urywek poprzedniej mowy na starcie)")
-        path = OUT / f"{nr:02d}.wav"
-        subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", f"{s:.3f}", "-t", f"{e - s:.3f}", "-i", str(WAV),
-                        "-af", "afade=t=in:d=0.01,areverse,afade=t=in:d=0.04,areverse", "-ar", "48000", "-ac", "1",
-                        str(path)], check=True)
+        if length is None:
+            subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", f"{s:.3f}", "-t", f"{e - s:.3f}", "-i", str(WAV),
+                            "-af", "afade=t=in:d=0.01,areverse,afade=t=in:d=0.04,areverse", "-ar", "48000", "-ac", "1",
+                            str(path)], check=True)
+            length = e - s
         heard = transcribe(path)
-        status = "OK" if norm(heard) == norm(exp) else "różnica"
+        status = "OK" if norm(heard) == norm(exp) else ("wolna" if key in FREE else "różnica")
         if note.startswith("DO ODSŁUCHU"):
             status = "do odsłuchu"
-        rows.append(dict(nr=f"{nr:02d}", plik=f"kwestie/{path.name}", start=f"{s:.2f}", koniec=f"{e:.2f}",
+        if "DO ODSŁUCHU" in note:
+            status = "do odsłuchu"
+        rows.append(dict(nr=key, plik=f"kwestie/{path.name}", start=f"{s:.2f}", koniec=f"{e:.2f}",
                          transkrypt=heard, oczekiwany=exp, zgodnosc=status, uwagi=note))
-        print(f"{nr:02d} {status:12} {e - s:5.2f} s  {heard}")
+        print(f"{key:4} {status:12} {length:5.2f} s  {heard}")
     with open(OUT / "mapa.csv", "w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=list(rows[0]))
         w.writeheader()
@@ -178,4 +269,4 @@ def main(only=()):
 
 if __name__ == "__main__":
     import sys
-    main({int(a) for a in sys.argv[1:]})
+    main({a if not a.isdigit() else f"{int(a):02d}" for a in sys.argv[1:]})

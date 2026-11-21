@@ -180,7 +180,8 @@ Ranking: `hook × 2 + delivery` (max 15). A ≥ 13, B ≥ 11. Oceny redakcyjne �
 | `ep-module-1` | Kartka papieru zamiast kodu, warsztat 6 h z ~70 pytaniami po rolach, droga zamówienia przez firmę, nagrana rozmowa z programistą → specyfikacja. |
 | `ep-module-2` | Trzy warstwy specyfikacji (40 minut dziennie, 3 faktury), słownik pojęć, checklista, trafność 70–90%, granice modułu, wzorce vs wyjątki, powtarzalność, CTA w komentarzu. |
 | `raw-freestyle-workshop` | Zaproszenie na warsztaty bez prompteru, urwane na fakturach. Do przebrania na cytaty. |
-| `ins-intro` | „A ja nazywam się Mateusz Kozłowski…” + branże, do „…miałem okazję już dotknąć”. Bez „to nie jest odcinek sponsorowany” (Mateusz 05.11: „po co mam się tłumaczyć”), cięcie w ciszy 74,38–74,76. Po hooku. |
+| `ins-intro` | „Cześć, jestem Mateusz Kozłowski, a na tym kanale pokazuję prawdziwe wdrożenia…” + Open Mercato 80% + branże. |
+| `ins-intro-kamera` | „A ja nazywam się Mateusz Kozłowski…” + branże, do „…miałem okazję już dotknąć”. Bez „to nie jest odcinek sponsorowany” (Mateusz 05.11: „po co mam się tłumaczyć”), cięcie w ciszy 74,38–74,76. Po hooku. |
 | `ins-mid` | „Poczekaj, zatrzymam Cię…” + konsultacja, „bez zobowiązań”, WhatsApp/LinkedIn/strona. 60–70% filmu. |
 | `ins-mid-long` | Wersja z warsztatem na miejscu i „Open Mercato przetworzy to na specyfikację” — tylko odcinki o OM. |
 | `ins-outro` | „Jeśli chcesz, żebym przeszedł z Tobą przez Twój proces…” + pytania w komentarzu. Po CTA odcinka. |

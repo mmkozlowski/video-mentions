@@ -1837,7 +1837,7 @@
    "predictor": null,
    "file": "ch-om-6-najtrudniejsze__reels-F.mp4",
    "rank": 38,
-   "grade": "B"
+   "grade": "A"
   },
   {
    "id": "ch-om-7-trzy-zarzuty",
@@ -1944,7 +1944,7 @@
    "score": 58,
    "predictor": null,
    "file": "ch-om-9-cztery-branze__reels-F.mp4",
-   "rank": 93,
+   "rank": 96,
    "grade": "C"
   },
   {
@@ -2053,7 +2053,7 @@
    "predictor": null,
    "file": "ch-vacu-1-chatgpt-zapomina--zajawka__feed-F.mp4",
    "rank": 39,
-   "grade": "B"
+   "grade": "A"
   },
   {
    "id": "ch-vibe-1-baza-danych",
@@ -2134,7 +2134,7 @@
    "score": 54,
    "predictor": null,
    "file": "ch-vibe-2-magiczne-sesje__reels-F.mp4",
-   "rank": 102,
+   "rank": 107,
    "grade": "C"
   },
   {
@@ -2206,7 +2206,7 @@
    "score": 52,
    "predictor": null,
    "file": "ch-vibe-4-framework__reels-F.mp4",
-   "rank": 103,
+   "rank": 109,
    "grade": "C"
   },
   {
@@ -2242,7 +2242,7 @@
    "score": 59,
    "predictor": null,
    "file": "ch-vibe-5-gliniane-nogi__reels-F.mp4",
-   "rank": 92,
+   "rank": 94,
    "grade": "C"
   },
   {
@@ -2314,7 +2314,7 @@
    "score": 56,
    "predictor": null,
    "file": "ch-vibe-7-nie-dla-kazdego__reels-F.mp4",
-   "rank": 100,
+   "rank": 104,
    "grade": "C"
   },
   {
@@ -2386,7 +2386,7 @@
    "score": 60,
    "predictor": null,
    "file": "ep-doram__youtube-F.mp4",
-   "rank": 85,
+   "rank": 87,
    "grade": "C"
   },
   {
@@ -2494,7 +2494,7 @@
    "score": 57,
    "predictor": null,
    "file": "ep-open-mercato-offers__youtube-F.mp4",
-   "rank": 99,
+   "rank": 103,
    "grade": "C"
   },
   {
@@ -2530,7 +2530,7 @@
    "score": 58,
    "predictor": null,
    "file": "ep-rezon__youtube-F.mp4",
-   "rank": 94,
+   "rank": 97,
    "grade": "C"
   },
   {
@@ -2566,7 +2566,7 @@
    "score": 58,
    "predictor": null,
    "file": "ep-vacuactiv__youtube-F.mp4",
-   "rank": 95,
+   "rank": 98,
    "grade": "C"
   },
   {
@@ -2710,7 +2710,7 @@
    "score": 58,
    "predictor": null,
    "file": "ins-a3__youtube-F.mp4",
-   "rank": 96,
+   "rank": 99,
    "grade": "C"
   },
   {
@@ -2746,7 +2746,151 @@
    "score": 60,
    "predictor": null,
    "file": "ins-a4__youtube-F.mp4",
-   "rank": 86,
+   "rank": 88,
+   "grade": "C"
+  },
+  {
+   "id": "ins-back-8",
+   "clip": "ins-back-8",
+   "title": "Dogrywka: powrót do ośmiu wdrożeń (47d)",
+   "kind": "odcinek",
+   "format": "youtube",
+   "brand": "flowbiz",
+   "duration": 2.6,
+   "series": "dubs",
+   "seriesName": "Reklamy z promptera (8.10)",
+   "hook_text": "",
+   "cover_text": "",
+   "cta_text": "",
+   "hook_ed": 3,
+   "delivery_ed": 4,
+   "first_word_s": 0.0,
+   "cover_s": 0,
+   "words_3s": 7,
+   "syl_s": 5.08,
+   "events": 1,
+   "events_per_min": 22.7,
+   "parts": {
+    "hook": 0.5,
+    "delivery": 0.75,
+    "opening": 1.0,
+    "length": 0.0,
+    "specific": 0.0,
+    "dynamics": 1.0,
+    "cta": 1.0
+   },
+   "score": 62,
+   "predictor": null,
+   "file": "ins-back-8__youtube-F.mp4",
+   "rank": 69,
+   "grade": "B"
+  },
+  {
+   "id": "ins-back-doram",
+   "clip": "ins-back-doram",
+   "title": "Dogrywka: powrót do zamówień z Excela (47b)",
+   "kind": "odcinek",
+   "format": "youtube",
+   "brand": "flowbiz",
+   "duration": 2.1,
+   "series": "dubs",
+   "seriesName": "Reklamy z promptera (8.10)",
+   "hook_text": "",
+   "cover_text": "",
+   "cta_text": "",
+   "hook_ed": 3,
+   "delivery_ed": 4,
+   "first_word_s": 0.0,
+   "cover_s": 0,
+   "words_3s": 8,
+   "syl_s": 7.43,
+   "events": 1,
+   "events_per_min": 28.3,
+   "parts": {
+    "hook": 0.5,
+    "delivery": 0.75,
+    "opening": 1.0,
+    "length": 0.0,
+    "specific": 0.0,
+    "dynamics": 1.0,
+    "cta": 1.0
+   },
+   "score": 62,
+   "predictor": null,
+   "file": "ins-back-doram__youtube-F.mp4",
+   "rank": 70,
+   "grade": "B"
+  },
+  {
+   "id": "ins-back-offers",
+   "clip": "ins-back-offers",
+   "title": "Dogrywka: powrót do ofert (47a)",
+   "kind": "odcinek",
+   "format": "youtube",
+   "brand": "flowbiz",
+   "duration": 2.4,
+   "series": "dubs",
+   "seriesName": "Reklamy z promptera (8.10)",
+   "hook_text": "",
+   "cover_text": "",
+   "cta_text": "",
+   "hook_ed": 3,
+   "delivery_ed": 4,
+   "first_word_s": 0.16,
+   "cover_s": 0,
+   "words_3s": 5,
+   "syl_s": 5.08,
+   "events": 1,
+   "events_per_min": 25.5,
+   "parts": {
+    "hook": 0.5,
+    "delivery": 0.75,
+    "opening": 0.71,
+    "length": 0.0,
+    "specific": 0.0,
+    "dynamics": 1.0,
+    "cta": 1.0
+   },
+   "score": 58,
+   "predictor": null,
+   "file": "ins-back-offers__youtube-F.mp4",
+   "rank": 100,
+   "grade": "C"
+  },
+  {
+   "id": "ins-back-rezon",
+   "clip": "ins-back-rezon",
+   "title": "Dogrywka: powrót do pamiątek (47c)",
+   "kind": "odcinek",
+   "format": "youtube",
+   "brand": "flowbiz",
+   "duration": 3.1,
+   "series": "dubs",
+   "seriesName": "Reklamy z promptera (8.10)",
+   "hook_text": "",
+   "cover_text": "",
+   "cta_text": "",
+   "hook_ed": 3,
+   "delivery_ed": 4,
+   "first_word_s": 0.0,
+   "cover_s": 0,
+   "words_3s": 5,
+   "syl_s": 4.67,
+   "events": 1,
+   "events_per_min": 19.4,
+   "parts": {
+    "hook": 0.5,
+    "delivery": 0.75,
+    "opening": 0.71,
+    "length": 0.0,
+    "specific": 0.0,
+    "dynamics": 1.0,
+    "cta": 1.0
+   },
+   "score": 58,
+   "predictor": null,
+   "file": "ins-back-rezon__youtube-F.mp4",
+   "rank": 101,
    "grade": "C"
   },
   {
@@ -2782,7 +2926,7 @@
    "score": 62,
    "predictor": null,
    "file": "ins-bye__youtube-F.mp4",
-   "rank": 69,
+   "rank": 71,
    "grade": "B"
   },
   {
@@ -2818,7 +2962,7 @@
    "score": 62,
    "predictor": null,
    "file": "ins-case-10__youtube-F.mp4",
-   "rank": 70,
+   "rank": 72,
    "grade": "B"
   },
   {
@@ -2854,7 +2998,7 @@
    "score": 58,
    "predictor": null,
    "file": "ins-case-11__youtube-F.mp4",
-   "rank": 97,
+   "rank": 102,
    "grade": "C"
   },
   {
@@ -2890,7 +3034,7 @@
    "score": 60,
    "predictor": null,
    "file": "ins-case-12__youtube-F.mp4",
-   "rank": 87,
+   "rank": 89,
    "grade": "C"
   },
   {
@@ -2926,7 +3070,7 @@
    "score": 56,
    "predictor": null,
    "file": "ins-case-6__youtube-F.mp4",
-   "rank": 101,
+   "rank": 105,
    "grade": "C"
   },
   {
@@ -2962,7 +3106,7 @@
    "score": 60,
    "predictor": null,
    "file": "ins-case-7__youtube-F.mp4",
-   "rank": 88,
+   "rank": 90,
    "grade": "C"
   },
   {
@@ -2998,7 +3142,7 @@
    "score": 62,
    "predictor": null,
    "file": "ins-case-8__youtube-F.mp4",
-   "rank": 71,
+   "rank": 73,
    "grade": "B"
   },
   {
@@ -3034,7 +3178,7 @@
    "score": 62,
    "predictor": null,
    "file": "ins-case-9__youtube-F.mp4",
-   "rank": 72,
+   "rank": 74,
    "grade": "B"
   },
   {
@@ -3070,7 +3214,7 @@
    "score": 62,
    "predictor": null,
    "file": "ins-contact__youtube-F.mp4",
-   "rank": 73,
+   "rank": 75,
    "grade": "B"
   },
   {
@@ -3080,7 +3224,7 @@
    "kind": "zajawka",
    "format": "feed",
    "brand": "flowbiz",
-   "duration": 5.2,
+   "duration": 5.1,
    "series": "dubs",
    "seriesName": "Reklamy z promptera (8.10)",
    "hook_text": "",
@@ -3093,7 +3237,7 @@
    "words_3s": 6,
    "syl_s": 4.33,
    "events": 1,
-   "events_per_min": 11.6,
+   "events_per_min": 11.7,
    "parts": {
     "hook": 0.5,
     "delivery": 0.75,
@@ -3106,7 +3250,7 @@
    "score": 60,
    "predictor": null,
    "file": "ins-g27__feed-F.mp4",
-   "rank": 89,
+   "rank": 91,
    "grade": "C"
   },
   {
@@ -3116,7 +3260,7 @@
    "kind": "rolka",
    "format": "reels",
    "brand": "flowbiz",
-   "duration": 5.2,
+   "duration": 5.1,
    "series": "dubs",
    "seriesName": "Reklamy z promptera (8.10)",
    "hook_text": "",
@@ -3129,7 +3273,7 @@
    "words_3s": 6,
    "syl_s": 4.33,
    "events": 1,
-   "events_per_min": 11.6,
+   "events_per_min": 11.7,
    "parts": {
     "hook": 0.5,
     "delivery": 0.75,
@@ -3142,7 +3286,7 @@
    "score": 45,
    "predictor": null,
    "file": "ins-g27__reels-F.mp4",
-   "rank": 108,
+   "rank": 115,
    "grade": "C"
   },
   {
@@ -3178,8 +3322,8 @@
    "score": 62,
    "predictor": null,
    "file": "ins-g28__feed-F.mp4",
-   "rank": 74,
-   "grade": "C"
+   "rank": 76,
+   "grade": "B"
   },
   {
    "id": "ins-g28",
@@ -3214,7 +3358,7 @@
    "score": 48,
    "predictor": null,
    "file": "ins-g28__reels-F.mp4",
-   "rank": 104,
+   "rank": 111,
    "grade": "C"
   },
   {
@@ -3250,8 +3394,8 @@
    "score": 62,
    "predictor": null,
    "file": "ins-g29--doram__feed-F.mp4",
-   "rank": 75,
-   "grade": "C"
+   "rank": 77,
+   "grade": "B"
   },
   {
    "id": "ins-g29",
@@ -3286,8 +3430,8 @@
    "score": 62,
    "predictor": null,
    "file": "ins-g29__feed-F.mp4",
-   "rank": 76,
-   "grade": "C"
+   "rank": 78,
+   "grade": "B"
   },
   {
    "id": "ins-g30",
@@ -3322,7 +3466,7 @@
    "score": 62,
    "predictor": null,
    "file": "ins-g30__feed-F.mp4",
-   "rank": 77,
+   "rank": 79,
    "grade": "C"
   },
   {
@@ -3358,7 +3502,7 @@
    "score": 48,
    "predictor": null,
    "file": "ins-g30__reels-F.mp4",
-   "rank": 105,
+   "rank": 112,
    "grade": "C"
   },
   {
@@ -3394,7 +3538,7 @@
    "score": 62,
    "predictor": null,
    "file": "ins-g30__youtube-F.mp4",
-   "rank": 78,
+   "rank": 80,
    "grade": "C"
   },
   {
@@ -3430,7 +3574,7 @@
    "score": 35,
    "predictor": null,
    "file": "ins-h31__reels-F.mp4",
-   "rank": 109,
+   "rank": 116,
    "grade": "C"
   },
   {
@@ -3466,7 +3610,7 @@
    "score": 60,
    "predictor": null,
    "file": "ins-h32__feed-F.mp4",
-   "rank": 90,
+   "rank": 92,
    "grade": "C"
   },
   {
@@ -3502,7 +3646,7 @@
    "score": 48,
    "predictor": null,
    "file": "ins-h33__reels-F.mp4",
-   "rank": 106,
+   "rank": 113,
    "grade": "C"
   },
   {
@@ -3538,7 +3682,7 @@
    "score": 48,
    "predictor": null,
    "file": "ins-h35__reels-F.mp4",
-   "rank": 107,
+   "rank": 114,
    "grade": "C"
   },
   {
@@ -3574,43 +3718,151 @@
    "score": 60,
    "predictor": null,
    "file": "ins-hello-offers__youtube-F.mp4",
-   "rank": 91,
+   "rank": 93,
    "grade": "C"
   },
   {
-   "id": "ins-intro",
-   "clip": "ins-intro",
-   "title": "Przerywnik: przedstawienie się",
+   "id": "ins-intro-b",
+   "clip": "ins-intro-b",
+   "title": "Przerywnik: przedstawienie wariant B (44i + 46b + 47)",
    "kind": "odcinek",
    "format": "youtube",
    "brand": "flowbiz",
-   "duration": 19.3,
-   "series": "inserts",
+   "duration": 23.8,
+   "series": "dubs",
    "seriesName": "Reklamy z promptera (8.10)",
    "hook_text": "",
    "cover_text": "",
    "cta_text": "",
    "hook_ed": 3,
    "delivery_ed": 4,
-   "first_word_s": 0.0,
+   "first_word_s": 0.01,
    "cover_s": 0,
-   "words_3s": 6,
-   "syl_s": 4.33,
+   "words_3s": 8,
+   "syl_s": 4.81,
    "events": 2,
-   "events_per_min": 6.2,
+   "events_per_min": 5.0,
    "parts": {
     "hook": 0.5,
     "delivery": 0.75,
-    "opening": 0.86,
+    "opening": 1.0,
     "length": 0.0,
     "specific": 0.0,
-    "dynamics": 0.78,
+    "dynamics": 0.63,
     "cta": 1.0
    },
-   "score": 58,
+   "score": 59,
+   "predictor": null,
+   "file": "ins-intro-b__youtube-F.mp4",
+   "rank": 95,
+   "grade": "C"
+  },
+  {
+   "id": "ins-intro-krotkie",
+   "clip": "ins-intro-krotkie",
+   "title": "Przerywnik: przedstawienie krótkie (44h + 46b)",
+   "kind": "odcinek",
+   "format": "youtube",
+   "brand": "flowbiz",
+   "duration": 20.1,
+   "series": "dubs",
+   "seriesName": "Reklamy z promptera (8.10)",
+   "hook_text": "",
+   "cover_text": "",
+   "cta_text": "",
+   "hook_ed": 3,
+   "delivery_ed": 4,
+   "first_word_s": 0.39,
+   "cover_s": 0,
+   "words_3s": 5,
+   "syl_s": 4.18,
+   "events": 2,
+   "events_per_min": 6.0,
+   "parts": {
+    "hook": 0.5,
+    "delivery": 0.75,
+    "opening": 0.71,
+    "length": 0.0,
+    "specific": 0.0,
+    "dynamics": 0.75,
+    "cta": 1.0
+   },
+   "score": 56,
+   "predictor": null,
+   "file": "ins-intro-krotkie__youtube-F.mp4",
+   "rank": 106,
+   "grade": "C"
+  },
+  {
+   "id": "ins-intro-pelne",
+   "clip": "ins-intro-pelne",
+   "title": "Przerywnik: przedstawienie pełne (44h + 45 + 46b + 47)",
+   "kind": "odcinek",
+   "format": "youtube",
+   "brand": "flowbiz",
+   "duration": 35.0,
+   "series": "dubs",
+   "seriesName": "Reklamy z promptera (8.10)",
+   "hook_text": "",
+   "cover_text": "",
+   "cta_text": "",
+   "hook_ed": 3,
+   "delivery_ed": 4,
+   "first_word_s": 0.39,
+   "cover_s": 0,
+   "words_3s": 5,
+   "syl_s": 4.69,
+   "events": 2,
+   "events_per_min": 3.4,
+   "parts": {
+    "hook": 0.5,
+    "delivery": 0.75,
+    "opening": 0.71,
+    "length": 0.0,
+    "specific": 0.0,
+    "dynamics": 0.43,
+    "cta": 1.0
+   },
+   "score": 52,
+   "predictor": null,
+   "file": "ins-intro-pelne__youtube-F.mp4",
+   "rank": 110,
+   "grade": "C"
+  },
+  {
+   "id": "ins-intro",
+   "clip": "ins-intro",
+   "title": "Przerywnik: przedstawienie (dogrywki 21.11: 44h + 46b + 47)",
+   "kind": "odcinek",
+   "format": "youtube",
+   "brand": "flowbiz",
+   "duration": 26.7,
+   "series": "dubs",
+   "seriesName": "Reklamy z promptera (8.10)",
+   "hook_text": "",
+   "cover_text": "",
+   "cta_text": "",
+   "hook_ed": 3,
+   "delivery_ed": 4,
+   "first_word_s": 0.39,
+   "cover_s": 0,
+   "words_3s": 5,
+   "syl_s": 4.49,
+   "events": 2,
+   "events_per_min": 4.5,
+   "parts": {
+    "hook": 0.5,
+    "delivery": 0.75,
+    "opening": 0.71,
+    "length": 0.0,
+    "specific": 0.0,
+    "dynamics": 0.56,
+    "cta": 1.0
+   },
+   "score": 54,
    "predictor": null,
    "file": "ins-intro__youtube-F.mp4",
-   "rank": 98,
+   "rank": 108,
    "grade": "C"
   },
   {
@@ -3646,7 +3898,7 @@
    "score": 62,
    "predictor": null,
    "file": "ins-lead-doram__youtube-F.mp4",
-   "rank": 79,
+   "rank": 81,
    "grade": "C"
   },
   {
@@ -3682,7 +3934,7 @@
    "score": 62,
    "predictor": null,
    "file": "ins-lead-rezon__youtube-F.mp4",
-   "rank": 80,
+   "rank": 82,
    "grade": "C"
   },
   {
@@ -3718,7 +3970,7 @@
    "score": 62,
    "predictor": null,
    "file": "ins-mid-long__youtube-F.mp4",
-   "rank": 81,
+   "rank": 83,
    "grade": "C"
   },
   {
@@ -3754,7 +4006,7 @@
    "score": 62,
    "predictor": null,
    "file": "ins-mid__youtube-F.mp4",
-   "rank": 82,
+   "rank": 84,
    "grade": "C"
   },
   {
@@ -3790,7 +4042,7 @@
    "score": 62,
    "predictor": null,
    "file": "ins-outro__youtube-F.mp4",
-   "rank": 83,
+   "rank": 85,
    "grade": "C"
   },
   {
@@ -3826,7 +4078,7 @@
    "score": 62,
    "predictor": null,
    "file": "ins-yt-sub__youtube-F.mp4",
-   "rank": 84,
+   "rank": 86,
    "grade": "C"
   },
   {

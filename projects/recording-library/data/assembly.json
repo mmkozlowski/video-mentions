@@ -3,7 +3,11 @@
   "plan": [
    [
     "word:trudne",
-    "ins-hello-offers"
+    "ins-intro"
+   ],
+   [
+    "word:trudne",
+    "ins-back-offers"
    ],
    [
     "END",
@@ -26,54 +30,60 @@
     "ins-bye"
    ]
   ],
-  "chapters": "0:00 Każdy ma swoją wersję oferty\n1:34 20 ofert → 3 zamówienia\n2:09 Asystent czyta maile → szkic w 5 minut",
+  "chapters": "0:00 Każdy ma swoją wersję oferty\n1:49 20 ofert → 3 zamówienia\n2:23 Asystent czyta maile → szkic w 5 minut",
   "chapter_list": [
    {
     "t": 0.0,
     "title": "Każdy ma swoją wersję oferty"
    },
    {
-    "t": 94.8,
+    "t": 109.3,
     "title": "20 ofert → 3 zamówienia"
    },
    {
-    "t": 129.2,
+    "t": 143.7,
     "title": "Asystent czyta maile → szkic w 5 minut"
    }
   ],
   "inserts": [
    {
     "t": 24.4,
-    "id": "ins-hello-offers",
-    "label": "wstęp",
-    "length": 14.6
+    "id": "ins-intro",
+    "label": "przedstawienie",
+    "length": 26.7
    },
    {
-    "t": 187.9,
+    "t": 51.1,
+    "id": "ins-back-offers",
+    "label": "powrót do tematu",
+    "length": 2.4
+   },
+   {
+    "t": 202.4,
     "id": "ins-g30",
     "label": "ins-g30",
     "length": 4.2
    },
    {
-    "t": 192.1,
+    "t": 206.6,
     "id": "ins-a4",
     "label": "ins-a4",
     "length": 3.0
    },
    {
-    "t": 195.0,
+    "t": 209.5,
     "id": "ins-outro",
     "label": "zakończenie",
     "length": 15.9
    },
    {
-    "t": 210.9,
+    "t": 225.4,
     "id": "ins-yt-sub",
     "label": "plansza Subskrybuj",
     "length": 7.9
    },
    {
-    "t": 218.8,
+    "t": 233.3,
     "id": "ins-bye",
     "label": "ins-bye",
     "length": 4.9
@@ -109,7 +119,7 @@
    ],
    [
     "before:Aktualnie",
-    "ins-a2"
+    "ins-back-rezon"
    ],
    [
     "Nadprodukcja",
@@ -136,38 +146,38 @@
     "ins-bye"
    ]
   ],
-  "chapters": "0:00 Producent pamiątek znad morza i proces na kartkach\n0:44 Kontrola po fakcie\n1:27 Najpierw jedna baza\n2:26 Integracja z PC Business\n3:01 Handlowiec w trasie\n4:59 Nadprodukcja\n6:26 Panel klienta B2B\n7:06 Handlowiec zamawia za klienta",
+  "chapters": "0:00 Producent pamiątek znad morza i proces na kartkach\n0:51 Kontrola po fakcie\n1:34 Najpierw jedna baza\n2:34 Integracja z PC Business\n3:08 Handlowiec w trasie\n5:07 Nadprodukcja\n6:33 Panel klienta B2B\n7:13 Handlowiec zamawia za klienta",
   "chapter_list": [
    {
     "t": 0.0,
     "title": "Producent pamiątek znad morza i proces na kartkach"
    },
    {
-    "t": 44.0,
+    "t": 51.7,
     "title": "Kontrola po fakcie"
    },
    {
-    "t": 87.0,
+    "t": 94.7,
     "title": "Najpierw jedna baza"
    },
    {
-    "t": 146.4,
+    "t": 154.1,
     "title": "Integracja z PC Business"
    },
    {
-    "t": 181.1,
+    "t": 188.8,
     "title": "Handlowiec w trasie"
    },
    {
-    "t": 299.4,
+    "t": 307.1,
     "title": "Nadprodukcja"
    },
    {
-    "t": 386.2,
+    "t": 393.9,
     "title": "Panel klienta B2B"
    },
    {
-    "t": 426.1,
+    "t": 433.8,
     "title": "Handlowiec zamawia za klienta"
    }
   ],
@@ -182,46 +192,46 @@
     "t": 21.4,
     "id": "ins-intro",
     "label": "przedstawienie",
-    "length": 19.3
+    "length": 26.7
    },
    {
-    "t": 40.7,
-    "id": "ins-a2",
+    "t": 48.1,
+    "id": "ins-back-rezon",
     "label": "powrót do tematu",
-    "length": 2.8
+    "length": 3.1
    },
    {
-    "t": 270.7,
+    "t": 278.4,
     "id": "ins-mid",
     "label": "wstawka w środku",
     "length": 25.6
    },
    {
-    "t": 296.3,
+    "t": 304.0,
     "id": "ins-a3",
     "label": "ins-a3",
     "length": 3.1
    },
    {
-    "t": 463.7,
+    "t": 471.4,
     "id": "ins-a4",
     "label": "ins-a4",
     "length": 3.0
    },
    {
-    "t": 466.7,
+    "t": 474.4,
     "id": "ins-outro",
     "label": "zakończenie",
     "length": 15.9
    },
    {
-    "t": 482.6,
+    "t": 490.3,
     "id": "ins-yt-sub",
     "label": "plansza Subskrybuj",
     "length": 7.9
    },
    {
-    "t": 490.4,
+    "t": 498.1,
     "id": "ins-bye",
     "label": "ins-bye",
     "length": 4.9
@@ -257,7 +267,7 @@
    ],
    [
     "first:Jednak",
-    "ins-a2"
+    "ins-back-doram"
    ],
    [
     "Jak uczy się zwykły czat",
@@ -276,46 +286,46 @@
     "ins-contact"
    ]
   ],
-  "chapters": "0:00 Zamówienia w Excelu od kontrahentów z Niemiec\n1:27 Kilka dni klepania → 10 minut\n2:06 Dlaczego to tak długo trwało\n3:24 Kody kreskowe: przeklej, drukuj\n4:40 Najpierw jedna baza\n5:46 Pamięć dla AI\n7:40 Jak uczy się zwykły czat\n9:02 70% → 94% → 95%\n10:00 Kody bez AI: 15 minut\n10:27 Co dalej",
+  "chapters": "0:00 Zamówienia w Excelu od kontrahentów z Niemiec\n1:34 Kilka dni klepania → 10 minut\n2:13 Dlaczego to tak długo trwało\n3:31 Kody kreskowe: przeklej, drukuj\n4:46 Najpierw jedna baza\n5:53 Pamięć dla AI\n7:46 Jak uczy się zwykły czat\n9:09 70% → 94% → 95%\n10:07 Kody bez AI: 15 minut\n10:33 Co dalej",
   "chapter_list": [
    {
     "t": 0.0,
     "title": "Zamówienia w Excelu od kontrahentów z Niemiec"
    },
    {
-    "t": 87.8,
+    "t": 94.6,
     "title": "Kilka dni klepania → 10 minut"
    },
    {
-    "t": 126.8,
+    "t": 133.6,
     "title": "Dlaczego to tak długo trwało"
    },
    {
-    "t": 204.5,
+    "t": 211.2,
     "title": "Kody kreskowe: przeklej, drukuj"
    },
    {
-    "t": 280.0,
+    "t": 286.7,
     "title": "Najpierw jedna baza"
    },
    {
-    "t": 346.3,
+    "t": 353.1,
     "title": "Pamięć dla AI"
    },
    {
-    "t": 460.1,
+    "t": 466.8,
     "title": "Jak uczy się zwykły czat"
    },
    {
-    "t": 542.9,
+    "t": 549.6,
     "title": "70% → 94% → 95%"
    },
    {
-    "t": 600.8,
+    "t": 607.6,
     "title": "Kody bez AI: 15 minut"
    },
    {
-    "t": 627.1,
+    "t": 633.8,
     "title": "Co dalej"
    }
   ],
@@ -330,34 +340,34 @@
     "t": 25.8,
     "id": "ins-intro",
     "label": "przedstawienie",
-    "length": 19.3
+    "length": 26.7
    },
    {
-    "t": 45.0,
-    "id": "ins-a2",
+    "t": 52.5,
+    "id": "ins-back-doram",
     "label": "powrót do tematu",
-    "length": 2.8
+    "length": 2.1
    },
    {
-    "t": 431.4,
+    "t": 438.1,
     "id": "ins-mid",
     "label": "wstawka w środku",
     "length": 25.6
    },
    {
-    "t": 457.0,
+    "t": 463.7,
     "id": "ins-a3",
     "label": "ins-a3",
     "length": 3.1
    },
    {
-    "t": 648.4,
+    "t": 655.1,
     "id": "ins-a4",
     "label": "ins-a4",
     "length": 3.0
    },
    {
-    "t": 651.3,
+    "t": 658.1,
     "id": "ins-contact",
     "label": "ins-contact",
     "length": 5.8
@@ -376,7 +386,7 @@
    ],
    [
     "word:tworzenie ofert",
-    "ins-a2"
+    "ins-back-8"
    ],
    [
     "Zamówienia z Excela: 70% → 94%",
@@ -419,38 +429,38 @@
     "ins-bye"
    ]
   ],
-  "chapters": "0:00 Oferta w 5 minut\n3:40 Zamówienia z Excela: 70% → 94%\n5:06 Kody kreskowe: kilka dni → 15 minut\n5:45 Etykiety: ok. 100 godzin miesięcznie\n7:40 Katalog AI z faktur\n10:45 Panel klienta B2B\n12:31 Kierownik produkcji w godzinę\n14:35 AI to dokręcanie śrubek",
+  "chapters": "0:00 Oferta w 5 minut\n3:47 Zamówienia z Excela: 70% → 94%\n5:13 Kody kreskowe: kilka dni → 15 minut\n5:53 Etykiety: ok. 100 godzin miesięcznie\n7:47 Katalog AI z faktur\n10:52 Panel klienta B2B\n12:39 Kierownik produkcji w godzinę\n14:42 AI to dokręcanie śrubek",
   "chapter_list": [
    {
     "t": 0.0,
     "title": "Oferta w 5 minut"
    },
    {
-    "t": 220.3,
+    "t": 227.5,
     "title": "Zamówienia z Excela: 70% → 94%"
    },
    {
-    "t": 306.5,
+    "t": 313.7,
     "title": "Kody kreskowe: kilka dni → 15 minut"
    },
    {
-    "t": 345.9,
+    "t": 353.1,
     "title": "Etykiety: ok. 100 godzin miesięcznie"
    },
    {
-    "t": 460.3,
+    "t": 467.5,
     "title": "Katalog AI z faktur"
    },
    {
-    "t": 645.1,
+    "t": 652.3,
     "title": "Panel klienta B2B"
    },
    {
-    "t": 751.9,
+    "t": 759.2,
     "title": "Kierownik produkcji w godzinę"
    },
    {
-    "t": 875.1,
+    "t": 882.4,
     "title": "AI to dokręcanie śrubek"
    }
   ],
@@ -465,70 +475,70 @@
     "t": 25.9,
     "id": "ins-intro",
     "label": "przedstawienie",
-    "length": 19.3
+    "length": 26.7
    },
    {
-    "t": 45.2,
-    "id": "ins-a2",
+    "t": 52.6,
+    "id": "ins-back-8",
     "label": "powrót do tematu",
-    "length": 2.8
+    "length": 2.7
    },
    {
-    "t": 220.3,
+    "t": 227.5,
     "id": "ins-case-6",
     "label": "łącznik case'u",
     "length": 7.0
    },
    {
-    "t": 306.5,
+    "t": 313.7,
     "id": "ins-case-7",
     "label": "łącznik case'u",
     "length": 6.0
    },
    {
-    "t": 345.9,
+    "t": 353.1,
     "id": "ins-case-8",
     "label": "łącznik case'u",
     "length": 5.4
    },
    {
-    "t": 460.3,
+    "t": 467.5,
     "id": "ins-case-9",
     "label": "łącznik case'u",
     "length": 5.6
    },
    {
-    "t": 594.7,
+    "t": 602.0,
     "id": "ins-mid-long",
     "label": "wstawka w środku",
     "length": 50.3
    },
    {
-    "t": 645.1,
+    "t": 652.3,
     "id": "ins-case-10",
     "label": "łącznik case'u",
     "length": 5.0
    },
    {
-    "t": 751.9,
+    "t": 759.2,
     "id": "ins-case-11",
     "label": "łącznik case'u",
     "length": 6.0
    },
    {
-    "t": 875.1,
+    "t": 882.4,
     "id": "ins-case-12",
     "label": "łącznik case'u",
     "length": 3.4
    },
    {
-    "t": 913.2,
+    "t": 920.5,
     "id": "ins-yt-sub",
     "label": "plansza Subskrybuj",
     "length": 7.9
    },
    {
-    "t": 921.1,
+    "t": 928.4,
     "id": "ins-bye",
     "label": "ins-bye",
     "length": 4.9

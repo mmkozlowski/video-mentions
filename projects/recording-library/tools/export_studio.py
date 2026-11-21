@@ -161,7 +161,9 @@ def main():
                "description": "Klipy z sesji nagraniowych i starszych odcinków kanału: rolki, reklamy, zajawki, odcinki 16:9",
                "groups": groups, "formats": [k for k in KIND_ORDER if any(v["kind"] == k for v in videos)],
                # 21.11: panel (Studio main, karty) czyta manifest v2; v1 zostaje obok dla zgodności
-               "manifest": str(MANIFEST_V2.relative_to(SHARED)), "updated": now, "videos": len(videos)}
+               "manifest": str(MANIFEST_V2.relative_to(SHARED)), "updated": now, "videos": len(videos),
+               # 21.11: baza kwestii z dogrywek (export_lines.py) — strona /kwestie w Studiu
+               "lines": str((OUT / "exports" / "lines.json").relative_to(SHARED))}
     index = json.load(open(INDEX)) if INDEX.exists() else {"version": VERSION, "repo": "video-mentions", "projects": []}
     index["projects"] = [p for p in index["projects"] if p["id"] != project["id"]] + [project]
     index["generatedAt"] = now
@@ -169,6 +171,8 @@ def main():
     print(f"{len(videos)} filmów w {len(groups)} seriach ({published} nowych wersji) → {INDEX} [{origin['branch']} {origin['commit']}]")
     main_v2(rows, history, ledger, origin, removed)
     write_json(ledger_file, ledger)
+    import export_lines
+    export_lines.main()
 
 
 

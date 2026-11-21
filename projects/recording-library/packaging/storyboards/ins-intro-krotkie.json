@@ -1,0 +1,66 @@
+{
+ "brand": "flowbiz",
+ "formats": [
+  "youtube"
+ ],
+ "endcard": {
+  "youtube": 0
+ },
+ "cta": {
+  "chip": "flowbiz.pl"
+ },
+ "voice_only": true,
+ "lower_third": false,
+ "music_intro": true,
+ "voice_filter": "highpass=f=70,equalizer=f=1300:t=q:w=1.2:g=4.5,equalizer=f=3000:t=q:w=1.0:g=3.5,equalizer=f=9000:t=q:w=1.0:g=-1.5,agate=threshold=0.02:ratio=2:range=0.3:attack=5:release=150",
+ "music_db": 0.0,
+ "music": "jingle-przedstawienie.mp3",
+ "clip": "ins-intro-krotkie",
+ "events": [
+  {
+   "type": "slate",
+   "at": "cześć,",
+   "until": "pokazuję",
+   "text": "Mateusz *Kozłowski",
+   "kicker": "prawdziwe wdrożenia AI i systemów"
+  },
+  {
+   "type": "mockup",
+   "name": "modules",
+   "at": "pokazuję",
+   "until": "+60",
+   "headlines": [
+    {
+     "at": "pokazuję",
+     "text": "Prawdziwe wdrożenia *AI i systemów"
+    },
+    {
+     "at": "co",
+     "text": "Co zadziałało, ile dało — *gdzie był haczyk"
+    },
+    {
+     "at": "fundamentem",
+     "kicker": "Fundament: Open Mercato",
+     "text": "80% systemu *już gotowe"
+    },
+    {
+     "at": "dokładam",
+     "text": "20% dokładam *pod Twoją firmę"
+    }
+   ],
+   "assemble": "fundamentem",
+   "scenes": [
+    {
+     "key": "crm",
+     "at": "które robią",
+     "steps": [
+      "+0.4",
+      "+0.9"
+     ]
+    }
+   ],
+   "finale": "Ciebie"
+  }
+ ],
+ "note": "21.11: przedstawienie z dogrywek 44h–47 (bez „prowadzę Flowbiz”), moduły ze strony zapalane na branżach, Open Mercato 80/20"
+}

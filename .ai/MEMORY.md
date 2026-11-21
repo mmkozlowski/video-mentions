@@ -76,3 +76,4 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 - [Wstawki „sam głos” — pułapki](memory/wstawki-sam-glos-pulapki.md) — tło pod b-rollem, panel w pionie, END nie przed ostatnim słowem; przegląd `review_episode.py`
 - [Stoper w pionie z alfą zasłania twarz](memory/stoper-pion-alfa-zaslania-twarz.md) — lewa tercja tylko w 16x9-alpha; w rolce stoper idzie jako pełny ekran MP4
 - [Grafiki GPT: bez tekstu, dopełnij górę](memory/grafiki-gpt-bez-tekstu-dopelnij-gore.md) — tekst w HTML; 2:3 → 9:16 przez pad, nie crop; to treść AI → znak + przełącznik
+- [Baza kwestii dogrywek](memory/baza-kwestii-dogrywek.md) — nowe nagranie na końcu ORDER, dołek energii przy mowie bez pauzy, /kwestie w Studiu

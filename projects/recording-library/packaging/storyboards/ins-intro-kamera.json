@@ -1,0 +1,103 @@
+{
+ "brand": "flowbiz",
+ "formats": [
+  "youtube"
+ ],
+ "endcard": {
+  "youtube": 0
+ },
+ "cta": {
+  "chip": "flowbiz.pl"
+ },
+ "clip": "ins-intro-kamera",
+ "events": [
+  {
+   "type": "slate",
+   "at": "A",
+   "until": "pomagam",
+   "text": "Mateusz *Kozłowski",
+   "kicker": "flowbiz · systemy dla firm"
+  },
+  {
+   "type": "mockup",
+   "name": "modules",
+   "at": "pomagam",
+   "until": 19.3,
+   "headlines": [
+    {
+     "at": "pomagam",
+     "text": "Systemy dla firm, które *wyrosły z Excela"
+    },
+    {
+     "at": "Produkcja",
+     "kicker": "Branże i moduły, które już działają",
+     "words": [
+      [
+       "Produkcja",
+       "Produkcja opakowań"
+      ],
+      [
+       "wyroby",
+       "Wyroby medyczne"
+      ],
+      [
+       "handel",
+       "Handel B2B"
+      ],
+      [
+       "sprzedaż.",
+       "Sprzedaż"
+      ]
+     ]
+    },
+    {
+     "at": "To",
+     "text": "Tylko niektóre z obszarów, które *już dotknąłem",
+     "kicker": "Mateusz Kozłowski · flowbiz"
+    }
+   ],
+   "assemble": "systemy",
+   "scenes": [
+    {
+     "key": "compliance",
+     "at": "Produkcja",
+     "steps": [
+      "+0.55",
+      "+1.05"
+     ]
+    },
+    {
+     "key": "service",
+     "at": "wyroby",
+     "steps": [
+      "+0.35",
+      "+0.8"
+     ]
+    },
+    {
+     "key": "b2b",
+     "at": "handel",
+     "steps": [
+      "+0.4",
+      "+0.9"
+     ]
+    },
+    {
+     "key": "crm",
+     "at": "sprzedaż.",
+     "steps": [
+      "+0.5",
+      "+1.5"
+     ]
+    }
+   ],
+   "finale": "obszarów"
+  }
+ ],
+ "voice_only": true,
+ "lower_third": false,
+ "music_intro": true,
+ "voice_filter": "highpass=f=70,equalizer=f=1300:t=q:w=1.2:g=4.5,equalizer=f=3000:t=q:w=1.0:g=3.5,equalizer=f=9000:t=q:w=1.0:g=-1.5,agate=threshold=0.02:ratio=2:range=0.3:attack=5:release=150",
+ "music_db": 0.0,
+ "music": "jingle-przedstawienie.mp3"
+}

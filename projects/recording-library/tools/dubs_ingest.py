@@ -25,7 +25,10 @@ RAW = SOURCES["dubs"].parent
 # 20.11: drugi plik z 16.11 (nagrane-wstawki-audio.m4a) miał pogłos — wybrzmienie po frazie 130–140 ms zamiast 60 ms
 # (zmienione ustawienie mikrofonu). Kwestie 06–43 nagrane ponownie 20.11 (lista vault 2026-11-20-do-dogrania-ponownie.md);
 # z 16.11 zostaje tylko pierwszy plik (kwestie 01–05), więc oś 0–63,68 s i granice A1–A4 się nie zmieniają.
-ORDER = ["dogrywki-2026-11-16-pierwsze-dogrywki-audio.m4a", "dogrywki-2026-11-20-nowe-glosowe-nagranie.aifc"]
+# 21.11: trzeci plik — przedstawienie 44h–47e, Open Mercato 48–62, reklamy 71–92, SaaS 120–127 (lista vault
+# 2026-11-21-dogranie-przedstawienie.md); dołożony NA KOŃCU, więc offsety 01–43 się nie zmieniają.
+ORDER = ["dogrywki-2026-11-16-pierwsze-dogrywki-audio.m4a", "dogrywki-2026-11-20-nowe-glosowe-nagranie.aifc",
+         "dogrywki-2026-11-21.aifc"]
 GAP = 2.0
 MODEL = "mlx-community/whisper-large-v3-turbo"
 

@@ -368,7 +368,24 @@ RAW = [
 # słyszą „w filmie”, nie „w firmie” — zaproszenie zaczyna się od „Poczekaj…” i przechodzi
 # od razu do „Robię konsultacje…”.
 RAW += [
-    dict(id="ins-intro", source="inserts", title="Przerywnik: przedstawienie się",
+    # 21.11 (MK): przedstawienie o tym, o czym są nagrania, bez „prowadzę Flowbiz”; dogrywki 44h–47 z 21.11.
+    # Główne: 44h + 46b + 47 (~26 s). 45 (Excel/HubSpot) tylko w wariancie „pełne” — z nim 35 s, a MK chciał ~15 s.
+    # 46b zamiast 46a: 46a ma powtórzone „po to, po to” (sklejka w kwestii, ale ze słyszalną zmianą intonacji).
+    dict(id="ins-intro", source="dubs", title="Przerywnik: przedstawienie (dogrywki 21.11: 44h + 46b + 47)",
+         ranges=[(325.28, 336.34, 325.33, 336.34), (397.90, 407.00, 397.95, 407.00), (408.56, 415.26, 408.61, 415.26)], hook=3, delivery=4,
+         notes="„Cześć, jestem Mateusz Kozłowski, a na tym kanale pokazuję prawdziwe wdrożenia…” + Open Mercato 80% + branże."),
+    dict(id="ins-intro-krotkie", source="dubs", title="Przerywnik: przedstawienie krótkie (44h + 46b)",
+         ranges=[(325.28, 336.34, 325.33, 336.34), (397.90, 407.00, 397.95, 407.00)], hook=3, delivery=4),
+    dict(id="ins-intro-pelne", source="dubs", title="Przerywnik: przedstawienie pełne (44h + 45 + 46b + 47)",
+         ranges=[(325.28, 336.34, 325.33, 336.34), (375.37, 383.74, 375.42, 383.74), (397.90, 407.00, 397.95, 407.00), (408.56, 415.26, 408.61, 415.26)], hook=3, delivery=4),
+    dict(id="ins-intro-b", source="dubs", title="Przerywnik: przedstawienie wariant B (44i + 46b + 47)",
+         ranges=[(336.86, 345.43, 336.91, 345.43), (397.90, 407.00, 397.95, 407.00), (408.56, 415.26, 408.61, 415.26)], hook=3, delivery=4),
+    # powroty do tematu po przedstawieniu — jedno zdanie na odcinek (zamiast ogólnego ins-a2 „Dobra, wracamy”)
+    dict(id="ins-back-offers", source="dubs", title="Dogrywka: powrót do ofert (47a)", ranges=[(415.57, 417.97, 415.62, 417.97)], hook=3, delivery=4),
+    dict(id="ins-back-doram", source="dubs", title="Dogrywka: powrót do zamówień z Excela (47b)", ranges=[(418.69, 420.86, 418.74, 420.86)], hook=3, delivery=4),
+    dict(id="ins-back-rezon", source="dubs", title="Dogrywka: powrót do pamiątek (47c)", ranges=[(421.25, 424.40, 421.30, 424.40)], hook=3, delivery=4),
+    dict(id="ins-back-8", source="dubs", title="Dogrywka: powrót do ośmiu wdrożeń (47d)", ranges=[(424.61, 427.30, 424.66, 427.30)], hook=3, delivery=4),
+    dict(id="ins-intro-kamera", source="inserts", title="Przerywnik: przedstawienie się (kamera, 05.11 — zastąpione 21.11)",
          ranges=[(3.9, 14.3, 3.96, 14.26), (65.5, 74.6, 65.56, 74.55)], hook=3, delivery=4,
          notes="„A ja nazywam się Mateusz Kozłowski…” + branże, do „…miałem okazję już dotknąć”. Bez „to nie jest odcinek "
                "sponsorowany” (Mateusz 05.11: „po co mam się tłumaczyć”), cięcie w ciszy 74,38–74,76. Po hooku."),
