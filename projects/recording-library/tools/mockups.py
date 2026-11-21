@@ -1818,8 +1818,8 @@ def subscribe(comp, ev, start, end):
     sub = f'<div class="sub sb-sub">{esc(ev["sub"])}</div>' if ev.get("sub") else ""
     big = 230 if not comp.vertical else 260
     inner = (f'{kicker}<div class="sb-logo">{logo("youtube", big, "#FF0000")}</div>'
-             f'<div class="sb-chan"><span class="sb-av">fb</span><span><b>{esc(ev.get("channel", "flowbiz · AI w praktyce"))}</b>'
-             f'<small>{esc(ev.get("channel_sub", "Mateusz Kozłowski"))}</small></span></div>'
+             f'<div class="sb-chan"><span class="sb-av">MK</span><span><b>{esc(ev.get("channel", "Mateusz Kozłowski"))}</b>'
+             f'<small>{esc(ev.get("channel_sub", "oszczędzaj w firmie z AI"))}</small></span></div>'
              f'<div class="sb-btn"><span class="sb-off">Subskrybuj</span><span class="sb-on">{BELL_SVG}Subskrybujesz</span>'
              f'<i class="sb-ripple"></i><span class="sb-hand">{HAND_SVG}</span></div>{sub}')
     sid = comp.slate(start, end, inner, pip=False, cls="sb")

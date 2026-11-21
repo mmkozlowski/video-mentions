@@ -287,12 +287,31 @@ def plan_segments(clip_id):
     return render, segments, shifted
 
 
+INSERT_LABELS = {"ins-intro": "przedstawienie", "ins-a1": "łącznik przed przedstawieniem", "ins-a2": "powrót do tematu",
+                 "ins-yt-sub": "plansza Subskrybuj", "ins-hello-offers": "wstęp", "ins-mid": "wstawka w środku",
+                 "ins-mid-long": "wstawka w środku", "ins-outro": "zakończenie"}
+
+
+def insert_marks(segments):
+    """21.11 (MK: „daj mi rozdziały, żebym mógł sprawdzać wstawki”) — gdzie w gotowym odcinku stoi każda wstawka."""
+    marks, out = [], 0.0
+    for seg in segments:
+        if seg[0] == "insert":
+            label = INSERT_LABELS.get(seg[1], "łącznik case'u" if seg[1].startswith("ins-case") else
+                                      "gag" if seg[1] in GAGS else seg[1])
+            marks.append({"t": round(out, 1), "id": seg[1], "label": label, "length": round(seg[2], 1)})
+            out += seg[2]
+        else:
+            out += seg[2] - seg[1]
+    return marks
+
+
 def build(clip_id, dry=False):
     render, segments, chapters = plan_segments(clip_id)
     for seg in segments:
         print(f"   {seg[0]:8} {seg[1] if seg[0] == 'insert' else f'{seg[1]:8.2f}'} → {seg[2]:8.2f}")
     if dry:
-        return chapters
+        return chapters, insert_marks(segments)
     inputs, graph, labels = ["-i", str(render)], "", []
     insert_inputs = {}
     for seg in segments:
@@ -338,7 +357,7 @@ def build(clip_id, dry=False):
                     "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-pix_fmt", "yuv420p",
                     "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", str(out)], check=True)
     print(f"   → {out.name}  {duration(out):.1f} s")
-    return chapters
+    return chapters, insert_marks(segments)
 
 
 def main(argv):
@@ -351,11 +370,12 @@ def main(argv):
         if clip_id not in known:
             raise SystemExit(f"nie ma klipu {clip_id}")
         print(f"== {clip_id}")
-        chapters = build(clip_id, dry)
+        chapters, marks = build(clip_id, dry)
         text = "\n".join(f"{int(t // 60)}:{int(t % 60):02d} {title}" for t, title in chapters)
         print(text)
         if not dry:
-            report[clip_id] = {"plan": PLAN[clip_id], "chapters": text}
+            report[clip_id] = {"plan": PLAN[clip_id], "chapters": text,
+                               "chapter_list": [{"t": t, "title": title} for t, title in chapters], "inserts": marks}
     if not dry:
         json.dump(report, open(report_file, "w"), ensure_ascii=False, indent=1)
 

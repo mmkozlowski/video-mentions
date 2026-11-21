@@ -980,7 +980,7 @@ class Composition:
             # zajawka: zaproszenie do pełnego odcinka z oryginalnym logo YouTube
             body = (f'<div class="end-yt">{logo("youtube", 120, "#FF0000")}<span>Cały odcinek na YouTube</span></div>'
                     + self.end_title(self.board.get("episode_title", "Obejrzyj cały odcinek")) +
-                    f'<div class="end-sub">kanał flowbiz · Mateusz Kozłowski</div>')
+                    f'<div class="end-sub">kanał Mateusz Kozłowski · oszczędzaj w firmie z AI</div>')
         elif self.fmt in AD_FORMATS:
             lines = cta.get("ad", {})
             body = (f'<div class="end-kicker">{esc(lines.get("kicker", "Bezpłatna konsultacja"))}</div>'

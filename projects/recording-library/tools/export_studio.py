@@ -160,7 +160,8 @@ def main():
     project = {"id": PROJECT.name, "name": "Rolki i odcinki YouTube",
                "description": "Klipy z sesji nagraniowych i starszych odcinków kanału: rolki, reklamy, zajawki, odcinki 16:9",
                "groups": groups, "formats": [k for k in KIND_ORDER if any(v["kind"] == k for v in videos)],
-               "manifest": str(MANIFEST.relative_to(SHARED)), "updated": now, "videos": len(videos)}
+               # 21.11: panel (Studio main, karty) czyta manifest v2; v1 zostaje obok dla zgodności
+               "manifest": str(MANIFEST_V2.relative_to(SHARED)), "updated": now, "videos": len(videos)}
     index = json.load(open(INDEX)) if INDEX.exists() else {"version": VERSION, "repo": "video-mentions", "projects": []}
     index["projects"] = [p for p in index["projects"] if p["id"] != project["id"]] + [project]
     index["generatedAt"] = now
@@ -223,6 +224,21 @@ def build_preview(src, dst):
     return True
 
 
+def episode_marks(vid, src):
+    """21.11: rozdziały i miejsca wstawek odcinka (z assemble_episode → assembly.json) — strona filmu w Studiu
+    pokazuje je jako klikalne znaczniki, żeby Mateusz przeskakiwał od wstawki do wstawki."""
+    if not src.stem.endswith("--with-inserts"):
+        return {}
+    report_file = PROJECT / "data" / "assembly.json"
+    entry = (json.load(open(report_file)) if report_file.exists() else {}).get(vid) or {}
+    marks = {}
+    if entry.get("chapter_list"):
+        marks["chapters"] = entry["chapter_list"]
+    if entry.get("inserts"):
+        marks["inserts"] = entry["inserts"]
+    return marks
+
+
 def main_v2(rows, history, ledger, origin, removed):
     rejected = rejected_ids() | removed
     by_variant = {}
@@ -251,7 +267,8 @@ def main_v2(rows, history, ledger, origin, removed):
             thumbnail(SAMPLES / src.name, row, thumb)
             formats.append({"format": fmt, "label": FORMAT_LABEL.get(fmt, fmt), "file": f"final/samples/{src.name}",
                             "preview": f"final/previews/{src.stem}.mp4", "thumb": f"final/thumbs/{src.stem}.jpg",
-                            "duration": row["duration"], "versions": ledger.get(src.stem, [])})
+                            "duration": row["duration"], "versions": ledger.get(src.stem, []),
+                            **episode_marks(vid, src)})
         if vid in MASTERS and (MASTER_DIR / f"{MASTERS[vid]}-1440p.mp4").exists():
             master = MASTER_DIR / f"{MASTERS[vid]}-1440p.mp4"
             entry = publish(master, origin)
