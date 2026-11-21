@@ -133,7 +133,7 @@ Ranking: `hook × 2 + delivery` (max 15). A ≥ 13, B ≥ 11. Oceny redakcyjne �
 | `ep-module-2` | (kanał) | Jak składam moduł — cz. 2 | 3.8 | Trzy warstwy specyfikacji (40 minut dziennie, 3 faktury), słownik pojęć, checklista, trafność 70–90%, granice modułu, wzorce vs wyjątki, powtarzalność, CTA w komentarzu. |
 | `ep-rezon` | Rezon | Pamiątki znad morza: system B2B | 6.8 | Firma z Kołobrzegu, proces na kartkach, integracja z PC Business, handlowiec z tabletem, produkcja na zamówienie, panel klienta na Open Mercato. |
 | `ep-marpasz` | Marpasz | Pasza dla zwierząt: etykiety i katalog AI | 7.7 | Sklep internetowy ze Słupska. Paczki po 25 kg = 4 etykiety na zamówienie w Apilo, teraz jedno kliknięcie — ok. 100 h/mies. Katalog AI z faktur do Nexo i opisy na Allegro/Erli/sklep. „Dokręcanie śrubek”. |
-| `ep-doram` | Doram | Meble ogrodowe: zamówienia z Niemiec | 10.5 | Zamówienia od niemieckich kontrahentów w Excelu, dopasowanie AI 70% → 94% po miesiącu, kody kreskowe z kilku dni do 15 minut. Restart zdania w 92 s. |
+| `ep-doram` | Doram | Meble ogrodowe: zamówienia z Niemiec | 10.3 | Zamówienia od niemieckich kontrahentów w Excelu, dopasowanie AI 70% → 94% po miesiącu, kody kreskowe z kilku dni do 15 minut. Restart zdania w 92 s. |
 | `ep-vacuactiv` | Vacuactiv | Agent AI dla właściciela firmy | 17.1 | Sprzęt sportowy z okolic Słupska. ChatGPT gubi kontekst → mózg firmy (100–150 GB danych), Open Mercato na produkcji, brief w Telegramie, Obsidian + Hermes + Codex. Najdłuższy, do skrócenia w montażu. |
 
 ## Uwagi do poszczególnych klipów
