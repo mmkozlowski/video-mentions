@@ -60,6 +60,11 @@ mu zabrano („mylący przeskok”).
 
 ## 4. Otwarcie — pierwsze 3 sekundy
 
+- **Odcinek YouTube otwiera treść, nie przedstawienie (✅ 21.11).** Pierwsze 15–20 s to Twój własny początek
+  mówienia albo najmocniejszy fragment odcinka (zapowiedź), dopiero potem przedstawienie się (~15 s:
+  „Cześć, nazywam się Mateusz Kozłowski…”, branże, moduły ze strony) i powrót do tematu. Gdy początek
+  nagrania nie jest hakiem — bierzemy fragment ze środka; nie zawsze się da, wtedy decyzja per odcinek.
+
 - **Hook to ból odbiorcy, nie opis produktu.** „Kolega zrobił system z AI. Działał do
   pierwszego czyszczenia przeglądarki” bije „Open Mercato to framework”.
 - **Ruch od pierwszej sekundy.** Twarz w ruchu, tekst wjeżdża — żadnej statycznej planszy.
