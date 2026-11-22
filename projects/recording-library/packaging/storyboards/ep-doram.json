@@ -428,5 +428,6 @@
    "text": "Co *Ty chcesz zautomatyzować?"
   }
  ],
- "music_db": -6.0
+ "music_db": -6.0,
+  "music_bed": false
 }

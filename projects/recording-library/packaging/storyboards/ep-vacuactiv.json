@@ -571,5 +571,6 @@
    "text": "Rozwiązanie *szyte na miarę"
   }
  ],
- "music_db": -6.0
+ "music_db": -6.0,
+  "music_bed": false
 }

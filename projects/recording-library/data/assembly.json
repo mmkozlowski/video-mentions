@@ -202,7 +202,7 @@
     "length": 1.8
    },
    {
-    "t": 350.4,
+    "t": 350.3,
     "id": "ins-mid",
     "label": "wstawka w środku",
     "length": 23.6
@@ -285,7 +285,7 @@
     "title": "Handlowiec w trasie"
    },
    {
-    "t": 329.8,
+    "t": 329.9,
     "title": "Nadprodukcja"
    },
    {
@@ -599,7 +599,7 @@
     "length": 23.6
    },
    {
-    "t": 485.0,
+    "t": 485.1,
     "id": "ins-a3",
     "label": "ins-a3",
     "length": 3.1
@@ -673,7 +673,7 @@
     "ins-bye"
    ]
   ],
-  "chapters": "0:00 W tym odcinku\n0:23 Wstęp\n0:57 Oferta w 5 minut\n4:10 Zamówienia z Excela: 70% → 94%\n5:36 Kody kreskowe: kilka dni → 15 minut\n6:15 Etykiety: ok. 100 godzin miesięcznie\n8:10 Katalog AI z faktur\n11:12 Panel klienta B2B\n12:59 Kierownik produkcji w godzinę\n15:02 AI to dokręcanie śrubek",
+  "chapters": "0:00 W tym odcinku\n0:23 Wstęp\n0:57 Oferta w 5 minut\n4:10 Zamówienia z Excela: 70% → 94%\n5:36 Kody kreskowe: kilka dni → 15 minut\n6:16 Etykiety: ok. 100 godzin miesięcznie\n8:10 Katalog AI z faktur\n11:12 Panel klienta B2B\n12:59 Kierownik produkcji w godzinę\n14:59 AI to dokręcanie śrubek",
   "chapter_list": [
    {
     "t": 0.0,
@@ -688,7 +688,7 @@
     "title": "Oferta w 5 minut"
    },
    {
-    "t": 250.2,
+    "t": 250.6,
     "title": "Zamówienia z Excela: 70% → 94%"
    },
    {
@@ -696,15 +696,15 @@
     "title": "Kody kreskowe: kilka dni → 15 minut"
    },
    {
-    "t": 375.8,
+    "t": 376.0,
     "title": "Etykiety: ok. 100 godzin miesięcznie"
    },
    {
-    "t": 490.2,
+    "t": 490.3,
     "title": "Katalog AI z faktur"
    },
    {
-    "t": 672.2,
+    "t": 672.3,
     "title": "Panel klienta B2B"
    },
    {
@@ -712,7 +712,7 @@
     "title": "Kierownik produkcji w godzinę"
    },
    {
-    "t": 902.2,
+    "t": 899.2,
     "title": "AI to dokręcanie śrubek"
    }
   ],
@@ -742,7 +742,7 @@
     "length": 1.8
    },
    {
-    "t": 250.2,
+    "t": 250.6,
     "id": "ins-case-6",
     "label": "łącznik case'u",
     "length": 7.0
@@ -754,25 +754,25 @@
     "length": 6.0
    },
    {
-    "t": 375.8,
+    "t": 376.0,
     "id": "ins-case-8",
     "label": "łącznik case'u",
     "length": 5.4
    },
    {
-    "t": 490.2,
+    "t": 490.3,
     "id": "ins-case-9",
     "label": "łącznik case'u",
     "length": 5.6
    },
    {
-    "t": 624.7,
+    "t": 624.8,
     "id": "ins-mid-long",
     "label": "wstawka w środku",
     "length": 47.5
    },
    {
-    "t": 672.2,
+    "t": 672.3,
     "id": "ins-case-10",
     "label": "łącznik case'u",
     "length": 5.0
@@ -784,7 +784,7 @@
     "length": 6.0
    },
    {
-    "t": 902.2,
+    "t": 899.2,
     "id": "ins-case-12",
     "label": "łącznik case'u",
     "length": 3.4

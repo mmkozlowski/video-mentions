@@ -567,5 +567,6 @@
    "floor": 730.796
   }
  ],
- "music_db": -6.0
+ "music_db": -6.0,
+  "music_bed": false
 }

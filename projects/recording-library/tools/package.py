@@ -1482,6 +1482,7 @@ MUSIC_INTRO_DB = -4.0     # 13.10 „początek mocno wjeżdża” — wejście �
 MUSIC_FADE_IN = 0.6
 MUSIC_BED_DB = -10.0      # tło względem wejścia → ok. −32 LUFS, ~18 dB pod mową
 MUSIC_OUTRO_DB = -2.0     # plansza końcowa
+MUSIC_SILENCE_RAMP = 2.5  # storyboard "music_bed": false — zejście z wejścia do ciszy
 # 22.11 MK: „dalej nie ma jingla” — jingle w pętli jako zwykłe tło (−18 dB pod głosem, ściszane pod słowami) ginął po 2 s.
 # Storyboard "jingle": puszczony RAZ od startu wstawki, ~6 dB pod głosem i ściszany łagodnie; tło ("music") wchodzi
 # dopiero, gdy jingle się kończy.
@@ -1497,7 +1498,7 @@ def music_plan(board, clip_len):
     # i z korekcją głosu z innego mikrofonu/pomieszczenia (storyboard "voice_filter")
     return {"file": MUSIC_DIR / track, "offset": MUSIC_OFFSET.get(track, 0.0), "clip_len": clip_len,
             "intro": board.get("music_intro", True), "voice_filter": board.get("voice_filter"),
-            "gain_db": board.get("music_db", 0.0),
+            "gain_db": board.get("music_db", 0.0), "bed": board.get("music_bed", True),
             "jingle": MUSIC_DIR / board["jingle"] if board.get("jingle") else None,
             "jingle_offset": board.get("jingle_offset", 0.0)}   # 05.11 odcinki YouTube: −6 dB („dalej za głośno na całym filmie”)
 
@@ -1508,6 +1509,10 @@ def mix_music(raw, music, out_wav):
     intro_end, ramp = MUSIC_INTRO
     extra = music.get("gain_db", 0.0)
     bed, outro = 10 ** ((MUSIC_BED_DB + extra) / 20), 10 ** ((MUSIC_OUTRO_DB + extra) / 20)
+    if not music.get("bed", True):
+        # 22.11 MK: „wycisz w trakcie odcinka” — muzyka tylko na wejściu i na planszy końcowej,
+        # zejście do ciszy dłuższe, żeby nie urywało się w pół taktu
+        bed, ramp = 0.0, MUSIC_SILENCE_RAMP
     intro = 10 ** ((MUSIC_INTRO_DB + extra) / 20) if music.get("intro", True) else bed
     outro = outro if music.get("intro", True) else bed   # przerywnik nie ma planszy końcowej
     outro_at = max(intro_end + ramp, music["clip_len"] - 0.3)
