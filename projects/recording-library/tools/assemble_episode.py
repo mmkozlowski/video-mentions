@@ -50,6 +50,13 @@ GAGS = {
     "gag-przymiotnik": dict(card="przymiotnik-nograde.png", grade="przymiotnik-onlygrade.png",
                             sfx="przymiotnik-sfx.wav", length=3.4, card_in=0.15, grade_at=1.2),
 }
+# 22.11 MK: „dalej nie ma jingla” + urwane zdanie zimnego otwarcia. Przed przedstawieniem: stopklatka ostatniej
+# klatki i SAM jingle (bez głosu) przez STING_LEN s; ins-intro gra jingle dalej od tej sekundy (storyboard jingle_offset),
+# więc brzmi jak jeden ciąg — jingle słychać, a cięcie w pół zdania staje się świadomym przejściem.
+STING = "jingle-sting"
+STING_LEN = 1.6
+STING_FILE = P.MUSIC_DIR / "jingle-przedstawienie.mp3"
+STING_DB = -3.0
 FADE = 0.012
 ABBREVIATIONS = {"np.", "tzn.", "itp.", "itd.", "m.in.", "ok.", "tj.", "pt.", "ul.", "nr.", "tzw."}
 
@@ -63,10 +70,10 @@ PLAN = {
     # akapicie; po dograniu 44–47 podmienić tylko id wstawki, miejsce zostaje
     # 21.11 wieczór: dograne — ins-intro = 44h + 46b + 47 (bez „prowadzę Flowbiz”), powrót do tematu per odcinek
     # (ins-back-*, 47a–d) zamiast ogólnego ins-a2; w ofertach przedstawienie zastępuje ins-hello-offers (13 „tu Mateusz z Flowbiz”)
-    "ep-open-mercato-offers": [("word:trudne", "ins-intro"), ("word:trudne", "ins-back-offers"), ("END", "ins-g30"), ("END", "ins-a4"), ("END", "ins-outro"),
+    "ep-open-mercato-offers": [("word:trudne", STING), ("word:trudne", "ins-intro"), ("word:trudne", "ins-back-offers"), ("END", "ins-g30"), ("END", "ins-a4"), ("END", "ins-outro"),
                                ("END", "ins-yt-sub"), ("END", "ins-bye")],
     # 16.11: łączniki case'ów z dogrywek (6–12) — głos na planszy z nazwą case'u PRZED każdym rozdziałem
-    "ep-8-wdrozen": [("word:tworzenie ofert", "ins-a1"), ("word:tworzenie ofert", "ins-intro"), ("word:tworzenie ofert", "ins-back-8"),
+    "ep-8-wdrozen": [("word:tworzenie ofert", "ins-a1"), ("word:tworzenie ofert", STING), ("word:tworzenie ofert", "ins-intro"), ("word:tworzenie ofert", "ins-back-8"),
                      ("Zamówienia z Excela: 70% → 94%", "ins-case-6"),
                      ("Kody kreskowe: kilka dni → 15 minut", "ins-case-7"),
                      ("Etykiety: ok. 100 godzin miesięcznie", "ins-case-8"),
@@ -77,12 +84,12 @@ PLAN = {
                      # własne CTA na końcu („zapraszam Cię na flowbiz.pl…”) — bez przerywnika zamknięcia (dubel)
                      ("END", "ins-yt-sub"), ("END", "ins-bye")],
     # 16.11: wstęp i łączniki z dogrywek; zakończenie przed własnym „Dzięki i do usłyszenia” z nagrania
-    "ep-doram": [("first:Jednak", "ins-a1"), ("first:Jednak", "ins-intro"), ("first:Jednak", "ins-back-doram"),
+    "ep-doram": [("first:Jednak", "ins-a1"), ("first:Jednak", STING), ("first:Jednak", "ins-intro"), ("first:Jednak", "ins-back-doram"),
                  ("Jak uczy się zwykły czat", "ins-mid"), ("Jak uczy się zwykły czat", "ins-a3"),
                  # Doram ma własne zakończenie (subskrypcja + komentarze + „Dzięki i do usłyszenia”) — brakuje w nim tylko
                  # kontaktu, więc przed „więc dziękuję Wam” wchodzi łącznik A4 i kwestia 23, bez dubli subskrypcji
                  ("before:więc dziękuję", "ins-a4"), ("before:więc dziękuję", "ins-contact")],
-    "ep-rezon": [("before:Aktualnie", "ins-a1"), ("before:Aktualnie", "ins-intro"), ("before:Aktualnie", "ins-back-rezon"),
+    "ep-rezon": [("before:Aktualnie", "ins-a1"), ("before:Aktualnie", STING), ("before:Aktualnie", "ins-intro"), ("before:Aktualnie", "ins-back-rezon"),
                  ("Nadprodukcja", "ins-mid"), ("Nadprodukcja", "ins-a3"),
                  ("END", "ins-a4"), ("END", "ins-outro"), ("END", "ins-yt-sub"), ("END", "ins-bye")],
     "ep-marpasz": [("Paczki do 25 kg: cztery worki, cztery etykiety", "ins-intro"), ("Katalog AI: faktura → produkty → opisy", "ins-mid"), ("END", "ins-outro")],
@@ -203,6 +210,17 @@ def gag_graph(n_card, n_grade, n_sfx, t, spec, i):
             f"apad=whole_dur={L}[a{i}];")
 
 
+def sting_graph(n_video, t, n_audio, i):
+    """Stopklatka ostatniej klatki poprzedniego kawałka (odcinek albo łącznik), lekko przyciemniona, z delikatnym
+    najazdem + początek jingla."""
+    L = STING_LEN
+    return (f"[{n_video}:v]trim={max(0.0, t - 0.07):.3f}:{t:.3f},setpts=PTS-STARTPTS,fps=30,scale=1920:1080,setsar=1,"
+            f"tpad=stop_mode=clone:stop_duration={L},trim=0:{L},setpts=PTS-STARTPTS,eq=brightness=-0.06,"
+            f"scale=w='1920*(1+0.03*t/{L})':h='1080*(1+0.03*t/{L})':eval=frame,crop=1920:1080,format=yuv420p,setsar=1[v{i}];"
+            f"[{n_audio}:a]atrim=0:{L},asetpts=PTS-STARTPTS,aformat=sample_rates=48000:channel_layouts=stereo,"
+            f"volume={STING_DB}dB,afade=t=in:d=0.03,apad=whole_dur={L}[a{i}];")
+
+
 def plan_segments(clip_id):
     render = FINAL / f"{clip_id}__youtube-F.mp4"
     content_end = round(duration(LIBRARY / clip_id / "master.mp4"), 3)
@@ -261,7 +279,8 @@ def plan_segments(clip_id):
     for t, insert in cuts:
         if t > cursor + 0.01:   # dwie wstawki w jednym miejscu (gag + zamknięcie) — bez pustego kawałka
             segments.append(("episode", cursor, t))
-        length = GAGS[insert]["length"] if insert in GAGS else duration(FINAL / f"{insert}__youtube-F.mp4")
+        length = (STING_LEN if insert == STING else GAGS[insert]["length"] if insert in GAGS
+                  else duration(FINAL / f"{insert}__youtube-F.mp4"))
         segments.append(("insert", insert, length, t))
         cursor = t
     # 17.11: po wstawkach END wracał ogon treści (0,35 s twarzy z planszą) przed logo — po „Do zobaczenia” mignięcie
@@ -292,7 +311,7 @@ def plan_segments(clip_id):
 INSERT_LABELS = {"ins-intro": "przedstawienie", "ins-back-offers": "powrót do tematu", "ins-back-doram": "powrót do tematu",
                  "ins-back-rezon": "powrót do tematu", "ins-back-8": "powrót do tematu", "ins-a1": "łącznik przed przedstawieniem", "ins-a2": "powrót do tematu",
                  "ins-yt-sub": "plansza Subskrybuj", "ins-hello-offers": "wstęp", "ins-mid": "wstawka w środku",
-                 "ins-mid-long": "wstawka w środku", "ins-outro": "zakończenie"}
+                 "ins-mid-long": "wstawka w środku", "ins-outro": "zakończenie", STING: "jingle (stopklatka)"}
 
 
 def insert_marks(segments):
@@ -318,7 +337,7 @@ def build(clip_id, dry=False):
     inputs, graph, labels = ["-i", str(render)], "", []
     insert_inputs = {}
     for seg in segments:
-        if seg[0] == "insert" and seg[1] not in insert_inputs and seg[1] not in GAGS:
+        if seg[0] == "insert" and seg[1] not in insert_inputs and seg[1] not in GAGS and seg[1] != STING:
             insert_inputs[seg[1]] = len(insert_inputs) + 1
             inputs += ["-i", str(FINAL / f"{seg[1]}__youtube-F.mp4")]
     bars_input = len(insert_inputs) + 1
@@ -332,7 +351,20 @@ def build(clip_id, dry=False):
             inputs += ["-loop", "1", "-t", str(spec["length"]), "-i", str(GAGS_DIR / spec["card"]),
                        "-loop", "1", "-t", str(spec["length"]), "-i", str(GAGS_DIR / spec["grade"]),
                        "-i", str(GAGS_DIR / spec["sfx"])]
+    sting_input = None
+    if any(seg[0] == "insert" and seg[1] == STING for seg in segments):
+        sting_input = inputs.count("-i")
+        inputs += ["-i", str(STING_FILE)]
     for i, seg in enumerate(segments):
+        if seg[0] == "insert" and seg[1] == STING:
+            prev = segments[i - 1]
+            if prev[0] == "insert" and prev[1] in insert_inputs:
+                n_video, t_end = insert_inputs[prev[1]], prev[2] - 0.5   # łącznik gaśnie pod koniec — klatka sprzed wygaszenia
+            else:
+                n_video, t_end = 0, seg[3]
+            graph += sting_graph(n_video, t_end, sting_input, i)
+            labels.append(f"[v{i}][a{i}]")
+            continue
         if seg[0] == "bars":
             a, b = seg[1], seg[2]
             graph += (bars_graph(0, b - a, a).replace("[B:", f"[{bars_input}:")

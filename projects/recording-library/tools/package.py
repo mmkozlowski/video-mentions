@@ -1474,6 +1474,11 @@ MUSIC_INTRO_DB = -4.0     # 13.10 „początek mocno wjeżdża” — wejście �
 MUSIC_FADE_IN = 0.6
 MUSIC_BED_DB = -10.0      # tło względem wejścia → ok. −32 LUFS, ~18 dB pod mową
 MUSIC_OUTRO_DB = -2.0     # plansza końcowa
+# 22.11 MK: „dalej nie ma jingla” — jingle w pętli jako zwykłe tło (−18 dB pod głosem, ściszane pod słowami) ginął po 2 s.
+# Storyboard "jingle": puszczony RAZ od startu wstawki, ~6 dB pod głosem i ściszany łagodnie; tło ("music") wchodzi
+# dopiero, gdy jingle się kończy.
+JINGLE_LUFS = -19.0
+JINGLE_TAIL = 1.2         # wyciszenie końca jingla = narastanie tła
 
 
 def music_plan(board, clip_len):
@@ -1484,7 +1489,9 @@ def music_plan(board, clip_len):
     # i z korekcją głosu z innego mikrofonu/pomieszczenia (storyboard "voice_filter")
     return {"file": MUSIC_DIR / track, "offset": MUSIC_OFFSET.get(track, 0.0), "clip_len": clip_len,
             "intro": board.get("music_intro", True), "voice_filter": board.get("voice_filter"),
-            "gain_db": board.get("music_db", 0.0)}   # 05.11 odcinki YouTube: −6 dB („dalej za głośno na całym filmie”)
+            "gain_db": board.get("music_db", 0.0),
+            "jingle": MUSIC_DIR / board["jingle"] if board.get("jingle") else None,
+            "jingle_offset": board.get("jingle_offset", 0.0)}   # 05.11 odcinki YouTube: −6 dB („dalej za głośno na całym filmie”)
 
 
 def mix_music(raw, music, out_wav):
@@ -1503,8 +1510,22 @@ def mix_music(raw, music, out_wav):
              f"[0:a]aresample=48000,{music['voice_filter'] + ',' if music.get('voice_filter') else ''}asplit[v][key];"
              f"[m][key]sidechaincompress=threshold=0.03:ratio=4:attack=20:release=500[md];"
              f"[v][md]amix=inputs=2:normalize=0:duration=first[a]")
+    extra_in = []
+    if music.get("jingle"):
+        jlen = min(probe_duration(music["jingle"], "a:0") - music.get("jingle_offset", 0.0), total)
+        bed_from = max(0.0, jlen - JINGLE_TAIL)
+        gain = f"if(lt(t,{bed_from:.3f}),0,if(lt(t,{jlen:.3f}),{bed:.3f}*(t-{bed_from:.3f})/{JINGLE_TAIL},{bed:.3f}))"
+        graph = (f"[1:a]atrim=0:{total:.3f},asetpts=PTS-STARTPTS,aresample=48000,loudnorm=I={MUSIC_LUFS}:TP=-3:LRA=7,"
+                 f"volume=eval=frame:volume='{gain}',afade=t=out:st={max(0, total - 1.0):.3f}:d=1.0[m];"
+                 f"[2:a]aresample=48000,loudnorm=I={JINGLE_LUFS + extra}:TP=-2:LRA=9,atrim=0:{jlen:.3f},"
+                 f"afade=t=out:st={bed_from:.3f}:d={JINGLE_TAIL}[j];"
+                 f"[0:a]aresample=48000,{music['voice_filter'] + ',' if music.get('voice_filter') else ''}asplit=3[v][key][key2];"
+                 f"[m][key]sidechaincompress=threshold=0.03:ratio=4:attack=20:release=500[md];"
+                 f"[j][key2]sidechaincompress=threshold=0.05:ratio=1.5:attack=30:release=400[jd];"
+                 f"[v][md][jd]amix=inputs=3:normalize=0:duration=first[a]")
+        extra_in = ["-ss", f"{music.get('jingle_offset', 0.0):.3f}", "-i", str(music["jingle"])]
     subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", str(raw), "-stream_loop", "-1", "-ss", f"{music['offset']:.2f}",
-                    "-i", str(music["file"]), "-filter_complex", graph, "-map", "[a]", "-c:a", "pcm_s16le", str(out_wav)],
+                    "-i", str(music["file"]), *extra_in, "-filter_complex", graph, "-map", "[a]", "-c:a", "pcm_s16le", str(out_wav)],
                    check=True)
     return out_wav
 

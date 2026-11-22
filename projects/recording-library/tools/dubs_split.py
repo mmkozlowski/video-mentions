@@ -101,7 +101,7 @@ TAKES_2111 = {
     "44o": (474.50, 486.90, "wolna: „składam z gotowych klocków z Open Mercato systemy dedykowane… zapraszam Cię na mój kanał”"),
     "45": (374.76, 383.56, "„…jak naprawdę pracujecie”"),
     "46a": ([(384.36, 392.28), (394.16, 397.27)], "„nie zaczynamy od zera”; sklejka: wycięte pierwsze „po to” i pauza (powtórzenie)"),
-    "46b": (397.87, 406.80, ""),
+    "46b": ([(397.87, 403.52), (404.36, 406.80)], "22.11 MK: wycięte zająknięcie „te… do…” przed „20%”"),
     "47": (407.95, 415.06, ""),
     "47a": ([(415.62, 417.97)], ""),
     "47b": ([(418.74, 420.86)], ""),

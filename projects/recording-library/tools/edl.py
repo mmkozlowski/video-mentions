@@ -370,16 +370,17 @@ RAW = [
 RAW += [
     # 21.11 (MK): przedstawienie o tym, o czym są nagrania, bez „prowadzę Flowbiz”; dogrywki 44h–47 z 21.11.
     # Główne: 44h + 46b + 47 (~26 s). 45 (Excel/HubSpot) tylko w wariancie „pełne” — z nim 35 s, a MK chciał ~15 s.
+    # 22.11 MK: zająknięcie w 46b „ja dokładam te… do… 20%” — wycięte 403,52–404,36 („te” → „20%”).
     # 46b zamiast 46a: 46a ma powtórzone „po to, po to” (sklejka w kwestii, ale ze słyszalną zmianą intonacji).
     dict(id="ins-intro", source="dubs", title="Przerywnik: przedstawienie (dogrywki 21.11: 44h + 46b + 47)",
-         ranges=[(325.28, 336.34, 325.33, 336.34), (397.90, 407.00, 397.95, 407.00), (408.56, 415.26, 408.61, 415.26)], hook=3, delivery=4,
+         ranges=[(325.28, 336.34, 325.33, 336.34), (397.90, 403.52, 397.95, 403.52), (403.60, 407.00, 404.36, 407.00), (408.56, 415.26, 408.61, 415.26)], hook=3, delivery=4,
          notes="„Cześć, jestem Mateusz Kozłowski, a na tym kanale pokazuję prawdziwe wdrożenia…” + Open Mercato 80% + branże."),
     dict(id="ins-intro-krotkie", source="dubs", title="Przerywnik: przedstawienie krótkie (44h + 46b)",
-         ranges=[(325.28, 336.34, 325.33, 336.34), (397.90, 407.00, 397.95, 407.00)], hook=3, delivery=4),
+         ranges=[(325.28, 336.34, 325.33, 336.34), (397.90, 403.52, 397.95, 403.52), (403.60, 407.00, 404.36, 407.00)], hook=3, delivery=4),
     dict(id="ins-intro-pelne", source="dubs", title="Przerywnik: przedstawienie pełne (44h + 45 + 46b + 47)",
-         ranges=[(325.28, 336.34, 325.33, 336.34), (375.37, 383.74, 375.42, 383.74), (397.90, 407.00, 397.95, 407.00), (408.56, 415.26, 408.61, 415.26)], hook=3, delivery=4),
+         ranges=[(325.28, 336.34, 325.33, 336.34), (375.37, 383.74, 375.42, 383.74), (397.90, 403.52, 397.95, 403.52), (403.60, 407.00, 404.36, 407.00), (408.56, 415.26, 408.61, 415.26)], hook=3, delivery=4),
     dict(id="ins-intro-b", source="dubs", title="Przerywnik: przedstawienie wariant B (44i + 46b + 47)",
-         ranges=[(336.86, 345.43, 336.91, 345.43), (397.90, 407.00, 397.95, 407.00), (408.56, 415.26, 408.61, 415.26)], hook=3, delivery=4),
+         ranges=[(336.86, 345.43, 336.91, 345.43), (397.90, 403.52, 397.95, 403.52), (403.60, 407.00, 404.36, 407.00), (408.56, 415.26, 408.61, 415.26)], hook=3, delivery=4),
     # powroty do tematu po przedstawieniu — jedno zdanie na odcinek (zamiast ogólnego ins-a2 „Dobra, wracamy”)
     dict(id="ins-back-offers", source="dubs", title="Dogrywka: powrót do ofert (47a)", ranges=[(415.57, 417.97, 415.62, 417.97)], hook=3, delivery=4),
     dict(id="ins-back-doram", source="dubs", title="Dogrywka: powrót do zamówień z Excela (47b)", ranges=[(418.69, 420.86, 418.74, 420.86)], hook=3, delivery=4),
