@@ -76,6 +76,8 @@ def words_in(words, ranges):
             continue
         at = round(offsets[nxt], 3)
         out.append({"word": w["word"].strip(), "start": at, "end": round(at + 0.1, 3)})
+    # kolejność osi KLIPU, nie źródła — przy zakresach nie po kolei kotwice storyboardu i napisy szły w złej kolejności
+    out.sort(key=lambda w: w["start"])
     return out
 
 
@@ -108,8 +110,10 @@ def splice_graph(ranges, offset, vertical_of=None):
 
 
 def render(clip, kind, out):
-    offset = max(0.0, clip["ranges"][0][0] - 1.0)
-    span = clip["ranges"][-1][1] - offset + 0.5
+    # 22.11: zakresy nie muszą iść rosnąco (sklejka kwestii z różnych miejsc nagrania, np. przedstawienie 44h + 49 + 46a) —
+    # okno źródła od najwcześniejszego do najpóźniejszego, inaczej zakres spoza okna wypadał po cichu
+    offset = max(0.0, min(a for a, _ in clip["ranges"]) - 1.0)
+    span = max(b for _, b in clip["ranges"]) - offset + 0.5
     graph = splice_graph(clip["ranges"], offset, clip["source"] if kind == "vertical" else None)
     subprocess.run(
         ["ffmpeg", "-y", "-v", "error", "-ss", f"{offset:.3f}", "-t", f"{span:.3f}",

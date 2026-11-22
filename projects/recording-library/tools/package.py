@@ -298,6 +298,11 @@ class Composition:
         self.vertical = fmt != "youtube"
         self.brand = BRANDS[board.get("brand", clip["brand"])]
         self.tempo = tempo_for(board, fmt)
+        recipe_file = LIBRARY / clip["id"] / "recipe.json"
+        if recipe_file.exists() and json.load(open(recipe_file))["ranges"] != clip["ranges"]:
+            # 22.11: edl zmienione, master nie — render brał długość z nowych zakresów, a obraz ze starego cięcia
+            # (zostało zająknięcie, a końcówka „działa” ucięta)
+            raise SystemExit(f"{clip['id']}: master nieaktualny względem edl — najpierw python3 tools/cut.py {clip['id']}")
         words = json.load(open(LIBRARY / clip["id"] / "words.json"))
         self.splices_file = LIBRARY / clip["id"] / "splices.json"
         fixes = json.load(open(DATA / "caption-fixes.json"))
@@ -728,8 +733,9 @@ class Composition:
             self.js.append(f'tl.fromTo("#{bid} .broll-title .w",{{opacity:0,y:30}},{{opacity:1,y:0,duration:0.35,stagger:0.08,ease:"power3.out"}},{self.q(start + 0.25)});')
             self.cards.append((start, end, ev["title"]))   # napisy nie dublują nagłówka
         self.js.append(f'tl.set("#{bid}",{{opacity:1}},{start});tl.set("#{bid}",{{opacity:0}},{end});')
+        # 22.11 (MK: „etykieta ucieka poza ekran przy przybliżeniu”): najazd tylko na obraz — podpis i nagłówek stoją
         zoom = (1.0, 1.1) if ev.get("ken", "in") == "in" else (1.1, 1.0)
-        self.js.append(f'tl.fromTo("#{bid}",{{scale:{zoom[0]}}},{{scale:{zoom[1]},duration:{round(end - start, 3)},ease:"none"}},{start});')
+        self.js.append(f'tl.fromTo("#{bid}-v",{{scale:{zoom[0]}}},{{scale:{zoom[1]},duration:{round(end - start, 3)},ease:"none"}},{start});')
         if ev.get("ai", True) and not self.ai_shown:
             self.ai_shown = True
             # znak AI dotyczy przebitki — nie może zostać na twarzy po jej końcu
@@ -1027,7 +1033,9 @@ class Composition:
         self.js.append(f'tl.fromTo("#{cid}",{{opacity:0,y:-14}},{{opacity:1,y:0,duration:0.4,ease:"power3.out"}},{start});')
 
     def lower_third(self):
-        if self.fmt != "youtube" or self.board.get("lower_third") is False:
+        # 22.11 (MK): odcinek otwiera teraz przedstawienie — podpis „Mateusz Kozłowski” na starcie odcinka jest dublem
+        # i wchodził na podpis przebitki i tytuł
+        if self.fmt != "youtube" or self.board.get("lower_third") is False or self.clip.get("kind") == "episode":
             return
         cid = self.uid("lt")
         self.html.append(f'<div class="lower-third clip" id="{cid}" data-start="0.6" data-duration="4.2" data-track-index="5">'

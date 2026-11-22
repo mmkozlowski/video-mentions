@@ -7551,12 +7551,16 @@
     336.34
    ],
    [
-    397.95,
-    403.52
+    438.98,
+    444.35
    ],
    [
-    404.36,
-    407.0
+    388.2,
+    392.28
+   ],
+   [
+    394.16,
+    397.27
    ],
    [
     408.61,
@@ -7565,10 +7569,10 @@
   ],
   "start": 325.33,
   "end": 415.26,
-  "duration": 25.87,
-  "splices": 3,
+  "duration": 30.22,
+  "splices": 4,
   "hook_line": "Cześć, jestem Mateusz Kozłowski a na tym kanale pokazuję prawdziwe wdrożenia AI i systemów",
-  "transcript": "Cześć, jestem Mateusz Kozłowski a na tym kanale pokazuję prawdziwe wdrożenia AI i systemów w firmach co zadziałało, ile to dało i gdzie był haczyk fundamentem jest Open Mercato 80 % gotowego systemu ja dokładam te 20 % które robią różnicę u Ciebie mebli, pamiątki, e -commerce, wyroby medyczne, opakowania w tych branżach to już działa",
+  "transcript": "Cześć, jestem Mateusz Kozłowski a na tym kanale pokazuję prawdziwe wdrożenia AI i systemów w firmach co zadziałało, ile to dało i gdzie był haczyk Mercato to fundament do zbudowania własnego systemu a nie gotowy program z pudełka % systemu już jest gotowe a resztę dokładamy po to jak naprawdę pracuje Wasza firma mebli, pamiątki, e -commerce, wyroby medyczne, opakowania w tych branżach to już działa",
   "scores": {
    "hook": 3,
    "delivery": 4,
@@ -7577,7 +7581,7 @@
   "priority": "C",
   "cta": null,
   "uses": [],
-  "notes": "„Cześć, jestem Mateusz Kozłowski, a na tym kanale pokazuję prawdziwe wdrożenia…” + Open Mercato 80% + branże."
+  "notes": "„Cześć, jestem Mateusz Kozłowski, a na tym kanale pokazuję prawdziwe wdrożenia…” + 46a + branże. 22.11 MK: 46b („ja dokładam te 20%”) wypada — może wyjść, że robię tylko 20%; 46a: „nie zaczynamy od zera… resztę dokładamy pod to, jak naprawdę pracuje Wasza firma” (sklejka bez powtórzonego „po to”). 22.11 wieczór MK: wejście kwestią 49 „Open Mercato to fundament…, a nie gotowy program z pudełka” + 46a od „80% systemu już jest gotowe…”."
  },
  {
   "id": "ins-intro-krotkie",
@@ -7851,6 +7855,72 @@
   "notes": ""
  },
  {
+  "id": "ins-tr-ciekawa",
+  "kind": "raw",
+  "source": "dubs",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": null,
+  "client": null,
+  "title": "Dogrywka: I tu zaczyna się najciekawsza część (17)",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    215.55,
+    217.4
+   ]
+  ],
+  "start": 215.55,
+  "end": 217.4,
+  "duration": 1.85,
+  "splices": 0,
+  "hook_line": "tu zaczyna się najciekawsza część brzmi",
+  "transcript": "tu zaczyna się najciekawsza część brzmi",
+  "scores": {
+   "hook": 3,
+   "delivery": 4,
+   "total": 10
+  },
+  "priority": "C",
+  "cta": null,
+  "uses": [],
+  "notes": ""
+ },
+ {
+  "id": "ins-tr-haczyk",
+  "kind": "raw",
+  "source": "dubs",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": null,
+  "client": null,
+  "title": "Dogrywka: Brzmi prosto? No to zobacz, gdzie był haczyk (18)",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    217.45,
+    220.85
+   ]
+  ],
+  "start": 217.45,
+  "end": 220.85,
+  "duration": 3.4,
+  "splices": 0,
+  "hook_line": "prosto? no to zobacz gdzie był haczyk teraz",
+  "transcript": "prosto? no to zobacz gdzie był haczyk teraz",
+  "scores": {
+   "hook": 3,
+   "delivery": 4,
+   "total": 10
+  },
+  "priority": "C",
+  "cta": null,
+  "uses": [],
+  "notes": ""
+ },
+ {
   "id": "ins-back",
   "kind": "raw",
   "source": "dubs",
@@ -7933,24 +8003,36 @@
   "brand": "flowbiz",
   "ranges": [
    [
-    96.85,
-    99.36
+    96.78,
+    99.3
    ],
    [
-    172.1,
+    171.72,
     175.95
    ],
    [
-    179.4,
-    198.58
+    179.38,
+    186.35
+   ],
+   [
+    186.62,
+    191.21
+   ],
+   [
+    191.65,
+    193.95
+   ],
+   [
+    195.6,
+    198.6
    ]
   ],
-  "start": 96.85,
-  "end": 198.58,
-  "duration": 25.54,
-  "splices": 2,
-  "hook_line": "Poczekaj, zatrzymam Cię tu na chwilę. Jeśli",
-  "transcript": "Poczekaj, zatrzymam Cię tu na chwilę. Jeśli konsultacje, na których przechodzimy przez Twój proces i czy to w ogóle się opłaca, czy to jest dla Ciebie. Bez zobowiązań, że cokolwiek budujemy. Link na dole masz w opisie, odezwij się do mnie na Whatsapp albo na Linkedin, ewentualnie umów, spotkanie tutaj, gdzie będziesz, masz na stronie opcję umów, konsultacje. A",
+  "start": 96.78,
+  "end": 198.6,
+  "duration": 23.61,
+  "splices": 5,
+  "hook_line": "zatrzymam Cię tu na chwilę. Jeśli",
+  "transcript": "zatrzymam Cię tu na chwilę. Jeśli konsultacje, na których przechodzimy przez Twój proces i czy to w ogóle się opłaca, czy to jest dla Ciebie. Bez zobowiązań, że cokolwiek budujemy. na dole masz w opisie, odezwij się do mnie na Whatsapp albo na Linkedin, umów, spotkanie tutaj, na stronie opcję umów, konsultacje. A",
   "scores": {
    "hook": 3,
    "delivery": 4,
@@ -7974,28 +8056,44 @@
   "brand": "flowbiz",
   "ranges": [
    [
-    96.85,
-    99.36
+    96.78,
+    99.3
    ],
    [
-    108.79,
-    118.55
+    108.78,
+    118.3
    ],
    [
-    133.38,
-    156.02
+    133.2,
+    140.2
    ],
    [
-    183.18,
-    198.58
+    140.8,
+    156.17
+   ],
+   [
+    183.15,
+    186.35
+   ],
+   [
+    186.62,
+    191.21
+   ],
+   [
+    191.65,
+    193.95
+   ],
+   [
+    195.6,
+    198.6
    ]
   ],
-  "start": 96.85,
-  "end": 198.58,
-  "duration": 50.31,
-  "splices": 3,
-  "hook_line": "Poczekaj, zatrzymam Cię tu na chwilę. Jeśli",
-  "transcript": "Poczekaj, zatrzymam Cię tu na chwilę. Jeśli konsultacje, na których przechodzimy przez Twój proces. Najczęściej przyjeżdżamy do Ciebie i przechodzimy ten proces na żywo, nie przez kamerkę, nie online, bo Bierzemy przy swój kartkę i przechodzimy cały proces od A do Z, żeby go genialnie poznać. Takie warsztaty mogą trwać 5 -6 godzin, ale wychodzimy z tym z genialnym wkładem do tego właśnie, jak Open Mercato może przetworzyć to na specyfikację, a specyfikację na kod, który będzie dostosowany do Twojej firmy, zobowiązań, że cokolwiek budujemy. Link na dole masz w opisie, odezwij się do mnie na Whatsapp albo na Linkedin, ewentualnie umów, spotkanie tutaj, gdzie będziesz, masz na stronie opcję umów, konsultacje. A",
+  "start": 96.78,
+  "end": 198.6,
+  "duration": 47.5,
+  "splices": 7,
+  "hook_line": "zatrzymam Cię tu na chwilę. Jeśli",
+  "transcript": "zatrzymam Cię tu na chwilę. Jeśli konsultacje, na których przechodzimy przez Twój proces. Najczęściej przyjeżdżamy do Ciebie i przechodzimy ten proces na żywo, nie przez kamerkę, nie online, bo Bierzemy przy swój kartkę i przechodzimy cały proces od A do Z, żeby go genialnie poznać. Takie warsztaty mogą trwać 5 -6 godzin, ale wychodzimy z tym z genialnym wkładem do tego właśnie, jak Open Mercato może przetworzyć to na specyfikację, a specyfikację na kod, który będzie dostosowany do Twojej firmy, zobowiązań, że cokolwiek budujemy. na dole masz w opisie, odezwij się do mnie na Whatsapp albo na Linkedin, umów, spotkanie tutaj, na stronie opcję umów, konsultacje. A",
   "scores": {
    "hook": 3,
    "delivery": 4,
@@ -8638,15 +8736,15 @@
   "ranges": [
    [
     188.14,
-    195.98
+    192.45
    ]
   ],
   "start": 188.14,
-  "end": 195.98,
-  "duration": 7.84,
+  "end": 192.45,
+  "duration": 4.31,
   "splices": 0,
-  "hook_line": "takie konkrety Ci się przydają zasubskrybuj ten kanał a nowy odcinek pojawia się co",
-  "transcript": "takie konkrety Ci się przydają zasubskrybuj ten kanał a nowy odcinek pojawia się co czwartek",
+  "hook_line": "takie konkrety Ci się przydają zasubskrybuj ten kanał a",
+  "transcript": "takie konkrety Ci się przydają zasubskrybuj ten kanał a",
   "scores": {
    "hook": 3,
    "delivery": 4,

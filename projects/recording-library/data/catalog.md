@@ -180,7 +180,7 @@ Ranking: `hook × 2 + delivery` (max 15). A ≥ 13, B ≥ 11. Oceny redakcyjne �
 | `ep-module-1` | Kartka papieru zamiast kodu, warsztat 6 h z ~70 pytaniami po rolach, droga zamówienia przez firmę, nagrana rozmowa z programistą → specyfikacja. |
 | `ep-module-2` | Trzy warstwy specyfikacji (40 minut dziennie, 3 faktury), słownik pojęć, checklista, trafność 70–90%, granice modułu, wzorce vs wyjątki, powtarzalność, CTA w komentarzu. |
 | `raw-freestyle-workshop` | Zaproszenie na warsztaty bez prompteru, urwane na fakturach. Do przebrania na cytaty. |
-| `ins-intro` | „Cześć, jestem Mateusz Kozłowski, a na tym kanale pokazuję prawdziwe wdrożenia…” + Open Mercato 80% + branże. |
+| `ins-intro` | „Cześć, jestem Mateusz Kozłowski, a na tym kanale pokazuję prawdziwe wdrożenia…” + 46a + branże. 22.11 MK: 46b („ja dokładam te 20%”) wypada — może wyjść, że robię tylko 20%; 46a: „nie zaczynamy od zera… resztę dokładamy pod to, jak naprawdę pracuje Wasza firma” (sklejka bez powtórzonego „po to”). 22.11 wieczór MK: wejście kwestią 49 „Open Mercato to fundament…, a nie gotowy program z pudełka” + 46a od „80% systemu już jest gotowe…”. |
 | `ins-intro-kamera` | „A ja nazywam się Mateusz Kozłowski…” + branże, do „…miałem okazję już dotknąć”. Bez „to nie jest odcinek sponsorowany” (Mateusz 05.11: „po co mam się tłumaczyć”), cięcie w ciszy 74,38–74,76. Po hooku. |
 | `ins-mid` | „Poczekaj, zatrzymam Cię…” + konsultacja, „bez zobowiązań”, WhatsApp/LinkedIn/strona. 60–70% filmu. |
 | `ins-mid-long` | Wersja z warsztatem na miejscu i „Open Mercato przetworzy to na specyfikację” — tylko odcinki o OM. |

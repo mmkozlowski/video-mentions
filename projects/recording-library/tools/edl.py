@@ -373,8 +373,11 @@ RAW += [
     # 22.11 MK: zająknięcie w 46b „ja dokładam te… do… 20%” — wycięte 403,52–404,36 („te” → „20%”).
     # 46b zamiast 46a: 46a ma powtórzone „po to, po to” (sklejka w kwestii, ale ze słyszalną zmianą intonacji).
     dict(id="ins-intro", source="dubs", title="Przerywnik: przedstawienie (dogrywki 21.11: 44h + 46b + 47)",
-         ranges=[(325.28, 336.34, 325.33, 336.34), (397.90, 403.52, 397.95, 403.52), (403.60, 407.00, 404.36, 407.00), (408.56, 415.26, 408.61, 415.26)], hook=3, delivery=4,
-         notes="„Cześć, jestem Mateusz Kozłowski, a na tym kanale pokazuję prawdziwe wdrożenia…” + Open Mercato 80% + branże."),
+         ranges=[(325.28, 336.34, 325.33, 336.34), (438.98, 444.35, 438.98, 444.35), (388.20, 392.28, 388.20, 392.28), (394.11, 397.27, 394.16, 397.27), (408.56, 415.26, 408.61, 415.26)], hook=3, delivery=4,
+         notes="„Cześć, jestem Mateusz Kozłowski, a na tym kanale pokazuję prawdziwe wdrożenia…” + 46a + branże. 22.11 MK: 46b "
+               "(„ja dokładam te 20%”) wypada — może wyjść, że robię tylko 20%; 46a: „nie zaczynamy od zera… resztę dokładamy pod to, "
+               "jak naprawdę pracuje Wasza firma” (sklejka bez powtórzonego „po to”). 22.11 wieczór MK: wejście kwestią 49 „Open Mercato to "
+               "fundament…, a nie gotowy program z pudełka” + 46a od „80% systemu już jest gotowe…”."),
     dict(id="ins-intro-krotkie", source="dubs", title="Przerywnik: przedstawienie krótkie (44h + 46b)",
          ranges=[(325.28, 336.34, 325.33, 336.34), (397.90, 403.52, 397.95, 403.52), (403.60, 407.00, 404.36, 407.00)], hook=3, delivery=4),
     dict(id="ins-intro-pelne", source="dubs", title="Przerywnik: przedstawienie pełne (44h + 45 + 46b + 47)",
@@ -387,19 +390,28 @@ RAW += [
     dict(id="ins-back-rezon", source="dubs", title="Dogrywka: powrót do pamiątek (47c)", ranges=[(421.25, 424.40, 421.30, 424.40)], hook=3, delivery=4),
     dict(id="ins-back-8", source="dubs", title="Dogrywka: powrót do ośmiu wdrożeń (47d)", ranges=[(424.61, 427.30, 424.66, 427.30)], hook=3, delivery=4),
     # 22.11 MK: „wracamy do tematu to jest wystarczające” — ogólny powrót dla odcinków bez własnej kwestii 47a–d
+    # 22.11 MK: „fajnie brzmi” — przejścia z dogrywek 20.11 (17, 18) pod etap widza: haczyk przed komplikacją,
+    # „najciekawsza część” przed pokazaniem rozwiązania
+    dict(id="ins-tr-ciekawa", source="dubs", title="Dogrywka: I tu zaczyna się najciekawsza część (17)", ranges=[(215.55, 217.40, 215.55, 217.40)], hook=3, delivery=4),
+    dict(id="ins-tr-haczyk", source="dubs", title="Dogrywka: Brzmi prosto? No to zobacz, gdzie był haczyk (18)", ranges=[(217.45, 220.85, 217.45, 220.85)], hook=3, delivery=4),
     dict(id="ins-back", source="dubs", title="Dogrywka: powrót do tematu (47e)", ranges=[(427.30, 429.05, 427.30, 429.05)], hook=3, delivery=4),
     dict(id="ins-intro-kamera", source="inserts", title="Przerywnik: przedstawienie się (kamera, 05.11 — zastąpione 21.11)",
          ranges=[(3.9, 14.3, 3.96, 14.26), (65.5, 74.6, 65.56, 74.55)], hook=3, delivery=4,
          notes="„A ja nazywam się Mateusz Kozłowski…” + branże, do „…miałem okazję już dotknąć”. Bez „to nie jest odcinek "
                "sponsorowany” (Mateusz 05.11: „po co mam się tłumaczyć”), cięcie w ciszy 74,38–74,76. Po hooku."),
     dict(id="ins-mid", source="inserts", title="Przerywnik: zaproszenie na konsultację",
-         ranges=[(95.8, 99.4, 96.85, 99.36), (171.6, 175.95, 172.10, 175.95), (179.3, 198.6, 179.40, 198.58)], hook=3, delivery=4,
+         ranges=[(96.78, 99.30, 96.78, 99.30), (171.72, 175.95, 171.72, 175.95), (179.38, 186.35, 179.38, 186.35), (186.62, 191.21, 186.62, 191.21),
+                 (191.65, 193.95, 191.65, 193.95), (195.60, 198.60, 195.60, 198.60)], hook=3, delivery=4,
+         # 22.11 MK: „usuń wypełniacze, żeby brzmiało płynnie” — cięcia w ciszy (energia, nie czasy Whispera):
+         # bez urwanego „Jeśli”, całe „Robię”, bez potknięcia „i wychodzisz z… odpowi…” (zostaje powtórka),
+         # bez „tutaj, gdzie będziesz, yyy”, bez „A” na końcu
          # 05.11: bez „zzzz” przed „Poczekaj” (95,83–96,71), szumu przed „Robię” (171,77–172,04, whisper: „dziękuję”)
          # i falstartu „i wychodzisz z… odpowiem…” (176,0–179,4) — whisper chował powtórkę w 3 s dziury przed „czy”
          notes="„Poczekaj, zatrzymam Cię…” + konsultacja, „bez zobowiązań”, WhatsApp/LinkedIn/strona. 60–70% filmu."),
     dict(id="ins-mid-long", source="inserts", title="Przerywnik: zaproszenie na warsztat (Open Mercato)",
-         ranges=[(95.8, 99.4, 96.85, 99.36), (108.7, 118.6, 108.79, 118.55), (133.3, 156.1, 133.38, 156.02),
-                 (183.1, 198.6, 183.18, 198.58)], hook=3, delivery=4,
+         ranges=[(96.78, 99.30, 96.78, 99.30), (108.78, 118.30, 108.78, 118.30), (133.20, 140.20, 133.20, 140.20), (140.80, 156.17, 140.80, 156.17),
+                 (183.15, 186.35, 183.15, 186.35), (186.62, 191.21, 186.62, 191.21), (191.65, 193.95, 191.65, 193.95), (195.60, 198.60, 195.60, 198.60)], hook=3, delivery=4,
+         # 22.11: jak ins-mid + bez urwanego „bo” przed „Bierzemy”
          notes="Wersja z warsztatem na miejscu i „Open Mercato przetworzy to na specyfikację” — tylko odcinki o OM."),
     dict(id="ins-outro", source="inserts", title="Przerywnik: zamknięcie",
          ranges=[(206.3, 222.35, 206.40, 222.30)], hook=3, delivery=4,
@@ -446,7 +458,7 @@ RAW += [
     dict(id="ins-h35", source="dubs", title="Dogrywka shortów — koniec: zapisz sobie (35)",
          ranges=[(183.47, 187.10, 183.52, 187.10)], hook=3, delivery=4),
     dict(id="ins-yt-sub", source="dubs", title="Dogrywka: subskrypcja (37) — plansza z logo YouTube i kliknięciem",
-         ranges=[(188.09, 195.98, 188.14, 195.98)], hook=3, delivery=4),
+         ranges=[(188.09, 192.45, 188.14, 192.45)], hook=3, delivery=4),   # 22.11 MK: bez „nowy odcinek co czwartek” (publikacja nieregularna)
     dict(id="ins-case-6", source="dubs", title="Dogrywka: łącznik case'u (6)",
          ranges=[(67.67, 75.00, 67.72, 75.00)], hook=3, delivery=4),
     dict(id="ins-case-7", source="dubs", title="Dogrywka: łącznik case'u (7)",

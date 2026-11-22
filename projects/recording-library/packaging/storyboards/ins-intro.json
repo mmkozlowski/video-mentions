@@ -39,13 +39,17 @@
      "text": "Co zadziałało, ile dało — *gdzie był haczyk"
     },
     {
-     "at": "fundamentem",
+     "at": "fundament",
      "kicker": "Fundament: Open Mercato",
+     "text": "Fundament, *nie program z pudełka"
+    },
+    {
+     "at": "80",
      "text": "80% systemu *już gotowe"
     },
     {
-     "at": "dokładam",
-     "text": "20% dokładam *pod Twoją firmę"
+     "at": "resztę",
+     "text": "Resztę dokładamy *pod Twoją firmę"
     },
     {
      "at": "produkcja",
@@ -74,7 +78,7 @@
      ]
     }
    ],
-   "assemble": "fundamentem",
+   "assemble": "fundament",
    "scenes": [
     {
      "key": "production",
@@ -120,7 +124,7 @@
    "finale": "branżach"
   }
  ],
- "note": "21.11: przedstawienie z dogrywek 44h–47 (bez „prowadzę Flowbiz”), moduły ze strony zapalane na branżach, Open Mercato 80/20",
+ "note": "22.11: 44h + 49 (fundament, nie program z pudełka) + 46a od „80%” + 47",
  "jingle": "jingle-przedstawienie.mp3",
  "jingle_offset": 1.6
 }

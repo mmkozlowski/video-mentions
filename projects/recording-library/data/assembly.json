@@ -3,10 +3,6 @@
   "plan": [
    [
     "START",
-    "ins-a1"
-   ],
-   [
-    "START",
     "jingle-sting"
    ],
    [
@@ -15,7 +11,15 @@
    ],
    [
     "START",
-    "ins-back-offers"
+    "ins-back"
+   ],
+   [
+    "20 ofert → 3 zamówienia",
+    "ins-tr-haczyk"
+   ],
+   [
+    "Asystent czyta maile → szkic w 5 minut",
+    "ins-tr-ciekawa"
    ],
    [
     "END",
@@ -38,7 +42,7 @@
     "ins-bye"
    ]
   ],
-  "chapters": "0:00 W tym odcinku\n0:20 Wstęp\n0:53 Każdy ma swoją wersję oferty\n2:14 20 ofert → 3 zamówienia\n2:48 Asystent czyta maile → szkic w 5 minut",
+  "chapters": "0:00 W tym odcinku\n0:20 Wstęp\n0:53 Każdy ma swoją wersję oferty\n2:21 20 ofert → 3 zamówienia\n2:53 Asystent czyta maile → szkic w 5 minut",
   "chapter_list": [
    {
     "t": 0.0,
@@ -53,11 +57,11 @@
     "title": "Każdy ma swoją wersję oferty"
    },
    {
-    "t": 134.0,
+    "t": 141.5,
     "title": "20 ofert → 3 zamówienia"
    },
    {
-    "t": 168.4,
+    "t": 173.1,
     "title": "Asystent czyta maile → szkic w 5 minut"
    }
   ],
@@ -70,54 +74,60 @@
    },
    {
     "t": 20.2,
-    "id": "ins-a1",
-    "label": "łącznik przed przedstawieniem",
-    "length": 3.7
-   },
-   {
-    "t": 23.9,
     "id": "jingle-sting",
     "label": "jingle (stopklatka)",
     "length": 1.6
    },
    {
-    "t": 25.5,
+    "t": 21.8,
     "id": "ins-intro",
     "label": "przedstawienie",
-    "length": 25.9
+    "length": 30.2
    },
    {
-    "t": 51.4,
-    "id": "ins-back-offers",
+    "t": 52.1,
+    "id": "ins-back",
     "label": "powrót do tematu",
-    "length": 2.4
+    "length": 1.8
    },
    {
-    "t": 227.1,
+    "t": 138.1,
+    "id": "ins-tr-haczyk",
+    "label": "przejście: haczyk",
+    "length": 3.4
+   },
+   {
+    "t": 171.2,
+    "id": "ins-tr-ciekawa",
+    "label": "przejście: najciekawsza część",
+    "length": 1.9
+   },
+   {
+    "t": 232.4,
     "id": "ins-g30",
     "label": "ins-g30",
     "length": 4.2
    },
    {
-    "t": 231.2,
+    "t": 236.6,
     "id": "ins-a4",
     "label": "ins-a4",
     "length": 3.0
    },
    {
-    "t": 234.2,
+    "t": 239.5,
     "id": "ins-outro",
     "label": "zakończenie",
     "length": 15.9
    },
    {
-    "t": 250.1,
+    "t": 255.4,
     "id": "ins-yt-sub",
     "label": "plansza Subskrybuj",
-    "length": 7.9
+    "length": 4.3
    },
    {
-    "t": 258.0,
+    "t": 259.8,
     "id": "ins-bye",
     "label": "ins-bye",
     "length": 4.9
@@ -126,10 +136,6 @@
  },
  "ep-marpasz": {
   "plan": [
-   [
-    "START",
-    "ins-a1"
-   ],
    [
     "START",
     "jingle-sting"
@@ -143,6 +149,14 @@
     "ins-back"
    ],
    [
+    "Teraz: AI łączy w jeden koszyk",
+    "ins-tr-ciekawa"
+   ],
+   [
+    "Czy to działa idealnie?",
+    "ins-tr-haczyk"
+   ],
+   [
     "Katalog AI: faktura → produkty → opisy",
     "ins-mid"
    ],
@@ -151,7 +165,7 @@
     "ins-outro"
    ]
   ],
-  "chapters": "0:00 W tym odcinku\n0:24 Wstęp\n0:57 Realne przypadki AI\n1:30 Paczki do 25 kg: cztery worki, cztery etykiety\n2:31 Jak to wyglądało wcześniej\n4:05 Teraz: AI łączy w jeden koszyk\n4:38 Około 100 godzin miesięcznie\n6:16 Katalog AI: faktura → produkty → opisy\n8:26 Czy to działa idealnie?",
+  "chapters": "0:00 W tym odcinku\n0:24 Wstęp\n0:57 Realne przypadki AI\n1:30 Paczki do 25 kg: cztery worki, cztery etykiety\n2:31 Jak to wyglądało wcześniej\n4:06 Teraz: AI łączy w jeden koszyk\n4:40 Około 100 godzin miesięcznie\n6:15 Katalog AI: faktura → produkty → opisy\n8:30 Czy to działa idealnie?",
   "chapter_list": [
    {
     "t": 0.0,
@@ -162,31 +176,31 @@
     "title": "Wstęp"
    },
    {
-    "t": 57.0,
+    "t": 57.7,
     "title": "Realne przypadki AI"
    },
    {
-    "t": 90.6,
+    "t": 90.5,
     "title": "Paczki do 25 kg: cztery worki, cztery etykiety"
    },
    {
-    "t": 151.7,
+    "t": 151.5,
     "title": "Jak to wyglądało wcześniej"
    },
    {
-    "t": 245.1,
+    "t": 246.8,
     "title": "Teraz: AI łączy w jeden koszyk"
    },
    {
-    "t": 278.7,
+    "t": 280.4,
     "title": "Około 100 godzin miesięcznie"
    },
    {
-    "t": 376.0,
+    "t": 375.9,
     "title": "Katalog AI: faktura → produkty → opisy"
    },
    {
-    "t": 506.1,
+    "t": 510.7,
     "title": "Czy to działa idealnie?"
    }
   ],
@@ -199,36 +213,42 @@
    },
    {
     "t": 24.1,
-    "id": "ins-a1",
-    "label": "łącznik przed przedstawieniem",
-    "length": 3.7
-   },
-   {
-    "t": 27.8,
     "id": "jingle-sting",
     "label": "jingle (stopklatka)",
     "length": 1.6
    },
    {
-    "t": 29.4,
+    "t": 25.7,
     "id": "ins-intro",
     "label": "przedstawienie",
-    "length": 25.9
+    "length": 30.2
    },
    {
-    "t": 55.3,
+    "t": 55.9,
     "id": "ins-back",
     "label": "powrót do tematu",
     "length": 1.8
    },
    {
-    "t": 350.5,
-    "id": "ins-mid",
-    "label": "wstawka w środku",
-    "length": 25.6
+    "t": 245.0,
+    "id": "ins-tr-ciekawa",
+    "label": "przejście: najciekawsza część",
+    "length": 1.9
    },
    {
-    "t": 542.3,
+    "t": 352.2,
+    "id": "ins-mid",
+    "label": "wstawka w środku",
+    "length": 23.6
+   },
+   {
+    "t": 507.3,
+    "id": "ins-tr-haczyk",
+    "label": "przejście: haczyk",
+    "length": 3.4
+   },
+   {
+    "t": 545.5,
     "id": "ins-outro",
     "label": "zakończenie",
     "length": 15.9
@@ -239,10 +259,6 @@
   "plan": [
    [
     "START",
-    "ins-a1"
-   ],
-   [
-    "START",
     "jingle-sting"
    ],
    [
@@ -251,7 +267,15 @@
    ],
    [
     "START",
-    "ins-back-rezon"
+    "ins-back"
+   ],
+   [
+    "Kontrola po fakcie",
+    "ins-tr-haczyk"
+   ],
+   [
+    "Najpierw jedna baza",
+    "ins-tr-ciekawa"
    ],
    [
     "Nadprodukcja",
@@ -278,7 +302,7 @@
     "ins-bye"
    ]
   ],
-  "chapters": "0:00 W tym odcinku\n0:24 Wstęp\n0:58 Producent pamiątek znad morza i proces na kartkach\n1:17 Kontrola po fakcie\n2:00 Najpierw jedna baza\n2:59 Integracja z PC Business\n3:34 Handlowiec w trasie\n5:32 Nadprodukcja\n6:59 Panel klienta B2B\n7:39 Handlowiec zamawia za klienta",
+  "chapters": "0:00 W tym odcinku\n0:24 Wstęp\n0:58 Producent pamiątek znad morza i proces na kartkach\n1:19 Kontrola po fakcie\n2:03 Najpierw jedna baza\n3:04 Integracja z PC Business\n3:38 Handlowiec w trasie\n5:35 Nadprodukcja\n7:01 Panel klienta B2B\n7:41 Handlowiec zamawia za klienta",
   "chapter_list": [
    {
     "t": 0.0,
@@ -289,35 +313,35 @@
     "title": "Wstęp"
    },
    {
-    "t": 58.9,
+    "t": 58.2,
     "title": "Producent pamiątek znad morza i proces na kartkach"
    },
    {
-    "t": 77.0,
+    "t": 79.3,
     "title": "Kontrola po fakcie"
    },
    {
-    "t": 120.0,
+    "t": 123.8,
     "title": "Najpierw jedna baza"
    },
    {
-    "t": 179.5,
+    "t": 184.0,
     "title": "Integracja z PC Business"
    },
    {
-    "t": 214.2,
+    "t": 218.7,
     "title": "Handlowiec w trasie"
    },
    {
-    "t": 332.5,
+    "t": 335.1,
     "title": "Nadprodukcja"
    },
    {
-    "t": 419.3,
+    "t": 421.9,
     "title": "Panel klienta B2B"
    },
    {
-    "t": 459.2,
+    "t": 461.8,
     "title": "Handlowiec zamawia za klienta"
    }
   ],
@@ -330,60 +354,66 @@
    },
    {
     "t": 24.6,
-    "id": "ins-a1",
-    "label": "łącznik przed przedstawieniem",
-    "length": 3.7
-   },
-   {
-    "t": 28.3,
     "id": "jingle-sting",
     "label": "jingle (stopklatka)",
     "length": 1.6
    },
    {
-    "t": 29.9,
+    "t": 26.2,
     "id": "ins-intro",
     "label": "przedstawienie",
-    "length": 25.9
+    "length": 30.2
    },
    {
-    "t": 55.8,
-    "id": "ins-back-rezon",
+    "t": 56.4,
+    "id": "ins-back",
     "label": "powrót do tematu",
-    "length": 3.1
+    "length": 1.8
    },
    {
-    "t": 303.8,
+    "t": 75.9,
+    "id": "ins-tr-haczyk",
+    "label": "przejście: haczyk",
+    "length": 3.4
+   },
+   {
+    "t": 122.0,
+    "id": "ins-tr-ciekawa",
+    "label": "przejście: najciekawsza część",
+    "length": 1.9
+   },
+   {
+    "t": 308.3,
     "id": "ins-mid",
     "label": "wstawka w środku",
-    "length": 25.6
+    "length": 23.6
    },
    {
-    "t": 329.3,
+    "t": 332.0,
     "id": "ins-a3",
     "label": "ins-a3",
     "length": 3.1
    },
    {
-    "t": 496.7,
+    "t": 499.4,
     "id": "ins-a4",
     "label": "ins-a4",
     "length": 3.0
    },
    {
-    "t": 499.7,
+    "t": 502.3,
     "id": "ins-outro",
     "label": "zakończenie",
     "length": 15.9
    },
    {
-    "t": 515.6,
+    "t": 518.2,
     "id": "ins-yt-sub",
     "label": "plansza Subskrybuj",
-    "length": 7.9
+    "length": 4.3
    },
    {
-    "t": 523.5,
+    "t": 522.6,
     "id": "ins-bye",
     "label": "ins-bye",
     "length": 4.9
@@ -392,10 +422,6 @@
  },
  "ep-module": {
   "plan": [
-   [
-    "START",
-    "ins-a1"
-   ],
    [
     "START",
     "jingle-sting"
@@ -409,6 +435,14 @@
     "ins-back"
    ],
    [
+    "Trzy warstwy specyfikacji",
+    "ins-tr-ciekawa"
+   ],
+   [
+    "Gdzie to się psuje",
+    "ins-tr-haczyk"
+   ],
+   [
     "Słownik pojęć",
     "ins-mid-long"
    ],
@@ -417,7 +451,7 @@
     "ins-outro"
    ]
   ],
-  "chapters": "0:00 W tym odcinku\n0:23 Wstęp\n0:56 Kartka zamiast kodu\n1:28 Od procesu w Excelu do modułu\n1:44 Ludzie zaczynają od drugiej strony\n2:02 Warsztat: 70 pytań po rolach\n2:42 Szef wie swoje, hala wie lepiej\n3:27 Droga jednej kartki\n4:25 Nagraj rozmowę z programistą\n5:34 Trzy warstwy specyfikacji\n7:09 Słownik pojęć\n7:33 Checklista i 70–90% trafności\n8:26 Gdzie to się psuje\n8:56 Powtarzalność\n9:21 Zadanie: przejdź swój proces",
+  "chapters": "0:00 W tym odcinku\n0:23 Wstęp\n0:57 Kartka zamiast kodu\n1:29 Od procesu w Excelu do modułu\n1:45 Ludzie zaczynają od drugiej strony\n2:02 Warsztat: 70 pytań po rolach\n2:43 Szef wie swoje, hala wie lepiej\n3:28 Droga jednej kartki\n4:26 Nagraj rozmowę z programistą\n5:36 Trzy warstwy specyfikacji\n7:09 Słownik pojęć\n7:32 Checklista i 70–90% trafności\n8:29 Gdzie to się psuje\n8:59 Powtarzalność\n9:25 Zadanie: przejdź swój proces",
   "chapter_list": [
    {
     "t": 0.0,
@@ -428,55 +462,55 @@
     "title": "Wstęp"
    },
    {
-    "t": 56.8,
+    "t": 57.4,
     "title": "Kartka zamiast kodu"
    },
    {
-    "t": 88.4,
+    "t": 89.0,
     "title": "Od procesu w Excelu do modułu"
    },
    {
-    "t": 104.6,
+    "t": 105.2,
     "title": "Ludzie zaczynają od drugiej strony"
    },
    {
-    "t": 122.2,
+    "t": 122.8,
     "title": "Warsztat: 70 pytań po rolach"
    },
    {
-    "t": 162.7,
+    "t": 163.3,
     "title": "Szef wie swoje, hala wie lepiej"
    },
    {
-    "t": 207.6,
+    "t": 208.3,
     "title": "Droga jednej kartki"
    },
    {
-    "t": 265.4,
+    "t": 266.1,
     "title": "Nagraj rozmowę z programistą"
    },
    {
-    "t": 334.6,
+    "t": 336.9,
     "title": "Trzy warstwy specyfikacji"
    },
    {
-    "t": 429.6,
+    "t": 429.3,
     "title": "Słownik pojęć"
    },
    {
-    "t": 453.0,
+    "t": 452.7,
     "title": "Checklista i 70–90% trafności"
    },
    {
-    "t": 506.5,
+    "t": 509.1,
     "title": "Gdzie to się psuje"
    },
    {
-    "t": 536.1,
+    "t": 539.2,
     "title": "Powtarzalność"
    },
    {
-    "t": 561.9,
+    "t": 565.0,
     "title": "Zadanie: przejdź swój proces"
    }
   ],
@@ -489,36 +523,42 @@
    },
    {
     "t": 23.8,
-    "id": "ins-a1",
-    "label": "łącznik przed przedstawieniem",
-    "length": 3.7
-   },
-   {
-    "t": 27.5,
     "id": "jingle-sting",
     "label": "jingle (stopklatka)",
     "length": 1.6
    },
    {
-    "t": 29.1,
+    "t": 25.4,
     "id": "ins-intro",
     "label": "przedstawienie",
-    "length": 25.9
+    "length": 30.2
    },
    {
-    "t": 55.0,
+    "t": 55.7,
     "id": "ins-back",
     "label": "powrót do tematu",
     "length": 1.8
    },
    {
-    "t": 379.3,
-    "id": "ins-mid-long",
-    "label": "wstawka w środku",
-    "length": 50.3
+    "t": 335.1,
+    "id": "ins-tr-ciekawa",
+    "label": "przejście: najciekawsza część",
+    "length": 1.9
    },
    {
-    "t": 588.5,
+    "t": 381.8,
+    "id": "ins-mid-long",
+    "label": "wstawka w środku",
+    "length": 47.5
+   },
+   {
+    "t": 505.7,
+    "id": "ins-tr-haczyk",
+    "label": "przejście: haczyk",
+    "length": 3.4
+   },
+   {
+    "t": 591.6,
     "id": "ins-outro",
     "label": "zakończenie",
     "length": 15.9
@@ -529,10 +569,6 @@
   "plan": [
    [
     "START",
-    "ins-a1"
-   ],
-   [
-    "START",
     "jingle-sting"
    ],
    [
@@ -541,7 +577,15 @@
    ],
    [
     "START",
-    "ins-back-doram"
+    "ins-back"
+   ],
+   [
+    "Dlaczego to tak długo trwało",
+    "ins-tr-haczyk"
+   ],
+   [
+    "Pamięć dla AI",
+    "ins-tr-ciekawa"
    ],
    [
     "Jak uczy się zwykły czat",
@@ -560,54 +604,54 @@
     "ins-contact"
    ]
   ],
-  "chapters": "0:00 W tym odcinku\n0:22 Wstęp\n0:55 Zamówienia w Excelu od kontrahentów z Niemiec\n1:57 Kilka dni klepania → 10 minut\n2:36 Dlaczego to tak długo trwało\n3:54 Kody kreskowe: przeklej, drukuj\n5:09 Najpierw jedna baza\n6:16 Pamięć dla AI\n8:10 Jak uczy się zwykły czat\n9:32 70% → 94% → 95%\n10:30 Kody bez AI: 15 minut\n10:56 Co dalej",
+  "chapters": "0:00 W tym odcinku\n0:22 Wstęp\n0:55 Zamówienia w Excelu od kontrahentów z Niemiec\n1:57 Kilka dni klepania → 10 minut\n2:38 Dlaczego to tak długo trwało\n3:57 Kody kreskowe: przeklej, drukuj\n5:13 Najpierw jedna baza\n6:23 Pamięć dla AI\n8:13 Jak uczy się zwykły czat\n9:36 70% → 94% → 95%\n10:34 Kody bez AI: 15 minut\n11:00 Co dalej",
   "chapter_list": [
    {
     "t": 0.0,
     "title": "W tym odcinku"
    },
    {
-    "t": 22.4,
+    "t": 22.2,
     "title": "Wstęp"
    },
    {
-    "t": 55.7,
+    "t": 55.8,
     "title": "Zamówienia w Excelu od kontrahentów z Niemiec"
    },
    {
-    "t": 117.7,
+    "t": 117.8,
     "title": "Kilka dni klepania → 10 minut"
    },
    {
-    "t": 156.7,
+    "t": 158.7,
     "title": "Dlaczego to tak długo trwało"
    },
    {
-    "t": 234.3,
+    "t": 237.9,
     "title": "Kody kreskowe: przeklej, drukuj"
    },
    {
-    "t": 309.9,
+    "t": 313.4,
     "title": "Najpierw jedna baza"
    },
    {
-    "t": 376.2,
+    "t": 383.6,
     "title": "Pamięć dla AI"
    },
    {
-    "t": 490.0,
+    "t": 493.4,
     "title": "Jak uczy się zwykły czat"
    },
    {
-    "t": 572.7,
+    "t": 576.2,
     "title": "70% → 94% → 95%"
    },
    {
-    "t": 630.7,
+    "t": 634.1,
     "title": "Kody bez AI: 15 minut"
    },
    {
-    "t": 656.9,
+    "t": 660.4,
     "title": "Co dalej"
    }
   ],
@@ -616,52 +660,58 @@
     "t": 0.0,
     "id": "teaser",
     "label": "w tym odcinku (fragmenty)",
-    "length": 22.4
+    "length": 22.2
    },
    {
-    "t": 22.4,
-    "id": "ins-a1",
-    "label": "łącznik przed przedstawieniem",
-    "length": 3.7
-   },
-   {
-    "t": 26.1,
+    "t": 22.2,
     "id": "jingle-sting",
     "label": "jingle (stopklatka)",
     "length": 1.6
    },
    {
-    "t": 27.7,
+    "t": 23.8,
     "id": "ins-intro",
     "label": "przedstawienie",
-    "length": 25.9
+    "length": 30.2
    },
    {
-    "t": 53.6,
-    "id": "ins-back-doram",
+    "t": 54.1,
+    "id": "ins-back",
     "label": "powrót do tematu",
-    "length": 2.1
+    "length": 1.8
    },
    {
-    "t": 461.3,
+    "t": 155.3,
+    "id": "ins-tr-haczyk",
+    "label": "przejście: haczyk",
+    "length": 3.4
+   },
+   {
+    "t": 381.8,
+    "id": "ins-tr-ciekawa",
+    "label": "przejście: najciekawsza część",
+    "length": 1.9
+   },
+   {
+    "t": 466.7,
     "id": "ins-mid",
     "label": "wstawka w środku",
-    "length": 25.6
+    "length": 23.6
    },
    {
-    "t": 486.9,
+    "t": 490.3,
     "id": "ins-a3",
     "label": "ins-a3",
     "length": 3.1
    },
    {
-    "t": 678.3,
+    "t": 681.7,
     "id": "ins-a4",
     "label": "ins-a4",
     "length": 3.0
    },
    {
-    "t": 681.2,
+    "t": 684.7,
     "id": "ins-contact",
     "label": "ins-contact",
     "length": 5.8
@@ -672,10 +722,6 @@
   "plan": [
    [
     "START",
-    "ins-a1"
-   ],
-   [
-    "START",
     "jingle-sting"
    ],
    [
@@ -684,7 +730,7 @@
    ],
    [
     "START",
-    "ins-back-8"
+    "ins-back"
    ],
    [
     "Zamówienia z Excela: 70% → 94%",
@@ -727,46 +773,46 @@
     "ins-bye"
    ]
   ],
-  "chapters": "0:00 W tym odcinku\n0:23 Wstęp\n0:57 Oferta w 5 minut\n4:10 Zamówienia z Excela: 70% → 94%\n5:36 Kody kreskowe: kilka dni → 15 minut\n6:16 Etykiety: ok. 100 godzin miesięcznie\n8:10 Katalog AI z faktur\n11:15 Panel klienta B2B\n13:02 Kierownik produkcji w godzinę\n15:05 AI to dokręcanie śrubek",
+  "chapters": "0:00 W tym odcinku\n0:23 Wstęp\n0:57 Oferta w 5 minut\n4:10 Zamówienia z Excela: 70% → 94%\n5:36 Kody kreskowe: kilka dni → 15 minut\n6:15 Etykiety: ok. 100 godzin miesięcznie\n8:10 Katalog AI z faktur\n11:12 Panel klienta B2B\n12:59 Kierownik produkcji w godzinę\n15:02 AI to dokręcanie śrubek",
   "chapter_list": [
    {
     "t": 0.0,
     "title": "W tym odcinku"
    },
    {
-    "t": 23.7,
+    "t": 23.5,
     "title": "Wstęp"
    },
    {
-    "t": 57.6,
+    "t": 57.1,
     "title": "Oferta w 5 minut"
    },
    {
-    "t": 250.7,
+    "t": 250.2,
     "title": "Zamówienia z Excela: 70% → 94%"
    },
    {
-    "t": 336.9,
+    "t": 336.5,
     "title": "Kody kreskowe: kilka dni → 15 minut"
    },
    {
-    "t": 376.2,
+    "t": 375.8,
     "title": "Etykiety: ok. 100 godzin miesięcznie"
    },
    {
-    "t": 490.7,
+    "t": 490.2,
     "title": "Katalog AI z faktur"
    },
    {
-    "t": 675.5,
+    "t": 672.2,
     "title": "Panel klienta B2B"
    },
    {
-    "t": 782.3,
+    "t": 779.0,
     "title": "Kierownik produkcji w godzinę"
    },
    {
-    "t": 905.5,
+    "t": 902.2,
     "title": "AI to dokręcanie śrubek"
    }
   ],
@@ -775,88 +821,82 @@
     "t": 0.0,
     "id": "teaser",
     "label": "w tym odcinku (fragmenty)",
-    "length": 23.7
+    "length": 23.5
    },
    {
-    "t": 23.7,
-    "id": "ins-a1",
-    "label": "łącznik przed przedstawieniem",
-    "length": 3.7
-   },
-   {
-    "t": 27.4,
+    "t": 23.5,
     "id": "jingle-sting",
     "label": "jingle (stopklatka)",
     "length": 1.6
    },
    {
-    "t": 29.0,
+    "t": 25.1,
     "id": "ins-intro",
     "label": "przedstawienie",
-    "length": 25.9
+    "length": 30.2
    },
    {
-    "t": 54.9,
-    "id": "ins-back-8",
+    "t": 55.4,
+    "id": "ins-back",
     "label": "powrót do tematu",
-    "length": 2.7
+    "length": 1.8
    },
    {
-    "t": 250.7,
+    "t": 250.2,
     "id": "ins-case-6",
     "label": "łącznik case'u",
     "length": 7.0
    },
    {
-    "t": 336.9,
+    "t": 336.5,
     "id": "ins-case-7",
     "label": "łącznik case'u",
     "length": 6.0
    },
    {
-    "t": 376.2,
+    "t": 375.8,
     "id": "ins-case-8",
     "label": "łącznik case'u",
     "length": 5.4
    },
    {
-    "t": 490.7,
+    "t": 490.2,
     "id": "ins-case-9",
     "label": "łącznik case'u",
     "length": 5.6
    },
    {
-    "t": 625.1,
+    "t": 624.7,
     "id": "ins-mid-long",
     "label": "wstawka w środku",
-    "length": 50.3
+    "length": 47.5
    },
    {
-    "t": 675.5,
+    "t": 672.2,
     "id": "ins-case-10",
     "label": "łącznik case'u",
     "length": 5.0
    },
    {
-    "t": 782.3,
+    "t": 779.0,
     "id": "ins-case-11",
     "label": "łącznik case'u",
     "length": 6.0
    },
    {
-    "t": 905.5,
+    "t": 902.2,
     "id": "ins-case-12",
     "label": "łącznik case'u",
     "length": 3.4
    },
    {
-    "t": 943.6,
+    "t": 940.4,
     "id": "ins-yt-sub",
     "label": "plansza Subskrybuj",
-    "length": 7.9
+    "length": 4.3
    },
    {
-    "t": 951.5,
+    "t": 944.7,
     "id": "ins-bye",
     "label": "ins-bye",
     "length": 4.9
@@ -865,10 +905,6 @@
  },
  "ep-vacuactiv": {
   "plan": [
-   [
-    "START",
-    "ins-a1"
-   ],
    [
     "START",
     "jingle-sting"
@@ -880,6 +916,14 @@
    [
     "START",
     "ins-back"
+   ],
+   [
+    "Dlaczego gotowce się nie wdrażają",
+    "ins-tr-haczyk"
+   ],
+   [
+    "Excel kierownika → widoki w systemie",
+    "ins-tr-ciekawa"
    ],
    [
     "Obsidian + Hermes + Codex",
@@ -894,7 +938,7 @@
     "ins-outro"
    ]
   ],
-  "chapters": "0:00 W tym odcinku\n0:25 Wstęp\n0:57 Asystent AI do zarządzania firmą\n1:29 ChatGPT zapomina i halucynuje\n2:57 Dane w głowach, na kartkach, w mailach\n4:13 Mózg firmy: 100–150 GB danych\n5:05 „Chcę codzienny brief”\n5:46 Open Mercato jako fundament\n6:06 Dlaczego gotowce się nie wdrażają\n7:29 Excel kierownika → widoki w systemie\n9:46 Codzienny briefing przyjemnością\n10:40 Zamówienie z Telegrama w trzech kliknięciach\n11:46 Obsidian + Hermes + Codex\n15:41 Fundamenty i systemy zamknięte\n17:19 Najpierw konsultacje, ludzie, nawyk",
+  "chapters": "0:00 W tym odcinku\n0:25 Wstęp\n0:58 Asystent AI do zarządzania firmą\n1:29 ChatGPT zapomina i halucynuje\n2:57 Dane w głowach, na kartkach, w mailach\n4:13 Mózg firmy: 100–150 GB danych\n5:06 „Chcę codzienny brief”\n5:46 Open Mercato jako fundament\n6:06 Dlaczego gotowce się nie wdrażają\n7:33 Excel kierownika → widoki w systemie\n9:52 Codzienny briefing przyjemnością\n10:46 Zamówienie z Telegrama w trzech kliknięciach\n11:50 Obsidian + Hermes + Codex\n15:45 Fundamenty i systemy zamknięte\n17:23 Najpierw konsultacje, ludzie, nawyk",
   "chapter_list": [
    {
     "t": 0.0,
@@ -905,55 +949,55 @@
     "title": "Wstęp"
    },
    {
-    "t": 57.9,
+    "t": 58.6,
     "title": "Asystent AI do zarządzania firmą"
    },
    {
-    "t": 89.2,
+    "t": 89.8,
     "title": "ChatGPT zapomina i halucynuje"
    },
    {
-    "t": 177.2,
+    "t": 177.8,
     "title": "Dane w głowach, na kartkach, w mailach"
    },
    {
-    "t": 253.2,
+    "t": 253.9,
     "title": "Mózg firmy: 100–150 GB danych"
    },
    {
-    "t": 305.5,
+    "t": 306.2,
     "title": "„Chcę codzienny brief”"
    },
    {
-    "t": 346.2,
+    "t": 346.8,
     "title": "Open Mercato jako fundament"
    },
    {
-    "t": 366.8,
+    "t": 366.7,
     "title": "Dlaczego gotowce się nie wdrażają"
    },
    {
-    "t": 449.1,
+    "t": 453.4,
     "title": "Excel kierownika → widoki w systemie"
    },
    {
-    "t": 586.2,
+    "t": 592.1,
     "title": "Codzienny briefing przyjemnością"
    },
    {
-    "t": 640.8,
+    "t": 646.7,
     "title": "Zamówienie z Telegrama w trzech kliknięciach"
    },
    {
-    "t": 706.1,
+    "t": 710.0,
     "title": "Obsidian + Hermes + Codex"
    },
    {
-    "t": 941.3,
+    "t": 945.3,
     "title": "Fundamenty i systemy zamknięte"
    },
    {
-    "t": 1039.8,
+    "t": 1043.8,
     "title": "Najpierw konsultacje, ludzie, nawyk"
    }
   ],
@@ -966,42 +1010,48 @@
    },
    {
     "t": 25.0,
-    "id": "ins-a1",
-    "label": "łącznik przed przedstawieniem",
-    "length": 3.7
-   },
-   {
-    "t": 28.7,
     "id": "jingle-sting",
     "label": "jingle (stopklatka)",
     "length": 1.6
    },
    {
-    "t": 30.3,
+    "t": 26.6,
     "id": "ins-intro",
     "label": "przedstawienie",
-    "length": 25.9
+    "length": 30.2
    },
    {
-    "t": 56.2,
+    "t": 56.8,
     "id": "ins-back",
     "label": "powrót do tematu",
     "length": 1.8
    },
    {
-    "t": 680.5,
-    "id": "ins-mid",
-    "label": "wstawka w środku",
-    "length": 25.6
+    "t": 363.3,
+    "id": "ins-tr-haczyk",
+    "label": "przejście: haczyk",
+    "length": 3.4
    },
    {
-    "t": 1105.8,
+    "t": 451.5,
+    "id": "ins-tr-ciekawa",
+    "label": "przejście: najciekawsza część",
+    "length": 1.9
+   },
+   {
+    "t": 686.4,
+    "id": "ins-mid",
+    "label": "wstawka w środku",
+    "length": 23.6
+   },
+   {
+    "t": 1109.9,
     "id": "gag-przymiotnik",
     "label": "gag",
     "length": 3.4
    },
    {
-    "t": 1109.2,
+    "t": 1113.3,
     "id": "ins-outro",
     "label": "zakończenie",
     "length": 15.9

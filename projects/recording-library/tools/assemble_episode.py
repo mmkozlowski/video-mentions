@@ -61,7 +61,7 @@ TEASERS = {
     "ep-doram": [(26.26, 33.29),  # „kontrahent, który zamawiał, potrafił tą samą rzecz nazwać na kilkan…”
                (215.64, 219.74),  # „przeklejała, drukowała, przeklejała, drukowała, przeklejała, drukow…”
                (487.97, 495.77),  # „było na poziomie 70%. Po miesiącu osiągnęliśmy 94%.”
-               (567.22, 570.67)],  # „z kilku dni pracy dostajemy 15 minut pracy”
+               (567.38, 570.67)],  # „z kilku dni pracy dostajemy 15 minut pracy”
     "ep-open-mercato-offers": [(24.42, 30.32),  # „Każdy w tej firmie ma swoją wersję jakiegoś PDF-a.”
                              (164.58, 171.87),  # „zaczynamy tworzenie tej oferty prawdopodobnie w poniedziałek rano, …”
                              (145.57, 152.61)],  # „Wszystko w ciągu 5 minut. Wcześniej ta sama oferta zajmowała nawet …”
@@ -69,7 +69,7 @@ TEASERS = {
                (237.54, 245.21),  # „nagle produkujemy tego dziesiątki tysięcy sztuk, a finalnie okazuje…”
                (338.16, 345.68)],  # „klient sam się loguje sam może złożyć zamówienie sam widzi statusy …”
     "ep-8-wdrozen": [(167.02, 174.05),  # „Wszystko w ciągu 5 minut. Wcześniej ta sama oferta zajmowała nawet …”
-                   (303.65, 307.11),  # „z kilku dni pracy dostajemy 15 minut pracy.”
+                   (303.80, 307.11),  # „z kilku dni pracy dostajemy 15 minut pracy.”
                    (680.67, 688.40),  # „nauka i wdrożenie tego u tego kierownika produkcji naprawdę, uwierz…”
                    (360.60, 366.07)],  # „Wyobraź sobie, że ściąga ktoś z Ciebie 100 godzin miesięcznie”
     "ep-marpasz": [(68.96, 75.39),  # „Klient zamawiał cztery worki paszy po 25 kg, więc nie mogliśmy wsad…”
@@ -86,9 +86,16 @@ TEASERS = {
                 (419.90, 428.11)],  # „On zna wzorce, a Ty znasz wyjątki. Wyjątki są dokładnie tym, za co …”
 }
 TEASER_FADE = 0.05
+# 22.11 MK: „czemu dopiero w 0:29 wchodzi muzyka” — pod fragmentami od pierwszej sekundy jingle-tlo (17,6 s muzyki,
+# zapętlone z przenikaniem), ściszane pod głosem, gaśnie na końcu fragmentów; potem stopklatka z jinglem przedstawienia
+TEASER_MUSIC = P.MUSIC_DIR / "jingle-tlo.mp3"
+TEASER_MUSIC_SOUND = 17.5   # dalej w pliku cisza
+TEASER_MUSIC_LUFS = -23.0
+TEASER_LABEL = P.PACK / "overlays" / "teaser-label.png"   # „W tym odcinku” na fragmentach (MK 22.11)
 # 22.11: odcinek po „Dobra, wracamy…” startuje od początku — gdy nagranie samo zaczyna się od powitania, ucinamy je
 # (inaczej po przedstawieniu pada drugie „Cześć”). Sekundy od początku renderu, w przerwie po powitaniu.
-SKIP_GREETING = {"ep-8-wdrozen": 1.34}   # „Cześć!” 0,68–1,28 → „Zrobiłem” 1,40
+SKIP_GREETING = {"ep-8-wdrozen": 1.34,   # „Cześć!” 0,68–1,28 → „Zrobiłem” 1,40
+                 "ep-marpasz": 0.76}     # urywek przed „Bardzo dużo czytam” (0,82) — słychać jak „Dobra, kolejny dzień”
 STING = "jingle-sting"
 STING_LEN = 1.6
 STING_FILE = P.MUSIC_DIR / "jingle-przedstawienie.mp3"
@@ -98,8 +105,10 @@ ABBREVIATIONS = {"np.", "tzn.", "itp.", "itd.", "m.in.", "ok.", "tj.", "pt.", "u
 
 # odcinek → [(tytuł rozdziału, przed którym wchodzi wstawka | "END"), klip wstawki]
 PLAN = {
-    # 22.11 (MK, akceptacja otwarć): KAŻDY odcinek otwiera TEASERS (fragmenty), potem łącznik, jingle, przedstawienie,
-    # powrót i odcinek od początku; marpasz/vacuactiv/moduł — ogólne „Dobra, wracamy do tematu” (47e)
+    # 22.11 (MK, akceptacja otwarć): KAŻDY odcinek otwiera TEASERS (fragmenty), potem stopklatka z jinglem, przedstawienie,
+    # (bez łącznika ins-a1 „kilka słów o mnie” — MK: „tego miało nie być”)
+    # powrót i odcinek od początku; powrót zawsze ten sam — „Dobra, wracamy do tematu” (47e; MK: „wracamy do tych…”
+    # z intonacją pytania słabo wypada, „zawsze ten sam powrót”)
     # 16.11: wstęp z dogrywek zamiast „Zrobiłem już 8 wdrożeń…”, zakończenie: łącznik → zamknięcie → subskrypcja
     # i ekran końcowy (37+39, prawa połowa wolna) → „do zobaczenia” (24)
     # 17.11 (odsłuch, pkt 5): treść kończy się stanem PRZED („…o ile wszystko dobrze pójdzie”) — domknięcie kwestią 30
@@ -108,10 +117,10 @@ PLAN = {
     # akapicie; po dograniu 44–47 podmienić tylko id wstawki, miejsce zostaje
     # 21.11 wieczór: dograne — ins-intro = 44h + 46b + 47 (bez „prowadzę Flowbiz”), powrót do tematu per odcinek
     # (ins-back-*, 47a–d) zamiast ogólnego ins-a2; w ofertach przedstawienie zastępuje ins-hello-offers (13 „tu Mateusz z Flowbiz”)
-    "ep-open-mercato-offers": [("START", "ins-a1"), ("START", STING), ("START", "ins-intro"), ("START", "ins-back-offers"), ("END", "ins-g30"), ("END", "ins-a4"), ("END", "ins-outro"),
+    "ep-open-mercato-offers": [("START", STING), ("START", "ins-intro"), ("START", "ins-back"), ("Asystent czyta maile → szkic w 5 minut", "ins-tr-ciekawa"), ("END", "ins-g30"), ("END", "ins-a4"), ("END", "ins-outro"),
                                ("END", "ins-yt-sub"), ("END", "ins-bye")],
     # 16.11: łączniki case'ów z dogrywek (6–12) — głos na planszy z nazwą case'u PRZED każdym rozdziałem
-    "ep-8-wdrozen": [("START", "ins-a1"), ("START", STING), ("START", "ins-intro"), ("START", "ins-back-8"),
+    "ep-8-wdrozen": [("START", STING), ("START", "ins-intro"), ("START", "ins-back"),
                      ("Zamówienia z Excela: 70% → 94%", "ins-case-6"),
                      ("Kody kreskowe: kilka dni → 15 minut", "ins-case-7"),
                      ("Etykiety: ok. 100 godzin miesięcznie", "ins-case-8"),
@@ -122,18 +131,18 @@ PLAN = {
                      # własne CTA na końcu („zapraszam Cię na flowbiz.pl…”) — bez przerywnika zamknięcia (dubel)
                      ("END", "ins-yt-sub"), ("END", "ins-bye")],
     # 16.11: wstęp i łączniki z dogrywek; zakończenie przed własnym „Dzięki i do usłyszenia” z nagrania
-        "ep-doram": [("START", "ins-a1"), ("START", STING), ("START", "ins-intro"), ("START", "ins-back-doram"),
+    "ep-doram": [("START", STING), ("START", "ins-intro"), ("START", "ins-back"), ("Dlaczego to tak długo trwało", "ins-tr-haczyk"), ("Pamięć dla AI", "ins-tr-ciekawa"),
                  ("Jak uczy się zwykły czat", "ins-mid"), ("Jak uczy się zwykły czat", "ins-a3"),
                  # Doram ma własne zakończenie (subskrypcja + komentarze + „Dzięki i do usłyszenia”) — brakuje w nim tylko
                  # kontaktu, więc przed „więc dziękuję Wam” wchodzi łącznik A4 i kwestia 23, bez dubli subskrypcji
                  ("before:więc dziękuję", "ins-a4"), ("before:więc dziękuję", "ins-contact")],
-    "ep-rezon": [("START", "ins-a1"), ("START", STING), ("START", "ins-intro"), ("START", "ins-back-rezon"),
+    "ep-rezon": [("START", STING), ("START", "ins-intro"), ("START", "ins-back"), ("Kontrola po fakcie", "ins-tr-haczyk"), ("Najpierw jedna baza", "ins-tr-ciekawa"),
                  ("Nadprodukcja", "ins-mid"), ("Nadprodukcja", "ins-a3"),
                  ("END", "ins-a4"), ("END", "ins-outro"), ("END", "ins-yt-sub"), ("END", "ins-bye")],
-    "ep-marpasz": [("START", "ins-a1"), ("START", STING), ("START", "ins-intro"), ("START", "ins-back"), ("Katalog AI: faktura → produkty → opisy", "ins-mid"), ("END", "ins-outro")],
-    "ep-vacuactiv": [("START", "ins-a1"), ("START", STING), ("START", "ins-intro"), ("START", "ins-back"), ("Obsidian + Hermes + Codex", "ins-mid"),
+    "ep-marpasz": [("START", STING), ("START", "ins-intro"), ("START", "ins-back"), ("Teraz: AI łączy w jeden koszyk", "ins-tr-ciekawa"), ("Czy to działa idealnie?", "ins-tr-haczyk"), ("Katalog AI: faktura → produkty → opisy", "ins-mid"), ("END", "ins-outro")],
+    "ep-vacuactiv": [("START", STING), ("START", "ins-intro"), ("START", "ins-back"), ("Dlaczego gotowce się nie wdrażają", "ins-tr-haczyk"), ("Excel kierownika → widoki w systemie", "ins-tr-ciekawa"), ("Obsidian + Hermes + Codex", "ins-mid"),
                      ("before:No dobra", "gag-przymiotnik"), ("before:No dobra", "ins-outro")],
-    "ep-module": [("START", "ins-a1"), ("START", STING), ("START", "ins-intro"), ("START", "ins-back"), ("Słownik pojęć", "ins-mid-long"), ("END", "ins-outro")],
+    "ep-module": [("START", STING), ("START", "ins-intro"), ("START", "ins-back"), ("Trzy warstwy specyfikacji", "ins-tr-ciekawa"), ("Gdzie to się psuje", "ins-tr-haczyk"), ("Słownik pojęć", "ins-mid-long"), ("END", "ins-outro")],
 }
 
 
@@ -355,7 +364,7 @@ def plan_segments(clip_id):
 
 
 INSERT_LABELS = {"ins-intro": "przedstawienie", "ins-back-offers": "powrót do tematu", "ins-back-doram": "powrót do tematu",
-                 "ins-back-rezon": "powrót do tematu", "ins-back-8": "powrót do tematu", "ins-back": "powrót do tematu", "ins-a1": "łącznik przed przedstawieniem", "ins-a2": "powrót do tematu",
+                 "ins-back-rezon": "powrót do tematu", "ins-back-8": "powrót do tematu", "ins-back": "powrót do tematu", "ins-tr-haczyk": "przejście: haczyk", "ins-tr-ciekawa": "przejście: najciekawsza część", "ins-a1": "łącznik przed przedstawieniem", "ins-a2": "powrót do tematu",
                  "ins-yt-sub": "plansza Subskrybuj", "ins-hello-offers": "wstęp", "ins-mid": "wstawka w środku",
                  "ins-mid-long": "wstawka w środku", "ins-outro": "zakończenie", STING: "jingle (stopklatka)"}
 
@@ -409,6 +418,8 @@ def build(clip_id, dry=False):
             prev = segments[i - 1]
             if prev[0] == "insert" and prev[1] in insert_inputs:
                 n_video, t_end = insert_inputs[prev[1]], prev[2] - 0.5   # łącznik gaśnie pod koniec — klatka sprzed wygaszenia
+            elif prev[0] == "teaser":
+                n_video, t_end = 0, prev[2] - 0.04   # stopklatka ostatniej klatki ostatniego fragmentu
             else:
                 n_video, t_end = 0, seg[3]
             graph += sting_graph(n_video, t_end, sting_input, i)
@@ -436,7 +447,25 @@ def build(clip_id, dry=False):
                   f"[{n}:a]atrim={a}:{b},asetpts=PTS-STARTPTS,aformat=sample_rates=48000:channel_layouts=stereo,"
                   f"afade=t=in:d={fade},afade=t=out:st={max(0.0, length - fade):.3f}:d={fade}[a{i}];")
         labels.append(f"[v{i}][a{i}]")
-    graph += "".join(labels) + f"concat=n={len(segments)}:v=1:a=1[v][a]"
+    teaser_len = sum(seg[2] - seg[1] for seg in segments if seg[0] == "teaser")
+    if teaser_len:
+        label_input = inputs.count("-i")
+        inputs += ["-loop", "1", "-t", f"{teaser_len:.3f}", "-i", str(TEASER_LABEL)]
+        music_input = inputs.count("-i")
+        inputs += ["-i", str(TEASER_MUSIC), "-i", str(TEASER_MUSIC)]
+        graph += "".join(labels) + f"concat=n={len(segments)}:v=1:a=1[vc][ac];"
+        graph += (f"[{music_input}:a]atrim=0:{TEASER_MUSIC_SOUND}[m1];[{music_input + 1}:a]atrim=0:{TEASER_MUSIC_SOUND}[m2];"
+                  f"[m1][m2]acrossfade=d=1.5,aresample=48000,aformat=sample_rates=48000:channel_layouts=stereo,"
+                  f"loudnorm=I={TEASER_MUSIC_LUFS}:TP=-2:LRA=9,atrim=0:{teaser_len:.3f},"
+                  f"afade=t=out:st={max(0.0, teaser_len - 0.8):.3f}:d=0.8[tm];"
+                  "[ac]asplit=2[av][key];"
+                  "[tm][key]sidechaincompress=threshold=0.04:ratio=3:attack=20:release=400[tmd];"
+                  "[av][tmd]amix=inputs=2:normalize=0:duration=first[a];")
+        graph += (f"[{label_input}:v]format=rgba,fade=t=in:st=0.15:d=0.3:alpha=1,"
+                  f"fade=t=out:st={max(0.0, teaser_len - 0.35):.3f}:d=0.3:alpha=1[lbl];"
+                  "[vc][lbl]overlay=0:0:eof_action=pass[v]")
+    else:
+        graph += "".join(labels) + f"concat=n={len(segments)}:v=1:a=1[v][a]"
     out = FINAL / f"{clip_id}__youtube-F--with-inserts.mp4"
     subprocess.run(["ffmpeg", "-v", "error", "-y", *inputs, "-filter_complex", graph, "-map", "[v]", "-map", "[a]",
                     "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-pix_fmt", "yuv420p",
