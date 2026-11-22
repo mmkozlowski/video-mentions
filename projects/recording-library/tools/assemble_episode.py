@@ -17,6 +17,7 @@ po przesunięciu — do opisu odcinka w Studiu).
   python3 tools/assemble_episode.py --dry ep-doram  # tylko punkty cięcia i rozdziały
 """
 import json
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -88,9 +89,13 @@ TEASERS = {
 TEASER_FADE = 0.05
 # 22.11 MK: „czemu dopiero w 0:29 wchodzi muzyka” — pod fragmentami od pierwszej sekundy jingle-tlo (17,6 s muzyki,
 # zapętlone z przenikaniem), ściszane pod głosem, gaśnie na końcu fragmentów; potem stopklatka z jinglem przedstawienia
-TEASER_MUSIC = P.MUSIC_DIR / "jingle-tlo.mp3"
-TEASER_MUSIC_SOUND = 17.5   # dalej w pliku cisza
-TEASER_MUSIC_LUFS = -23.0
+# 22.11 MK: „ten początkowy dźwięk jest chaotyczny” — były tam naraz DWIE muzyki: podkład odcinka (głos brany
+# z renderu, więc tło przeskakiwało przy każdym cięciu) i zapętlony jingle-tlo z „pompującym” ściszaniem. Teraz głos
+# fragmentów idzie z czystego mastera (bez muzyki, oś czasu 1:1 z renderem), a pod nim JEDEN ciągły podkład tlo.mp3
+# (25 s dźwięku, bez pętli) na stałym poziomie ~11 dB pod głosem — bez sidechaina.
+TEASER_MUSIC = P.MUSIC_DIR / "tlo.mp3"
+TEASER_MUSIC_START = 1.5    # wcześniej w pliku cisza; dźwięk do 26,4 s — starcza na najdłuższe fragmenty (25 s)
+TEASER_MUSIC_GAIN_DB = -13.0   # tlo.mp3 ma -12,4 LUFS → ok. -25 LUFS pod głosem -14 LUFS
 TEASER_LABEL = P.PACK / "overlays" / "teaser-label.png"   # „W tym odcinku” na fragmentach (MK 22.11)
 # 22.11: odcinek po „Dobra, wracamy…” startuje od początku — gdy nagranie samo zaczyna się od powitania, ucinamy je
 # (inaczej po przedstawieniu pada drugie „Cześć”). Sekundy od początku renderu, w przerwie po powitaniu.
@@ -104,6 +109,20 @@ FADE = 0.012
 ABBREVIATIONS = {"np.", "tzn.", "itp.", "itd.", "m.in.", "ok.", "tj.", "pt.", "ul.", "nr.", "tzw."}
 
 # odcinek → [(tytuł rozdziału, przed którym wchodzi wstawka | "END"), klip wstawki]
+# 22.11 MK: „Tu zaczyna się najciekawsza część brzmi sztucznie — nagłe przerwanie” (Doram 6:21, 2:36) → mówione
+# przejścia (dogrywka wklejana między zdania) wypadły; ten sam haczyk jest NAPISEM w kadrze, gdy Mateusz sam mówi
+# swoje zdanie przejścia (początek rozdziału). Tytuł rozdziału → plansza z packaging/overlays/transition-*.png.
+TRANSITION_CARD_LEN = 3.5
+TRANSITION_CARDS = {
+    "ep-open-mercato-offers": [('Asystent czyta maile → szkic w 5 minut', P.PACK / "overlays" / "transition-ciekawa.png")],
+    "ep-doram": [('Dlaczego to tak długo trwało', P.PACK / "overlays" / "transition-haczyk.png"), ('Pamięć dla AI', P.PACK / "overlays" / "transition-ciekawa.png")],
+    "ep-rezon": [('Kontrola po fakcie', P.PACK / "overlays" / "transition-haczyk.png"), ('Najpierw jedna baza', P.PACK / "overlays" / "transition-ciekawa.png")],
+    "ep-marpasz": [('Teraz: AI łączy w jeden koszyk', P.PACK / "overlays" / "transition-ciekawa.png"), ('Czy to działa idealnie?', P.PACK / "overlays" / "transition-haczyk.png")],
+    "ep-vacuactiv": [('Dlaczego gotowce się nie wdrażają', P.PACK / "overlays" / "transition-haczyk.png"), ('Excel kierownika → widoki w systemie', P.PACK / "overlays" / "transition-ciekawa.png")],
+    "ep-module": [('Trzy warstwy specyfikacji', P.PACK / "overlays" / "transition-ciekawa.png"), ('Gdzie to się psuje', P.PACK / "overlays" / "transition-haczyk.png")],
+}
+
+
 PLAN = {
     # 22.11 (MK, akceptacja otwarć): KAŻDY odcinek otwiera TEASERS (fragmenty), potem stopklatka z jinglem, przedstawienie,
     # (bez łącznika ins-a1 „kilka słów o mnie” — MK: „tego miało nie być”)
@@ -117,7 +136,7 @@ PLAN = {
     # akapicie; po dograniu 44–47 podmienić tylko id wstawki, miejsce zostaje
     # 21.11 wieczór: dograne — ins-intro = 44h + 46b + 47 (bez „prowadzę Flowbiz”), powrót do tematu per odcinek
     # (ins-back-*, 47a–d) zamiast ogólnego ins-a2; w ofertach przedstawienie zastępuje ins-hello-offers (13 „tu Mateusz z Flowbiz”)
-    "ep-open-mercato-offers": [("START", STING), ("START", "ins-intro"), ("START", "ins-back"), ("Asystent czyta maile → szkic w 5 minut", "ins-tr-ciekawa"), ("END", "ins-g30"), ("END", "ins-a4"), ("END", "ins-outro"),
+    "ep-open-mercato-offers": [("START", STING), ("START", "ins-intro"), ("START", "ins-back"), ("END", "ins-g30"), ("END", "ins-a4"), ("END", "ins-outro"),
                                ("END", "ins-yt-sub"), ("END", "ins-bye")],
     # 16.11: łączniki case'ów z dogrywek (6–12) — głos na planszy z nazwą case'u PRZED każdym rozdziałem
     "ep-8-wdrozen": [("START", STING), ("START", "ins-intro"), ("START", "ins-back"),
@@ -131,18 +150,18 @@ PLAN = {
                      # własne CTA na końcu („zapraszam Cię na flowbiz.pl…”) — bez przerywnika zamknięcia (dubel)
                      ("END", "ins-yt-sub"), ("END", "ins-bye")],
     # 16.11: wstęp i łączniki z dogrywek; zakończenie przed własnym „Dzięki i do usłyszenia” z nagrania
-    "ep-doram": [("START", STING), ("START", "ins-intro"), ("START", "ins-back"), ("Dlaczego to tak długo trwało", "ins-tr-haczyk"), ("Pamięć dla AI", "ins-tr-ciekawa"),
+    "ep-doram": [("START", STING), ("START", "ins-intro"), ("START", "ins-back"),
                  ("Jak uczy się zwykły czat", "ins-mid"), ("Jak uczy się zwykły czat", "ins-a3"),
                  # Doram ma własne zakończenie (subskrypcja + komentarze + „Dzięki i do usłyszenia”) — brakuje w nim tylko
                  # kontaktu, więc przed „więc dziękuję Wam” wchodzi łącznik A4 i kwestia 23, bez dubli subskrypcji
                  ("before:więc dziękuję", "ins-a4"), ("before:więc dziękuję", "ins-contact")],
-    "ep-rezon": [("START", STING), ("START", "ins-intro"), ("START", "ins-back"), ("Kontrola po fakcie", "ins-tr-haczyk"), ("Najpierw jedna baza", "ins-tr-ciekawa"),
+    "ep-rezon": [("START", STING), ("START", "ins-intro"), ("START", "ins-back"),
                  ("Nadprodukcja", "ins-mid"), ("Nadprodukcja", "ins-a3"),
                  ("END", "ins-a4"), ("END", "ins-outro"), ("END", "ins-yt-sub"), ("END", "ins-bye")],
-    "ep-marpasz": [("START", STING), ("START", "ins-intro"), ("START", "ins-back"), ("Teraz: AI łączy w jeden koszyk", "ins-tr-ciekawa"), ("Czy to działa idealnie?", "ins-tr-haczyk"), ("Katalog AI: faktura → produkty → opisy", "ins-mid"), ("END", "ins-outro")],
-    "ep-vacuactiv": [("START", STING), ("START", "ins-intro"), ("START", "ins-back"), ("Dlaczego gotowce się nie wdrażają", "ins-tr-haczyk"), ("Excel kierownika → widoki w systemie", "ins-tr-ciekawa"), ("Obsidian + Hermes + Codex", "ins-mid"),
+    "ep-marpasz": [("START", STING), ("START", "ins-intro"), ("START", "ins-back"), ("Katalog AI: faktura → produkty → opisy", "ins-mid"), ("END", "ins-outro")],
+    "ep-vacuactiv": [("START", STING), ("START", "ins-intro"), ("START", "ins-back"), ("Obsidian + Hermes + Codex", "ins-mid"),
                      ("before:No dobra", "gag-przymiotnik"), ("before:No dobra", "ins-outro")],
-    "ep-module": [("START", STING), ("START", "ins-intro"), ("START", "ins-back"), ("Trzy warstwy specyfikacji", "ins-tr-ciekawa"), ("Gdzie to się psuje", "ins-tr-haczyk"), ("Słownik pojęć", "ins-mid-long"), ("END", "ins-outro")],
+    "ep-module": [("START", STING), ("START", "ins-intro"), ("START", "ins-back"), ("Słownik pojęć", "ins-mid-long"), ("END", "ins-outro")],
 }
 
 
@@ -243,11 +262,11 @@ def split_for_bars(segments, words):
     return segments
 
 
-def gag_graph(n_card, n_grade, n_sfx, t, spec, i):
+def gag_graph(n_card, n_grade, n_sfx, t, spec, i, n_video=0):
     """Stopklatka ostatniej klatki przed t (lekko przyciemniona) + kartka wjeżdżająca z góry + ocena."""
     L, cin, gat = spec["length"], spec["card_in"], spec["grade_at"]
     slide = f"if(lt(t,{cin}),-H,if(lt(t,{cin + 0.3}),-H+H*pow((t-{cin})/0.3,0.6),0))"
-    return (f"[0:v]trim={max(0.0, t - 0.07):.3f}:{t:.3f},setpts=PTS-STARTPTS,fps=30,scale=1920:1080,setsar=1,"
+    return (f"[{n_video}:v]trim={max(0.0, t - 0.07):.3f}:{t:.3f},setpts=PTS-STARTPTS,fps=30,scale=1920:1080,setsar=1,"
             f"tpad=stop_mode=clone:stop_duration={L},trim=0:{L},setpts=PTS-STARTPTS,eq=brightness=-0.08[gb{i}];"
             f"[{n_card}:v]format=rgba,setpts=PTS-STARTPTS[gc{i}];"
             f"[{n_grade}:v]format=rgba,fade=t=in:st={gat}:d=0.08:alpha=1,setpts=PTS-STARTPTS[gg{i}];"
@@ -386,19 +405,52 @@ def insert_marks(segments):
     return marks
 
 
+def transition_card_times(clip_id):
+    """(czas w renderze, plansza): napis wchodzi w przerwie przed zdaniem otwierającym rozdział — tym samym punkcie,
+    w którym wcześniej wklejana była mówiona dogrywka."""
+    by_title = {title: t for t, title in chapter_times(clip_id)}
+    rw = render_words(clip_id)
+    cards = []
+    for title, card in TRANSITION_CARDS.get(clip_id, []):
+        if title not in by_title:
+            raise SystemExit(f"{clip_id}: nie ma rozdziału „{title}” dla napisu przejścia")
+        cards.append((cut_after_sentence(rw, by_title[title]) + 0.15, card))
+    return cards
+
+
+def integrated_lufs(path):
+    log = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-i", str(path), "-vn", "-af", "ebur128", "-f", "null", "-"],
+                         capture_output=True, text=True).stderr
+    return float(re.findall(r"I:\s+(-?[\d.]+) LUFS", log)[-1])
+
+
 def build(clip_id, dry=False):
     render, segments, chapters = plan_segments(clip_id)
     for seg in segments:
         print(f"   {seg[0]:8} {seg[1] if seg[0] == 'insert' else f'{seg[1]:8.2f}'} → {seg[2]:8.2f}")
     if dry:
         return chapters, insert_marks(segments)
-    inputs, graph, labels = ["-i", str(render)], "", []
+    inputs, graph, labels = [], "", []   # render NIE jako wspólne wejście — każdy kawałek ma własne (source_slice)
     insert_inputs = {}
     for seg in segments:
         if seg[0] == "insert" and seg[1] not in insert_inputs and seg[1] not in GAGS and seg[1] != STING:
-            insert_inputs[seg[1]] = len(insert_inputs) + 1
+            insert_inputs[seg[1]] = inputs.count("-i")
             inputs += ["-i", str(FINAL / f"{seg[1]}__youtube-F.mp4")]
-    bars_input = len(insert_inputs) + 1
+    master = LIBRARY / clip_id / "master.mp4"   # czysty głos fragmentów, bez podkładu odcinka
+
+    def source_slice(path, a, b):
+        """22.11: osobne wejście (-ss/-to) dla KAŻDEGO kawałka renderu. Wcześniej wszystkie kawałki brały [0:v] z jednego
+        wejścia — fragmenty z końca odcinka idą na początek filmu, więc ffmpeg buforował w RAM cały odcinek
+        w surowych klatkach (JetsamEvent: jeden ffmpeg 35 GB z 48 GB; kilka składanek naraz = panika jądra,
+        watchdog timeout, restart Maca). Teraz każdy kawałek czyta tylko swój odcinek pliku."""
+        index = inputs.count("-i")
+        inputs.extend(["-ss", f"{a:.3f}", "-to", f"{b:.3f}", "-i", str(path)])
+        return index
+
+    if any(seg[0] == "teaser" for seg in segments):
+        # render = master × stałe wzmocnienie (finalize: liniowy loudnorm) + ciche tło — to samo wzmocnienie na masterze
+        voice_gain_db = integrated_lufs(render) - integrated_lufs(master)
+    bars_input = inputs.count("-i")
     if any(seg[0] == "bars" for seg in segments):
         inputs += ["-i", str(BARS_SOURCE)]
     gag_inputs = {}
@@ -413,54 +465,72 @@ def build(clip_id, dry=False):
     if any(seg[0] == "insert" and seg[1] == STING for seg in segments):
         sting_input = inputs.count("-i")
         inputs += ["-i", str(STING_FILE)]
+    cards = transition_card_times(clip_id)
+    placed = set()
     for i, seg in enumerate(segments):
         if seg[0] == "insert" and seg[1] == STING:
             prev = segments[i - 1]
             if prev[0] == "insert" and prev[1] in insert_inputs:
                 n_video, t_end = insert_inputs[prev[1]], prev[2] - 0.5   # łącznik gaśnie pod koniec — klatka sprzed wygaszenia
-            elif prev[0] == "teaser":
-                n_video, t_end = 0, prev[2] - 0.04   # stopklatka ostatniej klatki ostatniego fragmentu
+            elif prev[0] == "teaser":   # stopklatka ostatniej klatki ostatniego fragmentu
+                n_video, t_end = source_slice(render, prev[2] - 0.5, prev[2]), 0.46
             else:
-                n_video, t_end = 0, seg[3]
+                n_video, t_end = source_slice(render, max(0.0, seg[3] - 0.5), seg[3]), min(0.5, seg[3])
             graph += sting_graph(n_video, t_end, sting_input, i)
             labels.append(f"[v{i}][a{i}]")
             continue
         if seg[0] == "bars":
             a, b = seg[1], seg[2]
-            graph += (bars_graph(0, b - a, a).replace("[B:", f"[{bars_input}:")
+            n = source_slice(render, a, b)
+            graph += (bars_graph(n, b - a, 0.0).replace("[B:", f"[{bars_input}:")
                       .replace("[bv]", f"[v{i}]").replace("[bmask]", f"[bmask{i}]").replace("[bbase]", f"[bbase{i}]"))
-            graph += (f"[0:a]atrim={a}:{b},asetpts=PTS-STARTPTS,aformat=sample_rates=48000:channel_layouts=stereo,"
+            graph += (f"[{n}:a]atrim=0:{b - a:.3f},asetpts=PTS-STARTPTS,aformat=sample_rates=48000:channel_layouts=stereo,"
                       f"afade=t=in:d={FADE},afade=t=out:st={max(0.0, b - a - FADE):.3f}:d={FADE}[a{i}];")
             labels.append(f"[v{i}][a{i}]")
             continue
         if seg[0] == "insert" and seg[1] in GAGS:
-            graph += gag_graph(*gag_inputs[seg[1]], seg[3], GAGS[seg[1]], i)
+            graph += gag_graph(*gag_inputs[seg[1]], min(0.5, seg[3]), GAGS[seg[1]], i,
+                               source_slice(render, max(0.0, seg[3] - 0.5), seg[3]))
             labels.append(f"[v{i}][a{i}]")
             continue
         fade = TEASER_FADE if seg[0] == "teaser" else FADE
         if seg[0] in ("episode", "teaser"):
-            n, a, b = 0, seg[1], seg[2]
+            n, a, b = source_slice(render, seg[1], seg[2]), seg[1], seg[2]
         else:
             n, a, b = insert_inputs[seg[1]], 0.0, seg[2]
         length = b - a
-        graph += (f"[{n}:v]trim={a}:{b},setpts=PTS-STARTPTS,fps=30,scale=1920:1080,setsar=1[v{i}];"
-                  f"[{n}:a]atrim={a}:{b},asetpts=PTS-STARTPTS,aformat=sample_rates=48000:channel_layouts=stereo,"
+        audio_n = source_slice(master, a, b) if seg[0] == "teaser" else n
+        offset = a if seg[0] in ("episode", "teaser") else 0.0   # wycinek zaczyna się od zera
+        voice_gain = f"volume={voice_gain_db:.2f}dB," if seg[0] == "teaser" else ""
+        here = [(t - a, card) for t, card in cards if seg[0] == "episode" and a <= t < b - TRANSITION_CARD_LEN]
+        video_label = f"ve{i}" if here else f"v{i}"
+        graph += f"[{n}:v]trim={a - offset:.3f}:{b - offset:.3f},setpts=PTS-STARTPTS,fps=30,scale=1920:1080,setsar=1[{video_label}];"
+        for k, (rel, card) in enumerate(here):
+            card_input = inputs.count("-i")
+            inputs += ["-loop", "1", "-t", f"{TRANSITION_CARD_LEN:.2f}", "-i", str(card)]
+            last = k == len(here) - 1
+            graph += (f"[{card_input}:v]format=rgba,fade=t=in:d=0.3:alpha=1,"
+                      f"fade=t=out:st={TRANSITION_CARD_LEN - 0.4:.2f}:d=0.4:alpha=1,setpts=PTS-STARTPTS+{rel:.3f}/TB[card{i}_{k}];"
+                      f"[{video_label}][card{i}_{k}]overlay=0:0:eof_action=pass[{f'v{i}' if last else f've{i}_{k}'}];")
+            video_label = f"ve{i}_{k}"
+            placed.add(rel + a)
+        graph += (
+                  f"[{audio_n}:a]atrim={a - offset:.3f}:{b - offset:.3f},asetpts=PTS-STARTPTS,{voice_gain}aformat=sample_rates=48000:channel_layouts=stereo,"
                   f"afade=t=in:d={fade},afade=t=out:st={max(0.0, length - fade):.3f}:d={fade}[a{i}];")
         labels.append(f"[v{i}][a{i}]")
+    if len(placed) != len(cards):
+        raise SystemExit(f"{clip_id}: napis przejścia nie trafił w fragment odcinka ({len(placed)} z {len(cards)})")
     teaser_len = sum(seg[2] - seg[1] for seg in segments if seg[0] == "teaser")
     if teaser_len:
         label_input = inputs.count("-i")
         inputs += ["-loop", "1", "-t", f"{teaser_len:.3f}", "-i", str(TEASER_LABEL)]
         music_input = inputs.count("-i")
-        inputs += ["-i", str(TEASER_MUSIC), "-i", str(TEASER_MUSIC)]
+        inputs += ["-i", str(TEASER_MUSIC)]
         graph += "".join(labels) + f"concat=n={len(segments)}:v=1:a=1[vc][ac];"
-        graph += (f"[{music_input}:a]atrim=0:{TEASER_MUSIC_SOUND}[m1];[{music_input + 1}:a]atrim=0:{TEASER_MUSIC_SOUND}[m2];"
-                  f"[m1][m2]acrossfade=d=1.5,aresample=48000,aformat=sample_rates=48000:channel_layouts=stereo,"
-                  f"loudnorm=I={TEASER_MUSIC_LUFS}:TP=-2:LRA=9,atrim=0:{teaser_len:.3f},"
-                  f"afade=t=out:st={max(0.0, teaser_len - 0.8):.3f}:d=0.8[tm];"
-                  "[ac]asplit=2[av][key];"
-                  "[tm][key]sidechaincompress=threshold=0.04:ratio=3:attack=20:release=400[tmd];"
-                  "[av][tmd]amix=inputs=2:normalize=0:duration=first[a];")
+        graph += (f"[{music_input}:a]atrim={TEASER_MUSIC_START}:{TEASER_MUSIC_START + teaser_len:.3f},asetpts=PTS-STARTPTS,"
+                  f"aresample=48000,aformat=sample_rates=48000:channel_layouts=stereo,volume={TEASER_MUSIC_GAIN_DB}dB,"
+                  f"afade=t=in:d=0.3,afade=t=out:st={max(0.0, teaser_len - 0.8):.3f}:d=0.8[tm];"
+                  "[ac][tm]amix=inputs=2:normalize=0:duration=first[a];")
         graph += (f"[{label_input}:v]format=rgba,fade=t=in:st=0.15:d=0.3:alpha=1,"
                   f"fade=t=out:st={max(0.0, teaser_len - 0.35):.3f}:d=0.3:alpha=1[lbl];"
                   "[vc][lbl]overlay=0:0:eof_action=pass[v]")

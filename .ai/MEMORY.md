@@ -51,6 +51,7 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 - [Ilustracja AI ożywiona w Kling](memory/ilustracja-ai-ozywiona-kling.md) — Kling 3.0 Pro ożywia płaską ilustrację bez psucia napisów (8/8), jeśli prompt nazywa konkretny ruch; stopklatka z najazdem to nie animacja
 
 - [loudnorm po cichu dynamiczny](memory/loudnorm-po-cichu-dynamiczny.md) — linear=true przechodzi w dynamiczny z ogranicznikiem, gdy szczyty nie pozwalają; trzask na sylabach; sprawdzaj normalization_type
+- [ffmpeg: wspólne wejście zjada RAM](memory/ffmpeg-wspolne-wejscie-zjada-ram.md) — wiele trim z jednego wejścia + concat w innej kolejności = 35 GB i restart Maca; osobne wejścia -ss/-to, rendery po jednym, nice + taskpolicy
 - [Muzyka ciągła w sklejce](memory/muzyka-ciagla-w-sklejce.md) — sklejaj surowe rendery, podkład i efekty kładź raz na całość (assemble_short)
 
 - [Kotwice sklejki odcinków](memory/kotwice-sklejki-odcinkow.md) — before: = ostatnie wystąpienie, first: = pierwsze, word: łapie przecinki; cache transkrypcji renderu musi być nowszy niż render
