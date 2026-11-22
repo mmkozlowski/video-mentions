@@ -58,12 +58,37 @@ GAGS = {
 # łącznik, jingle, przedstawienie, powrót i odcinek OD POCZĄTKU. Czasy w gotowym renderze youtube-F, granice
 # w przerwach między słowami (build/work/final-words/<odcinek>.json).
 TEASERS = {
-    "ep-doram": [(26.36, 33.20),     # „kontrahent… potrafił tą samą rzecz nazwać na kilkanaście różnych sposobów”
-                 (215.68, 219.74),   # „przeklejała, drukowała, przeklejała, drukowała…”
-                 (487.96, 495.20),   # „było na poziomie 70%. Po miesiącu osiągnęliśmy 94%.”
-                 (567.33, 570.70)],  # „z kilku dni pracy dostajemy 15 minut pracy”
+    "ep-doram": [(26.26, 33.29),  # „kontrahent, który zamawiał, potrafił tą samą rzecz nazwać na kilkan…”
+               (215.64, 219.74),  # „przeklejała, drukowała, przeklejała, drukowała, przeklejała, drukow…”
+               (487.97, 495.77),  # „było na poziomie 70%. Po miesiącu osiągnęliśmy 94%.”
+               (567.22, 570.67)],  # „z kilku dni pracy dostajemy 15 minut pracy”
+    "ep-open-mercato-offers": [(24.42, 30.32),  # „Każdy w tej firmie ma swoją wersję jakiegoś PDF-a.”
+                             (164.58, 171.87),  # „zaczynamy tworzenie tej oferty prawdopodobnie w poniedziałek rano, …”
+                             (145.57, 152.61)],  # „Wszystko w ciągu 5 minut. Wcześniej ta sama oferta zajmowała nawet …”
+    "ep-rezon": [(80.45, 89.85),  # „jeżeli będziemy mieć w firmie bardzo rozproszone dane na kilku Exce…”
+               (237.54, 245.21),  # „nagle produkujemy tego dziesiątki tysięcy sztuk, a finalnie okazuje…”
+               (338.16, 345.68)],  # „klient sam się loguje sam może złożyć zamówienie sam widzi statusy …”
+    "ep-8-wdrozen": [(167.02, 174.05),  # „Wszystko w ciągu 5 minut. Wcześniej ta sama oferta zajmowała nawet …”
+                   (303.65, 307.11),  # „z kilku dni pracy dostajemy 15 minut pracy.”
+                   (680.67, 688.40),  # „nauka i wdrożenie tego u tego kierownika produkcji naprawdę, uwierz…”
+                   (360.60, 366.07)],  # „Wyobraź sobie, że ściąga ktoś z Ciebie 100 godzin miesięcznie”
+    "ep-marpasz": [(68.96, 75.39),  # „Klient zamawiał cztery worki paszy po 25 kg, więc nie mogliśmy wsad…”
+                 (152.46, 156.99),  # „zajmowało jedno zamówienie około 10 minut do 15,”
+                 (347.24, 351.33),  # „kilkanaście produktów potrafiło być wprowadzanych na przykład cały …”
+                 (226.47, 235.48)],  # „Wyobraź sobie, że ściąga ktoś z ciebie 100 godzin miesięcznie ręczn…”
+    "ep-vacuactiv": [(131.40, 136.51),  # „dane są w głowach, na kartkach, na mailach”
+                   (206.47, 210.66),  # „było między 100 a 150 giga różnych danych.”
+                   (348.21, 356.22),  # „Duże systemy wdrażają, wdraża się kilka miesięcy i te wdrożenia też…”
+                   (428.19, 435.85)],  # „nauka i wdrożenie tego u tego kierownika produkcji naprawdę, uwierz…”
+    "ep-module": [(52.43, 55.73),  # „Odpalają agenta, proszą o system, dostają system.”
+                (181.56, 188.59),  # „Tej jednej kartki dotyka kilka, czasem kilkadziesiąt osób w zależno…”
+                (409.28, 414.56),  # „Zaczynasz od kart technicznych, a po miesiącu budujesz wielkiego ER…”
+                (419.90, 428.11)],  # „On zna wzorce, a Ty znasz wyjątki. Wyjątki są dokładnie tym, za co …”
 }
 TEASER_FADE = 0.05
+# 22.11: odcinek po „Dobra, wracamy…” startuje od początku — gdy nagranie samo zaczyna się od powitania, ucinamy je
+# (inaczej po przedstawieniu pada drugie „Cześć”). Sekundy od początku renderu, w przerwie po powitaniu.
+SKIP_GREETING = {"ep-8-wdrozen": 1.34}   # „Cześć!” 0,68–1,28 → „Zrobiłem” 1,40
 STING = "jingle-sting"
 STING_LEN = 1.6
 STING_FILE = P.MUSIC_DIR / "jingle-przedstawienie.mp3"
@@ -73,6 +98,8 @@ ABBREVIATIONS = {"np.", "tzn.", "itp.", "itd.", "m.in.", "ok.", "tj.", "pt.", "u
 
 # odcinek → [(tytuł rozdziału, przed którym wchodzi wstawka | "END"), klip wstawki]
 PLAN = {
+    # 22.11 (MK, akceptacja otwarć): KAŻDY odcinek otwiera TEASERS (fragmenty), potem łącznik, jingle, przedstawienie,
+    # powrót i odcinek od początku; marpasz/vacuactiv/moduł — ogólne „Dobra, wracamy do tematu” (47e)
     # 16.11: wstęp z dogrywek zamiast „Zrobiłem już 8 wdrożeń…”, zakończenie: łącznik → zamknięcie → subskrypcja
     # i ekran końcowy (37+39, prawa połowa wolna) → „do zobaczenia” (24)
     # 17.11 (odsłuch, pkt 5): treść kończy się stanem PRZED („…o ile wszystko dobrze pójdzie”) — domknięcie kwestią 30
@@ -81,10 +108,10 @@ PLAN = {
     # akapicie; po dograniu 44–47 podmienić tylko id wstawki, miejsce zostaje
     # 21.11 wieczór: dograne — ins-intro = 44h + 46b + 47 (bez „prowadzę Flowbiz”), powrót do tematu per odcinek
     # (ins-back-*, 47a–d) zamiast ogólnego ins-a2; w ofertach przedstawienie zastępuje ins-hello-offers (13 „tu Mateusz z Flowbiz”)
-    "ep-open-mercato-offers": [("word:trudne", STING), ("word:trudne", "ins-intro"), ("word:trudne", "ins-back-offers"), ("END", "ins-g30"), ("END", "ins-a4"), ("END", "ins-outro"),
+    "ep-open-mercato-offers": [("START", "ins-a1"), ("START", STING), ("START", "ins-intro"), ("START", "ins-back-offers"), ("END", "ins-g30"), ("END", "ins-a4"), ("END", "ins-outro"),
                                ("END", "ins-yt-sub"), ("END", "ins-bye")],
     # 16.11: łączniki case'ów z dogrywek (6–12) — głos na planszy z nazwą case'u PRZED każdym rozdziałem
-    "ep-8-wdrozen": [("word:tworzenie ofert", "ins-a1"), ("word:tworzenie ofert", STING), ("word:tworzenie ofert", "ins-intro"), ("word:tworzenie ofert", "ins-back-8"),
+    "ep-8-wdrozen": [("START", "ins-a1"), ("START", STING), ("START", "ins-intro"), ("START", "ins-back-8"),
                      ("Zamówienia z Excela: 70% → 94%", "ins-case-6"),
                      ("Kody kreskowe: kilka dni → 15 minut", "ins-case-7"),
                      ("Etykiety: ok. 100 godzin miesięcznie", "ins-case-8"),
@@ -95,19 +122,18 @@ PLAN = {
                      # własne CTA na końcu („zapraszam Cię na flowbiz.pl…”) — bez przerywnika zamknięcia (dubel)
                      ("END", "ins-yt-sub"), ("END", "ins-bye")],
     # 16.11: wstęp i łączniki z dogrywek; zakończenie przed własnym „Dzięki i do usłyszenia” z nagrania
-    # 22.11: otwarcie = TEASERS (fragmenty), potem łącznik, jingle, przedstawienie, powrót i odcinek od początku
-    "ep-doram": [("START", "ins-a1"), ("START", STING), ("START", "ins-intro"), ("START", "ins-back-doram"),
+        "ep-doram": [("START", "ins-a1"), ("START", STING), ("START", "ins-intro"), ("START", "ins-back-doram"),
                  ("Jak uczy się zwykły czat", "ins-mid"), ("Jak uczy się zwykły czat", "ins-a3"),
                  # Doram ma własne zakończenie (subskrypcja + komentarze + „Dzięki i do usłyszenia”) — brakuje w nim tylko
                  # kontaktu, więc przed „więc dziękuję Wam” wchodzi łącznik A4 i kwestia 23, bez dubli subskrypcji
                  ("before:więc dziękuję", "ins-a4"), ("before:więc dziękuję", "ins-contact")],
-    "ep-rezon": [("before:Aktualnie", "ins-a1"), ("before:Aktualnie", STING), ("before:Aktualnie", "ins-intro"), ("before:Aktualnie", "ins-back-rezon"),
+    "ep-rezon": [("START", "ins-a1"), ("START", STING), ("START", "ins-intro"), ("START", "ins-back-rezon"),
                  ("Nadprodukcja", "ins-mid"), ("Nadprodukcja", "ins-a3"),
                  ("END", "ins-a4"), ("END", "ins-outro"), ("END", "ins-yt-sub"), ("END", "ins-bye")],
-    "ep-marpasz": [("Paczki do 25 kg: cztery worki, cztery etykiety", "ins-intro"), ("Katalog AI: faktura → produkty → opisy", "ins-mid"), ("END", "ins-outro")],
-    "ep-vacuactiv": [("ChatGPT zapomina i halucynuje", "ins-intro"), ("Obsidian + Hermes + Codex", "ins-mid"),
+    "ep-marpasz": [("START", "ins-a1"), ("START", STING), ("START", "ins-intro"), ("START", "ins-back"), ("Katalog AI: faktura → produkty → opisy", "ins-mid"), ("END", "ins-outro")],
+    "ep-vacuactiv": [("START", "ins-a1"), ("START", STING), ("START", "ins-intro"), ("START", "ins-back"), ("Obsidian + Hermes + Codex", "ins-mid"),
                      ("before:No dobra", "gag-przymiotnik"), ("before:No dobra", "ins-outro")],
-    "ep-module": [("Ludzie zaczynają od drugiej strony", "ins-intro"), ("Słownik pojęć", "ins-mid-long"), ("END", "ins-outro")],
+    "ep-module": [("START", "ins-a1"), ("START", STING), ("START", "ins-intro"), ("START", "ins-back"), ("Słownik pojęć", "ins-mid-long"), ("END", "ins-outro")],
 }
 
 
@@ -299,6 +325,9 @@ def plan_segments(clip_id):
     # twarzy. Jak w shortach: plansza końcowa wraca od chwili, gdy jest już w pełni widoczna (content_end + 0,35 s)
     ends_with_end = any(where == "END" for where, _ in PLAN[clip_id])
     segments.append(("episode", round(content_end + 0.35, 3) if ends_with_end else cursor, duration(render)))
+    skip = SKIP_GREETING.get(clip_id, 0.0)
+    if skip and segments[0][0] == "insert" and segments[0][3] == 0.0:
+        segments = [("episode", skip, seg[2]) if seg[0] == "episode" and seg[1] == 0.0 else seg for seg in segments]
     segments = split_for_bars(segments, rw)
     teaser = [("teaser", a, b) for a, b in TEASERS.get(clip_id, [])]
     teaser_len = sum(b - a for _, a, b in teaser)
@@ -316,7 +345,7 @@ def plan_segments(clip_id):
             if abs(seg[3] - t) <= 0.05 and seg[1].startswith("ins-case"):
                 break
             extra += seg[2]
-        shifted.append((round(t + extra + teaser_len, 1), title))
+        shifted.append((round(t + extra + teaser_len - (skip if t >= skip else 0.0), 1), title))
     if any(where == "START" for where, _ in PLAN[clip_id]):
         # YouTube wymaga rozdziału od 0:00 — wstęp z dogrywek dostaje własny
         shifted.insert(0, (round(teaser_len, 1), "Wstęp") if teaser else (0.0, "Wstęp"))
@@ -326,7 +355,7 @@ def plan_segments(clip_id):
 
 
 INSERT_LABELS = {"ins-intro": "przedstawienie", "ins-back-offers": "powrót do tematu", "ins-back-doram": "powrót do tematu",
-                 "ins-back-rezon": "powrót do tematu", "ins-back-8": "powrót do tematu", "ins-a1": "łącznik przed przedstawieniem", "ins-a2": "powrót do tematu",
+                 "ins-back-rezon": "powrót do tematu", "ins-back-8": "powrót do tematu", "ins-back": "powrót do tematu", "ins-a1": "łącznik przed przedstawieniem", "ins-a2": "powrót do tematu",
                  "ins-yt-sub": "plansza Subskrybuj", "ins-hello-offers": "wstęp", "ins-mid": "wstawka w środku",
                  "ins-mid-long": "wstawka w środku", "ins-outro": "zakończenie", STING: "jingle (stopklatka)"}
 

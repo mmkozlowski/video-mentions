@@ -7851,6 +7851,39 @@
   "notes": ""
  },
  {
+  "id": "ins-back",
+  "kind": "raw",
+  "source": "dubs",
+  "n": null,
+  "code": null,
+  "block": null,
+  "parent": null,
+  "client": null,
+  "title": "Dogrywka: powrót do tematu (47e)",
+  "brand": "flowbiz",
+  "ranges": [
+   [
+    427.3,
+    429.05
+   ]
+  ],
+  "start": 427.3,
+  "end": 429.05,
+  "duration": 1.75,
+  "splices": 0,
+  "hook_line": "wracamy do tematu",
+  "transcript": "wracamy do tematu",
+  "scores": {
+   "hook": 3,
+   "delivery": 4,
+   "total": 10
+  },
+  "priority": "C",
+  "cta": null,
+  "uses": [],
+  "notes": ""
+ },
+ {
   "id": "ins-intro-kamera",
   "kind": "raw",
   "source": "inserts",

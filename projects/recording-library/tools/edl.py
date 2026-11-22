@@ -386,6 +386,8 @@ RAW += [
     dict(id="ins-back-doram", source="dubs", title="Dogrywka: powrót do zamówień z Excela (47b)", ranges=[(418.69, 420.86, 418.74, 420.86)], hook=3, delivery=4),
     dict(id="ins-back-rezon", source="dubs", title="Dogrywka: powrót do pamiątek (47c)", ranges=[(421.25, 424.40, 421.30, 424.40)], hook=3, delivery=4),
     dict(id="ins-back-8", source="dubs", title="Dogrywka: powrót do ośmiu wdrożeń (47d)", ranges=[(424.61, 427.30, 424.66, 427.30)], hook=3, delivery=4),
+    # 22.11 MK: „wracamy do tematu to jest wystarczające” — ogólny powrót dla odcinków bez własnej kwestii 47a–d
+    dict(id="ins-back", source="dubs", title="Dogrywka: powrót do tematu (47e)", ranges=[(427.30, 429.05, 427.30, 429.05)], hook=3, delivery=4),
     dict(id="ins-intro-kamera", source="inserts", title="Przerywnik: przedstawienie się (kamera, 05.11 — zastąpione 21.11)",
          ranges=[(3.9, 14.3, 3.96, 14.26), (65.5, 74.6, 65.56, 74.55)], hook=3, delivery=4,
          notes="„A ja nazywam się Mateusz Kozłowski…” + branże, do „…miałem okazję już dotknąć”. Bez „to nie jest odcinek "

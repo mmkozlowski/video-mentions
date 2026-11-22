@@ -2134,7 +2134,7 @@
    "score": 54,
    "predictor": null,
    "file": "ch-vibe-2-magiczne-sesje__reels-F.mp4",
-   "rank": 107,
+   "rank": 108,
    "grade": "C"
   },
   {
@@ -2206,7 +2206,7 @@
    "score": 52,
    "predictor": null,
    "file": "ch-vibe-4-framework__reels-F.mp4",
-   "rank": 110,
+   "rank": 111,
    "grade": "C"
   },
   {
@@ -2894,6 +2894,42 @@
    "grade": "C"
   },
   {
+   "id": "ins-back",
+   "clip": "ins-back",
+   "title": "Dogrywka: powrót do tematu (47e)",
+   "kind": "odcinek",
+   "format": "youtube",
+   "brand": "flowbiz",
+   "duration": 1.8,
+   "series": "dubs",
+   "seriesName": "Reklamy z promptera (8.10)",
+   "hook_text": "",
+   "cover_text": "",
+   "cta_text": "",
+   "hook_ed": 3,
+   "delivery_ed": 4,
+   "first_word_s": 0.0,
+   "cover_s": 0,
+   "words_3s": 4,
+   "syl_s": 7.14,
+   "events": 1,
+   "events_per_min": 34.3,
+   "parts": {
+    "hook": 0.5,
+    "delivery": 0.75,
+    "opening": 0.57,
+    "length": 0.0,
+    "specific": 0.0,
+    "dynamics": 1.0,
+    "cta": 1.0
+   },
+   "score": 56,
+   "predictor": null,
+   "file": "ins-back__youtube-F.mp4",
+   "rank": 105,
+   "grade": "C"
+  },
+  {
    "id": "ins-bye",
    "clip": "ins-bye",
    "title": "Dogrywka: do zobaczenia w następnym odcinku (24)",
@@ -3070,7 +3106,7 @@
    "score": 56,
    "predictor": null,
    "file": "ins-case-6__youtube-F.mp4",
-   "rank": 105,
+   "rank": 106,
    "grade": "C"
   },
   {
@@ -3286,7 +3322,7 @@
    "score": 45,
    "predictor": null,
    "file": "ins-g27__reels-F.mp4",
-   "rank": 115,
+   "rank": 116,
    "grade": "C"
   },
   {
@@ -3358,7 +3394,7 @@
    "score": 48,
    "predictor": null,
    "file": "ins-g28__reels-F.mp4",
-   "rank": 111,
+   "rank": 112,
    "grade": "C"
   },
   {
@@ -3502,7 +3538,7 @@
    "score": 48,
    "predictor": null,
    "file": "ins-g30__reels-F.mp4",
-   "rank": 112,
+   "rank": 113,
    "grade": "C"
   },
   {
@@ -3574,7 +3610,7 @@
    "score": 35,
    "predictor": null,
    "file": "ins-h31__reels-F.mp4",
-   "rank": 116,
+   "rank": 117,
    "grade": "C"
   },
   {
@@ -3646,7 +3682,7 @@
    "score": 48,
    "predictor": null,
    "file": "ins-h33__reels-F.mp4",
-   "rank": 113,
+   "rank": 114,
    "grade": "C"
   },
   {
@@ -3682,7 +3718,7 @@
    "score": 48,
    "predictor": null,
    "file": "ins-h35__reels-F.mp4",
-   "rank": 114,
+   "rank": 115,
    "grade": "C"
   },
   {
@@ -3790,7 +3826,7 @@
    "score": 56,
    "predictor": null,
    "file": "ins-intro-krotkie__youtube-F.mp4",
-   "rank": 106,
+   "rank": 107,
    "grade": "C"
   },
   {
@@ -3826,7 +3862,7 @@
    "score": 53,
    "predictor": null,
    "file": "ins-intro-pelne__youtube-F.mp4",
-   "rank": 109,
+   "rank": 110,
    "grade": "C"
   },
   {
@@ -3862,7 +3898,7 @@
    "score": 54,
    "predictor": null,
    "file": "ins-intro__youtube-F.mp4",
-   "rank": 108,
+   "rank": 109,
    "grade": "C"
   },
   {
