@@ -278,19 +278,19 @@
  "ep-doram": {
   "plan": [
    [
-    "first:Jednak",
+    "START",
     "ins-a1"
    ],
    [
-    "first:Jednak",
+    "START",
     "jingle-sting"
    ],
    [
-    "first:Jednak",
+    "START",
     "ins-intro"
    ],
    [
-    "first:Jednak",
+    "START",
     "ins-back-doram"
    ],
    [
@@ -310,94 +310,108 @@
     "ins-contact"
    ]
   ],
-  "chapters": "0:00 Zamówienia w Excelu od kontrahentów z Niemiec\n1:35 Kilka dni klepania → 10 minut\n2:14 Dlaczego to tak długo trwało\n3:32 Kody kreskowe: przeklej, drukuj\n4:47 Najpierw jedna baza\n5:53 Pamięć dla AI\n7:47 Jak uczy się zwykły czat\n9:10 70% → 94% → 95%\n10:08 Kody bez AI: 15 minut\n10:34 Co dalej",
+  "chapters": "0:00 W tym odcinku\n0:21 Wstęp\n0:54 Zamówienia w Excelu od kontrahentów z Niemiec\n1:56 Kilka dni klepania → 10 minut\n2:35 Dlaczego to tak długo trwało\n3:53 Kody kreskowe: przeklej, drukuj\n5:09 Najpierw jedna baza\n6:15 Pamięć dla AI\n8:09 Jak uczy się zwykły czat\n9:31 70% → 94% → 95%\n10:29 Kody bez AI: 15 minut\n10:56 Co dalej",
   "chapter_list": [
    {
     "t": 0.0,
+    "title": "W tym odcinku"
+   },
+   {
+    "t": 21.5,
+    "title": "Wstęp"
+   },
+   {
+    "t": 54.8,
     "title": "Zamówienia w Excelu od kontrahentów z Niemiec"
    },
    {
-    "t": 95.3,
+    "t": 116.9,
     "title": "Kilka dni klepania → 10 minut"
    },
    {
-    "t": 134.3,
+    "t": 155.8,
     "title": "Dlaczego to tak długo trwało"
    },
    {
-    "t": 212.0,
+    "t": 233.5,
     "title": "Kody kreskowe: przeklej, drukuj"
    },
    {
-    "t": 287.5,
+    "t": 309.0,
     "title": "Najpierw jedna baza"
    },
    {
-    "t": 353.8,
+    "t": 375.4,
     "title": "Pamięć dla AI"
    },
    {
-    "t": 467.6,
+    "t": 489.1,
     "title": "Jak uczy się zwykły czat"
    },
    {
-    "t": 550.4,
+    "t": 571.9,
     "title": "70% → 94% → 95%"
    },
    {
-    "t": 608.3,
+    "t": 629.8,
     "title": "Kody bez AI: 15 minut"
    },
    {
-    "t": 634.6,
+    "t": 656.1,
     "title": "Co dalej"
    }
   ],
   "inserts": [
    {
-    "t": 22.1,
+    "t": 0.0,
+    "id": "teaser",
+    "label": "w tym odcinku (fragmenty)",
+    "length": 21.5
+   },
+   {
+    "t": 21.5,
     "id": "ins-a1",
     "label": "łącznik przed przedstawieniem",
     "length": 3.7
    },
    {
-    "t": 25.8,
+    "t": 25.2,
     "id": "jingle-sting",
     "label": "jingle (stopklatka)",
     "length": 1.6
    },
    {
-    "t": 27.4,
+    "t": 26.8,
     "id": "ins-intro",
     "label": "przedstawienie",
     "length": 25.9
    },
    {
-    "t": 53.2,
+    "t": 52.7,
     "id": "ins-back-doram",
     "label": "powrót do tematu",
     "length": 2.1
    },
    {
-    "t": 438.9,
+    "t": 460.4,
     "id": "ins-mid",
     "label": "wstawka w środku",
     "length": 25.6
    },
    {
-    "t": 464.5,
+    "t": 486.0,
     "id": "ins-a3",
     "label": "ins-a3",
     "length": 3.1
    },
    {
-    "t": 655.9,
+    "t": 677.4,
     "id": "ins-a4",
     "label": "ins-a4",
     "length": 3.0
    },
    {
-    "t": 658.8,
+    "t": 680.4,
     "id": "ins-contact",
     "label": "ins-contact",
     "length": 5.8

@@ -53,6 +53,17 @@ GAGS = {
 # 22.11 MK: „dalej nie ma jingla” + urwane zdanie zimnego otwarcia. Przed przedstawieniem: stopklatka ostatniej
 # klatki i SAM jingle (bez głosu) przez STING_LEN s; ins-intro gra jingle dalej od tej sekundy (storyboard jingle_offset),
 # więc brzmi jak jeden ciąg — jingle słychać, a cięcie w pół zdania staje się świadomym przejściem.
+# 22.11 MK: „początek może powinien być »w tym odcinku« i kilka mocnych fragmentów” — zamiast jednego ciągłego
+# kawałka urwanego w pół zdania: 3–4 zamknięte zdania z całego odcinka (problem → ból → liczba → wynik), potem
+# łącznik, jingle, przedstawienie, powrót i odcinek OD POCZĄTKU. Czasy w gotowym renderze youtube-F, granice
+# w przerwach między słowami (build/work/final-words/<odcinek>.json).
+TEASERS = {
+    "ep-doram": [(26.36, 33.20),     # „kontrahent… potrafił tą samą rzecz nazwać na kilkanaście różnych sposobów”
+                 (215.68, 219.74),   # „przeklejała, drukowała, przeklejała, drukowała…”
+                 (487.96, 495.20),   # „było na poziomie 70%. Po miesiącu osiągnęliśmy 94%.”
+                 (567.33, 570.70)],  # „z kilku dni pracy dostajemy 15 minut pracy”
+}
+TEASER_FADE = 0.05
 STING = "jingle-sting"
 STING_LEN = 1.6
 STING_FILE = P.MUSIC_DIR / "jingle-przedstawienie.mp3"
@@ -84,7 +95,8 @@ PLAN = {
                      # własne CTA na końcu („zapraszam Cię na flowbiz.pl…”) — bez przerywnika zamknięcia (dubel)
                      ("END", "ins-yt-sub"), ("END", "ins-bye")],
     # 16.11: wstęp i łączniki z dogrywek; zakończenie przed własnym „Dzięki i do usłyszenia” z nagrania
-    "ep-doram": [("first:Jednak", "ins-a1"), ("first:Jednak", STING), ("first:Jednak", "ins-intro"), ("first:Jednak", "ins-back-doram"),
+    # 22.11: otwarcie = TEASERS (fragmenty), potem łącznik, jingle, przedstawienie, powrót i odcinek od początku
+    "ep-doram": [("START", "ins-a1"), ("START", STING), ("START", "ins-intro"), ("START", "ins-back-doram"),
                  ("Jak uczy się zwykły czat", "ins-mid"), ("Jak uczy się zwykły czat", "ins-a3"),
                  # Doram ma własne zakończenie (subskrypcja + komentarze + „Dzięki i do usłyszenia”) — brakuje w nim tylko
                  # kontaktu, więc przed „więc dziękuję Wam” wchodzi łącznik A4 i kwestia 23, bez dubli subskrypcji
@@ -288,6 +300,9 @@ def plan_segments(clip_id):
     ends_with_end = any(where == "END" for where, _ in PLAN[clip_id])
     segments.append(("episode", round(content_end + 0.35, 3) if ends_with_end else cursor, duration(render)))
     segments = split_for_bars(segments, rw)
+    teaser = [("teaser", a, b) for a, b in TEASERS.get(clip_id, [])]
+    teaser_len = sum(b - a for _, a, b in teaser)
+    segments = teaser + segments
     # rozdziały po przesunięciu: każdy dostaje sumę długości wstawek wklejonych przed nim
     shifted = []
     for t, title in chapters:
@@ -301,10 +316,12 @@ def plan_segments(clip_id):
             if abs(seg[3] - t) <= 0.05 and seg[1].startswith("ins-case"):
                 break
             extra += seg[2]
-        shifted.append((round(t + extra, 1), title))
+        shifted.append((round(t + extra + teaser_len, 1), title))
     if any(where == "START" for where, _ in PLAN[clip_id]):
         # YouTube wymaga rozdziału od 0:00 — wstęp z dogrywek dostaje własny
-        shifted.insert(0, (0.0, "Wstęp"))
+        shifted.insert(0, (round(teaser_len, 1), "Wstęp") if teaser else (0.0, "Wstęp"))
+    if teaser:
+        shifted.insert(0, (0.0, "W tym odcinku"))
     return render, segments, shifted
 
 
@@ -318,6 +335,9 @@ def insert_marks(segments):
     """21.11 (MK: „daj mi rozdziały, żebym mógł sprawdzać wstawki”) — gdzie w gotowym odcinku stoi każda wstawka."""
     marks, out = [], 0.0
     for seg in segments:
+        if seg[0] == "teaser" and out == 0.0:
+            marks.append({"t": 0.0, "id": "teaser", "label": "w tym odcinku (fragmenty)", "length": round(
+                sum(x[2] - x[1] for x in segments if x[0] == "teaser"), 1)})
         if seg[0] == "insert":
             label = INSERT_LABELS.get(seg[1], "łącznik case'u" if seg[1].startswith("ins-case") else
                                       "gag" if seg[1] in GAGS else seg[1])
@@ -377,14 +397,15 @@ def build(clip_id, dry=False):
             graph += gag_graph(*gag_inputs[seg[1]], seg[3], GAGS[seg[1]], i)
             labels.append(f"[v{i}][a{i}]")
             continue
-        if seg[0] == "episode":
+        fade = TEASER_FADE if seg[0] == "teaser" else FADE
+        if seg[0] in ("episode", "teaser"):
             n, a, b = 0, seg[1], seg[2]
         else:
             n, a, b = insert_inputs[seg[1]], 0.0, seg[2]
         length = b - a
         graph += (f"[{n}:v]trim={a}:{b},setpts=PTS-STARTPTS,fps=30,scale=1920:1080,setsar=1[v{i}];"
                   f"[{n}:a]atrim={a}:{b},asetpts=PTS-STARTPTS,aformat=sample_rates=48000:channel_layouts=stereo,"
-                  f"afade=t=in:d={FADE},afade=t=out:st={max(0.0, length - FADE):.3f}:d={FADE}[a{i}];")
+                  f"afade=t=in:d={fade},afade=t=out:st={max(0.0, length - fade):.3f}:d={fade}[a{i}];")
         labels.append(f"[v{i}][a{i}]")
     graph += "".join(labels) + f"concat=n={len(segments)}:v=1:a=1[v][a]"
     out = FINAL / f"{clip_id}__youtube-F--with-inserts.mp4"
