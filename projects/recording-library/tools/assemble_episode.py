@@ -87,6 +87,13 @@ TEASERS = {
                 (419.90, 428.11)],  # „On zna wzorce, a Ty znasz wyjątki. Wyjątki są dokładnie tym, za co …”
 }
 TEASER_FADE = 0.05
+# 23.11 MK: „zamazane mają być 3 opcje, a nie sam tytuł” — rozmyta treść plansz we fragmentach „W tym odcinku”,
+# żeby zaciekawić; tytuł planszy zostaje ostry. Klucz = początek fragmentu, wartość = prostokąt (x, y, w, h)
+# w kadrze 1920×1080. Brzegi rozmycia miękkie (maska rozmyta o TEASER_BLUR_FEATHER px).
+TEASER_BLUR = {
+    "ep-doram": {26.26: (1175, 428, 670, 352)},   # trzy pozycje listy „Jeden produkt, trzy nazwy”
+}
+TEASER_BLUR_FEATHER = 24
 # 22.11 MK: „czemu dopiero w 0:29 wchodzi muzyka” — pod fragmentami od pierwszej sekundy jingle-tlo (17,6 s muzyki,
 # zapętlone z przenikaniem), ściszane pod głosem, gaśnie na końcu fragmentów; potem stopklatka z jinglem przedstawienia
 # 22.11 MK: „ten początkowy dźwięk jest chaotyczny” — były tam naraz DWIE muzyki: podkład odcinka (głos brany
@@ -503,8 +510,18 @@ def build(clip_id, dry=False):
         offset = a if seg[0] in ("episode", "teaser") else 0.0   # wycinek zaczyna się od zera
         voice_gain = f"volume={voice_gain_db:.2f}dB," if seg[0] == "teaser" else ""
         here = [(t - a, card) for t, card in cards if seg[0] == "episode" and a <= t < b - TRANSITION_CARD_LEN]
+        blur = TEASER_BLUR.get(clip_id, {}).get(round(a, 2)) if seg[0] == "teaser" else None
         video_label = f"ve{i}" if here else f"v{i}"
-        graph += f"[{n}:v]trim={a - offset:.3f}:{b - offset:.3f},setpts=PTS-STARTPTS,fps=30,scale=1920:1080,setsar=1[{video_label}];"
+        graph += (f"[{n}:v]trim={a - offset:.3f}:{b - offset:.3f},setpts=PTS-STARTPTS,fps=30,scale=1920:1080,setsar=1"
+                  f"[{f'vb{i}' if blur else video_label}];")
+        if blur:
+            x, y, w, h = blur
+            m = TEASER_BLUR_FEATHER
+            graph += (f"[vb{i}]split[vbb{i}][vbs{i}];"
+                      f"[vbs{i}]crop={w + 2 * m}:{h + 2 * m}:{x - m}:{y - m},gblur=sigma=22:steps=3,format=rgba[vbl{i}];"
+                      f"color=c=white:s={w}x{h}:r=30:d={length:.3f},format=gray,pad={w + 2 * m}:{h + 2 * m}:{m}:{m}:black,"
+                      f"gblur=sigma={m / 3:.1f}[vbm{i}];"
+                      f"[vbl{i}][vbm{i}]alphamerge[vba{i}];[vbb{i}][vba{i}]overlay={x - m}:{y - m}:shortest=1[{video_label}];")
         for k, (rel, card) in enumerate(here):
             card_input = inputs.count("-i")
             inputs += ["-loop", "1", "-t", f"{TRANSITION_CARD_LEN:.2f}", "-i", str(card)]
