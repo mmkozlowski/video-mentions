@@ -171,7 +171,10 @@ EPISODES = [
          # i przeciągniętego „z…” przed „związane”.
          # Granice z sygnału (RMS co 20 ms) + kontrola Whisperem sklejki — czasy słów w tym nagraniu
          # są przesunięte nawet o 0,8 s. Po „…czy to przymiotnik” wchodzi gag (assemble_episode.PLAN).
-         ranges=[(7.00, 46.30, None, 46.30),
+         # 23.11 (odsłuch transkrypcją, klienci anonimowo): bez „z Podsłupska” → „Jest to firma, która produkuje”
+         # (dołki sygnału 20,20 / 21,38, sprawdzone Whisperem sklejki); bez falstartu „Kierownik produkcji miał swój
+         # sposób, a miał go na tyle ten sposób, że” — te same granice co ch-vacu-5 (17.11, pkt 1)
+         ranges=[(7.00, 20.30, None, 20.20), (21.30, 46.30, 21.38, 46.30),
                 (47.18, 78.27, 47.18, 78.27),
                 (79.32, 87.55, 79.32, 87.55),
                 (87.95, 89.12, 87.95, 89.12),
@@ -184,7 +187,7 @@ EPISODES = [
                 (293.96, 301.75, 293.96, 301.75),
                 (307.02, 320.68, 307.02, 320.68),
                 (323.52, 427.42, 323.52, 427.42),
-                (427.84, 521.70, 427.84, 521.70),
+                (427.84, 452.30, 427.84, 452.30), (456.35, 457.80, 457.22, 457.75), (458.20, 521.70, 458.40, 521.70),
                 (522.20, 786.33, 522.20, 786.33),
                 (786.74, 788.38, 786.74, 788.38),
                 (788.86, 793.44, 788.86, 793.44),
@@ -225,7 +228,10 @@ EPISODES = [
          # 16.11: bez „Ok, kolejny temat.” (składanka) — start od „Firma produkująca…” (cisza 2774,28–2775,64)
          # 17.11 (decyzja MK: klienci anonimowo): „pamiątki w Kołobrzegu przyszła” → „pamiątki przyszła” (cisza 2778,52 / 2780,95)
          ranges=[(2774.6, 2778.6, 2775.30, 2778.52), (2780.8, 2910.5, 2780.95, 2910.55), (2912.5, 3022.5, 2912.60, 3022.40),
-                 (3022.9, 3023.95, 3023.00, 3023.90), (3032.3, 3226.0, 3032.44, None)], hook=3, delivery=3,
+                 (3022.9, 3023.95, 3023.00, 3023.90), (3032.3, 3116.0, 3032.44, 3115.95),
+                 # 23.11 (odsłuch transkrypcją): bez falstartu „Co tu jeszcze można było,” — start od „co tu jeszcze
+                 # zmieniliśmy” w dołku sygnału 3118,00 (cisza przed nim 3115,50–3116,80)
+                 (3117.9, 3226.0, 3118.00, None)], hook=3, delivery=3,
          brand="flowbiz",
          notes="Firma z Kołobrzegu, proces na kartkach, integracja z PC Business, handlowiec "
                "z tabletem, produkcja na zamówienie, panel klienta na Open Mercato."),

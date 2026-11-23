@@ -68,7 +68,7 @@ TEASERS = {
                              (145.57, 152.61)],  # „Wszystko w ciągu 5 minut. Wcześniej ta sama oferta zajmowała nawet …”
     "ep-rezon": [(80.45, 89.85),  # „jeżeli będziemy mieć w firmie bardzo rozproszone dane na kilku Exce…”
                (237.54, 245.21),  # „nagle produkujemy tego dziesiątki tysięcy sztuk, a finalnie okazuje…”
-               (338.16, 345.68)],  # „klient sam się loguje sam może złożyć zamówienie sam widzi statusy …”
+               (336.36, 344.12)],  # 23.11: −2,05 s po wycięciu falstartu, granice z dołków sygnału i próbnej sklejki — „Open Mercato, klient sam się loguje sam może złożyć zamówienie sam widzi statusy, w których to zamówienie jest.”
     "ep-8-wdrozen": [(167.02, 174.05),  # „Wszystko w ciągu 5 minut. Wcześniej ta sama oferta zajmowała nawet …”
                    (303.80, 307.11),  # „z kilku dni pracy dostajemy 15 minut pracy.”
                    (680.67, 688.40),  # „nauka i wdrożenie tego u tego kierownika produkcji naprawdę, uwierz…”
@@ -77,10 +77,11 @@ TEASERS = {
                  (152.46, 156.99),  # „zajmowało jedno zamówienie około 10 minut do 15,”
                  (347.24, 351.33),  # „kilkanaście produktów potrafiło być wprowadzanych na przykład cały …”
                  (226.47, 235.48)],  # „Wyobraź sobie, że ściąga ktoś z ciebie 100 godzin miesięcznie ręczn…”
-    "ep-vacuactiv": [(131.40, 136.51),  # „dane są w głowach, na kartkach, na mailach”
-                   (206.47, 210.66),  # „było między 100 a 150 giga różnych danych.”
-                   (348.21, 356.22),  # „Duże systemy wdrażają, wdraża się kilka miesięcy i te wdrożenia też…”
-                   (428.19, 435.85)],  # „nauka i wdrożenie tego u tego kierownika produkcji naprawdę, uwierz…”
+    "ep-vacuactiv": [(130.22, 135.33),  # 23.11: −1,18 s (bez „z Podsłupska”), ostatni −6,75 s (+ falstart kierownika)
+                    # „dane są w głowach, na kartkach, na mailach”
+                   (205.29, 209.48),  # „było między 100 a 150 giga różnych danych.”
+                   (347.03, 355.04),  # „Duże systemy wdrażają, wdraża się kilka miesięcy i te wdrożenia też…”
+                   (421.44, 429.10)],  # „nauka i wdrożenie tego u tego kierownika produkcji naprawdę, uwierz…”
     "ep-module": [(52.43, 55.73),  # „Odpalają agenta, proszą o system, dostają system.”
                 (181.56, 188.59),  # „Tej jednej kartki dotyka kilka, czasem kilkadziesiąt osób w zależno…”
                 (409.28, 414.56),  # „Zaczynasz od kart technicznych, a po miesiącu budujesz wielkiego ER…”
@@ -120,10 +121,12 @@ ABBREVIATIONS = {"np.", "tzn.", "itp.", "itd.", "m.in.", "ok.", "tj.", "pt.", "u
 # przejścia (dogrywka wklejana między zdania) wypadły; ten sam haczyk jest NAPISEM w kadrze, gdy Mateusz sam mówi
 # swoje zdanie przejścia (początek rozdziału). Tytuł rozdziału → plansza z packaging/overlays/transition-*.png.
 TRANSITION_CARD_LEN = 3.5
+TRANSITION_CARD_RIGHT_X = 1217   # plansza ma treść w x 70–633 → przesunięcie lustrzane do prawej krawędzi
 TRANSITION_CARDS = {
     "ep-open-mercato-offers": [('Asystent czyta maile → szkic w 5 minut', P.PACK / "overlays" / "transition-ciekawa.png")],
     "ep-doram": [('Dlaczego to tak długo trwało', P.PACK / "overlays" / "transition-haczyk.png"), ('Pamięć dla AI', P.PACK / "overlays" / "transition-ciekawa.png")],
-    "ep-rezon": [('Kontrola po fakcie', P.PACK / "overlays" / "transition-haczyk.png"), ('Najpierw jedna baza', P.PACK / "overlays" / "transition-ciekawa.png")],
+    # 23.11: „Najpierw jedna baza” wchodzi razem z mapą systemu, której lista narzędzi stoi w lewym górnym rogu → napis po prawej
+    "ep-rezon": [('Kontrola po fakcie', P.PACK / "overlays" / "transition-haczyk.png"), ('Najpierw jedna baza', P.PACK / "overlays" / "transition-ciekawa.png", "right")],
     "ep-marpasz": [('Teraz: AI łączy w jeden koszyk', P.PACK / "overlays" / "transition-ciekawa.png"), ('Czy to działa idealnie?', P.PACK / "overlays" / "transition-haczyk.png")],
     "ep-vacuactiv": [('Dlaczego gotowce się nie wdrażają', P.PACK / "overlays" / "transition-haczyk.png"), ('Excel kierownika → widoki w systemie', P.PACK / "overlays" / "transition-ciekawa.png")],
     "ep-module": [('Trzy warstwy specyfikacji', P.PACK / "overlays" / "transition-ciekawa.png"), ('Gdzie to się psuje', P.PACK / "overlays" / "transition-haczyk.png")],
@@ -419,10 +422,11 @@ def transition_card_times(clip_id):
     by_title = {title: t for t, title in chapter_times(clip_id)}
     rw = render_words(clip_id)
     cards = []
-    for title, card in TRANSITION_CARDS.get(clip_id, []):
+    for title, card, *side in TRANSITION_CARDS.get(clip_id, []):
         if title not in by_title:
             raise SystemExit(f"{clip_id}: nie ma rozdziału „{title}” dla napisu przejścia")
-        cards.append((cut_after_sentence(rw, by_title[title]) + 0.15, card))
+        x = TRANSITION_CARD_RIGHT_X if side == ["right"] else 0
+        cards.append((cut_after_sentence(rw, by_title[title]) + 0.15, card, x))
     return cards
 
 
@@ -510,7 +514,7 @@ def build(clip_id, dry=False):
         audio_n = source_slice(master, a, b) if seg[0] == "teaser" else n
         offset = a if seg[0] in ("episode", "teaser") else 0.0   # wycinek zaczyna się od zera
         voice_gain = f"volume={voice_gain_db:.2f}dB," if seg[0] == "teaser" else ""
-        here = [(t - a, card) for t, card in cards if seg[0] == "episode" and a <= t < b - TRANSITION_CARD_LEN]
+        here = [(t - a, card, x) for t, card, x in cards if seg[0] == "episode" and a <= t < b - TRANSITION_CARD_LEN]
         blur = TEASER_BLUR.get(clip_id, {}).get(round(a, 2)) if seg[0] == "teaser" else None
         video_label = f"ve{i}" if here else f"v{i}"
         graph += (f"[{n}:v]trim={a - offset:.3f}:{b - offset:.3f},setpts=PTS-STARTPTS,fps=30,scale=1920:1080,setsar=1"
@@ -523,13 +527,13 @@ def build(clip_id, dry=False):
                       f"color=c=white:s={w}x{h}:r=30:d={length:.3f},format=gray,pad={w + 2 * m}:{h + 2 * m}:{m}:{m}:black,"
                       f"gblur=sigma={m / 3:.1f}[vbm{i}];"
                       f"[vbl{i}][vbm{i}]alphamerge[vba{i}];[vbb{i}][vba{i}]overlay={x - m}:{y - m}:shortest=1[{video_label}];")
-        for k, (rel, card) in enumerate(here):
+        for k, (rel, card, card_x) in enumerate(here):
             card_input = inputs.count("-i")
             inputs += ["-loop", "1", "-t", f"{TRANSITION_CARD_LEN:.2f}", "-i", str(card)]
             last = k == len(here) - 1
             graph += (f"[{card_input}:v]format=rgba,fade=t=in:d=0.3:alpha=1,"
                       f"fade=t=out:st={TRANSITION_CARD_LEN - 0.4:.2f}:d=0.4:alpha=1,setpts=PTS-STARTPTS+{rel:.3f}/TB[card{i}_{k}];"
-                      f"[{video_label}][card{i}_{k}]overlay=0:0:eof_action=pass[{f'v{i}' if last else f've{i}_{k}'}];")
+                      f"[{video_label}][card{i}_{k}]overlay={card_x}:0:eof_action=pass[{f'v{i}' if last else f've{i}_{k}'}];")
             video_label = f"ve{i}_{k}"
             placed.add(rel + a)
         graph += (

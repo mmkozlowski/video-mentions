@@ -254,46 +254,46 @@
     "ins-bye"
    ]
   ],
-  "chapters": "0:00 W tym odcinku\n0:24 Wstęp\n0:58 Producent pamiątek znad morza i proces na kartkach\n1:16 Kontrola po fakcie\n1:59 Najpierw jedna baza\n2:58 Integracja z PC Business\n3:33 Handlowiec w trasie\n5:29 Nadprodukcja\n6:56 Panel klienta B2B\n7:36 Handlowiec zamawia za klienta",
+  "chapters": "0:00 W tym odcinku\n0:24 Wstęp\n0:58 Producent pamiątek znad morza i proces na kartkach\n1:16 Kontrola po fakcie\n1:59 Najpierw jedna baza\n2:59 Integracja z PC Business\n3:33 Handlowiec w trasie\n5:30 Nadprodukcja\n6:55 Panel klienta B2B\n7:35 Handlowiec zamawia za klienta",
   "chapter_list": [
    {
     "t": 0.0,
     "title": "W tym odcinku"
    },
    {
-    "t": 24.6,
+    "t": 24.8,
     "title": "Wstęp"
    },
    {
-    "t": 58.2,
+    "t": 58.4,
     "title": "Producent pamiątek znad morza i proces na kartkach"
    },
    {
-    "t": 76.3,
+    "t": 76.6,
     "title": "Kontrola po fakcie"
    },
    {
-    "t": 119.3,
+    "t": 119.6,
     "title": "Najpierw jedna baza"
    },
    {
-    "t": 178.8,
+    "t": 179.0,
     "title": "Integracja z PC Business"
    },
    {
-    "t": 213.5,
+    "t": 213.7,
     "title": "Handlowiec w trasie"
    },
    {
-    "t": 329.8,
+    "t": 330.0,
     "title": "Nadprodukcja"
    },
    {
-    "t": 416.6,
+    "t": 415.8,
     "title": "Panel klienta B2B"
    },
    {
-    "t": 456.5,
+    "t": 455.6,
     "title": "Handlowiec zamawia za klienta"
    }
   ],
@@ -302,58 +302,58 @@
     "t": 0.0,
     "id": "teaser",
     "label": "w tym odcinku (fragmenty)",
-    "length": 24.6
+    "length": 24.8
    },
    {
-    "t": 24.6,
+    "t": 24.8,
     "id": "jingle-sting",
     "label": "jingle (stopklatka)",
     "length": 1.6
    },
    {
-    "t": 26.2,
+    "t": 26.4,
     "id": "ins-intro",
     "label": "przedstawienie",
     "length": 30.2
    },
    {
-    "t": 56.4,
+    "t": 56.7,
     "id": "ins-back",
     "label": "powrót do tematu",
     "length": 1.8
    },
    {
-    "t": 303.1,
+    "t": 303.3,
     "id": "ins-mid",
     "label": "wstawka w środku",
     "length": 23.6
    },
    {
-    "t": 326.7,
+    "t": 326.9,
     "id": "ins-back-rezon",
     "label": "powrót do tematu",
     "length": 3.1
    },
    {
-    "t": 494.1,
+    "t": 493.2,
     "id": "ins-a4",
     "label": "ins-a4",
     "length": 3.0
    },
    {
-    "t": 497.0,
+    "t": 496.2,
     "id": "ins-outro",
     "label": "zakończenie",
     "length": 15.9
    },
    {
-    "t": 512.9,
+    "t": 512.1,
     "id": "ins-yt-sub",
     "label": "plansza Subskrybuj",
     "length": 4.3
    },
    {
-    "t": 517.3,
+    "t": 516.4,
     "id": "ins-bye",
     "label": "ins-bye",
     "length": 4.9
@@ -830,7 +830,7 @@
     "ins-outro"
    ]
   ],
-  "chapters": "0:00 W tym odcinku\n0:25 Wstęp\n0:58 Asystent AI do zarządzania firmą\n1:29 ChatGPT zapomina i halucynuje\n2:57 Dane w głowach, na kartkach, w mailach\n4:13 Mózg firmy: 100–150 GB danych\n5:06 „Chcę codzienny brief”\n5:46 Open Mercato jako fundament\n6:07 Dlaczego gotowce się nie wdrażają\n7:29 Excel kierownika → widoki w systemie\n9:46 Codzienny briefing przyjemnością\n10:41 Zamówienie z Telegrama w trzech kliknięciach\n11:44 Obsidian + Hermes + Codex\n15:40 Fundamenty i systemy zamknięte\n17:18 Najpierw konsultacje, ludzie, nawyk",
+  "chapters": "0:00 W tym odcinku\n0:25 Wstęp\n0:58 Asystent AI do zarządzania firmą\n1:28 ChatGPT zapomina i halucynuje\n2:56 Dane w głowach, na kartkach, w mailach\n4:12 Mózg firmy: 100–150 GB danych\n5:05 „Chcę codzienny brief”\n5:45 Open Mercato jako fundament\n6:06 Dlaczego gotowce się nie wdrażają\n7:28 Excel kierownika → widoki w systemie\n9:40 Codzienny briefing przyjemnością\n10:35 Zamówienie z Telegrama w trzech kliknięciach\n11:38 Obsidian + Hermes + Codex\n15:33 Fundamenty i systemy zamknięte\n17:12 Najpierw konsultacje, ludzie, nawyk",
   "chapter_list": [
    {
     "t": 0.0,
@@ -845,51 +845,51 @@
     "title": "Asystent AI do zarządzania firmą"
    },
    {
-    "t": 89.8,
+    "t": 88.6,
     "title": "ChatGPT zapomina i halucynuje"
    },
    {
-    "t": 177.8,
+    "t": 176.6,
     "title": "Dane w głowach, na kartkach, w mailach"
    },
    {
-    "t": 253.9,
+    "t": 252.7,
     "title": "Mózg firmy: 100–150 GB danych"
    },
    {
-    "t": 306.2,
+    "t": 305.0,
     "title": "„Chcę codzienny brief”"
    },
    {
-    "t": 346.8,
+    "t": 345.6,
     "title": "Open Mercato jako fundament"
    },
    {
-    "t": 367.4,
+    "t": 366.2,
     "title": "Dlaczego gotowce się nie wdrażają"
    },
    {
-    "t": 449.8,
+    "t": 448.6,
     "title": "Excel kierownika → widoki w systemie"
    },
    {
-    "t": 586.9,
+    "t": 580.6,
     "title": "Codzienny briefing przyjemnością"
    },
    {
-    "t": 641.5,
+    "t": 635.2,
     "title": "Zamówienie z Telegrama w trzech kliknięciach"
    },
    {
-    "t": 704.8,
+    "t": 698.5,
     "title": "Obsidian + Hermes + Codex"
    },
    {
-    "t": 940.0,
+    "t": 933.8,
     "title": "Fundamenty i systemy zamknięte"
    },
    {
-    "t": 1038.5,
+    "t": 1032.2,
     "title": "Najpierw konsultacje, ludzie, nawyk"
    }
   ],
@@ -919,19 +919,19 @@
     "length": 1.8
    },
    {
-    "t": 681.1,
+    "t": 674.8,
     "id": "ins-mid",
     "label": "wstawka w środku",
     "length": 23.6
    },
    {
-    "t": 1104.7,
+    "t": 1098.5,
     "id": "gag-przymiotnik",
     "label": "gag",
     "length": 3.4
    },
    {
-    "t": 1108.1,
+    "t": 1101.9,
     "id": "ins-outro",
     "label": "zakończenie",
     "length": 15.9
