@@ -235,7 +235,7 @@
    ],
    [
     "Nadprodukcja",
-    "ins-a3"
+    "ins-back-rezon"
    ],
    [
     "END",
@@ -285,11 +285,11 @@
     "title": "Handlowiec w trasie"
    },
    {
-    "t": 329.9,
+    "t": 329.8,
     "title": "Nadprodukcja"
    },
    {
-    "t": 416.7,
+    "t": 416.6,
     "title": "Panel klienta B2B"
    },
    {
@@ -330,8 +330,8 @@
    },
    {
     "t": 326.7,
-    "id": "ins-a3",
-    "label": "ins-a3",
+    "id": "ins-back-rezon",
+    "label": "powrót do tematu",
     "length": 3.1
    },
    {
@@ -341,13 +341,13 @@
     "length": 3.0
    },
    {
-    "t": 497.1,
+    "t": 497.0,
     "id": "ins-outro",
     "label": "zakończenie",
     "length": 15.9
    },
    {
-    "t": 513.0,
+    "t": 512.9,
     "id": "ins-yt-sub",
     "label": "plansza Subskrybuj",
     "length": 4.3
@@ -505,7 +505,7 @@
    ],
    [
     "Jak uczy się zwykły czat",
-    "ins-a3"
+    "ins-back-doram"
    ],
    [
     "before:więc dziękuję",
@@ -516,7 +516,7 @@
     "ins-contact"
    ]
   ],
-  "chapters": "0:00 W tym odcinku\n0:22 Wstęp\n0:55 Zamówienia w Excelu od kontrahentów z Niemiec\n1:57 Kilka dni klepania → 10 minut\n2:36 Dlaczego to tak długo trwało\n3:54 Kody kreskowe: przeklej, drukuj\n5:10 Najpierw jedna baza\n6:16 Pamięć dla AI\n8:08 Jak uczy się zwykły czat\n9:30 70% → 94% → 95%\n10:28 Kody bez AI: 15 minut\n10:55 Co dalej",
+  "chapters": "0:00 W tym odcinku\n0:22 Wstęp\n0:55 Zamówienia w Excelu od kontrahentów z Niemiec\n1:57 Kilka dni klepania → 10 minut\n2:36 Dlaczego to tak długo trwało\n3:54 Kody kreskowe: przeklej, drukuj\n5:10 Najpierw jedna baza\n6:16 Pamięć dla AI\n8:07 Jak uczy się zwykły czat\n9:29 70% → 94% → 95%\n10:27 Kody bez AI: 15 minut\n10:54 Co dalej",
   "chapter_list": [
    {
     "t": 0.0,
@@ -551,19 +551,19 @@
     "title": "Pamięć dla AI"
    },
    {
-    "t": 488.2,
+    "t": 487.2,
     "title": "Jak uczy się zwykły czat"
    },
    {
-    "t": 570.9,
+    "t": 569.9,
     "title": "70% → 94% → 95%"
    },
    {
-    "t": 628.9,
+    "t": 627.9,
     "title": "Kody bez AI: 15 minut"
    },
    {
-    "t": 655.1,
+    "t": 654.1,
     "title": "Co dalej"
    }
   ],
@@ -600,18 +600,18 @@
    },
    {
     "t": 485.1,
-    "id": "ins-a3",
-    "label": "ins-a3",
-    "length": 3.1
+    "id": "ins-back-doram",
+    "label": "powrót do tematu",
+    "length": 2.1
    },
    {
-    "t": 676.4,
+    "t": 675.4,
     "id": "ins-a4",
     "label": "ins-a4",
     "length": 3.0
    },
    {
-    "t": 679.4,
+    "t": 678.4,
     "id": "ins-contact",
     "label": "ins-contact",
     "length": 5.8

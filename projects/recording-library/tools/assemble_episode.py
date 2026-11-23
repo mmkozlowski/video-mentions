@@ -157,13 +157,14 @@ PLAN = {
                      # własne CTA na końcu („zapraszam Cię na flowbiz.pl…”) — bez przerywnika zamknięcia (dubel)
                      ("END", "ins-yt-sub"), ("END", "ins-bye")],
     # 16.11: wstęp i łączniki z dogrywek; zakończenie przed własnym „Dzięki i do usłyszenia” z nagrania
+    # 23.11: po wstawce środkowej powrót z nazwą tematu zamiast „wracamy, na czym skończyłem” (ins-a3) — uwaga Mateusza
     "ep-doram": [("START", STING), ("START", "ins-intro"), ("START", "ins-back"),
-                 ("Jak uczy się zwykły czat", "ins-mid"), ("Jak uczy się zwykły czat", "ins-a3"),
+                 ("Jak uczy się zwykły czat", "ins-mid"), ("Jak uczy się zwykły czat", "ins-back-doram"),
                  # Doram ma własne zakończenie (subskrypcja + komentarze + „Dzięki i do usłyszenia”) — brakuje w nim tylko
                  # kontaktu, więc przed „więc dziękuję Wam” wchodzi łącznik A4 i kwestia 23, bez dubli subskrypcji
                  ("before:więc dziękuję", "ins-a4"), ("before:więc dziękuję", "ins-contact")],
     "ep-rezon": [("START", STING), ("START", "ins-intro"), ("START", "ins-back"),
-                 ("Nadprodukcja", "ins-mid"), ("Nadprodukcja", "ins-a3"),
+                 ("Nadprodukcja", "ins-mid"), ("Nadprodukcja", "ins-back-rezon"),
                  ("END", "ins-a4"), ("END", "ins-outro"), ("END", "ins-yt-sub"), ("END", "ins-bye")],
     "ep-marpasz": [("START", STING), ("START", "ins-intro"), ("START", "ins-back"), ("Katalog AI: faktura → produkty → opisy", "ins-mid"), ("END", "ins-outro")],
     "ep-vacuactiv": [("START", STING), ("START", "ins-intro"), ("START", "ins-back"), ("Obsidian + Hermes + Codex", "ins-mid"),
