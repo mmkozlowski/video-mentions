@@ -78,3 +78,4 @@ jednego klienta/produktu leżą w `projects/<nazwa>/ai/`, nie tutaj.
 - [Stoper w pionie z alfą zasłania twarz](memory/stoper-pion-alfa-zaslania-twarz.md) — lewa tercja tylko w 16x9-alpha; w rolce stoper idzie jako pełny ekran MP4
 - [Grafiki GPT: bez tekstu, dopełnij górę](memory/grafiki-gpt-bez-tekstu-dopelnij-gore.md) — tekst w HTML; 2:3 → 9:16 przez pad, nie crop; to treść AI → znak + przełącznik
 - [Baza kwestii dogrywek](memory/baza-kwestii-dogrywek.md) — nowe nagranie na końcu ORDER, dołek energii przy mowie bez pauzy, /kwestie w Studiu
+- [Ekrany systemu w wyglądzie Open Mercato](memory/ekrany-systemu-wyglad-open-mercato.md) — panel/import/etykiety/katalog przez `om_screens.py`, nie karty; „nie mogą wyglądać jak zabawka”

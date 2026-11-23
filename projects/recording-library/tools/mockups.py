@@ -1859,3 +1859,8 @@ MOCKUP_STYLE += """
 .sb-hand svg{{width:100%;height:100%}}
 .sb-sub{{opacity:0;font-size:44px}}
 """
+
+
+# 23.11: ekrany systemów w wyglądzie Open Mercato zamiast kart (tools/om_screens.py)
+from om_screens import SCREENS as _OM_SCREENS  # noqa: E402
+MOCKUPS.update(_OM_SCREENS)

@@ -507,7 +507,7 @@
   },
   {
    "type": "mockup",
-   "name": "board",
+   "name": "production_plan",
    "at": "widoki",
    "until": "+12",
    "floor": 617.034
