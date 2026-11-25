@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Kolumny i kilka Exceli</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="assets/kit.css" />
+    <script src="assets/kit.js"></script>
+    <style>
+      #wo { left: 80px; top: 210px; width: 1250px; height: 720px; z-index: 2; }
+      #wk1 { left: 300px; top: 262px; width: 1000px; height: 600px; z-index: 1; opacity: 0; }
+      #wk2 { left: 420px; top: 312px; width: 900px; height: 560px; z-index: 1; opacity: 0; }
+      .mini { width: 570px; height: 440px; top: 270px; opacity: 0; }
+      .mini .grid { font-size: 17px; } .mini .grid td { height: 44px; padding: 0 10px; } .mini .grid td.mono { font-size: 15px; }
+      .mini .win-title { font-size: 16px; }
+      #m1 { left: 80px; } #m2 { left: 670px; } #m3 { left: 1260px; }
+      .who { position: absolute; top: 222px; font: 700 18px/1 "Space Mono"; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); opacity: 0; }
+      .rowhl { position: absolute; left: 0; top: 0; background: rgba(16,124,65,.14); border: 2px solid #107c41; opacity: 0; z-index: 2; }
+      .bad { position: absolute; left: 0; top: 0; border: 3px solid #c2410c; border-radius: 3px; opacity: 0; z-index: 30; }
+      .hdrhl { position: absolute; left: 0; top: 0; background: rgba(244,167,42,.22); border: 3px solid var(--amber); opacity: 0; z-index: 3; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="columns" data-start="0" data-duration="29.7" data-width="1920" data-height="1080" data-fps="30">
+      <section id="stage" class="clip" data-start="0" data-duration="29.7" data-track-index="1">
+        <div class="hdr" id="hdr">
+          <div class="tag">AI w praktyce · w firmie</div>
+          <div class="kick">Przed · jedno zamówienie, kilka Exceli</div>
+        </div>
+        <div class="meter" id="meter">
+          <div><span>Godzina</span><b id="clock">08:00</b></div>
+          <div><span>Pozycja</span><b class="red">1 / 104</b></div>
+        </div>
+        <div class="tabs" id="tabs">
+          <div class="tab" id="tab-o"><i>X</i>Bestellung_KW47_Patiolux.xlsx</div>
+          <div class="tab" id="tab-k1"><i>X</i>katalog_2024.xlsx</div>
+          <div class="tab" id="tab-k2"><i>X</i>cennik_eksport_2025.xlsx</div>
+        </div>
+
+        <div class="win" id="wo">
+          <div class="win-title"><span class="dots"><u></u><u></u><u></u></span><span class="name">Bestellung_KW47_Patiolux.xlsx</span></div>
+          <div class="win-menu"><span>Plik</span><span class="on">Narzędzia główne</span><span>Wstawianie</span><span>Formuły</span><span>Dane</span><span>Widok</span></div>
+          <div class="fx"><span class="ref" id="wo-ref">B2</span><span class="f">fx</span><span class="v" id="wo-fx">Gartenstuhl Teak natur</span></div>
+          <div class="sheet" id="wo-sheet"><div class="selbox" id="wo-sel"></div></div>
+          <div class="sheet-tabs"><span class="on">Bestellung</span></div>
+        </div>
+
+        <div class="win" id="wk1">
+          <div class="win-title"><span class="dots"><u></u><u></u><u></u></span><span class="name">katalog_2024.xlsx</span></div>
+          <div class="win-menu"><span>Plik</span><span class="on">Narzędzia główne</span><span>Wstawianie</span><span>Dane</span><span>Widok</span></div>
+          <div class="fx"><span class="ref">A1</span><span class="f">fx</span><span class="v">Nr kat.</span></div>
+          <div class="sheet" id="wk1-sheet">
+            <div class="rowhl" id="wk1-hl"></div>
+            <div class="find" id="find1"><label>Znajdź</label><div class="in" id="find1-in" data-text=""></div>
+              <div class="res"><span class="no" id="find1-no">Nie znaleziono „Gartenstuhl Teak natur”</span><span class="yes" id="find1-yes">Znaleziono: wiersz 2</span></div></div>
+          </div>
+          <div class="sheet-tabs"><span class="on">Katalog</span><span>Tkaniny</span><span>Stare</span></div>
+        </div>
+
+        <div class="win" id="wk2">
+          <div class="win-title"><span class="dots"><u></u><u></u><u></u></span><span class="name">cennik_eksport_2025.xlsx</span></div>
+          <div class="win-menu"><span>Plik</span><span class="on">Narzędzia główne</span><span>Dane</span><span>Widok</span></div>
+          <div class="fx"><span class="ref">A1</span><span class="f">fx</span><span class="v">Produkt</span></div>
+          <div class="sheet" id="wk2-sheet">
+            <div class="rowhl" id="wk2-hl"></div>
+            <div class="find" id="find2"><label>Znajdź</label><div class="in" id="find2-in"></div>
+              <div class="res"><span class="yes" id="find2-yes">Znaleziono: wiersz 4</span></div></div>
+          </div>
+          <div class="sheet-tabs"><span class="on">Eksport DE</span><span>Eksport UK</span></div>
+        </div>
+
+        <div class="note" id="note">
+          <h5>Notatka na boku · poz. 1</h5>
+          <div class="ln" id="n1"><span>W zamówieniu</span><b>92,00 €</b></div>
+          <div class="ln" id="n2"><span>katalog_2024</span><b>89,00 €</b></div>
+          <div class="ln" id="n3"><span>cennik_eksport_2025</span><b>94,00 €</b></div>
+          <div class="ln q" id="n4"><span>Która cena jest dobra?</span><b>?</b></div>
+        </div>
+
+        <div class="ctx" id="ctx"><div>Wytnij</div><div>Kopiuj</div><div>Wklej</div><div class="sep"></div><div id="ctx-ins">Wstaw kolumnę</div><div>Usuń kolumnę</div></div>
+        <div class="bad" id="bad1"></div>
+
+        <div class="who" id="who1" style="left: 80px">Kontrahent 1 · DE</div>
+        <div class="who" id="who2" style="left: 670px">Kontrahent 2 · EN</div>
+        <div class="who" id="who3" style="left: 1260px">Kontrahent 3 · DE</div>
+        <div class="win mini" id="m1">
+          <div class="win-title"><span class="dots"><u></u><u></u><u></u></span><span class="name">Bestellung_KW47_Patiolux.xlsx</span></div>
+          <div class="sheet" id="m1-sheet"></div>
+        </div>
+        <div class="win mini" id="m2">
+          <div class="win-title"><span class="dots"><u></u><u></u><u></u></span><span class="name">PO-3381_GreenyardOutdoor.xlsx</span></div>
+          <div class="sheet" id="m2-sheet"></div>
+        </div>
+        <div class="win mini" id="m3">
+          <div class="win-title"><span class="dots"><u></u><u></u><u></u></span><span class="name">Auftrag_Sonnwerk_0912.xlsx</span></div>
+          <div class="sheet" id="m3-sheet"></div>
+        </div>
+        <div class="hdrhl" id="hh1"></div><div class="hdrhl" id="hh2"></div><div class="hdrhl" id="hh3"></div>
+
+        <div class="chip" id="ch-nf">po niemiecku — w katalogu tej nazwy nie ma</div>
+        <div class="chip" id="ch-cols">nasze kolumny — dopisywane ręcznie, za każdym razem</div>
+        <div class="chip" id="ch-three" style="font-size: 30px; padding: 14px 20px">3 kontrahentów = 3 różne układy kolumn</div>
+
+        <div class="keys">
+          <div class="key" id="k-c"><kbd>Ctrl</kbd><span class="plus">+</span><kbd>C</kbd><em>kopiuj nazwę</em></div>
+          <div class="key" id="k-f"><kbd>Ctrl</kbd><span class="plus">+</span><kbd>F</kbd><em>szukaj w katalogu</em></div>
+          <div class="key" id="k-f2"><kbd>Ctrl</kbd><span class="plus">+</span><kbd>F</kbd><em>szukaj w drugim cenniku</em></div>
+          <div class="key" id="k-r"><kbd>PPM</kbd><em>wstaw kolumnę</em></div>
+        </div>
+      </section>
+    </div>
+    <script>
+      // Odcinek ep-doram, plik 11:48: 2:39.3 → 3:09.0 („musieliśmy dopasować różne nazwy… ceny… katalog rozproszony
+      // na różne Excele… dopisać swoje kolumny… trzech kontrahentów, każdy inaczej”). t = czas w odcinku − 159.3 s.
+      const stage = document.getElementById("stage");
+      const tl = gsap.timeline({ paused: true });
+      const NAMES = ["Gartenstuhl Teak natur", "Gartentisch Akazie 160", "Sonnenliege Alu grau", "Bank 3-Sitzer Teak", "Hocker Rattan schwarz",
+        "Klappstuhl Eukalyptus", "Lounge-Sofa Polyrattan", "Beistelltisch Teak rund", "Sitzkissen beige"];
+      Kit.colsheet(document.getElementById("wo-sheet"), "o", [
+        { key: "pos", title: "Pos.", w: 80, cls: "num", cells: ["1", "2", "3", "4", "5", "6", "7", "8", "9"] },
+        { key: "art", title: "Artikel", w: 360, cells: NAMES },
+        { key: "nr", title: "", w: 190, cls: "mono new", overlay: true, letter: "C",
+          cells: ["KR-TK-01", "ST-AK-160", "LZ-AL-07", "LW-TK-03", "TB-RT-02", "KS-EU-05", "SF-PR-11", "SB-TK-09", "PD-SK-21"] },
+        { key: "kc", title: "", w: 170, cls: "num new", overlay: true, letter: "D",
+          cells: ["89,00", "349,00", "219,00", "412,00", "64,00", "49,00", "1 190,00", "129,00", "18,00"] },
+        { key: "qty", title: "Menge", w: 120, cls: "num", cells: ["24", "6", "12", "4", "16", "30", "3", "10", "48"] },
+        { key: "pr", title: "Preis €", w: 150, cls: "num", cells: ["92,00", "349,00", "219,00", "405,00", "64,00", "49,00", "1 190,00", "129,00", "18,50"] },
+      ], 9);
+      Kit.sheet(document.getElementById("wk1-sheet"), {
+        cols: ["mono", "", "", "num"], widths: [170, 360, 200, 170],
+        rows: [["Nr kat.", "Nazwa", "Tkanina / kolor", "Cena €"], ["KR-TK-01", "Krzesło ogrodowe teak", "natur", "89,00"],
+          ["ST-AK-160", "Stół akacja 160 cm", "olej", "349,00"], ["LZ-AL-07", "Leżak aluminiowy", "grafit", "219,00"],
+          ["LW-TK-03", "Ławka teak 3-os.", "natur", "398,00"], ["TB-RT-02", "Taboret rattan", "czarny", "64,00"],
+          ["KS-EU-05", "Krzesło składane eukaliptus", "—", "49,00"], ["SF-PR-11", "Sofa lounge technorattan", "beż", "1 190,00"]],
+      });
+      Kit.sheet(document.getElementById("wk2-sheet"), {
+        cols: ["", "", "num", "num"], widths: [380, 150, 140, 130],
+        rows: [["Produkt", "Kod", "EUR", "GBP"], ["Stół akacja 160", "ST-AK-160", "355,00", "305,00"], ["Leżak alu", "LZ-AL-07", "225,00", "193,00"],
+          ["Ławka teak 3-os.", "LW-TK-03", "405,00", "348,00"], ["Krzesło teak natur", "KR-TK-01", "94,00", "81,00"], ["Taboret rattan", "TB-RT-02", "66,00", "57,00"],
+          ["Sofa lounge", "SF-PR-11", "1 210,00", "1 040,00"]],
+      });
+      // trzech kontrahentów — trzy różne układy
+      Kit.sheet(document.getElementById("m1-sheet"), { cols: ["num", "", "num", "num"], widths: [60, 250, 90, 110],
+        rows: [["Pos.", "Artikel", "Menge", "Preis €"], ["1", "Gartenstuhl Teak natur", "24", "92,00"], ["2", "Gartentisch Akazie 160", "6", "349,00"],
+          ["3", "Sonnenliege Alu grau", "12", "219,00"], ["4", "Bank 3-Sitzer Teak", "4", "405,00"], ["5", "Hocker Rattan schw.", "16", "64,00"],
+          ["6", "Klappstuhl Eukalyptus", "30", "49,00"], ["7", "Lounge-Sofa Polyrattan", "3", "1 190,00"]] });
+      Kit.sheet(document.getElementById("m2-sheet"), { cols: ["", "", "num", "num"], widths: [110, 220, 70, 110],
+        rows: [["Item", "Description", "Qty", "Unit price"], ["GC-TEAK", "Garden chair teak", "40", "€ 92"], ["TBL-160", "Table acacia 160", "8", "€ 349"],
+          ["LOUNG-AL", "Sun lounger alu", "20", "€ 219"], ["BNCH-3", "Bench teak 3 seat", "6", "€ 405"], ["STL-RT", "Stool rattan black", "24", "€ 64"],
+          ["CHR-FLD", "Folding chair euca.", "36", "€ 49"], ["SOFA-PR", "Lounge sofa", "2", "€ 1190"]] });
+      Kit.sheet(document.getElementById("m3-sheet"), { cols: ["", "", "num", "num", ""], widths: [190, 100, 60, 90, 70],
+        rows: [["Art.-Bez.", "Farbe", "Stk.", "EP netto", "KW"], ["Stuhl Teak", "natur", "12", "92,00", "14"], ["Tisch Akazie", "geölt", "4", "349,00", "14"],
+          ["Liege Alu", "graphit", "10", "219,00", "15"], ["Bank Teak 3er", "natur", "2", "405,00", "15"], ["Hocker Rattan", "schwarz", "8", "64,00", "16"],
+          ["Klappstuhl", "—", "20", "49,00", "16"], ["Sofa Polyr.", "beige", "1", "1190,00", "17"]] });
+
+      const K = Kit.create(tl, stage);
+      const tabOn = (id, t) => {
+        tl.set(["#tab-o", "#tab-k1", "#tab-k2"], { backgroundColor: "#0e2a22", borderColor: "#1f4a3e", color: "#a7b8b1" }, t);
+        tl.set(id, { backgroundColor: "#13402f", borderColor: "#2fd3a0", color: "#ffffff" }, t);
+      };
+      const chip = (sel, x, y, t, out) => {
+        tl.set(sel, { x, y }, 0);
+        tl.fromTo(sel, { opacity: 0, y: y + 12 }, { opacity: 1, y, duration: 0.3, ease: "back.out(2)", immediateRender: false }, t);
+        if (out) tl.to(sel, { opacity: 0, duration: 0.25 }, out);
+      };
+      const rowHL = (hl, cellSel, t, out) => {
+        const b = K.box(cellSel), host = K.box(K.q(hl).offsetParent);
+        const row = K.q(cellSel).parentNode, rb = K.box(row);
+        tl.set(hl, { x: rb.x - host.x, y: b.y - host.y, width: rb.w, height: b.h }, 0);
+        tl.to(hl, { opacity: 1, duration: 0.2 }, t);
+        if (out) tl.to(hl, { opacity: 0, duration: 0.2 }, out);
+      };
+
+      // wejście
+      tl.from(["#hdr", "#meter", "#tabs"], { opacity: 0, y: -16, duration: 0.5, stagger: 0.08, ease: "power3.out" }, 0);
+      tl.from("#wo", { opacity: 0, y: 40, duration: 0.6, ease: "power3.out" }, 0.1);
+      tl.from("#note", { opacity: 0, x: 40, duration: 0.6, ease: "power3.out" }, 0.25);
+      tabOn("#tab-o", 0);
+      K.place({ x: 900, y: 700 }, 0);
+      K.counter("#clock", 480, 521, 0, 29.7, (v) => `${String(Math.floor(v / 60)).padStart(2, "0")}:${String(Math.floor(v % 60)).padStart(2, "0")}`, "power1.in");
+      // nowe kolumny schowane pod Menge/Preis do chwili wstawienia
+      tl.set(["#o-col-nr", "#o-col-kc"], { opacity: 0 }, 0);
+
+      // A. nazwa po niemiecku — w katalogu jej nie ma
+      K.moveClick("#o-art-1", 0.6, 0.6);
+      K.selectBox("#wo-sel", "#o-art-1", 1.2);
+      tl.to("#n1", { opacity: 1, duration: 0.3 }, 1.4);
+      K.key("#k-c", 1.6, 0.9);
+      K.moveClick("#tab-k1", 2.3, 0.5);
+      tl.set("#wk1", { opacity: 1 }, 2.95); K.front("#wk1", 2.95, 5); tabOn("#tab-k1", 2.95);
+      K.key("#k-f", 3.15, 1.0);
+      tl.to("#find1", { opacity: 1, duration: 0.15 }, 3.25);
+      K.q("#find1-in").dataset.text = "Gartenstuhl Teak natur";
+      K.type("#find1-in", 3.4, 30);
+      tl.to("#find1-no", { opacity: 1, duration: 0.15 }, 3.8);
+      chip("#ch-nf", 500, 880, 4.0, 5.6);
+
+      // B. cena — katalog_2024 i drugi cennik mówią co innego
+      tl.set("#find1-no", { opacity: 0 }, 5.6);
+      tl.set("#find1-in", { textContent: "" }, 5.6);
+      const typed = { n: 0 }, word = "teak";
+      tl.to(typed, { n: 4, duration: 0.35, ease: "none", onUpdate() { K.q("#find1-in").textContent = word.slice(0, Math.round(typed.n)); } }, 5.75);
+      tl.set(typed, { n: 0 }, 0);
+      tl.to("#find1-yes", { opacity: 1, duration: 0.15 }, 6.3);
+      rowHL("#wk1-hl", K.cell("#wk1", 1, 3), 6.35);
+      K.move(K.cell("#wk1", 1, 3), 6.4, 0.6);
+      tl.to("#n2", { opacity: 1, duration: 0.3 }, 7.2);
+      K.moveClick("#tab-k2", 10.6, 0.6);
+      tl.set("#wk2", { opacity: 1 }, 11.35); K.front("#wk2", 11.35, 7); tabOn("#tab-k2", 11.35);
+      K.key("#k-f2", 11.5, 1.1);
+      tl.to("#find2", { opacity: 1, duration: 0.15 }, 11.6);
+      K.q("#find2-in").dataset.text = "teak natur";
+      K.type("#find2-in", 11.8, 22);
+      tl.to("#find2-yes", { opacity: 1, duration: 0.15 }, 12.4);
+      rowHL("#wk2-hl", K.cell("#wk2", 4, 2), 12.45);
+      K.move(K.cell("#wk2", 4, 2), 12.5, 0.5);
+      tl.to("#n3", { opacity: 1, duration: 0.3 }, 13.0);
+      tl.fromTo("#n4", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)", immediateRender: false }, 13.7);
+
+      // C. dopisujemy swoje kolumny
+      K.moveClick("#tab-o", 14.7, 0.55);
+      tl.to(["#wk1", "#wk2"], { opacity: 0, duration: 0.2 }, 15.3); K.front("#wo", 15.3, 9); tabOn("#tab-o", 15.3);
+      tl.set("#wo-sel", { opacity: 0 }, 15.3);
+      const ctxAt = (headSel, t) => {
+        const p = K.at(headSel, 0.5, 0.6);
+        K.move(p, t, 0.5); K.click(t + 0.5);
+        K.key("#k-r", t + 0.5, 1.2);
+        tl.set("#ctx", { x: p.x + 8, y: p.y + 6 }, t + 0.55);
+        tl.to("#ctx", { opacity: 1, duration: 0.12 }, t + 0.55);
+        const c = K.at("#ctx-ins", 0.45, 0.5);
+        const ins = { x: p.x + 8 + c.x, y: p.y + 6 + c.y };
+        K.move(ins, t + 0.75, 0.35);
+        tl.set("#ctx-ins", { backgroundColor: "#e8f3ec" }, t + 1.05);
+        K.click(t + 1.15);
+        tl.to("#ctx", { opacity: 0, duration: 0.1 }, t + 1.3);
+        tl.set("#ctx-ins", { backgroundColor: "#ffffff" }, t + 1.4);
+        return t + 1.3;
+      };
+      // kolumna 1: „Nr kat.”
+      let t = ctxAt("#o-L-qty", 15.6);
+      tl.to(["#o-col-qty", "#o-col-pr"], { x: 190, duration: 0.3, ease: "power2.out" }, t);
+      K.text("#o-L-qty", "D", t); K.text("#o-L-pr", "E", t);
+      // kolumna „nr” stoi na pozycji Menge (offset 50+80+360 = 490) — przesuwamy ją z overlay na miejsce
+      tl.fromTo("#o-col-nr", { opacity: 0, scaleX: 0.2, transformOrigin: "0 50%" }, { opacity: 1, scaleX: 1, duration: 0.3, ease: "power2.out", immediateRender: false }, t);
+      K.q("#o-nr-h").dataset.text = "Nr kat.";
+      K.moveClick("#o-nr-h", t + 0.3, 0.3);
+      K.type("#o-nr-h", t + 0.65, 18);
+      ["#o-nr-1", "#o-nr-2"].forEach((s) => K.q(s).dataset.text = K.q(s).textContent);
+      K.type("#o-nr-1", t + 1.15, 22);
+      tl.set(["#o-nr-3", "#o-nr-4", "#o-nr-5", "#o-nr-6", "#o-nr-7", "#o-nr-8", "#o-nr-9", "#o-nr-2"], { opacity: 0 }, 0);
+      tl.to(["#o-nr-2", "#o-nr-3", "#o-nr-4", "#o-nr-5", "#o-nr-6", "#o-nr-7", "#o-nr-8", "#o-nr-9"], { opacity: 1, duration: 0.12, stagger: 0.09 }, t + 1.6);
+      K.move("#o-nr-9", t + 1.6, 0.7);
+      // kolumna 2: „Cena kat.” — od razu widać rozjazd z ceną kontrahenta
+      t = ctxAt("#o-L-qty", t + 2.4);
+      tl.to(["#o-col-qty", "#o-col-pr"], { x: 360, duration: 0.3, ease: "power2.out" }, t);
+      K.text("#o-L-qty", "E", t); K.text("#o-L-pr", "F", t);
+      tl.set("#o-col-kc", { x: 190 }, 0);
+      tl.fromTo("#o-col-kc", { opacity: 0, scaleX: 0.2, transformOrigin: "0 50%" }, { opacity: 1, scaleX: 1, duration: 0.3, ease: "power2.out", immediateRender: false }, t);
+      K.q("#o-kc-h").dataset.text = "Cena kat.";
+      K.type("#o-kc-h", t + 0.3, 20);
+      tl.set(["#o-kc-1", "#o-kc-2", "#o-kc-3", "#o-kc-4", "#o-kc-5", "#o-kc-6", "#o-kc-7", "#o-kc-8", "#o-kc-9"], { opacity: 0 }, 0);
+      tl.to(["#o-kc-1", "#o-kc-2", "#o-kc-3", "#o-kc-4", "#o-kc-5", "#o-kc-6", "#o-kc-7", "#o-kc-8", "#o-kc-9"], { opacity: 1, duration: 0.1, stagger: 0.06 }, t + 0.8);
+      const badAt = t + 1.5;
+      chip("#ch-cols", 300, 880, t - 1.2, 22.6);
+      const bad = (r, at) => {
+        const a = K.box(`#o-kc-${r}`);
+        const b2 = document.createElement("div"); b2.className = "bad"; stage.appendChild(b2);
+        // box() nie widzi transformu: kolumna „Cena kat.” stoi 190 px dalej; ramka obejmuje Cena kat. + Menge + Preis €
+        tl.set(b2, { x: a.x + 190 - 2, y: a.y - 2, width: a.w + 270 + 4, height: a.h + 4 }, 0);
+        tl.to(b2, { opacity: 1, duration: 0.15 }, at);
+        tl.to(b2, { opacity: 0, duration: 0.2 }, 22.6);
+      };
+      bad(1, badAt); bad(4, badAt + 0.15); bad(9, badAt + 0.3);
+
+      // D. trzech kontrahentów — trzy różne układy
+      tl.to(["#wo", "#note", "#tabs", "#wo-sel"], { opacity: 0, duration: 0.3 }, 22.6);
+      tl.set("#cursor", { opacity: 0 }, 22.7);
+      ["#m1", "#m2", "#m3"].forEach((m, i) => {
+        tl.fromTo(m, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out", immediateRender: false }, 23.0 + i * 0.8);
+        tl.fromTo(`#who${i + 1}`, { opacity: 0 }, { opacity: 1, duration: 0.3, immediateRender: false }, 23.1 + i * 0.8);
+        const row = K.box(`${m} tr.h`);
+        tl.set(`#hh${i + 1}`, { x: row.x + 50 - 2, y: row.y - 2, width: row.w - 50 + 4, height: row.h + 4 }, 0);
+        tl.to(`#hh${i + 1}`, { opacity: 1, duration: 0.25 }, 27.9 + i * 0.2);
+      });
+      chip("#ch-three", 80, 800, 28.1);
+      tl.to({}, { duration: 0.01 }, 29.69);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["columns"] = tl;
+    </script>
+  </body>
+</html>

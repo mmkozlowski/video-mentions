@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Dopasowanie AI w kolorach</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="assets/kit.css" />
+    <link rel="stylesheet" href="assets/om.css" />
+    <script src="assets/kit.js"></script>
+    <script src="assets/om-icons.js"></script>
+    <script src="assets/om.js"></script>
+    <style>
+      #app { position: absolute; left: 80px; top: 150px; }
+      #app .omx-win { width: 1270px; height: 790px; }
+      .omx-t td { height: 60px; font-size: 21px; } .omx-t th { font-size: 18px; } .omx-st { font-size: 17px; height: 32px; }
+      .drop { position: absolute; inset: 0; margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
+        border: 3px dashed #d4d4d4; border-radius: 16px; background: #fafafa; color: #525252; font-size: 24px; z-index: 3; }
+      .drop .omx-i { width: 54px; height: 54px; color: #a3a3a3; }
+      .drop small { font-size: 18px; color: #8a8a8a; }
+      .prog { width: 520px; height: 12px; border-radius: 6px; background: #ececec; overflow: hidden; opacity: 0; }
+      .prog i { display: block; width: 100%; height: 100%; background: #171717; transform-origin: 0 50%; }
+      .ai-line { display: flex; align-items: center; gap: 10px; font-size: 21px; color: #404040; opacity: 0; }
+      .ai-line .omx-i { width: 24px; height: 24px; color: #6d28d9; }
+      .file { position: absolute; left: 0; top: 0; z-index: 45; display: flex; align-items: center; gap: 12px; padding: 14px 18px; background: #fff; color: #0a0a0a;
+        border-radius: 12px; box-shadow: 0 18px 40px rgba(0,0,0,.45); font-size: 20px; font-weight: 600; }
+      .file i { width: 34px; height: 34px; border-radius: 7px; background: #107c41; color: #fff; font: 800 17px/34px "Plus Jakarta Sans"; font-style: normal; text-align: center; }
+      .cardwrap { position: relative; flex: 1; display: flex; flex-direction: column; min-height: 0; }
+      .omx-t tr.p td:first-child { font-style: italic; color: #525252; }
+      .sc { display: inline-grid; } .sc > * { grid-area: 1/1; }
+      .ring { position: absolute; left: 0; top: 0; border-radius: 10px; border: 4px solid; opacity: 0; z-index: 6; pointer-events: none; }
+      .legend { display: flex; gap: 18px; align-items: center; font-size: 18px; color: #404040; }
+      .legend > span { display: flex; align-items: center; gap: 8px; opacity: 0; }
+      .tip { position: absolute; left: 0; top: 0; width: 470px; background: #171717; color: #fff; border-radius: 12px; padding: 14px 16px; font-size: 18px; line-height: 1.4; z-index: 40; opacity: 0;
+        box-shadow: 0 18px 40px rgba(0,0,0,.4); }
+      .tip b { color: #6ee7b7; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="matching" data-start="0" data-duration="21.7" data-width="1920" data-height="1080" data-fps="30">
+      <section id="stage" class="clip" data-start="0" data-duration="21.7" data-track-index="1">
+        <div class="hdr" id="hdr" style="top: 36px">
+          <div class="tag">AI w praktyce · w firmie</div>
+          <div class="kick ok">Po · system z AI dopasowuje sam</div>
+        </div>
+        <div id="app"></div>
+        <div class="file" id="file"><i>X</i>Bestellung_KW47_Patiolux.xlsx</div>
+        <div class="tip" id="tip">„Gartenstuhl Teak natur” → <b>Krzesło ogrodowe teak · natur</b><br />100% · ta nazwa była już w 3 zamówieniach tego kontrahenta</div>
+        <div class="ring" id="r-red" style="border-color: #f04438"></div>
+        <div class="ring" id="r-amb" style="border-color: #f79009"></div>
+        <div class="ring" id="r-amb2" style="border-color: #f79009"></div>
+        <div class="ring" id="r-grn" style="border-color: #12b76a"></div>
+      </section>
+    </div>
+    <script>
+      // Odcinek ep-doram, plik 11:48: 6:50.3 → 7:12.0 („przy wgraniu takiego dokumentu… prawdopodobieństwo, że ten produkt
+      // to prawdopodobnie to… w kilku różnych kolorach: nie dopasowałem, na 80%, na 100%”). t = czas w odcinku − 410.3 s.
+      const stage = document.getElementById("stage");
+      const tl = gsap.timeline({ paused: true });
+      const ROWS = [
+        ["Gartenstuhl Teak natur", "Krzesło ogrodowe teak · natur", "KR-TK-01", 24, 100],
+        ["Gartentisch Akazie 160", "Stół akacja 160 cm", "ST-AK-160", 6, 100],
+        ["Sonnenliege Alu grau", "Leżak aluminiowy · grafit", "LZ-AL-07", 12, 82],
+        ["Bank 3-Sitzer Teak", "Ławka teak 3-os. · natur", "LW-TK-03", 4, 100],
+        ["Sessel Bali Kissen sand", "", "", 8, 0],
+        ["Lounge-Sofa Polyrattan", "Sofa lounge technorattan · beż", "SF-PR-11", 3, 78],
+        ["Sitzkissen beige", "Poduszka na siedzisko 45×45", "PD-SK-21", 48, 100],
+      ];
+      const kind = (s) => (s >= 100 ? "success" : s ? "warning" : "error");
+      const rows = ROWS.map(([theirs, ours, sku, qty, s], i) =>
+        `<tr class="p" id="row${i}"><td>${OM.esc(theirs)}</td><td>${ours ? OM.esc(ours) : '<span class="mut">— wybierz produkt —</span>'}</td>` +
+        `<td class="num">${qty}</td><td><span class="sc" id="sc${i}">` +
+        (s ? `<span class="omx-st ${kind(s)}"><span class="pct" data-to="${s}">0</span>%&nbsp;${s >= 100 ? "pewne" : "do sprawdzenia"}</span>` : OM.status("brak dopasowania", "error")) +
+        `</span></td></tr>`).join("");
+      const th = ["Pozycja kontrahenta", "Produkt w systemie", "Ilość", "Dopasowanie AI"].map((h, i) => `<th style="width:${["31%", "35%", "8%", "26%"][i]}">${h}</th>`).join("");
+      const card = `<div class="omx-card cardwrap"><div class="omx-ch"><div><h3>Import zamówienia</h3><p>Bestellung_KW47_Patiolux.xlsx · Patiolux Handel GmbH · 104 pozycje</p></div>` +
+        `<div class="r">${OM.btn("Anuluj")}${OM.btn("Utwórz zamówienie", "check", true)}</div></div>` +
+        `<table class="omx-t" id="tbl"><tr>${th}</tr>${rows}</table>` +
+        `<div class="omx-foot"><span class="legend"><span id="lg1">${OM.status("100%", "success")} 96 pewne</span><span id="lg2">${OM.status("78–99%", "warning")} 6 do sprawdzenia</span>` +
+        `<span id="lg3">${OM.status("brak", "error")} 2 do wybrania</span></span><span>pokazano 7 z 104</span></div>` +
+        `<div class="drop" id="drop">${OM.I("upload")}Przeciągnij plik zamówienia od kontrahenta<small>Excel · CSV · PDF</small>` +
+        `<div class="prog" id="prog"><i id="progi"></i></div><div class="ai-line" id="ail">${OM.I("sparkles")}AI czyta 104 pozycje i szuka ich w katalogu…</div></div></div>`;
+      document.getElementById("app").innerHTML = OM.shell({ tenant: "Meble ogrodowe", role: "Biuro obsługi zamówień", groups: OM.GROUPS,
+        active: "Zamówienia", crumbs: ["Zamówienia", "Import z pliku"], body: card, who: "Biuro" });
+
+      const K = Kit.create(tl, stage);
+      tl.from("#hdr", { opacity: 0, y: -16, duration: 0.5, ease: "power3.out" }, 0);
+      tl.from("#app", { opacity: 0, y: 30, duration: 0.5, ease: "power3.out" }, 0);
+      // plik wjeżdża z lewej, kursor go niesie i upuszcza
+      const dropC = K.at("#drop", 0.5, 0.42);
+      tl.set("#file", { x: -420, y: 760 }, 0);
+      K.place({ x: -60, y: 790 }, 0);
+      tl.to("#file", { x: dropC.x - 200, y: dropC.y - 30, duration: 1.1, ease: "power2.inOut" }, 0.3);
+      K.move({ x: dropC.x + 40, y: dropC.y + 6 }, 0.3, 1.1);
+      tl.set("#drop", { borderColor: "#171717", backgroundColor: "#f5f5f5" }, 1.1);
+      K.click(1.45);
+      tl.to("#file", { opacity: 0, scale: 0.8, duration: 0.2 }, 1.5);
+      tl.to("#prog", { opacity: 1, duration: 0.2 }, 1.6);
+      tl.to("#ail", { opacity: 1, duration: 0.2 }, 1.7);
+      tl.fromTo("#progi", { scaleX: 0 }, { scaleX: 1, duration: 2.8, ease: "power1.inOut", immediateRender: false }, 1.7);
+      tl.to("#drop", { opacity: 0, duration: 0.3 }, 4.6);
+      K.move({ x: 1240, y: 900 }, 3.0, 1.0);
+
+      // tabela z wynikiem — procent dobija od zera (prawdopodobieństwo)
+      tl.from("#tbl tr.p", { opacity: 0, x: -24, duration: 0.3, stagger: 0.12, ease: "power2.out" }, 4.8);
+      ROWS.forEach(([, , , , s], i) => {
+        if (!s) { tl.from(`#sc${i}`, { scale: 0.6, opacity: 0, duration: 0.3, ease: "back.out(2)" }, 5.0 + i * 0.12); return; }
+        K.counter(`#sc${i} .pct`, 0, s, 5.0 + i * 0.12, 1.1, (v) => String(Math.round(v)), "power2.out");
+      });
+      // „to jest prawdopodobnie to” — dymek przy pierwszej pozycji
+      K.move("#row0 td:nth-child(4)", 6.6, 0.7, 0.3, 0.5);
+      const r0 = K.box("#row0");
+      tl.set("#tip", { x: r0.x + 300, y: r0.y + r0.h + 6 }, 0);
+      tl.fromTo("#tip", { opacity: 0, y: r0.y + r0.h + 16 }, { opacity: 1, y: r0.y + r0.h + 6, duration: 0.3, ease: "power2.out", immediateRender: false }, 7.4);
+      tl.to("#tip", { opacity: 0, duration: 0.25 }, 10.6);
+      // kolory: legenda, potem po kolei czerwony / pomarańczowy / zielony
+      tl.to(["#lg1", "#lg2", "#lg3"], { opacity: 1, duration: 0.3, stagger: 0.6 }, 11.0);
+      const ring = (sel, rowSel, t) => {
+        const b = K.box(rowSel);
+        tl.set(sel, { x: b.x - 4, y: b.y - 3, width: b.w + 8, height: b.h + 6 }, 0);
+        tl.fromTo(sel, { opacity: 0, scale: 1.03 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out", immediateRender: false }, t);
+      };
+      ring("#r-red", "#row4", 15.0); K.move("#row4 td:nth-child(4)", 14.6, 0.5, 0.35, 0.5);
+      ring("#r-amb", "#row2", 17.3); ring("#r-amb2", "#row5", 17.45); K.move("#row2 td:nth-child(4)", 16.9, 0.5, 0.35, 0.5);
+      ring("#r-grn", "#row0", 19.4); K.move("#row0 td:nth-child(4)", 19.0, 0.5, 0.35, 0.5);
+      tl.to({}, { duration: 0.01 }, 21.69);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["matching"] = tl;
+    </script>
+  </body>
+</html>

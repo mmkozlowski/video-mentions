@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Etykiety z systemu</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="assets/kit.css" />
+    <link rel="stylesheet" href="assets/om.css" />
+    <script src="assets/kit.js"></script>
+    <script src="assets/om-icons.js"></script>
+    <script src="assets/om.js"></script>
+    <style>
+      #app { position: absolute; left: 80px; top: 150px; }
+      #app .omx-win { width: 1270px; height: 790px; }
+      .omx-t td { height: 62px; font-size: 21px; } .omx-t th { font-size: 18px; } .omx-st { font-size: 17px; height: 32px; }
+      .ohead { display: flex; align-items: flex-end; gap: 14px; }
+      .ohead small { display: block; font-size: 16px; color: #737373; } .ohead h2 { margin: 4px 0 0; font-size: 32px; font-weight: 700; display: flex; align-items: center; gap: 12px; }
+      .ohead .r { margin-left: auto; display: flex; gap: 10px; }
+      .omx-kv div { position: relative; }
+      .omx-kv b { font-family: "Space Mono", monospace; font-size: 24px; }
+      .num4 { position: absolute; left: 0; top: 0; border: 4px solid #2fd3a0; border-radius: 16px; opacity: 0; z-index: 6; }
+      .omx-sheet { width: 560px; gap: 12px; }
+      .gen { display: flex; align-items: center; gap: 12px; font-size: 20px; color: #404040; }
+      .gen .omx-i { color: #6d28d9; width: 22px; height: 22px; }
+      .pbar { height: 12px; border-radius: 6px; background: #ececec; overflow: hidden; } .pbar i { display: block; height: 100%; background: #171717; transform-origin: 0 50%; }
+      .pages { position: relative; flex: 1; min-height: 0; overflow: hidden; border: 1px solid #e5e5e5; border-radius: 12px; background: #f5f5f5; }
+      .pgrid { position: absolute; left: 14px; top: 14px; display: grid; grid-template-columns: repeat(3, 156px); gap: 14px; }
+      .pg { height: 200px; background: #fff; border: 1px solid #d4d4d4; border-radius: 6px; padding: 10px; font-size: 12px; color: #404040; box-shadow: 0 4px 10px rgba(0,0,0,.06); }
+      .pg b { display: block; font: 700 13px/1.2 "Space Mono"; color: #0a0a0a; }
+      .pg .bc { height: 62px; margin: 8px 0; overflow: hidden; }
+      .pg em { font-style: normal; display: block; color: #737373; }
+      .done { display: flex; align-items: center; gap: 10px; font-size: 20px; color: #067647; font-weight: 700; opacity: 0; }
+      .sh-btns { display: flex; gap: 10px; justify-content: flex-end; }
+      .cmp { position: absolute; left: 1400px; top: 150px; width: 440px; background: var(--raised); border: 1px solid var(--line); border-radius: 18px; padding: 24px; opacity: 0; }
+      .cmp small { display: block; font: 700 15px/1.3 "Space Mono"; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+      .cmp .was { margin-top: 18px; font: 800 52px/1 "Plus Jakarta Sans"; color: var(--amber); text-decoration: line-through; text-decoration-thickness: 5px; }
+      .cmp .now { margin-top: 14px; font: 800 96px/1 "Plus Jakarta Sans"; color: var(--accent); }
+      .cmp p { margin-top: 12px; font-size: 21px; color: var(--muted); }
+      .noai { position: absolute; left: 1400px; top: 150px; width: 440px; background: var(--raised); border: 1px solid var(--line); border-radius: 18px; padding: 22px 24px; font-size: 24px; line-height: 1.35; }
+      .noai small { display: block; font: 700 15px/1 "Space Mono"; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+      .noai b { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="labels" data-start="0" data-duration="22.5" data-width="1920" data-height="1080" data-fps="30">
+      <section id="stage" class="clip" data-start="0" data-duration="22.5" data-track-index="1">
+        <div class="hdr" id="hdr" style="top: 36px">
+          <div class="tag">AI w praktyce · w firmie</div>
+          <div class="kick ok">Po · etykiety jednym kliknięciem</div>
+        </div>
+        <div id="app"></div>
+        <div class="noai" id="noai"><small>Bez AI — zwykły program</small>System bierze <b>4 numery</b> z zamówienia i od razu składa <b>PDF z etykietami</b>.</div>
+        <div class="cmp" id="cmp"><small>Etykiety do jednego zamówienia</small><div class="was">kilka dni</div><div class="now">15 min</div><p>40 stron PDF · wydrukować i przykleić</p></div>
+        <div class="num4" id="n0"></div><div class="num4" id="n1"></div><div class="num4" id="n2"></div><div class="num4" id="n3"></div>
+      </section>
+    </div>
+    <script>
+      // Odcinek ep-doram, plik 11:48: 10:29.8 → 10:52.3 („system bierze cztery numery, generuje PDF od razu gotowy… po minucie
+      // PDF z 40 stronami etykiet… z kilku dni pracy 15 minut”). t = czas w odcinku − 629.8 s. Dane fikcyjne.
+      const stage = document.getElementById("stage");
+      const tl = gsap.timeline({ paused: true });
+      const lines = [["Krzesło ogrodowe teak · natur", "KR-TK-01", 24, 12, "success", "Gotowe"], ["Stół akacja 160 cm", "ST-AK-160", 6, 12, "success", "Gotowe"],
+        ["Poduszka na siedzisko 45×45", "PD-SK-21", 48, 16, "warning", "W produkcji"]]
+        .map(([n, sku, q, p, k, st]) => `<tr><td>${n}<span class="omx-sku">${sku}</span></td><td class="num">${q}</td><td class="num">${p}</td><td>${OM.status(st, k)}</td></tr>`).join("");
+      const body = `<div class="ohead"><div><small>Zamówienie · Patiolux Handel GmbH</small><h2>ZAM-2026-0418 ${OM.status("W produkcji", "warning")}</h2></div>` +
+        `<div class="r">${OM.btn("Edytuj")}${OM.btn("Generuj etykiety", "printer", true, "", "go")}</div></div>` +
+        `<div class="omx-kv"><div id="kv0"><span>Zamówienie</span><b>ZAM-0418</b></div><div id="kv1"><span>Zlecenie produkcyjne</span><b>PROD 114</b></div>` +
+        `<div id="kv2"><span>Część dostawy</span><b>CZ 07</b></div><div id="kv3"><span>Paczki</span><b>40</b></div></div>` +
+        `<div class="omx-card" style="flex:1"><div class="omx-tabs"><span class="on">${OM.I("list")}Pozycje</span><span>${OM.I("tag")}Etykiety</span><span>${OM.I("history")}Historia</span></div>` +
+        `<table class="omx-t"><tr><th style="width:52%">Produkt</th><th style="width:13%">Ilość</th><th style="width:13%">Paczki</th><th style="width:22%">Status</th></tr>${lines}</table></div>`;
+      let pages = "";
+      const names = ["Krzesło teak", "Stół akacja 160", "Poduszka 45×45"];
+      for (let i = 0; i < 40; i++) pages += `<div class="pg"><b>ZAM-0418 · ${String(i + 1).padStart(2, "0")}/40</b><div class="bc" data-code="P${i}"></div>PROD 114 · CZ 07<em>${names[i % 3]}</em></div>`;
+      const sheet = `<div class="omx-sheet" id="sheet"><h4>Etykiety · ZAM-2026-0418${OM.I("x")}</h4><div class="sub">40 paczek · format 100×150 mm</div>` +
+        `<div class="gen" id="gen">${OM.I("sparkles")}<span>Składam PDF: <b id="pc">0</b> / 40 stron</span></div><div class="pbar"><i id="pbi"></i></div>` +
+        `<div class="pages"><div class="pgrid" id="pgrid">${pages}</div></div>` +
+        `<div class="done" id="done">${OM.I("check")}PDF gotowy · 40 stron · 54 s</div>` +
+        `<div class="sh-btns">${OM.btn("Pobierz PDF", "download")}${OM.btn("Drukuj", "printer", true, "", "print")}</div></div>`;
+      document.getElementById("app").innerHTML = OM.shell({ tenant: "Meble ogrodowe", role: "Produkcja", groups: OM.GROUPS,
+        active: "Zamówienia", crumbs: ["Zamówienia", "ZAM-2026-0418"], body, who: "Produkcja", extra: sheet });
+      document.querySelectorAll(".pg .bc").forEach((el) => Kit.barcode(el, el.dataset.code, 62, 0.7));
+
+      const K = Kit.create(tl, stage);
+      tl.from(["#hdr", "#noai"], { opacity: 0, y: -16, duration: 0.5, ease: "power3.out", stagger: 0.1 }, 0);
+      tl.from("#app", { opacity: 0, y: 30, duration: 0.5, ease: "power3.out" }, 0);
+      K.place({ x: 1000, y: 900 }, 0);
+      // „bierze cztery numery”
+      [0, 1, 2, 3].forEach((i) => {
+        const b = K.box(`#kv${i}`);
+        tl.set(`#n${i}`, { x: b.x - 4, y: b.y - 4, width: b.w + 8, height: b.h + 8 }, 0);
+        tl.fromTo(`#n${i}`, { opacity: 0, scale: 1.06 }, { opacity: 1, scale: 1, duration: 0.25, ease: "power2.out", immediateRender: false }, 2.9 + i * 0.3);
+        tl.to(`#n${i}`, { opacity: 0, duration: 0.3 }, 5.4);
+      });
+      K.move("#kv0", 2.6, 0.5, 0.5, 0.9);
+      K.move("#kv3", 3.5, 1.0, 0.5, 0.9);
+      // „generuje PDF… po kliknięciu”
+      K.moveClick("#go", 4.6, 0.7);
+      tl.fromTo("#sheet", { opacity: 0, x: 80 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out", immediateRender: false }, 5.5);
+      tl.set(".pg", { opacity: 0 }, 0);
+      tl.fromTo("#pbi", { scaleX: 0 }, { scaleX: 1, duration: 4.4, ease: "none", immediateRender: false }, 5.8);
+      K.counter("#pc", 0, 40, 5.8, 4.4);
+      tl.to(".pg", { opacity: 1, duration: 0.12, stagger: 0.105 }, 5.8);
+      // „po minucie masz PDF z 40 stronami” — przewijamy wszystkie strony
+      const gridH = K.box("#pgrid").h, viewH = K.box("#pgrid").h && K.q(".pages").offsetHeight;
+      tl.to("#pgrid", { y: -(gridH - viewH + 28), duration: 3.2, ease: "power1.inOut" }, 10.4);
+      tl.to("#done", { opacity: 1, duration: 0.3 }, 11.6);
+      // „trzeba tylko wydrukować, przykleić”
+      K.moveClick("#print", 13.4, 0.8);
+      tl.to("#pgrid", { y: 0, duration: 1.4, ease: "power2.inOut" }, 14.6);
+      // „z kilku dni pracy dostajemy 15 minut”
+      tl.to("#noai", { opacity: 0, duration: 0.3 }, 18.4);
+      tl.fromTo("#cmp", { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out", immediateRender: false }, 18.7);
+      tl.from("#cmp .now", { scale: 0.6, opacity: 0, duration: 0.45, ease: "back.out(2)", transformOrigin: "0 50%" }, 20.9);
+      K.move({ x: 1250, y: 930 }, 16.5, 1.0);
+      tl.to({}, { duration: 0.01 }, 22.49);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["labels"] = tl;
+    </script>
+  </body>
+</html>

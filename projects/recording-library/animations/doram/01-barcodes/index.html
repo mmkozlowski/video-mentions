@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Kody kreskowe ręcznie</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="assets/kit.css" />
+    <script src="assets/kit.js"></script>
+    <style>
+      #wo { left: 80px; top: 210px; width: 1250px; height: 720px; z-index: 2; }
+      #wg { left: 300px; top: 262px; width: 1000px; height: 640px; z-index: 1; opacity: 0; }
+      .gen { position: absolute; inset: 0; background-color: #fff;
+        background-image: linear-gradient(#e6e6e6 1px, transparent 1px), linear-gradient(90deg, #e6e6e6 1px, transparent 1px);
+        background-size: 150px 50px; }
+      .gen-l { position: absolute; left: 24px; top: 24px; font-size: 24px; font-weight: 700; color: #333; background: #fff; padding: 6px 8px; }
+      .gen-in { position: absolute; left: 250px; top: 16px; width: 360px; height: 56px; background: #fff; border: 2px solid #cfcfcf;
+        font: 700 26px/52px "Space Mono"; padding: 0 12px; color: #111; }
+      .gen-prev { position: absolute; left: 60px; top: 110px; width: 640px; height: 300px; background: #fff; border: 2px dashed #bbb; border-radius: 8px; }
+      .gen-prev .lab { position: absolute; left: 0; top: 0; width: 100%; height: 100%; opacity: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
+      .gen-prev .lab .bc { height: 160px; }
+      .gen-prev .lab b { font: 700 28px/1 "Space Mono"; color: #111; letter-spacing: .1em; }
+      .gen-note { position: absolute; left: 60px; top: 430px; font-size: 19px; color: #777; background: #fff; padding: 4px 6px; }
+      #printer { position: absolute; left: 1370px; top: 210px; width: 470px; height: 480px; background: var(--raised); border: 1px solid var(--line);
+        border-radius: 18px; overflow: hidden; }
+      #printer h5 { position: absolute; left: 24px; top: 22px; font: 700 15px/1 "Space Mono"; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+      #printer .slot { position: absolute; left: 30px; right: 30px; top: 62px; height: 14px; border-radius: 7px; background: #031210; box-shadow: inset 0 3px 6px #000; z-index: 3; }
+      #printer .out { position: absolute; left: 0; right: 0; top: 70px; bottom: 0; overflow: hidden; }
+      .plabel { position: absolute; left: 30px; top: 0; width: 410px; height: 160px; background: #fff; border-radius: 8px; color: #111;
+        box-shadow: 0 10px 24px rgba(0,0,0,.45); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
+      .plabel .bc { height: 70px; }
+      .plabel b { font: 700 21px/1 "Space Mono"; letter-spacing: .08em; }
+      .plabel span { font-size: 16px; color: #666; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="barcodes" data-start="0" data-duration="39.2" data-width="1920" data-height="1080" data-fps="30">
+      <section id="stage" class="clip" data-start="0" data-duration="39.2" data-track-index="1">
+        <div class="hdr" id="hdr">
+          <div class="tag">AI w praktyce · w firmie</div>
+          <div class="kick">Przed · kody kreskowe ręcznie</div>
+        </div>
+        <div class="meter" id="meter">
+          <div><span>Godzina</span><b id="clock">08:00</b></div>
+          <div><span>Etykiety</span><b class="red" id="count">0 / 312</b></div>
+        </div>
+        <div class="tabs" id="tabs">
+          <div class="tab" id="tab-o"><i>X</i>Bestellung_KW47_Patiolux.xlsx</div>
+          <div class="tab" id="tab-g"><i>X</i>generator_kodow.xlsx</div>
+        </div>
+
+        <div class="win" id="wo">
+          <div class="win-title"><span class="dots"><u></u><u></u><u></u></span><span class="name">Bestellung_KW47_Patiolux.xlsx</span></div>
+          <div class="win-menu"><span>Plik</span><span class="on">Narzędzia główne</span><span>Wstawianie</span><span>Formuły</span><span>Dane</span><span>Widok</span></div>
+          <div class="fx"><span class="ref" id="wo-ref">A1</span><span class="f">fx</span><span class="v" id="wo-fx">Pos.</span></div>
+          <div class="sheet" id="wo-sheet"><div class="selbox" id="wo-sel"></div></div>
+          <div class="sheet-tabs"><span class="on">Bestellung</span><span>Arkusz2</span></div>
+        </div>
+
+        <div class="win" id="wg">
+          <div class="win-title"><span class="dots"><u></u><u></u><u></u></span><span class="name">generator_kodow.xlsx</span></div>
+          <div class="win-menu"><span>Plik</span><span class="on">Narzędzia główne</span><span>Wstawianie</span><span>Formuły</span><span>Widok</span></div>
+          <div class="fx"><span class="ref">B1</span><span class="f">fx</span><span class="v" id="wg-fx"></span></div>
+          <div class="sheet">
+            <div class="gen">
+              <div class="gen-l">Wklej numer:</div>
+              <div class="gen-in" id="gin"><span id="gin-v"></span></div>
+              <div class="gen-prev" id="gprev">
+                <div class="lab" id="gl0"><div class="bc"></div><b>GS-TK-01</b></div>
+                <div class="lab" id="gl1"><div class="bc"></div><b>GT-AK-160</b></div>
+                <div class="lab" id="gl2"><div class="bc"></div><b>SL-AL-07</b></div>
+                <div class="lab" id="gl3"><div class="bc"></div><b>BK-TK-03</b></div>
+              </div>
+              <div class="gen-note">Kod generuje się z komórki B1 — wydruk: Ctrl + P</div>
+            </div>
+          </div>
+          <div class="sheet-tabs"><span class="on">Etykieta</span></div>
+        </div>
+
+        <div id="printer">
+          <h5>Drukarka etykiet</h5>
+          <div class="slot"></div>
+          <div class="out">
+            <div class="plabel" id="pl0"><div class="bc"></div><b>GS-TK-01</b><span>BST-24-0718 · poz. 1</span></div>
+            <div class="plabel" id="pl1"><div class="bc"></div><b>GT-AK-160</b><span>BST-24-0718 · poz. 2</span></div>
+            <div class="plabel" id="pl2"><div class="bc"></div><b>SL-AL-07</b><span>BST-24-0718 · poz. 3</span></div>
+            <div class="plabel" id="pl3"><div class="bc"></div><b>BK-TK-03</b><span>BST-24-0718 · poz. 4</span></div>
+          </div>
+        </div>
+
+        <div class="dialog" id="dlg" style="left: 470px; top: 360px; width: 580px">
+          <h4>Drukuj</h4>
+          <div class="row"><span>Drukarka</span><b>Etykiety-Biuro</b></div>
+          <div class="row"><span>Kopie</span><b>1</b></div>
+          <div class="row"><span>Zakres</span><b>Bieżący arkusz</b></div>
+          <div class="btns"><span class="btn">Anuluj</span><span class="btn pri" id="dlg-ok">Drukuj</span></div>
+        </div>
+
+        <div class="chip" id="ch-order">kod zamówienia</div>
+        <div class="chip" id="ch-prod">kod produktu</div>
+        <div class="chip" id="ch-part">kod części</div>
+        <div class="chip" id="ch-sum">104 pozycje × 3 kody = 312 etykiet</div>
+
+        <div class="keys">
+          <div class="key" id="k-c"><kbd>Ctrl</kbd><span class="plus">+</span><kbd>C</kbd><em>kopiuj</em></div>
+          <div class="key" id="k-v"><kbd>Ctrl</kbd><span class="plus">+</span><kbd>V</kbd><em>wklej</em></div>
+          <div class="key" id="k-p"><kbd>Ctrl</kbd><span class="plus">+</span><kbd>P</kbd><em>drukuj</em></div>
+          <div class="key" id="k-c2"><kbd>Ctrl</kbd><span class="plus">+</span><kbd>C</kbd></div>
+          <div class="key" id="k-v2"><kbd>Ctrl</kbd><span class="plus">+</span><kbd>V</kbd></div>
+          <div class="key" id="k-p2"><kbd>Ctrl</kbd><span class="plus">+</span><kbd>P</kbd></div>
+        </div>
+      </section>
+    </div>
+    <script>
+      // Odcinek ep-doram, plik 11:48: 3:56.2 → 4:35.4 („trzeba było wygenerować kod całego zamówienia…
+      // przeklejała, drukowała”). Czas t = czas w odcinku − 236.2 s. Dane fikcyjne.
+      const stage = document.getElementById("stage");
+      const tl = gsap.timeline({ paused: true });
+      const ROWS = [
+        ["Pos.", "Bestell-Nr", "Artikel", "Art.-Nr", "Teile-Nr", "Menge"],
+        ["1", "BST-24-0718", "Gartenstuhl Teak natur", "GS-TK-01", "GS-TK-01-P1", "24"],
+        ["2", "BST-24-0718", "Gartentisch Akazie 160", "GT-AK-160", "GT-AK-160-P2", "6"],
+        ["3", "BST-24-0718", "Sonnenliege Alu grau", "SL-AL-07", "SL-AL-07-P1", "12"],
+        ["4", "BST-24-0718", "Bank 3-Sitzer Teak", "BK-TK-03", "BK-TK-03-P3", "4"],
+        ["5", "BST-24-0718", "Hocker Rattan schwarz", "HK-RT-02", "HK-RT-02-P1", "16"],
+        ["6", "BST-24-0718", "Klappstuhl Eukalyptus", "KS-EU-05", "KS-EU-05-P2", "30"],
+        ["7", "BST-24-0718", "Lounge-Sofa Polyrattan", "LS-PR-11", "LS-PR-11-P4", "3"],
+        ["8", "BST-24-0718", "Beistelltisch Teak rund", "BT-TK-09", "BT-TK-09-P1", "10"],
+        ["9", "BST-24-0718", "Sitzkissen beige", "AU-SK-21", "AU-SK-21-P1", "48"],
+      ];
+      Kit.sheet(document.getElementById("wo-sheet"), {
+        cols: ["num", "mono", "", "mono", "mono", "num"],
+        widths: [70, 200, 380, 175, 235, 100],
+        rows: ROWS,
+      });
+      document.querySelectorAll(".gen-prev .bc, .plabel .bc").forEach((el) => Kit.barcode(el, el.parentNode.querySelector("b").textContent, el.offsetHeight, el.closest(".plabel") ? 1.5 : 2));
+
+      const K = Kit.create(tl, stage);
+      const C = (r, c) => K.cell("#wo", r, c);
+
+      // wejście
+      tl.from(["#hdr", "#meter", "#tabs"], { opacity: 0, y: -16, duration: 0.5, stagger: 0.08, ease: "power3.out" }, 0);
+      tl.from("#wo", { opacity: 0, y: 40, duration: 0.6, ease: "power3.out" }, 0.1);
+      tl.from("#printer", { opacity: 0, x: 40, duration: 0.6, ease: "power3.out" }, 0.25);
+      const tabOn = (id, t) => {
+        tl.set(["#tab-o", "#tab-g"], { backgroundColor: "#0e2a22", borderColor: "#1f4a3e", color: "#a7b8b1" }, t);
+        tl.set(id, { backgroundColor: "#13402f", borderColor: "#2fd3a0", color: "#ffffff" }, t);
+      };
+      tabOn("#tab-o", 0);
+      K.place({ x: 1000, y: 760 }, 0);
+      K.counter("#clock", 480, 627, 0, 39.2, (v) => `${String(Math.floor(v / 60)).padStart(2, "0")}:${String(Math.floor(v % 60)).padStart(2, "0")}`, "power2.in");
+
+      // trzy rodzaje kodów: zamówienie (B), produkt (D), część (E)
+      const colHL = (col, chip, t) => {
+        const head = K.box(`#wo th[data-col="${col}"]`), last = K.box(C(9, col));
+        const id = `hl-${col}`;
+        const hl = document.createElement("div"); hl.className = "colhl"; hl.id = id; stage.appendChild(hl);
+        tl.set(hl, { x: head.x, y: head.y, width: head.w, height: last.y + last.h - head.y }, 0);
+        tl.to(hl, { opacity: 1, duration: 0.25 }, t);
+        tl.set(chip, { x: head.x + head.w / 2 - K.box(chip).w / 2, y: head.y - 50 }, 0);
+        tl.fromTo(chip, { opacity: 0, y: head.y - 34 }, { opacity: 1, y: head.y - 50, duration: 0.3, ease: "back.out(2)", immediateRender: false }, t);
+        tl.to([hl, chip], { opacity: 0, duration: 0.3 }, 17.4);
+        K.move(`#wo th[data-col="${col}"]`, t - 0.5, 0.5, 0.5, 2.5);
+      };
+      colHL(1, "#ch-order", 2.6);
+      colHL(3, "#ch-prod", 5.7);
+      colHL(4, "#ch-part", 8.0);
+      tl.set("#ch-sum", { x: 420, y: 880 }, 0);
+      tl.fromTo("#ch-sum", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)", immediateRender: false }, 10.2);
+      tl.to("#ch-sum", { opacity: 0, duration: 0.3 }, 17.4);
+      K.move({ x: 860, y: 905 }, 11.0, 1.2);
+
+      // pętla 1 — powoli, pełny przebieg
+      K.moveClick(C(1, 3), 18.2, 0.7);
+      K.selectBox("#wo-sel", C(1, 3), 19.05);
+      K.text("#wo-ref", "D2", 19.05); K.text("#wo-fx", "GS-TK-01", 19.05);
+      K.key("#k-c", 19.6, 1.6);
+      K.moveClick("#tab-g", 22.2, 0.6);
+      tl.set("#wg", { opacity: 1 }, 22.95);
+      K.front("#wg", 22.95, 5); tabOn("#tab-g", 22.95);
+      K.moveClick("#gin", 23.4, 0.55);
+      tl.set("#gin", { borderColor: "#107c41", borderWidth: 3 }, 24.0);
+      K.key("#k-v", 24.3, 1.8);
+      K.text("#gin-v", "GS-TK-01", 24.5); K.text("#wg-fx", "GS-TK-01", 24.5);
+      tl.set("#gl0", { opacity: 1 }, 26.2);
+      tl.from("#gl0 .bars u", { scaleY: 0, duration: 0.25, stagger: 0.012, ease: "power2.out" }, 26.2);
+      K.key("#k-p", 29.3, 2.4);
+      tl.fromTo("#dlg", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out", immediateRender: false }, 29.6);
+      K.moveClick("#dlg-ok", 30.1, 0.7);
+      tl.to("#dlg", { opacity: 0, duration: 0.18 }, 31.0);
+      const printLabel = (i, t) => {
+        tl.fromTo(`#pl${i}`, { y: -160, rotation: 0 }, { y: 30 + i * 34, rotation: (i % 2 ? 1.6 : -1.4), duration: 0.55, ease: "power2.out", immediateRender: false }, t);
+        K.text("#count", `${i + 1} / 312`, t + 0.3);
+      };
+      tl.set(".plabel", { y: -160 }, 0);
+      printLabel(0, 31.4);
+      // „przechodziła do kolejnej pozycji”
+      K.moveClick("#tab-o", 32.4, 0.55);
+      K.front("#wo", 33.1, 6); tabOn("#tab-o", 33.1);
+      K.moveClick(C(2, 3), 33.3, 0.45);
+      K.selectBox("#wo-sel", C(2, 3), 33.9);
+      K.text("#wo-ref", "D3", 33.9); K.text("#wo-fx", "GT-AK-160", 33.9);
+
+      // pętle 2–4 — „przeklejała, drukowała” ×3, coraz szybciej
+      const LOOPS = [
+        { r: 2, code: "GT-AK-160", c: 34.4, p: 35.5, d: 36.6 },
+        { r: 3, code: "SL-AL-07", c: 36.85, p: 37.3, d: 37.8 },
+        { r: 4, code: "BK-TK-03", c: 37.95, p: 38.3, d: 38.75 },
+      ];
+      LOOPS.forEach((L, i) => {
+        const n = i + 1;
+        if (i > 0) {
+          K.selectBox("#wo-sel", C(L.r, 3), L.c - 0.15);
+          K.text("#wo-ref", `D${L.r + 1}`, L.c - 0.15); K.text("#wo-fx", L.code, L.c - 0.15);
+        }
+        K.key("#k-c2", L.c, 0.32);
+        K.move("#tab-g", L.c + 0.02, Math.min(0.5, L.p - L.c - 0.2));
+        K.click(L.p - 0.15);
+        K.front("#wg", L.p - 0.1, 7 + n * 2); tabOn("#tab-g", L.p - 0.1);
+        K.key("#k-v2", L.p, 0.32);
+        K.text("#gin-v", L.code, L.p + 0.05); K.text("#wg-fx", L.code, L.p + 0.05);
+        tl.set(`#gl${n - 1}`, { opacity: 0 }, L.p + 0.05);
+        tl.set(`#gl${n}`, { opacity: 1 }, L.p + 0.05);
+        tl.from(`#gl${n} .bars u`, { scaleY: 0, duration: 0.18, stagger: 0.004, ease: "power2.out" }, L.p + 0.05);
+        K.key("#k-p2", L.d - 0.25, 0.32);
+        printLabel(n, L.d - 0.15);
+        if (i < LOOPS.length - 1) {
+          K.move("#tab-o", L.d, 0.22);
+          K.click(L.d + 0.22);
+          K.front("#wo", L.d + 0.25, 8 + n * 2); tabOn("#tab-o", L.d + 0.25);
+          K.move(C(L.r + 1, 3), L.d + 0.3, 0.2);
+        }
+      });
+      tl.to({}, { duration: 0.01 }, 39.19);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["barcodes"] = tl;
+    </script>
+  </body>
+</html>
