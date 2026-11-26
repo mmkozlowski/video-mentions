@@ -61,7 +61,7 @@
     </div>
     <script>
       // Odcinek ep-doram, plik 11:48: 9:41.0 → 10:15.2 („powiedzieć mu: hej, ten produkt to tak naprawdę ten, z taką tkaniną…
-      // dopasowaliśmy, zapisaliśmy. AI to zapamiętało… kolejne zamówienie… AI dopasowuje w 95%”). t = czas w odcinku − 581.0 s.
+      // dopasowaliśmy, zapisaliśmy. AI to zapamiętało… kolejne zamówienie… AI dopasowuje w 95%”; łączna trafność po miesiącu wg MK 9:28 to 94% — tyle pokazujemy, nie zawyżamy). t = czas w odcinku − 581.0 s.
       const stage = document.getElementById("stage");
       const tl = gsap.timeline({ paused: true });
       const kind = (s) => (s >= 100 ? "success" : s ? "warning" : "error");
@@ -92,7 +92,7 @@
         `<div class="omx-card" id="card1">${head("Import zamówienia", "Bestellung_KW47_Patiolux.xlsx · Patiolux Handel GmbH · 104 pozycje")}<table class="omx-t">${TH(COLS, W)}${tableRows(R1, "a")}</table>` +
         `<div class="omx-foot"><span>pierwsze zamówienia: ok. 70% pozycji dopasowanych automatycznie</span><span>pokazano 6 z 104</span></div></div>` +
         `<div class="omx-card" id="card2">${head("Import zamówienia", "Bestellung_KW49_Patiolux.xlsx · Patiolux Handel GmbH · 98 pozycji")}<table class="omx-t">${TH(COLS, W)}${tableRows(R2, "b")}</table>` +
-        `<div class="omx-foot"><span>${OM.I("sparkles")} 93 z 98 dopasowane automatycznie · 5 marginalnych do sprawdzenia</span><span>pokazano 6 z 98</span></div></div></div>`;
+        `<div class="omx-foot"><span>${OM.I("sparkles")} 92 z 98 dopasowane automatycznie · 6 marginalnych do sprawdzenia</span><span>pokazano 6 z 98</span></div></div></div>`;
       const sheet = `<div class="omx-sheet" id="sheet"><h4>Wybierz produkt${OM.I("x")}</h4><div class="sub">dla pozycji: „Sessel Bali Kissen sand”</div>` +
         `<div class="sh-in">${OM.I("search")}<span id="q" data-text="fotel bali"></span></div>` +
         `<div class="cand" id="c1"><div>Fotel ogrodowy Bali<small>FT-BL-01 · rama akacja</small></div>${OM.I("chevright")}</div>` +
@@ -146,11 +146,11 @@
       pulse("#b0 td", 23.4); pulse("#b2 td", 25.6);
       K.move("#b0 td:nth-child(4)", 22.8, 0.6, 0.3, 0.5);
       K.move("#b2 td:nth-child(4)", 25.0, 0.6, 0.3, 0.5);
-      // „AI dopasowuje w 95%”
-      K.counter("#pct", 70, 95, 29.6, 2.6, (v) => `${Math.round(v)}%`, "power2.out");
-      tl.to("#bari", { scaleX: 0.95, duration: 2.6, ease: "power2.out" }, 29.6);
+      // „AI dopasowuje w 95%” — licznik pokazuje łączną trafność po miesiącu: 94% (MK 9:28, opis odcinka, rolka)
+      K.counter("#pct", 70, 94, 29.6, 2.6, (v) => `${Math.round(v)}%`, "power2.out");
+      tl.to("#bari", { scaleX: 0.94, duration: 2.6, ease: "power2.out" }, 29.6);
       tl.to("#pct", { color: "#2fd3a0", duration: 0.4 }, 31.0);
-      K.text("#manual", "5 z 98", 31.2);
+      K.text("#manual", "6 z 98", 31.2);
       K.move({ x: 1250, y: 930 }, 28.0, 1.0);
       tl.to({}, { duration: 0.01 }, 34.19);
       window.__timelines = window.__timelines || {};

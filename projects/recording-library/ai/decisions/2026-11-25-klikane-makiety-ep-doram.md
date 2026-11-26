@@ -1,7 +1,7 @@
 # Klikane makiety do ep-doram — Excel „przed”, Open Mercato „po”
 
 **Data:** 2026-11-25
-**Status:** ✅ wyrenderowane i pokazane MK · ⏳ wklejenie do odcinka czeka na akceptację MK
+**Status:** ✅ wyrenderowane · ✅ wklejone do odcinka (v2, 26.11, akceptacja MK)
 
 ## Problem
 
@@ -32,3 +32,27 @@ Lista momentów i plan wklejenia: `animations/doram/README.md`.
 - `hyperframes check` przy nachodzących oknach daje fałszywe `content_overlap`. Weryfikacja na klatkach.
 - Rendery muszą iść po kolei z `--workers 2`, bo na Macu był prawie pełny swap (MK 25.11).
 - Pamięć: [makiety-klikane-kit-hyperframes](../../../../.ai/memory/makiety-klikane-kit-hyperframes.md).
+
+## Wklejenie (26.11)
+
+MK 26.11 7:05: „Ok dodaj do video jest ok”. Zamiast przebudowywać odcinek od nowa (`package.py` → `assemble_episode.py`,
+które zmieniłyby czasy względem zaakceptowanego 11:48), `tools/overlay_animations.py` kładzie animacje na **gotowy
+plik** w czasach z jego transkrypcji.
+
+- **Twarz w okienku z `master.mp4`, nie ze zmniejszonego finału.** Pod częścią animacji w finale leżą plansze z własnym
+  okienkiem (np. ekran etykiet o 10:30), więc zmniejszony finał dałby miniaturę planszy. Kadr jak w `package.py`
+  (przybliżenie ze środkiem w `FACE_CENTER_X`, 40% wysokości), położenie jak w `slate(pip=True)`.
+- **Przesunięcie finał → master mierzone korelacją audio**, nie liczone z `assembly.json`. Długości wstawek są tam
+  zaokrąglone do 0,1 s, a przesunięcie ze słów Whispera myliło się o ~0,2 s (6 klatek, widać to na ustach). Z korelacji
+  wyszło 55,834 s przed ins-mid i 81,624 s po nim.
+- **Bitrate stały ~12 Mb/s zamiast CRF 18.** CRF 18 na tym materiale (statyczne plansze, twarz) dawał ~3,5 Mb/s, a MK
+  chce pełnej jakości pod YouTube.
+- **Animacja 05: 94%, nie 95%.** Opis i rolka mówią 70% → 94% (MK 9:28: „po miesiącu osiągnęliśmy 94%”). Zdanie
+  „AI dopasowuje to w 95%” (10:10) dotyczy jednego zamówienia, a licznik pokazuje łączną trafność, więc nie zawyżamy.
+
+### Pułapki
+
+- `split` jednego wejścia na kilka okienek rozłożonych po całym odcinku buforuje w RAM klatki do ostatniego użycia.
+  Dlatego każdy kawałek mastera i każda maska to osobne wejście z `-ss/-t` / `-loop -t`.
+- Wejście i wyjście to przenikanie 0,3 s, bez animowanego zjazdu twarzy jak w `slate(pip=True)`. Uproszczenie świadome:
+  zjazd wymagałby skalowania klatka po klatce z maską zaokrągleń.

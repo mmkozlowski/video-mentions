@@ -18,7 +18,7 @@ Czasy pochodzą z transkrypcji Whisper samego finału, nie z surówki.
 | 02 | **2:39.3 → 3:09.0** | „dopasować różne nazwy… sprawdzić ceny z katalogiem rozproszonym na różne Excele… dopisać swoje kolumny… trzech kontrahentów, każdy inaczej” | PRZED: zamówienie DE → Ctrl+C → `katalog_2024.xlsx` → Ctrl+F „nie znaleziono” → „teak” → 89 € → drugi plik `cennik_eksport_2025.xlsx` → 94 € (w zamówieniu 92 €, notatka „która cena?”) → PPM „Wstaw kolumnę” ×2 („Nr kat.”, „Cena kat.”), ramki na rozjazdach → trzy okna kontrahentów z różnym układem kolumn | 29.7 s |
 | 01 | **3:56.2 → 4:35.4** | „kod całego zamówienia, kod produktu, części… brała numery, wklejała do innego Excela… drukowała, przeklejała, drukowała ×3” | PRZED: trzy kolumny kodów, „104 pozycje × 3 kody = 312 etykiet” → Ctrl+C → `generator_kodow.xlsx` → Ctrl+V → kod się rysuje → Ctrl+P → Drukuj → etykieta wyjeżdża z drukarki. Pętla przyspiesza zgodnie z „przeklejała, drukowała”, zegar biegnie 08:00 → 10:27, licznik 4/312 | 39.2 s |
 | 04 | **6:50.3 → 7:12.0** | „przy wgraniu dokumentu… prawdopodobieństwo, że to jest to… w kilku kolorach: nie dopasowałem, 80%, 100%” | PO (Open Mercato): plik przeciągnięty na import → „AI czyta 104 pozycje” → tabela, procenty dobijają od zera → dymek „to prawdopodobnie to” → legenda kolorów, potem ramki: czerwona (brak) → pomarańczowe (78/82%) → zielona (100%) | 21.7 s |
-| 05 | **9:41.0 → 10:15.2** | „powiedzieć mu: ten produkt to tak naprawdę ten, z taką tkaniną… zapisaliśmy. AI zapamiętało… kolejne zamówienie… 95%” | PO: klik „wybierz produkt” → panel, wpisanie „fotel bali” → wybór produktu i tkaniny → „Dopasuj i zapisz” → wiersz zielony, komunikat „zapisano w słowniku”, karta „Pamięć AI”, słownik 214 → 215 → nowe zamówienie KW49, pozycje „z pamięci” → trafność 70% → 95% | 34.2 s |
+| 05 | **9:41.0 → 10:15.2** | „powiedzieć mu: ten produkt to tak naprawdę ten, z taką tkaniną… zapisaliśmy. AI zapamiętało… kolejne zamówienie… 95%” | PO: klik „wybierz produkt” → panel, wpisanie „fotel bali” → wybór produktu i tkaniny → „Dopasuj i zapisz” → wiersz zielony, komunikat „zapisano w słowniku”, karta „Pamięć AI”, słownik 214 → 215 → nowe zamówienie KW49, pozycje „z pamięci” → trafność 70% → 94% (łączna po miesiącu, MK 9:28; „95%” w zdaniu dotyczy jednego zamówienia) | 34.2 s |
 | 06 | **10:29.8 → 10:52.3** | „bez AI, program bierze cztery numery, generuje PDF… po minucie 40 stron etykiet… z kilku dni 15 minut” | PO: karta zamówienia, cztery numery w ramkach → „Generuj etykiety” → PDF składa się 0 → 40 stron, przewijanie wszystkich stron → „PDF gotowy · 40 stron · 54 s” → Drukuj → „kilka dni → 15 min” | 22.5 s |
 
 Pliki do obejrzenia (tailnet):
@@ -26,7 +26,12 @@ Pliki do obejrzenia (tailnet):
 03-nazwy-de-en, 04-dopasowanie-ai, 05-korekta-pamiec-ai, 06-etykiety-system) oraz `doram-anim-podglad.mp4`
 (wszystkie po kolei w kolejności odcinka, 2:48).
 
-## Plan wklejenia (do decyzji MK — nic nie jest jeszcze wklejone)
+## Wklejenie (MK 26.11 7:05: „Ok dodaj do video jest ok”)
+
+Wklejone w wersji v2 odcinka: `tools/overlay_animations.py animations/doram/inserts.json`. Skrypt kładzie animacje
+na gotowy plik 11:48 i dokłada okienko twarzy z czystego `master.mp4` (bez plansz pod spodem). Przesunięcie
+finał → master zmierzone korelacją audio: 55,834 s przed ins-mid, 81,624 s po nim. Wejście i wyjście to przenikanie
+0,3 s animacji razem z okienkiem, bez animowanego zjazdu twarzy. Kodowanie pod YouTube: 1920×1080, H.264 ~12 Mb/s, AAC 320k.
 
 **Forma: pełny ekran z okienkiem twarzy MK w prawym dolnym rogu (PiP).** To ten sam wzorzec co obecne plansze
 „Przeklej. Drukuj.” i ekrany systemu. `slate(pip=True)` w `tools/package.py` zjeżdża twarzą do okienka 0,27×
