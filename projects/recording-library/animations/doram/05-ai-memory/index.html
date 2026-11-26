@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Korekta i pamięć AI</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="assets/kit.css" />
+    <link rel="stylesheet" href="assets/om.css" />
+    <script src="assets/kit.js"></script>
+    <script src="assets/om-icons.js"></script>
+    <script src="assets/om.js"></script>
+    <style>
+      #app { position: absolute; left: 80px; top: 150px; }
+      #app .omx-win { width: 1270px; height: 790px; }
+      .omx-t td { height: 60px; font-size: 21px; } .omx-t th { font-size: 18px; } .omx-st { font-size: 17px; height: 32px; }
+      .omx-t tr.p td:first-child { font-style: italic; color: #525252; }
+      .stack { position: relative; flex: 1; min-height: 0; }
+      .stack > .omx-card { position: absolute; inset: 0; }
+      #card2 { opacity: 0; }
+      .cell2 { display: inline-grid; } .cell2 > * { grid-area: 1/1; justify-self: start; }
+      .omx-sheet { width: 540px; gap: 14px; }
+      .sh-l { font-size: 16px; color: #737373; margin-bottom: -6px; }
+      .sh-in { height: 52px; border: 1px solid #d4d4d4; border-radius: 10px; display: flex; align-items: center; gap: 10px; padding: 0 14px; font-size: 21px; }
+      .sh-in .omx-i { width: 20px; height: 20px; color: #a3a3a3; }
+      .cand { border: 1px solid #e5e5e5; border-radius: 10px; padding: 12px 14px; font-size: 20px; display: flex; justify-content: space-between; align-items: center; opacity: 0; }
+      .cand small { font-size: 15px; color: #737373; display: block; }
+      .chk { display: flex; align-items: center; gap: 10px; font-size: 19px; color: #262626; }
+      .chk i { width: 24px; height: 24px; border-radius: 6px; background: #171717; color: #fff; display: flex; align-items: center; justify-content: center; font-style: normal; }
+      .chk i .omx-i { width: 16px; height: 16px; }
+      .sh-btns { margin-top: auto; display: flex; gap: 10px; justify-content: flex-end; }
+      .omx-flash { width: 470px; font-size: 18px; } .omx-flash span { font-size: 16px; }
+      .side { position: absolute; left: 1400px; top: 150px; width: 440px; background: var(--raised); border: 1px solid var(--line); border-radius: 18px; padding: 24px; }
+      .side small { display: block; font: 700 15px/1.3 "Space Mono"; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+      .side .big { font: 800 96px/1 "Plus Jakarta Sans"; margin-top: 14px; font-variant-numeric: tabular-nums; color: var(--amber); }
+      .side .row { display: flex; justify-content: space-between; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 21px; color: var(--muted); }
+      .side .row b { color: #fff; }
+      .bar { height: 14px; border-radius: 7px; background: #0a2019; margin-top: 18px; overflow: hidden; }
+      .bar i { display: block; width: 100%; height: 100%; background: var(--accent); transform-origin: 0 50%; }
+      .mem { position: absolute; left: 1400px; top: 520px; width: 440px; background: #2e1065; border: 1px solid #6d28d9; border-radius: 16px; padding: 18px 20px; opacity: 0; color: #fff; font-size: 20px; line-height: 1.4; }
+      .mem small { display: block; font: 700 14px/1 "Space Mono"; letter-spacing: .12em; text-transform: uppercase; color: #c4b5fd; margin-bottom: 8px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="memory" data-start="0" data-duration="34.2" data-width="1920" data-height="1080" data-fps="30">
+      <section id="stage" class="clip" data-start="0" data-duration="34.2" data-track-index="1">
+        <div class="hdr" id="hdr" style="top: 36px">
+          <div class="tag">AI w praktyce · w firmie</div>
+          <div class="kick ok" id="kick">Po · jedna poprawka — AI zapamiętuje</div>
+        </div>
+        <div id="app"></div>
+        <div class="side" id="side">
+          <small>Trafność dopasowania · Patiolux</small>
+          <div class="big" id="pct">70%</div>
+          <div class="bar"><i id="bari"></i></div>
+          <div class="row"><span>Słownik nazw</span><b id="dict">214</b></div>
+          <div class="row"><span>Do poprawy ręcznie</span><b id="manual">31 z 104</b></div>
+        </div>
+        <div class="mem" id="mem"><small>Pamięć AI</small>„Sessel Bali Kissen sand” u Patiolux = Fotel Bali · tkanina piaskowa</div>
+      </section>
+    </div>
+    <script>
+      // Odcinek ep-doram, plik 11:48: 9:41.0 → 10:15.2 („powiedzieć mu: hej, ten produkt to tak naprawdę ten, z taką tkaniną…
+      // dopasowaliśmy, zapisaliśmy. AI to zapamiętało… kolejne zamówienie… AI dopasowuje w 95%”; łączna trafność po miesiącu wg MK 9:28 to 94% — tyle pokazujemy, nie zawyżamy). t = czas w odcinku − 581.0 s.
+      const stage = document.getElementById("stage");
+      const tl = gsap.timeline({ paused: true });
+      const kind = (s) => (s >= 100 ? "success" : s ? "warning" : "error");
+      const tableRows = (rows, prefix) => rows.map(([theirs, ours, qty, s, label], i) =>
+        `<tr class="p" id="${prefix}${i}"><td>${OM.esc(theirs)}</td><td>${ours}</td><td class="num">${qty}</td><td>${s === null ? label : OM.status(label || `${s}% pewne`, kind(s))}</td></tr>`).join("");
+      const TH = (cols, w) => `<tr>${cols.map((h, i) => `<th style="width:${w[i]}">${h}</th>`).join("")}</tr>`;
+      const COLS = ["Pozycja kontrahenta", "Produkt w systemie", "Ilość", "Dopasowanie AI"], W = ["31%", "35%", "8%", "26%"];
+      const fixProduct = `<span class="cell2"><span class="mut" id="pick">— wybierz produkt —</span><span id="picked" style="opacity:0">Fotel Bali · piaskowy</span></span>`;
+      const fixScore = `<span class="cell2"><span id="miss">${OM.status("brak dopasowania", "error")}</span><span id="okd" style="opacity:0">${OM.status("100% · poprawione", "success")}</span></span>`;
+      const R1 = [
+        ["Gartenstuhl Teak natur", "Krzesło ogrodowe teak · natur", 24, 100],
+        ["Sonnenliege Alu grau", "Leżak aluminiowy · grafit", 12, 82, "82% do sprawdzenia"],
+        ["Sessel Bali Kissen sand", fixProduct, 8, null, fixScore],
+        ["Bank 3-Sitzer Teak", "Ławka teak 3-os. · natur", 4, 100],
+        ["Lounge-Sofa Polyrattan", "Sofa lounge technorattan", 3, 78, "78% do sprawdzenia"],
+        ["Sitzkissen beige", "Poduszka na siedzisko 45×45", 48, 100],
+      ];
+      const R2 = [
+        ["Sessel Bali, Kissen sand", "Fotel Bali · piaskowy", 6, 100, "100% · z pamięci"],
+        ["Gartenstuhl Teak nat.", "Krzesło ogrodowe teak · natur", 30, 100],
+        ["Sonnenliege Alu graphit", "Leżak aluminiowy · grafit", 10, 100, "100% · z pamięci"],
+        ["Bank Teak 3er", "Ławka teak 3-os. · natur", 6, 100],
+        ["Lounge Sofa PR beige", "Sofa lounge technorattan · beż", 2, 96, "96% · sprawdź"],
+        ["Sitzkissen beige 45", "Poduszka na siedzisko 45×45", 60, 100],
+      ];
+      const head = (title, sub) => `<div class="omx-ch"><div><h3>${title}</h3><p>${sub}</p></div><div class="r">${OM.btn("Anuluj")}${OM.btn("Utwórz zamówienie", "check", true)}</div></div>`;
+      const body = `<div class="stack">` +
+        `<div class="omx-card" id="card1">${head("Import zamówienia", "Bestellung_KW47_Patiolux.xlsx · Patiolux Handel GmbH · 104 pozycje")}<table class="omx-t">${TH(COLS, W)}${tableRows(R1, "a")}</table>` +
+        `<div class="omx-foot"><span>pierwsze zamówienia: ok. 70% pozycji dopasowanych automatycznie</span><span>pokazano 6 z 104</span></div></div>` +
+        `<div class="omx-card" id="card2">${head("Import zamówienia", "Bestellung_KW49_Patiolux.xlsx · Patiolux Handel GmbH · 98 pozycji")}<table class="omx-t">${TH(COLS, W)}${tableRows(R2, "b")}</table>` +
+        `<div class="omx-foot"><span>${OM.I("sparkles")} 92 z 98 dopasowane automatycznie · 6 marginalnych do sprawdzenia</span><span>pokazano 6 z 98</span></div></div></div>`;
+      const sheet = `<div class="omx-sheet" id="sheet"><h4>Wybierz produkt${OM.I("x")}</h4><div class="sub">dla pozycji: „Sessel Bali Kissen sand”</div>` +
+        `<div class="sh-in">${OM.I("search")}<span id="q" data-text="fotel bali"></span></div>` +
+        `<div class="cand" id="c1"><div>Fotel ogrodowy Bali<small>FT-BL-01 · rama akacja</small></div>${OM.I("chevright")}</div>` +
+        `<div class="cand" id="c2"><div>Fotel Bali z podnóżkiem<small>FT-BL-02 · rama akacja</small></div>${OM.I("chevright")}</div>` +
+        `<div class="sh-l">Tkanina poduszek</div><div class="sh-in" id="fab"><span id="fabv" style="color:#a3a3a3">wybierz tkaninę…</span><span id="fabok" style="display:none"></span></div>` +
+        `<div class="chk"><i>${OM.I("check")}</i>Zapamiętaj tę nazwę dla kontrahenta Patiolux</div>` +
+        `<div class="sh-btns">${OM.btn("Anuluj")}${OM.btn("Dopasuj i zapisz", "check", true, "", "save")}</div></div>`;
+      const flash = `<div class="omx-flash" id="flash">${OM.I("check")}<div><b>Zapisano w słowniku nazw</b><span>„Sessel Bali Kissen sand” → Fotel Bali · piaskowy. Następnym razem AI dopasuje to samo.</span></div></div>`;
+      document.getElementById("app").innerHTML = OM.shell({ tenant: "Meble ogrodowe", role: "Biuro obsługi zamówień", groups: OM.GROUPS,
+        active: "Zamówienia", crumbs: ["Zamówienia", "Import z pliku"], body, who: "Biuro", extra: sheet + flash });
+
+      const K = Kit.create(tl, stage);
+      tl.from(["#hdr", "#side"], { opacity: 0, y: -16, duration: 0.5, ease: "power3.out", stagger: 0.1 }, 0);
+      tl.from("#app", { opacity: 0, y: 30, duration: 0.5, ease: "power3.out" }, 0);
+      tl.set("#bari", { scaleX: 0.7 }, 0);
+      K.place({ x: 1000, y: 900 }, 0);
+
+      // 1) ręczna poprawka jednej pozycji
+      K.moveClick("#pick", 1.6, 0.9);
+      tl.fromTo("#sheet", { opacity: 0, x: 80 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out", immediateRender: false }, 2.7);
+      K.moveClick("#q", 3.1, 0.5);
+      K.type("#q", 3.7, 14);
+      tl.to(["#c1", "#c2"], { opacity: 1, duration: 0.25, stagger: 0.12 }, 4.5);
+      K.moveClick("#c1", 5.3, 0.6);
+      tl.set("#c1", { borderColor: "#171717", backgroundColor: "#f5f5f5" }, 6.0);
+      tl.to("#c2", { opacity: 0.35, duration: 0.2 }, 6.0);
+      // „z taką i z taką tkaniną”
+      K.moveClick("#fab", 7.2, 0.6);
+      K.text("#fabv", "Olefin · piaskowy (sand)", 8.0);
+      tl.set("#fabv", { color: "#0a0a0a" }, 8.0);
+      tl.set("#fab", { borderColor: "#171717" }, 8.0);
+      // „dopasowaliśmy go, zapisaliśmy”
+      K.moveClick("#save", 11.0, 0.8);
+      tl.to("#sheet", { opacity: 0, x: 80, duration: 0.3, ease: "power2.in" }, 12.0);
+      tl.to(["#pick", "#miss"], { opacity: 0, duration: 0.2 }, 12.2);
+      tl.to(["#picked", "#okd"], { opacity: 1, duration: 0.3 }, 12.4);
+      tl.to("#a2 td", { backgroundColor: "#ecfdf3", duration: 0.3 }, 12.4);
+      tl.fromTo("#flash", { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.3, immediateRender: false }, 13.9);
+      // „AI to zapamiętało, baza też”
+      tl.fromTo("#mem", { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out", immediateRender: false }, 15.4);
+      K.text("#dict", "215", 17.8);
+      tl.fromTo("#dict", { color: "#2fd3a0", scale: 1.3 }, { scale: 1, duration: 0.4, immediateRender: false }, 17.8);
+      tl.to("#flash", { opacity: 0, duration: 0.3 }, 19.6);
+      K.move({ x: 1250, y: 930 }, 18.5, 1.0);
+
+      // 2) kolejne zamówienie tego kontrahenta — podobne, lekko inne nazwy
+      tl.to("#card1", { opacity: 0, duration: 0.3 }, 20.5);
+      tl.to("#card2", { opacity: 1, duration: 0.3 }, 20.7);
+      tl.from("#card2 tr.p", { opacity: 0, x: -24, duration: 0.3, stagger: 0.14 }, 20.9);
+      const pulse = (sel, t) => tl.fromTo(sel, { backgroundColor: "#ede9fe" }, { backgroundColor: "#ffffff", duration: 1.2, immediateRender: false }, t);
+      pulse("#b0 td", 23.4); pulse("#b2 td", 25.6);
+      K.move("#b0 td:nth-child(4)", 22.8, 0.6, 0.3, 0.5);
+      K.move("#b2 td:nth-child(4)", 25.0, 0.6, 0.3, 0.5);
+      // „AI dopasowuje w 95%” — licznik pokazuje łączną trafność po miesiącu: 94% (MK 9:28, opis odcinka, rolka)
+      K.counter("#pct", 70, 94, 29.6, 2.6, (v) => `${Math.round(v)}%`, "power2.out");
+      tl.to("#bari", { scaleX: 0.94, duration: 2.6, ease: "power2.out" }, 29.6);
+      tl.to("#pct", { color: "#2fd3a0", duration: 0.4 }, 31.0);
+      K.text("#manual", "6 z 98", 31.2);
+      K.move({ x: 1250, y: 930 }, 28.0, 1.0);
+      tl.to({}, { duration: 0.01 }, 34.19);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["memory"] = tl;
+    </script>
+  </body>
+</html>
